@@ -10,6 +10,10 @@ def params(funcarglist):
 
 def pytest_generate_tests(metafunc):
     for funcargs in getattr(metafunc.function, 'funcarglist', ()):
+        if "p1Name" not in funcargs:
+            funcargs["p1Name"] = "player1"
+        if "p2Name" not in funcargs:
+            funcargs["p2Name"] = "player2"
         metafunc.addcall(funcargs=funcargs)
 
 # actual test code
@@ -53,12 +57,17 @@ class TestTennis:
              dict(p1Points=4, p2Points=6, score="Win for player2"),
              dict(p1Points=16, p2Points=14, score="Win for player1"),
              dict(p1Points=14, p2Points=16, score="Win for player2"),
+
+             dict(p1Points=6, p2Points=4, score="Win for One", p1Name='One'),
+             dict(p1Points=4, p2Points=6, score="Win for Two", p2Name="Two"),
+             dict(p1Points=6, p2Points=5, score="Advantage One", p1Name='One'),
+             dict(p1Points=5, p2Points=6, score="Advantage Two", p2Name="Two"),
             ])
-    def test_get_score(self, p1Points, p2Points, score):
-        game = TennisGame("player1", "player2")
+    def test_get_score(self, p1Points, p2Points, score, p1Name, p2Name):
+        game = TennisGame(p1Name, p2Name)
         for i in range(p1Points):
-            game.won_point("player1")
+            game.won_point(p1Name)
         for i in range(p2Points):
-            game.won_point("player2")
+            game.won_point(p2Name)
         assert score == game.score()
 
