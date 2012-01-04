@@ -27,13 +27,13 @@ class TennisGameDefactored1:
         elif (self.p1points>=4 or self.p2points>=4):
             minusResult = self.p1points-self.p2points
             if (minusResult==1):
-                result ="Advantage player1"
+                result ="Advantage " + self.player1Name
             elif (minusResult ==-1):
-                result ="Advantage player2"
+                result ="Advantage " + self.player2Name
             elif (minusResult>=2):
-                result = "Win for player1"
+                result = "Win for " + self.player1Name
             else:
-                result ="Win for player2"
+                result ="Win for " + self.player2Name
         else:
             for i in range(1,3):
                 if (i==1):
@@ -124,15 +124,15 @@ class TennisGameDefactored2:
             result = P1res + "-" + P2res
         
         if (self.p1points > self.p2points and self.p2points >= 3):
-            result = "Advantage player1"
+            result = "Advantage " + self.player1Name
         
         if (self.p2points > self.p1points and self.p1points >= 3):
-            result = "Advantage player2"
+            result = "Advantage " + self.player2Name
         
         if (self.p1points>=4 and self.p2points>=0 and (self.p1points-self.p2points)>=2):
-            result = "Win for player1"
+            result = "Win for " + self.player1Name
         if (self.p2points>=4 and self.p1points>=0 and (self.p2points-self.p1points)>=2):
-            result = "Win for player2"
+            result = "Win for " + self.player2Name
         return result
     
     def SetP1Score(self, number):
