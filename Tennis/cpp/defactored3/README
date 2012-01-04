@@ -1,0 +1,14 @@
+These files were created:
+  README is what you are currently reading
+  run-once.sh runs your tests once
+  run-endless.sh runs your tests endlessly via run-once.sh
+
+Run run-endless.sh and start your kata. (On Mac/Linux you have to call ./run-endless.sh.)
+
+Assumptions:
+  - make and a C++ compiler (like gcc) is installed on your system and is in the PATH
+  - The GTest framework is in the directory gtest.
+  - If your IDE does the compilation and linking, you should remove the first 3 lines
+    in the run-once.sh file.
+
+The support for C++/GTest was contributed by Stefan Roock.
