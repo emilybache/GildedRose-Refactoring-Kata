@@ -4,7 +4,7 @@ const std::string tennis_score(int p1, int p2) {
 	std::string s;
     std::string p1N = "player1";
     std::string p2N = "player2";
-	if (p1 < 4 && p2 < 4) {
+	if (p1 < 4 && p2 < 4 && !(p1 == 3 && p2 == 3)) {
 		std::string p[4] = {"Love", "Fifteen", "Thirty", "Forty"}; 
 		s = p[p1];
 		return (p1 == p2) ? s + "-All" : s + "-" + p[p2];
@@ -31,8 +31,8 @@ TEST(TennisTest, ThirtyAll_2_2) {
 }
 
 
-TEST(TennisTest, FortyAll_3_3) {
-  EXPECT_EQ("Forty-All", tennis_score(3, 3));
+TEST(TennisTest, Deuce_3_3) {
+  EXPECT_EQ("Deuce", tennis_score(3, 3));
 }
 
 

@@ -17,7 +17,7 @@ const std::string tennis_score(int p1Score, int p2Score) {
 					score = "Thirty-All";
 				break;
 			case 3:
-					score = "Forty-All";
+					score = "Deuce";
 				break;
 			default:
 					score = "Deuce";
@@ -75,8 +75,8 @@ TEST(TennisTest, ThirtyAll_2_2) {
 }
 
 
-TEST(TennisTest, FortyAll_3_3) {
-  EXPECT_EQ("Forty-All", tennis_score(3, 3));
+TEST(TennisTest, Deuce_3_3) {
+  EXPECT_EQ("Deuce", tennis_score(3, 3));
 }
 
 

@@ -16,7 +16,7 @@ const std::string tennis_score(int p1Score, int p2Score) {
 			score = "Forty";
 		score += "-All";
 	}
-	if (p1Score==p2Score && p1Score>3)
+	if (p1Score==p2Score && p1Score>2)
 		score = "Deuce";
 	
 	if (p1Score > 0 && p2Score==0)
@@ -106,8 +106,8 @@ TEST(TennisTest, ThirtyAll_2_2) {
 }
 
 
-TEST(TennisTest, FortyAll_3_3) {
-  EXPECT_EQ("Forty-All", tennis_score(3, 3));
+TEST(TennisTest, Deuce_3_3) {
+  EXPECT_EQ("Deuce", tennis_score(3, 3));
 }
 
 

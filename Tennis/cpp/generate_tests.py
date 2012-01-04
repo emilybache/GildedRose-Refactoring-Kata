@@ -8,7 +8,7 @@ TEST(TennisTest, %(testcase_name)s) {
 test_cases = [dict(p1Points=0, p2Points=0, score="Love-All"),
          dict(p1Points=1, p2Points=1, score="Fifteen-All"),
          dict(p1Points=2, p2Points=2, score="Thirty-All"),
-         dict(p1Points=3, p2Points=3, score="Forty-All"),
+         dict(p1Points=3, p2Points=3, score="Deuce"),
          dict(p1Points=4, p2Points=4, score="Deuce"),
 
          dict(p1Points=1, p2Points=0, score="Fifteen-Love"),

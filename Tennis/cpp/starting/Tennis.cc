@@ -19,8 +19,8 @@ TEST(TennisTest, ThirtyAll_2_2) {
 }
 
 
-TEST(TennisTest, FortyAll_3_3) {
-  EXPECT_EQ("Forty-All", tennis_score(3, 3));
+TEST(TennisTest, Deuce_3_3) {
+  EXPECT_EQ("Deuce", tennis_score(3, 3));
 }
 
 
