@@ -1,4 +1,6 @@
-(This Kata is already on GitHub as "GildedRose" with several forks, and I'm not sure who put it up there first. All the forks I could find were pure C# so rather than fork one of them I decided to just put other languages in here.)
+This Kata was originally created by Terry Hughes (http://twitter.com/#!/TerryHughes). It is already on GitHub as "GildedRose", a sample project for C#. I could have forked it again, but I thought other language users might not want to download a whole C# project environment. In this repository are starting code samples for Java, Python and C++.
+
+See also http://iamnotmyself.com/2011/02/13/refactor-this-the-gilded-rose-kata/
 
 ================
 Gilded Rose Kata
@@ -23,6 +25,6 @@ We have recently signed a supplier of conjured items. This requires an update to
 
 	- "Conjured" items degrade in Quality twice as fast as normal items
 
-Feel free to make any changes to the UpdateQuality method and add any new code as long as everything still works correctly. However, do not alter the Item class or Items property as those belong to the goblin in the corner who will insta-rage and one-shot you as he doesn't believe in shared code ownership (you can make the UpdateQuality method and Items property static if you like, we'll cover for you). Your work needs to be completed by Friday, February 18, 2011 08:00:00 AM PST.
+Feel free to make any changes to the UpdateQuality method and add any new code as long as everything still works correctly. However, do not alter the Item class or Items property as those belong to the goblin in the corner who will insta-rage and one-shot you as he doesn't believe in shared code ownership (you can make the UpdateQuality method and Items property static if you like, we'll cover for you). 
 
 Just for clarification, an item can never have its Quality increase above 50, however "Sulfuras" is a legendary item and as such its Quality is 80 and it never alters.
