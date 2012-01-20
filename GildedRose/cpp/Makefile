@@ -72,4 +72,4 @@ GildedRose.o : $(USER_DIR)/GildedRose.cc \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/GildedRose.cc
 
 GildedRose : GildedRose.o gtest_main.a
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -pthread $^ -o $@
