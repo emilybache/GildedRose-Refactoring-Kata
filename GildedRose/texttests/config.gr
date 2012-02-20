@@ -1,0 +1,18 @@
+full_name:Gilded Rose Refactoring Kata 
+
+# Settings for the Java version
+executable:Main
+interpreter:java
+# note you'll also need to update the file environment.gr with your classpath
+
+# Settings for the Python version
+# note you should have the full path to your code here, not this example
+#executable:/home/emily/workspace/Refactoring-Katas/GildedRose/python/gilded_rose.py
+#interpreter:python
+
+
+# turn on one of these if you prefer them to notepad or emacs.
+#view_program:gedit 
+#view_program:mate
+
+file_convention_scheme:standard
