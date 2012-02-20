@@ -1,3 +1,2 @@
-#CLASSPATH:/path/to/where/your/java/class/files/live
-# eg:
-CLASSPATH:/home/emily/workspace/Refactoring-Katas/GildedRose/Java
+# If your .class files are somewhere else, add the path to the list
+CLASSPATH:${TEXTTEST_CHECKOUT}/Java:${TEXTTEST_CHECKOUT}/Java/bin
