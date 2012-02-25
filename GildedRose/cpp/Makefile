@@ -67,9 +67,12 @@ gtest_main.a : gtest-all.o gtest_main.o
 # gtest_main.a, depending on whether it defines its own main()
 # function.
 
-#GildedRose.o : $(USER_DIR)/GildedRose.h \
-#  $(GTEST_HEADERS)
-#	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/GildedRose.h
+GildedRose.o : $(USER_DIR)/GildedRose.cc
+	$(CXX) -c $^
 
-GildedRose : GildedRoseUnitTests.cc gtest_main.a
+GildedRoseUnitTests.o : $(USER_DIR)/GildedRoseUnitTests.cc \
+  $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/GildedRoseUnitTests.cc
+
+GildedRose : GildedRoseUnitTests.o GildedRose.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -pthread $^ -o $@
