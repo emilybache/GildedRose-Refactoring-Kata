@@ -1,6 +1,6 @@
 #include "GildedRose.h"
 
-GildedRose::GildedRose(vector<Item> items) : items(items)
+GildedRose::GildedRose(vector<Item> & items) : items(items)
 {}
     
 void GildedRose::updateQuality() 
