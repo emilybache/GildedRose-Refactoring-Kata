@@ -27,6 +27,8 @@ CXXFLAGS += -g -Wall -Wextra
 # created to the list.
 TESTS = GildedRose
 
+TEXTTESTS = GildedRoseTextTests
+
 # All Google Test headers.  Usually you shouldn't change this
 # definition.
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
@@ -34,10 +36,10 @@ GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
 
 # House-keeping build targets.
 
-all : $(TESTS)
+all : $(TESTS) $(TEXTTESTS)
 
 clean :
-	rm -f $(TESTS) gtest.a gtest_main.a *.o
+	rm -f $(TESTS) $(TEXTTESTS) gtest.a gtest_main.a *.o
 
 # Builds gtest.a and gtest_main.a.
 
@@ -76,3 +78,9 @@ GildedRoseUnitTests.o : $(USER_DIR)/GildedRoseUnitTests.cc \
 
 GildedRose : GildedRoseUnitTests.o GildedRose.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -pthread $^ -o $@
+
+GildedRoseTextTests.o : $(USER_DIR)/GildedRoseTextTests.cc
+	$(CXX) -c $(USER_DIR)/GildedRoseTextTests.cc
+
+GildedRoseTextTests : GildedRoseTextTests.o GildedRose.o
+	$(CXX) -pthread $^ -o $@
