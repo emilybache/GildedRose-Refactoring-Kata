@@ -71,5 +71,5 @@ gtest_main.a : gtest-all.o gtest_main.o
 #  $(GTEST_HEADERS)
 #	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/GildedRose.h
 
-GildedRose : GildedRose.h gtest_main.a
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(USER_DIR)/GildedRose.h -pthread $^ -o $@
+GildedRose : GildedRoseUnitTests.cc gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -pthread $^ -o $@
