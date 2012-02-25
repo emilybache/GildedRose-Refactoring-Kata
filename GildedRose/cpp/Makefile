@@ -12,7 +12,7 @@
 
 # Points to the root of Google Test, relative to where this file is.
 # Remember to tweak this if you move this file.
-GTEST_DIR = gtest
+GTEST_DIR = ../../../googletest
 
 # Where to find user code.
 USER_DIR = .
@@ -67,9 +67,9 @@ gtest_main.a : gtest-all.o gtest_main.o
 # gtest_main.a, depending on whether it defines its own main()
 # function.
 
-GildedRose.o : $(USER_DIR)/GildedRose.cc \
-  $(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/GildedRose.cc
+#GildedRose.o : $(USER_DIR)/GildedRose.h \
+#  $(GTEST_HEADERS)
+#	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/GildedRose.h
 
-GildedRose : GildedRose.o gtest_main.a
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -pthread $^ -o $@
+GildedRose : GildedRose.h gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(USER_DIR)/GildedRose.h -pthread $^ -o $@
