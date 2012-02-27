@@ -27,6 +27,8 @@ CXXFLAGS += -g -Wall -Wextra
 # created to the list.
 TESTS = GildedRose
 
+TEXTTESTS = GildedRoseTextTests
+
 # All Google Test headers.  Usually you shouldn't change this
 # definition.
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
@@ -34,10 +36,10 @@ GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
 
 # House-keeping build targets.
 
-all : $(TESTS)
+all : $(TESTS) $(TEXTTESTS)
 
 clean :
-	rm -f $(TESTS) gtest.a gtest_main.a *.o
+	rm -f $(TESTS) $(TEXTTESTS) gtest.a gtest_main.a *.o
 
 # Builds gtest.a and gtest_main.a.
 
@@ -67,9 +69,18 @@ gtest_main.a : gtest-all.o gtest_main.o
 # gtest_main.a, depending on whether it defines its own main()
 # function.
 
-GildedRose.o : $(USER_DIR)/GildedRose.cc \
-  $(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/GildedRose.cc
+GildedRose.o : $(USER_DIR)/GildedRose.cc
+	$(CXX) -c $^
 
-GildedRose : GildedRose.o gtest_main.a
+GildedRoseUnitTests.o : $(USER_DIR)/GildedRoseUnitTests.cc \
+  $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/GildedRoseUnitTests.cc
+
+GildedRose : GildedRoseUnitTests.o GildedRose.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -pthread $^ -o $@
+
+GildedRoseTextTests.o : $(USER_DIR)/GildedRoseTextTests.cc
+	$(CXX) -c $^
+
+GildedRoseTextTests : GildedRoseTextTests.o GildedRose.o
+	$(CXX) -pthread $^ -o $@
