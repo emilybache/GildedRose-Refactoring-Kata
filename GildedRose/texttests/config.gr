@@ -16,8 +16,11 @@ default_checkout:/home/emily/workspace/Refactoring-Katas/GildedRose
 #executable:${TEXTTEST_CHECKOUT}/cpp/GildedRoseTextTests
 
 # Settings for the Ruby version
-executable:${TEXTTEST_CHECKOUT}/ruby/main.rb
-interpreter:ruby
+#executable:${TEXTTEST_CHECKOUT}/ruby/main.rb
+#interpreter:ruby
+
+# Settings for the C# version
+executable:${TEXTTEST_CHECKOUT}/csharp/Program.exe
 
 # turn on one of these if you prefer them to notepad or emacs.
 [view_program]
