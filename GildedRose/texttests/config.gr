@@ -12,10 +12,13 @@ interpreter:java
 #executable:${TEXTTEST_CHECKOUT}/python/gilded_rose.py
 #interpreter:python
 
+# Settings for the C++ version
+#executable:${TEXTTEST_CHECKOUT}/cpp/GildedRoseTextTests
+
 # turn on one of these if you prefer them to notepad or emacs.
 [view_program]
 #*:mate
-#*:gedit
+*:gedit
 [end]
 
 filename_convention_scheme:standard
