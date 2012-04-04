@@ -6,7 +6,7 @@ See also http://iamnotmyself.com/2011/02/13/refactor-this-the-gilded-rose-kata/
 How to use this Kata
 ====================
 
-The simplest way is to just clone the code and start hacking away improving the design. I strongly advise you that you'll need some tests if you want to make sure you don't break the code in the process though.
+The simplest way is to just clone the code and start hacking away improving the design. You'll want to look at the "Gilded Rose Background Reading" (below) which explains what the code is for. I strongly advise you that you'll also need some tests if you want to make sure you don't break the code while you refactor.
 
 You could write some unit tests yourself, using the Kata Background Reading (below) to identify suitable test cases. I've provided a failing unit test in a popular test framework as a starting point for most languages.
 
