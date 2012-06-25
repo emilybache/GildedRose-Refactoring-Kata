@@ -173,4 +173,4 @@ class TennisGameDefactored3:
                 return "Deuce"
             s = self.p1N if self.p1 > self.p2 else self.p2N
             return "Advantage " + s if ((self.p1-self.p2)*(self.p1-self.p2) == 1) else "Win for " + s
-        
+TennisGame = TennisGameDefactored3        
