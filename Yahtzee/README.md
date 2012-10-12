@@ -1,19 +1,12 @@
-========================
-Yahtzee Refactoring Kata
-========================
+# Yahtzee Refactoring Kata
 
-This Refactoring Kata was designed by Jon Jagger and is available in his Cyber-Dojo on these urls:
-
-C#:   http://cyber-dojo.com/diff/show/E4466E24B2?avatar=elephant&tag=26
-Java: http://cyber-dojo.com/diff/show/3D5589AA49?avatar=panda&tag=1
+This Refactoring Kata was designed by Jon Jagger and is available in his Cyber-Dojo. See [his blog post](http://jonjagger.blogspot.co.uk/2012/05/yahtzee-cyber-dojo-refactoring-in-java.html)
 
 The other language translations have been contributed by:
 
 Python: Emily Bache
 
-=============
-Yahtzee rules
-=============
+## Kata: Yahtzee rules
 
 The game of yahtzee is a simple dice game. Each player
 rolls five six-sided dice. They can re-roll some or all
@@ -46,8 +39,9 @@ The game is NOT played by letting the computer choose the
 highest scoring category for a given roll.
   
 
-Yahzee Categories and Scoring Rules
-===================================
+## Kata: Yahzee Categories and Scoring Rules
+
+_Note these rules differ from the original (copyrighted) rules_
 
 Chance: 
   The player scores the sum of all dice,
