@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
+
 import unittest
-from itertools import izip_longest
 
 from tennis import TennisGame
 
@@ -52,10 +53,10 @@ test_cases = [
 
 def play_game(p1Points, p2Points, p1Name, p2Name):
     game = TennisGame(p1Name, p2Name)
-    for p1, p2 in izip_longest(range(p1Points), range(p2Points)):
-        if p1 is not None:
+    for i in range(max(p1Points, p2Points)):
+        if i < p1Points:
             game.won_point(p1Name)
-        if p2 is not None:
+        if i < p2Points:
             game.won_point(p2Name)
     return game
 
