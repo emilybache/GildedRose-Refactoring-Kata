@@ -70,10 +70,13 @@ public class TennisTest {
 	@Test
 	public void checkAllScores() {
 		TennisGame game = new TennisGame("player1", "player2");
-		for (int i = 0; i < this.player1Score; i++) 
-			game.wonPoint("player1");
-		for (int i = 0; i < this.player2Score; i++) 
-			game.wonPoint("player2");
+		int highestScore = Math.max(this.player1Score, this.player2Score);
+		for (int i = 0; i < highestScore; i++) {
+		    if (i < this.player1Score)
+		        game.wonPoint("player1");
+		    if (i < this.player2Score)
+		        game.wonPoint("player2");
+		}
 		assertEquals(this.expectedScore, game.getScore());
 	}
 	
