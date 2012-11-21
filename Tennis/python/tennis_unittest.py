@@ -1,4 +1,5 @@
 import unittest
+from itertools import izip_longest
 
 from tennis import TennisGame
 
@@ -49,16 +50,21 @@ test_cases = [
     
     ]
 
+def play_game(p1Points, p2Points, p1Name, p2Name):
+    game = TennisGame(p1Name, p2Name)
+    for p1, p2 in izip_longest(range(p1Points), range(p2Points)):
+        if p1 is not None:
+            game.won_point(p1Name)
+        if p2 is not None:
+            game.won_point(p2Name)
+    return game
+
 class TestTennis(unittest.TestCase):
      
     def test_Score(self):
         for testcase in test_cases:
             (p1Points, p2Points, score, p1Name, p2Name) = testcase
-            game = TennisGame(p1Name, p2Name)
-            for i in range(p1Points):
-                game.won_point(p1Name)
-            for i in range(p2Points):
-                game.won_point(p2Name)
+            game = play_game(p1Points, p2Points, p1Name, p2Name)
             self.assertEquals(score, game.score())
  
 if __name__ == "__main__":
