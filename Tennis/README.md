@@ -17,11 +17,11 @@ You can read more about Tennis scores [here](http://en.wikipedia.org/wiki/Tennis
 
 You need only report the score for the current game. Sets and Matches are out of scope.
 
-## Get going quickly with Cyber-dojo
+# Get going quickly with Cyber-dojo
 
-I have set up some cyber-dojos with the starting code. This should make it very quick to get started with the kata. The other advantage of cyber-dojo is that if you make a refactoring mistake, it's very easy to revert the code to the last green bar, and practice the refactoring again. Just click on the most recent green traffic light shown in the list above the code.
+As an alternative to downloading the code, click one of the links below to create a new cyber-dojo to work in, then press "start" to get going coding.
 
 - [Python](http://cyber-dojo.com/forker/fork/FFEB8EE18C?avatar=cheetah&tag=3)
 - [Ruby](http://cyber-dojo.com/forker/fork/9197D6B12C?avatar=cheetah&tag=3)
 - [Java](http://cyber-dojo.com/forker/fork/B22DCD17C3?avatar=buffalo&tag=11)
-- I havn't done C++ yet, since cyber-dojo is using a different test framework.
+- [C++](http://cyber-dojo.com/forker/fork/CD6FC41518?avatar=deer&tag=44)
