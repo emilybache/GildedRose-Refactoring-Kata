@@ -10,6 +10,11 @@ You could write some unit tests yourself, using the requirements to identify sui
 
 Alternatively, use the "Text-Based" tests provided in this repository. (Read more about that in the next section)
 
+I've also set this kata up on [cyber-dojo](http://cyber-dojo.com) in Java using both JUnit and Cucumber, so you can get going really quickly:
+
+- [Cucumber, Java](http://cyber-dojo.com/forker/fork/0F82D4BA89?avatar=gorilla&tag=45) - for this one I've also written some step definitions for you
+- [JUnit, Java](http://cyber-dojo.com/forker/fork/751DD02C4C?avatar=snake&tag=4)
+
 Whichever testing approach you choose, the idea of the exercise is to do some deliberate practice, and improve your Refactoring skills. The idea is not to re-write the code from scratch, but rather to practice taking small steps, running the tests often, and incrementally improving the design. 
 
 ## Text-Based Testing
