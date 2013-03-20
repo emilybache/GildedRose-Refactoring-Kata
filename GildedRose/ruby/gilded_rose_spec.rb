@@ -5,7 +5,7 @@ describe GildedRose do
   describe "#update_quality" do
     it "does not change the name" do
       items = [Item.new("foo", 0, 0)]
-      GildedRose.new().update_quality(items)
+      GildedRose.new(items).update_quality()
       items[0].name.should == "fixme"
     end
   end
