@@ -20,7 +20,7 @@ interpreter:java
 #interpreter:ruby
 
 # Settings for the C# version
-#executable:${TEXTTEST_CHECKOUT}/csharp/Program.exe
+#executable:${TEXTTEST_CHECKOUT}/GildedRose.exe
 
 # turn on one of these if you prefer them to notepad or emacs.
 [view_program]
