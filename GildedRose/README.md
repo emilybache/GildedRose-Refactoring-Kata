@@ -10,7 +10,7 @@ You could write some unit tests yourself, using the requirements to identify sui
 
 Alternatively, use the "Text-Based" tests provided in this repository. (Read more about that in the next section)
 
-I've also set this kata up on [cyber-dojo](http://cyber-dojo.com) in Java using both JUnit and Cucumber, so you can get going really quickly:
+I've also set this kata up on [cyber-dojo](http://cyber-dojo.com), so you can get going really quickly for the following languages and test frameworks:
 
 - [Cucumber, Java](http://cyber-dojo.com/forker/fork/0F82D4BA89?avatar=gorilla&tag=45) - for this one I've also written some step definitions for you
 - [JUnit, Java](http://cyber-dojo.com/forker/fork/751DD02C4C?avatar=snake&tag=4)
