@@ -4,7 +4,7 @@ full_name:Gilded Rose Refactoring Kata
 default_checkout:/Users/emily/training_materials/Refactoring-Katas/GildedRose
 
 # Settings for the Java version
-executable:TexttestFixture
+executable:com.gildedrose.TexttestFixture
 interpreter:java
 # note you'll also need to update the file environment.gr with your classpath if you keep your classfiles somewhere unusual
 
