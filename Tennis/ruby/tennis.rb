@@ -1,5 +1,5 @@
 
-class TennisGameDefactored1
+class TennisGame1
 
   def initialize(player1Name, player2Name)
     @player1Name = player1Name
@@ -57,7 +57,7 @@ class TennisGameDefactored1
   end
 end
 
-class TennisGameDefactored2
+class TennisGame2
   def initialize(player1Name, player2Name)
     @player1Name = player1Name
     @player2Name = player2Name
@@ -190,7 +190,7 @@ class TennisGameDefactored2
   end
 end
 
-class TennisGameDefactored3
+class TennisGame3
   def initialize(player1Name, player2Name)
     @p1N = player1Name
     @p2N = player2Name
