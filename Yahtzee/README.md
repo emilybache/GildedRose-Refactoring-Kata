@@ -6,6 +6,8 @@ The other language translations have been contributed by:
 
 Python: Emily Bache
 
+Ruby: Kim Persson and Lennart Fridén
+
 ## Kata: Yahtzee rules
 
 The game of yahtzee is a simple dice game. Each player
