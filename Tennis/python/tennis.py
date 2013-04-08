@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-class TennisGameDefactored1:
+class TennisGame1:
 
     def __init__(self, player1Name, player2Name):
         self.player1Name = player1Name
@@ -50,7 +50,7 @@ class TennisGameDefactored1:
         return result
 
 
-class TennisGameDefactored2:
+class TennisGame2:
     def __init__(self, player1Name, player2Name):
         self.player1Name = player1Name
         self.player2Name = player2Name
@@ -150,7 +150,7 @@ class TennisGameDefactored2:
     def P2Score(self):
         self.p2points +=1
         
-class TennisGameDefactored3:
+class TennisGame3:
     def __init__(self, player1Name, player2Name):
         self.p1N = player1Name
         self.p2N = player2Name
@@ -173,6 +173,3 @@ class TennisGameDefactored3:
                 return "Deuce"
             s = self.p1N if self.p1 > self.p2 else self.p2N
             return "Advantage " + s if ((self.p1-self.p2)*(self.p1-self.p2) == 1) else "Win for " + s
-
-# NOTE: You must change this to point at the one of the three examples that you're working on!
-TennisGame = TennisGameDefactored1
