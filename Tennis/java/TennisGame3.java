@@ -1,13 +1,12 @@
-package defactored3;
 
-public class TennisGame {
+public class TennisGame3 implements TennisGame {
     
     private int p2;
     private int p1;
     private String p1N;
     private String p2N;
 
-    public TennisGame(String p1N, String p2N) {
+    public TennisGame3(String p1N, String p2N) {
         this.p1N = p1N;
         this.p2N = p2N;
     }

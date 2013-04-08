@@ -1,5 +1,3 @@
-package defactored1;
-
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
@@ -68,9 +66,7 @@ public class TennisTest {
         });
     }
 
-    @Test
-    public void checkAllScores() {
-        TennisGame game = new TennisGame("player1", "player2");
+    public void checkAllScores(TennisGame game) {
         int highestScore = Math.max(this.player1Score, this.player2Score);
         for (int i = 0; i < highestScore; i++) {
             if (i < this.player1Score)
@@ -80,18 +76,23 @@ public class TennisTest {
         }
         assertEquals(this.expectedScore, game.getScore());
     }
-    
+
     @Test
-    public void realisticGame() {
-        TennisGame game = new TennisGame("player1", "player2");
-        String[] points =          {"player1", "player1", "player2", "player2", "player1", "player1"};
-        String[] expected_scores = {"Fifteen-Love", "Thirty-Love", "Thirty-Fifteen", "Thirty-All", "Forty-Thirty", "Win for player1"};
-        for (int i = 0; i < 6; i++) {
-            game.wonPoint(points[i]);
-            assertEquals(expected_scores[i], game.getScore());
-        }
-        
-        
+    public void checkAllScoresTennisGame1() {
+        TennisGame1 game = new TennisGame1("player1", "player2");
+        checkAllScores(game);
+    }
+
+    @Test
+    public void checkAllScoresTennisGame2() {
+        TennisGame2 game = new TennisGame2("player1", "player2");
+        checkAllScores(game);
+    }
+
+    @Test
+    public void checkAllScoresTennisGame3() {
+        TennisGame3 game = new TennisGame3("player1", "player2");
+        checkAllScores(game);
     }
 
 }
