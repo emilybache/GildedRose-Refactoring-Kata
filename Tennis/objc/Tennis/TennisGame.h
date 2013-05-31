@@ -9,13 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface TennisGame : NSObject {
-    int score1;
-    int score2;
-}
-
-@property(nonatomic, copy) NSString *player1;
-@property(nonatomic, copy) NSString *player2;
+@interface TennisGame : NSObject
 
 - (id)initWithPlayer1:(NSString *)player1 player2:(NSString *)player2;
 - (void)wonPoint:(NSString *)playerName;

@@ -11,4 +11,6 @@
 
 
 @interface TennisGame1 : TennisGame
+@property(nonatomic, copy) NSString *player1;
+@property(nonatomic, copy) NSString *player2;
 @end

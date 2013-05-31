@@ -9,7 +9,22 @@
 #import "TennisGame1.h"
 
 
-@implementation TennisGame1
+@implementation TennisGame1 {
+    int score1;
+    int score2;
+}
+
+- (id)initWithPlayer1:(NSString *)player1 player2:(NSString *)player2 {
+    self = [super init];
+    if (self) {
+        self.player1 = player1;
+        self.player2 = player2;
+        score1 = 0;
+        score2 = 0;
+    }
+
+    return self;
+}
 
 - (void)wonPoint:(NSString *)playerName {
     if ([playerName isEqualToString:@"player1"])

@@ -9,12 +9,28 @@
 #import "TennisGame2.h"
 
 
+@interface TennisGame2 ()
+@property(nonatomic, copy) NSString *player2Name;
+@property(nonatomic, copy) NSString *player1Name;
+@end
+
 @implementation TennisGame2 {
     int P1point;
     NSString *P1res;
     int P2point;
     NSString *P2res;
 }
+
+- (id)initWithPlayer1:(NSString *)player1Name player2:(NSString *)player2Name {
+    self = [super initWithPlayer1:player1Name player2:player2Name];
+    if (self) {
+        self.player1Name = player1Name;
+        self.player2Name = player2Name;
+    }
+
+    return self;
+}
+
 
 - (NSString *)score {
     NSString *score = @"";
