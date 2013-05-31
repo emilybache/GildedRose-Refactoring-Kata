@@ -9,7 +9,6 @@
 #import "TennisGame3.h"
 
 
-@implementation TennisGame3 {
+@implementation TennisGame3
 
-}
 @end

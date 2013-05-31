@@ -10,6 +10,11 @@
 
 
 @interface TennisGame : NSObject
+@property(nonatomic, copy) NSString *player1;
+@property(nonatomic, copy) NSString *player2;
+
+- (id)initWithPlayer1:(NSString *)player1 player2:(NSString *)player2;
+
 - (void)wonPoint:(NSString *)player;
 
 - (NSString *)score;

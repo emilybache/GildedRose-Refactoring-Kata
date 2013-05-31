@@ -6,17 +6,23 @@
 //
 
 
+#import "TennisGame3.h"
 #import "TennisGame.h"
 
 
-@implementation TennisGame {
+@implementation TennisGame
 
-}
-- (void)wonPoint:(NSString *)player {
 
+- (id)initWithPlayer1:(NSString *)player1 player2:(NSString *)player2 {
+    self = [super init];
+    if (self) {
+        self.player1 = player1;
+        self.player2 = player2;
+    }
+
+    return self;
 }
 
-- (NSString *)score {
-    return nil;
-}
+- (void)wonPoint:(NSString *)player {}
+- (NSString *)score { return nil; }
 @end

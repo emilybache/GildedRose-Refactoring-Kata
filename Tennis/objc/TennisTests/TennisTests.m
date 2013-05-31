@@ -98,17 +98,17 @@
 }
 
 - (void)testAllScoresTennisGame1 {
-    TennisGame1 * game = [[TennisGame1 alloc] init];
+    TennisGame1 * game = [[TennisGame1 alloc] initWithPlayer1:@"player1" player2:@"player2"];
     [self checkAllScoresForGame:game];
 }
 
 - (void)testAllScoresTennisGame2 {
-    TennisGame2 * game = [[TennisGame2 alloc] init];
+    TennisGame2 * game = [[TennisGame2 alloc] initWithPlayer1:@"player1" player2:@"player2"];
     [self checkAllScoresForGame:game];
 }
 
 - (void)testAllScoresTennisGame3 {
-    TennisGame3 * game = [[TennisGame3 alloc] init];
+    TennisGame3 * game = [[TennisGame3 alloc] initWithPlayer1:@"player1" player2:@"player2"];
     [self checkAllScoresForGame:game];
 }
 
