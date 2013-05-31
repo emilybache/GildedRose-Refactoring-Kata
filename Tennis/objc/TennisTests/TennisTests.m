@@ -18,18 +18,15 @@
     NSString *expectedScore;
 }
 
-- (void)setUp
-{
-    [super setUp];
-    
-    // Set-up code here.
-}
++ (id)defaultTestSuite {
+    SenTestSuite *testSuite = [[SenTestSuite alloc] initWithName:NSStringFromClass(self)];
 
-- (void)tearDown
-{
-    // Tear-down code here.
-    
-    [super tearDown];
+    NSArray *allScores = [self allScores];
+    for (NSArray *scores in allScores) {
+        [self addTestWithScores:scores toTestSuite:testSuite];
+    }
+
+    return testSuite;
 }
 
 + (NSArray*)allScores {
@@ -75,6 +72,48 @@
     ];
 }
 
++ (void)addTestWithScores:(NSArray *)scores toTestSuite:(SenTestSuite *)testSuite {
+    NSArray *testInvocations = [self testInvocations];
+    for (NSInvocation *testInvocation in testInvocations) {
+
+        // Create a new instance of our test case for each method found using the given set of parameters.
+        SenTestCase *test = [[TennisTests alloc] initWithInvocation:testInvocation
+                                                             scores:scores];
+
+        // Add the new test instance to the suite. The OCUnit framework eventually executes the entire test suite.
+        [testSuite addTest:test];
+    }
+}
+
+- (NSString *)name {
+    return [NSString stringWithFormat:@"%@ (%d,%d,%@)", [super name], player1Score, player2Score, expectedScore];
+}
+
+
+- (id)initWithInvocation:(NSInvocation *)invocation scores:(NSArray *)scores {
+    self = [super initWithInvocation:invocation];
+    if (self) {
+        player1Score = [scores[0] intValue];
+        player2Score = [scores[1] intValue];
+        expectedScore = scores[2];
+    }
+    return self;
+}
+
+- (void)setUp
+{
+    [super setUp];
+
+    // Set-up code here.
+}
+
+- (void)tearDown
+{
+    // Tear-down code here.
+
+    [super tearDown];
+}
+
 - (void)checkAllScoresForGame:(TennisGame *)game {
     int highestScore = MAX(player1Score, player2Score);
     for (int i = 0; i < highestScore; i++) {
@@ -87,39 +126,18 @@
 }
 
 - (void)testAllScoresTennisGame1 {
-    for (NSArray * score in [TennisTests allScores]) {
-
-        player1Score = [score[0] intValue];
-        player2Score = [score[1] intValue];
-        expectedScore = score[2];
-
-        TennisGame1 * game = [[TennisGame1 alloc] initWithPlayer1:@"player1" player2:@"player2"];
-        [self checkAllScoresForGame:game];
-    }
+    TennisGame1 * game = [[TennisGame1 alloc] initWithPlayer1:@"player1" player2:@"player2"];
+    [self checkAllScoresForGame:game];
 }
 
 - (void)testAllScoresTennisGame2 {
-    for (NSArray * score in [TennisTests allScores]) {
-
-        player1Score = [score[0] intValue];
-        player2Score = [score[1] intValue];
-        expectedScore = score[2];
-
-        TennisGame2 * game = [[TennisGame2 alloc] initWithPlayer1:@"player1" player2:@"player2"];
-        [self checkAllScoresForGame:game];
-    }
+    TennisGame2 * game = [[TennisGame2 alloc] initWithPlayer1:@"player1" player2:@"player2"];
+    [self checkAllScoresForGame:game];
 }
 
 - (void)testAllScoresTennisGame3 {
-    for (NSArray * score in [TennisTests allScores]) {
-
-        player1Score = [score[0] intValue];
-        player2Score = [score[1] intValue];
-        expectedScore = score[2];
-
-        TennisGame3 * game = [[TennisGame3 alloc] initWithPlayer1:@"player1" player2:@"player2"];
-        [self checkAllScoresForGame:game];
-    }
+    TennisGame3 * game = [[TennisGame3 alloc] initWithPlayer1:@"player1" player2:@"player2"];
+    [self checkAllScoresForGame:game];
 }
 
 @end
