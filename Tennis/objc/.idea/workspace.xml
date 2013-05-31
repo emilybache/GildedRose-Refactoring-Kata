@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3432493f-5b19-44ab-868c-f539ff9f9548" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tennis/TennisGame.h" afterPath="$PROJECT_DIR$/Tennis/TennisGame.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tennis/TennisGame.m" afterPath="$PROJECT_DIR$/Tennis/TennisGame.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tennis/TennisGame1.m" afterPath="$PROJECT_DIR$/Tennis/TennisGame1.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TennisTests/TennisTests.m" afterPath="$PROJECT_DIR$/TennisTests/TennisTests.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tennis/TennisGame2.m" afterPath="$PROJECT_DIR$/Tennis/TennisGame2.m" />
     </list>
     <ignored path="Tennis.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -21,6 +18,7 @@
     <file path="/TennisGame.m" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370020624289" ignored="false" />
     <file path="/TennisGame1.m" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370020207784" ignored="false" />
     <file path="/TennisGame.h" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370019947680" ignored="false" />
+    <file path="/TennisGame2.m" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370021340497" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,10 +56,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TennisTests.m" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="TennisTests.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TennisTests/TennisTests.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="30" selection-start="2316" selection-end="2316" vertical-scroll-proportion="0.3321859">
+            <state line="85" column="30" selection-start="2316" selection-end="2316" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#144#183#0" expanded="true" />
               </folding>
@@ -69,10 +67,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TennisGame2.m" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="TennisGame2.m" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Tennis/TennisGame2.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="136" column="22" selection-start="2901" selection-end="2901" vertical-scroll-proportion="0.8450947">
               <folding />
             </state>
           </provider>
@@ -159,6 +157,7 @@
         <option value="$PROJECT_DIR$/Tennis/TennisGame.h" />
         <option value="$PROJECT_DIR$/Tennis/TennisGame.m" />
         <option value="$PROJECT_DIR$/TennisTests/TennisTests.m" />
+        <option value="$PROJECT_DIR$/Tennis/TennisGame2.m" />
       </list>
     </option>
   </component>
@@ -406,23 +405,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tennis/TennisGame2.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tennis/TennisGame2.h">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="35" selection-start="272" selection-end="272" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tennis/TennisGame3.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="233" selection-end="233" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -457,10 +442,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TennisTests/TennisTests.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="30" selection-start="2316" selection-end="2316" vertical-scroll-proportion="0.3321859">
+        <state line="85" column="30" selection-start="2316" selection-end="2316" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#144#183#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tennis/TennisGame3.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="233" selection-end="233" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tennis/TennisGame2.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="136" column="22" selection-start="2901" selection-end="2901" vertical-scroll-proportion="0.8450947">
+          <folding />
         </state>
       </provider>
     </entry>
