@@ -19,11 +19,11 @@
     NSString *p2N;
 }
 
-- (id)initWithPlayer1:(NSString *)p1N player2:(NSString *)p2N {
-    self = [super initWithPlayer1:p1N player2:p2N];
+- (id)initWithPlayer1:(NSString *)ap1N player2:(NSString *)ap2N {
+    self = [super initWithPlayer1:ap1N player2:ap2N];
     if (self) {
-        self->p1N = p1N;
-        self->p2N = p2N;
+        p1N = ap1N;
+        p2N = ap2N;
         p1 = 0;
         p2 = 0;
     }

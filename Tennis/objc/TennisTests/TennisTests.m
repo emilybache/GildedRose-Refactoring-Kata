@@ -12,9 +12,10 @@
 #import "TennisGame2.h"
 #import "TennisGame3.h"
 
-@interface TennisTests (Parametrized)
+@interface TennisTests()
 + (NSArray*)parameters;
 @end
+
 @implementation TennisTests (Parametrized)
 + (id)defaultTestSuite {
     SenTestSuite *testSuite = [[SenTestSuite alloc] initWithName:NSStringFromClass(self)];
@@ -100,7 +101,7 @@
 }
 
 - (NSString *)name {
-    return [NSString stringWithFormat:@"%@ (%d,%d,%@)", [super name], player1Score, player2Score, expectedScore];
+    return [[super name] stringByReplacingOccurrencesOfString:@"]" withString:[NSString stringWithFormat:@" (%d,%d,%@)]", player1Score, player2Score, expectedScore]];
 }
 
 - (void)checkAllScoresForGame:(TennisGame *)game {
