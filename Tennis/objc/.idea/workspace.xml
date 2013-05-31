@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3432493f-5b19-44ab-868c-f539ff9f9548" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TennisTests/TennisTests.m" afterPath="$PROJECT_DIR$/TennisTests/TennisTests.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tennis.xcodeproj/xcshareddata/xcschemes/Tennis.xcscheme" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Tennis.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tennis.xcodeproj/xcshareddata/xcschemes/TennisTests.xcscheme" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/runConfigurations/TennisTests.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tennis.xcodeproj/xcuserdata/stefan.xcuserdatad/xcschemes/Tennis.xcscheme" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tennis.xcodeproj/xcuserdata/stefan.xcuserdatad/xcschemes/TennisTests.xcscheme" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tennis.xcodeproj/project.xcworkspace/xcuserdata/stefan.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/Tennis.xcodeproj/project.xcworkspace/xcuserdata/stefan.xcuserdatad/UserInterfaceState.xcuserstate" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Tennis.iws" />
@@ -14,7 +20,7 @@
     <file path="/TennisGame2.h" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370013513152" ignored="false" />
     <file path="/TennisGame3.h" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370013520283" ignored="false" />
     <file path="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/usr/include/string.h" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370014093686" ignored="false" />
-    <file path="/Dummy.txt" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370024368943" ignored="false" />
+    <file path="/Dummy.txt" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370025594517" ignored="false" />
     <file path="/TennisGame3.m" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370021989037" ignored="false" />
     <file path="/TennisGame.m" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370021495666" ignored="false" />
     <file path="/TennisGame1.m" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370020207784" ignored="false" />
@@ -52,10 +58,9 @@
       <file leaf-file-name="TennisTests.m" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TennisTests/TennisTests.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="23" selection-start="319" selection-end="343" vertical-scroll-proportion="-0.35795453">
+            <state line="39" column="5" selection-start="1297" selection-end="1297" vertical-scroll-proportion="0.66021127">
               <folding>
                 <element signature="e#144#183#0" expanded="true" />
-                <element signature="e#1460#2876#1" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -187,7 +192,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="DirectoryView.Xcode" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -230,24 +234,21 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="DirectoryView.Xcode" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Tennis" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Tennis" />
     <property name="FullScreen" value="false" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="Tennis,,,TennisTests" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RunManager" selected="OCUnit.TennisTests">
-    <configuration default="false" name="Tennis" type="AppleRunConfiguration" factoryName="Application" temporary="true" SCHEME_NAME="Tennis" PROJECT_NAME="Tennis" TARGET_NAME="Tennis" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" RUN_TARGET_PROJECT_NAME="Tennis" RUN_TARGET_NAME="Tennis" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="OCUnitRunConfiguration" factoryName="OCUnit" PROJECT_NAME="Tennis" TARGET_NAME="TennisTests" CONFIG_NAME="Debug" PASS_PARENT_ENVS="FALSE">
       <envs />
       <method />
@@ -256,21 +257,10 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="TennisTests" type="OCUnitRunConfiguration" factoryName="OCUnit" SCHEME_NAME="TennisTests" PROJECT_NAME="Tennis" TARGET_NAME="TennisTests" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE">
-      <envs />
-      <RunnerSettings RunnerId="AppRunner" />
-      <ConfigurationWrapper RunnerId="AppRunner" />
-      <method />
-    </configuration>
     <list size="2">
       <item index="0" class="java.lang.String" itemvalue="OCUnit.TennisTests" />
       <item index="1" class="java.lang.String" itemvalue="Application.Tennis" />
     </list>
-    <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Application.Tennis" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="sslv3">
@@ -311,7 +301,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39977974" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32929516" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32929516" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -385,6 +375,48 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Tennis/ViewController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tennis/TennisGame2.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="35" selection-start="272" selection-end="272" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tennis/TennisGame1.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="0" selection-start="366" selection-end="366" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tennis/TennisGame.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tennis/TennisGame1.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="365" selection-end="365" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tennis/TennisGame.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="248" selection-end="248" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Tennis/TennisGame3.h">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="4" selection-start="277" selection-end="277" vertical-scroll-proportion="0.0">
@@ -450,10 +482,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TennisTests/TennisTests.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="23" selection-start="319" selection-end="343" vertical-scroll-proportion="-0.35795453">
+        <state line="39" column="5" selection-start="1297" selection-end="1297" vertical-scroll-proportion="0.66021127">
           <folding>
             <element signature="e#144#183#0" expanded="true" />
-            <element signature="e#1460#2876#1" expanded="false" />
           </folding>
         </state>
       </provider>
