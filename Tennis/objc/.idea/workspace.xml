@@ -4,10 +4,8 @@
     <list default="true" id="3432493f-5b19-44ab-868c-f539ff9f9548" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tennis/TennisGame.h" afterPath="$PROJECT_DIR$/Tennis/TennisGame.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tennis/TennisGame.m" afterPath="$PROJECT_DIR$/Tennis/TennisGame.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tennis/TennisGame3.m" afterPath="$PROJECT_DIR$/Tennis/TennisGame3.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tennis/TennisGame1.m" afterPath="$PROJECT_DIR$/Tennis/TennisGame1.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TennisTests/TennisTests.m" afterPath="$PROJECT_DIR$/TennisTests/TennisTests.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
     </list>
     <ignored path="Tennis.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -20,7 +18,9 @@
     <file path="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/usr/include/string.h" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370014093686" ignored="false" />
     <file path="/Dummy.txt" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370018279112" ignored="false" />
     <file path="/TennisGame3.m" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370018390956" ignored="false" />
-    <file path="/TennisGame.m" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370018510872" ignored="false" />
+    <file path="/TennisGame.m" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370020624289" ignored="false" />
+    <file path="/TennisGame1.m" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370020207784" ignored="false" />
+    <file path="/TennisGame.h" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370019947680" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,9 +61,9 @@
       <file leaf-file-name="TennisTests.m" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TennisTests/TennisTests.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="110" column="91" selection-start="3060" selection-end="3060" vertical-scroll-proportion="0.8125">
+            <state line="85" column="30" selection-start="2316" selection-end="2316" vertical-scroll-proportion="0.3321859">
               <folding>
-                <element signature="e#144#167#0" expanded="true" />
+                <element signature="e#144#183#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -99,7 +99,7 @@
       <file leaf-file-name="TennisGame1.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tennis/TennisGame1.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="11" column="27" selection-start="231" selection-end="231" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -108,7 +108,7 @@
       <file leaf-file-name="TennisGame1.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tennis/TennisGame1.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="35" selection-start="272" selection-end="272" vertical-scroll-proportion="0.0">
+            <state line="12" column="28" selection-start="265" selection-end="265" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -117,7 +117,7 @@
       <file leaf-file-name="TennisGame.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tennis/TennisGame.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="8" selection-start="409" selection-end="409" vertical-scroll-proportion="0.0">
+            <state line="21" column="19" selection-start="472" selection-end="472" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -126,7 +126,7 @@
       <file leaf-file-name="TennisGame.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tennis/TennisGame.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="293" selection-end="293" vertical-scroll-proportion="0.0">
+            <state line="15" column="0" selection-start="283" selection-end="283" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -154,10 +154,11 @@
         <option value="$PROJECT_DIR$/Tennis/TennisGame2.h" />
         <option value="$PROJECT_DIR$/Tennis/TennisGame3.h" />
         <option value="$PROJECT_DIR$/Tennis/TennisGame.mm" />
-        <option value="$PROJECT_DIR$/TennisTests/TennisTests.m" />
         <option value="$PROJECT_DIR$/Tennis/TennisGame3.m" />
-        <option value="$PROJECT_DIR$/Tennis/TennisGame.m" />
+        <option value="$PROJECT_DIR$/Tennis/TennisGame1.m" />
         <option value="$PROJECT_DIR$/Tennis/TennisGame.h" />
+        <option value="$PROJECT_DIR$/Tennis/TennisGame.m" />
+        <option value="$PROJECT_DIR$/TennisTests/TennisTests.m" />
       </list>
     </option>
   </component>
@@ -309,20 +310,20 @@
     <frame x="60" y="22" width="1620" height="1028" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32929516" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24984346" sideWeight="0.67070484" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39977974" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32929516" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32929516" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32929516" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -386,7 +387,9 @@
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Tennis/TennisGame3.h">
@@ -399,13 +402,6 @@
     <entry file="file://$PROJECT_DIR$/Tennis/ViewController.h">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tennis/TennisGame1.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="35" selection-start="272" selection-end="272" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -424,13 +420,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tennis/TennisGame1.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tennis/TennisGame3.m">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="0" selection-start="233" selection-end="233" vertical-scroll-proportion="0.0">
@@ -438,25 +427,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tennis/TennisGame.m">
+    <entry file="file://$PROJECT_DIR$/Tennis/TennisGame1.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="8" selection-start="409" selection-end="409" vertical-scroll-proportion="0.0">
+        <state line="12" column="28" selection-start="265" selection-end="265" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tennis/TennisGame.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="293" selection-end="293" vertical-scroll-proportion="0.0">
+        <state line="15" column="0" selection-start="283" selection-end="283" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tennis/TennisGame1.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="27" selection-start="231" selection-end="231" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tennis/TennisGame.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="19" selection-start="472" selection-end="472" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TennisTests/TennisTests.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="91" selection-start="3060" selection-end="3060" vertical-scroll-proportion="0.8125">
+        <state line="85" column="30" selection-start="2316" selection-end="2316" vertical-scroll-proportion="0.3321859">
           <folding>
-            <element signature="e#144#167#0" expanded="true" />
+            <element signature="e#144#183#0" expanded="true" />
           </folding>
         </state>
       </provider>

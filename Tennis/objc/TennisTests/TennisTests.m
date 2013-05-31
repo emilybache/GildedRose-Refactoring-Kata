@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Stefan van den Oord. All rights reserved.
 //
 
+#import <SenTestingKit/SenTestingKit.h>
 #import "TennisTests.h"
 #import "TennisGame1.h"
 #import "TennisGame2.h"
@@ -75,18 +76,6 @@
 }
 
 - (void)checkAllScoresForGame:(TennisGame *)game {
-
-    for (NSArray * score in [TennisTests allScores]) {
-
-        player1Score = [score[0] intValue];
-        player2Score = [score[1] intValue];
-        expectedScore = score[2];
-        
-        [self checkScoreForGame:game];
-    }
-}
-
-- (void)checkScoreForGame:(TennisGame *)game {
     int highestScore = MAX(player1Score, player2Score);
     for (int i = 0; i < highestScore; i++) {
         if (i < player1Score)
@@ -98,18 +87,39 @@
 }
 
 - (void)testAllScoresTennisGame1 {
-    TennisGame1 * game = [[TennisGame1 alloc] initWithPlayer1:@"player1" player2:@"player2"];
-    [self checkAllScoresForGame:game];
+    for (NSArray * score in [TennisTests allScores]) {
+
+        player1Score = [score[0] intValue];
+        player2Score = [score[1] intValue];
+        expectedScore = score[2];
+
+        TennisGame1 * game = [[TennisGame1 alloc] initWithPlayer1:@"player1" player2:@"player2"];
+        [self checkAllScoresForGame:game];
+    }
 }
 
 - (void)testAllScoresTennisGame2 {
-    TennisGame2 * game = [[TennisGame2 alloc] initWithPlayer1:@"player1" player2:@"player2"];
-    [self checkAllScoresForGame:game];
+    for (NSArray * score in [TennisTests allScores]) {
+
+        player1Score = [score[0] intValue];
+        player2Score = [score[1] intValue];
+        expectedScore = score[2];
+
+        TennisGame2 * game = [[TennisGame2 alloc] initWithPlayer1:@"player1" player2:@"player2"];
+        [self checkAllScoresForGame:game];
+    }
 }
 
 - (void)testAllScoresTennisGame3 {
-    TennisGame3 * game = [[TennisGame3 alloc] initWithPlayer1:@"player1" player2:@"player2"];
-    [self checkAllScoresForGame:game];
+    for (NSArray * score in [TennisTests allScores]) {
+
+        player1Score = [score[0] intValue];
+        player2Score = [score[1] intValue];
+        expectedScore = score[2];
+
+        TennisGame3 * game = [[TennisGame3 alloc] initWithPlayer1:@"player1" player2:@"player2"];
+        [self checkAllScoresForGame:game];
+    }
 }
 
 @end

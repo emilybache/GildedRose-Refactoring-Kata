@@ -18,11 +18,14 @@
     if (self) {
         self.player1 = player1;
         self.player2 = player2;
+        score1 = 0;
+        score2 = 0;
     }
 
     return self;
 }
 
-- (void)wonPoint:(NSString *)player {}
+- (void)wonPoint:(NSString *)playerName {}
 - (NSString *)score { return nil; }
+
 @end
