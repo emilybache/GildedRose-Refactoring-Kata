@@ -1,8 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="TennisTests" type="OCUnitRunConfiguration" factoryName="OCUnit" SCHEME_NAME="TennisTests" PROJECT_NAME="Tennis" TARGET_NAME="TennisTests" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE">
-    <envs />
-    <RunnerSettings RunnerId="AppRunner" />
-    <ConfigurationWrapper RunnerId="AppRunner" />
-    <method />
-  </configuration>
-</component>
