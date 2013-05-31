@@ -1,11 +1,3 @@
-//
-//  TennisTests.m
-//  TennisTests
-//
-//  Created by Stefan on 05/31/13.
-//  Copyright (c) 2013 Stefan van den Oord. All rights reserved.
-//
-
 #import <SenTestingKit/SenTestingKit.h>
 #import "TennisTests.h"
 #import "TennisGame1.h"
@@ -30,12 +22,7 @@
 + (void)addTestWithScores:(NSArray *)scores toTestSuite:(SenTestSuite *)testSuite {
     NSArray *testInvocations = [self testInvocations];
     for (NSInvocation *testInvocation in testInvocations) {
-
-        // Create a new instance of our test case for each method found using the given set of parameters.
-        SenTestCase *test = [[TennisTests alloc] initWithInvocation:testInvocation
-                                                             scores:scores];
-
-        // Add the new test instance to the suite. The OCUnit framework eventually executes the entire test suite.
+        SenTestCase *test = [[TennisTests alloc] initWithInvocation:testInvocation scores:scores];
         [testSuite addTest:test];
     }
 }
@@ -101,7 +88,8 @@
 }
 
 - (NSString *)name {
-    return [[super name] stringByReplacingOccurrencesOfString:@"]" withString:[NSString stringWithFormat:@" (%d,%d,%@)]", player1Score, player2Score, expectedScore]];
+    NSString *parametersDescription = [NSString stringWithFormat:@" (%d,%d,%@)]", player1Score, player2Score, expectedScore];
+    return [[super name] stringByReplacingOccurrencesOfString:@"]" withString:parametersDescription];
 }
 
 - (void)checkAllScoresForGame:(TennisGame *)game {
