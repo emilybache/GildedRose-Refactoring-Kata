@@ -12,24 +12,41 @@
 #import "TennisGame2.h"
 #import "TennisGame3.h"
 
-@implementation TennisTests {
-    int player1Score;
-    int player2Score;
-    NSString *expectedScore;
-}
-
+@interface TennisTests (Parametrized)
++ (NSArray*)parameters;
+@end
+@implementation TennisTests (Parametrized)
 + (id)defaultTestSuite {
     SenTestSuite *testSuite = [[SenTestSuite alloc] initWithName:NSStringFromClass(self)];
 
-    NSArray *allScores = [self allScores];
+    NSArray *allScores = [self parameters];
     for (NSArray *scores in allScores) {
         [self addTestWithScores:scores toTestSuite:testSuite];
     }
 
     return testSuite;
 }
++ (void)addTestWithScores:(NSArray *)scores toTestSuite:(SenTestSuite *)testSuite {
+    NSArray *testInvocations = [self testInvocations];
+    for (NSInvocation *testInvocation in testInvocations) {
 
-+ (NSArray*)allScores {
+        // Create a new instance of our test case for each method found using the given set of parameters.
+        SenTestCase *test = [[TennisTests alloc] initWithInvocation:testInvocation
+                                                             scores:scores];
+
+        // Add the new test instance to the suite. The OCUnit framework eventually executes the entire test suite.
+        [testSuite addTest:test];
+    }
+}
+@end
+
+@implementation TennisTests {
+    int player1Score;
+    int player2Score;
+    NSString *expectedScore;
+}
+
++ (NSArray*)parameters {
     return @[
             @[ @0, @0, @"Love-All"],
             @[ @1, @1, @"Fifteen-All"],
@@ -72,24 +89,6 @@
     ];
 }
 
-+ (void)addTestWithScores:(NSArray *)scores toTestSuite:(SenTestSuite *)testSuite {
-    NSArray *testInvocations = [self testInvocations];
-    for (NSInvocation *testInvocation in testInvocations) {
-
-        // Create a new instance of our test case for each method found using the given set of parameters.
-        SenTestCase *test = [[TennisTests alloc] initWithInvocation:testInvocation
-                                                             scores:scores];
-
-        // Add the new test instance to the suite. The OCUnit framework eventually executes the entire test suite.
-        [testSuite addTest:test];
-    }
-}
-
-- (NSString *)name {
-    return [NSString stringWithFormat:@"%@ (%d,%d,%@)", [super name], player1Score, player2Score, expectedScore];
-}
-
-
 - (id)initWithInvocation:(NSInvocation *)invocation scores:(NSArray *)scores {
     self = [super initWithInvocation:invocation];
     if (self) {
@@ -100,18 +99,8 @@
     return self;
 }
 
-- (void)setUp
-{
-    [super setUp];
-
-    // Set-up code here.
-}
-
-- (void)tearDown
-{
-    // Tear-down code here.
-
-    [super tearDown];
+- (NSString *)name {
+    return [NSString stringWithFormat:@"%@ (%d,%d,%@)", [super name], player1Score, player2Score, expectedScore];
 }
 
 - (void)checkAllScoresForGame:(TennisGame *)game {

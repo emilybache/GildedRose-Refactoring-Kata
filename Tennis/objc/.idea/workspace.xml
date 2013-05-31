@@ -2,19 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3432493f-5b19-44ab-868c-f539ff9f9548" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TennisTests/TennisTests.h" afterPath="$PROJECT_DIR$/TennisTests/TennisTests.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TennisTests/TennisTests.m" afterPath="$PROJECT_DIR$/TennisTests/TennisTests.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Tennis.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/fragment.mm" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370012942444" ignored="false" />
-    <file path="/TennisTests.m" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370023803720" ignored="false" />
+    <file path="/TennisTests.m" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370024626541" ignored="false" />
     <file path="/fragment.m" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370014036256" ignored="false" />
     <file path="/TennisGame1.h" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370013500893" ignored="false" />
     <file path="/TennisGame2.h" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370013513152" ignored="false" />
     <file path="/TennisGame3.h" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370013520283" ignored="false" />
     <file path="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/usr/include/string.h" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370014093686" ignored="false" />
-    <file path="/Dummy.txt" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370018279112" ignored="false" />
+    <file path="/Dummy.txt" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370024368943" ignored="false" />
     <file path="/TennisGame3.m" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370021989037" ignored="false" />
     <file path="/TennisGame.m" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370021495666" ignored="false" />
     <file path="/TennisGame1.m" changelist="3432493f-5b19-44ab-868c-f539ff9f9548" time="1370020207784" ignored="false" />
@@ -49,21 +49,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TennisGame3.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tennis/TennisGame3.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="4" selection-start="277" selection-end="277" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="TennisTests.m" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TennisTests/TennisTests.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="88" column="44" selection-start="2828" selection-end="2830" vertical-scroll-proportion="2.271945">
+            <state line="15" column="23" selection-start="319" selection-end="343" vertical-scroll-proportion="-0.35795453">
               <folding>
                 <element signature="e#144#183#0" expanded="true" />
+                <element signature="e#1460#2876#1" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -319,7 +311,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39977974" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32929516" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32929516" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -400,13 +392,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tennis/TennisGame.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="248" selection-end="248" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tennis/TennisGame1.h">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="0" selection-start="365" selection-end="365" vertical-scroll-proportion="0.0">
@@ -456,11 +441,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Tennis/TennisGame.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="248" selection-end="248" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/TennisTests/TennisTests.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="44" selection-start="2828" selection-end="2830" vertical-scroll-proportion="2.271945">
+        <state line="15" column="23" selection-start="319" selection-end="343" vertical-scroll-proportion="-0.35795453">
           <folding>
             <element signature="e#144#183#0" expanded="true" />
+            <element signature="e#1460#2876#1" expanded="false" />
           </folding>
         </state>
       </provider>
