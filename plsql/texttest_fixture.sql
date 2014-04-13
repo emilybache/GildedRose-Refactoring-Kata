@@ -1,17 +1,5 @@
 DELETE FROM item;
 
-INSERT INTO item (name, sell_in, quality) VALUES ('+5 Dexterity Vest', 10, 20);
-INSERT INTO item (name, sell_in, quality) VALUES ('Aged Brie', 2, 0);
-INSERT INTO item (name, sell_in, quality) VALUES ('Elixir of the Mongoose', 5, 7);
-INSERT INTO item (name, sell_in, quality) VALUES ('Sulfuras, Hand of Ragnaros', 0, 80);
-INSERT INTO item (name, sell_in, quality) VALUES ('Sulfuras, Hand of Ragnaros', -1, 80);
-INSERT INTO item (name, sell_in, quality) VALUES ('Backstage passes to a TAFKAL80ETC concert', 15, 20);
-INSERT INTO item (name, sell_in, quality) VALUES ('Backstage passes to a TAFKAL80ETC concert', 10, 49);
-INSERT INTO item (name, sell_in, quality) VALUES ('Backstage passes to a TAFKAL80ETC concert', 5, 49);
--- this conjured item does not work properly yet ;
-INSERT INTO item (name, sell_in, quality) VALUES ('Conjured Mana Cake', 3, 6);
-COMMIT;
-
 DECLARE
   l_days NUMBER(3);
   CURSOR c_items IS 
@@ -19,6 +7,17 @@ DECLARE
   l_item c_items%ROWTYPE;
 BEGIN
   DBMS_OUTPUT.PUT_LINE('OMGHAI!');
+  
+  new_item('+5 Dexterity Vest', 10, 20);
+  new_item('Aged Brie', 2, 0);
+  new_item('Elixir of the Mongoose', 5, 7);
+  new_item('Sulfuras, Hand of Ragnaros', 0, 80);
+  new_item('Sulfuras, Hand of Ragnaros', -1, 80);
+  new_item('Backstage passes to a TAFKAL80ETC concert', 15, 20);
+  new_item('Backstage passes to a TAFKAL80ETC concert', 10, 49);
+  new_item('Backstage passes to a TAFKAL80ETC concert', 5, 49);
+  -- this conjured item does not work properly yet ;
+  new_item('Conjured Mana Cake', 3, 6);
   
   l_days := 2;
 
