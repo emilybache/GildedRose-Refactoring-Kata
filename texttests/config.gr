@@ -22,6 +22,10 @@ interpreter:java
 # Settings for the C# version
 #executable:${TEXTTEST_CHECKOUT}/GildedRose.exe
 
+# Settings for the Perl version
+#executable:${TEXTTEST_CHECKOUT}/perl/texttest_fixture.pl
+#interpreter:perl
+
 # turn on one of these if you prefer them to notepad or emacs.
 [view_program]
 *:mate

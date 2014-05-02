@@ -8,8 +8,8 @@ sub new {
     return bless \%attrs, $class;
 }
 
-sub _data_printer {    ## no critic (ProhibitUnusedPrivateSubroutines)
-    my ( $self, $properties ) = @_;
+sub to_string {
+    my ($self) = @_;
     return $self->{name} . ', ' . $self->{sell_in} . ', ' . $self->{quality};
 }
 
