@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<title>Gilded Rose Texttest Fixture</title>
+
+<script type="text/javascript" src="lib/jquery-1.7.1/jquery-1.7.1.js"></script>
+<script type="text/javascript" src="src/gilded_rose.js"></script>
+
+<script type="text/javascript">
+  $( document ).ready(function() {
+
+    $('body').append('<p>OMGHAI!</p>');
+
+    items.push(new Item('+5 Dexterity Vest', 10, 20));
+    items.push(new Item('Aged Brie', 2, 0));
+    items.push(new Item('Elixir of the Mongoose', 5, 7));
+    items.push(new Item('Sulfuras, Hand of Ragnaros', 0, 80));
+    items.push(new Item('Sulfuras, Hand of Ragnaros', -1, 80));
+    items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 15, 20));
+    items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 10, 49));
+    items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49));
+    // this conjured item does not work properly yet
+    items.push(new Item('Conjured Mana Cake', 3, 6));
+
+    var days = 2;
+
+    for (var i = 0; i < days; i++) {
+      showHeaderFor(i);
+      showItemsFor(i);
+      update_quality();
+    }
+
+    function showHeaderFor(day) {
+      $('body').append('<p>-------- day ' + day + ' --------</p>');
+    }
+
+    function showItemsFor(day) {
+      $('body').append('<p>name, sellIn, quality</p>');
+      for (var j = 0; j < items.length; j++) {
+        var item = items[j];
+        $('body').append('<p>' + item.name + ', ' + item.sell_in + ', ' + item.quality + '</p>');
+      }
+      $('body').append('<br />');
+    }
+
+  });
+</script>
+
+</head>
+
+<body>
+</body>
+</html>
