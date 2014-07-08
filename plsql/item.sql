@@ -1,5 +1,14 @@
 PROMPT Creating Table 'ITEM'
-DROP TABLE item;
+
+BEGIN
+  EXECUTE IMMEDIATE 'DROP TABLE item';
+EXCEPTION
+  WHEN OTHERS THEN
+    IF SQLCODE != -942 THEN
+      RAISE;
+    END IF;
+END;
+
 CREATE TABLE item
   (
     name    VARCHAR2(100) NOT NULL,
@@ -7,3 +16,5 @@ CREATE TABLE item
     quality NUMBER(6) NOT NULL
   );
 /
+
+SHOW ERRORS;
