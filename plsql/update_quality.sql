@@ -12,10 +12,10 @@ BEGIN
     l_name    := l_item.name;
     l_sell_in := l_item.sell_in;
     l_quality := l_item.quality;
-    
-    IF l_name != 'Aged Brie' AND l_name != 'Backstage passes to a TAFKAL80ETC concert' THEN
+
+    IF l_name <> 'Aged Brie' AND l_name <> 'Backstage passes to a TAFKAL80ETC concert' THEN
       IF l_quality > 0 THEN
-        IF l_name != 'Sulfuras, Hand of Ragnaros' THEN
+        IF l_name <> 'Sulfuras, Hand of Ragnaros' THEN
           l_quality := l_quality - 1;
         END IF;
       END IF;
@@ -36,16 +36,16 @@ BEGIN
         END IF;
       END IF;
     END IF;
-    
-    IF l_name != 'Sulfuras, Hand of Ragnaros' THEN
+
+    IF l_name <> 'Sulfuras, Hand of Ragnaros' THEN
       l_sell_in := l_sell_in - 1;
     END IF;
-    
+
     IF l_sell_in < 0 THEN
-      IF l_name != 'Aged Brie' THEN
-        IF l_name != 'Backstage passes to a TAFKAL80ETC concert' THEN
+      IF l_name <> 'Aged Brie' THEN
+        IF l_name <> 'Backstage passes to a TAFKAL80ETC concert' THEN
           IF l_quality > 0 THEN
-            IF l_name != 'Sulfuras, Hand of Ragnaros' THEN
+            IF l_name <> 'Sulfuras, Hand of Ragnaros' THEN
               l_quality := l_quality - 1;
             END IF;
           END IF;
@@ -58,7 +58,7 @@ BEGIN
         END IF;
       END IF;
     END IF;
-    
+
     UPDATE item
       SET name = l_name, sell_in = l_sell_in, quality = l_quality WHERE CURRENT OF c_items;
   END LOOP;
