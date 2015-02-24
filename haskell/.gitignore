@@ -1,0 +1,11 @@
+*.hi
+*.ho
+TAGS
+*.log
+*.profile
+/dist
+/cabal.config
+
+/.cabal-sandbox/
+/cabal.sandbox.config
+
