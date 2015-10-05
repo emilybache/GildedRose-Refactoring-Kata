@@ -30,7 +30,7 @@ The Text-Based tests in this repository are designed to be used with the tool "T
 
 ## Get going quickly using Cyber-Dojo
 
-I've also set this kata up on [cyber-dojo](http://cyber-dojo.com) for several languages, so you can get going really quickly:
+I've also set this kata up on [cyber-dojo](http://cyber-dojo.org) for several languages, so you can get going really quickly:
 
 - [JUnit, Java](http://cyber-dojo.org/forker/fork/751DD02C4C?avatar=snake&tag=4)
 - [C#](http://cyber-dojo.org/forker/fork/5C5AC766B0?avatar=koala&tag=1)
