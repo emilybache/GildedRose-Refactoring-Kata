@@ -11,25 +11,25 @@ pour de nouvelles aventures. Votre mission est d'ajouter une nouvelle fonctionna
 pour que nous puissions commencer à vendre un nouveau type de produit. Mais d'abord, laissez-moi vous
 présenter notre système :
 
-	- Tous les produits ont une valeur qui compte le nombre de jours restant pour le vendre : la SellIn
-	- Tous les produits ont une valeur qui spécifie sa qualité : la Quality
-	- A la fin de chaque jour, le système diminue ces deux valeurs pour chaque produit
+    - Tous les produits ont une valeur qui compte le nombre de jours restant pour le vendre : la SellIn
+    - Tous les produits ont une valeur qui spécifie sa qualité : la Quality
+    - A la fin de chaque jour, le système diminue ces deux valeurs pour chaque produit
 
 Plutôt simple, non ? Attendez, ça devient intéressant :
 
-	- Une fois la SellIn dépassée, la Quality diminue deux fois plus vite
-	- La Quality d'un produit ne peut jamais être négative
-	- "Aged Brie" (du vieux brie) s'améliore avec l'âge : sa Quality augmente
-	- La Quality d'un produit n'est jamais supérieure à 50
-	- Le "Sulfuras", un objet légendaire, n'a pas de date de péremption et sa Quality ne diminue jamais
-	- Les "Backstage passes", comme le vieux brie, a sa Quality qui augmente quand sa date de péremption approche
-	    - Sa Quality augmente de 2 quand il reste 10 jours ou moins et de 3 quand il reste 5 jours ou moins
-	    - Sa Quality tombe à 0 après le concert
+    - Une fois la SellIn dépassée, la Quality diminue deux fois plus vite
+    - La Quality d'un produit ne peut jamais être négative
+    - "Aged Brie" (du vieux brie) s'améliore avec l'âge : sa Quality augmente
+    - La Quality d'un produit n'est jamais supérieure à 50
+    - Le "Sulfuras", un objet légendaire, n'a pas de date de péremption et sa Quality ne diminue jamais
+    - Les "Backstage passes", comme le vieux brie, a sa Quality qui augmente quand sa date de péremption approche
+        - Sa Quality augmente de 2 quand il reste 10 jours ou moins et de 3 quand il reste 5 jours ou moins
+        - Sa Quality tombe à 0 après le concert
 
 Nous avons récemment signé un partenariat avec un fournisseur de produit invoqué ("Conjured"). Notre système a
 donc besoin d'une mise à jour :
 
-	- Les produit "Conjured" (invoqués) ont une Quality qui diminue deux fois plus vite que les autres
+    - Les produit "Conjured" (invoqués) ont une Quality qui diminue deux fois plus vite que les autres
 
 Vous pouvez faire les changements que vous voulez à la méthode "updateQuality" et ajouter autant de code que
 vous voulez, tant que tout fonctionne correctement. Cependant, nous devons vous prévenir, ne modifiez en aucun
