@@ -1,21 +1,19 @@
-# GO Starter
+# Go Starter
 
-- Run :
+- Run:
 
 ```shell
-go run gilded-rose.go
+go run gilded_rose.go
 ```
 
-- Run tests :
+- Run tests:
 
 ```shell
 go test
 ```
 
-- Run tests and coverage :
+- Run tests and coverage:
 
 ```shell
-go test -coverprofile=coverage.out
-
-go tool cover -html=coverage.out
+go test -cover
 ```
