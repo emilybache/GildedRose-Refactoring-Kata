@@ -6,7 +6,7 @@ As Bobby Johnson points out in his article ["Why Most Solutions to Gilded Rose M
 better practice at handling a legacy code situation if you do this Kata in the original C#. However, I think this kata
 is also really useful for practicing writing good tests using different frameworks and approaches, and the small changes I've made help with that. I think it's also interesting to compare what the refactored code and tests look like in different programming languages.
 
-I wrote this article ["Writing Good Tests for the Gilded Rose Kata"](http://emilybache.blogspot.se/2013/03/writing-good-tests-for-gilded-rose-kata.html) about how you could use this kata in a [coding dojo](https://leanpub.com/codingdojohandbook).
+I wrote this article ["Writing Good Tests for the Gilded Rose Kata"](http://coding-is-like-cooking.info/2013/03/writing-good-tests-for-the-gilded-rose-kata/) about how you could use this kata in a [coding dojo](https://leanpub.com/codingdojohandbook).
 
 ## How to use this Kata
 
