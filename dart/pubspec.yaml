@@ -1,0 +1,6 @@
+name: gilded_rose
+version: 0.0.1
+description: A simple console application.
+
+dev_dependencies:
+  test: '>=0.12.11 <0.13.0'
