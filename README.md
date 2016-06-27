@@ -2,11 +2,11 @@ This Kata was originally created by Terry Hughes (http://twitter.com/#!/TerryHug
 
 I translated the original C# into a few other languages, (with a little help from my friends!), and slightly changed the starting position. This means I've actually done a small amount of refactoring already compared with the original form of the kata, and made it easier to get going with writing tests by giving you one failing unit test to start with. I also added test fixtures for Text-Based approval testing with TextTest (see [the TextTests](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/master/texttests))
 
-As Bobby Johnson points out in his article ["Why Most Solutions to Gilded Rose Miss The Bigger Picture"](http://iamnotmyself.com/2012/12/07/why-most-solutions-to-gilded-rose-miss-the-bigger-picture/), it'll actually give you
+As Bobby Johnson points out in his article ["Why Most Solutions to Gilded Rose Miss The Bigger Picture"](http://iamnotmyself.com/2012/12/07/why-most-solutions-to-gilded-rose-miss-the-bigger-picture), it'll actually give you
 better practice at handling a legacy code situation if you do this Kata in the original C#. However, I think this kata
 is also really useful for practicing writing good tests using different frameworks and approaches, and the small changes I've made help with that. I think it's also interesting to compare what the refactored code and tests look like in different programming languages.
 
-I wrote this article ["Writing Good Tests for the Gilded Rose Kata"](http://emilybache.blogspot.se/2013/03/writing-good-tests-for-gilded-rose-kata.html) about how you could use this kata in a [coding dojo](https://leanpub.com/codingdojohandbook).
+I wrote this article ["Writing Good Tests for the Gilded Rose Kata"](http://coding-is-like-cooking.info/2013/03/writing-good-tests-for-the-gilded-rose-kata/) about how you could use this kata in a [coding dojo](https://leanpub.com/codingdojohandbook).
 
 ## How to use this Kata
 
@@ -34,6 +34,7 @@ I've also set this kata up on [cyber-dojo](http://cyber-dojo.org) for several la
 
 - [JUnit, Java](http://cyber-dojo.org/forker/fork/751DD02C4C?avatar=snake&tag=4)
 - [C#](http://cyber-dojo.org/forker/fork/5C5AC766B0?avatar=koala&tag=1)
+- [C++](http://cyber-dojo.org/forker/fork/AA86ECBCC9?avatar=rhino&tag=7)
 - [Ruby](http://cyber-dojo.org/forker/fork/A8943EAF92?avatar=hippo&tag=9)
 - [RSpec, Ruby](http://cyber-dojo.org/forker/fork/8E58B0AD16?avatar=raccoon&tag=3)
 - [Python](http://cyber-dojo.org/forker/fork/297041AA7A?avatar=lion&tag=4)
