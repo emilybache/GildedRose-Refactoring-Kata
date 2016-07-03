@@ -68,6 +68,6 @@ class GildedRose {
     @Override
     public String toString()
     {
-        return Arrays.stream(items).collect(toList()).toString();
+        return Arrays.toString(items);
     }
 }
