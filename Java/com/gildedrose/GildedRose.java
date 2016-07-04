@@ -1,5 +1,10 @@
 package com.gildedrose;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+
+import static java.util.stream.Collectors.toList;
+
 class GildedRose {
     Item[] items;
 
@@ -58,5 +63,11 @@ class GildedRose {
                 }
             }
         }
+    }
+
+    @Override
+    public String toString()
+    {
+        return Arrays.toString(items);
     }
 }
