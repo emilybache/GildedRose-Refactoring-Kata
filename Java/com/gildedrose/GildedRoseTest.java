@@ -59,10 +59,12 @@ public class GildedRoseTest {
     @Test
     public void regression_test() throws Exception
     {
-        String[] names = GOOD_MIX_OF_ITEM_NAMES.toArray(String[]::new);
-        Integer[] sellIn = GOOD_MIX_OF_NUMBER_OF_DAYS_BY_WHICH_TO_SELL_ITEM.toArray(Integer[]::new);
-        Integer[] quality = GOOD_MIX_OF_ITEM_QUALITY_LEVELS.toArray(Integer[]::new);
-        LegacyApprovals.LockDown(this, "updateQuality", names, sellIn, quality);
+        LegacyApprovals.LockDown(
+            this,
+            "updateQuality",
+            GOOD_MIX_OF_ITEM_NAMES.toArray(),
+            GOOD_MIX_OF_NUMBER_OF_DAYS_BY_WHICH_TO_SELL_ITEM.toArray(),
+            GOOD_MIX_OF_ITEM_QUALITY_LEVELS.toArray());
     }
 
     public GildedRose updateQuality(String name, Integer sellIn, Integer quality)
