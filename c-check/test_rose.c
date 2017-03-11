@@ -14,13 +14,13 @@ START_TEST(normalitem_whenSellInPositive_decreasesQualityByOne)
 }
 END_TEST
 
-START_TEST(normalitem_whenSellIsZero_decreasesQualityByOne)
+START_TEST(normalitem_whenSellIsZero_decreasesQualityByTwo)
 {
   Item items[1];
   init_item(items, NORMAL_ITEM, 0, 15);
   update_quality(items, 1);
 
-  ck_assert_int_eq(70, items[0].quality);
+  ck_assert_int_eq(13, items[0].quality);
 }
 END_TEST
 
@@ -30,6 +30,7 @@ TCase *tcase_rose(void)
 
   tc = tcase_create("normal-items");
   tcase_add_test(tc, normalitem_whenSellInPositive_decreasesQualityByOne);
+  tcase_add_test(tc, normalitem_whenSellIsZero_decreasesQualityByTwo);
 
   return tc;
 }
