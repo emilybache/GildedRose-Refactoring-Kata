@@ -1,4 +1,6 @@
-run-once.sh runs your tests once
+The command "make" will build and run your tests, as well as build the program
+golden_rose, which can serve as the basis for a golden-rule test.
+
 
 Assumptions:
   - gnu make and a C compiler (like gcc) is installed on your system and is in the PATH
