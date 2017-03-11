@@ -12,7 +12,7 @@ CFLAGS = `pkg-config --cflags check` -g --std=c99 -D_POSIX_C_SOURCE=200809L
 LIBS = `pkg-config --libs check`
 
 # All files that should be part of your test should start with 'test'
-TEST_SRC = `ls test*.[c\|h]`
+TEST_SRC = $(wildcard test*.[c\|h])
 TEST_BASE = $(basename ${TEST_SRC})
 TEST_OBJECTS = $(addsuffix .o, ${TEST_BASE})
 
