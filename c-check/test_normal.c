@@ -35,6 +35,17 @@ START_TEST(normalitem_whenQualityZero_doesNotDecrease)
 }
 END_TEST
 
+
+START_TEST(normalitem_whenSellInNegative_decreasesByTwo)
+{
+  Item items[1];
+  init_item(items, NORMAL_ITEM, -1, 20);
+  update_quality(items, 1);
+
+  ck_assert_int_eq(18, items[0].quality);
+}
+END_TEST
+
 TCase *tcase_normal(void)
 {
   TCase *tc;
@@ -43,6 +54,7 @@ TCase *tcase_normal(void)
   tcase_add_test(tc, normalitem_whenSellInPositive_decreasesQualityByOne);
   tcase_add_test(tc, normalitem_whenSellIsZero_decreasesQualityByTwo);
   tcase_add_test(tc, normalitem_whenQualityZero_doesNotDecrease);
+  tcase_add_test(tc, normalitem_whenSellInNegative_decreasesByTwo);
 
   return tc;
 }
