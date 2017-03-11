@@ -3,6 +3,7 @@
 
 #define NORMAL_ITEM "Elixer of Mongoose"
 
+TCase *tcase_brie(void);
 
 START_TEST(normalitem_whenSellInPositive_decreasesQualityByOne)
 {
@@ -34,7 +35,7 @@ START_TEST(normalitem_whenQualityZero_doesNotDecrease)
 }
 END_TEST
 
-TCase *tcase_rose(void)
+TCase *tcase_normal(void)
 {
   TCase *tc;
 
@@ -51,7 +52,8 @@ Suite *suite_normal(void)
   Suite *s;
 
   s = suite_create("characterization-tests");
-  suite_add_tcase(s, tcase_rose());
+  suite_add_tcase(s, tcase_normal());
+  suite_add_tcase(s, tcase_brie());
 
   return s;
 }
