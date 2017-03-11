@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <check.h>
 
-Suite *suite_rose(void);
+Suite *suite_normal(void);
 
 int main(int argc, char **argv)
 {
@@ -15,7 +15,7 @@ int main(int argc, char **argv)
     forkme = 0;
   }
 
-  s = suite_rose();
+  s = suite_normal();
   runner = srunner_create(s);
 
   if (0 == forkme) {
