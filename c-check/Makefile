@@ -11,13 +11,17 @@
 CFLAGS = `pkg-config --cflags check` -g --std=c99 -D_POSIX_C_SOURCE=200809L
 LIBS = `pkg-config --libs check`
 
-# All files that should be part of your test should start with 'test'
-TEST_SRC = $(wildcard test*.[c\|h])
+# All files that should be part of your test should start with 'test_'
+TEST_SRC = $(wildcard test_*.c)
 TEST_BASE = $(basename ${TEST_SRC})
 TEST_OBJECTS = $(addsuffix .o, ${TEST_BASE})
 
-# If you add more implementation classes, add them to this variable
-OBJECT_UNDER_TEST = GildedRose.o
+# All files that should be part of your main program should start with 'gilded_'
+PROG_SRC = $(wildcard gilded_*.c)
+PROG_BASE = $(basename ${PROG_SRC})
+PROG_OBJECTS = $(addsuffix .o, ${PROG_BASE})
+
+OBJECT_UNDER_TEST = GildedRose.o ${PROG_OBJECTS}
 
 # This is the test application.  You can run this program to see your test output
 TEST_APP = test_gildedrose
