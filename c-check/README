@@ -1,5 +1,19 @@
 run-once.sh runs your tests once
 
 Assumptions:
-  - make and a C++ compiler (like gcc) is installed on your system and is in the PATH
-  - The CppUTest framework is in the directory CppUTest
+  - gnu make and a C compiler (like gcc) is installed on your system and is in the PATH
+  - The check unit testing library is installed on your system (https://libcheck.github.io/check/)
+  - pkg-config is installed on your system
+
+Notes:
+  - This project is tweaked to run on Linux systems, and will mostly work on Macs.
+    With some changes to the Makefile it can be made to run on BSD systems with
+    BSD make.  An adventurous person could also get it to run on Windows.
+  - If you are working on a Macintosh computer you cannot run the memtest target,
+    because valgrind and OS X don't play nice any more.  If you want to use the
+    memory checker OS X does run docker as a first class citizen.
+  - If you don't have pkg-config on your system, the only changes you'll need to
+    make are for the requirements of the check library.  Mostly you need to
+    set the appropriate flags for threaded binaries, which may include some
+    special linker flags.  The libcheck documentation will cover what you need
+    if you want to undertake this change.
