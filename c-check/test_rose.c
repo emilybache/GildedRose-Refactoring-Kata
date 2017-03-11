@@ -1,15 +1,16 @@
 #include <check.h>
 #include "GildedRose.h"
 
+#define NORMAL_ITEM "Elixer of Mongoose"
 
 
-START_TEST(roseFoo)
+START_TEST(normalitem_whenSellInPositive_decreasesQualityByOne)
 {
   Item items[1];
-  init_item(items, "foo", 0, 0);
+  init_item(items, NORMAL_ITEM, 10, 15);
   update_quality(items, 1);
 
-  ck_assert_str_eq("fixme", items[0].name);
+  ck_assert_int_eq(14, items[0].quality);
 }
 END_TEST
 
@@ -17,8 +18,8 @@ TCase *tcase_rose(void)
 {
   TCase *tc;
 
-  tc = tcase_create("gilded-rose");
-  tcase_add_test(tc, roseFoo);
+  tc = tcase_create("normal-items");
+  tcase_add_test(tc, normalitem_whenSellInPositive_decreasesQualityByOne);
 
   return tc;
 }
