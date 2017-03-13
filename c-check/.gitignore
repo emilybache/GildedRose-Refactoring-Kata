@@ -1,3 +1,10 @@
 *.o
+*.gch
+*.config
+*.creator
+*.creator.user
+*.files
+*.includes
+*.iml
 test_gildedrose
 golden_rose
