@@ -39,3 +39,9 @@ I've also set this kata up on [cyber-dojo](http://cyber-dojo.org) for several la
 - [RSpec, Ruby](http://cyber-dojo.org/forker/fork/8E58B0AD16?avatar=raccoon&tag=3)
 - [Python](http://cyber-dojo.org/forker/fork/297041AA7A?avatar=lion&tag=4)
 - [Cucumber, Java](http://cyber-dojo.org/forker/fork/0F82D4BA89?avatar=gorilla&tag=45) - for this one I've also written some step definitions for you
+
+# Better Code Hub
+
+I analysed this repo according to the clean code standards on [Better Code Hub](https://bettercodehub.com) just to get an independent opinion of how bad the code is. Perhaps unsurprisingly, the compliance score is low!
+
+[![BCH compliance](https://bettercodehub.com/edge/badge/emilybache/GildedRose-Refactoring-Kata?branch=master)](https://bettercodehub.com/) 
