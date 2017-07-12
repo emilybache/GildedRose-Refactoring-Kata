@@ -12,6 +12,8 @@
 
     $('body').append('<p>OMGHAI!</p>');
 
+    items = [];
+
     items.push(new Item('+5 Dexterity Vest', 10, 20));
     items.push(new Item('Aged Brie', 2, 0));
     items.push(new Item('Elixir of the Mongoose', 5, 7));
@@ -23,12 +25,15 @@
     // this conjured item does not work properly yet
     items.push(new Item('Conjured Mana Cake', 3, 6));
 
+
+    gildedRose = new Shop(items);
+
     var days = 2;
 
     for (var i = 0; i < days; i++) {
       showHeaderFor(i);
       showItemsFor(i);
-      update_quality();
+      gildedRose.updateQuality();
     }
 
     function showHeaderFor(day) {
@@ -37,9 +42,9 @@
 
     function showItemsFor(day) {
       $('body').append('<p>name, sellIn, quality</p>');
-      for (var j = 0; j < items.length; j++) {
-        var item = items[j];
-        $('body').append('<p>' + item.name + ', ' + item.sell_in + ', ' + item.quality + '</p>');
+      for (var j = 0; j < gildedRose.items.length; j++) {
+        var item = gildedRose.items[j];
+        $('body').append('<p>' + item.name + ', ' + item.sellIn + ', ' + item.quality + '</p>');
       }
       $('body').append('<br />');
     }
