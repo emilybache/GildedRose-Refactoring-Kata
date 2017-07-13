@@ -1,6 +1,6 @@
 # Especificações de Requisitos de Gilded Rose
 
-Bem-vindo ao time Gilded Rose. Como você deve saber, nós somos uma pequena pousada estratégimante localizada em uma pretigiosa cidade, atendida pelo amigavel atendente Allison. Além de ser uma pousada, nós também compramos e vendemos as mercadorias de melhor qualidade. Infelizmente nossas mercadorias vão perdendo a qualidade conforme chegam próximo sua data de venda.
+Bem-vindo ao time Gilded Rose. Como você deve saber, nós somos uma pequena pousada estrategicamente localizada em uma prestigiosa cidade, atendida pelo amigavel atendente Allison. Além de ser uma pousada, nós também compramos e vendemos as mercadorias de melhor qualidade. Infelizmente nossas mercadorias vão perdendo a qualidade conforme chegam próximo sua data de venda.
 
 Nós temos um sistema instalado que atualiza automaticamente os preços do nosso estoque. Esse sistema foi criado por um rapaz sem noção chamado Leeroy, que agora se dedica à novas aventuras. Seu trabalho será adicionar uma nova funcionalidade para o nosso sistema para que possamos vender uma nova categoria de itens. 
 
@@ -24,7 +24,7 @@ Bastante simples, não é? Bem, agora que as coisas ficam interessantes:
   * A qualidade (`quality`) aumenta em `3` unidades quando a data de venda (`SellIn`) é igual ou menor que `5`.
   * A qualidade (`quality`) do item vai direto à `0` quando a data de venda (`SellIn`) tiver passado.
 
-Nós recentemente assinamos um suplimento de itens Conjurados Magicamente. Isto requer que nós atualizemos nosso sistema:
+Nós recentemente assinamos um suprimento de itens Conjurados Magicamente. Isto requer que nós atualizemos nosso sistema:
 
 * Os itens "Conjurados" (`Conjured`) diminuem a qualidade (`quality`) duas vezes mais rápido que os outros itens.
 
