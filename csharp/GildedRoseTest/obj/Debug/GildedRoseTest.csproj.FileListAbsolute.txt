@@ -1,0 +1,15 @@
+D:\git\csharp\GildedRose-Refactoring-Kata\csharp\GildedRoseTest\bin\Debug\GildedRoseTest.dll
+D:\git\csharp\GildedRose-Refactoring-Kata\csharp\GildedRoseTest\bin\Debug\GildedRoseTest.pdb
+D:\git\csharp\GildedRose-Refactoring-Kata\csharp\GildedRoseTest\bin\Debug\GildedRose.exe
+D:\git\csharp\GildedRose-Refactoring-Kata\csharp\GildedRoseTest\bin\Debug\nunit.framework.dll
+D:\git\csharp\GildedRose-Refactoring-Kata\csharp\GildedRoseTest\bin\Debug\GildedRose.pdb
+D:\git\csharp\GildedRose-Refactoring-Kata\csharp\GildedRoseTest\bin\Debug\nunit.framework.xml
+D:\git\csharp\GildedRose-Refactoring-Kata\csharp\GildedRoseTest\obj\Debug\GildedRoseTest.csprojResolveAssemblyReference.cache
+D:\git\csharp\GildedRose-Refactoring-Kata\csharp\GildedRoseTest\obj\Debug\GildedRoseTest.dll
+D:\git\csharp\GildedRose-Refactoring-Kata\csharp\GildedRoseTest\obj\Debug\GildedRoseTest.pdb
+D:\git\csharp\GildedRose-Refactoring-Kata\csharp\GildedRoseTest\bin\Debug\ApprovalTests.dll
+D:\git\csharp\GildedRose-Refactoring-Kata\csharp\GildedRoseTest\bin\Debug\ApprovalUtilities.dll
+D:\git\csharp\GildedRose-Refactoring-Kata\csharp\GildedRoseTest\bin\Debug\ApprovalUtilities.Net45.dll
+D:\git\csharp\GildedRose-Refactoring-Kata\csharp\GildedRoseTest\bin\Debug\ApprovalTests.xml
+D:\git\csharp\GildedRose-Refactoring-Kata\csharp\GildedRoseTest\bin\Debug\ApprovalUtilities.xml
+D:\git\csharp\GildedRose-Refactoring-Kata\csharp\GildedRoseTest\bin\Debug\ApprovalUtilities.Net45.xml

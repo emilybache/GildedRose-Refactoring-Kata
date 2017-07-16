@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ApprovalUtilities</name>
+    </assembly>
+    <members>
+        <member name="M:ApprovalUtilities.Utilities.StringUtils.ToReadableString(System.Collections.IEnumerable)">
+            <summary>
+                A better string formatter for enumerables.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ApprovalTests</name>
+    </assembly>
+    <members>
+        <member name="T:ApprovalTests.Asp.MovedToSeperateNugetPackage">
+            <summary>
+            These classes have all been moved to a seperate Nuget Package.
+            Simply add ApprovalTests.Asp
+            </summary>
+        </member>
+        <member name="M:ApprovalTests.Html.HtmlApprovals.VerifyHtmlStrict(System.String)">
+            <summary>
+            	Throws exception if Html is incorrectly formatted
+            </summary>
+        </member>
+        <member name="M:ApprovalTests.Maintenance.ApprovalMaintenance.CleanUpAbandonedFiles">
+            <summary>
+            ** Warning : use at your own risk **
+            Deletes any files that may have been abandoned.
+            </summary>
+            <returns> List of deleted files</returns>
+        </member>
+        <member name="M:ApprovalTests.Xml.XmlApprovals.VerifyXmlStrict(System.String)">
+            <summary>
+            	Throws exception if Xml is incorrectly formatted
+            </summary>
+        </member>
+    </members>
+</doc>
