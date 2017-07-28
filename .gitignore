@@ -1,2 +1,3 @@
 .idea/workspace.xml
 *.pyc
+/perl6/lib/.precomp
