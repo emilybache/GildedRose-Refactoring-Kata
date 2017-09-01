@@ -1,5 +1,0 @@
-D:\git\csharp\GildedRose-Refactoring-Kata\csharp\GildedRose\bin\Debug\GildedRose.exe.config
-D:\git\csharp\GildedRose-Refactoring-Kata\csharp\GildedRose\bin\Debug\GildedRose.exe
-D:\git\csharp\GildedRose-Refactoring-Kata\csharp\GildedRose\bin\Debug\GildedRose.pdb
-D:\git\csharp\GildedRose-Refactoring-Kata\csharp\GildedRose\obj\Debug\GildedRose.exe
-D:\git\csharp\GildedRose-Refactoring-Kata\csharp\GildedRose\obj\Debug\GildedRose.pdb
