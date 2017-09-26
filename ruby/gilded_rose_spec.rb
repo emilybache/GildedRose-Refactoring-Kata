@@ -1,6 +1,7 @@
 require File.join(File.dirname(__FILE__), 'gilded_rose')
+require File.join(File.dirname(__FILE__), 'item')
 
-describe GildedRose do
+RSpec.describe GildedRose do
   subject { Item.new(name: name, sell_in: sell_in, quality: quality) }
 
   let(:items) { [subject] }
