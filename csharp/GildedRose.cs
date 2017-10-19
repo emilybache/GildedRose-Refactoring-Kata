@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
+using System.Collections.Generic;
+using csharp.Strategy;
 
 namespace csharp
 {
     public class GildedRose
     {
-        IList<Item> Items;
+        IList<ItemWrapperContext> Items;
         public GildedRose(IList<Item> Items)
-        {
-            this.Items = Items;
+        {            
+            this.Items = Items.Select(i => new ItemWrapperContext(i)).ToList<ItemWrapperContext>();
         }
 
         public void UpdateQuality()
