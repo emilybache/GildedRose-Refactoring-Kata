@@ -11,7 +11,7 @@ namespace csharp.StrategyPatternExample
         #region Variables
                         
         private Item _item;
-        private List<ICategoryStrategy> listCategoryStrategies;
+        private ICategoryStrategy strategy;
 
         #endregion
 
@@ -42,8 +42,7 @@ namespace csharp.StrategyPatternExample
         public ItemWrapperContext(Item item)
         {
             this._item = item;
-
-            listCategoryStrategies = CategoryStrategiesFactory.GetInstance().GetCategoryStrategies(item);
+            this.strategy = CategoryStrategiesFactory.GetCategoryStrategies(item);
         }
 
         #endregion
@@ -52,10 +51,7 @@ namespace csharp.StrategyPatternExample
 
         public void UpdateQuality()
         {
-            foreach (ICategoryStrategy categoryStrategyItem in this.listCategoryStrategies)
-            {
-                categoryStrategyItem.Update(this._item);
-            }
+            strategy.Update(this._item);
         }
 
         #endregion
