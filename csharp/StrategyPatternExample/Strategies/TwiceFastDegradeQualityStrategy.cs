@@ -2,7 +2,7 @@
 
 namespace csharp.StrategyPatternExample.Strategy
 {
-    class TwiceFastDegradeQualityStrategy : ICategoryStrategy
+    internal class TwiceFastDegradeQualityStrategy : ICategoryStrategy
     {
         public void Update(Item item)
         {
@@ -15,14 +15,14 @@ namespace csharp.StrategyPatternExample.Strategy
                 degrade = 4;
             }
 
-            if (item.Quality > Global.MINIMUN_QUALITY)
+            if (item.Quality > Global.MINIMUM_QUALITY)
             {
                 item.Quality -= degrade;
             }
 
-            if (item.Quality < Global.MINIMUN_QUALITY)
+            if (item.Quality < Global.MINIMUM_QUALITY)
             {
-                item.Quality = Global.MINIMUN_QUALITY;
+                item.Quality = Global.MINIMUM_QUALITY;
             }            
         }
     }

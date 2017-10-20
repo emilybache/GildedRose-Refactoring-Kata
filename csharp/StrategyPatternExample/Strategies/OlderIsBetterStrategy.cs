@@ -2,18 +2,18 @@
 
 namespace csharp.StrategyPatternExample.Strategy
 {
-    class OlderIsBetterStrategy : ICategoryStrategy
+    internal class OlderIsBetterStrategy : ICategoryStrategy
     {
         public void Update(Item item)
         {
-            if (item.Quality < Global.MAXIMUN_QUALITY)
+            if (item.Quality < Global.MAXIMUM_QUALITY)
             {
                 item.Quality++;
             }
 
             item.SellIn--;
 
-            if (item.SellIn < 0 && item.Quality < Global.MAXIMUN_QUALITY)
+            if (item.SellIn < 0 && item.Quality < Global.MAXIMUM_QUALITY)
             {
                 item.Quality++;
             }

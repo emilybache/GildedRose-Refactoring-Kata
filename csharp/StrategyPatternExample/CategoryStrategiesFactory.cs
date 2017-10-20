@@ -34,7 +34,7 @@ namespace csharp.StrategyPatternExample
         {
             List<ICategoryStrategy> listCategoryStrategies = new List<ICategoryStrategy>();
 
-            if (item.Name == "Aged Brie")
+            if (item.Name == Global.NAME_ITEM_AGED_BRIE)
             {
                 listCategoryStrategies = new List<ICategoryStrategy>()
                 {
@@ -42,20 +42,31 @@ namespace csharp.StrategyPatternExample
                 };
 
             }
-            else if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
+            else if (item.Name == Global.NAME_ITEM_BACKSTAGE_PASSES)
             {
                 listCategoryStrategies = new List<ICategoryStrategy>()
                 {
-                    new NextExpiredImproveQualityStrategy()
+                    new CloseExpiredImproveQualityStrategy(new List<CloseExpiredImproveQualityStrategy.NextExpiredCondition>() {
+                        new CloseExpiredImproveQualityStrategy.NextExpiredCondition()
+                        {
+                            SellInLimit = 5,
+                            Increment = 3
+                        },
+                        new CloseExpiredImproveQualityStrategy.NextExpiredCondition()
+                        {
+                            SellInLimit = 10,
+                            Increment = 2
+                        }
+                    })
                 };
             }
-            else if (item.Name == "Sulfuras, Hand of Ragnaros")
+            else if (item.Name == Global.NAME_ITEM_SULFURAS)
             {
                 listCategoryStrategies = new List<ICategoryStrategy>()
                 {
                 };
             }
-            else if (item.Name == "Conjured Mana Cake")
+            else if (item.Name == Global.NAME_ITEM_CONJURED)
             {
                 listCategoryStrategies = new List<ICategoryStrategy>()
                 {
