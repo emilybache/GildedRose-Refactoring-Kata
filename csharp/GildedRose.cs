@@ -1,27 +1,16 @@
-﻿using System.Linq;
-using System.Collections.Generic;
-using csharp.Strategy;
+﻿using System.Collections.Generic;
 
 namespace csharp
 {
-    public class GildedRose
+    public class GildedRose : IGildedRoseApp
     {
-        IList<ItemWrapperContext> Items;
+        IList<Item> Items;
         public GildedRose(IList<Item> Items)
-        {            
-            this.Items = Items.Select(i => new ItemWrapperContext(i)).ToList<ItemWrapperContext>();
+        {
+            this.Items = Items;
         }
-
 
         public void UpdateQuality()
-        {
-            for (var i = 0; i < Items.Count; i++)
-            {
-                Items[i].UpdateQuality();
-            }
-        }
-
-        public void UpdateQuality_old()
         {
             for (var i = 0; i < Items.Count; i++)
             {
@@ -32,6 +21,14 @@ namespace csharp
                         if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
                         {
                             Items[i].Quality = Items[i].Quality - 1;
+
+                            if (Items[i].Name == "Conjured Mana Cake")
+                            {
+                                if (Items[i].Quality > 0)
+                                {
+                                    Items[i].Quality = Items[i].Quality - 1;
+                                }
+                            }
                         }
                     }
                 }
@@ -78,6 +75,14 @@ namespace csharp
                                 if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
                                 {
                                     Items[i].Quality = Items[i].Quality - 1;
+
+                                    if (Items[i].Name == "Conjured Mana Cake")
+                                    {
+                                        if (Items[i].Quality > 0)
+                                        {
+                                            Items[i].Quality = Items[i].Quality - 1;
+                                        }
+                                    }
                                 }
                             }
                         }

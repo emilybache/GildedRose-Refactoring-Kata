@@ -63,8 +63,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApprovalTest.cs" />
+    <Compile Include="GildedRoseStrategyPatternExample.cs" />
     <Compile Include="GildedRose.cs" />
+    <Compile Include="ConjuredGildedRoseTest.cs" />
     <Compile Include="GildedRoseTest.cs" />
+    <Compile Include="IGildedRoseApp.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Strategy\CategoryStrategiesFactory.cs" />
     <Compile Include="Strategy\ICategoryStrategy.cs" />

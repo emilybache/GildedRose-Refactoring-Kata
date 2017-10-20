@@ -6,13 +6,13 @@ namespace csharp.Strategy
     {
         public void Update(Item item)
         {
-            int degrade = 1;
+            int degrade = 2;
 
             item.SellIn--;
 
             if (item.SellIn < 0)
             {
-                degrade = 2;
+                degrade = 4;
             }
 
             if (item.Quality > 0)
