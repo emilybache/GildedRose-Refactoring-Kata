@@ -4,7 +4,10 @@ using System.Collections.Generic;
 
 namespace csharp.StrategyPatternExample
 {
-    class CategoryStrategiesFactory
+    /// <summary>
+    /// This class is responsible for providing a category strategy to a given item.
+    /// </summary>
+    internal class CategoryStrategiesFactory
     {
         #region Variables
 

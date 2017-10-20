@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace csharp.StrategyPatternExample
 {
+    /// <summary>
+    /// Wrapper class to allow to create a context for every defined item and thus to be able to bind a strategy. 
+    /// </summary>
     public class ItemWrapperContext
     {
         #region Variables

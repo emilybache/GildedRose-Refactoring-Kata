@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace csharp.StrategyPatternExample.Strategy
 {
+    /// <summary>
+    /// Implements the strategy; Increases in Quality as its SellIn value approaches.
+    /// </summary>
     internal class CloseExpiredImproveQualityStrategy : ICategoryStrategy
     {
         #region subclasses

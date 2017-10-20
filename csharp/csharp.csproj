@@ -76,6 +76,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StrategyPatternExample\Strategies\CloseExpiredImproveQualityStrategy.cs" />
     <Compile Include="StrategyPatternExample\Strategies\NormalDegradeStrategy.cs" />
+    <Compile Include="StrategyPatternExample\Strategies\DoNothingStrategy.cs" />
     <Compile Include="StrategyPatternExample\Strategies\OlderIsBetterStrategy.cs" />
     <Compile Include="StrategyPatternExample\Strategies\TwiceFastDegradeQualityStrategy.cs" />
   </ItemGroup>
