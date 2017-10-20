@@ -1,23 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace csharp.StrategyPatternExample
+namespace csharp.StrategyPatternExample.Strategy
 {
     class OlderIsBetterStrategy : ICategoryStrategy
     {
         public void Update(Item item)
         {
-            if (item.Quality < 50)
+            if (item.Quality < Global.MAXIMUN_QUALITY)
             {
                 item.Quality++;
             }
 
             item.SellIn--;
 
-            if (item.SellIn < 0 && item.Quality < 50)
+            if (item.SellIn < 0 && item.Quality < Global.MAXIMUN_QUALITY)
             {
                 item.Quality++;
             }

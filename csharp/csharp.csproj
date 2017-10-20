@@ -70,14 +70,15 @@
     <Compile Include="IGildedRoseApp.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="StrategyPatternExample\CategoryStrategiesFactory.cs" />
+    <Compile Include="StrategyPatternExample\Global.cs" />
     <Compile Include="StrategyPatternExample\ICategoryStrategy.cs" />
     <Compile Include="StrategyPatternExample\ItemWrapperContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StrategyPatternExample\NextExpiredImproveQualityStrategy.cs" />
-    <Compile Include="StrategyPatternExample\NormalDegradeStrategy.cs" />
-    <Compile Include="StrategyPatternExample\OlderIsBetterStrategy.cs" />
-    <Compile Include="StrategyPatternExample\TwiceFastDegradeQualityStrategy.cs" />
+    <Compile Include="StrategyPatternExample\Strategies\NextExpiredImproveQualityStrategy.cs" />
+    <Compile Include="StrategyPatternExample\Strategies\NormalDegradeStrategy.cs" />
+    <Compile Include="StrategyPatternExample\Strategies\OlderIsBetterStrategy.cs" />
+    <Compile Include="StrategyPatternExample\Strategies\TwiceFastDegradeQualityStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

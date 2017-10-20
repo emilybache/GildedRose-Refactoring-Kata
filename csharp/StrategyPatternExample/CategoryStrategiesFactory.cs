@@ -1,4 +1,5 @@
-﻿using System;
+﻿using csharp.StrategyPatternExample.Strategy;
+using System;
 using System.Collections.Generic;
 
 namespace csharp.StrategyPatternExample
@@ -28,9 +29,7 @@ namespace csharp.StrategyPatternExample
 
             return _strategiesFactory;
         }
-
-        #endregion
-
+        
         public List<ICategoryStrategy> GetCategoryStrategies(Item item)
         {
             List<ICategoryStrategy> listCategoryStrategies = new List<ICategoryStrategy>();
@@ -73,5 +72,7 @@ namespace csharp.StrategyPatternExample
 
             return listCategoryStrategies;
         }
+        
+        #endregion
     }
 }

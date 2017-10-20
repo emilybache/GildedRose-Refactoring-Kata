@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace csharp.StrategyPatternExample
+namespace csharp.StrategyPatternExample.Strategy
 {
     class NextExpiredImproveQualityStrategy : ICategoryStrategy
     {
@@ -10,7 +10,7 @@ namespace csharp.StrategyPatternExample
 
             if (item.SellIn < 0)
             {
-                item.Quality = 0;
+                item.Quality = Global.MINIMUN_QUALITY;
             }
             else
             {
@@ -27,9 +27,9 @@ namespace csharp.StrategyPatternExample
 
                 item.Quality += inc;
 
-                if (item.Quality > 50)
+                if (item.Quality > Global.MAXIMUN_QUALITY)
                 {
-                    item.Quality = 50;
+                    item.Quality = Global.MAXIMUN_QUALITY;
                 }
             }
         }

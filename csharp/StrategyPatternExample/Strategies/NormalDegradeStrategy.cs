@@ -1,19 +1,19 @@
 ﻿using System;
 
-namespace csharp.StrategyPatternExample
+namespace csharp.StrategyPatternExample.Strategy
 {
     class NormalDegradeStrategy : ICategoryStrategy
     {
         public void Update(Item item)
         {
-            if (item.Quality > 0)
+            if (item.Quality > Global.MINIMUN_QUALITY)
             {
                 item.Quality--;
             }
 
             item.SellIn--;
 
-            if (item.SellIn < 0 && item.Quality > 0)
+            if (item.SellIn < 0 && item.Quality > Global.MINIMUN_QUALITY)
             {
                 item.Quality--;
             }            
