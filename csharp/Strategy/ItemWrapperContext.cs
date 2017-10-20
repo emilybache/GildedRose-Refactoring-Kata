@@ -1,10 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace csharp.Strategy
 {
     public class ItemWrapperContext
     {
         #region Variables
+                        
+        private Item _item;
+        private List<ICategoryStrategy> listCategoryStrategies;
+
+        #endregion
+
+        #region Properties
 
         public string Name
         {
@@ -24,9 +32,6 @@ namespace csharp.Strategy
             set { this._item.SellIn = value; }
         }
 
-        //private List<ICategoryStrategy> listCategoryStrategies;
-        private Item _item;
-
         #endregion
 
         #region Constructor
@@ -35,22 +40,21 @@ namespace csharp.Strategy
         {
             this._item = item;
 
-            //listCategoryStrategies = StrategiesFactory.GetInstance().GetCategoryStrategies(item);
+            listCategoryStrategies = CategoryStrategiesFactory.GetInstance().GetCategoryStrategies(item);
         }
 
         #endregion
 
         #region Methods
 
-        //public void UpdateQuality()
-        //{
-        //    foreach (ICategoryStrategy categoryStrategyItem in this.listCategoryStrategies)
-        //    {
-        //        categoryStrategyItem.UpdateQuality(this);
-        //    }
-        //}
+        public void UpdateQuality()
+        {
+            foreach (ICategoryStrategy categoryStrategyItem in this.listCategoryStrategies)
+            {
+                categoryStrategyItem.Update(this._item);
+            }
+        }
 
         #endregion
-
     }
 }

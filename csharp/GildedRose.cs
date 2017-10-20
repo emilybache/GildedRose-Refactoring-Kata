@@ -12,7 +12,16 @@ namespace csharp
             this.Items = Items.Select(i => new ItemWrapperContext(i)).ToList<ItemWrapperContext>();
         }
 
+
         public void UpdateQuality()
+        {
+            for (var i = 0; i < Items.Count; i++)
+            {
+                Items[i].UpdateQuality();
+            }
+        }
+
+        public void UpdateQuality_old()
         {
             for (var i = 0; i < Items.Count; i++)
             {
