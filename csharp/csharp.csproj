@@ -63,21 +63,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApprovalTest.cs" />
-    <Compile Include="GildedRoseStrategyPatternExample.cs" />
+    <Compile Include="StrategyPatternExample\GildedRoseStrategyPatternExample.cs" />
     <Compile Include="GildedRose.cs" />
     <Compile Include="ConjuredGildedRoseTest.cs" />
     <Compile Include="GildedRoseTest.cs" />
     <Compile Include="IGildedRoseApp.cs" />
     <Compile Include="Item.cs" />
-    <Compile Include="Strategy\CategoryStrategiesFactory.cs" />
-    <Compile Include="Strategy\ICategoryStrategy.cs" />
-    <Compile Include="Strategy\ItemWrapperContext.cs" />
+    <Compile Include="StrategyPatternExample\CategoryStrategiesFactory.cs" />
+    <Compile Include="StrategyPatternExample\ICategoryStrategy.cs" />
+    <Compile Include="StrategyPatternExample\ItemWrapperContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Strategy\NextExpiredImproveQualityStrategy.cs" />
-    <Compile Include="Strategy\NormalDegradeStrategy.cs" />
-    <Compile Include="Strategy\OlderIsBetterStrategy.cs" />
-    <Compile Include="Strategy\TwiceFastDegradeQualityStrategy.cs" />
+    <Compile Include="StrategyPatternExample\NextExpiredImproveQualityStrategy.cs" />
+    <Compile Include="StrategyPatternExample\NormalDegradeStrategy.cs" />
+    <Compile Include="StrategyPatternExample\OlderIsBetterStrategy.cs" />
+    <Compile Include="StrategyPatternExample\TwiceFastDegradeQualityStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

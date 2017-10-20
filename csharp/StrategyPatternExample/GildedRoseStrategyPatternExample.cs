@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
-using csharp.Strategy;
+using csharp.StrategyPatternExample;
 
-namespace csharp
+namespace csharp.StrategyPatternExample
 {
     public class GildedRoseStrategyPatternExample : IGildedRoseApp
     {

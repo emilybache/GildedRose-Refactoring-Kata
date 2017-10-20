@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace csharp.Strategy
+namespace csharp.StrategyPatternExample
 {
     class CategoryStrategiesFactory
     {

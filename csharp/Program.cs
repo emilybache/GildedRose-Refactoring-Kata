@@ -1,4 +1,5 @@
-﻿using System;
+﻿using csharp.StrategyPatternExample;
+using System;
 using System.Collections.Generic;
 
 namespace csharp

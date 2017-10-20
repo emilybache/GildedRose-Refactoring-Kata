@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace csharp.Strategy
+namespace csharp.StrategyPatternExample
 {
     class OlderIsBetterStrategy : ICategoryStrategy
     {

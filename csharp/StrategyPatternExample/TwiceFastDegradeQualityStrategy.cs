@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace csharp.Strategy
+namespace csharp.StrategyPatternExample
 {
     class TwiceFastDegradeQualityStrategy : ICategoryStrategy
     {

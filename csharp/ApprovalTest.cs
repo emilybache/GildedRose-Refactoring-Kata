@@ -1,5 +1,6 @@
 ﻿using ApprovalTests;
 using ApprovalTests.Reporters;
+using csharp.StrategyPatternExample;
 using NUnit.Framework;
 using System;
 using System.IO;
