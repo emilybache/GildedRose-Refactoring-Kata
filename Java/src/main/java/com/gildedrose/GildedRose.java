@@ -1,23 +1,23 @@
 package com.gildedrose;
 
 import com.gildedrose.item.Item;
-import com.gildedrose.item.ItemFactory;
+import com.gildedrose.item.CustomisedItemFactory;
 import com.gildedrose.item.QualityValues;
 
 class GildedRose {
 
     private static final int LOWEST_QUALITY_VALUE_POSSIBLE = 0;
-    private final ItemFactory itemFactory;
+    private final CustomisedItemFactory customisedItemFactory;
     Item[] items;
 
     public GildedRose(Item[] items) {
-        this.itemFactory = new ItemFactory();
+        this.customisedItemFactory = new CustomisedItemFactory();
         this.items = items;
     }
 
     public void updateQuality() {
         for (Item item : items) {
-            itemFactory.customiseItem(item).updateState();
+            customisedItemFactory.customiseItem(item).updateState();
             if (hasReachedLowestQualityValue(item)) {
                 item.quality = LOWEST_QUALITY_VALUE_POSSIBLE;
             } else if (hasReachedHighestQualityValue(item)) {

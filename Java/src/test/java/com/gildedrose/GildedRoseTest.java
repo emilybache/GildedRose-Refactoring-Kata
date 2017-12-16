@@ -3,6 +3,7 @@ package com.gildedrose;
 import static org.junit.Assert.*;
 
 import com.gildedrose.item.Item;
+import com.gildedrose.item.CustomisedItemFactory;
 import org.junit.Test;
 
 public class GildedRoseTest {
@@ -27,7 +28,7 @@ public class GildedRoseTest {
 
     @Test
     public void brieDecreasesSellByDayNumberEachTime() {
-        GildedRose app = newGildedRose("Aged Brie", 0, 0);
+        GildedRose app = newGildedRose(CustomisedItemFactory.BRIE, 0, 0);
 
         app.updateQuality();
 
@@ -36,7 +37,7 @@ public class GildedRoseTest {
 
     @Test
     public void backstagePassesItemDecreasesSellByDayNumberEachTime() {
-        GildedRose app = newGildedRose("Backstage passes to a TAFKAL80ETC concert", 0, 0);
+        GildedRose app = newGildedRose(CustomisedItemFactory.BACKSTAGE_PASSES_ITEM, 0, 0);
 
         app.updateQuality();
 
@@ -45,7 +46,7 @@ public class GildedRoseTest {
 
     @Test
     public void brieIncreasesInQualityEachTime() {
-        GildedRose app = newGildedRose("Aged Brie", 1, 1);
+        GildedRose app = newGildedRose(CustomisedItemFactory.BRIE, 1, 1);
 
         app.updateQuality();
 
@@ -54,7 +55,7 @@ public class GildedRoseTest {
 
     @Test
     public void brieQualityCannotGoAboveFiftyWhenIncreasing() {
-        GildedRose app = newGildedRose("Aged Brie", 1, 49);
+        GildedRose app = newGildedRose(CustomisedItemFactory.BRIE, 1, 49);
 
         app.updateQuality();
         app.updateQuality();
@@ -64,7 +65,7 @@ public class GildedRoseTest {
 
     @Test
     public void backstagePassesItemDecreasesQualityByOneIfSellByDayMoreThanEleven() {
-        GildedRose app = newGildedRose("Backstage passes to a TAFKAL80ETC concert", 12, 1);
+        GildedRose app = newGildedRose(CustomisedItemFactory.BACKSTAGE_PASSES_ITEM, 12, 1);
 
         app.updateQuality();
 
@@ -73,7 +74,7 @@ public class GildedRoseTest {
 
     @Test
     public void backstagePassesItemDecreasesQualityByTwoIfSellByDayIsMoreThanSix() {
-        GildedRose app = newGildedRose("Backstage passes to a TAFKAL80ETC concert", 10, 1);
+        GildedRose app = newGildedRose(CustomisedItemFactory.BACKSTAGE_PASSES_ITEM, 10, 1);
 
         app.updateQuality();
 
@@ -82,7 +83,7 @@ public class GildedRoseTest {
 
     @Test
     public void backstagePassesItemDecreasesQualityByThreeIfSellByDayIsMoreThanZero() {
-        GildedRose app = newGildedRose("Backstage passes to a TAFKAL80ETC concert", 5, 1);
+        GildedRose app = newGildedRose(CustomisedItemFactory.BACKSTAGE_PASSES_ITEM, 5, 1);
 
         app.updateQuality();
 
@@ -91,7 +92,7 @@ public class GildedRoseTest {
 
     @Test
     public void backstagePassesItemQualityDropsToZeroIfSellByDayIsZeroOrLess() {
-        GildedRose app = newGildedRose("Backstage passes to a TAFKAL80ETC concert", 0,50);
+        GildedRose app = newGildedRose(CustomisedItemFactory.BACKSTAGE_PASSES_ITEM, 0,50);
 
         app.updateQuality();
 
@@ -100,7 +101,7 @@ public class GildedRoseTest {
 
     @Test
     public void backstagePassesItemQualityCannotGoAboveFiftyWhenIncreasing() {
-        GildedRose app = newGildedRose("Backstage passes to a TAFKAL80ETC concert", 5, 50);
+        GildedRose app = newGildedRose(CustomisedItemFactory.BACKSTAGE_PASSES_ITEM, 5, 50);
 
         app.updateQuality();
 
@@ -136,14 +137,14 @@ public class GildedRoseTest {
 
     @Test
     public void sulfurasHasQualityEighty() {
-        GildedRose app = newGildedRose("Sulfuras, Hand of Ragnaros", 1, 80);
+        GildedRose app = newGildedRose(CustomisedItemFactory.SULFURAS, 1, 80);
 
         assertEquals(80, itemQualityValue(app));
     }
 
     @Test
     public void sulfurasItemDoesNotAlterValues() {
-        GildedRose app = newGildedRose("Sulfuras, Hand of Ragnaros", 1, 80);
+        GildedRose app = newGildedRose(CustomisedItemFactory.SULFURAS, 1, 80);
 
         app.updateQuality();
 
