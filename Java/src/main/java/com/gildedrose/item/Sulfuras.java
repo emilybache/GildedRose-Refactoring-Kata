@@ -1,11 +1,12 @@
 package com.gildedrose.item;
 
-public class Sulfuras extends Item {
+public class Sulfuras implements CustomisedItem {
 
-    public Sulfuras(String name, int sellIn, int quality) {
-        super(name, sellIn, quality);
+    public Item item;
+
+    public Sulfuras(Item item) {
     }
 
-    public void updateYourState() {
+    public void updateState() {
     }
 }

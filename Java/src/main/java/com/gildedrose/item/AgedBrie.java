@@ -1,13 +1,15 @@
 package com.gildedrose.item;
 
-public class AgedBrie extends Item {
+public class AgedBrie implements CustomisedItem {
 
-    public AgedBrie(String name, int sellIn, int quality) {
-        super(name, sellIn, quality);
+    public Item item;
+
+    public AgedBrie(Item item) {
+        this.item = item;
     }
 
-    public void updateYourState() {
-        sellIn -= 1;
-        quality += 1;
+    public void updateState() {
+        item.sellIn -= 1;
+        item.quality += 1;
     }
 }

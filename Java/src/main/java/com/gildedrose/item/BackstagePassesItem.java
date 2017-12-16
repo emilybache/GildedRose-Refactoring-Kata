@@ -1,21 +1,23 @@
 package com.gildedrose.item;
 
-public class BackstagePassesItem extends Item {
+public class BackstagePassesItem implements CustomisedItem {
 
-    public BackstagePassesItem(String name, int sellIn, int quality) {
-        super(name, sellIn, quality);
+    public Item item;
+
+    public BackstagePassesItem(Item item) {
+        this.item = item;
     }
 
-    public void updateYourState() {
-        sellIn -= 1;
-        if (sellIn >= 11) {
-            quality += 1;
-        } else if (sellIn > 5) {
-            quality += 2;
-        } else if (sellIn > 0) {
-            quality += 3;
+    public void updateState() {
+        item.sellIn -= 1;
+        if (item.sellIn >= 11) {
+            item.quality += 1;
+        } else if (item.sellIn > 5) {
+            item.quality += 2;
+        } else if (item.sellIn > 0) {
+            item.quality += 3;
         } else {
-            quality = 0;
+            item.quality = 0;
         }
     }
 }

@@ -1,17 +1,21 @@
 package com.gildedrose.item;
 
-public class StandardItem extends Item {
+public class StandardItem implements CustomisedItem {
 
-    public StandardItem(String name, int sellIn, int quality) {
-        super(name, sellIn, quality);
+    public Item item;
+
+    public StandardItem(Item item) {
+        this.item = item;
     }
 
-    public void updateYourState() {
-        sellIn -= 1;
-        if (sellIn > 0) {
-            quality -= 1;
+    public void updateState() {
+        item.sellIn -= 1;
+        if (item.sellIn > 0) {
+            item.quality -= 1;
         } else {
-            quality -= 2;
+            item.quality -= 2;
         }
     }
+
+
 }
