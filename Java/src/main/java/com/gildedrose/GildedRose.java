@@ -1,5 +1,6 @@
 package com.gildedrose;
 
+import com.gildedrose.item.CustomisedItem;
 import com.gildedrose.item.Item;
 import com.gildedrose.item.CustomisedItemFactory;
 import com.gildedrose.item.QualityValues;
@@ -7,23 +8,25 @@ import com.gildedrose.item.QualityValues;
 class GildedRose {
 
     private static final int LOWEST_QUALITY_VALUE_POSSIBLE = 0;
-    private final CustomisedItemFactory customisedItemFactory;
     Item[] items;
 
     public GildedRose(Item[] items) {
-        this.customisedItemFactory = new CustomisedItemFactory();
         this.items = items;
     }
 
     public void updateQuality() {
         for (Item item : items) {
-            customisedItemFactory.customiseItem(item).updateState();
+            customisedItem(item).updateState();
             if (hasReachedLowestQualityValue(item)) {
                 item.quality = LOWEST_QUALITY_VALUE_POSSIBLE;
             } else if (hasReachedHighestQualityValue(item)) {
                 item.quality = QualityValues.highestValuePossible(item);
             }
         }
+    }
+
+    private CustomisedItem customisedItem(Item item) {
+        return new CustomisedItemFactory(item).customiseItem(item);
     }
 
     private boolean hasReachedLowestQualityValue(Item item) {
