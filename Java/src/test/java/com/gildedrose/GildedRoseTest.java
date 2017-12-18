@@ -2,6 +2,7 @@ package com.gildedrose;
 
 import static org.junit.Assert.*;
 
+import com.gildedrose.item.CustomisedItem;
 import com.gildedrose.item.Item;
 import com.gildedrose.item.CustomisedItemFactory;
 import org.junit.Test;
@@ -38,6 +39,15 @@ public class GildedRoseTest {
     @Test
     public void backstagePassesItemDecreasesSellByDayNumberEachTime() {
         GildedRose app = newGildedRose(CustomisedItemFactory.BACKSTAGE_PASSES_ITEM, 0, 0);
+
+        app.updateQuality();
+
+        assertEquals(-1, itemSellByDayNumber(app));
+    }
+
+    @Test
+    public void conjuredItemDecreasesSellByDayNumberEachTime() {
+        GildedRose app = newGildedRose(CustomisedItemFactory.CONJURED_ITEM, 0, 0);
 
         app.updateQuality();
 
@@ -150,6 +160,33 @@ public class GildedRoseTest {
 
         assertEquals(80, itemQualityValue(app));
         assertEquals(1, itemSellByDayNumber(app));
+    }
+
+    @Test
+    public void conjuredItemDecreasesQualityByTwoIfSellByDayIsAboveZero() {
+        GildedRose app = newGildedRose(CustomisedItemFactory.CONJURED_ITEM, 2, 5);
+
+        app.updateQuality();
+
+        assertEquals(3, itemQualityValue(app));
+    }
+
+    @Test
+    public void conjuredItemDecreasesQualityByFourOnceSellByDayIsZeroOrLess() {
+        GildedRose app = newGildedRose(CustomisedItemFactory.CONJURED_ITEM,0, 5);
+
+        app.updateQuality();
+
+        assertEquals(1, itemQualityValue(app));
+    }
+
+    @Test
+    public void conjuredItemCannotHaveQualityBelowZero() {
+        GildedRose app = newGildedRose(CustomisedItemFactory.CONJURED_ITEM, 0, 0);
+
+        app.updateQuality();
+
+        assertEquals(0, itemQualityValue(app));
     }
 
     private GildedRose newGildedRose(String itemName, int itemSellIn, int itemQuality) {
