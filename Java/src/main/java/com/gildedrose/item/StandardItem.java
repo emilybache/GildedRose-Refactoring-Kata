@@ -9,13 +9,23 @@ public class StandardItem implements CustomisedItem {
     }
 
     public void updateState() {
-        item.sellIn -= 1;
-        if (item.sellIn > 0) {
-            item.quality -= 1;
+        decreaseSellByDayValueByOne();
+        if (sellByDayValueIsOverZero()) {
+            decreaseQualityBy(1);
         } else {
-            item.quality -= 2;
+            decreaseQualityBy(2);
         }
     }
 
+    private void decreaseSellByDayValueByOne() {
+        item.sellIn -= 1;
+    }
 
+    private boolean sellByDayValueIsOverZero() {
+        return item.sellIn > 0;
+    }
+
+    private void decreaseQualityBy(int qualityValue) {
+        item.quality -= qualityValue;
+    }
 }

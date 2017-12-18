@@ -9,15 +9,31 @@ public class BackstagePassesItem implements CustomisedItem {
     }
 
     public void updateState() {
-        item.sellIn -= 1;
-        if (item.sellIn >= 11) {
-            item.quality += 1;
-        } else if (item.sellIn > 5) {
-            item.quality += 2;
-        } else if (item.sellIn > 0) {
-            item.quality += 3;
+        decreaseSellByDayValueByOne();
+        if (sellByDayValueIsOver(10)) {
+            increaseQualityBy(1);
+        } else if (sellByDayValueIsOver(5)) {
+            increaseQualityBy(2);
+        } else if (sellByDayValueIsOver(0)) {
+            increaseQualityBy(3);
         } else {
-            item.quality = 0;
+            dropQualityToZero();
         }
+    }
+
+    private void decreaseSellByDayValueByOne() {
+        item.sellIn -= 1;
+    }
+
+    private boolean sellByDayValueIsOver(int dayNumber) {
+        return item.sellIn > dayNumber;
+    }
+
+    private void increaseQualityBy(int qualityValue) {
+        item.quality += qualityValue;
+    }
+
+    private void dropQualityToZero() {
+        item.quality = 0;
     }
 }
