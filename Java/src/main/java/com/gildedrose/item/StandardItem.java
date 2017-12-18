@@ -11,10 +11,14 @@ public class StandardItem implements CustomisedItem {
     public void updateState() {
         decreaseSellByDayValueByOne();
         if (sellByDayValueIsOverZero()) {
-            decreaseQualityBy(1);
+            decreaseQualityBy(decreasingValueOverZeroDaysToSell());
         } else {
-            decreaseQualityBy(2);
+            decreaseQualityBy(decreasingValueForZeroOrLessDaysToSell());
         }
+    }
+
+    public int decreasingValueOverZeroDaysToSell() {
+        return 1;
     }
 
     private void decreaseSellByDayValueByOne() {
@@ -27,5 +31,9 @@ public class StandardItem implements CustomisedItem {
 
     private void decreaseQualityBy(int qualityValue) {
         item.quality -= qualityValue;
+    }
+
+    private int decreasingValueForZeroOrLessDaysToSell() {
+        return decreasingValueOverZeroDaysToSell() * 2;
     }
 }
