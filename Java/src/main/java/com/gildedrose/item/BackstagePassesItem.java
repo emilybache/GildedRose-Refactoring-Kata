@@ -2,7 +2,7 @@ package com.gildedrose.item;
 
 public class BackstagePassesItem implements CustomisedItem {
 
-    public Item item;
+    private final Item item;
 
     public BackstagePassesItem(Item item) {
         this.item = item;

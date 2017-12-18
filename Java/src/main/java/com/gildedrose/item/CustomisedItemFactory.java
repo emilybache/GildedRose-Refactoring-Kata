@@ -9,7 +9,7 @@ public class CustomisedItemFactory {
 
     public CustomisedItem customiseItem(Item item) {
         if (item.name.equals(SULFURAS)) {
-            return new Sulfuras(item);
+            return new Sulfuras();
         } else if (item.name.equals(BRIE)) {
             return new AgedBrie(item);
         } else if (item.name.equals(BACKSTAGE_PASSES_ITEM)) {

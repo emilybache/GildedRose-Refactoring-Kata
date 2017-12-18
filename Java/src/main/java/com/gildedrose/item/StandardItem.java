@@ -2,7 +2,7 @@ package com.gildedrose.item;
 
 public class StandardItem implements CustomisedItem {
 
-    public Item item;
+    private final Item item;
 
     public StandardItem(Item item) {
         this.item = item;
