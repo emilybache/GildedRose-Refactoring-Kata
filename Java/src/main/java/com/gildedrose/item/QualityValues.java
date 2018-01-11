@@ -2,6 +2,10 @@ package com.gildedrose.item;
 
 public final class QualityValues {
 
+    public static int lowestValuePossible() {
+        return 0;
+    }
+
     public static int highestValuePossible(Item item) {
         if (item.name.equals(CustomisedItemFactory.SULFURAS)) {
             return 80;

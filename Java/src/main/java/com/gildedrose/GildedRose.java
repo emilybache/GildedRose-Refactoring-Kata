@@ -7,7 +7,6 @@ import com.gildedrose.item.QualityValues;
 
 class GildedRose {
 
-    private static final int LOWEST_QUALITY_VALUE_POSSIBLE = 0;
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -18,7 +17,7 @@ class GildedRose {
         for (Item item : items) {
             customisedItem(item).updateState();
             if (hasReachedLowestQualityValue(item)) {
-                item.quality = LOWEST_QUALITY_VALUE_POSSIBLE;
+                item.quality = QualityValues.lowestValuePossible();
             } else if (hasReachedHighestQualityValue(item)) {
                 item.quality = QualityValues.highestValuePossible(item);
             }
@@ -30,7 +29,7 @@ class GildedRose {
     }
 
     private boolean hasReachedLowestQualityValue(Item item) {
-        return item.quality < LOWEST_QUALITY_VALUE_POSSIBLE;
+        return item.quality < QualityValues.lowestValuePossible();
     }
 
     private boolean hasReachedHighestQualityValue(Item item) {
