@@ -7,25 +7,23 @@ import com.gildedrose.item.QualityValues;
 
 class GildedRose {
 
+    private final CustomisedItemFactory itemFactory;
     Item[] items;
 
     public GildedRose(Item[] items) {
         this.items = items;
+        this.itemFactory = new CustomisedItemFactory();
     }
 
     public void updateQuality() {
         for (Item item : items) {
-            customisedItem(item).updateState();
+            itemFactory.customiseItem(item).updateState();
             if (hasReachedLowestQualityValue(item)) {
                 item.quality = QualityValues.lowestValuePossible();
             } else if (hasReachedHighestQualityValue(item)) {
                 item.quality = QualityValues.highestValuePossible(item);
             }
         }
-    }
-
-    private CustomisedItem customisedItem(Item item) {
-        return new CustomisedItemFactory(item).customiseItem(item);
     }
 
     private boolean hasReachedLowestQualityValue(Item item) {
