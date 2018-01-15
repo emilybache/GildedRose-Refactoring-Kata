@@ -1,6 +1,6 @@
 package com.gildedrose.item;
 
-public class StandardItem implements CustomisedItem {
+public class StandardItem extends CustomisedItem {
 
     private final Item item;
 
@@ -8,32 +8,31 @@ public class StandardItem implements CustomisedItem {
         this.item = item;
     }
 
-    public void updateState() {
-        decreaseSellByDayValueByOne();
+    @Override
+    int updatedItemSellIn() {
+        return item.sellIn -= 1;
+    }
+
+    @Override
+    int updatedItemQuality() {
         if (sellByDayValueIsOverZero()) {
-            decreaseQualityBy(decreasingValueOverZeroDaysToSell());
+            return item.quality -= 1;
         } else {
-            decreaseQualityBy(decreasingValueForZeroOrLessDaysToSell());
+            return item.quality -= 2;
         }
     }
 
-    public int decreasingValueOverZeroDaysToSell() {
-        return 1;
+    @Override
+    protected boolean hasReachedHighestQualityValue() {
+        return item.quality > QualityValues.highestValuePossible(item);
     }
 
-    private void decreaseSellByDayValueByOne() {
-        item.sellIn -= 1;
+    @Override
+    protected boolean hasReachedLowestQualityValue() {
+        return item.quality < QualityValues.lowestValuePossible();
     }
 
     private boolean sellByDayValueIsOverZero() {
         return item.sellIn > 0;
-    }
-
-    private void decreaseQualityBy(int qualityValue) {
-        item.quality -= qualityValue;
-    }
-
-    private int decreasingValueForZeroOrLessDaysToSell() {
-        return decreasingValueOverZeroDaysToSell() * 2;
     }
 }

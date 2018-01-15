@@ -13,7 +13,7 @@ public class CustomisedItemFactory {
     public final static String CONJURED_ITEM = "Conjured";
 
     public CustomisedItemFactory() {
-        ITEM_TYPES_LIST.put(SULFURAS, (item) ->  new Sulfuras());
+        ITEM_TYPES_LIST.put(SULFURAS, Sulfuras::new);
         ITEM_TYPES_LIST.put(BRIE, AgedBrie::new);
         ITEM_TYPES_LIST.put(BACKSTAGE_PASSES_ITEM, BackstagePassesItem::new);
         ITEM_TYPES_LIST.put(CONJURED_ITEM, ConjuredItem::new);

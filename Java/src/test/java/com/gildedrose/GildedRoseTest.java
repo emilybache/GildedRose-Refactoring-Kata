@@ -74,7 +74,7 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void backstagePassesItemDecreasesQualityByOneIfSellByDayMoreThanEleven() {
+    public void backstagePassesItemIncreasesQualityByOneIfSellByDayMoreThanEleven() {
         GildedRose app = newGildedRose(CustomisedItemFactory.BACKSTAGE_PASSES_ITEM, 12, 1);
 
         app.updateQuality();
@@ -83,7 +83,7 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void backstagePassesItemDecreasesQualityByTwoIfSellByDayIsMoreThanSix() {
+    public void backstagePassesItemIncreasesQualityByTwoIfSellByDayIsMoreThanSix() {
         GildedRose app = newGildedRose(CustomisedItemFactory.BACKSTAGE_PASSES_ITEM, 10, 1);
 
         app.updateQuality();
@@ -92,7 +92,7 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void backstagePassesItemDecreasesQualityByThreeIfSellByDayIsMoreThanZero() {
+    public void backstagePassesItemIncreasesQualityByThreeIfSellByDayIsMoreThanZero() {
         GildedRose app = newGildedRose(CustomisedItemFactory.BACKSTAGE_PASSES_ITEM, 5, 1);
 
         app.updateQuality();

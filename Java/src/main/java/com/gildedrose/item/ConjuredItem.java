@@ -1,13 +1,38 @@
 package com.gildedrose.item;
 
-public class ConjuredItem extends StandardItem {
+public class ConjuredItem extends CustomisedItem {
+
+    private final Item item;
 
     public ConjuredItem(Item item) {
-        super(item);
+        this.item = item;
     }
 
     @Override
-    public int decreasingValueOverZeroDaysToSell() {
-        return 2;
+    protected boolean hasReachedHighestQualityValue() {
+        return item.quality > QualityValues.highestValuePossible(item);
+    }
+
+    @Override
+    protected boolean hasReachedLowestQualityValue() {
+        return item.quality < QualityValues.lowestValuePossible();
+    }
+
+    @Override
+    int updatedItemSellIn() {
+        return item.sellIn -= 1;
+    }
+
+    @Override
+    int updatedItemQuality() {
+        if (sellByDayValueIsOverZero()) {
+            return item.quality -= 2;
+        } else {
+            return item.quality -= 4;
+        }
+    }
+
+    private boolean sellByDayValueIsOverZero() {
+        return item.sellIn > 0;
     }
 }
