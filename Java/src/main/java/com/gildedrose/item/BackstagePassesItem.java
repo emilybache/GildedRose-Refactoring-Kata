@@ -5,6 +5,7 @@ class BackstagePassesItem extends CustomisedItem {
     private final Item item;
 
     BackstagePassesItem(Item item) {
+        super(item);
         this.item = item;
     }
 

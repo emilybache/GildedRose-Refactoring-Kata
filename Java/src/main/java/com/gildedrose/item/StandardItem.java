@@ -5,6 +5,7 @@ class StandardItem extends CustomisedItem {
     private final Item item;
 
     StandardItem(Item item) {
+        super(item);
         this.item = item;
     }
 

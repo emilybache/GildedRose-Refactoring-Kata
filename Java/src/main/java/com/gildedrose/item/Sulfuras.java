@@ -5,6 +5,7 @@ class Sulfuras extends CustomisedItem {
     private final Item item;
 
     Sulfuras(Item item) {
+        super(item);
         this.item = item;
     }
 

@@ -2,13 +2,19 @@ package com.gildedrose.item;
 
 public abstract class CustomisedItem {
 
-    public final void updateState(Item item) {
+    private final Item item;
+
+    CustomisedItem(Item item) {
+        this.item = item;
+    }
+
+    public final void updateState() {
         item.sellIn = updatedItemSellIn();
         item.quality = updatedItemQuality();
 
-        if (hasReachedLowestQualityValue(item)) {
+        if (hasReachedLowestQualityValue()) {
             item.quality = QualityValues.lowestValuePossible();
-        } else if (hasReachedHighestQualityValue(item)) {
+        } else if (hasReachedHighestQualityValue()) {
             item.quality = QualityValues.highestValuePossible(item);
         }
     }
@@ -17,11 +23,11 @@ public abstract class CustomisedItem {
 
     abstract int updatedItemQuality();
 
-    private boolean hasReachedHighestQualityValue(Item item) {
+    private boolean hasReachedHighestQualityValue() {
         return item.quality > QualityValues.highestValuePossible(item);
     }
 
-    private boolean hasReachedLowestQualityValue(Item item) {
+    private boolean hasReachedLowestQualityValue() {
         return item.quality < QualityValues.lowestValuePossible();
     }
 }

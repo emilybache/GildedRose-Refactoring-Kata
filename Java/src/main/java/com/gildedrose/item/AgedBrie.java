@@ -5,6 +5,7 @@ class AgedBrie extends CustomisedItem {
     private final Item item;
 
     AgedBrie(Item item) {
+        super(item);
         this.item = item;
     }
 

@@ -15,7 +15,7 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            itemFactory.customiseItem(item).updateState(item);
+            itemFactory.customiseItem(item).updateState();
         }
     }
 }
