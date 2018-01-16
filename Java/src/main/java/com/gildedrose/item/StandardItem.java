@@ -2,11 +2,8 @@ package com.gildedrose.item;
 
 class StandardItem extends CustomisedItem {
 
-    private final Item item;
-
     StandardItem(Item item) {
         super(item);
-        this.item = item;
     }
 
     @Override

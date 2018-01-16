@@ -2,11 +2,8 @@ package com.gildedrose.item;
 
 class ConjuredItem extends CustomisedItem {
 
-    private final Item item;
-
     ConjuredItem(Item item) {
         super(item);
-        this.item = item;
     }
 
     @Override

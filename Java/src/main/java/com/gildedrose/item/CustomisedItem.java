@@ -2,7 +2,7 @@ package com.gildedrose.item;
 
 public abstract class CustomisedItem {
 
-    private final Item item;
+    public final Item item;
 
     CustomisedItem(Item item) {
         this.item = item;
