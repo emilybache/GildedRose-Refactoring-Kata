@@ -7,11 +7,6 @@ class StandardItem extends CustomisedItem {
     }
 
     @Override
-    int updatedItemSellIn() {
-        return item.sellIn -= 1;
-    }
-
-    @Override
     int updatedItemQuality() {
         if (sellByDayValueIsOverZero()) {
             return item.quality -= 1;

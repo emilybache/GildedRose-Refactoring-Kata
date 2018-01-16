@@ -7,11 +7,6 @@ class AgedBrie extends CustomisedItem {
     }
 
     @Override
-    int updatedItemSellIn() {
-        return item.sellIn -= 1;
-    }
-
-    @Override
     int updatedItemQuality() {
         return item.quality += 1;
     }

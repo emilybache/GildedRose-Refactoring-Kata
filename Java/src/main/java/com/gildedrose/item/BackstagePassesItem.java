@@ -7,11 +7,6 @@ class BackstagePassesItem extends CustomisedItem {
     }
 
     @Override
-    int updatedItemSellIn() {
-        return item.sellIn -= 1;
-    }
-
-    @Override
     int updatedItemQuality() {
         if (sellByDayValueIsOver(10)) {
             return qualityIncreasedBy(1);

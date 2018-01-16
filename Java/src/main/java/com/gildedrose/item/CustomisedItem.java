@@ -19,7 +19,9 @@ public abstract class CustomisedItem {
         }
     }
 
-    abstract int updatedItemSellIn();
+    int updatedItemSellIn() {
+        return item.sellIn -= 1;
+    }
 
     abstract int updatedItemQuality();
 
