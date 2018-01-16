@@ -1,10 +1,10 @@
 package com.gildedrose.item;
 
-public class BackstagePassesItem extends CustomisedItem {
+class BackstagePassesItem extends CustomisedItem {
 
     private final Item item;
 
-    public BackstagePassesItem(Item item) {
+    BackstagePassesItem(Item item) {
         this.item = item;
     }
 
@@ -24,16 +24,6 @@ public class BackstagePassesItem extends CustomisedItem {
         } else {
             return qualityDroppedToZero();
         }
-    }
-
-    @Override
-    protected boolean hasReachedHighestQualityValue() {
-        return item.quality > QualityValues.highestValuePossible(item);
-    }
-
-    @Override
-    protected boolean hasReachedLowestQualityValue() {
-        return item.quality < QualityValues.lowestValuePossible();
     }
 
     private boolean sellByDayValueIsOver(int dayNumber) {

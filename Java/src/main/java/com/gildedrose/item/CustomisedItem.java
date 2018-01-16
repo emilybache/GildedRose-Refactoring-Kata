@@ -6,9 +6,9 @@ public abstract class CustomisedItem {
         item.sellIn = updatedItemSellIn();
         item.quality = updatedItemQuality();
 
-        if (hasReachedLowestQualityValue()) {
+        if (hasReachedLowestQualityValue(item)) {
             item.quality = QualityValues.lowestValuePossible();
-        } else if (hasReachedHighestQualityValue()) {
+        } else if (hasReachedHighestQualityValue(item)) {
             item.quality = QualityValues.highestValuePossible(item);
         }
     }
@@ -17,7 +17,11 @@ public abstract class CustomisedItem {
 
     abstract int updatedItemQuality();
 
-    protected abstract boolean hasReachedHighestQualityValue();
+    private boolean hasReachedHighestQualityValue(Item item) {
+        return item.quality > QualityValues.highestValuePossible(item);
+    }
 
-    protected abstract boolean hasReachedLowestQualityValue();
+    private boolean hasReachedLowestQualityValue(Item item) {
+        return item.quality < QualityValues.lowestValuePossible();
+    }
 }

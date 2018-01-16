@@ -1,21 +1,11 @@
 package com.gildedrose.item;
 
-public class ConjuredItem extends CustomisedItem {
+class ConjuredItem extends CustomisedItem {
 
     private final Item item;
 
-    public ConjuredItem(Item item) {
+    ConjuredItem(Item item) {
         this.item = item;
-    }
-
-    @Override
-    protected boolean hasReachedHighestQualityValue() {
-        return item.quality > QualityValues.highestValuePossible(item);
-    }
-
-    @Override
-    protected boolean hasReachedLowestQualityValue() {
-        return item.quality < QualityValues.lowestValuePossible();
     }
 
     @Override

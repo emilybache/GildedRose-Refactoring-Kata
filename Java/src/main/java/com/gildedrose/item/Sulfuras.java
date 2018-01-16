@@ -1,10 +1,10 @@
 package com.gildedrose.item;
 
-public class Sulfuras extends CustomisedItem {
+class Sulfuras extends CustomisedItem {
 
     private final Item item;
 
-    public Sulfuras(Item item) {
+    Sulfuras(Item item) {
         this.item = item;
     }
 
@@ -16,15 +16,5 @@ public class Sulfuras extends CustomisedItem {
     @Override
     int updatedItemQuality() {
         return item.quality;
-    }
-
-    @Override
-    protected boolean hasReachedHighestQualityValue() {
-        return item.quality > QualityValues.highestValuePossible(item) ;
-    }
-
-    @Override
-    protected boolean hasReachedLowestQualityValue() {
-        return item.quality < QualityValues.lowestValuePossible();
     }
 }

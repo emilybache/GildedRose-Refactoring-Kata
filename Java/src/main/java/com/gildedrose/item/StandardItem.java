@@ -1,10 +1,10 @@
 package com.gildedrose.item;
 
-public class StandardItem extends CustomisedItem {
+class StandardItem extends CustomisedItem {
 
     private final Item item;
 
-    public StandardItem(Item item) {
+    StandardItem(Item item) {
         this.item = item;
     }
 
@@ -20,16 +20,6 @@ public class StandardItem extends CustomisedItem {
         } else {
             return item.quality -= 2;
         }
-    }
-
-    @Override
-    protected boolean hasReachedHighestQualityValue() {
-        return item.quality > QualityValues.highestValuePossible(item);
-    }
-
-    @Override
-    protected boolean hasReachedLowestQualityValue() {
-        return item.quality < QualityValues.lowestValuePossible();
     }
 
     private boolean sellByDayValueIsOverZero() {
