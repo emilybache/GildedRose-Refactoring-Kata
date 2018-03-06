@@ -19,7 +19,7 @@ Pero primero, vamos a introducir el sistema:
 
 Bastante simple, ¿no? Bueno, ahora es donde se pone interesante:
 
-* Una vez que la fecha recomendada de venta, la `calidad` se degrada al doble de velocidad
+* Una vez que ha pasado la fecha recomendada de venta, la `calidad` se degrada al doble de velocidad
 * La `calidad` de un artículo nunca es negativa
 * El "Queso Brie envejecido" (`Aged brie`) incrementa su `calidad` a medida que se pone viejo
   * Su `calidad` aumenta en `1` unidad cada día
