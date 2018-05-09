@@ -13,6 +13,8 @@ namespace csharp
         {
             foreach (var item in _items)
             {
+                var qualityDegradationMultiplier = item.Name == "Conjured Mana Cake" ? 2 : 1;
+
                 if (item.Name != "Aged Brie"
                     && item.Name != "Backstage passes to a TAFKAL80ETC concert")
                 {
@@ -20,7 +22,7 @@ namespace csharp
                     {
                         if (item.Name != "Sulfuras, Hand of Ragnaros")
                         {
-                            item.Quality = item.Quality - 1;
+                            item.Quality = item.Quality - qualityDegradationMultiplier;
                         }
                     }
                 }
@@ -72,7 +74,7 @@ namespace csharp
 
                         if (item.Name != "Sulfuras, Hand of Ragnaros")
                         {
-                            item.Quality = item.Quality - 1;
+                            item.Quality = item.Quality - qualityDegradationMultiplier;
                         }
                     }
                     else

@@ -221,5 +221,41 @@ namespace csharp
 
             Assert.That(item.Quality, Is.EqualTo(0));
         }
+
+        [Test]
+        public void UpdateQuality_ConjuredItemWithSellIn4_DecreasesQualityBy2()
+        {
+            var item = new Item
+            {
+                Name = "Conjured Mana Cake",
+                Quality = 35,
+                SellIn = 4
+            };
+
+            var items = new List<Item>(new[] { item });
+            var gRose = new GildedRose(items);
+
+            gRose.UpdateQuality();
+
+            Assert.That(item.Quality, Is.EqualTo(33));
+        }
+
+        [Test]
+        public void UpdateQuality_ConjuredItemWithSellIn0_DecreasesQualityBy4()
+        {
+            var item = new Item
+            {
+                Name = "Conjured Mana Cake",
+                Quality = 35,
+                SellIn = 0
+            };
+
+            var items = new List<Item>(new[] { item });
+            var gRose = new GildedRose(items);
+
+            gRose.UpdateQuality();
+
+            Assert.That(item.Quality, Is.EqualTo(31));
+        }
     }
 }
