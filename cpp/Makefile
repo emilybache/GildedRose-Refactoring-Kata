@@ -65,9 +65,8 @@ gtest.a : gtest-all.o
 gtest_main.a : gtest-all.o gtest_main.o
 	$(AR) $(ARFLAGS) $@ $^
 
-# Builds a sample test.  A test should link with either gtest.a or
-# gtest_main.a, depending on whether it defines its own main()
-# function.
+# Builds a sample test.  A test should link with gtest.a, and also
+# gtest_main.a if it doesn't define its own main() function.
 
 GildedRose.o : $(USER_DIR)/GildedRose.cc
 	$(CXX) -c $^
@@ -76,7 +75,7 @@ GildedRoseUnitTests.o : $(USER_DIR)/GildedRoseUnitTests.cc \
   $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/GildedRoseUnitTests.cc
 
-GildedRose : GildedRoseUnitTests.o GildedRose.o gtest_main.a
+GildedRose : GildedRoseUnitTests.o GildedRose.o gtest.a gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -pthread $^ -o $@
 
 GildedRoseTextTests.o : $(USER_DIR)/GildedRoseTextTests.cc
