@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.2.21'
+    ext.kotlin_version = '1.2.71'
 
     repositories {
         mavenCentral()
@@ -20,14 +20,17 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     testCompile 'junit:junit:4.12'
 }
+
 repositories {
     mavenCentral()
 }
+
 compileKotlin {
     kotlinOptions {
         jvmTarget = "1.8"
     }
 }
+
 compileTestKotlin {
     kotlinOptions {
         jvmTarget = "1.8"
