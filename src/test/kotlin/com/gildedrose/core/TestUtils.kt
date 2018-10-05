@@ -21,5 +21,5 @@ object TestUtils {
 
     fun generateRandomNumber() = (0 until 9999).shuffled().last()
 
-    fun pickRandomItem(items: Array<Item>) = items[generateRandomNumber().coerceIn(items.indices)]
+    fun pickRandomItem(items: List<Item>) = items[items.indices.shuffled().last()]
 }

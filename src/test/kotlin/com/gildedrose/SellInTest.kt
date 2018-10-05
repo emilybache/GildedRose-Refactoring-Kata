@@ -11,11 +11,11 @@ import org.junit.Test
 
 class SellInTest {
 
-    private lateinit var store: Array<Item>
+    private lateinit var store: List<Item>
 
     @Before
     fun setUp() {
-        store = TestUtils.fixture
+        store = TestUtils.fixture.toList()
     }
 
     @Test
@@ -31,14 +31,11 @@ class SellInTest {
     }
 
     @Test
-    fun givenKnownItemExcepSulfuras_afterRandomNumberOfDays_shouldDecreaseSellInByNumberOfDays() {
+    fun givenKnownItemExceptSulfuras_afterRandomNumberOfDays_shouldDecreaseSellInByNumberOfDays() {
+        store = store.filter { it.name != "Sulfuras, Hand of Ragnaros" }
         val days = generateRandomNumber()
         val initialSellIn = generateRandomNumber()
-        var item = pickRandomItem(store).copy(sellIn = initialSellIn)
-
-        while (item.name == "Sulfuras, Hand of Ragnaros") {
-            item = pickRandomItem(store).copy(sellIn = initialSellIn)
-        }
+        val item = pickRandomItem(store).copy(sellIn = initialSellIn)
 
         val app = GildedRose(arrayOf(item))
 

@@ -1,13 +1,12 @@
 SPECS
     LOGIC
-        - sellIn decreases every day
+        # - sellIn decreases every day
         - Item.quality
-            - is >= 0 && <= 50
-            - decreses until sellIn is <= 0
-            - when sellIn == 0 quality degrades twice as fast
+            # - is >= 0 && <= 50
+            # - decrements with number of days until sellIn is 0 then with the double of it
         - Sulfuras
-            sellIn = 0 // doesnt change
-            quality is 80 and does not decrease
+            # sellIn = 0 // doesnt change
+            # quality is 80 and does not decrease
         - AgedBrie increases in quality
         - BackstagePasses
             increases in quality like AgedBrie

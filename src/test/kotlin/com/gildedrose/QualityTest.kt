@@ -1,9 +1,8 @@
 package com.gildedrose
 
-import com.gildedrose.core.TestUtils
+import com.gildedrose.core.*
 import com.gildedrose.core.TestUtils.generateRandomNumber
 import com.gildedrose.core.TestUtils.pickRandomItem
-import com.gildedrose.core.advanceTimeBy
 import org.assertj.core.api.Java6Assertions.assertThat
 import org.junit.Before
 import org.junit.Test
@@ -18,28 +17,72 @@ class QualityTest {
     }
 
     @Test
-    fun givenKnownItemExcepSulfuras_afterAnyNumberOfDays_shouldHaveQualityGreaterThanOrEqualToZero() {
+    fun givenSulfuras_afterAnyNumberOfDays_shouldHaveQualityEighty() {
         val days = generateRandomNumber()
-        store = store.filter { it.name != "Sulfuras, Hand of Ragnaros" }
+        val item = Item("Sulfuras, Hand of Ragnaros", generateRandomNumber(), 80)
+        val app = GildedRose(arrayOf(item))
+
+        app.advanceTimeBy(days)
+
+        assertThat(item.quality).isEqualTo(80)
+    }
+
+    @Test
+    fun givenKnownItemsExceptSulfuras_afterAnyNumberOfDays_shouldHaveQualityGreaterThanOrEqualToZero() {
+        store = store.excludeSulfuras()
+        val days = generateRandomNumber()
         val app = GildedRose(store.toTypedArray())
 
         app.advanceTimeBy(days)
 
-        store.forEach {item ->
+        store.forEach { item ->
             assertThat(item.quality).isGreaterThanOrEqualTo(0)
         }
     }
 
     @Test
-    fun givenKnownItemExcepSulfuras_afterAnyNumberOfDays_shouldHaveQualityLessThanOrEqualToFifty() {
+    fun givenKnownItemsExceptSulfuras_afterAnyNumberOfDays_shouldHaveQualityLessThanOrEqualToFifty() {
+        store = store.excludeSulfuras()
         val days = generateRandomNumber()
-        store = store.filter { it.name != "Sulfuras, Hand of Ragnaros" }
         val app = GildedRose(store.toTypedArray())
 
         app.advanceTimeBy(days)
 
-        store.forEach {item ->
+        store.forEach { item ->
             assertThat(item.quality).isLessThanOrEqualTo(50)
         }
+    }
+
+    @Test
+    fun givenKnownItemWithDegradingQuality_whenSellInIsGreaterThanOrEqualToZero_shouldDegradeQualityByNumberOfDays() {
+        store = store.excludeSulfuras()
+                .excludeBackstagePasses()
+                .excludeAgedBrie()
+        val days = generateRandomNumber().coerceAtLeast(0)
+        val item = pickRandomItem(store)
+        val initialItemQuality = item.quality
+        val app = GildedRose(arrayOf(item))
+
+        app.advanceTimeBy(days)
+
+        val expectedQuality = (initialItemQuality - days).coerceAtLeast(0)
+        assertThat(item.quality).isEqualTo(expectedQuality)
+    }
+
+    @Test
+    fun givenKnownItemWithDegradingQuality_whenSellInIsLessThanZero_shouldDegradeQualityByTwiceTheNumberOfDays() {
+        store = store.excludeSulfuras()
+                .excludeBackstagePasses()
+                .excludeAgedBrie()
+        val sellIn = (-99 until 0).shuffled().last()
+        val days = (0 until 100).shuffled().last()
+        val item = pickRandomItem(store).copy(sellIn = sellIn)
+        val initialItemQuality = item.quality
+        val app = GildedRose(arrayOf(item))
+
+        app.advanceTimeBy(days)
+
+        val expectedQuality = (initialItemQuality - days * 2).coerceAtLeast(0)
+        assertThat(item.quality).isEqualTo(expectedQuality)
     }
 }
