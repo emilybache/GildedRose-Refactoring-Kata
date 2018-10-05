@@ -85,4 +85,30 @@ class QualityTest {
         val expectedQuality = (initialItemQuality - days * 2).coerceAtLeast(0)
         assertThat(item.quality).isEqualTo(expectedQuality)
     }
+
+    @Test
+    fun givenAgedBrie_afterAnyNumberOfDays_shouldIncreaseQualityByNumberOfDays() {
+        val days = generateRandomNumber()
+        val item = Item("Aged Brie", generateRandomNumber(), (0..50).shuffled().last())
+        val initialItemQuality = item.quality
+        val app = GildedRose(arrayOf(item))
+
+        app.advanceTimeBy(days)
+
+        val expectedQuality = (initialItemQuality + days).coerceAtMost(50)
+        assertThat(item.quality).isEqualTo(expectedQuality)
+    }
+
+    @Test
+    fun givenBackstagePass_afterAnyNumberOfDays_shouldIncreaseQualityByNumberOfDays() {
+        val days = generateRandomNumber()
+        val item = Item("Backstage passes to a TAFKAL80ETC concert", generateRandomNumber(), (0..50).shuffled().last())
+        val initialItemQuality = item.quality
+        val app = GildedRose(arrayOf(item))
+
+        app.advanceTimeBy(days)
+
+        val expectedQuality = (initialItemQuality + days).coerceAtMost(50)
+        assertThat(item.quality).isEqualTo(expectedQuality)
+    }
 }
