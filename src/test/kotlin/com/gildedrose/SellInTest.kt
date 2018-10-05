@@ -9,7 +9,7 @@ import org.assertj.core.api.Java6Assertions.assertThat
 import org.junit.Before
 import org.junit.Test
 
-class GildedRoseTest {
+class SellInTest {
 
     private lateinit var store: Array<Item>
 
