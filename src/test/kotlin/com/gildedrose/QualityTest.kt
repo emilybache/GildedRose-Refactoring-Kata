@@ -74,7 +74,7 @@ class QualityTest {
         store = store.excludeSulfuras()
                 .excludeBackstagePasses()
                 .excludeAgedBrie()
-        val sellIn = (-99 until 0).shuffled().last()
+        val sellIn = (-generateRandomNumber() until 0).shuffled().last()
         val days = (0 until 100).shuffled().last()
         val item = pickRandomItem(store).copy(sellIn = sellIn)
         val initialItemQuality = item.quality
@@ -89,8 +89,8 @@ class QualityTest {
     @Test
     fun givenAgedBrie_afterAnyNumberOfDays_shouldIncreaseQualityByNumberOfDays() {
         val days = generateRandomNumber()
-        val item = Item("Aged Brie", generateRandomNumber(), (0..50).shuffled().last())
-        val initialItemQuality = item.quality
+        val initialItemQuality = (0..50).shuffled().last()
+        val item = Item("Aged Brie", generateRandomNumber(), initialItemQuality)
         val app = GildedRose(arrayOf(item))
 
         app.advanceTimeBy(days)
@@ -100,15 +100,60 @@ class QualityTest {
     }
 
     @Test
-    fun givenBackstagePass_afterAnyNumberOfDays_shouldIncreaseQualityByNumberOfDays() {
+    fun givenBackstagePass_whenSellInNegativeOrZero_shouldSetQualityToZero() {
         val days = generateRandomNumber()
-        val item = Item("Backstage passes to a TAFKAL80ETC concert", generateRandomNumber(), (0..50).shuffled().last())
-        val initialItemQuality = item.quality
+        val sellIn = (-generateRandomNumber()..0).shuffled().last()
+        val item = Item("Backstage passes to a TAFKAL80ETC concert", sellIn, (0..50).shuffled().last())
         val app = GildedRose(arrayOf(item))
 
         app.advanceTimeBy(days)
 
-        val expectedQuality = (initialItemQuality + days).coerceAtMost(50)
+        assertThat(item.quality).isZero()
+    }
+
+    @Test
+    fun givenBackstagePass_whenSellInMoreThanZeroAndLessThanSix_shouldIncreaseQualityByNumberOfDaysMultipliedByThree() {
+        val sellIn = (1 until 6).shuffled().last()
+        val days = sellIn - 1
+        val initialItemQuality = (0..50).shuffled().last()
+        val item = Item("Backstage passes to a TAFKAL80ETC concert", sellIn, initialItemQuality)
+        val app = GildedRose(arrayOf(item))
+
+        app.advanceTimeBy(days)
+
+        val expectedQuality = (initialItemQuality + days * 3).coerceAtMost(50)
         assertThat(item.quality).isEqualTo(expectedQuality)
+    }
+
+    @Test
+    fun givenBackstagePass_whenSellInMoreThanFiveAndLessThanEleven_shouldIncreaseQualityByNumberOfDaysMultipliedByTwo() {
+        (6 until 11).shuffled().forEach {
+            val sellIn = it
+            val days = sellIn - 6
+            val initialItemQuality = (0..50).shuffled().last()
+            val item = Item("Backstage passes to a TAFKAL80ETC concert", sellIn, initialItemQuality)
+            val app = GildedRose(arrayOf(item))
+
+            app.advanceTimeBy(days)
+
+            val expectedQuality = (initialItemQuality + days * 2).coerceAtMost(50)
+            assertThat(item.quality).isEqualTo(expectedQuality)
+        }
+    }
+
+    @Test
+    fun givenBackstagePass_whenSellInMoreThanEleven_shouldIncreaseQualityByNumberOfDays() {
+        (11..999).shuffled().forEach {
+            val sellIn = it
+            val days = sellIn - 11
+            val initialItemQuality = (0..50).shuffled().last()
+            val item = Item("Backstage passes to a TAFKAL80ETC concert", sellIn, initialItemQuality)
+            val app = GildedRose(arrayOf(item))
+
+            app.advanceTimeBy(days)
+
+            val expectedQuality = (initialItemQuality + days).coerceAtMost(50)
+            assertThat(item.quality).isEqualTo(expectedQuality)
+        }
     }
 }
