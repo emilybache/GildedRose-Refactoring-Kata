@@ -1,6 +1,7 @@
 package com.gildedrose.core
 
 import com.gildedrose.Item
+import java.util.*
 
 object TestUtils {
 
@@ -15,4 +16,10 @@ object TestUtils {
                 Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
                 Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
                 Item("Conjured Mana Cake", 3, 6))
+
+    fun generateRandomName() = UUID.randomUUID().toString()
+
+    fun generateRandomNumber() = (0 until 9999).shuffled().last()
+
+    fun pickRandomItem(items: Array<Item>) = items[generateRandomNumber().coerceIn(items.indices)]
 }

@@ -1,9 +1,13 @@
 package com.gildedrose
 
 import com.gildedrose.core.TestUtils
+import com.gildedrose.core.TestUtils.generateRandomName
+import com.gildedrose.core.TestUtils.generateRandomNumber
+import com.gildedrose.core.TestUtils.pickRandomItem
+import com.gildedrose.core.advanceTimeBy
 import org.assertj.core.api.Java6Assertions.assertThat
+import org.junit.Before
 import org.junit.Test
-import java.util.*
 
 class GildedRoseTest {
 
@@ -30,10 +34,10 @@ class GildedRoseTest {
     fun givenKnownItemExcepSulfuras_afterRandomNumberOfDays_shouldDecreaseSellInByNumberOfDays() {
         val days = generateRandomNumber()
         val initialSellIn = generateRandomNumber()
-        var item = pickRandomItem().copy(sellIn = initialSellIn)
+        var item = pickRandomItem(store).copy(sellIn = initialSellIn)
 
         while (item.name == "Sulfuras, Hand of Ragnaros") {
-            item = pickRandomItem().copy(sellIn = initialSellIn)
+            item = pickRandomItem(store).copy(sellIn = initialSellIn)
         }
 
         val app = GildedRose(arrayOf(item))
@@ -54,12 +58,4 @@ class GildedRoseTest {
 
         assertThat(item.sellIn).isEqualTo(initialSellIn)
     }
-
-    private fun GildedRose.advanceTimeBy(days: Int) = repeat(days, { this.updateQuality() })
-
-    private fun generateRandomName() = UUID.randomUUID().toString()
-
-    private fun generateRandomNumber() = (0 until 9999).shuffled().last()
-
-    private fun pickRandomItem() = store[generateRandomNumber().coerceIn(store.indices)]
 }
