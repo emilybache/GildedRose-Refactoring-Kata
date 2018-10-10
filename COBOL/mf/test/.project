@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>Tests</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>com.microfocus.eclipse.project.cobolBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>com.microfocus.eclipse.mfunit.core.mfUnitBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>com.microfocus.eclipse.project.cobolNature</nature>
+		<nature>com.microfocus.eclipse.mfunit.core.mfUnitNature</nature>
+	</natures>
+</projectDescription>
