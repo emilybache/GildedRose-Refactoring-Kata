@@ -1,15 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="cobolProject" name="Gilded Rose" uuid="3529a385-3bb5-4b82-9b84-9e384fb2bdd4" version="4.0">
+<project xsi:schemaLocation="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="cobolProject" name="Tests" uuid="d5f7cafb-a22e-4fe6-9bb2-1f9a673a4e7d" version="4.0">
    <settings xsi:type="projectSettingsContainer">
+      <cobol_settings xsi:type="cobolSettings">
+         <options>
+            <option name="WARNING" value="1"/>
+            <option name="DIALECT" value="MF"/>
+            <option name="CHARSET" value="ASCII"/>
+            <option name="MAX-ERROR" value="100"/>
+            <option name="SOURCEFORMAT" value="variable"/>
+         </options>
+         <createJar value="false"/>
+         <createJarAfterBuild value="false"/>
+         <debug value="true"/>
+         <enableCodeCoverage value="true"/>
+         <enableProfiler value="false"/>
+         <generate value="false"/>
+         <retainDirectivesFile value="false"/>
+         <genListFile value="false"/>
+         <packageToFolderMapping value="false"/>
+         <useJvmDynamicCalls value="false"/>
+         <useJvmIncrementalBuild value="false"/>
+         <verbose value="false"/>
+      </cobol_settings>
       <copybook-paths xsi:type="copybookPathsSettings">
+         <path enabled="true" name="/Tests" type="mfpath"/>
          <path enabled="true" name="/Gilded Rose" type="mfpath"/>
+         <path enabled="false" name="/Tests/Coverage" type="mfpath"/>
       </copybook-paths>
       <build-precedence-paths xsi:type="buildPrecedenceSettings">
-         <path enabled="true" name="/Gilded Rose" type="mfpath"/>
+         <path enabled="true" name="/Tests" type="mfpath"/>
+         <path enabled="true" name="/Tests/Coverage" type="mfpath"/>
       </build-precedence-paths>
-      <configurations default="Gilded Rose" linkedWith="2017" xsi:type="buildConfigurationsContainer">
-         <configuration description="Gilded Rose" type="all_intgnt" is64bit="false" createlbr="false" platform="Windows" xsi:type="cobolBuildConfiguration">
-            <targetdir name="Gilded Rose.bin"/>
+      <configurations default="Tests" linkedWith="2017" xsi:type="buildConfigurationsContainer">
+         <configuration description="Tests" type="single_dll" is64bit="false" createlbr="false" platform="Windows" xsi:type="cobolBuildConfiguration">
+            <targetdir name="Tests.bin"/>
             <application_configuration xsi:type="runtimeConfigurationSettings">
                <cobol_switches xsi:type="projectCobolSwitches"/>
                <rts_switches xsi:type="projectRtsSwitches"/>
@@ -19,23 +43,6 @@
                <tunables>
                   <tunable index="0" name="screen_lines" value="25"/>
                   <tunable index="0" name="screen_cols" value="80"/>
-                  <tunable index="0" name="default_cancel_mode" value="1"/>
-                  <tunable index="0" name="program_search_order" value="4"/>
-                  <tunable index="0" name="arguments_are_initial" value="false"/>
-                  <tunable index="0" name="command_line_accept" value="false"/>
-                  <tunable index="0" name="sort_memory" value="0"/>
-                  <tunable index="0" name="dynamic_memory_limit" value="2147483647"/>
-                  <tunable index="0" name="memory_free_check_size" value="100"/>
-                  <tunable index="0" name="memory_strategy" value="1"/>
-                  <tunable index="0" name="ansi_input_mode" value="false"/>
-                  <tunable index="0" name="current_year" value="0"/>
-                  <tunable index="0" name="current_month" value="0"/>
-                  <tunable index="0" name="current_day" value="0"/>
-                  <tunable index="0" name="datewarp_dynamic" value="false"/>
-                  <tunable index="0" name="current_hour" value="-1"/>
-                  <tunable index="0" name="current_minute" value="-1"/>
-                  <tunable index="0" name="current_second" value="-1"/>
-                  <tunable index="0" name="timewarp_dynamic" value="false"/>
                </tunables>
             </application_configuration>
             <link_settings xsi:type="linkSettings">
@@ -51,34 +58,13 @@
                <additional_files/>
                <rcfile path=""/>
                <rts_type value="shared"/>
-               <target name="Gilded Rose"/>
-               <targettype type="exe"/>
+               <target name="Tests"/>
+               <targettype type="dll/cso"/>
                <threaded_rts value="true"/>
                <verbose value="false"/>
             </link_settings>
          </configuration>
       </configurations>
-      <cobol_settings xsi:type="cobolSettings">
-         <options>
-            <option name="WARNING" value="1"/>
-            <option name="DIALECT" value="MF"/>
-            <option name="CHARSET" value="ASCII"/>
-            <option name="SOURCEFORMAT" value="free"/>
-            <option name="MAX-ERROR" value="100"/>
-         </options>
-         <createJar value="false"/>
-         <createJarAfterBuild value="false"/>
-         <debug value="true"/>
-         <enableCodeCoverage value="true"/>
-         <enableProfiler value="false"/>
-         <generate value="false"/>
-         <retainDirectivesFile value="false"/>
-         <genListFile value="false"/>
-         <packageToFolderMapping value="false"/>
-         <useJvmDynamicCalls value="false"/>
-         <useJvmIncrementalBuild value="false"/>
-         <verbose value="false"/>
-      </cobol_settings>
       <ims_settings xsi:type="additionalImsSettings">
          <options>
             <option id="generate_list_file" name="LIST" value="Listing/*.lst"/>
@@ -116,7 +102,9 @@
             <option id="map" name="bmsSettings" value="/SYSPARM=MAP"/>
          </options>
       </bms_settings>
-      <dependent-projects xsi:type="dependentProjectsSettings"/>
+      <dependent-projects xsi:type="dependentProjectsSettings">
+         <dependent-project name="Gilded Rose"/>
+      </dependent-projects>
       <asm_settings xsi:type="assemblerCompileSettings">
          <options>
             <option id="compile_pre_assm_macros" name="mf370chk" value="NOMPC"/>
@@ -162,7 +150,7 @@
    </settings>
    <files xsi:type="projectFileStore">
       <filetype type="cobol" xsi:type="cobolFileContainer">
-         <file compile="true" path="GildedRose.cbl" xsi:type="cobolFile"/>
+         <file compile="true" path="TestGildedRose.cbl" xsi:type="cobolFile"/>
       </filetype>
       <filetype type="cobol.copybook" xsi:type="cobolFileContainer"/>
    </files>
