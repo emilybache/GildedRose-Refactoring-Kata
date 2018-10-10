@@ -8,7 +8,7 @@
          <path enabled="true" name="/Gilded Rose" type="mfpath"/>
       </build-precedence-paths>
       <configurations default="Gilded Rose" linkedWith="2017" xsi:type="buildConfigurationsContainer">
-         <configuration description="Gilded Rose" type="single_exe" is64bit="false" createlbr="false" platform="Windows" xsi:type="cobolBuildConfiguration">
+         <configuration description="Gilded Rose" type="all_intgnt" is64bit="false" createlbr="false" platform="Windows" xsi:type="cobolBuildConfiguration">
             <targetdir name="Gilded Rose.bin"/>
             <application_configuration xsi:type="runtimeConfigurationSettings">
                <cobol_switches xsi:type="projectCobolSwitches"/>
@@ -157,6 +157,8 @@
             <option id="autolink_addressing_mode" name="mf370chkAutoLink" value="AMODE(31)"/>
          </options>
       </asm_autolink_settings>
+      <preprocessors_settings xsi:type="preprocessorsSettings"/>
+      <code_analysis_settings enabled="false" genDataFiles="false" keepDataFiles="false" xsi:type="codeAnalysisSettings"/>
    </settings>
    <files xsi:type="projectFileStore">
       <filetype type="cobol" xsi:type="cobolFileContainer">
