@@ -1,0 +1,2 @@
+(Foo, 1, 1) => name: Foo, sellIn: 0, quality: 0
+
