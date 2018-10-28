@@ -1,55 +1,49 @@
 class GildedRose
-
   def initialize(items)
     @items = items
   end
 
-  def update_quality()
+  def update_quality
     @items.each do |item|
-      if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
-        if item.quality > 0
-          if item.name != "Sulfuras, Hand of Ragnaros"
-            item.quality = item.quality - 1
-          end
-        end
+      if GildedRose.private_instance_methods.to_s.include?("#{correct_name(item)}_update!")
+        send("#{correct_name(item)}_update!", item)
       else
-        if item.quality < 50
-          item.quality = item.quality + 1
-          if item.name == "Backstage passes to a TAFKAL80ETC concert"
-            if item.sell_in < 11
-              if item.quality < 50
-                item.quality = item.quality + 1
-              end
-            end
-            if item.sell_in < 6
-              if item.quality < 50
-                item.quality = item.quality + 1
-              end
-            end
-          end
-        end
-      end
-      if item.name != "Sulfuras, Hand of Ragnaros"
-        item.sell_in = item.sell_in - 1
-      end
-      if item.sell_in < 0
-        if item.name != "Aged Brie"
-          if item.name != "Backstage passes to a TAFKAL80ETC concert"
-            if item.quality > 0
-              if item.name != "Sulfuras, Hand of Ragnaros"
-                item.quality = item.quality - 1
-              end
-            end
-          else
-            item.quality = item.quality - item.quality
-          end
-        else
-          if item.quality < 50
-            item.quality = item.quality + 1
-          end
-        end
+        classic_item_update(item)
       end
     end
+  end
+
+  private
+
+  def correct_name(item)
+    item.name.split(/\W+/).join('_').downcase
+  end
+
+  def classic_item_update(item)
+    item.sell_in -= 1
+    item.sell_in < 0 ? item.quality -= 1 : item.quality -= 2
+  end
+
+  def aged_brie_update!(item)
+    item.sell_in -= 1
+    item.sell_in < 0 ? item.quality += item.sell_in.abs : item.quality += 1
+    item.quality = 50 if item.quality > 50
+  end
+
+  def sulfuras_hand_of_ragnaros_update!(item)
+    # nothing method
+  end
+
+  def backstage_passes_to_a_tafkal80etc_concert_update!(item)
+    item.sell_in -= 1
+    item.quality += 1 if item.quality < 50
+    item.quality += 1 if item.sell_in < 11 && item.quality < 50
+    item.quality += 1 if item.sell_in < 6 && item.quality < 50
+  end
+
+  def conjured_mana_cake_update!(item)
+    item.sell_in -= 1
+    item.sell_in >= 0 ? item.quality -= 2 : item.quality -= 4
   end
 end
 
@@ -62,7 +56,7 @@ class Item
     @quality = quality
   end
 
-  def to_s()
+  def to_s
     "#{@name}, #{@sell_in}, #{@quality}"
   end
 end
