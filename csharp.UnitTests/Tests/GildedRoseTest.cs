@@ -64,15 +64,15 @@ namespace csharp.UnitTests.Tests
         }
 
         [Test]
-        [TestCase(0, 0, 2)] 
-        [TestCase(1, 1, 2)]                                                                                    
+        [TestCase(0, 0, 2)]
+        [TestCase(1, 1, 2)]
         public void UpdateQuality_AgedBrieGetsOlder_AgedBrieIncreasesInQuality(int sellIn, int quality, int expectedResult)
         {
             IList<Item> items = new List<Item> { new Item { Name = "Aged Brie", SellIn = sellIn, Quality = quality } };
             var gildedRose = new GildedRose(items);
 
             gildedRose.UpdateQuality();
-            
+
             Assert.That(items[0].Quality, Is.EqualTo(expectedResult));
         }
 
@@ -172,7 +172,12 @@ namespace csharp.UnitTests.Tests
         }
 
         [Test]
-        [TestCase(-1, 20, 18)]
+        [TestCase(-1, 20, 16)]
+        [TestCase(1, 20, 18)]
+        [TestCase(5, 50, 48)]
+        [TestCase(5, 55, 53)]
+        [TestCase(5, 1, 0)]
+        [TestCase(-5, 1, 0)]
         public void UpdateQuality_ConjuredGetsOlder_ConjuredQualityDegradesTwoTimesFaster(int sellIn, int quality,
             int expectedResult)
         {

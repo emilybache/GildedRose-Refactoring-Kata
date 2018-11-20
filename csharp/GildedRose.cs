@@ -11,6 +11,8 @@ namespace csharp
             _items = items;
         }
 
+        //   V - "Conjured" items degrade in Quality twice as fast as normal items
+        // 
         public void UpdateQuality()
         {
             for (var i = 0; i < _items.Count; i++)
@@ -22,6 +24,11 @@ namespace csharp
                         if (_items[i].Name != "Sulfuras, Hand of Ragnaros")
                         {
                             _items[i].Quality = _items[i].Quality - 1;
+
+                            if (_items[i].Name.StartsWith("Conjured") && _items[i].Quality > 0)
+                            {
+                                _items[i].Quality = _items[i].Quality - 1;
+                            }
                         }
                     }
                 }
@@ -29,7 +36,7 @@ namespace csharp
                 {
                     if (_items[i].Quality < 50)
                     {
-                        _items[i].Quality = _items[i].Quality + 1;
+                        _items[i].Quality++;
 
                         if (_items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
                         {
@@ -37,7 +44,7 @@ namespace csharp
                             {
                                 if (_items[i].Quality < 50)
                                 {
-                                    _items[i].Quality = _items[i].Quality + 1;
+                                    _items[i].Quality++;
                                 }
                             }
 
@@ -45,7 +52,7 @@ namespace csharp
                             {
                                 if (_items[i].Quality < 50)
                                 {
-                                    _items[i].Quality = _items[i].Quality + 1;
+                                    _items[i].Quality++;
                                 }
                             }
                         }
@@ -66,6 +73,11 @@ namespace csharp
                             if (_items[i].Quality > 0)
                             {
                                 if (_items[i].Name != "Sulfuras, Hand of Ragnaros")
+                                {
+                                    _items[i].Quality = _items[i].Quality - 1;
+                                }
+
+                                if (_items[i].Name.StartsWith("Conjured") && _items[i].Quality > 0)
                                 {
                                     _items[i].Quality = _items[i].Quality - 1;
                                 }
