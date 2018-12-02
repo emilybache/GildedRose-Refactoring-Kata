@@ -1,7 +1,0 @@
-.idea/workspace.xml
-*.pyc
-/perl6/lib/.precomp
-/elixir/_build/
-python/.cache
-python/.coverage
-**/.idea
