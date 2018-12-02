@@ -3,7 +3,7 @@
 - Run :
 
 ```shell
-go run gilded-rose.go
+go run texttest_feature.go gilded-rose.go
 ```
 
 - Run tests :
