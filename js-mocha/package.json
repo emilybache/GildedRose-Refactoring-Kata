@@ -1,9 +1,9 @@
 {
-  "name": "gilded-rose",
+  "name": "gilded-rose-kata",
   "version": "1.0.0",
-  "description": "gilded rose kata in javascript",
+  "description": "Gilded Rose kata in Javascript with Mocha",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --compilers js:babel/register"
   },
   "repository": {
     "type": "git",
@@ -19,8 +19,9 @@
   "bugs": {
     "url": "https://github.com/emilybache/GildedRose-Refactoring-Kata/issues"
   },
-  "homepage": "https://github.com/emilybache/GildedRose-Refactoring-Kata#readme",
+  "homepage": "https://github.com/emilybache/GildedRose-Refactoring-Kata",
   "devDependencies": {
+    "babel": "^5.8.23",
     "chai": "^4.2.0",
     "mocha": "^5.2.0"
   }
