@@ -1,0 +1,8 @@
+<!ELEMENT gildedrose (greeting?, day?, items) >
+<!ELEMENT greeting (#PCDATA) >
+<!ELEMENT day (#PCDATA) >
+<!ELEMENT items (item*) >
+<!ELEMENT item EMPTY >
+<!ATTLIST item name    CDATA #REQUIRED
+               sellin  CDATA #REQUIRED
+               quality CDATA #REQUIRED>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE gildedrose SYSTEM "gilded_rose.dtd">
+<gildedrose>
+    <greeting>OMGHAI!</greeting>
+    <day>0</day>
+    <items>
+        <item name="+5 Dexterity Vest" sellin="10" quality="20" />
+        <item name="Aged Brie" sellin="2" quality="0" />
+        <item name="Elixir of the Mongoose" sellin="5" quality="7" />
+        <item name="Sulfuras, Hand of Ragnaros" sellin="0" quality="80" />
+        <item name="Sulfuras, Hand of Ragnaros" sellin="-1" quality="80" />
+        <item name="Backstage passes to a TAFKAL80ETC concert" sellin="15" quality="20" />
+        <item name="Backstage passes to a TAFKAL80ETC concert" sellin="10" quality="49" />
+        <item name="Backstage passes to a TAFKAL80ETC concert" sellin="5" quality="49" />
+        <!-- this conjured item does not work properly yet -->
+        <item name="Conjured Mana Cake" sellin="3" quality="6" />
+    </items>
+</gildedrose>
