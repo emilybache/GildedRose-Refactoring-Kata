@@ -13,7 +13,7 @@ export class Item {
 export class GildedRose {
     items: Array<Item>;
 
-    constructor(items = []) {
+    constructor(items = [] as Array<Item>) {
         this.items = items;
     }
 
