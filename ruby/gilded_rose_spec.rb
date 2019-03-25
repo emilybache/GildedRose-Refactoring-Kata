@@ -45,8 +45,10 @@ describe GildedRose do
 
     it "'Sulfuras', being a legendary item, never has to be sold or decreases in Quality" do
       items = [Item.new("Sulfuras, Hand of Ragnaros", 1, 49)]
-      item = items.first
       GildedRose.new(items).update_quality()
+      expect(items[0].sell_in).to eq 1
+      expect(items[0].quality).to eq 49
+      10.times { GildedRose.new(items).update_quality() }
       expect(items[0].sell_in).to eq 1
       expect(items[0].quality).to eq 49
     end
@@ -82,6 +84,16 @@ describe GildedRose do
       GildedRose.new(items).update_quality()
       expect(items[0].quality).to eq 0
       expect(items[0].sell_in).to eq -1
+    end
+
+    it "'Conjured' items degrade in Quality twice as fast as normal items" do
+      items = [Item.new("Conjured item", 10, 10)]
+      GildedRose.new(items).update_quality()
+      expect(items[0].quality).to eq 8
+      expect(items[0].sell_in).to eq 9
+      4.times { GildedRose.new(items).update_quality() }
+      expect(items[0].quality).to eq 0
+      expect(items[0].sell_in).to eq 5
     end
 
   end
