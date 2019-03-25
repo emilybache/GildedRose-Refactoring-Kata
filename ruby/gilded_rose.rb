@@ -8,41 +8,15 @@ class GildedRose
     @items.each do |item|
       case item.name
       when "Aged Brie"
-        item.sell_in = item.sell_in - 1
-        item.quality = item.quality + 1 unless item.quality >= 50
-        return
+        return AgedBrieItem.update_quality(item)
       when "Backstage passes to a TAFKAL80ETC concert"
-        item.sell_in = item.sell_in - 1
-        if item.sell_in < 0
-          item.quality = 0
-        elsif item.sell_in < 5
-          item.quality = item.quality + 3
-        elsif item.sell_in < 10
-          item.quality = item.quality + 2
-        else
-          item.quality = item.quality + 1
-        end
-        return
+        return BackstagePassItem.update_quality(item)
       when "Conjured item"
-        item.sell_in = item.sell_in - 1
-        if item.sell_in < 0
-          item.quality = item.quality - 4
-        else
-          item.quality = item.quality - 2
-        end
-        item.quality = 0 if item.quality < 0
-        return
+        return ConjuredItem.update_quality(item)
       when "Sulfuras, Hand of Ragnaros"
         return
       else
-        item.sell_in = item.sell_in - 1
-        if item.sell_in < 0
-          item.quality = item.quality - 2
-        else
-          item.quality = item.quality - 1
-        end
-        item.quality = 0 if item.quality < 0
-        return
+        return NormalItem.update_quality(item)
       end
     end
   end
@@ -59,5 +33,59 @@ class Item
 
   def to_s()
     "#{@name}, #{@sell_in}, #{@quality}"
+  end
+end
+
+class MyItem
+  def self.update_sell_in(item)
+    item.sell_in = item.sell_in - 1
+    return item
+  end
+end
+
+class AgedBrieItem < MyItem
+  def self.update_quality(item)
+    item = update_sell_in(item)
+    item.quality = item.quality + 1 unless item.quality >= 50
+    return item
+  end
+end
+
+class BackstagePassItem < MyItem
+  def self.update_quality(item)
+    item = update_sell_in(item)
+    if item.sell_in < 0
+      item.quality = 0
+    elsif item.sell_in < 5
+      item.quality = item.quality + 3
+    elsif item.sell_in < 10
+      item.quality = item.quality + 2
+    else
+      item.quality = item.quality + 1
+    end
+  end
+end
+
+class ConjuredItem < MyItem
+  def self.update_quality(item)
+    item = update_sell_in(item)
+    if item.sell_in < 0
+      item.quality = item.quality - 4
+    else
+      item.quality = item.quality - 2
+    end
+    item.quality = 0 if item.quality < 0
+  end
+end
+
+class NormalItem < MyItem
+  def self.update_quality(item)
+    item = update_sell_in(item)
+    if item.sell_in < 0
+      item.quality = item.quality - 2
+    else
+      item.quality = item.quality - 1
+    end
+    item.quality = 0 if item.quality < 0
   end
 end
