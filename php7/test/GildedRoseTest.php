@@ -36,7 +36,7 @@ class GildedRoseTest extends \PHPUnit\Framework\TestCase {
             'Backstage'   => ['item' => new Item('Backstage passes to a TAFKAL80ETC concert', 9, 10), 'expected' => 30, 'sell_in' => 9],
             'Backstage2'   => ['item' => new Item('Backstage passes to a TAFKAL80ETC concert', 9, 10), 'expected' => 0, 'sell_in' => 19],
             'Backstage3'   => ['item' => new Item('Backstage passes to a TAFKAL80ETC concert', 9, 10), 'expected' => 0, 'sell_in' => 19],
-            'Sulfuras1'   => ['item' => new Item('Sulfuras, Hand of Ragnaros', 9, 10), 'expected' => 10, 'sell_in' => 9],
+            'Sulfuras1'   => ['item' => new Item('Sulfuras, Hand of Ragnaros', 9, 10), 'expected' => 80, 'sell_in' => 9],
             'aged-foo'    => ['item' => new Item('foo', 3, 14), 'expected' => 1, 'sell_in' => 9],
             'qualityFoo'  => ['item' => new Item('foo', 3, 94), 'expected' => 39, 'sell_in' => 30],
             'qualityBrie' => ['item' => new Item('Aged Brie', 3, 94), 'expected' => 94, 'sell_in' => 30],
