@@ -2,7 +2,7 @@
 
 namespace App;
 
-class Item {
+final class Item {
 
     public $name;
     public $sell_in;
