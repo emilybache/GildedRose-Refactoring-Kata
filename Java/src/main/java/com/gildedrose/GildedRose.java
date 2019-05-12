@@ -19,6 +19,20 @@ class GildedRose {
         }
     }
 
+    private void updateNumberOfdayToSellRemaining(Item item) {
+        item.sellIn -= 1;
+    }
+
+    private boolean itemHasExpired(Item item) {
+        boolean condition;
+        if (item.sellIn < 0) {
+            condition=true;
+        } else {
+            condition=false;
+        }
+        return condition;
+    }
+
     public void updateQuality() {
         String SULFURA = "Sulfuras, Hand of Ragnaros";
         String AGED_BRIE = "Aged Brie";
@@ -30,24 +44,26 @@ class GildedRose {
                 continue;
             }
 
-            if (item.name.equals(AGED_BRIE) || item.name.equals(BACKSTAGE)) {
+            updateNumberOfdayToSellRemaining(item);
+
+            if (item.name.equals(AGED_BRIE)) {
                 increaseQuality(item);
-                if (item.name.equals(BACKSTAGE)) {
-                    if (item.sellIn < 11) {
-                        increaseQuality(item);
-                    }
-                    if (item.sellIn < 6) {
-                        increaseQuality(item);
-                    }
+            } else if (item.name.equals(BACKSTAGE)) {
+                increaseQuality(item);
+
+                if (item.sellIn < 10) {
+                    increaseQuality(item);
                 }
+                if (item.sellIn < 5) {
+                    increaseQuality(item);
+                }
+
             } else {
                 decreaseQuality(item);
             }
 
-            item.sellIn = item.sellIn - 1;
 
-
-            if (item.sellIn < 0) {
+            if (itemHasExpired(item)) {
                 if (item.name.equals(AGED_BRIE)) {
                     increaseQuality(item);
                 } else if (item.name.equals(BACKSTAGE)) {
