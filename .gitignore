@@ -2,3 +2,7 @@ bin
 obj
 *.sln.DotSettings.user
 .vs
+*.iml
+target
+*.*~
+*~
