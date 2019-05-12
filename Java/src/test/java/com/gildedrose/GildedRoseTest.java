@@ -52,6 +52,7 @@ public class GildedRoseTest {
 
     /**
      * Execute n times the function update quality
+     *
      * @param numberOfTimes, number of times that you want to execute that function
      */
     private void executeUpdateQuality(int numberOfTimes) {
