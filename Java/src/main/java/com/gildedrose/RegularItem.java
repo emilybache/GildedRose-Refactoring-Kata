@@ -1,21 +1,25 @@
 package com.gildedrose;
 
 public class RegularItem {
-    private Item item;
+    public Item item;
+
+    public RegularItem() {
+
+    }
 
     public RegularItem(Item item) {
         this.item = item;
     }
 
     public void updateQuality() {
-        if (itemHasExpired(item)) {
-            decreaseQualityTwice();
+        if (itemHasExpired()) {
+            decreaseQualityBy(2);
         } else {
-            decreaseQuality();
+            decreaseQualityBy(1);
         }
     }
 
-    private boolean itemHasExpired(Item item) {
+    protected boolean itemHasExpired() {
         boolean condition;
         if (item.sellIn < 0) {
             condition = true;
@@ -25,16 +29,25 @@ public class RegularItem {
         return condition;
     }
 
-
-    private void decreaseQualityTwice() {
-        decreaseQuality();
-        decreaseQuality();
+    protected void increaseQualityBy(int factor) {
+        item.quality += factor;
+        qualityOfAnItemIsNotMoreThan(50);
     }
 
-    private void decreaseQuality() {
-        if (item.quality > 0) {
-            item.quality -= 1;
+    protected void decreaseQualityBy(int factor) {
+        item.quality -= factor;
+        qualityOfAnItemIsNeverNegative();
+    }
+
+    private void qualityOfAnItemIsNotMoreThan(int limit) {
+        if (item.quality > limit) {
+            item.quality = limit;
         }
     }
 
+    private void qualityOfAnItemIsNeverNegative() {
+        if (item.quality < 0) {
+            item.quality = 0;
+        }
+    }
 }
