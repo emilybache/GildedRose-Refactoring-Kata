@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import org.junit.Test;
 
-public class GildedRoseTest {
+public class GildedRoseItemTest {
     private Item[] itemsSample = new Item[]{new Item("+5 Dexterity Vest", 10, 20), //
             new Item("Aged Brie", 2, 0), //
             new Item("Elixir of the Mongoose", 5, 7), //
@@ -14,7 +14,7 @@ public class GildedRoseTest {
             // this conjured item does not work properly yet
             new Item("Conjured Mana Cake", 3, 6) };
 
-    private GildedRose app = new GildedRose(itemsSample);
+    private GildedRoseItem app = new GildedRoseItem(itemsSample);
 
     /**
      * Test if item.sellIn and item.quality is the same that expected after a number of day.
