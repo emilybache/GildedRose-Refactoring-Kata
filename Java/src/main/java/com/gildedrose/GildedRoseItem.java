@@ -1,7 +1,5 @@
 package com.gildedrose;
 
-import com.sun.xml.internal.rngom.parse.host.Base;
-
 /**
  * Class which update quality for all items
  */
@@ -14,6 +12,9 @@ class GildedRoseItem  {
         itemFactory = new ItemFactory();
     }
 
+    /**
+     * Update quality and number of days left to sell
+     */
     public void updateQuality() {
         for (Item item : items) {
             ItemInterface typeItem = itemFactory.createItemType(item);

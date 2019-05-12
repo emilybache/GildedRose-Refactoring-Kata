@@ -5,9 +5,9 @@ import com.gildedrose.Item;
 import com.gildedrose.ItemInterface;
 
 /**
- * Class Back Stage item inherited form NormalItem
+ * Class Back Stage item inherited form BaseItem
  *
- * Business rules are inherited from NormalItem with more conditions:
+ * Business rules are inherited from BaseItem with more conditions:
  *  Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less
  */
 public class BackStageItem extends BaseItem implements ItemInterface {

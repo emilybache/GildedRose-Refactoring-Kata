@@ -5,7 +5,7 @@ import com.gildedrose.Item;
 import com.gildedrose.ItemInterface;
 
 /**
- * Class for Aged Brie item inherited from NormalItem
+ * Class for Aged Brie item inherited from BaseItem
  */
 public class AgedBrie extends BaseItem implements ItemInterface {
 

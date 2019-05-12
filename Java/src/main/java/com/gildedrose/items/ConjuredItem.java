@@ -3,10 +3,9 @@ package com.gildedrose.items;
 import com.gildedrose.BaseItem;
 import com.gildedrose.Item;
 import com.gildedrose.ItemInterface;
-import com.sun.xml.internal.rngom.parse.host.Base;
 
 /**
- * Class for the item ConjuredItem inherited from NormalItem
+ * Class for the item ConjuredItem inherited from BaseItem
  */
 public class ConjuredItem extends BaseItem implements ItemInterface {
     public ConjuredItem(Item item) {
