@@ -1,13 +1,20 @@
 package com.gildedrose;
 
-public class RegularItem {
+/**
+ * Class for a regular item with business rule for normal item:
+ *  If the item expired => reduce the quality by 2 else reduce by 1
+ *  Quality for an item is never negative
+ *  Quality for an item is not greater than the constant MAX_QUAILITY_FOR_AN_ITEM
+ */
+public class NormalItem {
+    public static final int MAX_QUAILITY_FOR_AN_ITEM = 50;
     public Item item;
 
-    public RegularItem() {
+    public NormalItem() {
 
     }
 
-    public RegularItem(Item item) {
+    public NormalItem(Item item) {
         this.item = item;
     }
 
@@ -31,7 +38,7 @@ public class RegularItem {
 
     protected void increaseQualityBy(int factor) {
         item.quality += factor;
-        qualityOfAnItemIsNotMoreThan(50);
+        qualityOfAnItemIsNotMoreThan(MAX_QUAILITY_FOR_AN_ITEM);
     }
 
     protected void decreaseQualityBy(int factor) {

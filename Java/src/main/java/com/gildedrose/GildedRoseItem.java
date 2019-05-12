@@ -1,5 +1,8 @@
 package com.gildedrose;
 
+/**
+ * Class which update quality for all items
+ */
 class GildedRoseItem {
     Item[] items;
     public static final String SULFURA = "Sulfuras, Hand of Ragnaros";
@@ -27,8 +30,8 @@ class GildedRoseItem {
             ConjuredItem conjuredItem = new ConjuredItem(item);
             conjuredItem.updateQuality();
         } else {
-           RegularItem regularItem = new RegularItem(item);
-           regularItem.updateQuality();
+           NormalItem normalItem = new NormalItem(item);
+           normalItem.updateQuality();
         }
     }
 

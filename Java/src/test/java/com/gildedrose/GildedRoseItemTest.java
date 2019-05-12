@@ -5,6 +5,9 @@ import java.util.HashMap;
 
 import org.junit.Test;
 
+/**
+ * Test the result of item.sellIn and item.quality after n days
+ */
 public class GildedRoseItemTest {
     private Item[] itemsSample = new Item[]{new Item("+5 Dexterity Vest", 10, 20), //
             new Item("Aged Brie", 2, 0), //

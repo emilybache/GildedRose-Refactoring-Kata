@@ -1,6 +1,9 @@
 package com.gildedrose;
 
-public class AgedBrie extends RegularItem {
+/**
+ * Class for Aged Brie item inherited from NormalItem
+ */
+public class AgedBrie extends NormalItem {
 
     public AgedBrie(Item item) {
         this.item=item;
