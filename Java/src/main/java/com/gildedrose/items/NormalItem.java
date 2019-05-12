@@ -1,4 +1,8 @@
-package com.gildedrose;
+package com.gildedrose.items;
+
+import com.gildedrose.BaseItem;
+import com.gildedrose.Item;
+import com.gildedrose.ItemInterface;
 
 /**
  * Class for a regular item with business rule for normal item:
@@ -17,5 +21,9 @@ public class NormalItem extends BaseItem implements ItemInterface {
         } else {
             decreaseQualityBy(1);
         }
+    }
+
+    public void updateNumberOfdayToSellRemaining() {
+        item.sellIn -= 1;
     }
 }

@@ -1,5 +1,8 @@
-package com.gildedrose;
+package com.gildedrose.items;
 
+import com.gildedrose.BaseItem;
+import com.gildedrose.Item;
+import com.gildedrose.ItemInterface;
 import com.sun.xml.internal.rngom.parse.host.Base;
 
 /**
@@ -15,5 +18,9 @@ public class ConjuredItem extends BaseItem implements ItemInterface {
         if (itemHasExpired()) {
             decreaseQualityBy(1);
         }
+    }
+
+    public void updateNumberOfdayToSellRemaining() {
+        item.sellIn -= 1;
     }
 }

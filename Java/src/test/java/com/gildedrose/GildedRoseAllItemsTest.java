@@ -8,7 +8,7 @@ import org.junit.Test;
 /**
  * Test the result of item.sellIn and item.quality after n days
  */
-public class GildedRoseItemTest {
+public class GildedRoseAllItemsTest {
     private Item[] itemsSample = new Item[]{new Item("+5 Dexterity Vest", 10, 20), //
             new Item("Aged Brie", 2, 0), //
             new Item("Elixir of the Mongoose", 5, 7), //

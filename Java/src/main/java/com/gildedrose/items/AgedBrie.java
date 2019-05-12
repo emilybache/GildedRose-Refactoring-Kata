@@ -1,4 +1,8 @@
-package com.gildedrose;
+package com.gildedrose.items;
+
+import com.gildedrose.BaseItem;
+import com.gildedrose.Item;
+import com.gildedrose.ItemInterface;
 
 /**
  * Class for Aged Brie item inherited from NormalItem
@@ -15,5 +19,9 @@ public class AgedBrie extends BaseItem implements ItemInterface {
         } else {
             increaseQualityBy(1);
         }
+    }
+
+    public void updateNumberOfdayToSellRemaining() {
+        item.sellIn -= 1;
     }
 }

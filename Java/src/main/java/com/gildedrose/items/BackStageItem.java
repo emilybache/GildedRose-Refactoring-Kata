@@ -1,4 +1,8 @@
-package com.gildedrose;
+package com.gildedrose.items;
+
+import com.gildedrose.BaseItem;
+import com.gildedrose.Item;
+import com.gildedrose.ItemInterface;
 
 /**
  * Class Back Stage item inherited form NormalItem
@@ -22,5 +26,9 @@ public class BackStageItem extends BaseItem implements ItemInterface {
         if (itemHasExpired()) {
             item.quality -= item.quality;
         }
+    }
+
+    public void updateNumberOfdayToSellRemaining() {
+        item.sellIn -= 1;
     }
 }
