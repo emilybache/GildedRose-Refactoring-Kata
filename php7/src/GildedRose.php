@@ -40,6 +40,7 @@ class GildedRose
                     $sulfaras = new Sulfaras($item);
                     $sulfaras->updateQuality();
                     break;
+
                 default:
                     $defoultItem = new DefaultItem($item);
                     $defoultItem->updateQuality();

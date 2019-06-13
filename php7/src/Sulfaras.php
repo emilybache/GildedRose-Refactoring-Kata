@@ -12,6 +12,7 @@ class Sulfaras extends GildedRose
     public function __construct($item) {
         $this->item = $item;
     }
+
     public function updateQuality(){
         $this->item->quality = 80;
     }
