@@ -4,7 +4,7 @@
 namespace App;
 
 
-class DefaultItem extends GildedRose
+class Conjured
 {
     private $item;
 
@@ -12,17 +12,12 @@ class DefaultItem extends GildedRose
         $this->item = $item;
     }
     public function updateQuality(){
-        $this->item->quality -= 1;
+        $this->item->quality -= 2;
 
         if ($this->item->sell_in <= 0) {
-            $this->item->quality -= 1;
-        }
-
-        if($this->item->quality >= 50){
-            $this->item->quality = 50;
+            $this->item->quality -= 2;
         }
 
         $this->item->sell_in -= 1;
-
     }
 }

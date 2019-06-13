@@ -4,7 +4,7 @@
 namespace App;
 
 
-class AgedBried extends GildedRose
+class AgedBrie extends GildedRose
 {
 
     private $item;
