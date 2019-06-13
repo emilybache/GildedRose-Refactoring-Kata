@@ -3,3 +3,5 @@ obj
 *.sln.DotSettings.user
 .vs
 vendor
+php7/.phpunit.result.cache
+../idea/*
