@@ -4,7 +4,15 @@
 namespace App;
 
 
-class Sulfaras
+class Sulfaras extends GildedRose
 {
 
+    private $item;
+
+    public function __construct($item) {
+        $this->item = $item;
+    }
+    public function updateQuality(){
+        $this->item->quality = 80;
+    }
 }

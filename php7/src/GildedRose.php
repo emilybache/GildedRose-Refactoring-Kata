@@ -2,60 +2,42 @@
 
 namespace App;
 
-final class GildedRose {
+class GildedRose
+{
 
     private $items = [];
 
-    public function __construct($items) {
+    public function __construct($items)
+    {
         $this->items = $items;
     }
 
-    public function updateQuality() {
+    public function updateQuality()
+    {
+        $agedBrieName = 'Aged Brie';
+        $backstageName = 'Backstage passes to a TAFKAL80ETC concert';
+        $sulfarasName = 'Sulfuras, Hand of Ragnaros';
+
         foreach ($this->items as $item) {
-            if($item->name == 'Aged Brie'){
-                $item->quality += 1;
+            switch ($item->name) {
+                case $agedBrieName:
+                    $agedBried = new AgedBried($item);
+                    $agedBried->updateQuality();
+                    return;
 
-                if ($item->sell_in <= 0) {
-                    $item->quality += 1;
-                }
+                case $backstageName:
+                    $backstagePasses = new BackstagePasses($item);
+                    $backstagePasses->updateQuality();
+                    return;
 
-                if ($item->quality > 50) {
-                    $item->quality = 50;
-                }
-
-                $item->sell_in -= 1;
-                return;
-            }
-
-            else if($item->name == 'Backstage passes to a TAFKAL80ETC concert'){
-                $item->quality += 1;
-                if ($item->sell_in <= 10) {
-                    $item->quality += 1;
-                }
-                if ($item->sell_in <= 5) {
-                    $item->quality += 1;
-                }
-                if ($item->quality > 50) {
-                    $item->quality = 50;
-                }
-                if ($item->sell_in <= 0) {
-                    $item->quality = 0;
-                }
-                $item->sell_in -= 1;
-                return;
-            }
-
-            else if ($item->name == 'Sulfuras, Hand of Ragnaros') {
-                $item->quality = 80;
-                return;
-            }
-
-            else {
-                $item->quality -= 1;
-                if ($item->sell_in <= 0) {
-                    $item->quality -= 1;
-                }
-                $item->sell_in -= 1;
+                case $sulfarasName:
+                    $sulfaras = new Sulfaras($item);
+                    $sulfaras->updateQuality();
+                    return;
+                default:
+                    $defoultItem = new DefaultItem($item);
+                    $defoultItem->updateQuality();
+                    return;
             }
         }
     }
