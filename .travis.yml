@@ -7,5 +7,5 @@ cache:
 jdk: openjdk11
 
 script:
-- cd java
-- mvn clean test
+  - cd Java
+  - mvn clean test
