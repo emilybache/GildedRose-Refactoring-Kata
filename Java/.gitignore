@@ -6,7 +6,6 @@ target/
 .project
 bin/
 .settings/
-/allure-results/
 *~
 .fuse_hidden*
 .directory
