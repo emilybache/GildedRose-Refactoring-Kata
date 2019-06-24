@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import lombok.val;
+
 class GildedRose {
     Item[] items;
 
@@ -42,11 +44,9 @@ class GildedRose {
             }
         }
 
-        if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-            item.sellIn = item.sellIn - 1;
-        }
+        val newSellIn = calculateSellIn(item.name, item.sellIn);
 
-        if (item.sellIn < 0) {
+        if (newSellIn < 0) {
             if (!item.name.equals("Aged Brie")) {
                 if (!item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                     if (item.quality > 0) {
@@ -63,5 +63,16 @@ class GildedRose {
                 }
             }
         }
+
+        item.sellIn = newSellIn;
+    }
+
+    private int calculateSellIn(final String name, final int originalSellIn) {
+        if (!name.equals("Sulfuras, Hand of Ragnaros")) {
+            return originalSellIn - 1;
+        } else {
+            return originalSellIn;
+        }
+
     }
 }
