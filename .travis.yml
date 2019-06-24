@@ -8,4 +8,7 @@ jdk: openjdk11
 
 script:
   - cd Java
-  - mvn clean test
+  - mvn clean test allure:report
+
+after_failure:
+  - cat target/surefire-reports/*.txt

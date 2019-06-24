@@ -1,5 +1,6 @@
 package com.gildedrose;
 
+import io.qameta.allure.Feature;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -22,6 +23,7 @@ class GildedRoseTest {
         assertItem(item, "foo", 0, -1);
     }
 
+    @Feature("The Quality of an item is never negative")
     @ParameterizedTest(name="Initial quality: {arguments}")
     @ValueSource(ints={0,1})
     void shouldTheQualityNeverBeNegative(int initialQuality) {
