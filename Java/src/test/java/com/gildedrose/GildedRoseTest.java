@@ -2,7 +2,6 @@ package com.gildedrose;
 
 import io.qameta.allure.Feature;
 import lombok.val;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -56,5 +55,20 @@ class GildedRoseTest {
         // then
         final Item item = app.items[0];
         assertItem(item, "foo", initialQuality - 2, -2);
+    }
+
+    @Feature("\"Aged Brie\" actually increases in Quality the older it gets")
+    @ParameterizedTest(name = "Initial quality: {arguments}")
+    @ValueSource(ints = {0, 1, 49})
+    void shouldIncreaseQualityForAgedBrie(int initialQuality) {
+        // given
+        GildedRose app = prepareApp(new Item("Aged Brie", 1, initialQuality));
+
+        // when
+        app.updateQuality();
+
+        // then
+        final Item item = app.items[0];
+        assertItem(item, "Aged Brie", initialQuality + 1, 0);
     }
 }
