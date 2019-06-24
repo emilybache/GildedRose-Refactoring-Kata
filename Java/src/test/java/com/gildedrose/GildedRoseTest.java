@@ -1,11 +1,15 @@
 package com.gildedrose;
 
 import io.qameta.allure.Feature;
+import lombok.val;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static com.gildedrose.TestHelper.assertItem;
+import static com.gildedrose.TestHelper.prepareApp;
+import static org.apache.commons.lang3.RandomUtils.nextInt;
 
 
 class GildedRoseTest {
@@ -24,8 +28,8 @@ class GildedRoseTest {
     }
 
     @Feature("The Quality of an item is never negative")
-    @ParameterizedTest(name="Initial quality: {arguments}")
-    @ValueSource(ints={0,1})
+    @ParameterizedTest(name = "Initial quality: {arguments}")
+    @ValueSource(ints = {0, 1})
     void shouldTheQualityNeverBeNegative(int initialQuality) {
         // given
         GildedRose app = prepareApp(new Item("foo", 0, initialQuality));
@@ -38,16 +42,19 @@ class GildedRoseTest {
         assertItem(item, "foo", 0, -1);
     }
 
-    private void assertItem(Item item, String expectedName, int expectedQuality, int expectedSellIn) {
-        assertThat(item).as("item").isNotNull();
-        assertThat(item.name).as("name").isEqualTo(expectedName);
-        assertThat(item.quality).as("quality").isEqualTo(expectedQuality);
-        assertThat(item.sellIn).as("sellIn").isEqualTo(expectedSellIn);
+    @Feature("Once the sell by date has passed, Quality degrades twice as fast")
+    @ParameterizedTest(name = "sellIn: {arguments}")
+    @ValueSource(ints = {0, 1})
+    void shouldTheDegradeQualityFasterOnceSellDateIsPassed(int sellIn) {
+        // given
+        val initialQuality = nextInt(3, 50);
+        GildedRose app = prepareApp(new Item("foo", sellIn, initialQuality));
+
+        // when
+        app.updateQuality();
+
+        // then
+        final Item item = app.items[0];
+        assertItem(item, "foo", initialQuality - 2, -2);
     }
-
-    private static GildedRose prepareApp(Item... items) {
-        return new GildedRose(items);
-    }
-
-
 }
