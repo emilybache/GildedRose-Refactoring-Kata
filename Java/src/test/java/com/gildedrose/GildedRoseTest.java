@@ -58,6 +58,23 @@ class GildedRoseTest {
         assertItem(item, "foo", -2, initialQuality - 2);
     }
 
+    @Feature("\"Sulfuras\", being a legendary item, never has to be sold or decreases in Quality")
+    @Test
+    void shouldTheNotChangeSulfuras() {
+        // given
+        val initialQuality = nextInt(70, 90);
+        val initialSellIn = nextInt(3, 50);
+        val itemName = "Sulfuras, Hand of Ragnaros";
+        GildedRose app = prepareApp(new Item(itemName, initialSellIn, initialQuality));
+
+        // when
+        app.updateQuality();
+
+        // then
+        final Item item = app.items[0];
+        assertItem(item, itemName, initialSellIn, initialQuality);
+    }
+
     @Feature("\"Aged Brie\" actually increases in Quality the older it gets")
     @Feature("The Quality of an item is never more than 50")
     @ParameterizedTest(name = "Initial quality: {arguments}")
