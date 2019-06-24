@@ -23,7 +23,7 @@ class GildedRoseTest {
 
         // then
         final Item item = app.items[0];
-        assertItem(item, "foo", 0, -1);
+        assertItem(item, "foo", -1, 0);
     }
 
     @Feature("The Quality of an item is never negative")
@@ -38,7 +38,7 @@ class GildedRoseTest {
 
         // then
         final Item item = app.items[0];
-        assertItem(item, "foo", 0, -1);
+        assertItem(item, "foo", -1, 0);
     }
 
     @Feature("Once the sell by date has passed, Quality degrades twice as fast")
@@ -54,7 +54,7 @@ class GildedRoseTest {
 
         // then
         final Item item = app.items[0];
-        assertItem(item, "foo", initialQuality - 2, -2);
+        assertItem(item, "foo", -2, initialQuality - 2);
     }
 
     @Feature("\"Aged Brie\" actually increases in Quality the older it gets")
@@ -69,6 +69,6 @@ class GildedRoseTest {
 
         // then
         final Item item = app.items[0];
-        assertItem(item, "Aged Brie", initialQuality + 1, 0);
+        assertItem(item, "Aged Brie", 0, initialQuality + 1);
     }
 }

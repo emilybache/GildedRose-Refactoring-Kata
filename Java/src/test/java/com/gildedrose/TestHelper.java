@@ -10,7 +10,7 @@ public final class TestHelper {
         return new GildedRose(items);
     }
 
-    static void assertItem(Item item, String expectedName, int expectedQuality, int expectedSellIn) {
+    static void assertItem(Item item, String expectedName, int expectedSellIn, int expectedQuality) {
         assertThat(item).as("item").isNotNull();
         assertThat(item.name).as("name").isEqualTo(expectedName);
         assertThat(item.quality).as("quality").isEqualTo(expectedQuality);
