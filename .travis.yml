@@ -6,13 +6,10 @@ cache:
 
 jdk: openjdk11
 
-cache:
-  directories:
-    - $HOME/.m2/repository/
-
 script:
   - cd Java
-  - mvn clean test allure:report
+- mvn clean test
+allure:report
 
 after_failure:
   - cat target/surefire-reports/*.txt
