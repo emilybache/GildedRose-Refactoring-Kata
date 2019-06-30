@@ -11,7 +11,15 @@ public class BackstagePassQualityRule implements QualityRule {
 
     @Override
     public Result calculateQuality(int oldQuality, int sellIn) {
-        final int newQuality = oldQuality + 2;
+        final int newQuality;
+
+        if (sellIn < 0) {
+            newQuality = 0;
+        } else if (sellIn < 5) {
+            newQuality = oldQuality + 3;
+        } else {
+            newQuality = oldQuality + 2;
+        }
         return new Result(min(newQuality, 50), true);
     }
 }

@@ -35,7 +35,7 @@ class GildedRose {
 
         val newSellIn = calculateSellIn(item.name, item.sellIn);
 
-        var newQuality = rules.stream()
+        val newQuality = rules.stream()
                 .reduce(new Result(item.quality, false),
                         (q, rule) -> {
                             if (q.isFinalValue() || !rule.shouldApply(item.name)) {
