@@ -1,6 +1,7 @@
 package com.gildedrose.rules;
 
 import static java.lang.Integer.max;
+import static java.lang.Integer.min;
 
 public class DefaultQualityRule implements QualityRule {
 
@@ -35,7 +36,7 @@ public class DefaultQualityRule implements QualityRule {
         } else {
             newQuality = oldQuality - multiplier;
         }
-        return new Result(max(newQuality, 0), isFinalRule);
+        return new Result(min(max(newQuality, 0), 50), isFinalRule);
     }
 
 }
