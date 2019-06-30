@@ -2,7 +2,7 @@ package com.gildedrose.rules;
 
 import static java.lang.Integer.min;
 
-public class AgedBrieQualityRule extends QualityRule {
+public class AgedBrieQualityRule implements QualityRule {
 
     @Override
     public boolean shouldApply(String itemName) {
@@ -10,7 +10,7 @@ public class AgedBrieQualityRule extends QualityRule {
     }
 
     @Override
-    public Result calculateQuality(int oldQuality) {
+    public Result calculateQuality(int oldQuality, int sellIn) {
         return new Result(min(oldQuality + 1, 50), true);
     }
 }

@@ -1,14 +1,17 @@
 package com.gildedrose.rules;
 
-public class SulfurasQualityRule implements QualityRule {
+import static java.lang.Integer.max;
+
+public class DefaultQualityRule implements QualityRule {
 
     @Override
     public boolean shouldApply(String itemName) {
-        return "Sulfuras, Hand of Ragnaros".equals(itemName);
+        return true;
     }
 
     @Override
     public Result calculateQuality(int oldQuality, int sellIn) {
-        return new Result(oldQuality, true);
+        return new Result(max(oldQuality - 1, 0), false);
     }
+
 }
