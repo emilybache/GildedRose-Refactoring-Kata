@@ -1,6 +1,5 @@
 package com.gildedrose;
 
-import com.gildedrose.rules.AgedBrieQualityRule;
 import com.gildedrose.rules.AgingStrategy;
 import com.gildedrose.rules.BackstagePassQualityRule;
 import com.gildedrose.rules.ConjuredQualityRule;
@@ -24,7 +23,7 @@ class GildedRose {
 
     private final List<QualityRule> rules = List.of(
             new ConstantQualityRule(SULFURAS_HAND_OF_RAGNAROS),
-            new AgedBrieQualityRule(),
+            new DefaultQualityRule("Aged Brie", -1, true),
             new BackstagePassQualityRule(),
             new ConjuredQualityRule(),
             new DefaultQualityRule()

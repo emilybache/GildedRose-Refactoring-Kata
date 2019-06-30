@@ -9,10 +9,10 @@ public class DefaultQualityRule implements QualityRule {
     private final boolean isFinalRule;
 
     public DefaultQualityRule() {
-        this(1, null, false);
+        this(null, 1, false);
     }
 
-    public DefaultQualityRule(int multiplier, String itemName, boolean isFinalRule) {
+    public DefaultQualityRule(String itemName, int multiplier, boolean isFinalRule) {
         this.multiplier = multiplier;
         this.expectedItemName = itemName;
         this.isFinalRule = isFinalRule;

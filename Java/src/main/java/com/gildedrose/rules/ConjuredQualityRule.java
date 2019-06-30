@@ -3,7 +3,7 @@ package com.gildedrose.rules;
 public class ConjuredQualityRule extends DefaultQualityRule {
 
     public ConjuredQualityRule() {
-        super(2, null, true);
+        super(null, 2, true);
     }
 
     @Override
