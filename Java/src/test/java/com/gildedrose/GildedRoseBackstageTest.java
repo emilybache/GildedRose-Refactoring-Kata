@@ -18,6 +18,23 @@ class GildedRoseBackstageTest {
 
     private static final String ITEM_NAME = "Backstage passes to a TAFKAL80ETC concert";
 
+    @Feature("Quality increases by 1 when there are more than 10 days")
+    @ParameterizedTest(name = "sellIn: {arguments}")
+    @ValueSource(ints = {112, 11})
+    void shouldIncreaseQualityWhenThereAreMoreThan10Days(int sellIn) {
+        // given
+        val initialQuality = nextInt(10, 40);
+        GildedRose app = prepareApp(new Item(ITEM_NAME, sellIn, initialQuality));
+
+        // when
+        app.updateQuality();
+
+        // then
+        final Item item = app.items[0];
+        assertItem(item, ITEM_NAME, sellIn - 1, initialQuality + 1);
+    }
+
+
     @Feature("Quality increases by 2 when there are 10 days or less")
     @ParameterizedTest(name = "sellIn: {arguments}")
     @ValueSource(ints = {10, 9, 8, 7, 6})

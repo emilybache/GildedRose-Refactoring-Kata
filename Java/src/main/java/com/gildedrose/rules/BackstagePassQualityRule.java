@@ -17,8 +17,10 @@ public class BackstagePassQualityRule implements QualityRule {
             newQuality = 0;
         } else if (sellIn < 5) {
             newQuality = oldQuality + 3;
-        } else {
+        } else if (sellIn < 10) {
             newQuality = oldQuality + 2;
+        } else {
+            newQuality = oldQuality + 1;
         }
         return new Result(min(newQuality, 50), true);
     }
