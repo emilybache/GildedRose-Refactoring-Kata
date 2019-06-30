@@ -28,7 +28,7 @@ class GildedRoseAgedBrieTest {
 
         // then
         final Item item = app.items[0];
-        assertItem(item, "Aged Brie", initialSellIn - 1, 50);
+        assertItem(item, ITEM_NAME, initialSellIn - 1, 50);
     }
 
     @Feature("\"Aged Brie\" actually increases in Quality the older it gets")
@@ -45,6 +45,6 @@ class GildedRoseAgedBrieTest {
         // then
         final Item item = app.items[0];
         final int expectedQuality = min(initialQuality + 1, 50);
-        assertItem(item, "Aged Brie", 0, expectedQuality);
+        assertItem(item, ITEM_NAME, 0, expectedQuality);
     }
 }
