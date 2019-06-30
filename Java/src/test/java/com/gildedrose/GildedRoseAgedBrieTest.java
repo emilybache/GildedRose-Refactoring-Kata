@@ -37,7 +37,7 @@ class GildedRoseAgedBrieTest {
     @ValueSource(ints = {0, 1, 49, 50})
     void shouldIncreaseQualityForAgedBrie(int initialQuality) {
         // given
-        GildedRose app = prepareApp(new Item("Aged Brie", 1, initialQuality));
+        GildedRose app = prepareApp(new Item(ITEM_NAME, 1, initialQuality));
 
         // when
         app.updateQuality();
