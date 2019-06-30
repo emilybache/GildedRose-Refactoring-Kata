@@ -1,9 +1,18 @@
 package com.gildedrose;
 
+import com.gildedrose.rules.QualityRule;
+import com.gildedrose.rules.SulfurasQualityRule;
 import lombok.val;
+
+import java.util.List;
 
 class GildedRose {
     Item[] items;
+
+    private final List<QualityRule> rules = List.of(
+            new SulfurasQualityRule(),
+            new QualityRule()
+    );
 
     public GildedRose(Item[] items) {
         this.items = items;
@@ -17,6 +26,18 @@ class GildedRose {
     }
 
     private void processItem(final Item item) {
+
+        var newQuality = rules.stream()
+                .reduce(new QualityRule.Result(item.quality, false),
+                        (q, rule) -> {
+                            if (q.isFinalValue() || !rule.shouldApply(item.name)) {
+                                return q;
+                            } else {
+                                return rule.calculateQuality(q.getQuality());
+                            }
+                        },
+                        (a, b) -> b).getQuality();
+
         if (!item.name.equals("Aged Brie")
                 && !item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             if (item.quality > 0) {
@@ -64,6 +85,7 @@ class GildedRose {
             }
         }
 
+        item.quality = newQuality;
         item.sellIn = newSellIn;
     }
 
