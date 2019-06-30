@@ -13,13 +13,15 @@ import static org.apache.commons.lang3.RandomUtils.nextInt;
 
 class GildedRoseAgedBrieTest {
 
+    private static final String ITEM_NAME = "Aged Brie";
+
     @Feature("The Quality of an item is never more than 50")
     @ParameterizedTest(name = "Initial quality: {arguments}")
     @ValueSource(ints = {49, 50})
     void shouldNotIncreaseQualityAbove50(int initialQuality) {
         // given
         val initialSellIn = nextInt(3, 50);
-        GildedRose app = prepareApp(new Item("Aged Brie", initialSellIn, initialQuality));
+        GildedRose app = prepareApp(new Item(ITEM_NAME, initialSellIn, initialQuality));
 
         // when
         app.updateQuality();
