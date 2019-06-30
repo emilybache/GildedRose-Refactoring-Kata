@@ -50,10 +50,10 @@ class GildedRose {
     }
 
     private int calculateSellIn(final String name, final int originalSellIn) {
-        if (!name.equals("Sulfuras, Hand of Ragnaros")) {
-            return originalSellIn - 1;
-        } else {
+        if ("Sulfuras, Hand of Ragnaros".equals(name)) {
             return originalSellIn;
+        } else {
+            return originalSellIn - 1;
         }
 
     }
