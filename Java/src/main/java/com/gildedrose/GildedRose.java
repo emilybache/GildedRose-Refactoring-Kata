@@ -1,5 +1,6 @@
 package com.gildedrose;
 
+import com.gildedrose.rules.AgedBrieQualityRule;
 import com.gildedrose.rules.QualityRule;
 import com.gildedrose.rules.SulfurasQualityRule;
 import lombok.val;
@@ -11,6 +12,7 @@ class GildedRose {
 
     private final List<QualityRule> rules = List.of(
             new SulfurasQualityRule(),
+            new AgedBrieQualityRule(),
             new QualityRule()
     );
 
@@ -38,6 +40,7 @@ class GildedRose {
                         },
                         (a, b) -> b).getQuality();
 
+/*
         if (!item.name.equals("Aged Brie")
                 && !item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             if (item.quality > 0) {
@@ -64,10 +67,11 @@ class GildedRose {
                 }
             }
         }
+*/
 
         val newSellIn = calculateSellIn(item.name, item.sellIn);
 
-        if (newSellIn < 0) {
+/*        if (newSellIn < 0) {
             if (!item.name.equals("Aged Brie")) {
                 if (!item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                     if (item.quality > 0) {
@@ -83,7 +87,7 @@ class GildedRose {
                     item.quality = item.quality + 1;
                 }
             }
-        }
+        }*/
 
         item.quality = newQuality;
         item.sellIn = newSellIn;
