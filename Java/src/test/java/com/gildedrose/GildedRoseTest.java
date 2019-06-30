@@ -30,8 +30,8 @@ class GildedRoseTest {
 
     @Feature("Once the sell by date has passed, Quality degrades twice as fast")
     @ParameterizedTest(name = "sellIn: {arguments}")
-    @ValueSource(ints = {0, 1})
-    void shouldTheDegradeQualityFasterOnceSellDateIsPassed(int sellIn) {
+    @ValueSource(ints = {0, -1, -2})
+    void shouldDegradeQualityTwiceFastOnceSellDateIsPassed(int sellIn) {
         // given
         val initialQuality = nextInt(3, 50);
         GildedRose app = prepareApp(new Item("foo", sellIn, initialQuality));
@@ -41,7 +41,7 @@ class GildedRoseTest {
 
         // then
         final Item item = app.items[0];
-        assertItem(item, "foo", -2, initialQuality - 2);
+        assertItem(item, "foo", sellIn - 1, initialQuality - 2);
     }
 
     @Feature("\"Sulfuras\", being a legendary item, never has to be sold or decreases in Quality")
