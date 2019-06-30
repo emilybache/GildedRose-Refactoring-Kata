@@ -2,7 +2,6 @@ package com.gildedrose;
 
 import io.qameta.allure.Feature;
 import lombok.val;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -45,11 +44,11 @@ class GildedRoseTest {
     }
 
     @Feature("\"Sulfuras\", being a legendary item, never has to be sold or decreases in Quality")
-    @Test
-    void shouldTheNotChangeSulfuras() {
+    @ParameterizedTest(name = "sellIn: {arguments}")
+    @ValueSource(ints = {2, 1, 0, -1, -2})
+    void shouldTheNotChangeSulfuras(int initialSellIn) {
         // given
         val initialQuality = nextInt(70, 90);
-        val initialSellIn = nextInt(3, 50);
         val itemName = "Sulfuras, Hand of Ragnaros";
         GildedRose app = prepareApp(new Item(itemName, initialSellIn, initialQuality));
 
