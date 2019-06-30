@@ -29,4 +29,21 @@ class GildedRoseConjuredTest {
         final int expectedQuality = max(initialQuality - 2, 0);
         assertItem(item, ITEM_NAME, 0, expectedQuality);
     }
+
+    @Feature("\"Conjured\" items degrade in Quality twice as fast as normal items")
+    @Feature("The Quality of an item is never negative")
+    @ParameterizedTest(name = "Initial quality: {arguments}")
+    @ValueSource(ints = {0, 1, 2, 3, 49, 50})
+    void shouldDegradeInQualityTwiceFastForOverdueItems(int initialQuality) {
+        // given
+        GildedRose app = prepareApp(new Item(ITEM_NAME, 0, initialQuality));
+
+        // when
+        app.updateQuality();
+
+        // then
+        final Item item = app.items[0];
+        final int expectedQuality = max(initialQuality - 4, 0);
+        assertItem(item, ITEM_NAME, -1, expectedQuality);
+    }
 }

@@ -4,20 +4,38 @@ import static java.lang.Integer.max;
 
 public class DefaultQualityRule implements QualityRule {
 
+    private final int multiplier;
+    private final String expectedItemName;
+    private final boolean isFinalRule;
+
+    public DefaultQualityRule() {
+        this(1, null, false);
+    }
+
+    public DefaultQualityRule(int multiplier, String itemName, boolean isFinalRule) {
+        this.multiplier = multiplier;
+        this.expectedItemName = itemName;
+        this.isFinalRule = isFinalRule;
+    }
+
     @Override
     public boolean shouldApply(String itemName) {
-        return true;
+        if (expectedItemName != null) {
+            return expectedItemName.equals(itemName);
+        } else {
+            return true;
+        }
     }
 
     @Override
     public Result calculateQuality(int oldQuality, int newSellIn) {
         final int newQuality;
         if (newSellIn < 0) {
-            newQuality = oldQuality - 2;
+            newQuality = oldQuality - 2 * multiplier;
         } else {
-            newQuality = oldQuality - 1;
+            newQuality = oldQuality - multiplier;
         }
-        return new Result(max(newQuality, 0), false);
+        return new Result(max(newQuality, 0), isFinalRule);
     }
 
 }
