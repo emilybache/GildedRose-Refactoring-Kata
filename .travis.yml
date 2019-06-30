@@ -3,13 +3,14 @@ language: java
 cache:
   directories:
     - "$HOME/.m2"
+    - allure-results
 
 jdk: openjdk11
 
 script:
   - cd Java
-- mvn clean test
-allure:report
+  - mvn clean test
+  - mvn allure:report
 
 after_failure:
   - cat target/surefire-reports/*.txt
