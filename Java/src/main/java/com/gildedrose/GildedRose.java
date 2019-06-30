@@ -2,6 +2,7 @@ package com.gildedrose;
 
 import com.gildedrose.rules.AgedBrieQualityRule;
 import com.gildedrose.rules.BackstagePassQualityRule;
+import com.gildedrose.rules.ConjuredQualityRule;
 import com.gildedrose.rules.DefaultQualityRule;
 import com.gildedrose.rules.QualityRule;
 import com.gildedrose.rules.Result;
@@ -18,6 +19,7 @@ class GildedRose {
             new SulfurasQualityRule(),
             new AgedBrieQualityRule(),
             new BackstagePassQualityRule(),
+            new ConjuredQualityRule(),
             new DefaultQualityRule()
     );
 
