@@ -10,9 +10,9 @@ public class DefaultQualityRule implements QualityRule {
     }
 
     @Override
-    public Result calculateQuality(int oldQuality, int sellIn) {
+    public Result calculateQuality(int oldQuality, int newSellIn) {
         final int newQuality;
-        if (sellIn < 0) {
+        if (newSellIn < 0) {
             newQuality = oldQuality - 2;
         } else {
             newQuality = oldQuality - 1;

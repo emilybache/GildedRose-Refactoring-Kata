@@ -8,7 +8,7 @@ public class SulfurasQualityRule implements QualityRule {
     }
 
     @Override
-    public Result calculateQuality(int oldQuality, int sellIn) {
+    public Result calculateQuality(int oldQuality, int newSellIn) {
         return new Result(oldQuality, true);
     }
 }

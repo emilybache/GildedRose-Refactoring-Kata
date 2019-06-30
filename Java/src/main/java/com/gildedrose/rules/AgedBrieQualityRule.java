@@ -10,7 +10,7 @@ public class AgedBrieQualityRule implements QualityRule {
     }
 
     @Override
-    public Result calculateQuality(int oldQuality, int sellIn) {
+    public Result calculateQuality(int oldQuality, int newSellIn) {
         return new Result(min(oldQuality + 1, 50), true);
     }
 }
