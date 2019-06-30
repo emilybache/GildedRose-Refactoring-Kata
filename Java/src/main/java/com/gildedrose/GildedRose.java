@@ -7,7 +7,6 @@ import com.gildedrose.rules.DefaultQualityRule;
 import com.gildedrose.rules.QualityRule;
 import com.gildedrose.rules.Result;
 import com.gildedrose.rules.SulfurasQualityRule;
-import lombok.val;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,21 +34,19 @@ class GildedRose {
 
     private void processItem(final Item item) {
 
-        val newSellIn = calculateSellIn(item.name, item.sellIn);
+        item.sellIn = calculateSellIn(item.name, item.sellIn);
 
-        val newQuality = rules.stream()
+        item.quality = rules.stream()
                 .reduce(new Result(item.quality, false),
                         (q, rule) -> {
                             if (q.isFinalValue() || !rule.shouldApply(item.name)) {
                                 return q;
                             } else {
-                                return rule.calculateQuality(q.getQuality(), newSellIn);
+                                return rule.calculateQuality(q.getQuality(), item.sellIn);
                             }
                         },
                         (a, b) -> b).getQuality();
 
-        item.quality = newQuality;
-        item.sellIn = newSellIn;
     }
 
     private int calculateSellIn(final String name, final int originalSellIn) {
