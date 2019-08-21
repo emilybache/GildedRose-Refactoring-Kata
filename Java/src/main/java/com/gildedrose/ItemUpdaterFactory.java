@@ -7,6 +7,7 @@ import java.util.Optional;
 class ItemUpdaterFactory {
 
     private static final Map<String, ItemUpdater> registeredItemUpdaters = new HashMap<>();
+
     static {
         registeredItemUpdaters.put("Aged Brie", new AgedBrieUpdater());
         registeredItemUpdaters.put("Backstage passes to a TAFKAL80ETC concert", new BackstagePassUpdater());
@@ -19,7 +20,10 @@ class ItemUpdaterFactory {
     }
 
     static ItemUpdater getItemUpdater(final Item item) {
-        return Optional.ofNullable(registeredItemUpdaters.get(item.name))
+        ItemUpdater itemUpdater = Optional.ofNullable(registeredItemUpdaters.get(item.name))
                 .orElse(new StandardItemUpdater());
+        itemUpdater.setItem(item);
+
+        return itemUpdater;
     }
 }

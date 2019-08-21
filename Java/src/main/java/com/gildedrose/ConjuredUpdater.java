@@ -1,9 +1,12 @@
 package com.gildedrose;
 
-public class ConjuredUpdater extends StandardItemUpdater {
+class ConjuredUpdater extends StandardItemUpdater {
+
+    ConjuredUpdater() {
+    }
 
     @Override
-    int getUpdateValue(final Item item) {
+    int getUpdateValue() {
         if (item.sellIn < 0) {
             return DEGRADE_TWICE_AS_FAST * 2;
         } else {

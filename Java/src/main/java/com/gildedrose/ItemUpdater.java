@@ -9,18 +9,26 @@ abstract class ItemUpdater {
     static int INCREASE_TWICE_AS_FAST = 2;
     static int INCREASE_THRICE_AS_FAST = 3;
 
-    void updateStateFor(Item item){
-        updateSellIn(item);
-        updateQuality(item);
+    Item item;
+
+    ItemUpdater() {}
+
+    void updateStateFor(){
+        updateSellIn();
+        updateQuality();
     }
 
-    private void updateQuality(Item item) {
-        if (canUpdateQuality(item)) {
-            item.quality = Math.max(getNewQuality(item), MIN_QUALITY);
+    private void updateQuality() {
+        if (canUpdateQuality()) {
+            item.quality = Math.max(getNewQuality(), MIN_QUALITY);
         }
     }
-    abstract void updateSellIn(Item item);
-    abstract boolean canUpdateQuality(Item item);
-    abstract int getUpdateValue(Item item);
-    abstract int getNewQuality(Item item);
+    abstract void updateSellIn();
+    abstract boolean canUpdateQuality();
+    abstract int getUpdateValue();
+    abstract int getNewQuality();
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
 }

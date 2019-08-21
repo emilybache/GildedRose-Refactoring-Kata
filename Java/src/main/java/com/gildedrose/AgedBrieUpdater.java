@@ -1,19 +1,22 @@
 package com.gildedrose;
 
-public class AgedBrieUpdater extends CustomItemUpdater {
+class AgedBrieUpdater extends CustomItemUpdater {
+
+    AgedBrieUpdater() {
+    }
 
     @Override
-    void updateSellIn(Item item) {
+    void updateSellIn() {
         item.sellIn -= 1;
     }
 
     @Override
-    boolean canUpdateQuality(final Item item) {
+    boolean canUpdateQuality() {
         return item.quality < HIGHEST_QUALITY;
     }
 
     @Override
-    int getUpdateValue(final Item item) {
+    int getUpdateValue() {
         return INCREASE_NORMAL;
     }
 }

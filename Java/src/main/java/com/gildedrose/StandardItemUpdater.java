@@ -2,18 +2,21 @@ package com.gildedrose;
 
 class StandardItemUpdater extends ItemUpdater {
 
+    StandardItemUpdater() {
+    }
+
     @Override
-    void updateSellIn(Item item) {
+    void updateSellIn() {
         item.sellIn -= 1;
     }
 
     @Override
-    boolean canUpdateQuality(final Item item) {
+    boolean canUpdateQuality() {
         return item.quality <= HIGHEST_QUALITY && item.quality > MIN_QUALITY;
     }
 
     @Override
-    int getUpdateValue(final Item item) {
+    int getUpdateValue() {
         if (item.sellIn < 0) {
             return DEGRADE_NORMAL * 2;
         } else {
@@ -22,7 +25,7 @@ class StandardItemUpdater extends ItemUpdater {
     }
 
     @Override
-    int getNewQuality(final Item item) {
-        return Math.min(item.quality + getUpdateValue(item), HIGHEST_QUALITY);
+    int getNewQuality() {
+        return Math.min(item.quality + getUpdateValue(), HIGHEST_QUALITY);
     }
 }

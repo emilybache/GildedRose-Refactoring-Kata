@@ -1,7 +1,11 @@
 package com.gildedrose;
 
-public abstract class CustomItemUpdater extends ItemUpdater{
-    int getNewQuality(final Item item){
-        return Math.min(item.quality + getUpdateValue(item), HIGHEST_QUALITY);
+abstract class CustomItemUpdater extends ItemUpdater{
+
+    CustomItemUpdater() {
+    }
+
+    int getNewQuality(){
+        return Math.min(item.quality + getUpdateValue(), HIGHEST_QUALITY);
     }
 }

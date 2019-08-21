@@ -1,20 +1,24 @@
 package com.gildedrose;
 
-public class BackstagePassUpdater extends CustomItemUpdater {
+class BackstagePassUpdater extends CustomItemUpdater {
+
+    BackstagePassUpdater() {
+    }
 
     @Override
-    void updateSellIn(Item item) {
+    void updateSellIn() {
         item.sellIn -=1;
     }
 
     @Override
-    boolean canUpdateQuality(final Item item) {
+    boolean canUpdateQuality() {
         return item.quality < HIGHEST_QUALITY && item.quality > MIN_QUALITY;
     }
 
     @Override
-    int getUpdateValue(final Item item) {
+    int getUpdateValue() {
         if (sellByDateLessThan(item, 0)) {
+            // if sell by date has passed then the quality should be zero
             return -item.quality;
         } else if (sellByDateLessThan(item, 6)) {
             return INCREASE_THRICE_AS_FAST;
