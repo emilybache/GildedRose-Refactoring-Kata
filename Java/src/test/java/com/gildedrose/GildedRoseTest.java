@@ -29,6 +29,42 @@ public class GildedRoseTest {
     private GildedRose app;
 
     @Test
+    public void agedBrie_shouldIncreaseNormal() {
+        final int originalQuality = agedBrieWithLowQuality.quality;
+        final int originalSellIn = agedBrieWithLowQuality.sellIn;
+        final Item[] items = new Item[]{agedBrieWithLowQuality};
+        app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(agedBrieWithLowQuality.name, app.items[0].name);
+        assertEquals(originalSellIn - 1, app.items[0].sellIn);
+        assertEquals(originalQuality + 1, app.items[0].quality);
+    }
+
+    @Test
+    public void agedBrie_shouldIncreaseNormal_whenOriginalQualityIsZero() {
+        final int originalQuality = 0;
+        final int originalSellIn = 2;
+        final Item[] items = new Item[]{new Item("Aged Brie", originalSellIn, originalQuality)};
+        app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Aged Brie", app.items[0].name);
+        assertEquals(originalSellIn - 1, app.items[0].sellIn);
+        assertEquals(originalQuality + 1, app.items[0].quality);
+    }
+
+    @Test
+    public void agedBrie_shouldNotIncrease_moreThanHighestValue() {
+        final int originalQuality = agedBrieWithHighestQuality.quality;
+        final int originalSellIn = agedBrieWithHighestQuality.sellIn;
+        final Item[] items = new Item[]{agedBrieWithHighestQuality};
+        app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(agedBrieWithHighestQuality.name, app.items[0].name);
+        assertEquals(originalSellIn - 1, app.items[0].sellIn);
+        assertEquals(originalQuality, app.items[0].quality);
+    }
+
+    @Test
     public void backstageItem_shouldIncreaseThriceAsFast_whenLessThan5DaysLeftToSellByDate() {
         final int originalQuality = 20;
         final Item[] items = new Item[]{new Item("Backstage passes to a TAFKAL80ETC concert", 5, originalQuality)};
@@ -53,6 +89,17 @@ public class GildedRoseTest {
     @Test
     public void backstageItem_shouldIncreaseNormal_whenMoreThan10DaysLeftToSellByDate() {
         final int originalQuality = 20;
+        final Item[] items = new Item[]{new Item("Backstage passes to a TAFKAL80ETC concert", 15, originalQuality)};
+        app = new GildedRose(items);
+        app.updateQuality();
+
+        assertEquals(14, app.items[0].sellIn);
+        assertEquals(originalQuality + 1, app.items[0].quality);
+    }
+
+    @Test
+    public void backstageItem_shouldIncreaseNormal_whenQualityIsMinimum() {
+        final int originalQuality = MIN_QUALITY;
         final Item[] items = new Item[]{new Item("Backstage passes to a TAFKAL80ETC concert", 15, originalQuality)};
         app = new GildedRose(items);
         app.updateQuality();
@@ -89,6 +136,21 @@ public class GildedRoseTest {
     }
 
     @Test
+    public void conjuredItems_shouldDegradeAsTwiceAsFast_thenTheStandardItems() {
+        final Item[] items = new Item[]{conjuredWithHighestQuality};
+        app = new GildedRose(items);
+
+        // First 5 times it should degrade by 2
+        // Last 2 times (after the sell by date has passed) it should degrade by 4
+        for (int i = 0; i < 7; i++) {
+            app.updateQuality();
+        }
+
+        assertEquals(-2, app.items[0].sellIn);
+        assertEquals(32, app.items[0].quality);
+    }
+
+    @Test
     public void standardItem_shouldDegradeNormal_whenSellByDateNotPassed() {
         final int originalQuality = 40;
         final Item[] items = new Item[]{new Item("Standard", 4, originalQuality)};
@@ -97,42 +159,6 @@ public class GildedRoseTest {
         assertEquals("Standard", app.items[0].name);
         assertEquals(3, app.items[0].sellIn);
         assertEquals(originalQuality - 1, app.items[0].quality);
-    }
-
-    @Test
-    public void agedBrie_shouldIncreaseNormal() {
-        final int originalQuality = agedBrieWithLowQuality.quality;
-        final int originalSellIn = agedBrieWithLowQuality.sellIn;
-        final Item[] items = new Item[]{agedBrieWithLowQuality};
-        app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals(agedBrieWithLowQuality.name, app.items[0].name);
-        assertEquals(originalSellIn - 1, app.items[0].sellIn);
-        assertEquals(originalQuality + 1, app.items[0].quality);
-    }
-
-    @Test
-    public void agedBrie_shouldIncreaseNormal_whenOriginalQualityIsZero() {
-        final int originalQuality = 0;
-        final int originalSellIn = 2;
-        final Item[] items = new Item[]{new Item("Aged Brie", originalSellIn, originalQuality)};
-        app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals("Aged Brie", app.items[0].name);
-        assertEquals(originalSellIn - 1, app.items[0].sellIn);
-        assertEquals(originalQuality + 1, app.items[0].quality);
-    }
-
-    @Test
-    public void agedBrie_shouldNotIncrease_moreThanHighestValue() {
-        final int originalQuality = agedBrieWithHighestQuality.quality;
-        final int originalSellIn = agedBrieWithHighestQuality.sellIn;
-        final Item[] items = new Item[]{agedBrieWithHighestQuality};
-        app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals(agedBrieWithHighestQuality.name, app.items[0].name);
-        assertEquals(originalSellIn - 1, app.items[0].sellIn);
-        assertEquals(originalQuality, app.items[0].quality);
     }
 
     @Test
@@ -218,19 +244,6 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void conjuredItems_shouldDegradeAsTwiceAsFast_thenTheStandardItems() {
-        final Item[] items = new Item[]{conjuredWithHighestQuality};
-        app = new GildedRose(items);
-
-        for (int i = 0; i < 7; i++) {
-            app.updateQuality();
-        }
-
-        assertEquals(-2, app.items[0].sellIn);
-        assertEquals(32, app.items[0].quality);
-    }
-
-    @Test
     public void newStandardItem_shouldDegradeAsNormal() {
         ItemUpdaterFactory.registerCustomUpdater("New Item", new StandardItemUpdater());
 
@@ -244,7 +257,6 @@ public class GildedRoseTest {
         assertEquals("New Item", app.items[0].name);
         assertEquals(0, app.items[0].sellIn);
         assertEquals(originalQuality -1, app.items[0].quality);
-
         assertEquals(newItem.name + ", " + newItem.sellIn + ", " + newItem.quality, app.items[0].toString());
     }
 }
