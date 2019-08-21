@@ -5,11 +5,11 @@ import java.util.stream.IntStream;
 class GildedRose {
     Item[] items;
 
-	private GildedRose(Item[] items) {
+	GildedRose(Item[] items) {
         this.items = items;
     }
 
-	private void updateQuality() {
+	void updateQuality() {
 		IntStream.range(0, items.length).forEach(i -> {
             if (!items[i].name.equals("Aged Brie")
                     && !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
