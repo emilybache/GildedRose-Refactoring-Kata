@@ -1,9 +1,13 @@
 ## Gilded Rose Kata - Java
 
-### How to add a new updater
-Within this version of Gilded Rose kata, template method pattern is used
+`$ mvn clean compile`
 
-From now on it is easy to add another standard, custom or legendary items to the shop.
+`$ mvn clean verify`
+
+### How to add a new updater
+Within this version of Gilded Rose kata, updateQuality() method is refactored by using template method pattern.
+
+From now on it is easy to add another **standard**, **custom** or **legendary** item to the shop.
 How to do that;
 
 * Add a new Updater class which extends either `StandardItemUpdater`, `CustomItemUpdater` or `LegendaryItemUpdater`
