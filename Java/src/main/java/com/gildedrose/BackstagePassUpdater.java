@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class BackstagePassUpdater extends ItemUpdater {
+public class BackstagePassUpdater extends CustomItemUpdater {
 
     @Override
     void updateSellIn(Item item) {

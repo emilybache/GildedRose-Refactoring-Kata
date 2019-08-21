@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class SulfurasUpdater extends ItemUpdater {
+public class SulfurasUpdater extends LegendaryItemUpdater {
     @Override
     void updateSellIn(Item item) {
         System.out.print("########Never gets old ############");
@@ -9,12 +9,12 @@ public class SulfurasUpdater extends ItemUpdater {
     @Override
     boolean canUpdateQuality(Item item) {
         // "Sulfuras", being a legendary item, never decreases in Quality
-        return false;
+        return item.quality < HIGHEST_QUALITY;
     }
 
     @Override
     int getUpdateValue(Item item) {
-        // "Sulfuras", being a legendary item, never decreases in Quality
-        return 0;
+        // "Sulfuras", being a legendary item, never decreases in Quality. Its value is always 80
+        return HIGHEST_QUALITY - item.quality;
     }
 }

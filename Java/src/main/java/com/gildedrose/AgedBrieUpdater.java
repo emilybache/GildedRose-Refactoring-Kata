@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class AgedBrieUpdater extends ItemUpdater {
+public class AgedBrieUpdater extends CustomItemUpdater {
 
     @Override
     void updateSellIn(Item item) {

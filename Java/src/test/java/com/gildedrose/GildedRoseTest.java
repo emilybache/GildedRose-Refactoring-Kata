@@ -122,6 +122,7 @@ public class GildedRoseTest {
         assertEquals(originalSellIn - 1, app.items[0].sellIn);
         assertEquals(originalQuality + 1, app.items[0].quality);
     }
+
     @Test
     public void agedBrie_shouldNotIncrease_moreThanHighestValue() {
         final int originalQuality = agedBrieWithHighestQuality.quality;
@@ -151,7 +152,7 @@ public class GildedRoseTest {
 
 
     @Test
-    public void sulfurus_shouldNeverDegradeAndBeSold() {
+    public void sulfuras_shouldNeverDegradeAndBeSold() {
         final Item[] items = new Item[]{sulfuras};
         app = new GildedRose(items);
         app.updateQuality();
@@ -160,6 +161,16 @@ public class GildedRoseTest {
         assertEquals(80, app.items[0].quality);
 
         app.updateQuality();
+        assertEquals(0, app.items[0].sellIn);
+        assertEquals(80, app.items[0].quality);
+    }
+
+    @Test
+    public void sulfurasQuality_shouldAlwaysBe80() {
+        final Item[] items = new Item[]{new Item("Sulfuras, Hand of Ragnaros", 0, 40)};
+        app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Sulfuras, Hand of Ragnaros", app.items[0].name);
         assertEquals(0, app.items[0].sellIn);
         assertEquals(80, app.items[0].quality);
     }
@@ -211,11 +222,29 @@ public class GildedRoseTest {
         final Item[] items = new Item[]{conjuredWithHighestQuality};
         app = new GildedRose(items);
 
-        for (int i=0; i< 7; i++) {
+        for (int i = 0; i < 7; i++) {
             app.updateQuality();
         }
 
         assertEquals(-2, app.items[0].sellIn);
         assertEquals(32, app.items[0].quality);
+    }
+
+    @Test
+    public void newStandardItem_shouldDegradeAsNormal() {
+        ItemUpdaterFactory.registerCustomUpdater("New Item", new StandardItemUpdater());
+
+        final int originalQuality = 40;
+        final Item newItem = new Item("New Item", 1, originalQuality);
+        final Item[] items = new Item[]{newItem};
+
+        app = new GildedRose(items);
+        app.updateQuality();
+
+        assertEquals("New Item", app.items[0].name);
+        assertEquals(0, app.items[0].sellIn);
+        assertEquals(originalQuality -1, app.items[0].quality);
+
+        assertEquals(newItem.name + ", " + newItem.sellIn + ", " + newItem.quality, app.items[0].toString());
     }
 }

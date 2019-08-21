@@ -20,4 +20,9 @@ public class StandardItemUpdater extends ItemUpdater {
             return DEGRADE_NORMAL;
         }
     }
+
+    @Override
+    int getNewQuality(Item item) {
+        return Math.min(item.quality + getUpdateValue(item), HIGHEST_QUALITY);
+    }
 }

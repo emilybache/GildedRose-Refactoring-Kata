@@ -16,14 +16,11 @@ public abstract class ItemUpdater {
 
     private void updateQuality(Item item) {
         if (canUpdateQuality(item)) {
-            item.quality = Math.max(getNewQuality(item), 0);
+            item.quality = Math.max(getNewQuality(item), MIN_QUALITY);
         }
     }
     abstract void updateSellIn(Item item);
     abstract boolean canUpdateQuality(Item item);
     abstract int getUpdateValue(Item item);
-
-    private int getNewQuality(Item item){
-        return Math.min(item.quality + getUpdateValue(item), HIGHEST_QUALITY);
-    }
+    abstract int getNewQuality(Item item);
 }
