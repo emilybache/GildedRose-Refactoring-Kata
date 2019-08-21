@@ -1,12 +1,6 @@
 package com.gildedrose;
 
 public class AgedBrieUpdater extends ItemUpdater {
-    @Override
-    void updateQuality(Item item) {
-        if (canUpdateQuality(item)) {
-            item.quality += getDegradeValue(item);
-        }
-    }
 
     @Override
     void updateSellIn(Item item) {
@@ -19,7 +13,7 @@ public class AgedBrieUpdater extends ItemUpdater {
     }
 
     @Override
-    int getDegradeValue(Item item) {
+    int getUpdateValue(Item item) {
         return INCREASE_NORMAL;
     }
 }

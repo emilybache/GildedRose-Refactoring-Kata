@@ -1,27 +1,13 @@
 package com.gildedrose;
 
-public class ConjuredUpdater extends ItemUpdater {
+public class ConjuredUpdater extends StandardItemUpdater {
+
     @Override
-    void updateQuality(Item item) {
-        if (canUpdateQuality(item)) {
-            item.quality += getDegradeValue(item);
+    int getUpdateValue(final Item item) {
+        if (item.sellIn < 0) {
+            return DEGRADE_TWICE_AS_FAST * 2;
+        } else {
+            return DEGRADE_TWICE_AS_FAST;
         }
-    }
-
-    @Override
-    void updateSellIn(Item item) {
-        item.sellIn -= 1;
-    }
-
-    @Override
-    boolean canUpdateQuality(Item item) {
-        return item.quality < HIGHEST_QUALITY && item.quality > 0;
-    }
-
-    @Override
-    int getDegradeValue(Item item) {
-        return item.quality + DEGRADE_TWICE_AS_FAST < 0 ?
-                DEGRADE_NORMAL :
-                DEGRADE_TWICE_AS_FAST;
     }
 }
