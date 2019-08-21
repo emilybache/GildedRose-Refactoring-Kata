@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public abstract class ItemUpdater {
+abstract class ItemUpdater {
     static int HIGHEST_QUALITY = 50;
     static int MIN_QUALITY = 0;
     static int DEGRADE_NORMAL = -1;

@@ -8,12 +8,12 @@ public class AgedBrieUpdater extends CustomItemUpdater {
     }
 
     @Override
-    boolean canUpdateQuality(Item item) {
+    boolean canUpdateQuality(final Item item) {
         return item.quality < HIGHEST_QUALITY;
     }
 
     @Override
-    int getUpdateValue(Item item) {
+    int getUpdateValue(final Item item) {
         return INCREASE_NORMAL;
     }
 }

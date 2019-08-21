@@ -4,22 +4,22 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class ItemUpdaterFactory {
+class ItemUpdaterFactory {
 
-    private static final Map<String, ItemUpdater> registeredCustomUpdaters = new HashMap<>();
+    private static final Map<String, ItemUpdater> registeredItemUpdaters = new HashMap<>();
     static {
-        registeredCustomUpdaters.put("Aged Brie", new AgedBrieUpdater());
-        registeredCustomUpdaters.put("Backstage passes to a TAFKAL80ETC concert", new BackstagePassUpdater());
-        registeredCustomUpdaters.put("Sulfuras, Hand of Ragnaros", new SulfurasUpdater());
-        registeredCustomUpdaters.put("Conjured Mana Cake", new ConjuredUpdater());
+        registeredItemUpdaters.put("Aged Brie", new AgedBrieUpdater());
+        registeredItemUpdaters.put("Backstage passes to a TAFKAL80ETC concert", new BackstagePassUpdater());
+        registeredItemUpdaters.put("Sulfuras, Hand of Ragnaros", new SulfurasUpdater());
+        registeredItemUpdaters.put("Conjured Mana Cake", new ConjuredUpdater());
     }
 
-    public static void registerCustomUpdater(String type, ItemUpdater updater ){
-        registeredCustomUpdaters.put(type, updater);
+    static void registerCustomUpdater(final String type, final ItemUpdater updater){
+        registeredItemUpdaters.put(type, updater);
     }
 
-    public static ItemUpdater getItemUpdater(Item item) {
-        return Optional.ofNullable(registeredCustomUpdaters.get(item.name))
+    static ItemUpdater getItemUpdater(final Item item) {
+        return Optional.ofNullable(registeredItemUpdaters.get(item.name))
                 .orElse(new StandardItemUpdater());
     }
 }
