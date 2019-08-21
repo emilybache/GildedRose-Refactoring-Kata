@@ -11,7 +11,7 @@ public class ItemUpdaterFactory {
         registeredCustomUpdaters.put("Aged Brie", new AgedBrieUpdater());
         registeredCustomUpdaters.put("Backstage passes to a TAFKAL80ETC concert", new BackstagePassUpdater());
         registeredCustomUpdaters.put("Sulfuras, Hand of Ragnaros", new SulfurasUpdater());
-        registeredCustomUpdaters.put("Conjured", new ConjuredUpdater());
+        registeredCustomUpdaters.put("Conjured Mana Cake", new ConjuredUpdater());
     }
 
     public static void registerCustomUpdater(String type, ItemUpdater updater ){
@@ -22,17 +22,4 @@ public class ItemUpdaterFactory {
         return Optional.ofNullable(registeredCustomUpdaters.get(item.name))
                 .orElse(new StandardItemUpdater());
     }
-
-    /*public static ItemUpdater getItemUpdater_(Item item) {
-        if ("Aged Brie".equals(item.name))
-            return new AgedBrieUpdater();
-        else if ("Backstage passes to a TAFKAL80ETC concert".equals(item.name))
-            return new BackstagePassUpdater();
-        else if ("Sulfuras, Hand of Ragnaros".equals(item.name))
-            return new SulfurasUpdater();
-        else if ("Conjured".equals(item.name))
-            return new ConjuredUpdater();
-        else
-            return new StandardItemUpdater();
-    }*/
 }
