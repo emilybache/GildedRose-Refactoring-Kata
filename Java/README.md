@@ -22,7 +22,11 @@
     -[x] however "Sulfuras" is a legendary item and as such its Quality is 80 and it never alters.
 
 ## Technical Issues, with a balanced priority
--[ ]
+-[x] item names are hardcoded
+-[ ] items are identified by the name in a hardcoded way
+-[ ] nested logic
+-[ ] Item properties are public 
 
 ## Refactoring actions
+-[x] extract hardcoded variables
 
