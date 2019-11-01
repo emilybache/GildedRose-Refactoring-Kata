@@ -18,8 +18,8 @@
 -[x] "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;
     -[x] Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but
     -[x] Quality drops to 0 after the concert
--[ ] an item can never have its Quality increase above 50
-    -[] however "Sulfuras" is a legendary item and as such its Quality is 80 and it never alters.
+-[x] an item can never have its Quality increase above 50
+    -[x] however "Sulfuras" is a legendary item and as such its Quality is 80 and it never alters.
 
 ## Technical Issues, with a balanced priority
 -[ ]

@@ -126,7 +126,7 @@ public class GildedRoseTest {
 
     @Nested
     @DisplayName("Backstage passes")
-    class BaskstagePasses{
+    class BackstagePasses{
         @Test
         @DisplayName("Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but")
         public void shouldIncreaseQualityBasedOnSellIn() {
@@ -190,6 +190,5 @@ public class GildedRoseTest {
             assertEquals(80, app.items[0].quality);
         }
     }
-
 
 }
