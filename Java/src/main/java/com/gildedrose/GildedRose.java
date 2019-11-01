@@ -25,11 +25,11 @@ class GildedRose {
                 updateBackstageQuality(item);
             }
             else{
-                if (!item.name.equals(Backstage.BACKSTAGE)) {
+
                     if (item.quality > 0 && !item.name.equals(Sulfuras.SULFURAS)) {
                         item.decreaseQuality();
                     }
-                }
+
                 else {
                     if (item.quality < 50) {
                         item.increaseQuality();
