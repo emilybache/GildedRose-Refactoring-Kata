@@ -7,4 +7,11 @@ public class Brie extends Item {
     public Brie(int sellIn, int quality) {
         super(BRIE, sellIn, quality);
     }
+
+    @Override
+    public void increaseQuality(){
+        if (this.quality < 50) {
+            super.increaseQuality();
+        }
+    }
 }

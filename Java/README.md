@@ -40,4 +40,3 @@
 -[x] encapsulate methods
 -[ ] isolate specific logics
 -[x] move specific logic to backstage
--[x] replace items by specific objects in tests

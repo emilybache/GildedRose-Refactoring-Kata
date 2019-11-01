@@ -26,4 +26,8 @@ public class Item {
     public void increaseQuality() {
         this.quality = this.quality + 1;
     }
+
+    public void updateSellIn() {
+        this.sellIn = this.sellIn - 1;
+    }
 }
