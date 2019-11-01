@@ -14,4 +14,16 @@ public class Brie extends Item {
             super.increaseQuality();
         }
     }
+
+    @Override
+    public void updateQuality(){
+        if (this.quality < 50) {
+            this.increaseQuality();
+        }
+        if (this.sellIn < 0) {
+            if (this.quality < 50) {
+                this.increaseQuality();
+            }
+        }
+    }
 }

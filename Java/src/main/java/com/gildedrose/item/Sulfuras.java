@@ -12,4 +12,9 @@ public class Sulfuras extends Item {
     public void updateSellIn() {
         //NO-OP
     }
+
+    @Override
+    public void updateQuality() {
+        //NO-OP
+    }
 }
