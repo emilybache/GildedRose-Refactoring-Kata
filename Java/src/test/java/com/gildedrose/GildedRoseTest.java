@@ -91,7 +91,7 @@ public class GildedRoseTest {
     //Sulfuras, Hand of Ragnaros
     @Test
     @DisplayName("\"Sulfuras\", being a legendary item, never has to be sold or decreases in Quality")
-    public void should(){
+    public void shouldNotChangeSulfurasSellInAndQualityValues(){
         Item[] items = new Item[]{TestHelper.getItem("Sulfuras, Hand of Ragnaros", 0, 10)};
         GildedRose app = new GildedRose(items);
 
@@ -104,6 +104,23 @@ public class GildedRoseTest {
         app.updateQuality();
         assertEquals(10, app.items[0].quality);
         assertEquals(0, app.items[0].sellIn);
+    }
+
+    @Test
+    @DisplayName("\"Backstage passes\", like aged brie, increases in Quality as its SellIn value approaches")
+    public void shouldDo(){
+        Item[] items = new Item[]{TestHelper.getItem("Backstage passes to a TAFKAL80ETC concert", 5, 10)};
+        GildedRose app = new GildedRose(items);
+
+        //day 1, increase by 3 the quality
+        app.updateQuality();
+        assertEquals(13, app.items[0].quality);
+        assertEquals(4, app.items[0].sellIn);
+
+        //day 1, increase by 3 the quality
+        app.updateQuality();
+        assertEquals(16, app.items[0].quality);
+        assertEquals(3, app.items[0].sellIn);
     }
 
 }
