@@ -73,4 +73,19 @@ public class GildedRoseTest {
         assertEquals(4, app.items[0].quality);
     }
 
+    @Test
+    @DisplayName("The Quality of an item is never more than 50")
+    public void shouldNeverHaveQualityHigherThan50(){
+        Item[] items = new Item[]{TestHelper.getItem("Aged Brie", 0, 49)};
+        GildedRose app = new GildedRose(items);
+
+        //day 1, add 2
+        app.updateQuality();
+        assertEquals(50, app.items[0].quality);
+
+        //day 2, add 2
+        app.updateQuality();
+        assertEquals(50, app.items[0].quality);
+    }
+
 }
