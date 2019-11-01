@@ -159,5 +159,37 @@ public class GildedRoseTest {
         }
     }
 
+    @Nested
+    @DisplayName("Quality limits for")
+    class QualityBound{
+
+        @Test
+        @DisplayName("an item can never have its Quality increase above 50")
+        public void shouldNeverHaveQualityAbove50(){
+            Item[] items = new Item[]{
+                    TestHelper.getItem("Backstage passes to a TAFKAL80ETC concert", 10, 49)
+            };
+
+            GildedRose app = new GildedRose(items);
+
+            app.updateQuality();
+            assertEquals(50, app.items[0].quality);
+            assertEquals(9, app.items[0].sellIn);
+        }
+
+        @Test
+        @DisplayName("however \"Sulfuras\" is a legendary item and as such its Quality is 80 and it never alters")
+        public void shouldSulfurasNeverAltersForSulfuras(){
+            Item[] items = new Item[]{
+                    TestHelper.getItem("Sulfuras, Hand of Ragnaros", 10, 80)
+            };
+
+            GildedRose app = new GildedRose(items);
+
+            app.updateQuality();
+            assertEquals(80, app.items[0].quality);
+        }
+    }
+
 
 }
