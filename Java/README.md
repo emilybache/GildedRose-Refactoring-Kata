@@ -24,10 +24,10 @@
 ## Technical Issues, with a balanced priority
 -[x] item names are hardcoded
 -[x] items are identified by the name in a hardcoded way
--[ ] nested logic
+-[x] nested logic
 -[x] long method
--[ ] plain logic
--[ ] complex operations
+-[x] plain logic
+-[x] complex operations
 -[x] Item properties are public 
 -[x] multiple access by index
 
@@ -38,6 +38,6 @@
 -[x] extract methods
 -[x] extract boolean methods
 -[x] encapsulate methods
--[ ] isolate specific logics
+-[x] isolate specific logics
 -[x] move specific logic to backstage
 -[x] move specific logic of sulfuras

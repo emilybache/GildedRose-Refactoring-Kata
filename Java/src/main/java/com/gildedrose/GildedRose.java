@@ -14,37 +14,37 @@ class GildedRose {
 
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
-
             final Item item = items[i];
-
             item.updateSellIn();
-
             if(item.name.equals(Brie.BRIE)){
                 updateBrieQuality(item);
             }else if (item.name.equals(Backstage.BACKSTAGE)){
                 updateBackstageQuality(item);
+            }else if (!item.name.equals(Sulfuras.SULFURAS)){
+                updateItemQuality(item);
             }
-            else if (!item.name.equals(Sulfuras.SULFURAS)){
-                if (!item.name.equals(Backstage.BACKSTAGE)) {
-                    if (item.quality > 0 && !item.name.equals(Sulfuras.SULFURAS)) {
-                        item.decreaseQuality();
-                    }
-                }
-                else {
-                    if (item.quality < 50) {
-                        item.increaseQuality();
-                    }
-                }
+        }
+    }
 
-                if (item.sellIn < 0) {
-                    if (!item.name.equals(Backstage.BACKSTAGE)) {
-                        if (!item.name.equals(Sulfuras.SULFURAS) && item.quality > 0) {
-                            item.decreaseQuality();
-                        }
-                    } else {
-                        item.quality = 0;
-                    }
+    private void updateItemQuality(Item item) {
+        if (!item.name.equals(Backstage.BACKSTAGE)) {
+            if (item.quality > 0 ) {
+                item.decreaseQuality();
+            }
+        }
+        else {
+            if (item.quality < 50) {
+                item.increaseQuality();
+            }
+        }
+
+        if (item.sellIn < 0) {
+            if (!item.name.equals(Backstage.BACKSTAGE)) {
+                if ( item.quality > 0) {
+                    item.decreaseQuality();
                 }
+            } else {
+                item.quality = 0;
             }
         }
     }
