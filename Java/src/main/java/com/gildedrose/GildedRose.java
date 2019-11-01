@@ -55,9 +55,6 @@ class GildedRose {
 
     private void increaseQuality(Item item) {
         item.increaseQuality();
-        if (item.name.equals(Backstage.BACKSTAGE)) {
-            item.increaseBackstageQuality();
-        }
     }
 
     private void updateSellIn(Item item) {

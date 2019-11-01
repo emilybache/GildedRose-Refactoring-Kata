@@ -28,7 +28,7 @@
 -[x] long method
 -[ ] plain logic
 -[ ] complex operations
--[ ] Item properties are public 
+-[x] Item properties are public 
 -[x] multiple access by index
 
 ## Refactoring actions
@@ -39,5 +39,5 @@
 -[x] extract boolean methods
 -[x] encapsulate methods
 -[ ] isolate specific logics
--[ ] move specific logic to backstage
+-[x] move specific logic to backstage
 -[x] replace items by specific objects in tests

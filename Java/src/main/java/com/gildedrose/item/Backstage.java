@@ -7,4 +7,17 @@ public class Backstage extends Item {
     public Backstage(int sellIn, int quality) {
         super(BACKSTAGE, sellIn, quality);
     }
+
+    @Override
+    public void increaseQuality() {
+        super.increaseQuality();
+
+        if (this.sellIn < 11 && this.quality < 50) {
+            super.increaseQuality();
+        }
+
+        if (this.sellIn < 6 && this.quality < 50) {
+            super.increaseQuality();
+        }
+    }
 }
