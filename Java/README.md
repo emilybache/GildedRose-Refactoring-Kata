@@ -23,12 +23,21 @@
 
 ## Technical Issues, with a balanced priority
 -[x] item names are hardcoded
--[ ] items are identified by the name in a hardcoded way
+-[x] items are identified by the name in a hardcoded way
 -[ ] nested logic
+-[x] long method
+-[ ] plain logic
+-[ ] complex operations
 -[ ] Item properties are public 
+-[x] multiple access by index
 
 ## Refactoring actions
 -[x] extract hardcoded variables
 -[x] create polymorphism for items
 -[x] move item names as item members
-
+-[x] extract methods
+-[x] extract boolean methods
+-[x] encapsulate methods
+-[ ] isolate specific logics
+-[ ] move specific logic to backstage
+-[x] replace items by specific objects in tests

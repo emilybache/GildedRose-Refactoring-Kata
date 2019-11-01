@@ -18,4 +18,22 @@ public class Item {
    public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
     }
+
+    public void decreaseQuality() {
+        this.quality = this.quality - 1;
+    }
+
+    public void increaseQuality() {
+        this.quality = this.quality + 1;
+    }
+
+    public void increaseBackstageQuality() {
+        if (this.sellIn < 11 && this.quality < 50) {
+            this.increaseQuality();
+        }
+
+        if (this.sellIn < 6 && this.quality < 50) {
+            this.increaseQuality();
+        }
+    }
 }
