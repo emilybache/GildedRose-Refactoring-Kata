@@ -30,4 +30,5 @@
 ## Refactoring actions
 -[x] extract hardcoded variables
 -[x] create polymorphism for items
+-[x] move item names as item members
 

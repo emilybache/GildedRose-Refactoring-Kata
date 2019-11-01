@@ -1,7 +1,10 @@
 package com.gildedrose.item;
 
 public class Backstage extends Item {
-    public Backstage(String name, int sellIn, int quality) {
-        super(name, sellIn, quality);
+
+    public static String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
+
+    public Backstage(int sellIn, int quality) {
+        super(BACKSTAGE, sellIn, quality);
     }
 }
