@@ -29,4 +29,5 @@
 
 ## Refactoring actions
 -[x] extract hardcoded variables
+-[x] create polymorphism for items
 

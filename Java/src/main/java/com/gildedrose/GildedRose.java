@@ -1,11 +1,12 @@
 package com.gildedrose;
 
+import com.gildedrose.item.Item;
+
 class GildedRose {
     Item[] items;
 
     String BRIE = "Aged Brie";
     String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
-
     String SULFURAS = "Sulfuras, Hand of Ragnaros";
 
     public GildedRose(Item[] items) {
