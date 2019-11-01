@@ -40,3 +40,4 @@
 -[x] encapsulate methods
 -[ ] isolate specific logics
 -[x] move specific logic to backstage
+-[x] move specific logic of sulfuras
