@@ -57,4 +57,20 @@ public class GildedRoseTest {
         assertEquals(0, app.items[0].quality);
     }
 
+
+    @Test
+    @DisplayName("\"Aged Brie\" actually increases in Quality by 2 the older it gets")
+    public void shouldSeeAgedBrieIncreasedQualityDayByDay(){
+        Item[] items = new Item[]{TestHelper.getItem("Aged Brie", 0, 0)};
+        GildedRose app = new GildedRose(items);
+
+        //day 1, add 2
+        app.updateQuality();
+        assertEquals(2, app.items[0].quality);
+
+        //day 2, add 2
+        app.updateQuality();
+        assertEquals(4, app.items[0].quality);
+    }
+
 }
