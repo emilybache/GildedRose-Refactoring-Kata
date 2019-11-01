@@ -88,4 +88,22 @@ public class GildedRoseTest {
         assertEquals(50, app.items[0].quality);
     }
 
+    //Sulfuras, Hand of Ragnaros
+    @Test
+    @DisplayName("\"Sulfuras\", being a legendary item, never has to be sold or decreases in Quality")
+    public void should(){
+        Item[] items = new Item[]{TestHelper.getItem("Sulfuras, Hand of Ragnaros", 0, 10)};
+        GildedRose app = new GildedRose(items);
+
+        //day 1, don't impact quality
+        app.updateQuality();
+        assertEquals(10, app.items[0].quality);
+        assertEquals(0, app.items[0].sellIn);
+
+        //day 0, don't impact quality
+        app.updateQuality();
+        assertEquals(10, app.items[0].quality);
+        assertEquals(0, app.items[0].sellIn);
+    }
+
 }
