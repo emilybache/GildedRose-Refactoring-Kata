@@ -10,7 +10,7 @@
 
 # unit tests
 -[x] At the end of each day our system lowers both values for every item
--[ ] Once the sell by date has passed, Quality degrades twice as fast
+-[x] Once the sell by date has passed, Quality degrades twice as fast
 -[ ] The Quality of an item is never negative
 -[ ] "Aged Brie" actually increases in Quality the older it gets
 -[ ] The Quality of an item is never more than 50
