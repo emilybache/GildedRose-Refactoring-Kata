@@ -11,13 +11,15 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <junit.jupiter.version>5.5.2</junit.jupiter.version>
+        <maven.maven-surefire-plugin.version>2.22.2</maven.maven-surefire-plugin.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -30,6 +32,10 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.maven-surefire-plugin.version}</version>
             </plugin>
         </plugins>
     </build>
