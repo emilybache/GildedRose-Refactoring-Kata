@@ -6,3 +6,8 @@ target/
 .project
 bin/
 .settings/
+
+# Gradle
+.gradle
+/build/
+
