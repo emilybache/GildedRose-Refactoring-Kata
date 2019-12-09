@@ -1,67 +1,34 @@
-cmake_minimum_required(VERSION 2.8.4)
-project(cpp)
+cmake_minimum_required(VERSION 3.13)
+project(gilded-rose-refactoring-kata-cpp)
 
-# CMake FindThreads is broken until 3.1
-#find_package(Threads REQUIRED)
-set(CMAKE_THREAD_LIBS_INIT pthread)
+# Load FetchContent module.
+include(FetchContent)
 
-enable_testing()
-find_package(GTest)
-
-include(ExternalProject)
-if(NOT ${GTEST_FOUND}) # Download gtest if not installed
-    message("No system gtest use external project")
-    ExternalProject_Add(googletest
-      GIT_REPOSITORY    https://github.com/google/googletest.git
-      GIT_TAG           master
-      SOURCE_DIR        "${CMAKE_BINARY_DIR}/googletest-src"
-      BINARY_DIR        "${CMAKE_BINARY_DIR}/googletest-build"
-      CONFIGURE_COMMAND ""
-      BUILD_COMMAND     ""
-      INSTALL_COMMAND   ""
-      TEST_COMMAND      ""
-    )
-    add_subdirectory(${CMAKE_BINARY_DIR}/googletest-src
-                 ${CMAKE_BINARY_DIR}/googletest-build
-                 EXCLUDE_FROM_ALL)
-    set(GTEST_BOTH_LIBRARIES gtest gtest_main)
-endif()
-
-ExternalProject_Add(aprovaltest
-    PREFIX ${CMAKE_BINARY_DIR}/aprovaltest
-    URL https://github.com/approvals/ApprovalTests.cpp/releases/download/v.2.0.0/ApprovalTests.v.2.0.0.hpp
-    DOWNLOAD_NO_EXTRACT 1
-    CONFIGURE_COMMAND ""
-    BUILD_COMMAND ""
-    INSTALL_COMMAND ""
+# Declare GoogleTest as the content to fetch
+FetchContent_Declare(
+  googletest
+  GIT_REPOSITORY https://github.com/google/googletest.git
+  GIT_TAG release-1.8.1
 )
 
-include_directories(${GTEST_INCLUDE_DIRS})
-include_directories(${CMAKE_BINARY_DIR}/aprovaltest/src)
+# Fetch GoogleTest amd make build scripts available
+if (NOT googletest_POPULATED)
+  FetchContent_Populate(googletest)
+endif()
 
-add_executable(GildedRose
-    GildedRose.cc
-    GildedRose.h
-    GildedRoseUnitTests.cc
-    )
-target_link_libraries(GildedRose ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
-add_test(NAME GildedRose COMMAND GildedRose)
+#set(gtest_force_shared_crt OFF CACHE BOOL "" FORCE)
+# Force Google Test to link the C/C++ runtimes dynamically when
+# building on Visual Studio
+# Link:
+# * https://github.com/google/googletest/tree/release-1.8.1/googletest#visual-studio-dynamic-vs-static-runtimes
+if (MSVC)
+  set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+endif()
 
-add_executable(GildedRoseTextTests
-    GildedRose.cc
-    GildedRose.h
-    GildedRoseTextTests.cc
-    )
-target_link_libraries(GildedRoseTextTests ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
-add_test(NAME GildedRoseTextTests COMMAND GildedRoseTextTests)
+# Bring the populated content into the build
+add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
 
-add_executable(GildedRoseApprovalTests
-    GildedRose.cc
-    GildedRose.h
-    GildedRoseApprovalTests.cc
-    GildedRoseApprovalMain.cc
-    )
-target_link_libraries(GildedRoseApprovalTests ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
-set_property(TARGET GildedRoseApprovalTests PROPERTY CXX_STANDARD 14)
-add_dependencies(GildedRoseApprovalTests aprovaltest)
-add_test(NAME GildedRoseApprovalTests COMMAND GildedRoseApprovalTests)
+enable_testing()
+add_subdirectory(src)
+add_subdirectory(lib)
+add_subdirectory(test)
