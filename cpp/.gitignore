@@ -1,4 +1,4 @@
 .idea
+.vs
 cmake-build-debug
-gtest
 build
