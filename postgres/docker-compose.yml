@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  database:
+    image: postgres:12.1
+    environment:
+    - DB_HOST=localhost
+    - DB_PASSWORD=admin
+    - PGHOST=localhost
+    - PGDATABASE=postgres
+    - PGPASSWORD=admin
+    - PGUSER=postgres
+    - POSTGRES_PASSWORD=admin
+    ports:
+    - "5432:5432"
+    volumes:
+    - .:/app/:z
+
+  admin:
+    image: adminer
+    links:
+    - database
+    ports:
+    - "8081:8080"
