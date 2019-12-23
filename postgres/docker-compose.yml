@@ -2,15 +2,7 @@ version: '3'
 
 services:
   database:
-    image: postgres:12.1
-    environment:
-    - DB_HOST=localhost
-    - DB_PASSWORD=admin
-    - PGHOST=localhost
-    - PGDATABASE=postgres
-    - PGPASSWORD=admin
-    - PGUSER=postgres
-    - POSTGRES_PASSWORD=admin
+    build: .
     ports:
     - "5432:5432"
     volumes:
