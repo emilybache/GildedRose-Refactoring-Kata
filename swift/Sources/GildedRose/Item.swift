@@ -1,4 +1,3 @@
-
 public class Item {
     public var name: String
     public var sellIn: Int

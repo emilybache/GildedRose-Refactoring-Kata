@@ -19,7 +19,6 @@ if (CommandLine.argc > 1) {
     days = Int(CommandLine.arguments[1])! + 1
 }
 
-
 for i in 0..<days {
     print("-------- day \(i) --------");
     print("name, sellIn, quality");
