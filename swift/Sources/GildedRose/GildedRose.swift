@@ -2,7 +2,7 @@
 public class GildedRose {
     var items:[Item]
     
-    required public init(items:[Item]) {
+    public init(items:[Item]) {
         self.items = items
     }
     

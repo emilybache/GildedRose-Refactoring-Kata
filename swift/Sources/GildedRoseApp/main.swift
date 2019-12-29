@@ -1,3 +1,4 @@
+import GildedRose
 
 let items = [
     Item(name: "+5 Dexterity Vest", sellIn: 10, quality: 20),
