@@ -1,0 +1,15 @@
+@startuml
+
+start
+note left
+    Do this for each item in the list.
+    An item has a name, a sell in value and a quality value
+end note
+
+-lower quality with 1
+
+-lower sell in with 1
+
+stop
+
+@enduml
