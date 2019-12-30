@@ -9,6 +9,7 @@ end note
 if (not "Aged Brie") then (yes)
     if (quality > 0) then (yes)
         -lower quality with 1
+    else (no)
     endif
 else (no)
     -increase quality with 1
@@ -20,10 +21,12 @@ if (sell in < 0) then (yes)
     if (not "Aged Brie") then (yes)
         if (quality > 0) then (yes)
             -lower quality with 1
+    else (no)
         endif
     else (no)
         -increase quality with 1
     endif
+else (no)
 endif
 
 stop
