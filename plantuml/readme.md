@@ -1,5 +1,5 @@
 # PlantUML
-This UML refactoring exercise is aimed at less technical people like analysts, testsers and other non-programmers. The key takeaway message is clarifying the need for continuous refactoring to people who do not code on a daily basis.
+This UML refactoring exercise is aimed at less technical people like analysts, testers and other non-programmers. The key takeaway message is clarifying the need for continuous refactoring to people who do not code on a daily basis.
 
 ## Running and rendering
 Several alternatives are available to render PlantUML, see https://plantuml.com/running.
