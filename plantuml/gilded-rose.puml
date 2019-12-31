@@ -1,5 +1,7 @@
 @startuml
 
+skinparam backgroundColor transparent
+
 start
 note left
     Do this for each item in the list.

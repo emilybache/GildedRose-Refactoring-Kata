@@ -9,9 +9,13 @@ Several alternatives are available to render PlantUML, see https://plantuml.com/
 ## Syntax
 For the syntax of activity diagrams in PlantUML, please refer to https://plantuml.com/activity-diagram-beta
 
-## Exercise
-You can find the original GildedRose challenge in the gilded-rose.puml file.
+## Workshop
+You can run this exercise as a workshop.
 
+During this workshop, you start off with a presentation explaining the domain, while filling out the testcases found under `plantuml/workshop`. After that, participants are invited to refactor the UML Activity Diagram, using the examples that were discovered during the presentation. 
+[The google slides can be found here](https://docs.google.com/presentation/d/1kkRnVQjZELcfuGoFXaiSY_HxbO4lPQnSgHRGQZIH2nU/edit?usp=sharing). 
+
+## History
 If you want to illustrate how this activity diagram got to this state, you can show the requirements and the files under the /history directory. These individual files show the evolution of the activity diagram.
 
 ## Original state

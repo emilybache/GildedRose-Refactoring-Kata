@@ -1,10 +1,8 @@
 @startuml
 
+skinparam backgroundColor transparent
+
 start
-note left
-    Do this for each item in the list.
-    An item has a name, a sell in value and a quality value
-end note
 
 if (quality > 0) then (yes)
     :lower quality with 1;
