@@ -1,7 +1,7 @@
-@testable import GildedRoseTestSuit
-
 import XCTest
 
-XCTMain([
-     testCase(GildedRoseTests.allTests),
-])
+import GildedRoseTests
+
+var tests = [XCTestCaseEntry]()
+tests += GildedRoseTests.allTests()
+XCTMain(tests)

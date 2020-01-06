@@ -1,3 +1,4 @@
+import GildedRose
 
 let items = [
     Item(name: "+5 Dexterity Vest", sellIn: 10, quality: 20),
@@ -17,7 +18,6 @@ var days = 2;
 if (CommandLine.argc > 1) {
     days = Int(CommandLine.arguments[1])! + 1
 }
-
 
 for i in 0..<days {
     print("-------- day \(i) --------");
