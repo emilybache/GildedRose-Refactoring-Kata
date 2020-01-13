@@ -1,6 +1,5 @@
 package com.gildedrose;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -95,7 +94,6 @@ class GildedRoseTest {
      * Conjured Quality decreases 2 before expired
      */
     @Test
-    @Disabled
     void whenConjuredSale1Quality2_afterUpdate_ThenSale0Quality0() {
         Item[] items = new Item[]{new Item("Conjured Mana Cake", 1, 2)};
         GildedRose app = new GildedRose(items);
@@ -110,7 +108,6 @@ class GildedRoseTest {
      * Conjured Quality decreases 4 after expired
      */
     @Test
-    @Disabled
     void whenConjuredSaleM10Quality8_afterUpdate_ThenSaleM11Quality4() {
         Item[] items = new Item[]{new Item("Conjured Mana Cake", -10, 8)};
         GildedRose app = new GildedRose(items);
@@ -125,7 +122,6 @@ class GildedRoseTest {
      * Conjured Quality decreases 4 after expired edge
      */
     @Test
-    @Disabled
     void whenConjuredSale0Quality10_afterUpdate_ThenSaleM1Quality6() {
         Item[] items = new Item[]{new Item("Conjured Mana Cake", 0, 10)};
         GildedRose app = new GildedRose(items);
