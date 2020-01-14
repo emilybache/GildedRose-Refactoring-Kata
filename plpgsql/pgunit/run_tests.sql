@@ -1,16 +1,14 @@
 CREATE OR REPLACE FUNCTION test_case_update_quality() RETURNS void AS $$
 DECLARE
-  sell_in_result item.sell_in%TYPE;
-  quality_result item.quality%TYPE;
+  name_result item.name%TYPE;
 BEGIN
   TRUNCATE TABLE item;
-  CALL new_item('Aged Brie', 4, 6);
+  CALL new_item('foo', 0, 0);
 
   CALL update_quality();
 
-  SELECT quality, sell_in FROM item INTO quality_result, sell_in_result;
-  perform test_assertEquals('Quality should increase', 7.0, quality_result);
-  perform test_assertEquals('Sell in should decrease', 3.0, sell_in_result);
+  SELECT name FROM item INTO name_result;
+  perform test_assertEquals('name did change', 'fixme', name_result);
 END;
 $$ LANGUAGE plpgsql;
 
