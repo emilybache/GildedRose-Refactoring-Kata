@@ -16,8 +16,6 @@ final class GildedRose {
                 if ($item->quality > 0) {
                     if ($item->name != 'Sulfuras, Hand of Ragnaros') {
                         $item->quality = $item->quality - 1;
-                    } else {
-                        $item->quality = 80;
                     }
                 }
             } else {
