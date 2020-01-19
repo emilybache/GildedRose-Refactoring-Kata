@@ -11,7 +11,8 @@ ENV PGDATA /var/lib/postgresql/data_local
 RUN mkdir -p "$PGDATA" && chown -R postgres:postgres "$PGDATA" && chmod 777 "$PGDATA"
 
 ADD ./*.sh /app/
-ADD ./src /app/src
+ADD ./src/item.sql /app/src/
+ADD ./src/new_item.sql /app/src/
 
 # PGUNIT
 FROM base as pgunit

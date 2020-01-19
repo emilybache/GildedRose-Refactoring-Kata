@@ -11,4 +11,3 @@ psql -d postgres -c 'CREATE DATABASE kata;'
 echo "Add current code"
 psql -d kata -f src/item.sql
 psql -d kata -f src/new_item.sql
-psql -d kata -f src/update_quality.sql
