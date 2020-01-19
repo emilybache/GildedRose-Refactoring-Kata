@@ -1,16 +1,20 @@
-version: '3'
+version: '3.4'
 
 services:
-  database:
-    build: .
+  pgunit:
+    build: 
+      context: .
+      target: pgunit
     ports:
     - "5432:5432"
     volumes:
     - .:/app/:z
 
-  admin:
-    image: adminer
-    links:
-    - database
+  pgtap:
+    build: 
+      context: .
+      target: pgtap
     ports:
-    - "8081:8080"
+    - "5432:5432"
+    volumes:
+    - .:/app/:z
