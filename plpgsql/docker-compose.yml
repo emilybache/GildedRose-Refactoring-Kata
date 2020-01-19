@@ -2,6 +2,7 @@ version: '3.4'
 
 services:
   pgunit:
+    # image: fpellet/gildedrose-refactoring-kata:pgunit
     build: 
       context: .
       target: pgunit
@@ -11,6 +12,7 @@ services:
     - .:/app/:z
 
   pgtap:
+    # image: fpellet/gildedrose-refactoring-kata:pgtap
     build: 
       context: .
       target: pgtap
