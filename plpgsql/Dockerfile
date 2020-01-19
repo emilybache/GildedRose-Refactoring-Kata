@@ -1,4 +1,4 @@
-FROM postgres:12.1
+FROM postgres:12.1 as base
 WORKDIR /app
 
 ENV PGHOST=localhost
@@ -15,6 +15,9 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 ADD ./*.sh /app/
-ADD ./*.sql /app/
+ADD ./src /app/src
+
+ADD ./pgunit/initialize.sh /app/
+ADD ./pgunit/*.sql /app/
 RUN chmod +x ./*.sh \
  && ./initializeDocker.sh
