@@ -42,7 +42,7 @@ It's already installed with docker
 If not, it would cause a (false positive)[https://en.wikipedia.org/wiki/False_positives_and_false_negatives]
 
 ### Execute
-Run `docker-compose up -d pgtab` to start, and `docker-compose exec pgtab bash` to enter in container.  
+Run `docker-compose up -d pgtap` to start, and `docker-compose exec pgtap bash` to enter in container.  
 In shell, execute ```psql -d kata -f src/update_quality.sql && pg_prove pgtap/test_*.sql```. 
 You should get ```pgtap/test_case_update_quality.sql .. ok All tests successful.```
 
