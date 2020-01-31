@@ -17,9 +17,24 @@ describe("Gilded Rose", function() {
     expect(items[0].quality).toBe(0);
   });
   it("foo quality should be 0", function() {
+    const gildedRose = new Shop([new Item("foo", 0, 1)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toBe(0);
+  });
+  it("foo quality should be 8", function() {
+    const gildedRose = new Shop([new Item("foo", 0, 10)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toBe(8);
+  });
+  it("foo quality should be 0", function() {
     const gildedRose = new Shop([new Item("foo", 10, 10)]);
     const items = gildedRose.updateQuality();
     expect(items[0].quality).toBe(9);
+  });
+  it("conjured quality should be 6", function() {
+    const gildedRose = new Shop([new Item("Conjured foo", 0, 10)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toBe(6);
   });
   it("conjured quality should be 8", function() {
     const gildedRose = new Shop([new Item("Conjured foo", 10, 10)]);

@@ -11,6 +11,10 @@ class Shop {
     this.items = items;
   }
 
+  isSulfuras(item) {
+    return item.name == 'Sulfuras, Hand of Ragnaros';
+  }
+
   // Should really be method on Item, but I don't want to offend the goblins.
   isAgedBrie(item) {
     return item.name.startsWith('Aged Brie');
@@ -28,22 +32,23 @@ class Shop {
 
   updateQuality() {
     for (let item of this.items) {
-      if (item.name == 'Sulfuras, Hand of Ragnaros') {
-        continue;
-      }
-
       let qualityChange = 0;
-      if(this.isAgedBrie(item)) {
+      let sellInChange = -1;
+
+      if (this.isSulfuras(item)) {
+        sellInChange = 0;
+      } else if(this.isAgedBrie(item)) {
         // Does conjured cheese quality increase twice as much?   Assume not, but
         // statement of problem doesn't say cheese quality doubles twice as fast after
         // the sell by date, but the code implements it that way.
         qualityChange = item.sellIn <= 0 ? 2 : 1;
       } else if (this.isConcertTicket(item)) {
         if(item.sellIn <= 0) {
+          // This will set quality to 0
           qualityChange = -1 * item.quality;
-        } else if(item.sellIn < 6) {
+        } else if(item.sellIn <= 5) {
           qualityChange = 3;
-        } else if(item.sellIn < 11) {
+        } else if(item.sellIn <= 10) {
           qualityChange = 2;
         } else {
           qualityChange = 1;
@@ -55,7 +60,7 @@ class Shop {
         }
       }
 
-      item.sellIn--;
+      item.sellIn = item.sellIn + sellInChange;
       item.quality = Math.min(Math.max(item.quality + qualityChange, 0), 50);
     }
 
