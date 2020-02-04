@@ -73,8 +73,8 @@ class GildedRoseTest {
     
     @Test 
     void testAgedBrie() {
-    	Item agedBrie = new Item("Aged Brie", 2, 0);
-    	Item qualityBrie = new Item("Aged Brie", 2, 48);
+    	Item agedBrie = new Item(GildedRose.AGED_BRIE, 2, 0);
+    	Item qualityBrie = new Item(GildedRose.AGED_BRIE, 2, 48);
     	Item[] items = new Item[] { agedBrie, qualityBrie };
     	GildedRose gildedRose = new GildedRose(items);
     	// day one

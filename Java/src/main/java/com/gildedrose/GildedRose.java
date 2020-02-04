@@ -2,7 +2,10 @@ package com.gildedrose;
 
 class GildedRose {
 	
-    public static final String SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
+    private static final int MIN_QUALITY = 0;
+	private static final int MAX_QUALITY = 50;
+	public static final String AGED_BRIE = "Aged Brie";
+	public static final String SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
 	public static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     
 	Item[] items;
@@ -26,14 +29,14 @@ class GildedRose {
 			updateSellInValue(item);
 
 			if (item.sellIn < 0) {
-				if (!item.name.equals("Aged Brie")) {
+				if (!item.name.equals(AGED_BRIE)) {
 					if (!item.name.equals(BACKSTAGE_PASSES)) {
 						degradeItem(item);
 					} else {
-						item.quality = 0;
+						item.quality = MIN_QUALITY;
 					}
 				} else {
-					item.quality = Integer.min(item.quality + 1,50);
+					item.quality = Integer.min(item.quality + 1, MAX_QUALITY);
 				}
 			}
 		}
@@ -43,7 +46,7 @@ class GildedRose {
 	 * @param item
 	 */
 	private void degradeItem(Item item) {
-		item.quality = Integer.max(0, item.quality - 1);
+		item.quality = Integer.max(MIN_QUALITY, item.quality - 1);
 	}
 
 	/**
@@ -59,26 +62,23 @@ class GildedRose {
 	 * @return
 	 */
 	private boolean isEnhancingItem(Item item) {
-		return item.name.equals("Aged Brie") || item.name.equals(BACKSTAGE_PASSES);
+		return item.name.equals(GildedRose.AGED_BRIE) || item.name.equals(BACKSTAGE_PASSES);
 	}
-
+	
 	/**
 	 * @param item
 	 */
 	private void enhanceItem(Item item) {
-		if (item.quality < 50) {
-		    item.quality = item.quality + 1;
+		if (item.name.equals(BACKSTAGE_PASSES)) {
+			if (isExperingSale(item)) {
+				item.quality = item.quality + 1;
+			}
 
-		    if (item.name.equals(BACKSTAGE_PASSES)) {
-				if (isExperingSale(item)) {
-					item.quality = item.quality + 1;
-				}
-
-				if (isUrgentSale(item)) {
-					item.quality = item.quality + 1;
-				}
-		    }
+			if (isUrgentSale(item)) {
+				item.quality = item.quality + 1;
+			}
 		}
+		item.quality = Integer.min(item.quality + 1, MAX_QUALITY);
 	}
 
 	/**
@@ -86,7 +86,7 @@ class GildedRose {
 	 * @return
 	 */
 	private boolean isUrgentSale(Item item) {
-		return item.sellIn < 6 && item.quality < 50;
+		return item.sellIn < 6;
 	}
 
 	/**
@@ -94,12 +94,11 @@ class GildedRose {
 	 * @return
 	 */
 	private boolean isExperingSale(Item item) {
-		return item.sellIn < 11 && item.quality < 50;
+		return item.sellIn < 11;
 	}
 
 	/**
-	 * @param item the item of which the sell in value is updated Only if the item
-	 *             is legendary, do not update this value
+	 * @param item the item of which the sell in value is updated 
 	 */
 	private void updateSellInValue(Item item) {
 		item.sellIn = item.sellIn - 1;
