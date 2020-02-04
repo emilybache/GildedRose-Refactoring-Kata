@@ -17,12 +17,10 @@ class GildedRose {
 			if(isLegendaryItem(item)) {
 				continue;
 			}
-			if (!isEnhancingItem(item)) {
-				if (item.quality > 0) {
-					item.quality = item.quality - 1;
-				}
+			if (isEnhancingItem(item)) {
+				enhanceItem(item);
 			} else {
-				changeQualityOfBrieAndBackstagePasses(item);
+				degradeItem(item);
 			}
 
 			updateSellInValue(item);
@@ -30,18 +28,23 @@ class GildedRose {
 			if (item.sellIn < 0) {
 				if (!item.name.equals("Aged Brie")) {
 					if (!item.name.equals(BACKSTAGE_PASSES)) {
-						if (item.quality > 0) {
-							item.quality = item.quality - 1;
-						}
+						degradeItem(item);
 					} else {
 						item.quality = 0;
 					}
-				} else if (item.quality < 50) {
-					item.quality = item.quality + 1;
+				} else {
+					item.quality = Integer.min(item.quality + 1,50);
 				}
 			}
 		}
     }
+
+	/**
+	 * @param item
+	 */
+	private void degradeItem(Item item) {
+		item.quality = Integer.max(0, item.quality - 1);
+	}
 
 	/**
 	 * @param item
@@ -62,7 +65,7 @@ class GildedRose {
 	/**
 	 * @param item
 	 */
-	private void changeQualityOfBrieAndBackstagePasses(Item item) {
+	private void enhanceItem(Item item) {
 		if (item.quality < 50) {
 		    item.quality = item.quality + 1;
 
