@@ -21,7 +21,7 @@ class GildedRose {
 				continue;
 			}
 			if (isEnhancingItem(item)) {
-				int qualityOffset = determineQualityOffset(item);
+				int qualityOffset = determineEnhancingQualityOffset(item);
 				item.quality = Integer.min(item.quality + qualityOffset, MAX_QUALITY);
 			} else {
 				int qualityOffset = 1;
@@ -31,7 +31,7 @@ class GildedRose {
 				item.quality = Integer.max(MIN_QUALITY, item.quality - qualityOffset);
 			}
 
-			updateSellInValue(item);
+			item.sellIn -= 1;
 		}
     }
 
@@ -55,7 +55,7 @@ class GildedRose {
 	 * @param item
 	 * @return
 	 */
-	private int determineQualityOffset(Item item) {
+	private int determineEnhancingQualityOffset(Item item) {
 		int qualityOffset = 1;
 		if (item.name.equals(BACKSTAGE_PASSES)) {
 			if (isExperingSale(item)) {
@@ -90,12 +90,5 @@ class GildedRose {
 	 */
 	private boolean isExperingSale(Item item) {
 		return item.sellIn < 11;
-	}
-
-	/**
-	 * @param item the item of which the sell in value is updated 
-	 */
-	private void updateSellInValue(Item item) {
-		item.sellIn -= 1;
 	}
 }
