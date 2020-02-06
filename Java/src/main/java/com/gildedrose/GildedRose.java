@@ -17,10 +17,11 @@ class GildedRose {
     public void updateQuality() {
 		for (int i = 0; i < items.length; i++) {
 			Item item = items[i];
-			if(isLegendaryItem(item)) {
+			if(isLegendaryItem(item.name)) {
 				continue;
 			}
-			if (isEnhancingItem(item)) {
+			// update quality
+			if (isEnhancingItem(item.name)) {
 				int qualityOffset = determineEnhancingQualityOffset(item);
 				item.quality = Integer.min(item.quality + qualityOffset, MAX_QUALITY);
 			} else {
@@ -30,25 +31,26 @@ class GildedRose {
 				}
 				item.quality = Integer.max(MIN_QUALITY, item.quality - qualityOffset);
 			}
-
+			
+			// update sell in value
 			item.sellIn -= 1;
 		}
     }
 
 	/**
-	 * @param item
+	 * @param name
 	 * @return
 	 */
-	private boolean isLegendaryItem(Item item) {
-		return item.name.equals(SULFURAS_HAND_OF_RAGNAROS);
+	private boolean isLegendaryItem(String name) {
+		return name.equals(SULFURAS_HAND_OF_RAGNAROS);
 	}
 
 	/**
-	 * @param item
+	 * @param name
 	 * @return
 	 */
-	private boolean isEnhancingItem(Item item) {
-		return item.name.equals(GildedRose.AGED_BRIE) || item.name.equals(BACKSTAGE_PASSES);
+	private boolean isEnhancingItem(String name) {
+		return name.equals(GildedRose.AGED_BRIE) || name.equals(BACKSTAGE_PASSES);
 	}
 	
 	/**
@@ -58,37 +60,40 @@ class GildedRose {
 	private int determineEnhancingQualityOffset(Item item) {
 		int qualityOffset = 1;
 		if (item.name.equals(BACKSTAGE_PASSES)) {
-			if (isExperingSale(item)) {
-				qualityOffset += 1;
-			}
-
-			if (isUrgentSale(item)) {
-				qualityOffset += 1;
-			}
-		}
-		if (item.sellIn <= 0) {
-			if( item.name.equals(AGED_BRIE)) {
-				qualityOffset += 1;
-			} else {
+			if (isExpiredSale(item.sellIn)) {
 				qualityOffset = -item.quality;
+			} else if (isUrgentSale(item.sellIn)) {
+				qualityOffset += 2;
+			} else if (isExperingSale(item.sellIn)) {
+				qualityOffset += 1;
 			}
+		} else if (isExpiredSale(item.sellIn)) {
+			qualityOffset += 1;
 		}
 		return qualityOffset;
 	}
 
 	/**
-	 * @param item
+	 * @param sellIn
 	 * @return
 	 */
-	private boolean isUrgentSale(Item item) {
-		return item.sellIn < 6;
+	private boolean isExpiredSale(int sellIn) {
+		return sellIn <= 0;
 	}
 
 	/**
-	 * @param item
+	 * @param sellIn
 	 * @return
 	 */
-	private boolean isExperingSale(Item item) {
-		return item.sellIn < 11;
+	private boolean isUrgentSale(int sellIn) {
+		return sellIn < 6;
+	}
+
+	/**
+	 * @param sellIn
+	 * @return
+	 */
+	private boolean isExperingSale(int sellIn) {
+		return sellIn < 11;
 	}
 }
