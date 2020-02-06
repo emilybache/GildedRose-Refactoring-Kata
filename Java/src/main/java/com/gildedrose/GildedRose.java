@@ -22,25 +22,18 @@ class GildedRose {
 			}
 			if (isEnhancingItem(item)) {
 				int qualityOffset = determineQualityOffset(item);
-				enhanceItem(item, qualityOffset);
+				item.quality = Integer.min(item.quality + qualityOffset, MAX_QUALITY);
 			} else {
 				int qualityOffset = 1;
 				if(item.sellIn <= 0) {
 					qualityOffset +=1;
 				}
-				degradeItem(item,qualityOffset);
+				item.quality = Integer.max(MIN_QUALITY, item.quality - qualityOffset);
 			}
 
 			updateSellInValue(item);
 		}
     }
-
-	/**
-	 * @param item
-	 */
-	private void degradeItem(Item item, int qualityOffset) {
-		item.quality = Integer.max(MIN_QUALITY, item.quality - qualityOffset);
-	}
 
 	/**
 	 * @param item
@@ -58,13 +51,6 @@ class GildedRose {
 		return item.name.equals(GildedRose.AGED_BRIE) || item.name.equals(BACKSTAGE_PASSES);
 	}
 	
-	/**
-	 * @param item
-	 */
-	private void enhanceItem(Item item, int qualityOffset) {
-		item.quality = Integer.min(item.quality + qualityOffset, MAX_QUALITY);
-	}
-
 	/**
 	 * @param item
 	 * @return
