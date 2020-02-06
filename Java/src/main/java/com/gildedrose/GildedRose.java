@@ -23,23 +23,22 @@ class GildedRose {
 			if (isEnhancingItem(item)) {
 				int qualityOffset = determineQualityOffset(item);
 				enhanceItem(item, qualityOffset);
+				if (item.sellIn <= 0) {
+					if( item.name.equals(AGED_BRIE)) {
+						enhanceItem(item, 1);
+					} else {
+						degradeItem(item, item.quality);
+					}
+
+				}
 			} else {
 				degradeItem(item,1);
+				if(item.sellIn <= 0) {
+					degradeItem(item, 1);
+				}
 			}
 
 			updateSellInValue(item);
-
-			if (item.sellIn < 0) {
-				if (item.name.equals(AGED_BRIE)) {
-					enhanceItem(item, 1);
-				} else {
-					if (item.name.equals(BACKSTAGE_PASSES)) {
-						degradeItem(item,item.quality);
-					} else {
-						degradeItem(item,1);
-					}
-				}
-			}
 		}
     }
 
@@ -111,6 +110,6 @@ class GildedRose {
 	 * @param item the item of which the sell in value is updated 
 	 */
 	private void updateSellInValue(Item item) {
-		item.sellIn = item.sellIn - 1;
+		item.sellIn -= 1;
 	}
 }
