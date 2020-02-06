@@ -130,15 +130,15 @@ class GildedRoseTest {
     	// day one
     	gildedRose.updateQuality();
     	assertEquals(2, conjuredItem.sellIn);
-//    	assertEquals(4, conjuredItem.quality); //TODO this is the feature to get working
-//    	// day two
-//    	gildedRose.updateQuality();
-//    	assertEquals(1, conjuredItem.sellIn);
-//    	assertEquals(2, conjuredItem.quality); //TODO this is the feature to get working
-//    	// day three
-//    	gildedRose.updateQuality();
-//    	assertEquals(0, conjuredItem.sellIn);
-//    	assertEquals(2, conjuredItem.quality); //TODO this is the feature to get working
+    	assertEquals(4, conjuredItem.quality); //TODO this is the feature to get working
+    	// day two
+    	gildedRose.updateQuality();
+    	assertEquals(1, conjuredItem.sellIn);
+    	assertEquals(2, conjuredItem.quality); //TODO this is the feature to get working
+    	// day three
+    	gildedRose.updateQuality();
+    	assertEquals(0, conjuredItem.sellIn);
+    	assertEquals(0, conjuredItem.quality); //TODO this is the feature to get working
     }
     
 

@@ -7,6 +7,7 @@ class GildedRose {
 	public static final String AGED_BRIE = "Aged Brie";
 	public static final String SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
 	public static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
+	public static final String CONJURED_MANA_CAKE = "Conjured Mana Cake";
     
 	Item[] items;
 
@@ -25,10 +26,7 @@ class GildedRose {
 				int qualityOffset = determineEnhancingQualityOffset(item);
 				item.quality = Integer.min(item.quality + qualityOffset, MAX_QUALITY);
 			} else {
-				int qualityOffset = 1;
-				if(item.sellIn <= 0) {
-					qualityOffset +=1;
-				}
+				int qualityOffset = determineDegradingQualityOffset(item);
 				item.quality = Integer.max(MIN_QUALITY, item.quality - qualityOffset);
 			}
 			
@@ -54,6 +52,14 @@ class GildedRose {
 	}
 	
 	/**
+	 * @param name
+	 * @return
+	 */
+	private boolean isConjuredItem(String name) {
+		return name.equals(CONJURED_MANA_CAKE);
+	}
+	
+	/**
 	 * @param item
 	 * @return
 	 */
@@ -68,7 +74,22 @@ class GildedRose {
 				qualityOffset += 1;
 			}
 		} else if (isExpiredSale(item.sellIn)) {
-			qualityOffset += 1;
+			qualityOffset *= 2;
+		}
+		return qualityOffset;
+	}
+	
+	/**
+	 * @param item
+	 * @return
+	 */
+	private int determineDegradingQualityOffset(Item item) {
+		int qualityOffset = 1;
+		if(item.sellIn <= 0) {
+			qualityOffset *=2;
+		}
+		if(isConjuredItem(item.name)) {
+			qualityOffset *= 2;
 		}
 		return qualityOffset;
 	}
