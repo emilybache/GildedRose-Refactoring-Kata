@@ -115,7 +115,7 @@ Sulfuras, Hand of Ragnaros, 0, 80
 Sulfuras, Hand of Ragnaros, -1, 80
 Backstage passes to a TAFKAL80ETC concert, 9, 27
 Backstage passes to a TAFKAL80ETC concert, 4, 50
-Backstage passes to a TAFKAL80ETC concert, -1, 0        # TODO: FIX THIS PART
+Backstage passes to a TAFKAL80ETC concert, -1, 0     # TODO: FIX THIS PART
 Conjured Mana Cake, -3, 0
 
 -------- day 7 --------
@@ -127,7 +127,7 @@ Sulfuras, Hand of Ragnaros, 0, 80
 Sulfuras, Hand of Ragnaros, -1, 80
 Backstage passes to a TAFKAL80ETC concert, 8, 29
 Backstage passes to a TAFKAL80ETC concert, 3, 50
-Backstage passes to a TAFKAL80ETC concert, -2, 0        # TODO: FIX THIS PART
+Backstage passes to a TAFKAL80ETC concert, -2, 0     # TODO: FIX THIS PART
 Conjured Mana Cake, -4, 0
 
 -------- day 8 --------
@@ -139,7 +139,7 @@ Sulfuras, Hand of Ragnaros, 0, 80
 Sulfuras, Hand of Ragnaros, -1, 80
 Backstage passes to a TAFKAL80ETC concert, 7, 31
 Backstage passes to a TAFKAL80ETC concert, 2, 50
-Backstage passes to a TAFKAL80ETC concert, -3, 0        # TODO: FIX THIS PART
+Backstage passes to a TAFKAL80ETC concert, -3, 0     # TODO: FIX THIS PART
 Conjured Mana Cake, -5, 0
 
 -------- day 9 --------
@@ -151,7 +151,7 @@ Sulfuras, Hand of Ragnaros, 0, 80
 Sulfuras, Hand of Ragnaros, -1, 80
 Backstage passes to a TAFKAL80ETC concert, 6, 33
 Backstage passes to a TAFKAL80ETC concert, 1, 50
-Backstage passes to a TAFKAL80ETC concert, -4, 0        # TODO: FIX THIS PART
+Backstage passes to a TAFKAL80ETC concert, -4, 0     # TODO: FIX THIS PART
 Conjured Mana Cake, -6, 0
 
 -------- day 10 --------
@@ -163,7 +163,7 @@ Sulfuras, Hand of Ragnaros, 0, 80
 Sulfuras, Hand of Ragnaros, -1, 80
 Backstage passes to a TAFKAL80ETC concert, 5, 35
 Backstage passes to a TAFKAL80ETC concert, 0, 50
-Backstage passes to a TAFKAL80ETC concert, -5, 0        # TODO: FIX THIS PART
+Backstage passes to a TAFKAL80ETC concert, -5, 0     # TODO: FIX THIS PART
 Conjured Mana Cake, -7, 0
 
 -------- day 11 --------
@@ -174,8 +174,8 @@ Elixir of the Mongoose, -6, 0
 Sulfuras, Hand of Ragnaros, 0, 80
 Sulfuras, Hand of Ragnaros, -1, 80
 Backstage passes to a TAFKAL80ETC concert, 4, 38
-Backstage passes to a TAFKAL80ETC concert, -1, 0        # TODO: FIX THIS PART
-Backstage passes to a TAFKAL80ETC concert, -6, 0        # TODO: FIX THIS PART
+Backstage passes to a TAFKAL80ETC concert, -1, 0     # TODO: FIX THIS PART
+Backstage passes to a TAFKAL80ETC concert, -6, 0     # TODO: FIX THIS PART
 Conjured Mana Cake, -8, 0
 
 -------- day 12 --------
@@ -186,8 +186,8 @@ Elixir of the Mongoose, -7, 0
 Sulfuras, Hand of Ragnaros, 0, 80
 Sulfuras, Hand of Ragnaros, -1, 80
 Backstage passes to a TAFKAL80ETC concert, 3, 41
-Backstage passes to a TAFKAL80ETC concert, -2, 0        # TODO: FIX THIS PART
-Backstage passes to a TAFKAL80ETC concert, -7, 0        # TODO: FIX THIS PART
+Backstage passes to a TAFKAL80ETC concert, -2, 0
+Backstage passes to a TAFKAL80ETC concert, -7, 0
 Conjured Mana Cake, -9, 0
 
 -------- day 13 --------
@@ -198,8 +198,8 @@ Elixir of the Mongoose, -8, 0
 Sulfuras, Hand of Ragnaros, 0, 80
 Sulfuras, Hand of Ragnaros, -1, 80
 Backstage passes to a TAFKAL80ETC concert, 2, 44
-Backstage passes to a TAFKAL80ETC concert, -3, 0        # TODO: FIX THIS PART
-Backstage passes to a TAFKAL80ETC concert, -8, 0        # TODO: FIX THIS PART
+Backstage passes to a TAFKAL80ETC concert, -3, 0
+Backstage passes to a TAFKAL80ETC concert, -8, 0
 Conjured Mana Cake, -10, 0
 
 -------- day 14 --------
