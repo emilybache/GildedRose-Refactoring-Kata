@@ -7,6 +7,7 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
+
             # Set default parameters
             sell_in_rate = 1
             quality_rate = 1
@@ -46,10 +47,6 @@ class GildedRose(object):
 
                 else:
                     quality_sign = 1
-
-            elif item.name == "Conjured Mana Cake":
-                if item.sell_in < 0:
-                    quality_rate = 2
 
             item.sell_in -= sell_in_rate
             item.quality += (quality_sign*quality_rate)
