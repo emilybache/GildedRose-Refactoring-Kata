@@ -105,4 +105,20 @@ describe('Gilded Rose', function () {
         expect(items[0].sellIn).to.equal(-1);
         expect(items[0].quality).to.equal(0);
     });
+
+    it('should decrease by 2 before the sell date for "Conjured"', function() {
+        const gildedRose = new GildedRose([ new Item('Conjured', 10, 40) ]);
+        const items = gildedRose.updateQuality();
+        expect(items[0].name).to.equal('Conjured');
+        expect(items[0].sellIn).to.equal(9);
+        expect(items[0].quality).to.equal(38);
+    });
+
+    it('should decrease by 4 after the sell date for "Conjured"', function() {
+        const gildedRose = new GildedRose([ new Item('Conjured', 0, 40) ]);
+        const items = gildedRose.updateQuality();
+        expect(items[0].name).to.equal('Conjured');
+        expect(items[0].sellIn).to.equal(9);
+        expect(items[0].quality).to.equal(36);
+    });
 });
