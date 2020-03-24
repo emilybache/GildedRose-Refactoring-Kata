@@ -1,0 +1,22 @@
+{
+  "name": "gildedrose-refactoring-kata",
+  "version": "1.0.0",
+  "description": "This Kata was originally created by Terry Hughes (http://twitter.com/TerryHughes). It is already on GitHub [here](https://github.com/NotMyself/GildedRose). See also [Bobby Johnson's description of the kata](http://iamnotmyself.com/2011/02/13/refactor-this-the-gilded-rose-kata/).",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/honnnei/GildedRose-Refactoring-Kata.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/honnnei/GildedRose-Refactoring-Kata/issues"
+  },
+  "homepage": "https://github.com/honnnei/GildedRose-Refactoring-Kata#readme",
+  "devDependencies": {
+    "mocha": "^7.1.1"
+  }
+}
