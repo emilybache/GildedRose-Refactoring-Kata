@@ -29,7 +29,7 @@ if (count($argv) > 1) {
 
 for ($i = 0; $i < $days; $i++) {
     echo("-------- day $i --------\n");
-    echo("name, sellIn, quality\n");
+    echo("name\tsellIn\tquality\n");
     foreach ($items as $item) {
         echo $item . PHP_EOL;
     }
