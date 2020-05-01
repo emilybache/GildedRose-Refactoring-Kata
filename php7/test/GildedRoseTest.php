@@ -141,7 +141,7 @@ class GildedRoseTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals(5, $app->getItems()[0]->sell_in);
         $this->assertEquals(3, $app->getItems()[1]->sell_in);
-        $this->assertEquals(4, Conjured produc $app->getItems()[2]->sell_in);
+        $this->assertEquals(4, $app->getItems()[2]->sell_in);
     }
 
 }
