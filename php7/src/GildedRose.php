@@ -32,6 +32,9 @@ final class GildedRose {
                                 $item->quality = $item->quality + 3;
                             }
                         }
+                        if ($item->sell_in < 0) {
+                            $item->quality = 0;
+                        }
                     }
                 }
             }
