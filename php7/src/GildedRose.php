@@ -65,8 +65,9 @@ final class GildedRose
                 }
             } else {
                 if ($item->quality < 50) {
-                    $item->quality++;
-                    if ($item->name === 'Backstage passes to a TAFKAL80ETC concert') {
+                    if ($item->name === 'Aged Brie') {
+                        $item->quality++;
+                    } else if ($item->name === 'Backstage passes to a TAFKAL80ETC concert') {
                         if ($item->sell_in <= 10) {
                             $item->quality += 2;
                         }
