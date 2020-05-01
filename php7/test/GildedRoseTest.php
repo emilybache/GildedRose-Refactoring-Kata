@@ -245,4 +245,27 @@ class GildedRoseTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(0, $app->getItems()[2]->quality);
     }
 
+    /**
+     * Speeding up quality passes after sale date
+     *
+     * @return void
+     */
+    public function testAcceleratedQualityMeasures()
+    {
+        $items = [
+            new Item('Conjured Mana Cake', 6, 18),
+            new Item('Conjured Mana Cake', 6, 22),
+        ];
+
+        $interval = 3;
+        $app = new GildedRose($items);
+
+        for ($i = 0; $i < $interval; $i++) {
+            $app->updateQuality();
+        }
+
+        $this->assertEquals(12, $app->getItems()[0]->quality);
+        $this->assertEquals(16, $app->getItems()[1]->quality);
+    }
+
 }
