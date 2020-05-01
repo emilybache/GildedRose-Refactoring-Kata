@@ -173,4 +173,49 @@ class GildedRoseTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(9, $app->getItems()[2]->sell_in);
     }
 
+    /**
+     * Test stage prouct jumps to 0 quality after sale pass
+     *
+     * @return void
+     */
+    public function testQualityDipToZero()
+    {
+        $items = [
+            new Item('Backstage passes to a TAFKAL80ETC concert', 1, 14),
+        ];
+
+        $interval = 3;
+        $app = new GildedRose($items);
+
+        for ($i = 0; $i < $interval; $i++) {
+            $app->updateQuality();
+        }
+
+        $this->assertEquals(0, $app->getItems()[0]->quality);
+    }
+
+    /**
+     * Regular products max quality assessment value limit
+     *
+     * @return void
+     */
+    public function testQualityMaxLimitOnSimpleProduct()
+    {
+        $items = [
+            new Item('Backstage passes to a TAFKAL80ETC concert', 20, 49),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 20, 48),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 20, 50),
+        ];
+
+        $interval = 3;
+        $app = new GildedRose($items);
+
+        for ($i = 0; $i < $interval; $i++) {
+            $app->updateQuality();
+        }
+
+        $this->assertEquals(50, $app->getItems()[0]->quality);
+
+    }
+
 }

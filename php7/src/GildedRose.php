@@ -62,32 +62,32 @@ final class GildedRose
             if ($item->name === 'Sulfuras, Hand of Ragnaros') {
                 continue;
             }
-            
-            if ($item->name !== 'Aged Brie' && $item->name !== 'Backstage passes to a TAFKAL80ETC concert') {
-                if ($item->quality > 0) {
-                    if (strstr($item->name, 'Conjured', true) === '') {
-                        $item->quality -= 2;
-                    } else {
-                        $item->quality--;
+
+            if ($item->sell_in >= 0) {
+                if ($item->name !== 'Aged Brie' && $item->name !== 'Backstage passes to a TAFKAL80ETC concert') {
+                    if ($item->quality > 0) {
+                        if (strstr($item->name, 'Conjured', true) === '') {
+                            $item->quality -= 2;
+                        } else {
+                            $item->quality--;
+                        }
                     }
-                }
-            } else {
-                if ($item->quality < 50) {
-                    if ($item->name === 'Aged Brie') {
-                        $item->quality++;
-                    } else if ($item->name === 'Backstage passes to a TAFKAL80ETC concert') {
-                        if ($item->sell_in <= 10 && $item->sell_in > 5) {
-                            $item->quality += 2;
-                        } else if ($item->sell_in <= 5) {
-                            $item->quality += 3;
-                        } else if ($item->sell_in > 10) {
+                } else {
+                    if ($item->quality < 50) {
+                        if ($item->name === 'Aged Brie') {
                             $item->quality++;
+                        } else if ($item->name === 'Backstage passes to a TAFKAL80ETC concert') {
+                            if ($item->sell_in <= 10 && $item->sell_in > 5) {
+                                $item->quality += 2;
+                            } else if ($item->sell_in <= 5) {
+                                $item->quality += 3;
+                            } else if ($item->sell_in > 10) {
+                                $item->quality++;
+                            }
                         }
                     }
                 }
-            }
-
-            if ($item->sell_in < 0) {
+            } else {
                 if ($item->name !== 'Aged Brie') {
                     if ($item->name === 'Backstage passes to a TAFKAL80ETC concert') {
                         $item->quality = 0;
