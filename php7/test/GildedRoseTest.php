@@ -215,7 +215,34 @@ class GildedRoseTest extends \PHPUnit\Framework\TestCase
         }
 
         $this->assertEquals(50, $app->getItems()[0]->quality);
+        $this->assertEquals(50, $app->getItems()[1]->quality);
+        $this->assertEquals(50, $app->getItems()[2]->quality);
 
+    }
+
+    /**
+     * Test lower quality boundary of a product is prevalent
+     *
+     * @return void
+     */
+    public function testQualityLowerBoundaryOnRegularProduct()
+    {
+        $items = [
+            new Item('Elixir of the Mongoose', 5, 1),
+            new Item('Elixir of the Mongoose', 5, 2),
+            new Item('Elixir of the Mongoose', 5, 3),
+        ];
+
+        $interval = 3;
+        $app = new GildedRose($items);
+
+        for ($i = 0; $i < $interval; $i++) {
+            $app->updateQuality();
+        }
+
+        $this->assertEquals(0, $app->getItems()[0]->quality);
+        $this->assertEquals(0, $app->getItems()[1]->quality);
+        $this->assertEquals(0, $app->getItems()[2]->quality);
     }
 
 }
