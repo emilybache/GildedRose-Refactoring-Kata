@@ -42,6 +42,16 @@ final class GildedRose
     }
 
     /**
+     * Items getter
+     *
+     * @return array
+     */
+    public function getItems()
+    {
+        return $this->_items;
+    }
+
+    /**
      * Advance by a time frame of 1 day
      *
      * @return void
