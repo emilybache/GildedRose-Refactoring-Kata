@@ -144,4 +144,29 @@ class GildedRoseTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(4, $app->getItems()[2]->sell_in);
     }
 
+    /**
+     * Maturing products like Aged Brie
+     *
+     * @return void
+     */
+    public function testMaturingProducts()
+    {
+        $items = [
+            new Item('Aged Brie', 10, 14),
+            new Item('Aged Brie', 11, 16),
+            new Item('Aged Brie', 13, 21),
+        ];
+
+        $interval = 4;
+        $app = new GildedRose($items);
+
+        for ($i = 0; $i < $interval; $i++) {
+            $app->updateQuality();
+        }
+
+        $this->assertEquals(18, $app->getItems()[0]->quality);
+        $this->assertEquals(20, $app->getItems()[1]->quality);
+        $this->assertEquals(25, $app->getItems()[2]->quality);
+    }
+
 }
