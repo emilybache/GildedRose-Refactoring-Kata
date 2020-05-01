@@ -115,4 +115,33 @@ class GildedRoseTest extends \PHPUnit\Framework\TestCase
 
     }
 
+    /**
+     * Conjured products test
+     *
+     * @return void
+     */
+    public function testFeatureConjuredProducts()
+    {
+        $items = [
+            new Item('Conjured Mana Cake', 8, 18),
+            new Item('Conjured Mana Cake', 6, 16),
+            new Item('Conjured Mana Cake', 7, 20),
+        ];
+
+        $interval = 3;
+        $app = new GildedRose($items);
+
+        for ($i = 0; $i < $interval; $i++) {
+            $app->updateQuality();
+        }
+
+        $this->assertEquals(12, $app->getItems()[0]->quality);
+        $this->assertEquals(10, $app->getItems()[1]->quality);
+        $this->assertEquals(14, $app->getItems()[2]->quality);
+
+        // $this->assertEquals(5, $app->getItems()[0]->sell_in);
+        // $this->assertEquals(3, $app->getItems()[1]->sell_in);
+        // $this->assertEquals(4, $app->getItems()[2]->sell_in);
+    }
+
 }
