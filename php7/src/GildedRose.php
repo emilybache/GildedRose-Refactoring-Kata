@@ -32,9 +32,6 @@ final class GildedRose {
                                 $item->quality = $item->quality + 3;
                             }
                         }
-                        if ($item->sell_in < 0) {
-                            $item->quality = 0;
-                        }
                     }
                 }
             }
@@ -48,7 +45,7 @@ final class GildedRose {
                     if ($item->name != 'Backstage passes to a TAFKAL80ETC concert') {
                         if ($item->quality > 0) {
                             if ($item->name != 'Sulfuras, Hand of Ragnaros') {
-                                $item->quality = $item->quality - 1;
+                                $item->quality = $item->quality - 2;
                             }
                         }
                     } else {
