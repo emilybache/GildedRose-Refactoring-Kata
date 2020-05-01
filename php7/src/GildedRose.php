@@ -57,7 +57,7 @@ final class GildedRose
             
             if ($item->name !== 'Aged Brie' && $item->name !== 'Backstage passes to a TAFKAL80ETC concert') {
                 if ($item->quality > 0) {
-                    if (strstr($item->name, 'Conjured') === 0) {
+                    if (strstr($item->name, 'Conjured', true) === '') {
                         $item->quality -= 2;
                     } else {
                         $item->quality--;
