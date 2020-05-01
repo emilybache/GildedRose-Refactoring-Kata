@@ -167,6 +167,10 @@ class GildedRoseTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(18, $app->getItems()[0]->quality);
         $this->assertEquals(20, $app->getItems()[1]->quality);
         $this->assertEquals(25, $app->getItems()[2]->quality);
+
+        $this->assertEquals(6, $app->getItems()[0]->sell_in);
+        $this->assertEquals(7, $app->getItems()[1]->sell_in);
+        $this->assertEquals(9, $app->getItems()[2]->sell_in);
     }
 
 }
