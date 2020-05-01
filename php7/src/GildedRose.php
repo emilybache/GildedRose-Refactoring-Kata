@@ -49,37 +49,34 @@ final class GildedRose
     public function updateQuality()
     {
         foreach ($this->_items as $item) {
+            if ($item->name === 'Sulfuras, Hand of Ragnaros') {
+                continue;
+            }
             if ($item->name != 'Aged Brie' && $item->name != 'Backstage passes to a TAFKAL80ETC concert') {
                 if ($item->quality > 0) {
-                    if ($item->name != 'Sulfuras, Hand of Ragnaros') {
-                        $item->quality--;
-                    }
+                    $item->quality--;
                 }
             } else {
                 if ($item->quality < 50) {
-                    $item->quality = $item->quality++;
+                    $item->quality++;
                     if ($item->name == 'Backstage passes to a TAFKAL80ETC concert') {
-                        if ($item->sell_in < 11) {
+                        if ($item->sell_in <= 10) {
                             $item->quality += 2;
                         }
-                        if ($item->sell_in < 6) {
+                        if ($item->sell_in <= 5) {
                             $item->quality += 3;
                         }
                     }
                 }
             }
 
-            if ($item->name != 'Sulfuras, Hand of Ragnaros') {
-                $item->sell_in--;
-            }
+            $item->sell_in--;
 
             if ($item->sell_in < 0) {
                 if ($item->name != 'Aged Brie') {
                     if ($item->name != 'Backstage passes to a TAFKAL80ETC concert') {
                         if ($item->quality > 0) {
-                            if ($item->name != 'Sulfuras, Hand of Ragnaros') {
-                                $item->quality -= 2;
-                            }
+                            $item->quality -= 2;
                         }
                     } else {
                         $item->quality = 0;
