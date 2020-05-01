@@ -80,6 +80,34 @@ class GildedRoseTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(5, $app->getItems()[1]->sell_in);
         $this->assertEquals(1, $app->getItems()[2]->sell_in);
         
-    } 
+    }
+
+    /**
+     * Simple products quality and quantity test 
+     *
+     * @return void
+     */
+    public function testSimpleProducts()
+    {
+        $items = [
+            new Item('Elixir of the Mongoose', 16, 24),
+            new Item('Elixir of the Mongoose', 14, 32),
+            new Item('Elixir of the Mongoose', 12, 36),
+            new Item('Elixir of the Mongoose', 18, 25),
+        ];
+
+        $interval = 5;
+        $app = new GildedRose($items);
+
+        for ($i = 0; $i < $interval; $i++) {
+            $app->updateQuality();
+        }
+
+        $this->assertEquals(11, $app->getItems()[0]->sell_in);
+        $this->assertEquals(9, $app->getItems()[1]->sell_in);
+        $this->assertEquals(7, $app->getItems()[2]->sell_in);
+        $this->assertEquals(13, $app->getItems()[3]->sell_in);
+
+    }
 
 }
