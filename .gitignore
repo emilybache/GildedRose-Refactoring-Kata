@@ -4,3 +4,6 @@ obj
 .vs
 vendor
 .vscode
+
+# PHPUnit cache
+.phpunit.result.cache
