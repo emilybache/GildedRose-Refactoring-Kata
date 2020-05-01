@@ -52,4 +52,34 @@ class GildedRoseTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(80, $app->getItems()[1]->quality);
     }
 
+    /**
+     * Test geometricc progression increasing quality
+     *
+     * @return void
+     */
+    public function testGeometricQualityProgression()
+    {
+        $items = [ 
+            new Item('Backstage passes to a TAFKAL80ETC concert', 12, 15),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 7, 14),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 3, 18),
+        ];
+
+        $interval = 2;
+        $app = new GildedRose($items);
+
+        for ($i = 0;  $i < $interval; $i++) {
+            $app->updateQuality();
+        }
+
+        $this->assertEquals(17, $app->getItems()[0]->quality);
+        $this->assertEquals(18, $app->getItems()[1]->quality);
+        $this->assertEquals(24, $app->getItems()[2]->quality);
+
+        $this->assertEquals(10, $app->getItems()[0]->sell_in);
+        $this->assertEquals(5, $app->getItems()[1]->sell_in);
+        $this->assertEquals(1, $app->getItems()[2]->sell_in);
+        
+    } 
+
 }
