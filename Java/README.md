@@ -17,18 +17,22 @@
     </li>
     <li>All items have a Quality value which denotes how valuable the item is.</li>
     <li>At the end of each day our system lowers both values for every item.</li>
-</ul>
-
-<h3>New Requisites</h3>
-<ul>
     <li>Once the sell by date has passed, Quality degrades twice as fast</li>
     <li>The Quality of an item is never negative</li>
     <li>"Aged Brie" actually increases in Quality the older it gets</li>
     <li>The Quality of an item is never more than 50</li>
     <li>"Sulfuras", being a legendary item, never has to be sold or decreases in Quality</li>
-    <li>"Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;</li>
-    <li>Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but</li>
-    <li>Quality drops to 0 after the concert</li>
+    <li>
+    "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;
+        <ul>
+            <li>Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but</li>
+            <li>Quality drops to 0 after the concert</li>
+        </ul>
+    </li>
+</ul>
+
+<h3>New Requirement</h3>
+<ul>
     <li>Conjured" items degrade in Quality twice as fast as normal items</li>
 </ul>
 
@@ -42,7 +46,6 @@
 </ul>
 
 <h3>Original Output</h3>
-
 <div>OMGHAI!</div>
 <div>-------- day 0 --------</div>
 <table>
