@@ -3,14 +3,18 @@ full_name:Gilded Rose Refactoring Kata
 # location where you have your clone
 default_checkout:/home/ec2-user/workspace/GildedRose-Refactoring-Kata
 
+# Settings for the Python version
+executable:${TEXTTEST_CHECKOUT}/python/texttest_fixture.py
+interpreter:python
+
+# Settings for the cpp version
+#executable:${TEXTTEST_CHECKOUT}/cpp/cmake-build-debug/test/cpp_texttest/GildedRoseTextTests
+
 # Settings for the Java version
 #executable:com.gildedrose.TexttestFixture
 #interpreter:java
 # note you'll also need to update the file environment.gr with your classpath if you keep your classfiles somewhere unusual
 
-# Settings for the Python version
-executable:${TEXTTEST_CHECKOUT}/python/texttest_fixture.py
-interpreter:python
 
 # Settings for the C++ version
 #executable:${TEXTTEST_CHECKOUT}/cpp/GildedRoseTextTests
