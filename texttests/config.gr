@@ -1,38 +1,31 @@
 full_name:Gilded Rose Refactoring Kata 
 
-# location where you have your clone
-default_checkout:/home/ec2-user/workspace/GildedRose-Refactoring-Kata
+# set your preferred editor and diff tool.
+view_program:subl
+diff_program:meld
 
 # Settings for the Python version
-executable:${TEXTTEST_CHECKOUT}/python/texttest_fixture.py
-interpreter:python
+#executable:${TEXTTEST_HOME}/python/texttest_fixture.py
+#interpreter:python
 
 # Settings for the cpp version
-#executable:${TEXTTEST_CHECKOUT}/cpp/cmake-build-debug/test/cpp_texttest/GildedRoseTextTests
+#executable:${TEXTTEST_HOME}/cpp/cmake-build-debug/test/cpp_texttest/GildedRoseTextTests
 
 # Settings for the Java version
 #executable:com.gildedrose.TexttestFixture
 #interpreter:java
 # note you'll also need to update the file environment.gr with your classpath if you keep your classfiles somewhere unusual
 
-
-# Settings for the C++ version
-#executable:${TEXTTEST_CHECKOUT}/cpp/GildedRoseTextTests
-
 # Settings for the Ruby version
-#executable:${TEXTTEST_CHECKOUT}/ruby/texttest_fixture.rb
+#executable:${TEXTTEST_HOME}/ruby/texttest_fixture.rb
 #interpreter:ruby
 
 # Settings for the C# version
-#executable:${TEXTTEST_CHECKOUT}/GildedRose.exe
+#executable:${TEXTTEST_HOME}/GildedRose.exe
 
 # Settings for the Perl version
-#executable:${TEXTTEST_CHECKOUT}/perl/texttest_fixture.pl
+#executable:${TEXTTEST_HOME}/perl/texttest_fixture.pl
 #interpreter:perl
 
-# turn on one of these if you prefer them to notepad or emacs.
-[view_program]
-*:subl
-[end]
 
 filename_convention_scheme:standard
