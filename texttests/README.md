@@ -1,22 +1,53 @@
 # TextTest regression tests
 
-This folder contains Text-Based tests for the GildedRose Refactoring Kata.
+This folder contains Text-Based Approval tests for the GildedRose Refactoring Kata.
 
-These tests are designed to be used with the open source testing tool "TextTest", available from http://texttest.org You can run them without it too though, see below.
+These tests are designed to be used with the open source testing tool "TextTest", available from [http://texttest.org](http://texttest.org).
+
+## Step-by-step instructions
+
+These tests are quite good and it's worth trying them.
+
+### Install TextTest 
+
+There are install instructions on [texttests website](http://texttest.sourceforge.net/index.php?page=documentation_4_0&n=install_texttest). If you are happy to run without the Graphical User Interface, then you only need python3 and pip:
+
+	> pip install texttest
+
+### Configure language version
+
+Before you can run the tests you need to tell texttest which language version of GildedRose you plan to refactor. Open the file 'config.gr' and edit it. Several languages are supported. All lines starting with '#' are comments in this file. Find the lines referring to the language you want, and uncomment them. 
+
+Note: by default the 'python' version is selected. You'll need to comment those lines out if you have chosen a different langauge.
+
+While you're here, change the settings for editor and diff program to match your preferences. By default it uses 'subl' and 'meld'. It will accept any editors or diff programs that you can run from the command line.
+
+### running TextTest
+
+Start texttest from the folder above the one this file is in. Texttest detects the current working directory and uses that as the variable $TEXTTEST_HOME in the config.gr file.
+
+    # replace this path with wherever you cloned this repo
+    > cd /home/ec2-user/workspace/GildedRose-Refactoring-Kata 
+	> texttest &
+
+This should start the GUI for the TextTest tool. 
+
+From the GUI, select the test case "ThirtyDays" and press the "Run" button. This will open a new 'runner' window for each test run.
+
+If the texttest GUI doesn't work, or you prefer to use the command line, use this instead:
+
+	> texttest -con
+
+That will run all the test cases it finds and report the results.
+
 
 ## Running without TextTest
 
 This should be perfectly possible, but is probably less convenient than using TextTest. 
 
-Write a script that will execute the SUT (see "config.gr" for details of the executables), giving the commandline options listed in "options.gr". Collect the output from standard output in a file, and diff that against the golden copy "stdout.gr". Any diff is a test failure.
+Write a script that will execute the system under test (see "config.gr" for details of the executables), giving the commandline options listed in "options.gr". Collect the output from standard output in a file, and diff that against the golden copy "stdout.gr". Any diff is a test failure.
 
-## Running with TextTest
-
-- Install TextTest (see http://texttest.org)
-- set $TEXTTEST_HOME environment variable to point at the "texttests" folder
-- run texttest using a command like "python texttest.py -a gr"
-
-This should start the GUI for the TextTest tool.
+## TextTest test cases
 
 Each test case has it's own subdirectory. The name of the directory is the name of the test - in this case "ThirtyDays". The "Golden Copy" of the output for that test case is kept in that directory. In this case we have three files:
 
