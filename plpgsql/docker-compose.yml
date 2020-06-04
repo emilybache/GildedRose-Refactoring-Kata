@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  pgunit:
+    # image: fpellet/gildedrose-refactoring-kata:pgunit
+    build: 
+      context: .
+      target: pgunit
+    ports:
+    - "5432:5432"
+    volumes:
+    - .:/app/:z
+
+  pgtap:
+    # image: fpellet/gildedrose-refactoring-kata:pgtap
+    build: 
+      context: .
+      target: pgtap
+    ports:
+    - "5432:5432"
+    volumes:
+    - .:/app/:z
