@@ -17,5 +17,5 @@ TEST_CASE("UpdateQuality") {
     items.push_back(Item("foo", 0, 0));
     GildedRose app(items);
     app.updateQuality();
-    REQUIRE("foo" == app.items[0].name);
+    REQUIRE("fixme" == app.items[0].name);
 }
