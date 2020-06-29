@@ -11,6 +11,7 @@ public class GRItemUpdateQualityTest {
     private static final String AGED_BRIE = "Aged Brie";
     private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
     private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
+    private static final String CONJURED = "Conjured Mana Cake";
 
     @Test
     public void lowersTheSellInValue() {
@@ -107,6 +108,23 @@ public class GRItemUpdateQualityTest {
     @ValueSource(ints = {0, -1})
     public void qualityOfBackstagePassesIsZeroAfterConcert(int sellIn) {
         GRItem item = new GRItem(BACKSTAGE_PASSES, sellIn, 10);
+        item.updateQuality();
+
+        assertThat(item.getQuality()).isEqualTo(0);
+    }
+
+    @Test
+    public void conjuredItemDegradesTwiceAsFast() {
+        GRItem item = new GRItem(CONJURED, 10, 10);
+        item.updateQuality();
+
+        assertThat(item.getQuality()).isEqualTo(8);
+    }
+
+    @ParameterizedTest(name = "with quality {0}")
+    @ValueSource(ints = {0, 1, 2})
+    public void conjuredItemDegradesNotBelow0(int quality) {
+        GRItem item = new GRItem(CONJURED, 10, quality);
         item.updateQuality();
 
         assertThat(item.getQuality()).isEqualTo(0);
