@@ -1,4 +1,4 @@
-use super::{Item, GildedRose};
+use super::{GildedRose, Item};
 
 #[test]
 pub fn foo() {
