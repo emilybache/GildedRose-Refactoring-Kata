@@ -6,9 +6,9 @@ pub struct Item {
 }
 
 impl Item {
-    pub fn new(name: String, sell_in: i32, quality: i32) -> Item {
+    pub fn new(name: impl Into<String>, sell_in: i32, quality: i32) -> Item {
         Item {
-            name,
+            name: name.into(),
             sell_in,
             quality,
         }
@@ -90,7 +90,7 @@ mod tests {
 
     #[test]
     pub fn foo() {
-        let items = vec![Item::new(String::from("foo"), 0, 0)];
+        let items = vec![Item::new("foo", 0, 0)];
         let mut rose = GildedRose::new(items);
         rose.update_quality();
 
