@@ -34,7 +34,7 @@ fn main() {
         println!("-------- day {} --------", i);
         println!("name, sellIn, quality");
         for item in &rose.items {
-            println!("{}, {}, {}", item.name, item.sell_in, item.quality);
+            println!("{}", item);
         }
         println!();
         rose.update_quality();

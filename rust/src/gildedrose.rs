@@ -1,3 +1,4 @@
+use std::fmt::{self, Display};
 pub struct Item {
     pub name: String,
     pub sell_in: i32,
@@ -11,6 +12,12 @@ impl Item {
             sell_in,
             quality,
         }
+    }
+}
+
+impl Display for Item {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}, {}, {}", self.name, self.sell_in, self.quality)
     }
 }
 
