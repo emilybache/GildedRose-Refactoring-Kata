@@ -1,8 +1,5 @@
-use std::string;
-use std::vec;
-
 pub struct Item {
-    pub name: string::String,
+    pub name: String,
     pub sell_in: i32,
     pub quality: i32,
 }
@@ -18,11 +15,11 @@ impl Item {
 }
 
 pub struct GildedRose {
-    pub items: vec::Vec<Item>,
+    pub items: Vec<Item>,
 }
 
 impl GildedRose {
-    pub fn new(items: vec::Vec<Item>) -> GildedRose {
+    pub fn new(items: Vec<Item>) -> GildedRose {
         GildedRose { items: items }
     }
 
