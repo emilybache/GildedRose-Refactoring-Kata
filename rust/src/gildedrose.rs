@@ -7,9 +7,9 @@ pub struct Item {
 impl Item {
     pub fn new(name: String, sell_in: i32, quality: i32) -> Item {
         Item {
-            name: name,
-            sell_in: sell_in,
-            quality: quality,
+            name,
+            sell_in,
+            quality,
         }
     }
 }
@@ -20,7 +20,7 @@ pub struct GildedRose {
 
 impl GildedRose {
     pub fn new(items: Vec<Item>) -> GildedRose {
-        GildedRose { items: items }
+        GildedRose { items }
     }
 
     pub fn update_quality(&mut self) {
