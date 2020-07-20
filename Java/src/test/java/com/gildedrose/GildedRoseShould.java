@@ -32,7 +32,7 @@ class GildedRoseShould {
     }
 
     @Test
-    void decrease_sellIn_and_decrease_quality_when_item_name_is_AgedBrie_and_quality_is_40() {
+    void decrease_sellIn_and_increase_quality_when_item_name_is_AgedBrie_and_quality_is_40() {
         Item[] items = {new Item("Aged Brie", 10, 40)};
         GildedRose gildedRose = new GildedRose(items);
 
@@ -42,6 +42,15 @@ class GildedRoseShould {
         assertEquals(41, gildedRose.items[0].quality);
     }
 
+    @Test
+    void when_item_is_Backstage_and_sellIn_is_less_than_6_and_quality_is_less_than_48_then_should_increase_in_3_quality_and_decrease_sellIn_in_1() {
+        Item[] items = {new Item("Backstage passes to a TAFKAL80ETC concert", 5, 47)};
+        GildedRose gildedRose = new GildedRose(items);
 
+        gildedRose.updateQuality();
+
+        assertEquals(4, gildedRose.items[0].sellIn);
+        assertEquals(50, gildedRose.items[0].quality);
+    }
 
 }
