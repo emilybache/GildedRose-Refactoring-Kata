@@ -22,25 +22,29 @@ Whichever testing approach you choose, the idea of the exercise is to do some de
 
 ## Text-Based Approval Testing
 
-This is a testing approach which is very useful when refactoring legacy code. Before you change the code, you run it, and gather the output of the code as a plain text file. You review the text, and if it correctly describes the behaviour as you understand it, you can "approve" it, and save it as a "Golden Master". Then after you change the code, you run it again, and compare the new output against the Golden Master. Any differences, and the test fails.
-
-It's basically the same idea as "assertEquals(expected, actual)" in a unit test, except the text you are comparing is typically much longer, and the "expected" value is saved from actual output, rather than being defined in advance.
-
-Typically a piece of legacy code may not produce suitable textual output from the start, so you may need to modify it before you can write your first text-based approval test. That could involve inserting log statements into the code, or just writing a "main" method that executes the code and prints out what the result is afterwards. It's this latter approach we are using here to test GildedRose.
-
-The Text-Based tests in this repository are designed to be used with the tool "TextTest" (http://texttest.org). This tool helps you to organize and run text-based tests. There is more information in the README file in the "texttests" subdirectory.
+This code comes with comprehensive tests that use this approach. For information about how to run them, see the [texttests README](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/master/texttests)
 
 ## Get going quickly using Cyber-Dojo
 
-I've also set this kata up on [cyber-dojo](http://cyber-dojo.org) for several languages, so you can get going really quickly:
+I've also set this kata up on [cyber-dojo](https://cyber-dojo.org) for several languages, so you can get going really quickly:
 
-- [JUnit, Java](http://cyber-dojo.org/forker/fork/751DD02C4C?avatar=snake&tag=8)
-- [C#](http://cyber-dojo.org/forker/fork/5C5AC766B0?avatar=koala&tag=3)
-- [C++](http://cyber-dojo.org/forker/fork/AA86ECBCC9?avatar=rhino&tag=7)
-- [Ruby](http://cyber-dojo.org/forker/fork/A8943EAF92?avatar=hippo&tag=9)
-- [RSpec, Ruby](http://cyber-dojo.org/forker/fork/8E58B0AD16?avatar=raccoon&tag=3)
-- [Python](http://cyber-dojo.org/forker/fork/297041AA7A?avatar=lion&tag=4)
-- [Cucumber, Java](http://cyber-dojo.org/forker/fork/0F82D4BA89?avatar=gorilla&tag=48) - for this one I've also written some step definitions for you
+To create an *individual* exercise:
+- [C#, NUnit](https://cyber-dojo.org/forker/fork_individual/Fz4xFX?index=3)
+- [C++ (g++), GoogleTest](https://cyber-dojo.org/forker/fork_individual/qPPrZy?index=7)
+- [Java, Cucumber](https://cyber-dojo.org/forker/fork_individual/SvUf30?index=2) - for this one I've also written some step definitions for you
+- [Java, JUnit](https://cyber-dojo.org/forker/fork_individual/aJJEN4?index=2)
+- [Python, unittest](https://cyber-dojo.org/forker/fork_individual/NFgFys?index=2)
+- [Ruby, RSpec](https://cyber-dojo.org/forker/fork_individual/D3xbUV?index=3)
+- [Ruby, testunit](https://cyber-dojo.org/forker/fork_individual/zlElgj?index=9)
+
+To create a *group* exercise:
+- [C#, NUnit](https://cyber-dojo.org/forker/fork_group/Fz4xFX?index=3)
+- [C++ (g++), GoogleTest](https://cyber-dojo.org/forker/fork_group/qPPrZy?index=7)
+- [Java, Cucumber](https://cyber-dojo.org/forker/fork_group/SvUf30?index=2) - for this one I've also written some step definitions for you
+- [Java, JUnit](https://cyber-dojo.org/forker/fork_group/aJJEN4?index=2)
+- [Python, unittest](https://cyber-dojo.org/forker/fork_group/NFgFys?index=2)
+- [Ruby, RSpec](https://cyber-dojo.org/forker/fork_group/D3xbUV?index=3)
+- [Ruby, testunit](https://cyber-dojo.org/forker/fork_group/zlElgj?index=9)
 
 ## Better Code Hub
 
