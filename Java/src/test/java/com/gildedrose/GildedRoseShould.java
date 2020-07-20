@@ -10,7 +10,7 @@ class GildedRoseShould {
 
 
     @Test
-    void decrease_sellIn_and_maintains_quality_when_item_name_is_not_Sulfuras_and_quality_is_0() {
+    void when_item_name_is_not_AgedBrie_and_not_Backstage_and_not_Sulfuras_and_quality_is_0_then_should_decrease_sellIn_and_maintains_quality() {
         Item[] items = {new Item("NOT Sulfuras, Hand of Ragnaros", 10, 0)};
         GildedRose gildedRose = new GildedRose(items);
 
@@ -21,7 +21,7 @@ class GildedRoseShould {
     }
 
     @Test
-    void decrease_sellIn_and_decrease_quality_when_item_name_is_not_Sulfuras_and_positive_quality() {
+    void when_item_name_is_not_AgedBrie_and_not_Backstage_and_not_Sulfuras_and_quality_is_greather_than_0_then_should_decrease_quality_and_sellIn_in_1() {
         Item[] items = {new Item("NOT Sulfuras, Hand of Ragnaros", 10, 10)};
         GildedRose gildedRose = new GildedRose(items);
 
@@ -32,7 +32,7 @@ class GildedRoseShould {
     }
 
     @Test
-    void decrease_sellIn_and_increase_quality_when_item_name_is_AgedBrie_and_quality_is_40() {
+    void when_item_name_is_AgedBrie_and_quality_is_less_than_50_then_should_decrease_sellIn_and_increase_quality_in_1() {
         Item[] items = {new Item("Aged Brie", 10, 40)};
         GildedRose gildedRose = new GildedRose(items);
 
