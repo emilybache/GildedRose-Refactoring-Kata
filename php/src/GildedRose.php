@@ -1,14 +1,23 @@
 <?php
 
-class GildedRose {
+declare(strict_types=1);
 
+namespace GildedRose;
+
+final class GildedRose
+{
+    /**
+     * @var Item[]
+     */
     private $items;
 
-    function __construct($items) {
+    public function __construct(array $items)
+    {
         $this->items = $items;
     }
 
-    function update_quality() {
+    public function updateQuality(): void
+    {
         foreach ($this->items as $item) {
             if ($item->name != 'Aged Brie' and $item->name != 'Backstage passes to a TAFKAL80ETC concert') {
                 if ($item->quality > 0) {
@@ -33,11 +42,11 @@ class GildedRose {
                     }
                 }
             }
-            
+
             if ($item->name != 'Sulfuras, Hand of Ragnaros') {
                 $item->sell_in = $item->sell_in - 1;
             }
-            
+
             if ($item->sell_in < 0) {
                 if ($item->name != 'Aged Brie') {
                     if ($item->name != 'Backstage passes to a TAFKAL80ETC concert') {
@@ -58,22 +67,3 @@ class GildedRose {
         }
     }
 }
-
-class Item {
-
-    public $name;
-    public $sell_in;
-    public $quality;
-
-    function __construct($name, $sell_in, $quality) {
-        $this->name = $name;
-        $this->sell_in = $sell_in;
-        $this->quality = $quality;
-    }
-
-    public function __toString() {
-        return "{$this->name}, {$this->sell_in}, {$this->quality}";
-    }
-
-}
-
