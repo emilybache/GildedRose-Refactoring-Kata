@@ -15,12 +15,12 @@ class GildedRose {
         return;
       } else if (item.name.equals("Aged Brie")) {
 
-        plusOneQuilaty_if_less_than_fifth(item);
+        increaseQuality(item);
 
         item.sellIn = item.sellIn - 1;
 
         if (item.sellIn < 0) {
-          plusOneQuilaty_if_less_than_fifth(item);
+          increaseQuality(item);
         }
 
       } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
@@ -29,11 +29,11 @@ class GildedRose {
           item.quality = item.quality + 1;
 
           if (item.sellIn < 11) {
-            plusOneQuilaty_if_less_than_fifth(item);
+            increaseQuality(item);
           }
 
           if (item.sellIn < 6) {
-            plusOneQuilaty_if_less_than_fifth(item);
+            increaseQuality(item);
           }
         }
 
@@ -44,23 +44,23 @@ class GildedRose {
         }
       } else {
 
-        caculateQuilaty_without_Sulfuras(item);
+        decreaseQuality(item);
         item.sellIn = item.sellIn - 1;
         if (item.sellIn < 0) {
-          caculateQuilaty_without_Sulfuras(item);
+          decreaseQuality(item);
         }
       }
     }
 
   }
 
-  private void plusOneQuilaty_if_less_than_fifth(Item item) {
+  private void increaseQuality(Item item) {
     if (item.quality < 50) {
       item.quality = item.quality + 1;
     }
   }
 
-  private void caculateQuilaty_without_Sulfuras(Item item) {
+  private void decreaseQuality(Item item) {
     if (item.quality > 0) {
       item.quality = item.quality - 1;
     }
