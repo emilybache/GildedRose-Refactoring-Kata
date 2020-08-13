@@ -9,57 +9,58 @@ class GildedRose {
 
   public void updateQuality() {
 
-    for (int i = 0; i < items.length; i++) {
-      if (items[i].name.equals("Aged Brie")) {
-        extracted(i);
-      } else if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-        if (items[i].quality < 50) {
-          items[i].quality = items[i].quality + 1;
+    for (Item item : items) {
+      if (item.name.equals("Aged Brie")) {
+        plusOneQuilaty_if_less_than_fifth(item);
+      } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+        if (item.quality < 50) {
+          item.quality = item.quality + 1;
 
-          if (items[i].sellIn < 11) {
-            extracted(i);
+          if (item.sellIn < 11) {
+            plusOneQuilaty_if_less_than_fifth(item);
           }
 
-          if (items[i].sellIn < 6) {
-            extracted(i);
+          if (item.sellIn < 6) {
+            plusOneQuilaty_if_less_than_fifth(item);
           }
         }
       } else {
-        caculateQuilaty_without_Sulfuras(i);
+        caculateQuilaty_without_Sulfuras(item);
       }
 
-      if (items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
+      if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
 
       } else {
-        items[i].sellIn = items[i].sellIn - 1;
+        item.sellIn = item.sellIn - 1;
       }
 
-      if (items[i].sellIn < 0) {
-        if (items[i].name.equals("Aged Brie")) {
-          extracted(i);
+      if (item.sellIn < 0) {
+        if (item.name.equals("Aged Brie")) {
+          plusOneQuilaty_if_less_than_fifth(item);
         } else {
-          if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            items[i].quality = items[i].quality - items[i].quality;
+          if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+            item.quality = item.quality - item.quality;
           } else {
-            caculateQuilaty_without_Sulfuras(i);
+            caculateQuilaty_without_Sulfuras(item);
           }
         }
       }
     }
+
   }
 
-  private void extracted(int i) {
-    if (items[i].quality < 50) {
-      items[i].quality = items[i].quality + 1;
+  private void plusOneQuilaty_if_less_than_fifth(Item item) {
+    if (item.quality < 50) {
+      item.quality = item.quality + 1;
     }
   }
 
-  private void caculateQuilaty_without_Sulfuras(int i) {
-    if (items[i].quality > 0) {
-      if (items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
+  private void caculateQuilaty_without_Sulfuras(Item item) {
+    if (item.quality > 0) {
+      if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
 
       } else {
-        items[i].quality = items[i].quality - 1;
+        item.quality = item.quality - 1;
       }
     }
   }
