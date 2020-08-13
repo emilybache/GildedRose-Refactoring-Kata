@@ -28,13 +28,7 @@ class GildedRose {
           }
         }
       } else {
-        if (items[i].quality > 0) {
-          if (items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-
-          } else {
-            items[i].quality = items[i].quality - 1;
-          }
-        }
+        caculateQuilaty_without_Sulfuras(i);
       }
 
       if (items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
@@ -52,15 +46,19 @@ class GildedRose {
           if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             items[i].quality = items[i].quality - items[i].quality;
           } else {
-            if (items[i].quality > 0) {
-              if (items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-
-              } else {
-                items[i].quality = items[i].quality - 1;
-              }
-            }
+            caculateQuilaty_without_Sulfuras(i);
           }
         }
+      }
+    }
+  }
+
+  private void caculateQuilaty_without_Sulfuras(int i) {
+    if (items[i].quality > 0) {
+      if (items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
+
+      } else {
+        items[i].quality = items[i].quality - 1;
       }
     }
   }
