@@ -7,7 +7,7 @@ public class GildedRose {
     
     public func updateQuality() {
         let customFactoryObj = CustomisedItemFactory()
-       _ = items.map({customFactoryObj.getCustomisedItem(item: $0).updateCustomItemQuality()})
+       _ = items.map({customFactoryObj.getCustomisedItem(item: $0).updateItemState()})
      
     }
 }

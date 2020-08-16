@@ -7,20 +7,19 @@
 
 import Foundation
 
-struct AgedBrieItem: CustomisedItemProtocol, ItemSellInDaysProtocol, ItemQualityProtocol {
+struct AgedBrieItem: CustomisedItemProtocol, ItemSellInUpdater, ItemQualityUpdater {
     var item: Item
    
     public init(item: Item) {
         self.item = item
     }
     
-    func updateCustomItemQuality() {
+    func updateItemState() {
         // update the sell in days
-        
-        reduceSellInDaysByOne(item: item)
+        reduceSellInDays(for: item, by: 1)
         
         // Increment the Item quality by 1 if the quality is less than 50
-        guard isItemUnderHighestQuality(item: item) else {return}
+        guard isItemUnderHighestQuality(item: item) else { return }
         increaseQuality(for: item, by: 1)
     }
 

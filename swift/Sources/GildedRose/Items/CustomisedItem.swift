@@ -8,17 +8,17 @@
 import Foundation
 
 protocol CustomisedItemProtocol {
-    func updateCustomItemQuality()
+    func updateItemState()
 }
 
 
-protocol ItemSellInDaysProtocol {
-    func reduceSellInDaysByOne(item: Item)
+protocol ItemSellInUpdater {
+    func reduceSellInDays(for item: Item, by days: Int)
 }
 
-extension ItemSellInDaysProtocol {
-    func reduceSellInDaysByOne(item: Item) {
-        item.sellIn -= 1
+extension ItemSellInUpdater {
+    func reduceSellInDays(for item: Item, by days: Int) {
+        item.sellIn -= days
     }
     
     func HasSellInDatePassed(item: Item) -> Bool {
@@ -26,11 +26,11 @@ extension ItemSellInDaysProtocol {
     }
 }
 
-protocol ItemQualityProtocol {
+protocol ItemQualityUpdater {
     
 }
 
-extension ItemQualityProtocol {
+extension ItemQualityUpdater {
     func isItemUnderHighestQuality(item: Item) -> Bool {
         return item.quality < ValueConstants.kHightestQualityValue
     }

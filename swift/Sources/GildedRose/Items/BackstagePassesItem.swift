@@ -7,16 +7,16 @@
 
 import Foundation
 
-struct BackstagePassesItem: CustomisedItemProtocol, ItemQualityProtocol, ItemSellInDaysProtocol {
+struct BackstagePassesItem: CustomisedItemProtocol, ItemQualityUpdater, ItemSellInUpdater {
     var item: Item
     
     public init(item: Item) {
         self.item = item
     }
     
-    func updateCustomItemQuality() {
-        reduceSellInDaysByOne(item: item)
-        
+    func updateItemState() {
+        reduceSellInDays(for: item, by: 1)
+
         guard !HasSellInDatePassed(item: item) else {
             setItemQualityToZero(item: item)
             return

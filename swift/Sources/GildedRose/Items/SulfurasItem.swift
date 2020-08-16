@@ -13,7 +13,7 @@ struct SulfurasItem: CustomisedItemProtocol {
     public init(item: Item) {
         self.item = item
     }
-    func updateCustomItemQuality() {
+    func updateItemState() {
         // No code as there is no change in quality or sell in days of sulfuras item
     }
 }
