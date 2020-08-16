@@ -13,28 +13,28 @@ struct BackstagePassesItem: CustomisedItemProtocol, ItemQualityProtocol, ItemSel
     public init(item: Item) {
         self.item = item
     }
+    
     func updateCustomItemQuality() {
         reduceSellInDaysByOne(item: item)
         
-        if isSellInDaysMoreThanOrEqualTo(days: 10) {
+        guard !HasSellInDatePassed(item: item) else {
+            setItemQualityToZero(item: item)
+            return
+        }
+        guard isItemUnderHighestQuality(item: item) else {
+            setItemQualityToFifty(item: item)
+            return
+        }
+        switch item.sellIn {
+        case 10...:
             increaseQuality(for: item, by: 1)
-        }
-        else if isSellInDaysMoreThanOrEqualTo(days: 5) {
+        case 5..<10:
             increaseQuality(for: item, by: 2)
-        }
-        else if isSellInDaysMoreThanOrEqualTo(days: 0) {
+        case 0..<5:
             increaseQuality(for: item, by: 3)
-        }
-        if HasSellInDatePassed(item: item) {
-            item.quality = ValueConstants.kLowestQualityValue
-        }
-        if !isItemUnderHighestQuality(item: item) {
-            item.quality = ValueConstants.kHightestQualityValue
+        default:
+            break
         }
     }
-    
-    private func isSellInDaysMoreThanOrEqualTo(days: Int) -> Bool {
-           return item.sellIn >= days
-       }
        
 }

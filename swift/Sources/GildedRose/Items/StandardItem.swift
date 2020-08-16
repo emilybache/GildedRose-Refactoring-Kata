@@ -8,7 +8,6 @@
 import Foundation
 
 struct StandardItem: CustomisedItemProtocol, ItemQualityProtocol, ItemSellInDaysProtocol {
-    
     var item: Item
     
     public init(item: Item) {

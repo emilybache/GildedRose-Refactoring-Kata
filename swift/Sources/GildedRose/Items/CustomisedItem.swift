@@ -45,4 +45,12 @@ extension ItemQualityProtocol {
     func isItemOverLowestQuality(item: Item) -> Bool {
         return item.quality > ValueConstants.kLowestQualityValue
     }
+    
+    func setItemQualityToZero(item: Item) {
+        item.quality = ValueConstants.kLowestQualityValue
+    }
+    
+    func setItemQualityToFifty(item: Item) {
+        item.quality = ValueConstants.kHightestQualityValue
+    }
 }
