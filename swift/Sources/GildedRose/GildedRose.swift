@@ -6,6 +6,38 @@ public class GildedRose {
     }
     
     public func updateQuality() {
+        for item in items {
+            switch item.name {
+            case ItemNameConstants.kBackstagePassesItem:
+                item.sellIn = item.sellIn - 1
+                if item.sellIn < 0 {
+                    item.quality = 0
+                }
+                else {
+                    item.quality = item.quality < 50 ? item.quality + 1 : 50
+                    if item.sellIn < 10 {
+                        item.quality = item.quality < 50 ? item.quality + 1 : 50
+                    }
+                    if item.sellIn < 5 {
+                        item.quality = item.quality < 50 ? item.quality + 1 : 50
+                    }
+                }
+            case ItemNameConstants.kAgedBrieItem:
+                item.sellIn = item.sellIn - 1
+                item.quality = item.quality < 50 ? (item.quality + 1) : 50
+            case ItemNameConstants.kSulfurasItem:
+                break
+            default:
+                item.sellIn = item.sellIn - 1
+                item.quality = item.quality > 0 ? (item.quality - 1) : 0
+                if(item.sellIn < 0) {
+                    item.quality = item.quality > 0 ? (item.quality - 1) : 0
+                }
+            }
+        }
+    }
+    
+   /* public func updateQuality() {
         for i in 0..<items.count {
             if (items[i].name != "Aged Brie" && items[i].name != "Backstage passes to a TAFKAL80ETC concert") {
                 if (items[i].quality > 0) {
@@ -55,5 +87,5 @@ public class GildedRose {
                 }
             }
         }
-    }
+    } */
 }
