@@ -14,6 +14,6 @@ struct SulfurasItem: CustomisedItemProtocol {
         self.item = item
     }
     func updateCustomItemQuality() {
-        
+        // No code as there is no change in quality or sell in days of sulfuras item
     }
 }

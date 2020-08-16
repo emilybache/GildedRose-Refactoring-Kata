@@ -7,6 +7,14 @@ public class GildedRose {
     
     public func updateQuality() {
         for item in items {
+            let customFactoryObj = CustomisedItemFactory()
+            let customItem = customFactoryObj.getCustomisedItem(item: item)
+            customItem.updateCustomItemQuality()
+        }
+    }
+    
+   /* public func updateQuality() {
+        for item in items {
             switch item.name {
             case ItemNameConstants.kBackstagePassesItem:
                 item.sellIn = item.sellIn - 1
@@ -37,7 +45,7 @@ public class GildedRose {
         }
     }
     
-   /* public func updateQuality() {
+    public func updateQuality() {
         for i in 0..<items.count {
             if (items[i].name != "Aged Brie" && items[i].name != "Backstage passes to a TAFKAL80ETC concert") {
                 if (items[i].quality > 0) {
