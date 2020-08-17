@@ -7,8 +7,7 @@
 
 import Foundation
 
-protocol ItemSellInUpdater {
-    var item: Item { get set }
+protocol ItemSellInUpdater: CustomisedItem{
     func reduceSellInDays(by days: Int)
 }
 

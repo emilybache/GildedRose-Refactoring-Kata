@@ -7,8 +7,7 @@
 
 import Foundation
 
-protocol ItemQualityUpdater {
-    var item: Item {get set}
+protocol ItemQualityUpdater: CustomisedItem {
 }
 
 extension ItemQualityUpdater {
@@ -32,3 +31,6 @@ extension ItemQualityUpdater {
         item.quality = value
     }
 }
+
+typealias ItemStateUpdater = ItemSellInUpdater & ItemQualityUpdater
+

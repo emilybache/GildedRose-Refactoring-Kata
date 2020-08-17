@@ -8,10 +8,12 @@
 import Foundation
 
 protocol CustomisedItem {
+    var item: Item {get set}
     func updateItemState()
 }
 
 class CustomisedItemFactory {
+    // Returns the Customised Item based on the Item name
      func getCustomisedItem(item: Item) -> CustomisedItem {
         switch item.name {
         case ItemNameConstants.kAgedBrieItem:

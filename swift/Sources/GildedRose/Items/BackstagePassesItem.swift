@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BackstagePassesItem: CustomisedItem, ItemQualityUpdater, ItemSellInUpdater {
+struct BackstagePassesItem: ItemStateUpdater {
     var item: Item
     
     public init(item: Item) {
@@ -15,23 +15,26 @@ struct BackstagePassesItem: CustomisedItem, ItemQualityUpdater, ItemSellInUpdate
     }
     
     func updateItemState() {
+        // Reduce the Sell in days by 1
         reduceSellInDays(by: 1)
         
+        // If the sell in date id passed, sets the quality of item to 0
         guard !isSellInDatePassed else {
             setItemQuality(to: ValueConstants.kLowestQualityValue)
             return
         }
+        // If the Quality of item is above 50, return
         guard isItemUnderHighestQuality else {
             setItemQuality(to: ValueConstants.kHightestQualityValue)
             return
         }
         switch item.sellIn {
         case 10...:
-            increaseItemQuality(by: 1)
+            increaseItemQuality(by: 1) // If the sell in days is more than 10, increase quality by 1
         case 5..<10:
-            increaseItemQuality(by: 2)
+            increaseItemQuality(by: 2) // If sell in days is between 5 and 10, increase quality by 2
         case 0..<5:
-            increaseItemQuality(by: 3)
+            increaseItemQuality(by: 3) // If sell in days is between 0 and 5, increase quality by 3
         default:
             break
         }

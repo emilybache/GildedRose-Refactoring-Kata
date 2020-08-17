@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct StandardItem: CustomisedItem, ItemQualityUpdater, ItemSellInUpdater {
+struct StandardItem: ItemStateUpdater {
     var item: Item
     
     public init(item: Item) {
@@ -18,9 +18,11 @@ struct StandardItem: CustomisedItem, ItemQualityUpdater, ItemSellInUpdater {
         // Reduce the sellIn days for Item by 1
         reduceSellInDays(by: 1)
 
-        // Reduce the item quality by 1 , if the sell in date is passed decrement by 2
+        // Reduce the item quality by 1 , if the sell in date is passed decrement by double the value
         isSellInDatePassed ? reduceItemQuality(by: decreasingValueForZeroOrLessDaysToSell()) : reduceItemQuality(by: decreasingValueOverZeroDaysToSell())
+        
         guard isItemMoreThanLowestQuality else {
+            // Sets the quality to zero if the quality is negative
             setItemQuality(to: ValueConstants.kLowestQualityValue)
             return
         }
