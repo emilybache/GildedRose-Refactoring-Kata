@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SulfurasItem: CustomisedItemProtocol {
+struct SulfurasItem: CustomisedItem {
     var item: Item
     
     public init(item: Item) {
