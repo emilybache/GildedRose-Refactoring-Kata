@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BackstagePassesItem: ItemStateUpdater {
+struct BackstagePassesItem: CustomisedItem, ItemStateUpdater {
     var item: Item
     
     private var isItemUnderHighestQuality: Bool {

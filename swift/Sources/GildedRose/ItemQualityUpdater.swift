@@ -8,6 +8,9 @@
 import Foundation
 
 protocol ItemQualityUpdater: CustomisedItem {
+    func reduceItemQuality(by value:Int)
+    func increaseItemQuality(by value:Int)
+    func setItemQuality(to value: Int)
 }
 
 extension ItemQualityUpdater {

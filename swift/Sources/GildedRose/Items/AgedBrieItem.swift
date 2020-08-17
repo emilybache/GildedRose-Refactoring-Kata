@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AgedBrieItem: ItemStateUpdater{
+struct AgedBrieItem: CustomisedItem, ItemStateUpdater{
     var item: Item
     
     private var isItemUnderHighestQuality: Bool {
@@ -20,7 +20,7 @@ struct AgedBrieItem: ItemStateUpdater{
     
     func updateItemState() {
         // update the sell in days. Reduce the Sell In days by 1
-        reduceSellInDays(by: 1)
+        self.reduceSellInDays(by: 1)
         
         // Increment the Item quality by 1 if the quality is less than 50
         guard isItemUnderHighestQuality else { return }

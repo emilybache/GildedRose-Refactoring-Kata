@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct StandardItem: ItemStateUpdater {
+struct StandardItem: CustomisedItem, ItemStateUpdater {
     var item: Item
     
     private var isSellInDatePassed: Bool{
