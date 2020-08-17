@@ -10,6 +10,14 @@ import Foundation
 struct BackstagePassesItem: ItemStateUpdater {
     var item: Item
     
+    private var isItemUnderHighestQuality: Bool {
+        return item.quality < ValueConstants.kHightestQualityValue
+    }
+    
+    private var isSellInDatePassed: Bool{
+        return item.sellIn < 0
+    }
+    
     public init(item: Item) {
         self.item = item
     }

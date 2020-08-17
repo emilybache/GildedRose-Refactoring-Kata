@@ -12,9 +12,6 @@ protocol ItemSellInUpdater: CustomisedItem{
 }
 
 extension ItemSellInUpdater {
-    var isSellInDatePassed: Bool{
-        return item.sellIn < 0
-    }
     func reduceSellInDays(by days: Int) {
         item.sellIn -= days
     }

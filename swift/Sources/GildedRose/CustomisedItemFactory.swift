@@ -7,15 +7,9 @@
 
 import Foundation
 
-protocol CustomisedItem {
-    var item: Item {get set}
-    func updateItemState()
-}
-
 protocol CustomisedItemFactoryCreator {
     static func getCustomisedItem(item: Item) -> CustomisedItem
 }
-
 
 struct CustomisedItemFactory: CustomisedItemFactoryCreator {
     // Returns the Customised Item based on the Item name

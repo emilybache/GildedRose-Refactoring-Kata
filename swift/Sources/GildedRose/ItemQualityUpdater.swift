@@ -11,14 +11,7 @@ protocol ItemQualityUpdater: CustomisedItem {
 }
 
 extension ItemQualityUpdater {
-    var isItemUnderHighestQuality: Bool {
-        return item.quality < ValueConstants.kHightestQualityValue
-    }
-    
-    var isItemMoreThanLowestQuality: Bool {
-        return item.quality > ValueConstants.kLowestQualityValue
-    }
-    
+   
     func reduceItemQuality(by value:Int) {
         item.quality -= value
     }
@@ -33,4 +26,3 @@ extension ItemQualityUpdater {
 }
 
 typealias ItemStateUpdater = ItemSellInUpdater & ItemQualityUpdater
-

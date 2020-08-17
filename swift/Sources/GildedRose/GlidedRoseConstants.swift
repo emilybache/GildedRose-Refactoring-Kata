@@ -17,4 +17,3 @@ struct ValueConstants {
     static let kHightestQualityValue = 50
     static let kLowestQualityValue = 0
 }
-

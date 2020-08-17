@@ -9,7 +9,11 @@ import Foundation
 
 struct AgedBrieItem: ItemStateUpdater{
     var item: Item
-        
+    
+    private var isItemUnderHighestQuality: Bool {
+        return item.quality < ValueConstants.kHightestQualityValue
+    }
+    
     public init(item: Item) {
         self.item = item
     }
@@ -22,7 +26,4 @@ struct AgedBrieItem: ItemStateUpdater{
         guard isItemUnderHighestQuality else { return }
         increaseItemQuality(by: 1)
     }
-    
-    
-    
 }
