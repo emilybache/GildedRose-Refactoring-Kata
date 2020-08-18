@@ -8,11 +8,17 @@
 import Foundation
 
 protocol ItemSellInUpdater: CustomisedItem{
-    func reduceSellInDays(by days: Int)
+    var decreasingNumberOfSellInDays: Int { get }
+    func updateSellInDays()
 }
 
 extension ItemSellInUpdater {
-    func reduceSellInDays(by days: Int) {
-        item.sellIn -= days
+    var decreasingNumberOfSellInDays: Int {
+           return 1
+    }
+    
+    // Reduces the sell in days by 1
+    func updateSellInDays() {
+        item.sellIn -= decreasingNumberOfSellInDays
     }
 }

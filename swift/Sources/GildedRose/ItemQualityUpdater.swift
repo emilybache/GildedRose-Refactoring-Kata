@@ -14,15 +14,17 @@ protocol ItemQualityUpdater: CustomisedItem {
 }
 
 extension ItemQualityUpdater {
-   
+   // Reduces the item Quality by the value passed as parameter
     func reduceItemQuality(by value:Int) {
         item.quality -= value
     }
     
+    // Increases Item Quality by the value passed as parameter
     func increaseItemQuality(by value:Int) {
         item.quality += value
     }
     
+    // Sets the Item Quality to the value passed as parameter
     func setItemQuality(to value: Int){
         item.quality = value
     }

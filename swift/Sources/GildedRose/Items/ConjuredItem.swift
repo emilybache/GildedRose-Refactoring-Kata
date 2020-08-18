@@ -8,8 +8,8 @@
 import Foundation
 
 class ConjuredItem: StandardItem{
-    
-    override var decreasingValueOverZeroDaysToSell: Int {
+   // Overrides decreasingQualityValueBeforeSellInDate property of Standard item as the Conjured Item degrades twice fast than Standard Iten
+    override var decreasingQualityValueBeforeSellInDate: Int {
         return 2
     }
     override init(item: Item) {

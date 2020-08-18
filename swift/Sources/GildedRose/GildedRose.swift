@@ -6,6 +6,7 @@ public class GildedRose {
     }
     
     public func updateQuality() {
-       _ = items.map({CustomisedItemFactory.getCustomisedItem(item: $0).updateItemState()})
+        let itemFactoryManager = CustomItemFactoryManager(customItemFactory: CustomisedItemFactoryWithNewItems())
+       _ = items.map({ itemFactoryManager.getCustomisedItem(item: $0).updateItemState()})
     }
 }

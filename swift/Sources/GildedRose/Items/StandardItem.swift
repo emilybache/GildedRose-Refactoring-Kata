@@ -11,14 +11,14 @@ class StandardItem: CustomisedItem, ItemStateUpdater {
     var item: Item
     
     private var isSellInDatePassed: Bool{
-        return item.sellIn < 0
+        return item.sellIn < 0 
     }
     
-    var decreasingValueOverZeroDaysToSell: Int {
-        return 1
+    var decreasingQualityValueBeforeSellInDate: Int {
+        return 1 // Quality degrades by 1 if the sellIn date is not passed
     }
-    private var decreasingValueForZeroOrLessDaysToSell: Int {
-        return 2 * decreasingValueOverZeroDaysToSell
+    private var decreasingQualityValueAfterSellInDate: Int {
+        return 2 * decreasingQualityValueBeforeSellInDate // Quality degrades twice after SellIn date is passed
     }
     
     private  var isItemMoreThanLowestQuality: Bool {
@@ -31,10 +31,10 @@ class StandardItem: CustomisedItem, ItemStateUpdater {
     
     func updateItemState() {
         // Reduce the sellIn days for Item by 1
-        reduceSellInDays(by: 1)
+        updateSellInDays()
         
         // Reduce the item quality by 1 , if the sell in date is passed decrement by double the value
-        isSellInDatePassed ? reduceItemQuality(by: decreasingValueForZeroOrLessDaysToSell) : reduceItemQuality(by: decreasingValueOverZeroDaysToSell)
+        isSellInDatePassed ? reduceItemQuality(by: decreasingQualityValueAfterSellInDate) : reduceItemQuality(by: decreasingQualityValueBeforeSellInDate)
         
         guard isItemMoreThanLowestQuality else {
             // Sets the quality to zero if the quality is negative
