@@ -11,9 +11,9 @@ protocol CustomisedItemFactoryCreator {
     static func getCustomisedItem(item: Item) -> CustomisedItem
 }
 
-struct CustomisedItemFactory: CustomisedItemFactoryCreator {
+class CustomisedItemFactory: CustomisedItemFactoryCreator {
     // Returns the Customised Item based on the Item name
-    static func getCustomisedItem(item: Item) -> CustomisedItem {
+    class func getCustomisedItem(item: Item) -> CustomisedItem {
         switch item.name {
         case ItemNameConstants.kAgedBrieItem:
             return AgedBrieItem(item: item)
@@ -26,3 +26,4 @@ struct CustomisedItemFactory: CustomisedItemFactoryCreator {
         }
     }
 }
+
