@@ -11,6 +11,7 @@ class StandardItem: CustomisedItem, ItemStateUpdater {
     var item: Item
     
     private var isSellInDatePassed: Bool{
+        // Returns true if the sellin date is passed
         return item.sellIn < 0 
     }
     
@@ -22,6 +23,7 @@ class StandardItem: CustomisedItem, ItemStateUpdater {
     }
     
     private  var isItemMoreThanLowestQuality: Bool {
+        // Returns true if Quality of item is more than lowest quality(0)
         return item.quality > ValueConstants.kLowestQualityValue
     }
     

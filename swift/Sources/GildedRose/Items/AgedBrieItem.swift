@@ -12,6 +12,7 @@ struct AgedBrieItem: CustomisedItem, ItemStateUpdater{
     var item: Item
     
     private var isItemUnderHighestQuality: Bool {
+        // Returns true if quality of item is less than Hightest Quality(50)
         return item.quality < ValueConstants.kHightestQualityValue
     }
     

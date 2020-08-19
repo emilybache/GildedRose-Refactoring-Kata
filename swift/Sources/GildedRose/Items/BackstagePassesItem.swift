@@ -12,10 +12,12 @@ struct BackstagePassesItem: CustomisedItem, ItemStateUpdater {
     var item: Item
     
     private var isItemUnderHighestQuality: Bool {
+        // Returns true if Item Quality is less than Highest value (50)
         return item.quality < ValueConstants.kHightestQualityValue
     }
     
     private var isSellInDatePassed: Bool{
+        // Returns true if sell in date is passed
         return item.sellIn < 0
     }
     

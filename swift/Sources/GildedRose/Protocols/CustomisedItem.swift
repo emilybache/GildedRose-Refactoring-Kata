@@ -8,6 +8,6 @@
 import Foundation
 
 protocol CustomisedItem {
-    var item: Item {get set}
+    var item: Item { get set }
     func updateItemState()
 }
