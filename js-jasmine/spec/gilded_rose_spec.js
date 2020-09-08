@@ -15,10 +15,9 @@ const items = [
 ];
 
 describe("Gilded Rose", function () {
-    it("should day 1", function () {
+    it("should calculate stock after 1 day", function () {
         const gildedRose = new Shop(deepCopy(items));
-        const result = getItems(gildedRose, items, 1);
-
+        const result = getStockAfterDays(gildedRose, items, 1);
         expect(result).toEqual([
             jasmine.objectContaining({name: '+5 Dexterity Vest', sellIn: 9, quality: 19}),
             jasmine.objectContaining({name: 'Aged Brie', sellIn: 1, quality: 1}),
@@ -32,10 +31,9 @@ describe("Gilded Rose", function () {
         ]);
     });
 
-    it("should day 2", function () {
+    it("should calculate stock after 2 days", function () {
         const gildedRose = new Shop(deepCopy(items));
-        const result = getItems(gildedRose, items, 2);
-
+        const result = getStockAfterDays(gildedRose, items, 2);
         expect(result).toEqual([
             jasmine.objectContaining({name: '+5 Dexterity Vest', sellIn: 8, quality: 18}),
             jasmine.objectContaining({name: 'Aged Brie', sellIn: 0, quality: 2}),
@@ -49,8 +47,8 @@ describe("Gilded Rose", function () {
         ]);
     });
 
-    function getItems(shop, items, days) {
-        return days ? [...Array(days)].map(() => shop.updateQuality())[days - 1] : items;
+    function getStockAfterDays(shop, originalItems, days) {
+        return days ? [...Array(days)].map(() => shop.updateQuality())[days - 1] : originalItems;
     }
 
     function deepCopy(obj) {
