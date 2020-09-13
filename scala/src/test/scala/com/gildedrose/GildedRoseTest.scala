@@ -50,7 +50,7 @@ class GildedRoseTest extends AnyWordSpec with Matchers with BeforeAndAfter {
       itemCreator.backstagePassItem(sellIn, quality),
       itemCreator.agedBrieItem(sellIn, quality),
       itemCreator.dexterityItem(sellIn, quality),
-      itemCreator.elixirItem(sellIn, quality),
+      itemCreator.elixirItem(sellIn, quality)
     )
   }
 
@@ -72,7 +72,7 @@ class GildedRoseTest extends AnyWordSpec with Matchers with BeforeAndAfter {
   private def createItemsOfDecreasingQuality(sellIn: Int, quality: Int) = {
     Array[Item](
       itemCreator.dexterityItem(sellIn, quality),
-      itemCreator.elixirItem(sellIn, quality),
+      itemCreator.elixirItem(sellIn, quality)
     )
   }
 
@@ -86,6 +86,31 @@ class GildedRoseTest extends AnyWordSpec with Matchers with BeforeAndAfter {
     app.updateQuality()
     for (i <- app.items)
       assert(i.quality == quality - diff)
+  }
+
+  "quality of Conjured items degrade twice as fast of elixir" in {
+    val sellIn = 1
+    val quality = 30
+    app = createApp(createItemsWithConjuredAndElixir(sellIn, quality))
+    verifyQualityForConjuredAgainstElixir(sellIn)
+  }
+
+  private def createItemsWithConjuredAndElixir(sellIn: Int, quality: Int) = {
+    Array[Item](
+      itemCreator.conjuredItem(sellIn, quality),
+      itemCreator.elixirItem(sellIn, quality)
+    )
+  }
+
+  private def verifyQualityForConjuredAgainstElixir(sellIn: Int): Unit = {
+    for (i <- 1 to sellIn) {
+      val prevQualityConjured = app.items(0).quality
+      val prevQualityElixir = app.items(1).quality
+      app.updateQuality()
+      val conjuredQualityDrop = prevQualityConjured - app.items(0).quality
+      val elixirQualityDrop = prevQualityElixir - app.items(1).quality
+      assert(conjuredQualityDrop == 2 * elixirQualityDrop)
+    }
   }
 
   "quality of Aged Brie increases with time and stays below 50" in {
