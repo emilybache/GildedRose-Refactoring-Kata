@@ -5,13 +5,19 @@ class GildedRose(val items: Array[Item]) {
   def updateQuality() {
     for (i <- items.indices) {
       if (isItemNotIncremental(i)) {
-        if (isQualityPositive(i))
-          incrementQuality(i, -1)
+        incrementQualityForNonIncrementalItems(i)
       } else
         incrementQualityForIncrementalItems(i)
       decrementSellInIfNotSulfuras(i)
       if (isSellInLessThanThreshold(i, 0))
         updateQualityIfSellInZero(i)
+    }
+  }
+
+  private def incrementQualityForNonIncrementalItems(i: Int): Unit = {
+    if (isQualityPositive(i)) {
+      incrementQuality(i, -1)
+      additionalIncrementForConjured(i)
     }
   }
 
@@ -28,6 +34,11 @@ class GildedRose(val items: Array[Item]) {
     else if (isBackstagePass(i))
       dropQualityTo0(i)
     else if (!isSulfuras(i) && isQualityPositive(i))
+      incrementQuality(i, -1)
+  }
+
+  private def additionalIncrementForConjured(i: Int): Unit = {
+    if (isConjured(i))
       incrementQuality(i, -1)
   }
 
