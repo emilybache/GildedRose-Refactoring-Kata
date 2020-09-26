@@ -12,6 +12,7 @@ class ItemQualityUpdateStrategyFactoryTest {
       testFactoryFor("Aged Brie", AgedBrieQualityUpdater.class);
       testFactoryFor("Backstage passes to a TAFKAL80ETC concert", BackstageBrieQualityUpdater.class);
       testFactoryFor("xyz", DefaultQualityUpdater.class);
+      testFactoryFor("Conjured", ConjuredQualityUpdater.class);
    }
 
    void testFactoryFor(String name, Class<? extends ItemQualityUpdater> clazz) {

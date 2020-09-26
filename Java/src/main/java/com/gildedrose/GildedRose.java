@@ -4,7 +4,7 @@ import static com.gildedrose.ItemQualityUpdateStrategyFactory.itemQualityUpdater
 
 import java.util.Arrays;
 
-class GildedRose {
+public class GildedRose {
 
    Item[] items;
 

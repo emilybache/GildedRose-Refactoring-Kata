@@ -12,6 +12,8 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     testImplementation 'com.approvaltests:approvaltests:9.3.0'
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.17.2'
+    compile group: 'io.cucumber', name: 'cucumber-java', version: '6.7.0'
+    testCompile group: 'io.cucumber', name: 'cucumber-junit', version: '6.7.0'
 }
 
 group = 'com.gildedrose'
@@ -19,5 +21,8 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 test {
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+    }
     useJUnitPlatform()
 }
