@@ -1,10 +1,10 @@
 package com.gildedrose;
 
-public class BackstageBrieQualityUpdater implements ItemQualityUpdater {
+public class BackstageQualityUpdater implements ItemQualityUpdater {
 
    private final Item item;
 
-   public BackstageBrieQualityUpdater(Item item) {
+   public BackstageQualityUpdater(Item item) {
       this.item = item;
    }
 

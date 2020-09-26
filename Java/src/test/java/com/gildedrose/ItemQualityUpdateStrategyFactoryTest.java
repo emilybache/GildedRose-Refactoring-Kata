@@ -10,7 +10,7 @@ class ItemQualityUpdateStrategyFactoryTest {
    void itemQualityUpdaterFor() {
       testFactoryFor("Sulfuras, Hand of Ragnaros", SulfrasQualityUpdater.class);
       testFactoryFor("Aged Brie", AgedBrieQualityUpdater.class);
-      testFactoryFor("Backstage passes to a TAFKAL80ETC concert", BackstageBrieQualityUpdater.class);
+      testFactoryFor("Backstage passes to a TAFKAL80ETC concert", BackstageQualityUpdater.class);
       testFactoryFor("xyz", DefaultQualityUpdater.class);
       testFactoryFor("Conjured", ConjuredQualityUpdater.class);
    }
