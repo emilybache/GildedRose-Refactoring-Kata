@@ -86,9 +86,9 @@ class GildedRose {
                 || item.name.equals(BACKSTAGE_ITEM) || item.name.equals(SULFURAS_ITEM);
     }
 
-    private void reduceQuality(int i, int value) {
+    private void reduceQuality(int i, int decrement) {
         if (items[i].quality > 0) {
-            items[i].quality = items[i].quality - value;
+            items[i].quality = items[i].quality - decrement;
         }
     }
 }
