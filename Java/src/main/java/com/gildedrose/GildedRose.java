@@ -16,14 +16,13 @@ class GildedRose {
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
             reduceSellInItem(i);
-
             if (isEspecialItem(items[i])) {
                 valueItems(i);
             } else {
                 devalueItems(i);
             }
             if (items[i].sellIn < 0) {
-                qualityWhenDaysAreOver(i);
+                alterQualityWhenDaysAreOver(i);
             }
         }
     }
@@ -46,7 +45,7 @@ class GildedRose {
         }
     }
 
-    private void qualityWhenDaysAreOver(int i) {
+    private void alterQualityWhenDaysAreOver(int i) {
         if (items[i].name.equals(AGED_ITEM) && canIncreaseQuality(items[i].quality)) {
             increaseQuality(i);
         } else if (items[i].name.equals(BACKSTAGE_ITEM)) {
