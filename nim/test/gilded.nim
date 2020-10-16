@@ -30,37 +30,37 @@ proc days(count: int): seq[Item] =
 suite "+5 Dexterity Vest [0]":
 
   test "1 day":
-    var items = days(1)
-    checkItem(items[0], 9, 19)
+    var items = days 1
+    checkItem items[0], 9, 19
 
   test "5 days, check for cumulative depeciation":
-    let items = days(5)
-    checkItem(items[0], 5, 15)
+    let items = days 5
+    checkItem items[0], 5, 15
   
   test "10 days, expiration day":
     let items = days 10
-    checkItem(items[0], 0, 10)
+    checkItem items[0], 0, 10
 
   test "14 days, check for expired depreciation":
-    let items = days(14)
-    checkItem(items[0], -4, 2)
+    let items = days 14
+    checkItem items[0], -4, 2
 
   test "20 days, quality should not be negative":
     let items = days 20
-    checkItem(items[0], -10, 0)
+    checkItem items[0], -10, 0
 
 suite "Aged Brie [1]":
   test "1 day, brie increases value":
-    let items = days(1)
-    checkItem(items[1], 1, 1)
+    let items = days 1
+    checkItem items[1], 1, 1
 
   test "2 days, expiration day":
-    let items = days(2)
-    checkItem(items[1], 0, 2)
+    let items = days 2
+    checkItem items[1], 0, 2
 
   test "4 days, extra increase after expiration":
-    let items = days(4)
-    checkItem(items[1], -2, 6)
+    let items = days 4
+    checkItem items[1], -2, 6
 
   test "30 days, should reach max quality":
     let items = days 30
@@ -68,23 +68,23 @@ suite "Aged Brie [1]":
 
 suite "Sulfuras, Hand of Ragnaros [3]":
   test "1 day":
-    let items = days(1)
-    checkItem(items[3], 0, 80)
+    let items = days 1
+    checkItem items[3], 0, 80
 
   test "2 days":
-    let items = days(2)
-    checkItem(items[3], 0, 80)
+    let items = days 2
+    checkItem items[3], 0, 80
 
 suite "Sulfuras, Hand of Ragnaros [4]":
   test "1 day":
-    let items = days(1)
-    checkItem(items[4], -1, 80)
+    let items = days 1
+    checkItem items[4], -1, 80
 
 
 suite "Backstage passes to a TAFKAL80ETC concert [5]":
   test "1 day":
-    let items= days(1)
-    checkItem(items[5], 14, 21)
+    let items= days 1
+    checkItem items[5], 14, 21
   
   test "5 days":
     let items = days 5
