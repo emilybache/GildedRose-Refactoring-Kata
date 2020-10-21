@@ -34,7 +34,6 @@ class RegularItem extends Item {
 
     const isNameValid = typeof name === 'string' && name.length
     const isSellInValid = typeof sellIn === 'number'
-
     // "The Quality of an item is never negative"
     // "The Quality of an item is never more than 50"
     const isQualityValid = typeof quality === 'number' && quality >= 0 && quality <= 50
@@ -98,13 +97,16 @@ class Shop {
           if (this.items[i].name !== 'Backstage passes to a TAFKAL80ETC concert') {
             if (this.items[i].quality > 0) {
               if (this.items[i].name !== 'Sulfuras, Hand of Ragnaros') {
+                // Not cheese, not pass, not sulfuras, therefore regular item
                 this.items[i].quality = this.items[i].quality - 1
               }
             }
           } else {
+            // Maybe pass (could be sulfuras), quality is zero because sellIn is negative
             this.items[i].quality = this.items[i].quality - this.items[i].quality
           }
         } else {
+          // Is cheese, increment quality by 1 because sellIn is negative
           if (this.items[i].quality < 50) {
             this.items[i].quality = this.items[i].quality + 1
           }
