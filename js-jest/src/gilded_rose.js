@@ -11,6 +11,30 @@ class Item {
   }
 }
 
+class RegularItem extends Item {
+  constructor (itemProps) {
+    const { name, sellIn, quality } = itemProps
+    super(name, sellIn, quality)
+    this.validateItemProps(itemProps)
+  }
+
+  validateItemProps({ name, sellIn, quality }) {
+    const errors = [];
+
+    const isNameValid = typeof name === 'string' && name.length
+    const isSellInValid = typeof sellIn === 'number' && sellIn > 0
+    const isQualityValid = typeof quality === 'number' && quality >= 0 && quality <=50
+
+    !isNameValid && errors.push('"name" must be a valid, non-empty string')
+    !isSellInValid && errors.push('"sellIn" must be an integer, greater than zero')
+    !isQualityValid && errors.push('"qualityValid" must be an integer, between 0 and 50')
+
+    if (errors.length) {
+      throw new Error(`[RegularItem.validateItemProps] Invalid itemProps passed to the constructor: ${errors.join(', ')}`)
+    }
+  }
+}
+
 class Blade extends Item {
   constructor(...args) {
     super(...args)
@@ -91,5 +115,6 @@ class Shop {
 module.exports = {
   Item,
   Shop,
-  Sword
+  Sword,
+  RegularItem
 }
