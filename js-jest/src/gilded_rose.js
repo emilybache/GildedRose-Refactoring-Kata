@@ -1,7 +1,10 @@
+const AGED_CHEESE = ['Aged Brie']
+const CONCERT_PASS = ['Backstage passes to a TAFKAL80ETC concert']
+const LEGENDARY_ITEMS = ['Sulfuras, Hand of Ragnaros']
 
 /**
- * Do not alter the Item class or Items property as those belong to the goblin in the corner who
- * will insta-rage and one-shot you as he doesn't believe in shared code ownership
+ * "(...) do not alter the Item class or Items property as those belong to the goblin in the corner
+ * who will insta-rage and one-shot you as he doesn't believe in shared code ownership"
  */
 export class Item {
   constructor (name, sellIn, quality) {
@@ -19,32 +22,55 @@ export class RegularItem extends Item {
     this.depreciationRate = 1
   }
 
+  isNameValid (name) {
+    return typeof name === 'string' && name.length
+  }
+
+  isSellInValid (sellIn) {
+    return typeof sellIn === 'number'
+  }
+
+  isQualityValid (quality) {
+    // "The Quality of an item is never negative"
+    // "The Quality of an item is never more than 50"
+    return typeof quality === 'number' && quality >= 0 && quality <= 50
+  }
+
   validateItemProps ({ name, sellIn, quality }) {
     const errors = []
 
-    const isNameValid = typeof name === 'string' && name.length
-    const isSellInValid = typeof sellIn === 'number'
-    // "The Quality of an item is never negative"
-    // "The Quality of an item is never more than 50"
-    const isQualityValid = typeof quality === 'number' && quality >= 0 && quality <= 50
-
-    !isNameValid && errors.push('"name" must be a valid, non-empty string')
-    !isSellInValid && errors.push('"sellIn" must be an integer')
-    !isQualityValid && errors.push('"qualityValid" must be an integer, between 0 and 50')
+    !this.isNameValid(name) && errors.push('"name" must be a valid, non-empty string')
+    !this.isSellInValid(sellIn) && errors.push('"sellIn" must be an integer')
+    !this.isQualityValid(quality) && errors.push('"quality" must be an integer, between 0 and 50')
 
     if (errors.length) {
       throw new Error(`[RegularItem.validateItemProps] Invalid itemProps passed to the constructor: ${errors.join(', ')}`)
     }
   }
 
-  updateQuality () {
-    // "Once the sell by date has passed, Quality degrades twice as fast"
-    const adjustedDepreciationRate = this.sellIn < 0
-      ? this.depreciationRate * 2
-      : this.depreciationRate
+  /**
+   * "Once the sell by date has passed, Quality degrades twice as fast"
+   */
+  getDepreciationRate () {
+    return this.sellIn < 0 ? this.depreciationRate * 2 : this.depreciationRate
+  }
 
+  /**
+   * "The Quality of an item is never more than 50"
+   *
+   * @param {Number} value
+   */
+  setQuality (value) {
+    if (value > 50) {
+      this.quality = 50
+    } else {
+      this.quality = value
+    }
+  }
+
+  updateQuality () {
     // "The Quality of an item is never negative"
-    this.quality = Math.max(0, this.quality - adjustedDepreciationRate)
+    this.setQuality(Math.max(0, this.quality - this.getDepreciationRate()))
 
     // Assuming updateQuality is called only once a day...
     // "At the end of each day our system lowers both values [quality and sellIn] (...)"
@@ -52,8 +78,76 @@ export class RegularItem extends Item {
   }
 }
 
+export class ConcertPass extends RegularItem {
+  constructor (itemProps) {
+    super(itemProps)
+
+    // "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches
+    this.depreciationRate = -1
+  }
+
+  getDepreciationRate () {
+    // "Quality drops to 0 after the concert"
+    if (this.sellIn < 0) {
+      return this.quality
+    }
+
+    // [Quality increases] by 3 when there are 5 days or less"
+    if (this.sellIn <= 5) {
+      return this.depreciationRate * 3
+    }
+
+    // "[and] by 2 when there are 10 days or less"
+    if (this.sellIn <= 10) {
+      return this.depreciationRate * 2
+    }
+
+    return this.depreciationRate
+  }
+}
+
+export class AgedCheese extends RegularItem {
+  constructor (itemProps) {
+    super(itemProps)
+
+    // "Aged Brie" actually increases in Quality the older it gets
+    this.depreciationRate = -1
+  }
+
+  getDepreciationRate () {
+    return this.sellIn <= 0 ? this.depreciationRate * 2 : this.depreciationRate
+  }
+}
+
+export class LegendaryItem extends RegularItem {
+  constructor (itemProps) {
+    super(itemProps)
+    this.depreciationRate = 0
+  }
+
+  /**
+   * "(...) an item can never have its Quality increase above 50, however (...) a legendary
+   * item['s quality] is 80 and it never alters."
+   *
+   * @param {Number} quality
+   * @returns {Boolean}
+   */
+  isQualityValid (quality) {
+    return typeof quality === 'number' && quality === 80
+  }
+
+  /**
+   * "Sulfuras", being a legendary item, never has to be sold or decreases in Quality
+   */
+  updateQuality () {}
+}
+
 export class Shop {
   constructor (items = []) {
+    /*
+    * "(...)do not alter the Item class or Items property as those belong to the goblin in the
+    * corner who will insta-rage and one-shot you as he doesn't believe in shared code ownership"
+    */
     this.items = items
   }
 
@@ -70,7 +164,7 @@ export class Shop {
         }
       } else {
         if (this.items[i].quality < 50) {
-          // Increment quality by 1 for all non RegularItems
+          // Increment quality by 1 for all non RegularItems (cheese and concert pass)
           this.items[i].quality = this.items[i].quality + 1
 
           if (this.items[i].name === 'Backstage passes to a TAFKAL80ETC concert') {
@@ -118,5 +212,33 @@ export class Shop {
     }
 
     return this.items
+  }
+}
+
+export class ShopV2 extends Shop {
+  constructor (items = []) {
+    // Copying the items fulfills the constraint of not mutating the Items list, and adds new
+    // functionality to each item according to the provided requirements.
+    const itemsV2 = items.map(({ name, sellIn, quality }) => {
+      let ItemClass = RegularItem
+
+      // Special Items
+      if (LEGENDARY_ITEMS.indexOf(name) !== -1) {
+        ItemClass = LegendaryItem
+      } else if (AGED_CHEESE.indexOf(name) !== -1) {
+        ItemClass = AgedCheese
+      } else if (CONCERT_PASS.indexOf(name) !== -1) {
+        ItemClass = ConcertPass
+      }
+      return new ItemClass({ name, sellIn, quality })
+    })
+
+    super(itemsV2)
+  }
+
+  updateQuality () {
+    this.items.forEach((item) => {
+      item.updateQuality()
+    })
   }
 }

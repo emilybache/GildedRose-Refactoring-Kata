@@ -49,5 +49,8 @@
     "ignore": [
       "node_modules"
     ]
+  },
+  "dependencies": {
+    "cli-table": "^0.3.1"
   }
 }

@@ -1,6 +1,11 @@
 
-import { Shop, Item } from '../src/gilded_rose'
+import Table from 'cli-table'
+import { Shop, ShopV2, Item } from '../src/gilded_rose'
 
+/*
+* "(...)do not alter the Item class or Items property as those belong to the goblin in the
+* corner who will insta-rage and one-shot you as he doesn't believe in shared code ownership"
+*/
 const items = [
   new Item('+5 Dexterity Vest', 10, 20),
   new Item('Aged Brie', 2, 0),
@@ -17,11 +22,24 @@ const items = [
 
 const days = Number(process.argv[2]) || 2
 const gildedRose = new Shop(items)
+const gildedRoseV2 = new ShopV2(items)
 
-console.log('OMGHAI!')
 for (let day = 0; day < days; day++) {
-  console.log(`\n-------- day ${day} --------`)
-  console.log('name, sellIn, quality')
-  items.forEach(item => console.log(`${item.name}, ${item.sellIn}, ${item.quality}`))
+  const shopTable = new Table({
+    head: ['Name', 'Sell In (v1)', 'Quality (v1)', 'Sell In (v2)', 'Quality (v2)'],
+    colWidths: [50, 15, 15, 15, 15]
+  })
+
+  shopTable.push(...items.map(({ name, sellIn, quality }, index) => {
+    const {
+      sellIn: sellInV2,
+      quality: qualityV2
+    } = gildedRoseV2.items[index]
+    return [name, sellIn, quality, sellInV2, qualityV2]
+  }))
+
+  console.log(`\n-------- Day ${day} --------`)
+  console.log(shopTable.toString())
   gildedRose.updateQuality()
+  gildedRoseV2.updateQuality()
 }
