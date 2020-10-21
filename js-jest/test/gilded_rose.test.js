@@ -1,4 +1,4 @@
-const { RegularItem } = require('../src/gilded_rose')
+import { RegularItem } from '../src/gilded_rose'
 
 // describe('Gilded Rose', function () {
 //   it('should foo', function () {

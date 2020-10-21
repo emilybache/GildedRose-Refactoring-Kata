@@ -3,7 +3,7 @@
  * Do not alter the Item class or Items property as those belong to the goblin in the corner who
  * will insta-rage and one-shot you as he doesn't believe in shared code ownership
  */
-class Item {
+export class Item {
   constructor (name, sellIn, quality) {
     this.name = name
     this.sellIn = sellIn
@@ -11,7 +11,7 @@ class Item {
   }
 }
 
-class RegularItem extends Item {
+export class RegularItem extends Item {
   constructor (itemProps) {
     const { name, sellIn, quality } = itemProps
     super(name, sellIn, quality)
@@ -52,7 +52,7 @@ class RegularItem extends Item {
   }
 }
 
-class Shop {
+export class Shop {
   constructor (items = []) {
     this.items = items
   }
@@ -119,10 +119,4 @@ class Shop {
 
     return this.items
   }
-}
-
-module.exports = {
-  Item,
-  Shop,
-  RegularItem
 }
