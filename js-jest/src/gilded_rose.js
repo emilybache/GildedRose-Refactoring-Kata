@@ -18,41 +18,34 @@ class RegularItem extends Item {
     this.validateItemProps(itemProps)
   }
 
-  validateItemProps({ name, sellIn, quality }) {
-    const errors = [];
+  _privateVar = 0
+
+  get privateVar () {
+    return this._privateVar
+  }
+
+  set privateVar (value) {
+    console.log(`entered set privateVar with value: ${value}`)
+    this._privateVar = value
+  }
+
+  validateItemProps ({ name, sellIn, quality }) {
+    const errors = []
 
     const isNameValid = typeof name === 'string' && name.length
-    const isSellInValid = typeof sellIn === 'number' && sellIn > 0
-    const isQualityValid = typeof quality === 'number' && quality >= 0 && quality <=50
+    const isSellInValid = typeof sellIn === 'number'
+
+    // "The Quality of an item is never negative"
+    // "The Quality of an item is never more than 50"
+    const isQualityValid = typeof quality === 'number' && quality >= 0 && quality <= 50
 
     !isNameValid && errors.push('"name" must be a valid, non-empty string')
-    !isSellInValid && errors.push('"sellIn" must be an integer, greater than zero')
+    !isSellInValid && errors.push('"sellIn" must be an integer')
     !isQualityValid && errors.push('"qualityValid" must be an integer, between 0 and 50')
 
     if (errors.length) {
       throw new Error(`[RegularItem.validateItemProps] Invalid itemProps passed to the constructor: ${errors.join(', ')}`)
     }
-  }
-}
-
-class Blade extends Item {
-  constructor(...args) {
-    super(...args)
-  }
-
-  whatAmI() {
-    console.log(`[Blade] I am a Blade with: name: ${this.name}, sellIn: ${this.sellIn}, quality: ${this.quality}`)
-  }
-}
-
-class Sword extends Blade {
-  constructor(...args) {
-    super(...args)
-  }
-
-  whoAmI() {
-    console.log('[Sword] I am a sword! AND...')
-    this.whatAmI()
   }
 }
 
@@ -62,33 +55,44 @@ class Shop {
   }
 
   updateQuality () {
+    // Iterate list of items
     for (let i = 0; i < this.items.length; i++) {
+      // NOT cheese && NOT pass && quality > 0 && NOT sulfuras, therefore RegularItem
       if (this.items[i].name !== 'Aged Brie' && this.items[i].name !== 'Backstage passes to a TAFKAL80ETC concert') {
         if (this.items[i].quality > 0) {
           if (this.items[i].name !== 'Sulfuras, Hand of Ragnaros') {
+            // RegularItems decrement quality by 1
             this.items[i].quality = this.items[i].quality - 1
           }
         }
       } else {
         if (this.items[i].quality < 50) {
+          // Increment quality by 1 for all non RegularItems
           this.items[i].quality = this.items[i].quality + 1
+
           if (this.items[i].name === 'Backstage passes to a TAFKAL80ETC concert') {
             if (this.items[i].sellIn < 11) {
               if (this.items[i].quality < 50) {
                 this.items[i].quality = this.items[i].quality + 1
               }
+              // if sellIn is less than 11 for passes, net quality increase is 2
             }
             if (this.items[i].sellIn < 6) {
               if (this.items[i].quality < 50) {
                 this.items[i].quality = this.items[i].quality + 1
               }
+              // if sellIn is less than 6 for passes, net quality increase is 3
             }
           }
         }
       }
+
+      // Unnecessary decrement of sellIn
+      // "Sulfuras", being a legendary item, never has to be sold or decreases in Quality"
       if (this.items[i].name !== 'Sulfuras, Hand of Ragnaros') {
         this.items[i].sellIn = this.items[i].sellIn - 1
       }
+
       if (this.items[i].sellIn < 0) {
         if (this.items[i].name !== 'Aged Brie') {
           if (this.items[i].name !== 'Backstage passes to a TAFKAL80ETC concert') {
@@ -115,6 +119,5 @@ class Shop {
 module.exports = {
   Item,
   Shop,
-  Sword,
   RegularItem
 }

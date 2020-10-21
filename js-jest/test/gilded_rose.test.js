@@ -1,4 +1,4 @@
-const { Shop, Item, RegularItem } = require('../src/gilded_rose')
+const { RegularItem } = require('../src/gilded_rose')
 
 // describe('Gilded Rose', function () {
 //   it('should foo', function () {
@@ -21,11 +21,10 @@ describe('RegularItem', () => {
   })
 
   it('should throw an error if initialized with an invalid sellIn property', () => {
-    expect(getRegularItemFactory({ sellIn: -1 })).toThrow()
-    expect(getRegularItemFactory({ sellIn: 0 })).toThrow()
+    expect(getRegularItemFactory({ sellIn: '' })).toThrow()
   })
 
-  it('should throw an error if initialized with a quality property < 0 || > 50', () => {
+  it('should throw an error if initialized with a quality property < 0 OR > 50', () => {
     expect(getRegularItemFactory({ quality: -1 })).toThrow()
     expect(getRegularItemFactory({ quality: 51 })).toThrow()
   })

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Gilded Rose kata in JavaScript with Jest",
   "scripts": {
+    "start": "node ./test/texttest_fixture.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
@@ -25,13 +26,12 @@
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "jest": "^24.9.0",
-    "standard": "^5.0.0"
+    "standardx": "^5.0.0"
   },
-  "standard": {
+  "standardx": {
     "parser": "babel-eslint",
     "env": [
-      "jest",
-      "node"
+      "node", "jest"
     ],
     "ignore": [
       "node_modules"
