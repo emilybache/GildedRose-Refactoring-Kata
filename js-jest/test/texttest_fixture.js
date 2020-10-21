@@ -1,5 +1,5 @@
 
-const { Shop, Item, RegularItem } = require('../src/gilded_rose')
+const { Shop, Item } = require('../src/gilded_rose')
 
 const items = [
   new Item('+5 Dexterity Vest', 10, 20),
@@ -14,16 +14,6 @@ const items = [
   // This Conjured item does not work properly yet
   new Item('Conjured Mana Cake', 3, 6)
 ]
-
-const mockRegularItem = new RegularItem({
-  name: 'Mock RegularItem',
-  sellIn: 5,
-  quality: 10
-})
-
-console.log('mockRegularItem.privateVar', mockRegularItem.privateVar) // bbarreto_debug
-mockRegularItem.privateVar = 10
-console.log('mockRegularItem.privateVar', mockRegularItem.privateVar) // bbarreto_debug
 
 const days = Number(process.argv[2]) || 2
 const gildedRose = new Shop(items)

@@ -16,17 +16,7 @@ class RegularItem extends Item {
     const { name, sellIn, quality } = itemProps
     super(name, sellIn, quality)
     this.validateItemProps(itemProps)
-  }
-
-  _privateVar = 0
-
-  get privateVar () {
-    return this._privateVar
-  }
-
-  set privateVar (value) {
-    console.log(`entered set privateVar with value: ${value}`)
-    this._privateVar = value
+    this.depreciationRate = 1
   }
 
   validateItemProps ({ name, sellIn, quality }) {
@@ -45,6 +35,20 @@ class RegularItem extends Item {
     if (errors.length) {
       throw new Error(`[RegularItem.validateItemProps] Invalid itemProps passed to the constructor: ${errors.join(', ')}`)
     }
+  }
+
+  updateQuality () {
+    // "Once the sell by date has passed, Quality degrades twice as fast"
+    const adjustedDepreciationRate = this.sellIn < 0
+      ? this.depreciationRate * 2
+      : this.depreciationRate
+
+    // "The Quality of an item is never negative"
+    this.quality = Math.max(0, this.quality - adjustedDepreciationRate)
+
+    // Assuming updateQuality is called only once a day...
+    // "At the end of each day our system lowers both values [quality and sellIn] (...)"
+    this.sellIn--
   }
 }
 
@@ -86,9 +90,8 @@ class Shop {
         }
       }
 
-      // Unnecessary decrement of sellIn
-      // "Sulfuras", being a legendary item, never has to be sold or decreases in Quality"
       if (this.items[i].name !== 'Sulfuras, Hand of Ragnaros') {
+        // Decrement sellIn each time updateQuality is called
         this.items[i].sellIn = this.items[i].sellIn - 1
       }
 
