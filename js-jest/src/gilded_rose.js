@@ -78,7 +78,7 @@ export class RegularItem extends Item {
    * @returns {Number}
    */
   getDepreciationRate () {
-    return this.sellIn < 0 ? this.depreciationRate * 2 : this.depreciationRate
+    return this.sellIn <= 0 ? this.depreciationRate * 2 : this.depreciationRate
   }
 
   /**
@@ -121,7 +121,7 @@ export class ConcertPass extends RegularItem {
    */
   getDepreciationRate () {
     // "Quality drops to 0 after the concert"
-    if (this.sellIn < 0) {
+    if (this.sellIn <= 0) {
       return this.quality
     }
 
@@ -145,15 +145,6 @@ export class AgedCheese extends RegularItem {
 
     // "Aged Brie" actually increases in Quality the older it gets
     this.depreciationRate = -1
-  }
-
-  /**
-   * Calculates the depreciation rate of an aged cheese, which should be inverted (appreciation).
-   * For cheese, the legacy logic shows 0 sellIn is inclusive when determining the acceleration of
-   * the appreciation rate (twice as fast past its "sellIn" date).
-   */
-  getDepreciationRate () {
-    return this.sellIn <= 0 ? this.depreciationRate * 2 : this.depreciationRate
   }
 }
 

@@ -3,6 +3,8 @@ import {
   RegularItem,
   ConcertPass,
   AgedCheese,
+  LegendaryItem,
+  ConjuredItem,
   Shop,
   ShopV2
 } from '../src/gilded_rose'
@@ -27,11 +29,66 @@ describe('Shop', function () {
     for (let day = 0; day < 100; day++) {
       gildedRose.items.forEach((itemV1, index) => {
         const itemV2 = gildedRoseV2.items[index]
+
         expect(itemV1.name).toEqual(itemV2.name)
         expect(itemV1.sellIn).toEqual(itemV2.sellIn)
         expect(itemV1.quality).toEqual(itemV2.quality)
       })
+      gildedRose.updateQuality()
+      gildedRoseV2.updateQuality()
     }
+  })
+
+  it('should initialize with an empty array when no items are provided', () => {
+    const gildedRose = new Shop()
+    expect(gildedRose.items.length).toEqual(0)
+  })
+})
+
+describe('ShopV2', () => {
+  it('should properly handle ConjuredItem', () => {
+    const mockProps = {
+      name: 'Conjured Mana Cake',
+      sellIn: 3,
+      quality: 6
+    }
+    const gildedRoseV2 = new ShopV2([new Item(mockProps.name, mockProps.sellIn, mockProps.quality)])
+    const conjuredItem = gildedRoseV2.items[0]
+    expect(conjuredItem.name).toEqual(mockProps.name)
+    expect(conjuredItem.sellIn).toEqual(mockProps.sellIn)
+    expect(conjuredItem.quality).toEqual(mockProps.quality)
+
+    for (let day = 0; day < 5; day++) {
+      expect(conjuredItem.sellIn).toEqual(mockProps.sellIn - day)
+
+      const qualityModifier = day * conjuredItem.depreciationRate
+      const expectedQuality = mockProps.quality - (qualityModifier)
+      if (expectedQuality > 0) {
+        expect(conjuredItem.quality).toEqual(expectedQuality)
+      } else {
+        expect(conjuredItem.quality).toEqual(0)
+      }
+      gildedRoseV2.updateQuality()
+    }
+  })
+
+  it('should initialize with an empty array when no items are provided', () => {
+    const gildedRoseV2 = new ShopV2()
+    expect(gildedRoseV2.items.length).toEqual(0)
+  })
+})
+
+describe('Item', () => {
+  it('should initialize with a name, sellIn, and quality properties', () => {
+    const mockProperties = {
+      name: 'Mock RegularItem',
+      sellIn: 5,
+      quality: 25
+    }
+    const mockItem = new Item(mockProperties.name, mockProperties.sellIn, mockProperties.quality)
+    expect(mockItem.name).toEqual(mockProperties.name)
+    expect(mockItem.sellIn).toEqual(mockProperties.sellIn)
+    expect(mockItem.quality).toEqual(mockProperties.quality)
   })
 })
 
@@ -179,6 +236,32 @@ describe('ConcertPass', () => {
     mockConcertPass.updateQuality()
     expect(mockConcertPass.quality).toEqual(0)
   })
+
+  describe('ConcertPass.getDepreciationRate', () => {
+    it('should return "quality" when sellIn < 0', () => {
+      const mockConcertPass = new ConcertPass({ ...mockProperties, sellIn: -1 })
+      expect(mockConcertPass.getDepreciationRate()).toEqual(mockConcertPass.quality)
+    })
+
+    it('should return depreciationRate * 3 when sellIn <= 5', () => {
+      const mockConcertPass = new ConcertPass({ ...mockProperties, sellIn: 5 })
+      expect(mockConcertPass.getDepreciationRate()).toEqual(mockConcertPass.depreciationRate * 3)
+      mockConcertPass.sellIn = 4
+      expect(mockConcertPass.getDepreciationRate()).toEqual(mockConcertPass.depreciationRate * 3)
+    })
+
+    it('should return depreciationRate * 2 when sellIn <= 10', () => {
+      const mockConcertPass = new ConcertPass({ ...mockProperties, sellIn: 10 })
+      expect(mockConcertPass.getDepreciationRate()).toEqual(mockConcertPass.depreciationRate * 2)
+      mockConcertPass.sellIn = 9
+      expect(mockConcertPass.getDepreciationRate()).toEqual(mockConcertPass.depreciationRate * 2)
+    })
+
+    it('should return a normal depreciationRate when sellIn > 10', () => {
+      const mockConcertPass = new ConcertPass({ ...mockProperties, sellIn: 11 })
+      expect(mockConcertPass.getDepreciationRate()).toEqual(mockConcertPass.depreciationRate)
+    })
+  })
 })
 
 describe('AgedCheese', () => {
@@ -213,5 +296,47 @@ describe('AgedCheese', () => {
       mockAgedCheese.sellIn = -1
       expect(mockAgedCheese.getDepreciationRate()).toEqual(mockAgedCheese.depreciationRate * 2)
     })
+  })
+})
+
+describe('LegendaryItem', () => {
+  const mockProperties = {
+    name: 'Mock LegendaryItem',
+    sellIn: 5,
+    quality: 80
+  }
+
+  it('should be initialized with a depreciation rate equal to zero', () => {
+    const mockLegendaryItem = new LegendaryItem({ ...mockProperties })
+    expect(mockLegendaryItem.depreciationRate).toEqual(0)
+  })
+
+  it('should remain the same when the quality is updated', () => {
+    const mockLegendaryItem = new LegendaryItem({ ...mockProperties })
+    mockLegendaryItem.updateQuality()
+    expect(mockLegendaryItem.quality).toEqual(mockProperties.quality)
+    expect(mockLegendaryItem.sellIn).toEqual(mockProperties.sellIn)
+  })
+
+  describe('LegendaryItem.isQualityValid', () => {
+    it('should return true only if quality is exactly 80', () => {
+      const mockLegendaryItem = new LegendaryItem({ ...mockProperties })
+      expect(mockLegendaryItem.isQualityValid('')).toBeFalsy()
+      expect(mockLegendaryItem.isQualityValid(50)).toBeFalsy()
+      expect(mockLegendaryItem.isQualityValid(80)).toBeTruthy()
+    })
+  })
+})
+
+describe('ConjuredItem', () => {
+  const mockProperties = {
+    name: 'Mock Item',
+    sellIn: 5,
+    quality: 25
+  }
+  it('should be initialized with a depreciation rate twice as large as a RegularItem', () => {
+    const mockRegularItem = new RegularItem({ ...mockProperties })
+    const mockConjuredItem = new ConjuredItem({ ...mockProperties })
+    expect(mockConjuredItem.depreciationRate).toEqual(mockRegularItem.depreciationRate * 2)
   })
 })
