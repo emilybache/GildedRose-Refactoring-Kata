@@ -23,20 +23,43 @@ export class RegularItem extends Item {
     this.depreciationRate = 1
   }
 
+  /**
+   * Item name validator
+   *
+   * @param {String} name
+   * @returns {Boolean}
+   */
   isNameValid (name) {
     return typeof name === 'string' && name.length
   }
 
+  /**
+   * Item "sellIn" validator
+   *
+   * @param {Number} sellIn
+   * @returns {Boolean}
+   */
   isSellInValid (sellIn) {
     return typeof sellIn === 'number'
   }
 
+  /**
+   * Item quality validator
+   *
+   * @param {Number} quality
+   * @returns {Boolean}
+   */
   isQualityValid (quality) {
     // "The Quality of an item is never negative"
     // "The Quality of an item is never more than 50"
     return typeof quality === 'number' && quality >= 0 && quality <= 50
   }
 
+  /**
+   * Item props validation to be used during initialization.
+   *
+   * @param {Object} itemProps
+   */
   validateItemProps ({ name, sellIn, quality }) {
     const errors = []
 
@@ -51,6 +74,8 @@ export class RegularItem extends Item {
 
   /**
    * "Once the sell by date has passed, Quality degrades twice as fast"
+   *
+   * @returns {Number}
    */
   getDepreciationRate () {
     return this.sellIn < 0 ? this.depreciationRate * 2 : this.depreciationRate
@@ -69,6 +94,10 @@ export class RegularItem extends Item {
     }
   }
 
+  /**
+   * Updates this item's quality, ensuring it is never a negative number.
+   * Decrements the item's sellIn property.
+   */
   updateQuality () {
     // "The Quality of an item is never negative"
     this.setQuality(Math.max(0, this.quality - this.getDepreciationRate()))
@@ -87,6 +116,9 @@ export class ConcertPass extends RegularItem {
     this.depreciationRate = -1
   }
 
+  /**
+   * Calculates a concert pass' depreciation rate according to how close the concert is.
+   */
   getDepreciationRate () {
     // "Quality drops to 0 after the concert"
     if (this.sellIn < 0) {
@@ -115,6 +147,11 @@ export class AgedCheese extends RegularItem {
     this.depreciationRate = -1
   }
 
+  /**
+   * Calculates the depreciation rate of an aged cheese, which should be inverted (appreciation).
+   * For cheese, the legacy logic shows 0 sellIn is inclusive when determining the acceleration of
+   * the appreciation rate (twice as fast past its "sellIn" date).
+   */
   getDepreciationRate () {
     return this.sellIn <= 0 ? this.depreciationRate * 2 : this.depreciationRate
   }
@@ -233,6 +270,7 @@ export class ShopV2 extends Shop {
       let ItemClass = RegularItem
 
       // Special Items
+
       if (LEGENDARY_ITEMS.indexOf(name) !== -1) {
         ItemClass = LegendaryItem
       }

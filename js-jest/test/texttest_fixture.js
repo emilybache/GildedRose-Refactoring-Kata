@@ -26,8 +26,8 @@ const gildedRoseV2 = new ShopV2(items)
 
 for (let day = 0; day < days; day++) {
   const shopTable = new Table({
-    head: ['Name', 'Sell In (v1)', 'Quality (v1)', 'Sell In (v2)', 'Quality (v2)'],
-    colWidths: [50, 15, 15, 15, 15]
+    head: ['Name', 'SellIn v1', 'Qlty v1', 'SellIn v2', 'Qlty v2'],
+    colWidths: [43, 11, 9, 11, 9]
   })
 
   shopTable.push(...items.map(({ name, sellIn, quality }, index) => {
