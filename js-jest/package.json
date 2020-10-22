@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Gilded Rose kata in JavaScript with Jest",
   "engines": {
-    "node": ">=12.18.0",
-    "npm": ">=6.14.8"
+    "node": ">=10.16.0",
+    "npm": ">=6.14.5"
   },
   "scripts": {
     "start": "babel-node ./test/texttest_fixture.js",

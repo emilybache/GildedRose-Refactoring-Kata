@@ -1,6 +1,7 @@
 const AGED_CHEESE = ['Aged Brie']
 const CONCERT_PASS = ['Backstage passes to a TAFKAL80ETC concert']
 const LEGENDARY_ITEMS = ['Sulfuras, Hand of Ragnaros']
+const CONJURED_ITEMS = ['Conjured Mana Cake']
 
 /**
  * "(...) do not alter the Item class or Items property as those belong to the goblin in the corner
@@ -142,6 +143,15 @@ export class LegendaryItem extends RegularItem {
   updateQuality () {}
 }
 
+export class ConjuredItem extends RegularItem {
+  constructor (itemProps) {
+    super(itemProps)
+
+    // "Conjured" items degrade in Quality twice as fast as normal items
+    this.depreciationRate = 2
+  }
+}
+
 export class Shop {
   constructor (items = []) {
     /*
@@ -225,11 +235,20 @@ export class ShopV2 extends Shop {
       // Special Items
       if (LEGENDARY_ITEMS.indexOf(name) !== -1) {
         ItemClass = LegendaryItem
-      } else if (AGED_CHEESE.indexOf(name) !== -1) {
+      }
+
+      if (AGED_CHEESE.indexOf(name) !== -1) {
         ItemClass = AgedCheese
-      } else if (CONCERT_PASS.indexOf(name) !== -1) {
+      }
+
+      if (CONCERT_PASS.indexOf(name) !== -1) {
         ItemClass = ConcertPass
       }
+
+      if (CONJURED_ITEMS.indexOf(name) !== -1) {
+        ItemClass = ConjuredItem
+      }
+
       return new ItemClass({ name, sellIn, quality })
     })
 
