@@ -11,7 +11,7 @@ class GildedRose
             update_normal_quality(item) if !sulfuras?(item)
 
       else
-
+        # start of block for brie and backstage quality logic
         if item.quality < 50
           item.quality = item.quality + 1
           if item.name.downcase.match /backstage/
@@ -27,11 +27,16 @@ class GildedRose
             end
           end
         end
-        
+        # end of block for brie and backstage quality logic
       end
+
+      # start of block that reduces sell in 
       if !sulfuras?(item)
         item.sell_in = item.sell_in - 1
       end
+      # end of block that reduces sell in 
+
+
       if item.sell_in < 0
         if item.name != "Aged Brie"
           if !item.name.downcase.match /backstage/
@@ -50,7 +55,6 @@ class GildedRose
         end
       end
     end
-    items
   end
 
   def self.update_normal_quality(item)
