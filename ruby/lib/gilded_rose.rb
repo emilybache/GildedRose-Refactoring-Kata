@@ -7,11 +7,11 @@ class GildedRose
   def self.update_quality(items)
     items.map do |item|
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
-        if item.quality > 0
+
           if item.name != "Sulfuras, Hand of Ragnaros"
-            item.quality = item.quality - 1
+            update_normal_quality(item)
           end
-        end
+
       else
         if item.quality < 50
           item.quality = item.quality + 1
@@ -51,6 +51,10 @@ class GildedRose
       end
     end
     items
+  end
+
+  def self.update_normal_quality(item)
+    item.quality -= 1 unless item.quality.zero?
   end
 end
 

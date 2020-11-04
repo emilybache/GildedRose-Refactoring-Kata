@@ -2,6 +2,7 @@ require 'gilded_rose'
 
 describe GildedRose do
 let(:potato) { Item.new('potato', 15, 2)}
+#let(:grain) {instance_double("item", name: "potato", :quality => 5)}
 let(:sulfarus) { Item.new('Sulfuras, Hand of Ragnaros', 50, 80) }
 
   describe "#update_quality" do
@@ -84,10 +85,23 @@ let(:sulfarus) { Item.new('Sulfuras, Hand of Ragnaros', 50, 80) }
         expect(items.first.quality).to eq 0
       end
     end
+  end
+  describe '#update_normal_quality' do
+    it 'updates the quality of a normal item' do
+      item_double = double :item, name: "potato", sellIn: 1, quality: 3
+      expect(item_double).to receive(:quality=).with(2)
+      GildedRose.update_normal_quality(item_double)
+    end
 
-  
- 
+    it 'does not update quality if quality == 0' do
+      item_double = double :item, name: "potato", sellIn: 1, quality: 0
+      expect(item_double).not_to receive(:quality=).with(-1)
+      GildedRose.update_normal_quality(item_double)
+    end
 
   end
+ 
+
+  
 
 end
