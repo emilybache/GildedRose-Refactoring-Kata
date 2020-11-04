@@ -13,6 +13,7 @@ class GildedRose
           end
 
       else
+
         if item.quality < 50
           item.quality = item.quality + 1
           if item.name.downcase.match /backstage/
@@ -28,6 +29,7 @@ class GildedRose
             end
           end
         end
+        
       end
       if !sulfuras?(item)
         item.sell_in = item.sell_in - 1
@@ -41,7 +43,7 @@ class GildedRose
               end
             end
           else
-            item.quality = item.quality - item.quality
+            item.quality = 0
           end
         else
           if item.quality < 50
