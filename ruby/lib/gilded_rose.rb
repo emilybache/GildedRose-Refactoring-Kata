@@ -29,14 +29,14 @@ class GildedRose
           end
         end
       end
-      if item.name != "Sulfuras, Hand of Ragnaros"
+      if !sulfuras?(item)
         item.sell_in = item.sell_in - 1
       end
       if item.sell_in < 0
         if item.name != "Aged Brie"
           if !item.name.downcase.match /backstage/
             if item.quality > 0
-              if item.name != "Sulfuras, Hand of Ragnaros"
+              if !sulfuras?(item)
                 item.quality = item.quality - 1
               end
             end
