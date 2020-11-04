@@ -7,10 +7,8 @@ class GildedRose
   def self.update_quality(items)
     items.map do |item|
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
-
-          if !sulfuras?(item)
-            update_normal_quality(item)
-          end
+          
+            update_normal_quality(item) if !sulfuras?(item)
 
       else
 
