@@ -56,6 +56,10 @@ class GildedRose
   def self.update_normal_quality(item)
     item.quality -= 1 unless item.quality.zero?
   end
+
+  def self.selfarus?(item)
+    !item.name.downcase.match( /selfarus/).nil?
+  end
 end
 
 class Item
