@@ -103,13 +103,13 @@ let(:sulfarus) { Item.new('Sulfuras, Hand of Ragnaros', 50, 80) }
 
   describe '#selfarus?' do
     it 'returns true on a selfarus item' do
-      selfarus_double = double :selfarus, name: 'selfarus', sell_in: 50, quality: 80
-      expect(GildedRose.selfarus?(selfarus_double)).to eq true
+      sulfuras_double = double :selfarus, name: 'Sulfuras', sell_in: 50, quality: 80
+      expect(GildedRose.sulfuras?(sulfuras_double)).to eq true
     end
 
-    it 'returns false on a non selfarus item' do
+    it 'returns false on a non sulfuras item' do
       item_double = double :item, name: "potato", sell_in: 1, quality: 0
-      expect(GildedRose.selfarus?(item_double)).to eq false
+      expect(GildedRose.sulfuras?(item_double)).to eq false
     end
   end
  

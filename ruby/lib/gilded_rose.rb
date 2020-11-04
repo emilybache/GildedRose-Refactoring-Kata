@@ -8,7 +8,7 @@ class GildedRose
     items.map do |item|
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
 
-          if item.name != "Sulfuras, Hand of Ragnaros"
+          if !sulfuras?(item)
             update_normal_quality(item)
           end
 
@@ -57,8 +57,8 @@ class GildedRose
     item.quality -= 1 unless item.quality.zero?
   end
 
-  def self.selfarus?(item)
-    !item.name.downcase.match( /selfarus/).nil?
+  def self.sulfuras?(item)
+    !item.name.downcase.match( /sulfuras/).nil?
   end
 end
 
