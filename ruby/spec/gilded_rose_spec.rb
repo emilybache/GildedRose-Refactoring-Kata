@@ -2,6 +2,7 @@ require 'gilded_rose'
 
 describe GildedRose do
 let(:potato) { Item.new('potato', 15, 2)}
+let(:sulfarus) { Item.new('Sulfuras, Hand of Ragnaros', 50, 80) }
   describe "#update_quality" do
     it "does not change the name" do
       items = [Item.new("foo", 0, 0)]
@@ -45,6 +46,14 @@ let(:potato) { Item.new('potato', 15, 2)}
         items = [Item.new("Aged Brie", 25, 50)]
         GildedRose.update_quality(items)
         expect(items.first.quality).to eq 50
+      end
+    end
+
+    describe 'Sulfuras input' do
+      it 'does not change' do
+        items = [sulfarus]
+        GildedRose.update_quality(items)
+        expect(items[0]).to eq sulfarus
       end
     end
  
