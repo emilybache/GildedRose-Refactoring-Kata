@@ -21,8 +21,16 @@ let(:potato) { Item.new('potato', 15, 2)}
       expect(items.first.sell_in).to eq (14)
     end
 
-    it 'should decrease value of normal items by 2 when sell_in date passes' do
+    it 'should decrease quality of normal items by 2 when sell_in date passes' do
+      items = [Item.new("old potato", 0, 20)]
+      GildedRose.update_quality(items)
+      expect(items.first.quality).to eq (18)
+    end
 
+    it 'should not decrease quality below 0' do
+      items = [Item.new("old potato", 0, 0)]
+      GildedRose.update_quality(items)
+      expect(items.first.quality).to eq (0)
     end
 
 
