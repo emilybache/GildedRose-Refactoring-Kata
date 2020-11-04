@@ -37,7 +37,7 @@ class GildedRose
           if !item.name.downcase.match /backstage/
             if item.quality > 0
               if !sulfuras?(item)
-                item.quality = item.quality - 1
+                update_normal_quality(item)
               end
             end
           else
