@@ -1,11 +1,11 @@
 class GildedRose
 
-  def initialize(items)
-    @items = items
-  end
+  # def initialize(items)
+  #   @items = items
+  # end
 
-  def update_quality()
-    @items.each do |item|
+  def self.update_quality(items)
+    items.map do |item|
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
         if item.quality > 0
           if item.name != "Sulfuras, Hand of Ragnaros"
@@ -50,6 +50,7 @@ class GildedRose
         end
       end
     end
+    items
   end
 end
 
