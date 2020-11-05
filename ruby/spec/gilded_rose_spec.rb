@@ -134,6 +134,37 @@ let(:sulfarus) { Item.new('Sulfuras, Hand of Ragnaros', 50, 80) }
       expect(GildedRose.special_item?(item_double)).to eq false
     end
   end
+
+  describe '#update_backstage_quality' do
+     it 'increases in quality by one when sellIn is > 10 days' do
+      items_double = double :item, name: "Backstage passes to a TAFKAL80ETC concert", sell_in: 15, quality: 20
+      expect(items_double).to receive(:quality=).with(21)
+      GildedRose.update_backstage_quality(items_double)
+      end
+
+      it 'increases in quality by 2 when sellin < 10 days' do
+        items_double = double :item, name: "Backstage passes to a TAFKAL80ETC concert", sell_in: 9, quality: 20
+        expect(items_double).to receive(:quality=).with(22)
+        GildedRose.update_backstage_quality(items_double)
+        
+      end
+
+      it 'increases by 3 when sellin < 5' do
+        items_double = double :item, name: "Backstage passes to a TAFKAL80ETC concert", sell_in: 4, quality: 20
+        expect(items_double).to receive(:quality=).with(23)
+        GildedRose.update_backstage_quality(items_double)
+      end
+
+      it 'decreases to 0 when sellin == 0' do
+        items_double = double :item, name: "Backstage passes to a TAFKAL80ETC concert", sell_in: 0, quality: 20
+        expect(items_double).to receive(:quality=).with(0)
+        GildedRose.update_backstage_quality(items_double)
+      end
+  end
+
+  describe '#update_brie_quality' do
+
+  end
  
 
   

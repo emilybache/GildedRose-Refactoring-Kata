@@ -7,60 +7,50 @@ class GildedRose
   def self.update_quality(items)
     items.map do |item|
       if !special_item?(item)
-          
             update_normal_quality(item) if !sulfuras?(item)
-
       else
-        # start of block for brie and backstage quality logic
-        if item.quality < 50
-          item.quality = item.quality + 1
-          if item.name.downcase.match /backstage/
-            if item.sell_in < 11
-
-                item.quality = item.quality + 1
-
-            end
-            if item.sell_in < 6
-
-                item.quality = item.quality + 1
-
-            end
-          end
-        end
-        # end of block for brie and backstage quality logic
+        update_backstage_quality(item) if item.quality < 50
       end
-
+# ______________________________________________________________________________________
       # start of block that reduces sell in 
       if !sulfuras?(item)
         item.sell_in = item.sell_in - 1
       end
       # end of block that reduces sell in 
 
-
       if item.sell_in < 0
-
         if item.name != "Aged Brie"
-
           if !item.name.downcase.match /backstage/
-            update_normal_quality(item) unless sulfuras?(item)
-
+           update_normal_quality(item) 
           else
             item.quality = 0
           end
         else
-          if item.quality < 50
-            item.quality = item.quality + 1
-          end
+            item.quality = item.quality + 1 if item.quality < 50
         end
-
-
-
       end
     end
   end
 
+  def self.update_backstage_quality(item)
+      case item.sell_in 
+      when (-(Float::INFINITY)..0)
+        item.quality = 0
+      when 0..5 
+        item.quality += 3
+      when 6..10
+        item.quality += 2
+      when  10..Float::INFINITY
+        item.quality += 1
+       end
+      
+
+   
+  end
+
   def self.update_normal_quality(item)
     item.quality -= 1 unless item.quality.zero?
+ 
   end
 
   def self.sulfuras?(item)
@@ -71,6 +61,27 @@ class GildedRose
    ( !item.name.downcase.match( /aged brie/).nil? ||  !item.name.downcase.match(/backstage/).nil? || sulfuras?(item))
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class Item
   attr_accessor :name, :sell_in, :quality
