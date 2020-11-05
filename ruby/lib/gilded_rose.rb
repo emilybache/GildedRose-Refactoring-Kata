@@ -7,27 +7,14 @@ class GildedRose
   def self.update_quality(items)
     items.map do |item|
       if !special_item?(item)
-            update_normal_quality(item) if !sulfuras?(item)
-      else
+            update_normal_quality(item) 
+            item.sell_in -= 1
+      elsif item.name.downcase.match /backstage/
         update_backstage_quality(item) if item.quality < 50
-      end
-# ______________________________________________________________________________________
-      # start of block that reduces sell in 
-      if !sulfuras?(item)
-        item.sell_in = item.sell_in - 1
-      end
-      # end of block that reduces sell in 
-
-      if item.sell_in < 0
-        if item.name != "Aged Brie"
-          if !item.name.downcase.match /backstage/
-           update_normal_quality(item) 
-          else
-            item.quality = 0
-          end
-        else
-            item.quality = item.quality + 1 if item.quality < 50
-        end
+        item.sell_in -= 1
+      elsif item.name.downcase.match /aged brie/
+        update_brie_quality(item)
+        item.sell_in -= 1
       end
     end
   end
@@ -43,14 +30,23 @@ class GildedRose
       when  10..Float::INFINITY
         item.quality += 1
        end
-      
-
-   
   end
 
   def self.update_normal_quality(item)
-    item.quality -= 1 unless item.quality.zero?
+    if item.sell_in < 0
+      item.quality -= 2 unless item.quality.zero?
+    else
+      item.quality -= 1 unless item.quality.zero?
+    end
  
+  end
+
+  def self.update_brie_quality(item)
+    if item.sell_in < 1 && item.quality < 48
+      item.quality += 2 
+    else
+      item.quality += 1 if item.quality < 50
+    end
   end
 
   def self.sulfuras?(item)

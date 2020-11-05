@@ -25,7 +25,7 @@ let(:sulfarus) { Item.new('Sulfuras, Hand of Ragnaros', 50, 80) }
       end
 
       it 'should decrease quality of normal items by 2 when sell_in date passes' do
-        items = [Item.new("old potato", 0, 20)]
+        items = [Item.new("old potato", -1, 20)]
         GildedRose.update_quality(items)
         expect(items.first.quality).to eq (18)
       end
@@ -48,6 +48,11 @@ let(:sulfarus) { Item.new('Sulfuras, Hand of Ragnaros', 50, 80) }
         items = [Item.new("Aged Brie", 25, 50)]
         GildedRose.update_quality(items)
         expect(items.first.quality).to eq 50
+      end
+      it 'doubles the increase when sell_in below 1' do
+        items = [Item.new("Aged Brie", 0, 20)]
+        GildedRose.update_quality(items)
+        expect(items.first.quality).to eq 22
       end
     end
 
@@ -88,7 +93,8 @@ let(:sulfarus) { Item.new('Sulfuras, Hand of Ragnaros', 50, 80) }
   end
   describe '#update_normal_quality' do
     it 'updates the quality of a normal item' do
-      item_double = double :item, name: "potato", sellIn: 1, quality: 3
+      item_double = double :item, name: "potato", sell_in: 1, quality: 3
+
       expect(item_double).to receive(:quality=).with(2)
       GildedRose.update_normal_quality(item_double)
     end
@@ -163,6 +169,23 @@ let(:sulfarus) { Item.new('Sulfuras, Hand of Ragnaros', 50, 80) }
   end
 
   describe '#update_brie_quality' do
+    it 'should add one to the quality each day ' do
+      brie_double = double :item, name: "Aged Brie", sell_in: 30, quality:15
+      expect(brie_double).to receive(:quality=).with(16)
+      GildedRose.update_brie_quality(brie_double)
+    end
+
+    it 'should not let quality go past 50' do
+      brie_double = double :item, name: "Aged Brie", sell_in: 30, quality:50
+      expect(brie_double).not_to receive(:quality=).with(51)
+      GildedRose.update_brie_quality(brie_double)
+    end
+    it 'should increase by two when sellin <= 0' do
+      brie_double = double :item, name: "Aged Brie", sell_in: 0, quality:2
+      expect(brie_double).to receive(:quality=).with(4)
+      GildedRose.update_brie_quality(brie_double)
+    end
+
 
   end
  
