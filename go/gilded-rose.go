@@ -84,22 +84,15 @@ func UpdateQualityStandard(item *Item) {
 func UpdateQuality(items []*Item) {
 	for i := 0; i < len(items); i++ {
 
-		if items[i].name == "Sulfuras, Hand of Ragnaros" {
-			continue
-		}
-
-		if items[i].name == "Aged Brie" {
+		switch name := items[i].name; name {
+		case "Sulfuras, Hand of Ragnaros":
+		case "Aged Brie":
 			UpdateQualityBrie(items[i])
-			continue
-		}
-
-		if items[i].name == "Backstage passes to a TAFKAL80ETC concert" {
+		case "Backstage passes to a TAFKAL80ETC concert":
 			UpdateQualityBackstagePasses(items[i])
-			continue
+		default:
+			UpdateQualityStandard(items[i])
 		}
-
-		UpdateQualityStandard(items[i])
-
 	}
 
 }
