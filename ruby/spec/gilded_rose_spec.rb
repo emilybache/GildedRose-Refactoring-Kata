@@ -112,6 +112,23 @@ let(:sulfarus) { Item.new('Sulfuras, Hand of Ragnaros', 50, 80) }
       expect(GildedRose.sulfuras?(item_double)).to eq false
     end
   end
+
+  describe '#special_item?' do
+    it 'returns true for aged brie' do
+      item_double = double :item, name: "Aged Brie"
+      expect(GildedRose.special_item?(item_double)).to eq true
+    end
+
+    it 'returns true for backstage passes' do
+      item_double = double :item, name: "backstage pass for gong party"
+      expect(GildedRose.special_item?(item_double)).to eq true
+    end
+
+    it 'returns true for sulfuras' do
+      sulfuras_double = double :selfarus, name: 'Sulfuras'
+      expect(GildedRose.special_item?(sulfuras_double)).to eq true
+    end 
+  end
  
 
   

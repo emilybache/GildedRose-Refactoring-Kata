@@ -38,13 +38,11 @@ class GildedRose
 
 
       if item.sell_in < 0
+
         if item.name != "Aged Brie"
+
           if !item.name.downcase.match /backstage/
-            if item.quality > 0
-              if !sulfuras?(item)
-                update_normal_quality(item)
-              end
-            end
+            update_normal_quality(item) unless sulfuras?(item)
           else
             item.quality = 0
           end
@@ -53,6 +51,9 @@ class GildedRose
             item.quality = item.quality + 1
           end
         end
+
+
+
       end
     end
   end
@@ -63,6 +64,10 @@ class GildedRose
 
   def self.sulfuras?(item)
     !item.name.downcase.match( /sulfuras/).nil?
+  end
+
+  def self.special_item?(item)
+    !item.name.downcase.match( /Aged Brie/ || /backstage/) || !sulfuras?(item)
   end
 end
 
