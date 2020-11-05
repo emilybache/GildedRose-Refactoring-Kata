@@ -40,20 +40,20 @@ func UpdateQualityBackstagePasses(item *Item) {
 
 	if item.sellIn <= 0 {
 		item.quality = 0
-	}
-
-	if item.quality == 50 {
 		return
 	}
-	if item.quality == 49 && item.sellIn <= 0 {
-		item.quality = 50
+
+	if item.sellIn <= 5 {
+		item.quality = min(item.quality+3, 50)
+		return
 	}
-	if item.sellIn > 0 {
-		item.quality++
+
+	if item.sellIn <= 10 {
+		item.quality = min(item.quality+2, 50)
+		return
 	}
-	if item.sellIn <= 0 {
-		item.quality += 2
-	}
+
+	item.quality++
 
 }
 
@@ -66,6 +66,11 @@ func UpdateQuality(items []*Item) {
 
 		if items[i].name == "Aged Brie" {
 			UpdateQualityBrie(items[i])
+			continue
+		}
+
+		if items[i].name == "Backstage passes to a TAFKAL80ETC concert" {
+			UpdateQualityBackstagePasses(items[i])
 			continue
 		}
 
