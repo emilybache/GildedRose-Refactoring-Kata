@@ -43,7 +43,7 @@ func Test_Items(t *testing.T) {
 	for i, item := range items {
 		actual := [2]int{item.sellIn, item.quality}
 		if actual != expected[i] {
-			t.Errorf("Expected %+v but got %+v", expected[i], actual)
+			t.Errorf("%s: Expected %+v but got %+v", item.name, expected[i], actual)
 		}
 	}
 
