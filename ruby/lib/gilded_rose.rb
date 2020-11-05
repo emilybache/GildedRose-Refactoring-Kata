@@ -12,6 +12,8 @@ class GildedRose
       when brie?(item)
         update_brie_quality(item)
         item.sell_in -= 1
+      when conjured?(item)
+          2.times {update_normal_quality(item)}
       end
     end
   end
@@ -21,9 +23,9 @@ class GildedRose
       when (-(Float::INFINITY)..0)
         item.quality = 0
       when 0..5 
-        item.quality += 3
+        3.times { item.quality += 1 if item.quality < 50 }
       when 6..10
-        item.quality += 2
+        2.times { item.quality += 1 if item.quality < 50 }
       when  10..Float::INFINITY
         item.quality += 1
        end
@@ -31,7 +33,7 @@ class GildedRose
 
   def self.update_normal_quality(item)
     if item.sell_in < 0
-      item.quality -= 2 unless item.quality.zero?
+      2.times {  item.quality -= 1 unless item.quality.zero?}
     else
       item.quality -= 1 unless item.quality.zero?
     end
@@ -57,8 +59,12 @@ class GildedRose
     !item.name.downcase.match(/backstage/).nil?
   end
 
+  def self.conjured?(item)
+    !item.name.downcase.match(/conjured/).nil?
+  end
+
   def self.special_item?(item)
-   ( brie?(item) ||  backstage?(item) || sulfuras?(item))
+   ( brie?(item) ||  backstage?(item) || conjured?(item) || sulfuras?(item))
   end
 
 

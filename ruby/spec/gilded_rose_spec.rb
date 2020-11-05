@@ -36,6 +36,8 @@ let(:sulfarus) { Item.new('Sulfuras, Hand of Ragnaros', 50, 80) }
       end
     end
 
+    
+
     describe 'Aged Brie input' do
       it 'increases in quality as it ages' do
         items = [Item.new("Aged Brie", 25, 45)]
@@ -89,7 +91,37 @@ let(:sulfarus) { Item.new('Sulfuras, Hand of Ragnaros', 50, 80) }
         expect(items.first.quality).to eq 0
       end
     end
-  end
+
+    describe 'conjured input' do
+      it "should degrade twice as fast as normal items" do
+        items = [Item.new("Conjured Armour", 10, 15)]
+        GildedRose.update_quality(items)
+        expect(items.first.quality).to eq 13
+      end
+      
+      it "should not degrade past 0" do
+        items = [Item.new("Conjured Armour", 10, 1)]
+        GildedRose.update_quality(items)
+        expect(items.first.quality).to eq 0
+      end
+
+      it "should degrade by 4 when sell in has passed" do
+          items = [Item.new("Conjured Armour", -1, 17)]
+          GildedRose.update_quality(items)
+          expect(items.first.quality).to eq 13
+      end
+
+      it "still should not degrade past 0 when sell in has passed" do
+        items = [Item.new("Conjured Armour", -1, 3)]
+        GildedRose.update_quality(items)
+        expect(items.first.quality).to eq 0
+      end 
+    end
+
+
+    
+ 
+end
   describe '#update_normal_quality' do
     it 'updates the quality of a normal item' do
       item_double = double :item, name: "potato", sell_in: 1, quality: 3
@@ -149,14 +181,14 @@ let(:sulfarus) { Item.new('Sulfuras, Hand of Ragnaros', 50, 80) }
 
       it 'increases in quality by 2 when sellin < 10 days' do
         items_double = double :item, name: "Backstage passes to a TAFKAL80ETC concert", sell_in: 9, quality: 20
-        expect(items_double).to receive(:quality=).with(22)
+        expect(items_double).to receive(:quality=).with(21).twice
         GildedRose.update_backstage_quality(items_double)
         
       end
 
       it 'increases by 3 when sellin < 5' do
         items_double = double :item, name: "Backstage passes to a TAFKAL80ETC concert", sell_in: 4, quality: 20
-        expect(items_double).to receive(:quality=).with(23)
+        expect(items_double).to receive(:quality=).with(21).exactly(3).times
         GildedRose.update_backstage_quality(items_double)
       end
 
@@ -211,6 +243,7 @@ let(:sulfarus) { Item.new('Sulfuras, Hand of Ragnaros', 50, 80) }
       expect(GildedRose.backstage?(item_double)).to eq false
     end
   end
+
  
 
   
