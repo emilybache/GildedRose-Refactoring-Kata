@@ -6,7 +6,7 @@ class GildedRose
 
   def self.update_quality(items)
     items.map do |item|
-      if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
+      if !special_item?(item)
           
             update_normal_quality(item) if !sulfuras?(item)
 
@@ -68,7 +68,7 @@ class GildedRose
   end
 
   def self.special_item?(item)
-    item.name.downcase.match( /Aged Brie/ || /backstage/).nil? || sulfuras?(item)
+   ( !item.name.downcase.match( /aged brie/).nil? ||  !item.name.downcase.match(/backstage/).nil? || sulfuras?(item))
   end
 end
 

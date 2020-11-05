@@ -131,7 +131,7 @@ let(:sulfarus) { Item.new('Sulfuras, Hand of Ragnaros', 50, 80) }
 
     it 'returns false on potato' do
       item_double = double :item, name: "potato"
-      expect(GildedRose.sulfuras?(item_double)).to eq false
+      expect(GildedRose.special_item?(item_double)).to eq false
     end
   end
  
