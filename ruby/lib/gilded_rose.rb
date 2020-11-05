@@ -16,14 +16,14 @@ class GildedRose
           item.quality = item.quality + 1
           if item.name.downcase.match /backstage/
             if item.sell_in < 11
-              if item.quality < 50
+
                 item.quality = item.quality + 1
-              end
+
             end
             if item.sell_in < 6
-              if item.quality < 50
+
                 item.quality = item.quality + 1
-              end
+
             end
           end
         end
