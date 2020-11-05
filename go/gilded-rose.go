@@ -1,10 +1,13 @@
 package main
 
+// Item represents an item for sale at the inn
 type Item struct {
 	name            string
 	sellIn, quality int
 }
 
+// simple func to return a min of 2 integers
+// useful in this context to stop items value going over 50
 func min(x int, y int) int {
 	if x == y {
 		return x
@@ -15,6 +18,8 @@ func min(x int, y int) int {
 	return y
 }
 
+// simple func to return a max of 2 integers
+// useful in this context to stop items value going under 0
 func max(x int, y int) int {
 	if x == y {
 		return x
@@ -25,6 +30,7 @@ func max(x int, y int) int {
 	return y
 }
 
+// UpdateQualityBrie handles updates for aged brie
 func UpdateQualityBrie(item *Item) {
 	defer func() {
 		item.sellIn--
@@ -43,6 +49,7 @@ func UpdateQualityBrie(item *Item) {
 
 }
 
+// UpdateQualityBackstagePasses handles updates for backstage passes
 func UpdateQualityBackstagePasses(item *Item) {
 	defer func() {
 		item.sellIn--
@@ -67,6 +74,7 @@ func UpdateQualityBackstagePasses(item *Item) {
 
 }
 
+// UpdateQualityStandard handles updates for standard items
 func UpdateQualityStandard(item *Item) {
 	defer func() {
 		item.sellIn--
@@ -81,6 +89,7 @@ func UpdateQualityStandard(item *Item) {
 
 }
 
+// UpdateQualityConjured handles updates for conjured items
 func UpdateQualityConjured(item *Item) {
 	defer func() {
 		item.sellIn--
@@ -95,6 +104,8 @@ func UpdateQualityConjured(item *Item) {
 
 }
 
+// UpdateQuality handles the update of a slice of items. The individual items are handled
+// by separate functions based on the name of the item.
 func UpdateQuality(items []*Item) {
 	for i := 0; i < len(items); i++ {
 

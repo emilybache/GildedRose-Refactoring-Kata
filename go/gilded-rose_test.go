@@ -2,13 +2,20 @@ package main
 
 import "testing"
 
+// Expected is an array of integers representing expected sellIn and quality
 type Expected [2]int
 
+// An ItemTest is a struct which includes an Item along with the expected values
+// for sellIn and quality after the quality is updated by the UpdateQuality function
 type ItemTest struct {
 	*Item
 	Expected
 }
 
+// GetItemTestsComponents returns an slice of Items and Expecteds from a slice of
+// ItemTests. This is useful so that we can have our tests as ItemTests to keep the expected
+// results along with the Item definitions. This function can be used to extract the slice of Items
+// which can then be passed to the UpdateQuality function
 func GetItemTestsComponents(itemTests []ItemTest) ([]*Item, []Expected) {
 	var items []*Item
 	var expected []Expected
@@ -38,6 +45,7 @@ func Test_Items(t *testing.T) {
 		{&Item{"Acme Dynamite", 0, 0}, Expected{-1, 0}},
 	}
 
+	// get the items and expected componenets
 	items, expected := GetItemTestsComponents(itemTests)
 
 	UpdateQuality(items)
