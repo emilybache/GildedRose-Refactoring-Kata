@@ -5,10 +5,42 @@ type Item struct {
 	sellIn, quality int
 }
 
+func min(x int, y int) int {
+	if x == y {
+		return x
+	}
+	if x < y {
+		return x
+	}
+	return y
+}
+
 func UpdateQualityBrie(item *Item) {
 	defer func() {
-		item.sellIn = item.sellIn - 1
+		item.sellIn--
 	}()
+
+	if item.quality == 50 {
+		return
+	}
+
+	if item.sellIn > 0 {
+		item.quality++
+	}
+	if item.sellIn <= 0 {
+		item.quality = min(item.quality+2, 50)
+	}
+
+}
+
+func UpdateQualityBackstagePasses(item *Item) {
+	defer func() {
+		item.sellIn--
+	}()
+
+	if item.sellIn <= 0 {
+		item.quality = 0
+	}
 
 	if item.quality == 50 {
 		return
