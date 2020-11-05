@@ -32,17 +32,21 @@ func max(x int, y int) int {
 
 // UpdateQualityBrie handles updates for aged brie
 func UpdateQualityBrie(item *Item) {
+	// always decrement sellInn
 	defer func() {
 		item.sellIn--
 	}()
 
+	// quality cannot go above 50
 	if item.quality == 50 {
 		return
 	}
 
+	// increment when prior to sellIn
 	if item.sellIn > 0 {
 		item.quality++
 	}
+	// increment by 2 if past sellInn date
 	if item.sellIn <= 0 {
 		item.quality = min(item.quality+2, 50)
 	}
@@ -51,55 +55,66 @@ func UpdateQualityBrie(item *Item) {
 
 // UpdateQualityBackstagePasses handles updates for backstage passes
 func UpdateQualityBackstagePasses(item *Item) {
+	// always decrement sellInn
 	defer func() {
 		item.sellIn--
 	}()
 
+	// if past sellInn date then item is worthless
 	if item.sellIn <= 0 {
 		item.quality = 0
 		return
 	}
 
+	// increment by 3 under with under 5 days to go
 	if item.sellIn <= 5 {
 		item.quality = min(item.quality+3, 50)
 		return
 	}
 
+	// increment by 2 under with under 10 days to go
 	if item.sellIn <= 10 {
 		item.quality = min(item.quality+2, 50)
 		return
 	}
 
+	// increment by 1 under normal conditions
 	item.quality++
 
 }
 
 // UpdateQualityStandard handles updates for standard items
 func UpdateQualityStandard(item *Item) {
+	// always decrement sellInn
 	defer func() {
 		item.sellIn--
 	}()
 
+	// if past sellInn date then decrement by 2
 	if item.sellIn <= 0 {
 		item.quality = max(item.quality-2, 0)
 		return
 	}
 
+	// decrement by 1
 	item.quality = max(item.quality-1, 0)
 
 }
 
 // UpdateQualityConjured handles updates for conjured items
 func UpdateQualityConjured(item *Item) {
+	// always decrement sellInn
 	defer func() {
 		item.sellIn--
 	}()
 
+	// if past sellInn date then decrement by 4
 	if item.sellIn <= 0 {
 		item.quality = max(item.quality-4, 0)
 		return
 	}
 
+	// decrement by 2
 	item.quality = max(item.quality-2, 0)
 
 }
