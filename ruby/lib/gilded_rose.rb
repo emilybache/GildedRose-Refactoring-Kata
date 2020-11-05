@@ -43,6 +43,7 @@ class GildedRose
 
           if !item.name.downcase.match /backstage/
             update_normal_quality(item) unless sulfuras?(item)
+
           else
             item.quality = 0
           end
@@ -67,7 +68,7 @@ class GildedRose
   end
 
   def self.special_item?(item)
-    !item.name.downcase.match( /Aged Brie/ || /backstage/) || !sulfuras?(item)
+    item.name.downcase.match( /Aged Brie/ || /backstage/).nil? || sulfuras?(item)
   end
 end
 

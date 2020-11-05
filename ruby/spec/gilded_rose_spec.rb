@@ -120,7 +120,7 @@ let(:sulfarus) { Item.new('Sulfuras, Hand of Ragnaros', 50, 80) }
     end
 
     it 'returns true for backstage passes' do
-      item_double = double :item, name: "backstage pass for gong party"
+      item_double = double :item, name: "Backstage passes to a TAFKAL80ETC concert"
       expect(GildedRose.special_item?(item_double)).to eq true
     end
 
@@ -128,6 +128,11 @@ let(:sulfarus) { Item.new('Sulfuras, Hand of Ragnaros', 50, 80) }
       sulfuras_double = double :selfarus, name: 'Sulfuras'
       expect(GildedRose.special_item?(sulfuras_double)).to eq true
     end 
+
+    it 'returns false on potato' do
+      item_double = double :item, name: "potato"
+      expect(GildedRose.sulfuras?(item_double)).to eq false
+    end
   end
  
 
