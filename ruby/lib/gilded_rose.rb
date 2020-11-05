@@ -1,18 +1,15 @@
 class GildedRose
 
-  # def initialize(items)
-  #   @items = items
-  # end
-
   def self.update_quality(items)
     items.map do |item|
-      if !special_item?(item)
-            update_normal_quality(item) 
-            item.sell_in -= 1
-      elsif item.name.downcase.match /backstage/
+      case 
+      when !special_item?(item)
+        update_normal_quality(item) 
+        item.sell_in -= 1
+      when backstage?(item)
         update_backstage_quality(item) if item.quality < 50
         item.sell_in -= 1
-      elsif item.name.downcase.match /aged brie/
+      when brie?(item)
         update_brie_quality(item)
         item.sell_in -= 1
       end
@@ -38,7 +35,6 @@ class GildedRose
     else
       item.quality -= 1 unless item.quality.zero?
     end
- 
   end
 
   def self.update_brie_quality(item)
@@ -53,9 +49,20 @@ class GildedRose
     !item.name.downcase.match( /sulfuras/).nil?
   end
 
-  def self.special_item?(item)
-   ( !item.name.downcase.match( /aged brie/).nil? ||  !item.name.downcase.match(/backstage/).nil? || sulfuras?(item))
+  def self.brie?(item)
+    !item.name.downcase.match( /aged brie/).nil?
   end
+
+  def self.backstage?(item)
+    !item.name.downcase.match(/backstage/).nil?
+  end
+
+  def self.special_item?(item)
+   ( brie?(item) ||  backstage?(item) || sulfuras?(item))
+  end
+
+
+
 end
 
 

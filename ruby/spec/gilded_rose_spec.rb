@@ -2,10 +2,9 @@ require 'gilded_rose'
 
 describe GildedRose do
 let(:potato) { Item.new('potato', 15, 2)}
-#let(:grain) {instance_double("item", name: "potato", :quality => 5)}
 let(:sulfarus) { Item.new('Sulfuras, Hand of Ragnaros', 50, 80) }
 
-  describe "#update_quality" do
+  describe "feature tests" do
     it "does not change the name" do
       items = [Item.new("foo", 0, 0)]
       GildedRose.update_quality(items)
@@ -187,6 +186,30 @@ let(:sulfarus) { Item.new('Sulfuras, Hand of Ragnaros', 50, 80) }
     end
 
 
+  end
+
+  describe '#brie?' do
+    it 'returns true on a brie item' do
+      brie_double = double :brie, name: 'Aged Brie', sell_in: 50, quality: 80
+      expect(GildedRose.brie?(brie_double)).to eq true
+    end
+
+    it 'returns false on a non brie item' do
+      item_double = double :item, name: "potato", sell_in: 1, quality: 0
+      expect(GildedRose.sulfuras?(item_double)).to eq false
+    end
+  end
+
+  describe '#backstage?' do
+    it 'returns true on a backstage item' do
+      backstage_double = double :item, name: "Backstage passes to a TAFKAL80ETC concert"
+      expect(GildedRose.backstage?(backstage_double)).to eq true
+    end
+
+    it 'returns false on a non brie item' do
+      item_double = double :item, name: "potato", sell_in: 1, quality: 0
+      expect(GildedRose.backstage?(item_double)).to eq false
+    end
   end
  
 
