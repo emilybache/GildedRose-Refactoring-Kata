@@ -1,4 +1,5 @@
 #!/usr/bin/ruby -w
+# frozen_string_literal: true
 # rubocop:disable all
 require File.join(File.dirname(__FILE__), 'gilded_rose')
 

@@ -1,10 +1,12 @@
-class GildedRose
+# frozen_string_literal: true
 
+# class for gildedrose item degradation
+class GildedRose
   def self.update_quality(items)
     items.map do |item|
-      case 
+      case
       when !special_item?(item)
-        update_normal_quality(item) 
+        update_normal_quality(item)
         item.sell_in -= 1
       when backstage?(item)
         update_backstage_quality(item) if item.quality < 50
@@ -13,27 +15,27 @@ class GildedRose
         update_brie_quality(item)
         item.sell_in -= 1
       when conjured?(item)
-          2.times {update_normal_quality(item)}
+        2.times { update_normal_quality(item) }
       end
     end
   end
 
   def self.update_backstage_quality(item)
-      case item.sell_in 
-      when (-(Float::INFINITY)..0)
-        item.quality = 0
-      when 0..5 
-        3.times { item.quality += 1 if item.quality < 50 }
-      when 6..10
-        2.times { item.quality += 1 if item.quality < 50 }
-      when  10..Float::INFINITY
-        item.quality += 1
-       end
+    case item.sell_in
+    when (-Float::INFINITY..0)
+      item.quality = 0
+    when 0..5
+      3.times { item.quality += 1 if item.quality < 50 }
+    when 6..10
+      2.times { item.quality += 1 if item.quality < 50 }
+    when 10..Float::INFINITY
+      item.quality += 1
+    end
   end
 
   def self.update_normal_quality(item)
-    if item.sell_in < 0
-      2.times {  item.quality -= 1 unless item.quality.zero?}
+    if item.sell_in.negative?
+      2.times {  item.quality -= 1 unless item.quality.zero? }
     else
       item.quality -= 1 unless item.quality.zero?
     end
@@ -41,18 +43,18 @@ class GildedRose
 
   def self.update_brie_quality(item)
     if item.sell_in < 1 && item.quality < 48
-      item.quality += 2 
+      item.quality += 2
     else
       item.quality += 1 if item.quality < 50
     end
   end
 
   def self.sulfuras?(item)
-    !item.name.downcase.match( /sulfuras/).nil?
+    !item.name.downcase.match(/sulfuras/).nil?
   end
 
   def self.brie?(item)
-    !item.name.downcase.match( /aged brie/).nil?
+    !item.name.downcase.match(/aged brie/).nil?
   end
 
   def self.backstage?(item)
@@ -64,34 +66,10 @@ class GildedRose
   end
 
   def self.special_item?(item)
-   ( brie?(item) ||  backstage?(item) || conjured?(item) || sulfuras?(item))
+    (brie?(item) || backstage?(item) || conjured?(item) || sulfuras?(item))
   end
-
-
-
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# class for items owned by gilded rose inn
 class Item
   attr_accessor :name, :sell_in, :quality
 
@@ -101,7 +79,7 @@ class Item
     @quality = quality
   end
 
-  def to_s()
-    "#{@name}, #{@sell_in}, #{@quality}"
-  end
+  # def to_s
+  #   "#{@name}, #{@sell_in}, #{@quality}"
+  # end
 end
