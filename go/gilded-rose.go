@@ -81,6 +81,20 @@ func UpdateQualityStandard(item *Item) {
 
 }
 
+func UpdateQualityConjured(item *Item) {
+	defer func() {
+		item.sellIn--
+	}()
+
+	if item.sellIn <= 0 {
+		item.quality = max(item.quality-4, 0)
+		return
+	}
+
+	item.quality = max(item.quality-2, 0)
+
+}
+
 func UpdateQuality(items []*Item) {
 	for i := 0; i < len(items); i++ {
 
@@ -90,6 +104,8 @@ func UpdateQuality(items []*Item) {
 			UpdateQualityBrie(items[i])
 		case "Backstage passes to a TAFKAL80ETC concert":
 			UpdateQualityBackstagePasses(items[i])
+		case "Conjured Mana Cake":
+			UpdateQualityConjured(items[i])
 		default:
 			UpdateQualityStandard(items[i])
 		}
