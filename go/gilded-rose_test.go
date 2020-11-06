@@ -32,7 +32,8 @@ func Test_Items(t *testing.T) {
 	var itemTests = []ItemTest{
 		{&Item{"Aged Brie", 0, 0}, Expected{-1, 2}},
 		{&Item{"Aged Brie", 5, 50}, Expected{4, 50}},
-		{&Item{"Backstage passes to a TAFKAL80ETC concert", 5, 49}, Expected{4, 50}},
+		{&Item{"Aged Brie", 9, 5}, Expected{8, 6}},
+		{&Item{"Backstage passes to a TAFKAL80ETC concert", 15, 49}, Expected{14, 50}},
 		{&Item{"Backstage passes to a TAFKAL80ETC concert", 0, 49}, Expected{-1, 0}},
 		{&Item{"Backstage passes to a TAFKAL80ETC concert", 4, 4}, Expected{3, 7}},
 		{&Item{"Backstage passes to a TAFKAL80ETC concert", 9, 4}, Expected{8, 6}},
