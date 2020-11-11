@@ -18,14 +18,14 @@ class TestGildedRoseRefactor < Test::Unit::TestCase
 
   def test_foo
     gilded_rose = GildedRose.new @items
-    string = "OMGHAI!\n"
-    (0...30).each do |day|
+    string = "OMGHAI!\n".force_encoding('UTF-8')
+    (0...31).each do |day|
       string << "-------- day #{day} --------\n"
       string << "name, sellIn, quality\n"
       @items.each { |item| string << item.to_s + "\n" }
       string << "\n"
       gilded_rose.update_quality
     end
-    assert_equal string, File.read('test_text_fixture.txt')
+    assert_equal string.force_encoding('UTF-8'), File.read('test_text_fixture.txt').force_encoding('UTF-8')
   end
 end
