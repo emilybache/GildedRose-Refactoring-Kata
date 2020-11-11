@@ -1,11 +1,14 @@
-var {expect} = require('chai');
-var {Shop, Item} = require('../src/gilded_rose.js');
-describe("Gilded Rose", function() {
+var { expect } = require("chai");
+var { compose } = require("./texttest_fixture");
+var fs = require("fs");
+var path = require("path");
+var expectedOutput = fs
+  .readFileSync(path.join(__dirname, "approved.txt"))
+  .toString();
 
-  it("should foo", function() {
-    const gildedRose = new Shop([ new Item("foo", 0, 0) ]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).to.equal("fixme");
+describe("Gilded Rose", function () {
+  it("should match", function () {
+    const output = compose(31);
+    expect(output).to.equal(expectedOutput);
   });
-
 });
