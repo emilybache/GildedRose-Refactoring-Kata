@@ -26,6 +26,6 @@ class TestGildedRoseRefactor < Test::Unit::TestCase
       string << "\n"
       gilded_rose.update_quality
     end
-    assert_equal string.force_encoding('UTF-8'), File.read('test_text_fixture.txt').force_encoding('UTF-8')
+    assert_equal File.read('test_text_fixture.txt').force_encoding('UTF-8'), string.force_encoding('UTF-8')
   end
 end
