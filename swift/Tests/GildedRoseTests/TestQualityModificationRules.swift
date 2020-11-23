@@ -23,13 +23,9 @@ class TestSellInModificationRule: XCTestCase {
     }
 
     func testApplyQualityThresholds() {
-        let tooLow = Item(name: "Too low", sellIn: 0, quality: 0)
-        let tooHigh = Item(name: "Too high", sellIn: 0, quality: 50)
-        let unaltered = Item(name: "Too low", sellIn: 0, quality: 25)
-
-        XCTAssertEqual(QualityModificationRule.applyQualityThresholds(to: tooLow, newQuality: -1).quality, 0)
-        XCTAssertEqual(QualityModificationRule.applyQualityThresholds(to: tooHigh, newQuality: 51).quality, 50)
-        XCTAssertEqual(QualityModificationRule.applyQualityThresholds(to: unaltered, newQuality: 24).quality, 24)
+        XCTAssertEqual(QualityModificationRule .applyQualityThresholds(to: -1), 0)
+        XCTAssertEqual(QualityModificationRule.applyQualityThresholds(to: 51), 50)
+        XCTAssertEqual(QualityModificationRule.applyQualityThresholds(to: 24), 24)
     }
 
     func testIsRegularItemExpired() {

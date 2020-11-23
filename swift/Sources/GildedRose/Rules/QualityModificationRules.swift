@@ -13,10 +13,15 @@ enum QualityModificationRule: Rule {
 
     case regular,
          increasesQuality,
+         conjured,
          qualityIncreasesFasterBeforeExpireThenDropsToZero,
          legendary
 
     static func rule(for item: Item) -> RuleType {
+        if item.name.lowercased().contains("conjured") {
+            return .conjured
+        }
+
         switch item.name {
         case "Aged Brie":
             return .increasesQuality
@@ -30,63 +35,69 @@ enum QualityModificationRule: Rule {
     }
 
     func apply(to item: Item) -> Item {
+        let newQuality: Int
         switch self {
         case .regular:
-            return applyRegularRule(to: item)
+            newQuality = regularRuleQuality(for: item)
         case .increasesQuality:
-            return applyIncreasesQualityRule(to: item)
+            newQuality = increasesQualityQuality(for: item)
         case .qualityIncreasesFasterBeforeExpireThenDropsToZero:
-            return qualityIncreasesFasterBeforeExpireThenDropsToZeroRule(to: item)
+            newQuality = increasesFasterBeforeExpireThenDropsToZeroQuality(for: item)
         case .legendary:
-            return applyLegendaryRule(to: item)
+            return item // Unmodified
+        case .conjured:
+            newQuality = conjuredRuleQuality(for: item)
         }
+
+        return Self.modify(item: item, with: newQuality)
     }
 
-    private func applyRegularRule(to item: Item) -> Item {
+    private func regularRuleQuality(for item: Item) -> Int {
         let modification = Self.isRegularItemExpired(sellIn: item.sellIn) ? -2 : -1
-        return Self.applyQualityThresholds(to: item, newQuality: item.quality + modification)
+        return item.quality + modification
     }
 
-    private func applyIncreasesQualityRule(to item: Item) -> Item {
-        Self.applyQualityThresholds(to: item, newQuality: item.quality + 1)
+    private func increasesQualityQuality(for item: Item) -> Int {
+        return item.quality + 1
     }
 
-    private func qualityIncreasesFasterBeforeExpireThenDropsToZeroRule(to item: Item) -> Item {
-        let newQuality: Int
+    private func increasesFasterBeforeExpireThenDropsToZeroQuality(for item: Item) -> Int {
         switch item.sellIn {
         case ...0:
-            newQuality = 0
+            return 0
         case 0...5:
-            newQuality = item.quality + 3
+            return item.quality + 3
         case 5...10:
-            newQuality = item.quality + 2
+            return item.quality + 2
         case 10...:
-            newQuality = item.quality + 1
+            return item.quality + 1
         default:
             fatalError("All values of `sellIn` should be covered")
         }
-
-        return Self.applyQualityThresholds(to: item, newQuality: newQuality)
     }
 
-    private func applyLegendaryRule(to item: Item) -> Item {
-        return item // No change
+    private func conjuredRuleQuality(for item: Item) -> Int {
+        let modification = Self.isRegularItemExpired(sellIn: item.sellIn) ? -4 : -2
+        return item.quality + modification
     }
 
-    public static func applyQualityThresholds(to item: Item, newQuality: Int) -> Item {
-        let correctedQuality: Int
-        switch newQuality {
-        case ...0:
-            correctedQuality = 0
-        case 0...50:
-            correctedQuality = newQuality
-        case 50...:
-            correctedQuality = 50
-        default:
-            fatalError("All values of `quality` should be covered")
-        }
+    public static func modify(item: Item, with newQuality: Int) -> Item {
+        let correctedQuality = applyQualityThresholds(to: newQuality)
 
         return Item(name: item.name, sellIn: item.sellIn, quality: correctedQuality)
+    }
+
+    public static func applyQualityThresholds(to quality: Int) -> Int {
+        switch quality {
+            case ...0:
+                return 0
+            case 0...50:
+                return quality
+            case 50...:
+                return 50
+            default:
+                fatalError("All values of `quality` should be covered")
+        }
     }
 
     public static func isRegularItemExpired(sellIn: Int) -> Bool {
