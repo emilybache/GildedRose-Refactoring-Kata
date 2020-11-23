@@ -13,6 +13,6 @@ extension Item {
         let system = GildedRose(items: [self])
         system.updateQuality()
 
-        return self.quality == quality
+        return system.items.first?.quality == quality
     }
 }
