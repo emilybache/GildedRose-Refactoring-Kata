@@ -82,16 +82,9 @@ class AdvancedRules: XCTestCase {
         let backstagePassLessThan5Days = Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 5, quality: 20)
         let backstagePassExpired = Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 0, quality: 20)
 
-        XCTAssertTrue(hasExpectedQuality(item: backstagePassMoreThan10Days, quality: 21))
-        XCTAssertTrue(hasExpectedQuality(item: backstagePassLessThan10Days, quality: 22))
-        XCTAssertTrue(hasExpectedQuality(item: backstagePassLessThan5Days, quality: 23))
-        XCTAssertTrue(hasExpectedQuality(item: backstagePassExpired, quality: 0))
-    }
-
-    private func hasExpectedQuality(item: Item, quality: Int) -> Bool {
-        let system = GildedRose(items: [item])
-        system.updateQuality()
-
-        return item.quality == quality
+        XCTAssertTrue(backstagePassMoreThan10Days.updated(hasExpectedQuality: 21))
+        XCTAssertTrue(backstagePassLessThan10Days.updated(hasExpectedQuality: 22))
+        XCTAssertTrue(backstagePassLessThan5Days.updated(hasExpectedQuality: 23))
+        XCTAssertTrue(backstagePassExpired.updated(hasExpectedQuality: 0))
     }
 }
