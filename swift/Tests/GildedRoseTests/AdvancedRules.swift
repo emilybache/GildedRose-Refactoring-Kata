@@ -13,6 +13,7 @@ class AdvancedRules: XCTestCase {
     private let noQualityItem = Item(name: "No quality Item", sellIn: 1, quality: 0)
     private let brieItem = Item(name: "Aged Brie", sellIn: 2, quality: 0)
     private let veryGoodBrieItem = Item(name: "Aged Brie", sellIn: 2, quality: 50)
+    private let expiredBrieItem = Item(name: "Aged Brie", sellIn: -3, quality: 10)
     private let sulfuras = Item(name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 50)
 
     //- Once the sell by date has passed, Quality degrades twice as fast
@@ -86,5 +87,15 @@ class AdvancedRules: XCTestCase {
         XCTAssertTrue(backstagePassLessThan10Days.updated(hasExpectedQuality: 22))
         XCTAssertTrue(backstagePassLessThan5Days.updated(hasExpectedQuality: 23))
         XCTAssertTrue(backstagePassExpired.updated(hasExpectedQuality: 0))
+    }
+
+    func testBrieAlwaysGetsBetter() {
+        let initialQuality = expiredBrieItem.quality
+        XCTAssertLessThan(expiredBrieItem.sellIn, 0)
+
+        let system = GildedRose(items: [expiredBrieItem])
+        system.updateQuality()
+
+        XCTAssertGreaterThan(system.items.first!.quality, initialQuality)
     }
 }
