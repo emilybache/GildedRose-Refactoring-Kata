@@ -59,5 +59,33 @@ describe('Shop', () => {
       expect(items[0].sellIn).toEqual(5);
       expect(items[0].quality).toEqual(5);
     });
+    it('will increase the quality of backstage passes by 1, more than 10 days before the concert', () => {
+      item.name = 'Backstage passes to a TAFKAL80ETC concert';
+      item.sellIn = 11;
+      item.quality = 5;
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(6);
+    });
+    it('will increase the quality of backstage passes by 2, 10 - 6 days before the concert', () => {
+      item.name = 'Backstage passes to a TAFKAL80ETC concert';
+      item.sellIn = 8;
+      item.quality = 5;
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(7);
+    });
+    it('will increase the quality of backstage passes by 3, 5 or less days before the concert', () => {
+      item.name = 'Backstage passes to a TAFKAL80ETC concert';
+      item.sellIn = 5;
+      item.quality = 5;
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(8);
+    });
+    it('will decrease the quality of backstage passes to 0 after concert.', () => {
+      item.name = 'Backstage passes to a TAFKAL80ETC concert';
+      item.sellIn = 0;
+      item.quality = 5;
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(0);
+    });
   });
 });
