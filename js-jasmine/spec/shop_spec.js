@@ -7,34 +7,32 @@ describe('Shop', () => {
     quality: 5
   };
   const gildedRose = new Shop([item]);
-  let items = []
   describe('.updateQuality', () => {
     it("keeps name the same", () => {
       items = gildedRose.updateQuality();
       expect(items[0].name).toEqual("foo");
     });
-    describe('when sellIn and quality are above 0', () => {
-      beforeEach(() => {
-        item.sellIn = 5;
-        item.quality = 5;
-        items = gildedRose.updateQuality();
-      });
-      it('descreases sellIn by 1', () => {
-        expect(items[0].sellIn).toEqual(5 - 1);
-      });
-      it('decreases quality by 1', () => {
-        expect(items[0].sellIn).toEqual(5 - 1);
-      });
+    it('decreases sellIn by 1', () => {
+      item.sellIn = 5;
+      const items = gildedRose.updateQuality();
+      expect(items[0].sellIn).toEqual(5 - 1);
     });
-    describe('when the sell by date has passed', () => {
-      beforeEach(() => {
-        item.sellIn = 0;
-        item.quality = 5;
-        items = gildedRose.updateQuality();
-      });
-      it('quality degrades twice as fast', () => {
-        expect(items[0].quality).toEqual(5 - 2)
-      })
+    it('decreases qualtiy by 1', () => {
+      item.sellIn = 5;
+      item.quality = 5;
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(5 - 1);
+    });
+    it('when sell by passed, decreases quality by 2', () => {
+      item.sellIn = 0;
+      item.quality = 5;
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(5 - 2);
+    });
+    it('will not reduce quality below 0', () => {
+      item.quality = 0;
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(0)
     })
   });
 });
