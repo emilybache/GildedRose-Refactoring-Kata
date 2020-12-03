@@ -26,7 +26,7 @@ class Shop {
 
   _getQualityChange(item) {
     if (bsp.isBackstagePass(item)) {
-      return this._getQualityChangeBackstagePass(item);
+      return bsp.getQualityChange(item);
     } else if (this._isAgedBrie(item)) {
       return this._getQualityChangeAgedBrie(item);
     } else if (this._isSulfuras(item)) {
@@ -49,18 +49,6 @@ class Shop {
       return -2;
     } else {
       return -1;
-    }
-  }
-
-  _getQualityChangeBackstagePass(item) {
-    if (item.sellIn <= 0) {
-      return -item.quality;
-    } else if (item.sellIn <= 5) {
-      return 3;
-    } else if (item.sellIn <= 10) {
-      return 2;
-    } else {
-      return 1;
     }
   }
 
