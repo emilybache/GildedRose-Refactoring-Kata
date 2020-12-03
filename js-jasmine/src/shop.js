@@ -1,6 +1,7 @@
 class Shop {
   constructor(items = []) {
     this.items = items;
+    this.MAX_QUALITY = 50;
   }
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
@@ -53,8 +54,8 @@ class Shop {
   }
 
   _checkMaxQuality(item) {
-    if (item.quality > 50) {
-      item.quality = 50;
+    if (item.quality > this.MAX_QUALITY) {
+      item.quality = this.MAX_QUALITY;
     }
   }
 }
