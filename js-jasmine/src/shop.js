@@ -5,9 +5,9 @@ class Shop {
     this.MIN_QUALITY = 0;
   }
   updateQuality() {
-    for (var i = 0; i < this.items.length; i++) {
-      this._updateItem(this.items[i]);
-    }
+    this.items.forEach(item =>
+      this._updateItem(item)
+    )
     return this.items;
   }
 
