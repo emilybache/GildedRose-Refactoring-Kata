@@ -2,6 +2,7 @@ class Shop {
   constructor(items = []) {
     this.items = items;
     this.MAX_QUALITY = 50;
+    this.MIN_QUALITY = 0;
   }
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
@@ -12,10 +13,8 @@ class Shop {
 
   _updateItemQuality(item) {
     if (item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert') {
-      if (item.quality > 0) {
-        if (item.name != 'Sulfuras, Hand of Ragnaros') {
-          item.quality = item.quality - 1;
-        }
+      if (item.name != 'Sulfuras, Hand of Ragnaros') {
+        item.quality = item.quality - 1;
       }
     } else {
       item.quality = item.quality + 1;
@@ -32,10 +31,8 @@ class Shop {
     if (item.sellIn < 0) {
       if (item.name != 'Aged Brie') {
         if (item.name != 'Backstage passes to a TAFKAL80ETC concert') {
-          if (item.quality > 0) {
-            if (item.name != 'Sulfuras, Hand of Ragnaros') {
-              item.quality = item.quality - 1;
-            }
+          if (item.name != 'Sulfuras, Hand of Ragnaros') {
+            item.quality = item.quality - 1;
           }
         } else {
           item.quality = item.quality - item.quality;
@@ -45,6 +42,7 @@ class Shop {
       }
     }
     this._checkMaxQuality(item);
+    this._checkMinQuality(item);
   }
 
   _updateSellIn(item) {
@@ -56,6 +54,12 @@ class Shop {
   _checkMaxQuality(item) {
     if (item.quality > this.MAX_QUALITY) {
       item.quality = this.MAX_QUALITY;
+    }
+  }
+
+  _checkMinQuality(item) {
+    if (item.quality < this.MIN_QUALITY) {
+      item.quality = this.MIN_QUALITY;
     }
   }
 }
