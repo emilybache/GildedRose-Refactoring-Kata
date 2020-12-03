@@ -1,4 +1,4 @@
-var { Shop } = require('../src/gilded_rose.js');
+var { Shop } = require('../src/shop.js');
 
 describe("Gilded Rose", function () {
   let item = {
