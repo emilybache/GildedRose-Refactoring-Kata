@@ -20,11 +20,21 @@ describe('Shop', () => {
         items = gildedRose.updateQuality();
       });
       it('descreases sellIn by 1', () => {
-        expect(items[0].sellIn).toEqual(4);
+        expect(items[0].sellIn).toEqual(5 - 1);
       });
       it('decreases quality by 1', () => {
-        expect(items[0].sellIn).toEqual(4);
-      })
+        expect(items[0].sellIn).toEqual(5 - 1);
+      });
     });
+    describe('when the sell by date has passed', () => {
+      beforeEach(() => {
+        item.sellIn = 0;
+        item.quality = 5;
+        items = gildedRose.updateQuality();
+      });
+      it('quality degrades twice as fast', () => {
+        expect(items[0].quality).toEqual(5 - 2)
+      })
+    })
   });
 });
