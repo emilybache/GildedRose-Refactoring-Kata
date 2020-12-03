@@ -1,5 +1,6 @@
-var backstage_pass = require('./backstage_pass_update.js')
-var aged_brie = require('./aged_brie_update.js')
+var standardItem = require('./standard_update.js')
+var backstagePass = require('./backstage_pass_update.js')
+var agedBrie = require('./aged_brie_update.js')
 var sulfuras = require('./sulfuras_update.js')
 
 class Shop {
@@ -23,12 +24,15 @@ class Shop {
   }
 
   _updateItemQuality(item) {
-    item.quality += this._getQualityChange(item);
+    standardItem.updateQuality(item);
+    backstagePass.updateQuality(item);
+    agedBrie.updateQuality(item);
+    sulfuras.updateQuality(item);
   }
 
   _getQualityChange(item) {
-    if (backstage_pass.is(item)) {
-      return backstage_pass.getQualityChange(item);
+    if (backstagePass.is(item)) {
+      return 0;
     } else if (aged_brie.is(item)) {
       return aged_brie.getQualityChange(item);
     } else if (sulfuras.is(item)) {

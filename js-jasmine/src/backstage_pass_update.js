@@ -1,3 +1,9 @@
+function updateQuality(item) {
+  if (is(item)) {
+    item.quality += getQualityChange(item);
+  }
+}
+
 function getQualityChange(item) {
   if (item.sellIn <= 0) {
     return -item.quality;
@@ -14,4 +20,4 @@ function is(item) {
   return item.name.toLowerCase().match(/backstage pass/);
 };
 
-module.exports = { is, getQualityChange };
+module.exports = { updateQuality, is };
