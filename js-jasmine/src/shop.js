@@ -13,23 +13,17 @@ class Shop {
 
   _updateItemQuality(item) {
     if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
-      this._updateQualityBackstagePass(item)
+      this._updateQualityBackstagePass(item);
+    } else if (item.name == 'Aged Brie') {
+      this._updateQualityAgedBrie(item);
     } else {
-      if (item.name != 'Aged Brie') {
-        if (item.name != 'Sulfuras, Hand of Ragnaros') {
-          item.quality = item.quality - 1;
-        }
-      } else {
-        item.quality = item.quality + 1;
+      if (item.name != 'Sulfuras, Hand of Ragnaros') {
+        item.quality = item.quality - 1;
       }
       this._updateSellIn(item)
       if (item.sellIn < 0) {
-        if (item.name != 'Aged Brie') {
-          if (item.name != 'Sulfuras, Hand of Ragnaros') {
-            item.quality = item.quality - 1;
-          }
-        } else {
-          item.quality = item.quality + 1;
+        if (item.name != 'Sulfuras, Hand of Ragnaros') {
+          item.quality = item.quality - 1;
         }
       }
     }
@@ -43,6 +37,14 @@ class Shop {
     } else if (item.sellIn < 6) {
       item.quality += 3;
     } else if (item.sellIn < 11) {
+      item.quality += 2;
+    } else {
+      item.quality += 1;
+    }
+  }
+
+  _updateQualityAgedBrie(item) {
+    if (item.sellIn < 0) {
       item.quality += 2;
     } else {
       item.quality += 1;
