@@ -16,27 +16,29 @@ class Shop {
       this._updateQualityBackstagePass(item);
     } else if (item.name == 'Aged Brie') {
       this._updateQualityAgedBrie(item);
+    } else if (item.name == 'Sulfuras, Hand of Ragnaros') {
     } else {
-      if (item.name != 'Sulfuras, Hand of Ragnaros') {
-        item.quality = item.quality - 1;
-      }
-      this._updateSellIn(item)
-      if (item.sellIn < 0) {
-        if (item.name != 'Sulfuras, Hand of Ragnaros') {
-          item.quality = item.quality - 1;
-        }
-      }
+      this._updateQualityStandard(item)
     }
+    this._updateSellIn(item)
     this._checkMaxQuality(item);
     this._checkMinQuality(item);
+  }
+
+  _updateQualityStandard(item) {
+    if (item.sellIn <= 0) {
+      item.quality -= 2;
+    } else {
+      item.quality -= 1;
+    }
   }
 
   _updateQualityBackstagePass(item) {
     if (item.sellIn <= 0) {
       item.quality = 0;
-    } else if (item.sellIn < 6) {
+    } else if (item.sellIn <= 5) {
       item.quality += 3;
-    } else if (item.sellIn < 11) {
+    } else if (item.sellIn <= 10) {
       item.quality += 2;
     } else {
       item.quality += 1;
@@ -44,7 +46,7 @@ class Shop {
   }
 
   _updateQualityAgedBrie(item) {
-    if (item.sellIn < 0) {
+    if (item.sellIn <= 0) {
       item.quality += 2;
     } else {
       item.quality += 1;
