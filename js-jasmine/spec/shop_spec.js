@@ -51,5 +51,13 @@ describe('Shop', () => {
       const items = gildedRose.updateQuality();
       expect(items[0].quality).toEqual(50);
     });
+    it('will not change the sellIn or quality of Sulfuras', () => {
+      item.name = 'Sulfuras, Hand of Ragnaros';
+      item.sellIn = 5;
+      item.quality = 5;
+      const items = gildedRose.updateQuality();
+      expect(items[0].sellIn).toEqual(5);
+      expect(items[0].quality).toEqual(5);
+    });
   });
 });
