@@ -6,9 +6,16 @@ class Shop {
   }
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
-      this._updateItemQuality(this.items[i]);
+      this._updateItem(this.items[i]);
     }
     return this.items;
+  }
+
+  _updateItem(item) {
+    this._updateItemQuality(item);
+    this._updateItemSellIn(item)
+    this._checkMaxQuality(item);
+    this._checkMinQuality(item);
   }
 
   _updateItemQuality(item) {
@@ -20,9 +27,6 @@ class Shop {
     } else {
       this._updateQualityStandard(item)
     }
-    this._updateSellIn(item)
-    this._checkMaxQuality(item);
-    this._checkMinQuality(item);
   }
 
   _updateQualityStandard(item) {
@@ -53,7 +57,7 @@ class Shop {
     }
   }
 
-  _updateSellIn(item) {
+  _updateItemSellIn(item) {
     if (item.name != 'Sulfuras, Hand of Ragnaros') {
       item.sellIn = item.sellIn - 1;
     }
