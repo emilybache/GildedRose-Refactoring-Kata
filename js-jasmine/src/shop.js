@@ -18,42 +18,30 @@ class Shop {
 
   _updateItem(item) {
     this._updateItemQuality(item);
-    this._checkMaxQuality(item);
-    this._checkMinQuality(item);
     this._updateItemSellIn(item);
   }
 
   _updateItemQuality(item) {
+    this._conditionallyUpdateQuality(item)
+    this._checkQualityBounds(item)
+  }
+
+  _conditionallyUpdateQuality(item) {
     standardItem.updateQuality(item);
     backstagePass.updateQuality(item);
     agedBrie.updateQuality(item);
     sulfuras.updateQuality(item);
   }
 
-  _getQualityChange(item) {
-    if (backstagePass.is(item)) {
-      return 0;
-    } else if (aged_brie.is(item)) {
-      return aged_brie.getQualityChange(item);
-    } else if (sulfuras.is(item)) {
-      return sulfuras.getQualityChange(item);
-    } else {
-      return this._getQualityChangeStandard(item);
-    }
-  }
-
-  _getQualityChangeStandard(item) {
-    if (item.sellIn <= 0) {
-      return -2;
-    } else {
-      return -1;
-    }
-  }
-
   _updateItemSellIn(item) {
     if (item.name != 'Sulfuras, Hand of Ragnaros') {
       item.sellIn = item.sellIn - 1;
     }
+  }
+
+  _checkQualityBounds(item) {
+    this._checkMaxQuality(item);
+    this._checkMinQuality(item);
   }
 
   _checkMaxQuality(item) {
