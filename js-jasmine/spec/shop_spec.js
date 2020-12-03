@@ -9,8 +9,9 @@ describe('Shop', () => {
   const gildedRose = new Shop([item]);
   describe('.updateQuality', () => {
     it("keeps name the same", () => {
+      item.name = 'foo';
       items = gildedRose.updateQuality();
-      expect(items[0].name).toEqual("foo");
+      expect(items[0].name).toEqual('foo');
     });
     it('decreases sellIn by 1', () => {
       item.sellIn = 5;
@@ -32,7 +33,14 @@ describe('Shop', () => {
     it('will not reduce quality below 0', () => {
       item.quality = 0;
       const items = gildedRose.updateQuality();
-      expect(items[0].quality).toEqual(0)
+      expect(items[0].quality).toEqual(0);
+    });
+    it('will increase the quality of Aged Brie by 1', () => {
+      item.name = 'Aged Brie'
+      item.sellIn = 5;
+      item.quality = 5;
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(5 + 1);
     })
   });
 });
