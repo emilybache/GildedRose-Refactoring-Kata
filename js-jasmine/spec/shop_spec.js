@@ -14,23 +14,27 @@ describe('Shop', () => {
       expect(items[0].name).toEqual('foo');
     });
     it('decreases sellIn by 1', () => {
+      item.name = 'foo';
       item.sellIn = 5;
       const items = gildedRose.updateQuality();
       expect(items[0].sellIn).toEqual(5 - 1);
     });
     it('decreases qualtiy by 1', () => {
+      item.name = 'foo';
       item.sellIn = 5;
       item.quality = 5;
       const items = gildedRose.updateQuality();
       expect(items[0].quality).toEqual(5 - 1);
     });
     it('when sell by passed, decreases quality by 2', () => {
+      item.name = 'foo';
       item.sellIn = 0;
       item.quality = 5;
       const items = gildedRose.updateQuality();
       expect(items[0].quality).toEqual(5 - 2);
     });
     it('will not reduce quality below 0', () => {
+      item.name = 'foo';
       item.quality = 0;
       const items = gildedRose.updateQuality();
       expect(items[0].quality).toEqual(0);
