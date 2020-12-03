@@ -13,19 +13,24 @@ class Shop {
 
   _updateItem(item) {
     this._updateItemQuality(item);
-    this._updateItemSellIn(item)
     this._checkMaxQuality(item);
     this._checkMinQuality(item);
+    this._updateItemSellIn(item);
   }
 
   _updateItemQuality(item) {
+    item.quality += this._getQualityChange(item);
+  }
+
+  _getQualityChange(item) {
     if (this._isBackstagePass(item)) {
-      this._updateQualityBackstagePass(item);
+      return this._getQualityChangeBackstagePass(item);
     } else if (this._isAgedBrie(item)) {
-      this._updateQualityAgedBrie(item);
+      return this._getQualityChangeAgedBrie(item);
     } else if (this._isSulfuras(item)) {
+      return this._getQualityChangeSulfuras(item);
     } else {
-      this._updateQualityStandard(item)
+      return this._getQualityChangeStandard(item);
     }
   }
 
@@ -41,32 +46,36 @@ class Shop {
     return item.name.toLowerCase().match(/sulfuras/);
   }
 
-  _updateQualityStandard(item) {
+  _getQualityChangeStandard(item) {
     if (item.sellIn <= 0) {
-      item.quality -= 2;
+      return -2;
     } else {
-      item.quality -= 1;
+      return -1;
     }
   }
 
-  _updateQualityBackstagePass(item) {
+  _getQualityChangeBackstagePass(item) {
     if (item.sellIn <= 0) {
-      item.quality = 0;
+      return -item.quality;
     } else if (item.sellIn <= 5) {
-      item.quality += 3;
+      return 3;
     } else if (item.sellIn <= 10) {
-      item.quality += 2;
+      return 2;
     } else {
-      item.quality += 1;
+      return 1;
     }
   }
 
-  _updateQualityAgedBrie(item) {
+  _getQualityChangeAgedBrie(item) {
     if (item.sellIn <= 0) {
-      item.quality += 2;
+      return 2;
     } else {
-      item.quality += 1;
+      return 1;
     }
+  }
+
+  _getQualityChangeSulfuras(item) {
+    return 0;
   }
 
   _updateItemSellIn(item) {
