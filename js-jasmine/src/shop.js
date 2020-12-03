@@ -1,3 +1,5 @@
+var bsp = require('./backstage_pass_update.js')
+
 class Shop {
   constructor(items = []) {
     this.items = items;
@@ -23,7 +25,7 @@ class Shop {
   }
 
   _getQualityChange(item) {
-    if (this._isBackstagePass(item)) {
+    if (bsp.isBackstagePass(item)) {
       return this._getQualityChangeBackstagePass(item);
     } else if (this._isAgedBrie(item)) {
       return this._getQualityChangeAgedBrie(item);
@@ -32,10 +34,6 @@ class Shop {
     } else {
       return this._getQualityChangeStandard(item);
     }
-  }
-
-  _isBackstagePass(item) {
-    return item.name.toLowerCase().match(/backstage pass/);
   }
 
   _isAgedBrie(item) {
