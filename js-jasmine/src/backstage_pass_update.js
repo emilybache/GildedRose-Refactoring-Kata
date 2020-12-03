@@ -10,8 +10,8 @@ function getQualityChange(item) {
   }
 }
 
-function isBackstagePass(item) {
+function is(item) {
   return item.name.toLowerCase().match(/backstage pass/);
 };
 
-module.exports = { isBackstagePass, getQualityChange };
+module.exports = { is, getQualityChange };
