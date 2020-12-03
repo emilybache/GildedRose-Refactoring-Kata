@@ -19,14 +19,26 @@ class Shop {
   }
 
   _updateItemQuality(item) {
-    if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
+    if (this._isBackstagePass(item)) {
       this._updateQualityBackstagePass(item);
-    } else if (item.name == 'Aged Brie') {
+    } else if (this._isAgedBrie(item)) {
       this._updateQualityAgedBrie(item);
-    } else if (item.name == 'Sulfuras, Hand of Ragnaros') {
+    } else if (this._isSulfuras(item)) {
     } else {
       this._updateQualityStandard(item)
     }
+  }
+
+  _isBackstagePass(item) {
+    return item.name.toLowerCase().match(/backstage pass/);
+  }
+
+  _isAgedBrie(item) {
+    return item.name.toLowerCase().match(/aged brie/);
+  }
+
+  _isSulfuras(item) {
+    return item.name.toLowerCase().match(/sulfuras/);
   }
 
   _updateQualityStandard(item) {
