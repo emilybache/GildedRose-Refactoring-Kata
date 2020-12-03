@@ -1,4 +1,6 @@
 var backstage_pass = require('./backstage_pass_update.js')
+var aged_brie = require('./aged_brie_update.js')
+var sulfuras = require('./sulfuras_update.js')
 
 class Shop {
   constructor(items = []) {
@@ -27,21 +29,13 @@ class Shop {
   _getQualityChange(item) {
     if (backstage_pass.is(item)) {
       return backstage_pass.getQualityChange(item);
-    } else if (this._isAgedBrie(item)) {
-      return this._getQualityChangeAgedBrie(item);
-    } else if (this._isSulfuras(item)) {
-      return this._getQualityChangeSulfuras(item);
+    } else if (aged_brie.is(item)) {
+      return aged_brie.getQualityChange(item);
+    } else if (sulfuras.is(item)) {
+      return sulfuras.getQualityChange(item);
     } else {
       return this._getQualityChangeStandard(item);
     }
-  }
-
-  _isAgedBrie(item) {
-    return item.name.toLowerCase().match(/aged brie/);
-  }
-
-  _isSulfuras(item) {
-    return item.name.toLowerCase().match(/sulfuras/);
   }
 
   _getQualityChangeStandard(item) {
@@ -50,18 +44,6 @@ class Shop {
     } else {
       return -1;
     }
-  }
-
-  _getQualityChangeAgedBrie(item) {
-    if (item.sellIn <= 0) {
-      return 2;
-    } else {
-      return 1;
-    }
-  }
-
-  _getQualityChangeSulfuras(item) {
-    return 0;
   }
 
   _updateItemSellIn(item) {
