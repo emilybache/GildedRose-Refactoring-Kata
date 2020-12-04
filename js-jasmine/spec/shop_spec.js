@@ -99,5 +99,23 @@ describe('Shop', () => {
         expect(items[0].quality).toEqual(0);
       });
     });
+
+    describe('Conjured', () => {
+      beforeEach(() => {
+        item.name = 'Conjured pickle';
+      });
+      it('will decrease the quality by 2 before sell by', () => {
+        item.sellIn = 5;
+        item.quality = 5;
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).toEqual(5 - 2);
+      });
+      it('will decrease the quality by 4 after sell by', () => {
+        item.sellIn = 0;
+        item.quality = 5;
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).toEqual(5 - 4);
+      });
+    });
   });
 });
