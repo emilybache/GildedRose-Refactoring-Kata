@@ -13,7 +13,7 @@ describe('Shop', () => {
         item.name = 'foo';
       });
       it("keeps name the same", () => {
-        items = gildedRose.updateQuality();
+        const items = gildedRose.updateQuality();
         expect(items[0].name).toEqual('foo');
       });
       it('decreases sellIn by 1', () => {
