@@ -1,9 +1,20 @@
-const standardItem = require('./standard_update.js')
-const backstagePass = require('./backstage_pass_update.js')
-const agedBrie = require('./aged_brie_update.js')
-const sulfuras = require('./sulfuras_update.js')
+var glob = require('glob')
+  , path = require('path');
 
-const itemTypes = [backstagePass, agedBrie, sulfuras]
+let itemTypes = [];
+
+glob.sync('./src/item_types/**/*.js').forEach(function (file) {
+  itemTypes.push(require(path.resolve(file)));
+});
+
+const standardItem = require('./standard_update.js')
+
+// const standardItem = require('./item_types/standard_update.js')
+// const backstagePass = require('./item_types/backstage_pass_update.js')
+// const agedBrie = require('./item_types/aged_brie_update.js')
+// const sulfuras = require('./item_types/sulfuras_update.js')
+
+// const itemTypes = [backstagePass, agedBrie, sulfuras]
 
 class Shop {
   constructor(items = []) {

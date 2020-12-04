@@ -24,13 +24,18 @@
     "babel-core": "^6.26.0",
     "babel-preset-env": "1.7.0",
     "babel-register": "^6.26.0",
-    "jasmine": "^3.2.0"
+    "glob": "^7.1.6",
+    "jasmine": "^3.2.0",
+    "path": "^0.12.7"
   },
   "babel": {
     "presets": [
       [
-        "env", {
-          "targets": { "node": "current" }
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
         }
       ]
     ],

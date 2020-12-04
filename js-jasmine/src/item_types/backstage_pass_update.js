@@ -1,4 +1,4 @@
-exports.regex_matcher = /backstage pass/
+exports.regex_matcher = /backstage pass/;
 exports.qualityChange = function (sellIn, quality) {
   if (sellIn <= 0) {
     return -quality;
@@ -9,4 +9,4 @@ exports.qualityChange = function (sellIn, quality) {
   } else {
     return 1;
   }
-}
+};

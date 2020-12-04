@@ -4,4 +4,4 @@ exports.qualityChange = function (sellIn) {
   } else {
     return -1;
   }
-}
+};
