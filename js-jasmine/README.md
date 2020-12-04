@@ -15,4 +15,7 @@ Take existing legacy code and add a new feature.
 
 ## Limitations
 
-The test spec required that I did not alter the Item class. This made it more difficult to apply OOD principles. I have instead created a module for each item type, which still allows for encapsulation.
+The test spec required that I did not alter the Item class. This made it more difficult to apply OOD principles. I have instead created a module for each item type, which still allows for encapsulation.  
+
+My tests verged on state driven rather than behaviour driven. I could not find an equivalent of RSpec's "change by" matcher for Jasmine. Any tips would be appreciated.
+
