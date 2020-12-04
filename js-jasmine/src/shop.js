@@ -3,7 +3,7 @@ const backstagePass = require('./backstage_pass_update.js')
 const agedBrie = require('./aged_brie_update.js')
 const sulfuras = require('./sulfuras_update.js')
 
-const itemTypes = [backstagePass.backstagePass, agedBrie.agedBrie, sulfuras.sulfuras]
+const itemTypes = [backstagePass, agedBrie, sulfuras]
 
 class Shop {
   constructor(items = []) {
@@ -34,7 +34,7 @@ class Shop {
         return item.quality += itemType.qualityChange(item.sellIn, item.quality);
       }
     }
-    return item.quality += standardItem.standardItem.qualityChange(item.sellIn);
+    return item.quality += standardItem.qualityChange(item.sellIn);
   }
 
   _updateItemSellIn(item) {

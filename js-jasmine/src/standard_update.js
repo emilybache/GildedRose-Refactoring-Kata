@@ -1,11 +1,7 @@
-const standardItem = {
-  qualityChange: (sellIn) => {
-    if (sellIn <= 0) {
-      return -2;
-    } else {
-      return -1;
-    }
+exports.qualityChange = function (sellIn) {
+  if (sellIn <= 0) {
+    return -2;
+  } else {
+    return -1;
   }
 }
-
-module.exports = { standardItem };

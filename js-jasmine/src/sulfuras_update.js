@@ -1,8 +1,4 @@
-const sulfuras = {
-  regex_matcher: /sulfuras/,
-  qualityChange: () => {
-    return 0;
-  }
-}
-
-module.exports = { sulfuras };
+exports.regex_matcher = /sulfuras/;
+exports.qualityChange = function () {
+  return 0;
+};
