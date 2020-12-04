@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for spec/shop_spec.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">spec/</a> shop_spec.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>86/86</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>86/86</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var { Shop } = require('../src/shop.js');
+&nbsp;
+describe('Shop', () =&gt; {
+  const item = {
+    name: 'foo',
+    sellIn: 5,
+    quality: 5
+  };
+  const gildedRose = new Shop([item]);
+  describe('.updateQuality', () =&gt; {
+    describe('Standard item', () =&gt; {
+      beforeEach(() =&gt; {
+        item.name = 'foo';
+      });
+      it("keeps name the same", () =&gt; {
+        const items = gildedRose.updateQuality();
+        expect(items[0].name).toEqual('foo');
+      });
+      it('decreases sellIn by 1', () =&gt; {
+        item.sellIn = 5;
+        const items = gildedRose.updateQuality();
+        expect(items[0].sellIn).toEqual(5 - 1);
+      });
+      it('decreases qualtiy by 1', () =&gt; {
+        item.sellIn = 5;
+        item.quality = 5;
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).toEqual(5 - 1);
+      });
+      it('when sell by passed, decreases quality by 2', () =&gt; {
+        item.sellIn = 0;
+        item.quality = 5;
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).toEqual(5 - 2);
+      });
+      it('will not reduce quality below 0', () =&gt; {
+        item.quality = 0;
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).toEqual(0);
+      });
+    });
+&nbsp;
+    describe('Aged Brie', () =&gt; {
+      beforeEach(() =&gt; {
+        item.name = 'Aged Brie';
+      });
+      it('will increase the quality by 1', () =&gt; {
+        item.sellIn = 5;
+        item.quality = 5;
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).toEqual(5 + 1);
+      });
+      it('will not increase quality above 50', () =&gt; {
+        item.quality = 50;
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).toEqual(50);
+      });
+    });
+&nbsp;
+    describe('Sulfuras', () =&gt; {
+      beforeEach(() =&gt; {
+        item.name = 'Sulfuras, Hand of Ragnaros';
+      });
+      it('will not change the sellIn or quality', () =&gt; {
+        item.sellIn = 5;
+        item.quality = 5;
+        const items = gildedRose.updateQuality();
+        expect(items[0].sellIn).toEqual(5);
+        expect(items[0].quality).toEqual(5);
+      });
+    });
+&nbsp;
+    describe('Backstage passes', () =&gt; {
+      beforeEach(() =&gt; {
+        item.name = 'Backstage passes to a TAFKAL80ETC concert';
+      });
+      it('will increase the quality by 1, more than 10 days before the concert', () =&gt; {
+        item.sellIn = 11;
+        item.quality = 5;
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).toEqual(6);
+      });
+      it('will increase the quality by 2, 10 - 6 days before the concert', () =&gt; {
+        item.sellIn = 8;
+        item.quality = 5;
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).toEqual(7);
+      });
+      it('will increase the quality by 3, 5 or less days before the concert', () =&gt; {
+        item.sellIn = 5;
+        item.quality = 5;
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).toEqual(8);
+      });
+      it('will decrease the quality to 0 after concert.', () =&gt; {
+        item.sellIn = 0;
+        item.quality = 5;
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).toEqual(0);
+      });
+    });
+&nbsp;
+    describe('Conjured', () =&gt; {
+      beforeEach(() =&gt; {
+        item.name = 'Conjured pickle';
+      });
+      it('will decrease the quality by 2 before sell by', () =&gt; {
+        item.sellIn = 5;
+        item.quality = 5;
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).toEqual(5 - 2);
+      });
+      it('will decrease the quality by 4 after sell by', () =&gt; {
+        item.sellIn = 0;
+        item.quality = 5;
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).toEqual(5 - 4);
+      });
+    });
+  });
+});
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Dec 04 2020 09:39:15 GMT+0000 (Greenwich Mean Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
