@@ -19,3 +19,4 @@ The test spec required that I did not alter the Item class. This made it more di
 
 My tests verged on state driven rather than behaviour driven. I could not find an equivalent of RSpec's "change by" matcher for Jasmine. Any tips would be appreciated.
 
+With more time I would add a 'sellInChange' function to each item type to mirror the qualityChange. The different sellIn change for Sulfurus is still handled by exception.

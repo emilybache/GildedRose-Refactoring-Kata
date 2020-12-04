@@ -7,7 +7,7 @@ glob.sync('./src/item_types/**/*.js').forEach(function (file) {
   itemTypes.push(require(path.resolve(file)));
 });
 
-const standardItem = require('./standard_update.js')
+const standardItem = require('./standard_update.js');
 class Shop {
   constructor(items = []) {
     this.items = items;
@@ -17,7 +17,7 @@ class Shop {
   updateQuality() {
     this.items.forEach(item =>
       this._updateItem(item)
-    )
+    );
     return this.items;
   }
 
@@ -27,8 +27,8 @@ class Shop {
   }
 
   _updateItemQuality(item) {
-    this._conditionallyUpdateQuality(item)
-    this._checkQualityBounds(item)
+    this._conditionallyUpdateQuality(item);
+    this._checkQualityBounds(item);
   }
 
   _conditionallyUpdateQuality(item) {
@@ -65,4 +65,4 @@ class Shop {
 }
 module.exports = {
   Shop
-}
+};
