@@ -1,15 +1,8 @@
-function updateQuality(item) {
-  if (is(item)) {
-    item.quality += getQualityChange(item);
+const sulfuras = {
+  regex_matcher: /sulfuras/,
+  qualityChange: () => {
+    return 0;
   }
 }
 
-function getQualityChange(item) {
-  return 0;
-}
-
-function is(item) {
-  return item.name.toLowerCase().match(/sulfuras/);
-};
-
-module.exports = { updateQuality, is };
+module.exports = { sulfuras };

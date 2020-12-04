@@ -1,7 +1,9 @@
-var standardItem = require('./standard_update.js')
-var backstagePass = require('./backstage_pass_update.js')
-var agedBrie = require('./aged_brie_update.js')
-var sulfuras = require('./sulfuras_update.js')
+const standardItem = require('./standard_update.js')
+const backstagePass = require('./backstage_pass_update.js')
+const agedBrie = require('./aged_brie_update.js')
+const sulfuras = require('./sulfuras_update.js')
+
+const itemTypes = [backstagePass.backstagePass, agedBrie.agedBrie, sulfuras.sulfuras]
 
 class Shop {
   constructor(items = []) {
@@ -27,10 +29,12 @@ class Shop {
   }
 
   _conditionallyUpdateQuality(item) {
-    standardItem.updateQuality(item);
-    backstagePass.updateQuality(item);
-    agedBrie.updateQuality(item);
-    sulfuras.updateQuality(item);
+    for (const itemType of itemTypes) {
+      if (item.name.toLowerCase().match(itemType.regex_matcher)) {
+        return item.quality += itemType.qualityChange(item.sellIn, item.quality);
+      }
+    }
+    return item.quality += standardItem.standardItem.qualityChange(item.sellIn);
   }
 
   _updateItemSellIn(item) {
