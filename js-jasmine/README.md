@@ -23,7 +23,15 @@ With more time I would add a 'sellInChange' function to each item type to mirror
 
 ## Tests
 
-To run the tests and see code coverage run ``npm run test``.
+To run the tests and see code coverage run 
+
+```
+git clone https://github.com/dan-holmes/gilded-rose.git
+cd GildedRose-Refactoring-Kata
+cd js-jasmine
+npm install
+npm run test
+```
 
 Current test coverage:
 ![test coverage](https://i.imgur.com/vDJgGqL.png)
