@@ -1,19 +1,20 @@
-﻿using Xunit;
-using System;
+﻿using System;
 using System.IO;
 using System.Text;
 using ApprovalTests;
 using ApprovalTests.Reporters;
+using NUnit.Framework;
 
 namespace csharpcore
 {
     [UseReporter(typeof(DiffReporter))]
+    [TestFixture]
     public class ApprovalTest
     {
-        [Fact]
+        [Test]
         public void ThirtyDays()
         {
-            var fakeoutput = new StringBuilder();
+            StringBuilder fakeoutput = new StringBuilder();
             Console.SetOut(new StringWriter(fakeoutput));
             Console.SetIn(new StringReader("a\n"));
 
