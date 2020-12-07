@@ -1,5 +1,13 @@
 # Gilded Rose Refactoring Kata
 
+## Clare's Intro
+
+This is a fork from [Emily Bache's original repo](https://github.com/emilybache/GildedRose-Refactoring-Kata) - created so I can issue some PRs.
+
+Note that I also have an entirely separate repo - [gilded-rose-kata](https://github.com/claresudbery/gilded-rose-kata) - which is a *copy* of the original. I created this so that I could do some actual refactoring, but to be honest I'm now thinking I could also have done that in the fork. Maybe I'll sort that out at some point.
+
+## Emily's Intro
+
 This Kata was originally created by Terry Hughes (http://twitter.com/TerryHughes). It is already on GitHub [here](https://github.com/NotMyself/GildedRose). See also [Bobby Johnson's description of the kata](http://iamnotmyself.com/2011/02/13/refactor-this-the-gilded-rose-kata/).
 
 I translated the original C# into a few other languages, (with a little help from my friends!), and slightly changed the starting position. This means I've actually done a small amount of refactoring already compared with the original form of the kata, and made it easier to get going with writing tests by giving you one failing unit test to start with. I also added test fixtures for Text-Based approval testing with TextTest (see [the TextTests](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/master/texttests))
