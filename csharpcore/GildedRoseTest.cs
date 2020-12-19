@@ -72,7 +72,7 @@ namespace csharpcore
             app.UpdateQuality();
 
             Assert.Equal(afterQuality, items[0].Quality);
-            Assert.Equal(beforeSellIn-1, items[0].SellIn);
+            Assert.Equal(beforeSellIn - 1, items[0].SellIn);
         }
 
         [Theory]

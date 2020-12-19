@@ -2,8 +2,20 @@
 
 namespace csharpcore
 {
+    public class GildedRoseConstants
+    {
+    }
+
     public class GildedRose
     {
+        public const int MIN_QUALITY = 0;
+        public const int MAX_QUALITY = 50;
+
+        public const string SULFURA_ITEM = "sulfura";
+        public const string AGED_BRIE_ITEM = "aged brie";
+        public const string BACKSTAGE_PASS_ITEM = "backstage pass";
+
+
         IList<Item> Items;
         public GildedRose(IList<Item> Items)
         {
@@ -12,78 +24,79 @@ namespace csharpcore
 
         public void UpdateQuality()
         {
-            for (var i = 0; i < Items.Count; i++)
+            foreach (var item in Items)
             {
-                if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
-                {
-                    if (Items[i].Quality > 0)
-                    {
-                        if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-                        {
-                            Items[i].Quality = Items[i].Quality - 1;
-                        }
-                    }
-                }
+                var lowerCaseItemName = item.Name.ToLower();
+                if (lowerCaseItemName.Contains(SULFURA_ITEM))
+                    HandleSulfuraItem(item);
+
                 else
                 {
-                    if (Items[i].Quality < 50)
+                    item.SellIn -= 1;
+                    if (lowerCaseItemName.Contains(AGED_BRIE_ITEM))
                     {
-                        Items[i].Quality = Items[i].Quality + 1;
-
-                        if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (Items[i].SellIn < 11)
-                            {
-                                if (Items[i].Quality < 50)
-                                {
-                                    Items[i].Quality = Items[i].Quality + 1;
-                                }
-                            }
-
-                            if (Items[i].SellIn < 6)
-                            {
-                                if (Items[i].Quality < 50)
-                                {
-                                    Items[i].Quality = Items[i].Quality + 1;
-                                }
-                            }
-                        }
+                        HandleAgedBrieItem(item);
                     }
-                }
-
-                if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-                {
-                    Items[i].SellIn = Items[i].SellIn - 1;
-                }
-
-                if (Items[i].SellIn < 0)
-                {
-                    if (Items[i].Name != "Aged Brie")
+                    else if (lowerCaseItemName.Contains(BACKSTAGE_PASS_ITEM))
                     {
-                        if (Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (Items[i].Quality > 0)
-                            {
-                                if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-                                {
-                                    Items[i].Quality = Items[i].Quality - 1;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            Items[i].Quality = Items[i].Quality - Items[i].Quality;
-                        }
+                        HandleBackstagePassItem(item);
                     }
                     else
                     {
-                        if (Items[i].Quality < 50)
-                        {
-                            Items[i].Quality = Items[i].Quality + 1;
-                        }
+                        HandleMiscelaniousItem(item);
                     }
+
                 }
             }
+        }
+
+        private void HandleSulfuraItem(Item item)
+        {
+            // We do not alter anything on Sulfura items !
+        }
+
+        private void HandleAgedBrieItem(Item item)
+        {
+            if (item.SellIn > 0)
+                UpdateItemQualityValue(item, 1);
+
+            else
+                UpdateItemQualityValue(item, 2); // Is it correct ? This is to reflect old code but seems to not be in the spec
+
+        }
+
+        private void HandleBackstagePassItem(Item item)
+        {
+            if (item.SellIn >= 10)
+                UpdateItemQualityValue(item, 1);
+
+            else if (item.SellIn >= 5)
+                UpdateItemQualityValue(item, 2);
+
+            else if (item.SellIn > 0)
+                UpdateItemQualityValue(item, 3);
+
+            else
+                item.Quality = MIN_QUALITY;
+        }
+
+        private void HandleMiscelaniousItem(Item item)
+        {
+            if (item.SellIn > 0)
+                UpdateItemQualityValue(item, -1);
+
+            else
+                UpdateItemQualityValue(item, -2);
+        }
+
+        private void UpdateItemQualityValue(Item item, int qualityStep)
+        {
+            item.Quality += qualityStep;
+            if (item.Quality < MIN_QUALITY)
+                item.Quality = MIN_QUALITY;
+
+            if (item.Quality > MAX_QUALITY)
+                item.Quality = MAX_QUALITY;
         }
     }
 }
