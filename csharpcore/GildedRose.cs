@@ -14,6 +14,7 @@ namespace csharpcore
         public const string SULFURA_ITEM = "sulfura";
         public const string AGED_BRIE_ITEM = "aged brie";
         public const string BACKSTAGE_PASS_ITEM = "backstage pass";
+        public const string CONJURED_ITEM = "conjured";
 
 
         IList<Item> Items;
@@ -40,6 +41,10 @@ namespace csharpcore
                     else if (lowerCaseItemName.Contains(BACKSTAGE_PASS_ITEM))
                     {
                         HandleBackstagePassItem(item);
+                    }
+                    else if (lowerCaseItemName.Contains(CONJURED_ITEM))
+                    {
+                        HandleConjuredItem(item);
                     }
                     else
                     {
@@ -78,6 +83,15 @@ namespace csharpcore
 
             else
                 item.Quality = MIN_QUALITY;
+        }
+
+        private void HandleConjuredItem(Item item)
+        {
+            if (item.SellIn > 0)
+                UpdateItemQualityValue(item, -2);
+
+            else
+                UpdateItemQualityValue(item, -4);
         }
 
         private void HandleMiscelaniousItem(Item item)
