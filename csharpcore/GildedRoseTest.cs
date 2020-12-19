@@ -117,6 +117,34 @@ namespace csharpcore
         }
 
         [Theory]
+        [InlineData(7, 10, 8)]
+        [InlineData(0, 10, 6)]
+        public void UpdateQuality_ConjuredItem_QualityDecreases(int beforeSellIn, int beforeQuality, int afterQuality)
+        {
+            IList<Item> items = new List<Item> { new Item { Name = "Old Conjured Helmet", SellIn = beforeSellIn, Quality = beforeQuality } };
+            GildedRose app = new GildedRose(items);
+
+            app.UpdateQuality();
+
+            Assert.Equal(afterQuality, items[0].Quality);
+            Assert.Equal(beforeSellIn - 1, items[0].SellIn);
+        }
+
+        [Theory]
+        [InlineData(7, 0, 0)]
+        [InlineData(0, 0, 0)]
+        public void UpdateQuality_ConjuredItemMinQuality_QualityCannotGoNegative(int beforeSellIn, int beforeQuality, int afterQuality)
+        {
+            IList<Item> items = new List<Item> { new Item { Name = "Conjured Cake the is a lie !", SellIn = beforeSellIn, Quality = beforeQuality } };
+            GildedRose app = new GildedRose(items);
+
+            app.UpdateQuality();
+
+            Assert.Equal(afterQuality, items[0].Quality);
+            Assert.Equal(beforeSellIn - 1, items[0].SellIn);
+        }
+
+        [Theory]
         [InlineData(7, 10, 9)]
         [InlineData(0, 10, 8)]
         public void UpdateQuality_MiscelaniousItem_QualityDecreases(int beforeSellIn, int beforeQuality, int afterQuality)
