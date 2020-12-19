@@ -2,10 +2,6 @@
 
 namespace csharpcore
 {
-    public class GildedRoseConstants
-    {
-    }
-
     public class GildedRose
     {
         public const int MIN_QUALITY = 0;
