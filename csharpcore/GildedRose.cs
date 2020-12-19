@@ -25,8 +25,9 @@ namespace csharpcore
             {
                 var lowerCaseItemName = item.Name.ToLower();
                 if (lowerCaseItemName.Contains(SULFURA_ITEM))
+                {
                     HandleSulfuraItem(item);
-
+                }
                 else
                 {
                     item.SellIn -= 1;
@@ -46,7 +47,6 @@ namespace csharpcore
                     {
                         HandleMiscelaniousItem(item);
                     }
-
                 }
             }
         }
@@ -59,54 +59,70 @@ namespace csharpcore
         private void HandleAgedBrieItem(Item item)
         {
             if (item.SellIn > 0)
+            {
                 UpdateItemQualityValue(item, 1);
-
+            }
             else
+            {
                 UpdateItemQualityValue(item, 2); // Is it correct ? This is to reflect old code but seems to not be in the spec
-
+            }
         }
 
         private void HandleBackstagePassItem(Item item)
         {
             if (item.SellIn >= 10)
+            {
                 UpdateItemQualityValue(item, 1);
-
+            }
             else if (item.SellIn >= 5)
+            {
                 UpdateItemQualityValue(item, 2);
-
+            }
             else if (item.SellIn > 0)
+            {
                 UpdateItemQualityValue(item, 3);
-
+            }
             else
+            {
                 item.Quality = MIN_QUALITY;
+            }
         }
 
         private void HandleConjuredItem(Item item)
         {
             if (item.SellIn > 0)
+            {
                 UpdateItemQualityValue(item, -2);
-
+            }
             else
+            {
                 UpdateItemQualityValue(item, -4);
+            }
         }
 
         private void HandleMiscelaniousItem(Item item)
         {
             if (item.SellIn > 0)
+            {
                 UpdateItemQualityValue(item, -1);
-
+            }
             else
+            {
                 UpdateItemQualityValue(item, -2);
+            }
         }
 
         private void UpdateItemQualityValue(Item item, int qualityStep)
         {
             item.Quality += qualityStep;
             if (item.Quality < MIN_QUALITY)
+            {
                 item.Quality = MIN_QUALITY;
-
-            if (item.Quality > MAX_QUALITY)
+            }
+            else if (item.Quality > MAX_QUALITY)
+            {
                 item.Quality = MAX_QUALITY;
+            }
         }
     }
 }
