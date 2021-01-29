@@ -7,11 +7,11 @@ defmodule GildedRoseTest do
   @sulfuras "Sulfuras, Hand of Ragnaros"
   @concert_ticket "Backstage passes to a TAFKAL80ETC concert"
 
-  def create_item() do
+  def create_items(sell_in, quality) do
     [
-      %Item{name: @sulfuras, sell_in: 13, quality: 1},
-      %Item{name: @concert_ticket, sell_in: 13, quality: 1},
-      %Item{name: @brie, sell_in: 13, quality: 1},
+      %Item{name: @sulfuras, sell_in: sell_in, quality: quality},
+      %Item{name: @concert_ticket, sell_in: sell_in, quality: quality},
+      %Item{name: @brie, sell_in: sell_in, quality: quality},
     ]
   end
 
@@ -21,185 +21,67 @@ defmodule GildedRoseTest do
     elapse_days(update_quality(items), days - 1)
   end
 
-  test "1 day pass" do
-    result = create_item() |> elapse_days(1)
+  # Price degradation as tests pass
+
+  test "all items quality _ 11 or more days left" do
+    days_left = 11
+    initial_quality = 0
+    result = create_items(days_left, initial_quality) |> elapse_days(1)
+
     assert result === [
-      %Item{name: @sulfuras, sell_in: 13, quality: 1},
-      %Item{name: @concert_ticket, sell_in: 12, quality: 2},
-      %Item{name: @brie, sell_in: 12, quality: 2}
+      %Item{name: @sulfuras, sell_in: 11, quality: 0},
+      %Item{name: @concert_ticket, sell_in: 10, quality: 1},
+      %Item{name: @brie, sell_in: 10, quality: 1}
     ]
   end
 
-  test "2 day pass" do
-    result = create_item() |> elapse_days(2)
-    assert result === [
-      %Item{name: @sulfuras, sell_in: 13, quality: 1},
-      %Item{name: @concert_ticket, sell_in: 11, quality: 3},
-      %Item{name: @brie, sell_in: 11, quality: 3}
-    ]
-  end
-  
-  test "3 day pass" do
-    result = create_item() |> elapse_days(3)
-    assert result === [
-      %Item{name: @sulfuras, sell_in: 13, quality: 1},
-      %Item{name: @concert_ticket, sell_in: 10, quality: 4},
-      %Item{name: @brie, sell_in: 10, quality: 4}
-    ]
+  test "ticket quality _ 10 days left" do
+    days_left = 10
+    initial_quality = 0
+    [_, ticket, _] = create_items(days_left, initial_quality) |> elapse_days(1)
+
+    assert ticket === %Item{name: @concert_ticket, sell_in: 9, quality: 2}
   end
 
-  test "4 day pass" do
-    result = create_item() |> elapse_days(4)
-    assert result === [
-      %Item{name: @sulfuras, sell_in: 13, quality: 1},
-      %Item{name: @concert_ticket, sell_in: 9, quality: 6}, # Here the tickets start increasing by 2
-      %Item{name: @brie, sell_in: 9, quality: 5}            
-    ]
+  test "ticket quality _ 5 days leff" do
+    days_left = 5
+    initial_quality = 0
+    [_, ticket, _] = create_items(days_left, initial_quality) |> elapse_days(1)
+
+    assert ticket === %Item{name: @concert_ticket, sell_in: 4, quality: 3}
   end
 
-  test "5 day pass" do
-    result = create_item() |> elapse_days(5)
-    assert result === [
-      %Item{name: @sulfuras, sell_in: 13, quality: 1},
-      %Item{name: @concert_ticket, sell_in: 8, quality: 8},
-      %Item{name: @brie, sell_in: 8, quality: 6}
-    ]         
-  end
-  
+  test "ticket quality _ 0 days left" do
+    days_left = 0
+    initial_quality = 0
+    [_, ticket, _] = create_items(days_left, initial_quality) |> elapse_days(1)
 
-  test "6 day pass" do
-    result = create_item() |> elapse_days(6)
-    assert result === [
-      %Item{name: @sulfuras, sell_in: 13, quality: 1},
-      %Item{name: @concert_ticket, sell_in: 7, quality: 10},
-      %Item{name: @brie, sell_in: 7, quality: 7}
-    ]      
+    assert ticket === %Item{name: @concert_ticket, sell_in: -1, quality: 0}
   end
 
-  test "7 day pass" do
-    result = create_item() |> elapse_days(7)
-    assert result === [
-      %Item{name: @sulfuras, sell_in: 13, quality: 1},
-      %Item{name: @concert_ticket, sell_in: 6, quality: 12},
-      %Item{name: @brie, sell_in: 6, quality: 8}
-    ]
+  test "brie quality _ greater than 0 days left " do
+    days_left = 1
+    initial_quality = 0
+    [_, _, brie]  = create_items(days_left, initial_quality) |> elapse_days(1)
+
+    assert brie === %Item{name: @brie, sell_in: 0, quality: 1}
   end
 
-  test "8 day pass" do
-    result = create_item() |> elapse_days(8)
-    assert result === [
-      %Item{name: @sulfuras, sell_in: 13, quality: 1},
-      %Item{name: @concert_ticket, sell_in: 5, quality: 14},
-      %Item{name: @brie, sell_in: 5, quality: 9}
-    ]
+
+  test "brie quality _ 0 days left" do
+    days_left = 0
+    initial_quality = 0
+    [_, _, brie]  = create_items(days_left, initial_quality) |> elapse_days(1)
+
+    assert brie === %Item{name: @brie, sell_in: -1, quality: 2}
   end
 
-  test "9 day pass" do
-    result = create_item() |> elapse_days(9)
-    assert result === [
-      %Item{name: @sulfuras, sell_in: 13, quality: 1},
-      %Item{name: @concert_ticket, sell_in: 4, quality: 17},
-      %Item{name: @brie, sell_in: 4, quality: 10}
-    ]
-  end
+  test "sulfuras quality _ any days left" do
+    days_left = 20
+    initial_quality = 40
+    [sulfuras, _, _]  = create_items(days_left, initial_quality) |> elapse_days(40)
 
-  test "10 day pass" do
-    result = create_item() |> elapse_days(10)
-    assert result === [
-      %Item{name: @sulfuras, sell_in: 13, quality: 1},
-      %Item{name: @concert_ticket, sell_in: 3, quality: 20},
-      %Item{name: @brie, sell_in: 3, quality: 11}
-    ]
-  end
-
-  test "11 day pass" do
-    result = create_item() |> elapse_days(11)
-    assert result === [
-      %Item{name: @sulfuras, sell_in: 13, quality: 1},
-      %Item{name: @concert_ticket, sell_in: 2, quality: 23},
-      %Item{name: @brie, sell_in: 2, quality: 12}
-    ]
-  end
-
-  test "12 day pass" do
-    result = create_item() |> elapse_days(12)
-    assert result === [
-      %Item{name: @sulfuras, sell_in: 13, quality: 1},
-      %Item{name: @concert_ticket, sell_in: 1, quality: 26},
-      %Item{name: @brie, sell_in: 1, quality: 13}
-    ]
-  end
-
-  test "13 day pass" do
-    result = create_item() |> elapse_days(13)
-    assert result === [
-      %Item{name: @sulfuras, sell_in: 13, quality: 1},
-      %Item{name: @concert_ticket, sell_in: 0, quality: 29},
-      %Item{name: @brie, sell_in: 0, quality: 14}
-    ]
-  end
-
-  test "14 day pass" do
-    result = create_item() |> elapse_days(14)
-    assert result === [
-      %Item{name: @sulfuras, sell_in: 13, quality: 1},
-      %Item{name: @concert_ticket, sell_in: -1, quality: 0},
-      %Item{name: @brie, sell_in: -1, quality: 16}            # After days are over brie quality doubles
-    ]
-  end
-
-  test "15 day pass" do
-    result = create_item() |> elapse_days(15)
-    assert result === [
-      %Item{name: @sulfuras, sell_in: 13, quality: 1},
-      %Item{name: @concert_ticket, sell_in: -2, quality: 0},
-      %Item{name: @brie, sell_in: -2, quality: 18},
-    ]
-  end
-
-  test "16 day pass" do
-    result = create_item() |> elapse_days(16)
-    assert result === [
-      %Item{name: @sulfuras, sell_in: 13, quality: 1},
-      %Item{name: @concert_ticket, sell_in: -3, quality: 0},
-      %Item{name: @brie, sell_in: -3, quality: 20},
-    ]
-  end
-
-  test "17 day pass" do
-    result = create_item() |> elapse_days(17)
-    assert result === [
-      %Item{name: @sulfuras, sell_in: 13, quality: 1},
-      %Item{name: @concert_ticket, sell_in: -4, quality: 0},
-      %Item{name: @brie, sell_in: -4, quality: 22},
-    ]
-  end
-
-  test "18 day pass" do
-    result = create_item() |> elapse_days(18)
-    assert result === [
-      %Item{name: @sulfuras, sell_in: 13, quality: 1},
-      %Item{name: @concert_ticket, sell_in: -5, quality: 0},
-      %Item{name: @brie, sell_in: -5, quality: 24},
-    ]
-  end
-
-  test "19 day pass" do
-    result = create_item() |> elapse_days(19)
-    assert result === [
-      %Item{name: @sulfuras, sell_in: 13, quality: 1},
-      %Item{name: @concert_ticket, sell_in: -6, quality: 0},
-      %Item{name: @brie, sell_in: -6, quality: 26},
-    ]
-  end
-
-  test "20 day pass" do
-    result = create_item() |> elapse_days(20)
-    assert result === [
-      %Item{name: @sulfuras, sell_in: 13, quality: 1},
-      %Item{name: @concert_ticket, sell_in: -7, quality: 0},  
-      %Item{name: @brie, sell_in: -7, quality: 28},
-    ]
+    assert sulfuras === %Item{name: @sulfuras, sell_in: 20, quality: 40}
   end
 
 end
