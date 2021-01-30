@@ -41,14 +41,20 @@ defmodule GildedRose do
 
   # Conjured
 
-  
+  @conjured "Conjured"
+  def update_item_new(item = %{name: @conjured, sell_in: sell_in }) when sell_in - 1 < 0, do:
+    %{item | sell_in: sell_in - 1, quality: updated_quality(item.quality - 4) }
+
+  def update_item_new(item = %{name: @conjured}), do: 
+    %{item | sell_in: item.sell_in - 1, quality: updated_quality(item.quality - 2) }
 
   # Normal
   
   def update_item_new(item = %{sell_in: sell_in }) when sell_in - 1 < 0, do:
     %{item | sell_in: sell_in - 1, quality: updated_quality(item.quality - 2) }
 
-  def update_item_new(item), do: %{item | sell_in: item.sell_in - 1, quality: updated_quality(item.quality - 1) }
+  def update_item_new(item), do:
+    %{item | sell_in: item.sell_in - 1, quality: updated_quality(item.quality - 1) }
 
   # Utils
 
