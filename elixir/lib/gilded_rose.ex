@@ -1,11 +1,54 @@
 defmodule GildedRose do
-  # Example
-  # update_quality([%Item{name: "Backstage passes to a TAFKAL80ETC concert", sell_in: 9, quality: 1}])
-  # => [%Item{name: "Backstage passes to a TAFKAL80ETC concert", sell_in: 8, quality: 3}]
 
   def update_quality(items) do
-    Enum.map(items, &update_item/1)
+    Enum.map(items, &update_item_new/1)
   end
+
+  @ticket "Backstage passes to a TAFKAL80ETC concert"
+  def update_item_new(item = %{ name: @ticket , sell_in: days, quality: quality }) when days - 1 < 0, do:
+    %{item | sell_in: days - 1, quality: 0 }
+
+  def update_item_new(item = %{ name: @ticket , sell_in: days, quality: quality }) when days - 1 <= 5, do:
+    %{item | sell_in: days - 1, quality: updated_quality(50, quality + 3) }
+
+  def update_item_new(item = %{ name: @ticket , sell_in: days, quality: quality }) when days - 1 <= 10, do:
+    %{item | sell_in: days - 1, quality: updated_quality(50, quality + 2) }
+
+  def update_item_new(item = %{ name: @ticket , sell_in: days, quality: quality }), do:
+    %{item | sell_in: days - 1, quality: updated_quality(50, quality + 1) }
+
+
+  # def update_item_new(item = %{ name: @ticket , sell_in: days, quality: quality }) do
+  #   left = days - 1 
+
+  #   cond do
+  #     left > 5 && left < 10 ->  %{item | sell_in: left, quality: updated_quality(50, quality + 2) }
+  #     left > 0 && left < 5 ->   %{item | sell_in: left, quality: updated_quality(50, quality + 3) }
+  #     left < 0 ->               %{item | sell_in: left, quality: 0 }
+  #     true ->                   %{item | sell_in: left, quality: updated_quality(50, quality + 1) }
+  #   end
+  # end
+
+  @brie "Aged Brie"
+  def update_item_new(item = %{ name: @brie, sell_in: days, quality: quality }) when  days - 1 < 0,  do:
+    %{item | sell_in: days - 1, quality: updated_quality(50, quality + 2) }
+
+  def update_item_new(item = %{ name: @brie, sell_in: days, quality: quality }), do:
+    %{item | sell_in: days - 1, quality: updated_quality(50, quality + 1) }
+    
+
+  @sulfuras "Sulfuras, Hand of Ragnaros"
+  def update_item_new(item = %{ name: @sulfuras, quality: quality }) when quality > 80, do: %{item | quality: 80 }
+  def update_item_new(item = %{ name: @sulfuras }), do: item
+
+
+  defp updated_quality(max, new_amount) when new_amount > max, do: max
+  defp updated_quality(_, new_amount), do: new_amount
+
+
+
+
+
 
   def update_item(item) do
     item = cond do
