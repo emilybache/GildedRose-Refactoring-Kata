@@ -1,0 +1,3 @@
+## Tests
+
+`mix test`
