@@ -1,53 +1,61 @@
 defmodule GildedRose do
 
+  @max_quality 50
+
   def update_quality(items) do
     Enum.map(items, &update_item_new/1)
   end
 
+  # Passes
+
   @ticket "Backstage passes to a TAFKAL80ETC concert"
-  def update_item_new(item = %{ name: @ticket , sell_in: days, quality: quality }) when days - 1 < 0, do:
+  def update_item_new(item = %{ name: @ticket , sell_in: days }) when days - 1 < 0, do:
     %{item | sell_in: days - 1, quality: 0 }
 
-  def update_item_new(item = %{ name: @ticket , sell_in: days, quality: quality }) when days - 1 <= 5, do:
-    %{item | sell_in: days - 1, quality: updated_quality(50, quality + 3) }
+  def update_item_new(item = %{ name: @ticket , sell_in: days, quality: quality }) when days - 1 < 5, do:
+    %{item | sell_in: days - 1, quality: updated_quality(quality + 3) }
 
-  def update_item_new(item = %{ name: @ticket , sell_in: days, quality: quality }) when days - 1 <= 10, do:
-    %{item | sell_in: days - 1, quality: updated_quality(50, quality + 2) }
+  def update_item_new(item = %{ name: @ticket , sell_in: days, quality: quality }) when days - 1 < 10, do:
+    %{item | sell_in: days - 1, quality: updated_quality(quality + 2) }
 
   def update_item_new(item = %{ name: @ticket , sell_in: days, quality: quality }), do:
-    %{item | sell_in: days - 1, quality: updated_quality(50, quality + 1) }
+    %{item | sell_in: days - 1, quality: updated_quality(quality + 1) }
 
-
-  # def update_item_new(item = %{ name: @ticket , sell_in: days, quality: quality }) do
-  #   left = days - 1 
-
-  #   cond do
-  #     left > 5 && left < 10 ->  %{item | sell_in: left, quality: updated_quality(50, quality + 2) }
-  #     left > 0 && left < 5 ->   %{item | sell_in: left, quality: updated_quality(50, quality + 3) }
-  #     left < 0 ->               %{item | sell_in: left, quality: 0 }
-  #     true ->                   %{item | sell_in: left, quality: updated_quality(50, quality + 1) }
-  #   end
-  # end
+  
+  # Brie
 
   @brie "Aged Brie"
   def update_item_new(item = %{ name: @brie, sell_in: days, quality: quality }) when  days - 1 < 0,  do:
-    %{item | sell_in: days - 1, quality: updated_quality(50, quality + 2) }
+    %{item | sell_in: days - 1, quality: updated_quality(quality + 2) }
 
   def update_item_new(item = %{ name: @brie, sell_in: days, quality: quality }), do:
-    %{item | sell_in: days - 1, quality: updated_quality(50, quality + 1) }
+    %{item | sell_in: days - 1, quality: updated_quality(quality + 1) }
     
 
+  # Legendary
+
   @sulfuras "Sulfuras, Hand of Ragnaros"
-  def update_item_new(item = %{ name: @sulfuras, quality: quality }) when quality > 80, do: %{item | quality: 80 }
-  def update_item_new(item = %{ name: @sulfuras }), do: item
+  def update_item_new(item = %{ name: @sulfuras }), do:
+    %{item | quality: 80 }
 
 
-  defp updated_quality(max, new_amount) when new_amount > max, do: max
-  defp updated_quality(_, new_amount), do: new_amount
+  # Conjured
 
+  
 
+  # Normal
+  
+  def update_item_new(item = %{sell_in: sell_in }) when sell_in - 1 < 0, do:
+    %{item | sell_in: sell_in - 1, quality: updated_quality(item.quality - 2) }
 
+  def update_item_new(item), do: %{item | sell_in: item.sell_in - 1, quality: updated_quality(item.quality - 1) }
 
+  # Utils
+
+  defp updated_quality(new_amount)
+  defp updated_quality(new_amount) when new_amount < 0, do: 0
+  defp updated_quality(new_amount) when new_amount > @max_quality, do: @max_quality
+  defp updated_quality(new_amount), do: new_amount
 
 
   def update_item(item) do
