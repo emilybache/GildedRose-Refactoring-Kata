@@ -39,6 +39,8 @@ defmodule GildedRoseTest do
     ]
   end
 
+  # Normal items
+
   test "normal item quality _ any day greater than 0" do
     days_left = 10
     initial_quality = 10
@@ -71,6 +73,7 @@ defmodule GildedRoseTest do
     assert normal === %Item{name: @normal, sell_in: -4, quality: 0}
   end
   
+  # Conjured items
 
   test "conjured item quality _ any day greater than 0" do
     days_left = 10
@@ -104,29 +107,35 @@ defmodule GildedRoseTest do
     assert conjured === %Item{name: @conjured, sell_in: -4, quality: 0}
   end
 
-  test "ticket quality _ 10 days or less" do
+
+  # Passes
+
+
+  test "passes quality _ 10 days or less" do
     days_left = 10
     initial_quality = 0
-    [_, ticket, _, _, _] = create_items(days_left, initial_quality) |> elapse_days(1)
+    [_, passes, _, _, _] = create_items(days_left, initial_quality) |> elapse_days(1)
 
-    assert ticket === %Item{name: @passes, sell_in: 9, quality: 2}
+    assert passes === %Item{name: @passes, sell_in: 9, quality: 2}
   end
 
-  test "ticket quality _ 5 days or less" do
+  test "passes quality _ 5 days or less" do
     days_left = 5
     initial_quality = 0
-    [_, ticket, _, _, _] = create_items(days_left, initial_quality) |> elapse_days(1)
+    [_, passes, _, _, _] = create_items(days_left, initial_quality) |> elapse_days(1)
 
-    assert ticket === %Item{name: @passes, sell_in: 4, quality: 3}
+    assert passes === %Item{name: @passes, sell_in: 4, quality: 3}
   end
 
-  test "ticket quality _ after concert" do
+  test "passes quality _ after concert" do
     days_left = 0
     initial_quality = 0
-    [_, ticket, _, _, _] = create_items(days_left, initial_quality) |> elapse_days(1)
+    [_, passes, _, _, _] = create_items(days_left, initial_quality) |> elapse_days(1)
 
-    assert ticket === %Item{name: @passes, sell_in: -1, quality: 0}
+    assert passes === %Item{name: @passes, sell_in: -1, quality: 0}
   end
+  
+  # Brie
 
   test "brie quality _ greater than 0 days left " do
     days_left = 1
@@ -136,7 +145,6 @@ defmodule GildedRoseTest do
     assert brie === %Item{name: @brie, sell_in: 0, quality: 1}
   end
 
-
   test "brie quality _ past sell in day" do
     days_left = 0
     initial_quality = 0
@@ -144,6 +152,8 @@ defmodule GildedRoseTest do
 
     assert brie === %Item{name: @brie, sell_in: -1, quality: 2}
   end
+
+  # Sulfuras
 
   test "sulfuras quality _ any days left" do
     days_left = 20
@@ -161,6 +171,8 @@ defmodule GildedRoseTest do
     assert sulfuras === %Item{name: @sulfuras, sell_in: 20, quality: 80}
   end
 
+  # Max quality
+
   test "all items quality _ reaching max quality" do
     days_left = 5
     initial_quality = 49
@@ -174,6 +186,4 @@ defmodule GildedRoseTest do
       %Item{name: @conjured, sell_in: 0, quality: 39},
     ]
   end
-
-
 end
