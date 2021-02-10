@@ -1,69 +1,120 @@
 export class Item {
-    name: string;
-    sellIn: number;
-    quality: number;
+  name: string
+  sellIn: number
+  quality: number
 
-    constructor(name, sellIn, quality) {
-        this.name = name;
-        this.sellIn = sellIn;
-        this.quality = quality;
-    }
+  constructor(name, sellIn, quality) {
+    this.name = name
+    this.sellIn = sellIn
+    this.quality = quality
+  }
 }
 
+export const LegendaryItemList = [
+    'Sulfuras, Hand of Ragnaros'
+]
+
+export const QualityIncreaseList = [
+    'Backstage passes to a TAFKAL80ETC concert'
+]
+
+export const QualityIncreaseAtHigherRateList = [
+  'Backstage passes to a TAFKAL80ETC concert'
+]
+
+export const QualityDecreaseAtHigherRateList = [
+    'Conjured'
+]
+
+export const QualityIncreaseAfterSellInList = [
+    'Aged Brie'
+]
+
+export const QualityBecomesZeroAfterSellIn = [
+  'Backstage passes to a TAFKAL80ETC concert'
+]
+
+export const ItemNames = [
+  'Backstage passes to a TAFKAL80ETC concert',
+  'Aged Brie',
+  'Conjured',
+  'Sulfuras, Hand of Ragnaros'
+]
+
 export class GildedRose {
-    items: Array<Item>;
+  items: Array<Item>
 
-    constructor(items = [] as Array<Item>) {
-        this.items = items;
-    }
+  constructor(items = [] as Array<Item>) {
+    this.items = items
+  }
 
-    updateQuality() {
-        for (let i = 0; i < this.items.length; i++) {
-            if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-                if (this.items[i].quality > 0) {
-                    if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-                        this.items[i].quality = this.items[i].quality - 1
-                    }
-                }
-            } else {
-                if (this.items[i].quality < 50) {
-                    this.items[i].quality = this.items[i].quality + 1
-                    if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
-                        if (this.items[i].sellIn < 11) {
-                            if (this.items[i].quality < 50) {
-                                this.items[i].quality = this.items[i].quality + 1
-                            }
-                        }
-                        if (this.items[i].sellIn < 6) {
-                            if (this.items[i].quality < 50) {
-                                this.items[i].quality = this.items[i].quality + 1
-                            }
-                        }
-                    }
-                }
-            }
-            if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-                this.items[i].sellIn = this.items[i].sellIn - 1;
-            }
-            if (this.items[i].sellIn < 0) {
-                if (this.items[i].name != 'Aged Brie') {
-                    if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-                        if (this.items[i].quality > 0) {
-                            if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-                                this.items[i].quality = this.items[i].quality - 1
-                            }
-                        }
-                    } else {
-                        this.items[i].quality = this.items[i].quality - this.items[i].quality
-                    }
-                } else {
-                    if (this.items[i].quality < 50) {
-                        this.items[i].quality = this.items[i].quality + 1
-                    }
-                }
-            }
+  updateQuality() {
+    let legendaryItems: Array<Item>
+    legendaryItems = this.items.filter((item: Item): boolean => !this.shouldQualityChange(item))
+    this.items = this.items.filter((item: Item): boolean => this.shouldQualityChange(item))
+
+    for (const item of this.items) {
+      if (ItemNames.indexOf(item.name) !== -1) {
+        item.sellIn--
+        if (this.shouldQualityIncrease(item)) {
+          this.increaseQuality(item)
+        } else {
+          this.decreaseQuality(item)
         }
-
-        return this.items;
+      } else {
+        item.name = 'fixme'
+      }
     }
+
+    return legendaryItems.concat(this.items)
+  }
+
+  private decreaseQuality(item: Item): void {
+    let amountToDecrease = 1
+    if (item.sellIn < 0) {
+      amountToDecrease = amountToDecrease * 2
+    }
+    if (QualityDecreaseAtHigherRateList.indexOf(item.name) !== -1) {
+      amountToDecrease = amountToDecrease * 2
+    }
+    item.quality -= amountToDecrease
+    if (item.quality < 0) {
+      item.quality = 0
+    }
+  }
+
+  private increaseQuality(item: Item): void {
+    item.quality++
+    if (QualityIncreaseAtHigherRateList.indexOf(item.name) !== -1 && item.sellIn <= 10) {
+      item.quality++
+      if (item.sellIn <= 5) {
+        item.quality++
+      }
+    }
+
+    if (item.sellIn < 0 && QualityBecomesZeroAfterSellIn.indexOf(item.name) !== -1) {
+      item.quality = 0
+    }
+
+    if (item.quality > 50) {
+      item.quality = 50
+    }
+  }
+
+  private shouldQualityIncrease(item: Item): boolean {
+    if (QualityIncreaseList.indexOf(item.name) !== -1) {
+      return true
+    }
+    if (QualityIncreaseAfterSellInList.indexOf(item.name) !== -1 && item.sellIn < 0 ) {
+      return true
+    }
+    return false
+  }
+
+  private shouldQualityChange(item: Item): boolean {
+    if (LegendaryItemList.indexOf(item.name) !== -1) {
+      return false
+    }
+    return true
+  }
 }
