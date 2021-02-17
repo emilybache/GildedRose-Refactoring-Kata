@@ -1,3 +1,0 @@
-# If your .class files are somewhere else, add the path to the list
-CLASSPATH:${TEXTTEST_HOME}/Java:${TEXTTEST_HOME}/Java/bin
-PERL5OPT:-I${TEXTTEST_HOME}/perl
