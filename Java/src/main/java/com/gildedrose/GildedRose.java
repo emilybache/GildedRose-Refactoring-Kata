@@ -2,61 +2,81 @@ package com.gildedrose;
 
 class GildedRose {
     Item[] items;
+    private String brie = "Aged Brie";
+    private String backstagePass = "Backstage passes to a TAFKAL80ETC concert";
+    private String sulfuras = "Sulfuras, Hand of Ragnaros";
 
     public GildedRose(Item[] items) {
         this.items = items;
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            if (!items[i].name.equals("Aged Brie")
-                    && !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (items[i].quality > 0) {
-                    if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                        items[i].quality = items[i].quality - 1;
+        //for (int i = 0; i < items.length; i++) {
+            for (Item item : items){  //switching to for each for better readability and simplicity
+            if (!item.name.equals(brie)
+                    && !item.name.equals(backstagePass)) {
+                if (qualityGreaterThanZero(item)){
+                    if (!item.name.equals(sulfuras)) {
+                        decreaseQuality(item);
                     }
                 }
             } else {
-                if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
+                if(qualityLessThanFifty(item)){
+                    increaseQuality(item);
 
-                    if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (items[i].sellIn < 11) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
-                            }
+                    if (item.name.equals(backstagePass)) {
+                        if (checkSellIn(item, 11) && qualityLessThanFifty(item)){
+                                increaseQuality(item);
                         }
-
-                        if (items[i].sellIn < 6) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
-                            }
+                        if (checkSellIn(item, 6) && qualityLessThanFifty(item)){
+                                increaseQuality(item);
                         }
                     }
                 }
             }
 
-            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                items[i].sellIn = items[i].sellIn - 1;
+            if (!item.name.equals(sulfuras)) {
+                decreaseSellIn(item);
             }
 
-            if (items[i].sellIn < 0) {
-                if (!items[i].name.equals("Aged Brie")) {
-                    if (!items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (items[i].quality > 0) {
-                            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                                items[i].quality = items[i].quality - 1;
-                            }
-                        }
+            if (checkSellIn(item, 0)){
+                if (!item.name.equals(brie)) {
+                    if (!item.name.equals(backstagePass) && qualityGreaterThanZero(item) && !item.name.equals(sulfuras)) {
+                                decreaseQuality(item);
                     } else {
-                        items[i].quality = items[i].quality - items[i].quality;
+                        item.quality = item.quality - item.quality;
                     }
                 } else {
-                    if (items[i].quality < 50) {
-                        items[i].quality = items[i].quality + 1;
+                        if(qualityLessThanFifty(item)){
+                        increaseQuality(item);
                     }
                 }
             }
         }
+    }
+
+//Adding methods for repeatable usage
+    private boolean qualityGreaterThanZero(Item item){
+        return item.quality > 0;
+    }
+
+    private boolean qualityLessThanFifty(Item item){
+        return item.quality < 50;
+    }
+
+    private int increaseQuality(Item item){
+        return item.quality++;
+    }
+
+    private int decreaseQuality(Item item){
+        return item.quality--;
+    }
+
+    private boolean checkSellIn (Item item, int numCheck){
+        return item.sellIn < numCheck;
+    }
+
+    private int decreaseSellIn (Item item){
+        return item.sellIn--;
     }
 }
