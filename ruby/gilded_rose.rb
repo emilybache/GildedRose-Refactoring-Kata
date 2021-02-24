@@ -53,6 +53,17 @@ class GildedRose
   end
 end
 
+class ItemFactory
+  SPECIAL_ITEMS = ["Aged Brie", "Backstage passes to a TAFKAL80ETC concert", "Sulfuras, Hand of Ragnaros"]
+  def self.create_item(name:, sell_in:, quality:)
+    if SPECIAL_ITEMS.include?(name)
+      return Item.new(name, sell_in, quality)
+    end
+
+    GenericItem.new(name, sell_in, quality)
+  end
+end
+
 class Item
   attr_accessor :name, :sell_in, :quality
 
@@ -66,3 +77,17 @@ class Item
     "#{@name}, #{@sell_in}, #{@quality}"
   end
 end
+
+class GenericItem < Item
+  def update_quality
+    if @quality > 0
+      @quality -= 1
+    end
+  end
+
+  def update_sell_in
+    @sell_in -= 1
+  end
+end
+
+
