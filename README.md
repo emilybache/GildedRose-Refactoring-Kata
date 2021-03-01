@@ -8,7 +8,7 @@ As Bobby Johnson points out in his article ["Why Most Solutions to Gilded Rose M
 better practice at handling a legacy code situation if you do this Kata in the original C#. However, I think this kata
 is also really useful for practicing writing good tests using different frameworks and approaches, and the small changes I've made help with that. I think it's also interesting to compare what the refactored code and tests look like in different programming languages.
 
-I wrote this article ["Writing Good Tests for the Gilded Rose Kata"](http://coding-is-like-cooking.info/2013/03/writing-good-tests-for-the-gilded-rose-kata/) about how you could use this kata in a [coding dojo](https://leanpub.com/codingdojohandbook).
+I use this kata as part of my work as a technical coach. I wrote a lot about the coaching method I use in this book [Technical Agile Coaching with the Samman method](https://leanpub.com/techagilecoach). A while back I wrote this article ["Writing Good Tests for the Gilded Rose Kata"](http://coding-is-like-cooking.info/2013/03/writing-good-tests-for-the-gilded-rose-kata/) about how you could use this kata in a [coding dojo](https://leanpub.com/codingdojohandbook).
 
 ## How to use this Kata
 
@@ -23,6 +23,20 @@ Whichever testing approach you choose, the idea of the exercise is to do some de
 ## Text-Based Approval Testing
 
 This code comes with comprehensive tests that use this approach. For information about how to run them, see the [texttests README](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/master/texttests)
+
+## Translating this code
+
+More translations are most welcome! I'm very open for pull requests that translate the starting position into additional languages. 
+
+Please note a translation should ideally include:
+
+- a translation of the production code for 'update_quality' and Item
+- one failing unit test complaining that "fixme" != "foo"
+- a TextTest fixture, ie a command-line program that runs update_quality on the sample data for the number of days specified.
+
+Please don't write too much code in the starting position or add too many unit tests. The idea with the one failing unit test is to tempt people to work out how to fix it, discover it wasn't that hard, and now they understand what this test is doing they realize they can improve it.  
+
+If your programming language doesn't have an easy way to add a command-line interface, then the TextTest fixture is probably not necessary.
 
 ## Better Code Hub
 
