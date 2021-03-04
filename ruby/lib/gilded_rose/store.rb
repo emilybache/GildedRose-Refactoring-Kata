@@ -55,7 +55,7 @@ module GildedRose
 
     def items
       @items ||= @raw_items.map do |item|
-        ItemFactory.create_item(name: item.name, sell_in: item.sell_in, quality: item.quality)
+        ItemWrapperFactory.wrap(item: item)
       end
     end
   end
@@ -74,52 +74,32 @@ module GildedRose
     end
   end
 
-  class GenericItem < Item
+  class AbstractItemWrapper
+    def initialize(item: )
+      @item = item
+    end
+
     def update_quality
-      if @quality > 0
-        @quality -= 1
+      if item.quality > 0
+        item.quality -= 1
       end
     end
 
     def update_sell_in
-      @sell_in -= 1
+      item.sell_in -= 1
     end
+
+    def method_missing(method_name, *args)
+      item.send(method_name, *args)
+    end
+
+    private
+    attr_reader :item
   end
 
-  class AgedBrieItem < Item
-    def update_quality
-      if @quality > 0
-        @quality -= 1
-      end
-    end
-
-    def update_sell_in
-      @sell_in -= 1
-    end
-  end
-
-  class BackstagePassesItem < Item
-    def update_quality
-      if @quality > 0
-        @quality -= 1
-      end
-    end
-
-    def update_sell_in
-      @sell_in -= 1
-    end
-  end
-
-  class SulfurasItem < Item
-    def update_quality
-      if @quality > 0
-        @quality -= 1
-      end
-    end
-
-    def update_sell_in
-      @sell_in -= 1
-    end
-  end
+  class GenericItemWrapper < AbstractItemWrapper; end
+  class AgedBrieItemWrapper < AbstractItemWrapper; end
+  class BackstagePassesItemWrapper < AbstractItemWrapper; end
+  class SulfurasItemWrapper < AbstractItemWrapper; end
 end
 
