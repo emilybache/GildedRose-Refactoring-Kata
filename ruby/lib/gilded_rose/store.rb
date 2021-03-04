@@ -1,12 +1,12 @@
 module GildedRose
   class Store
 
-    def initialize(items)
-      @items = items
+    def initialize(raw_items)
+      @raw_items = raw_items
     end
   
     def update_quality()
-      @items.each do |item|
+      items.each do |item|
         if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
           if item.quality > 0
             if item.name != "Sulfuras, Hand of Ragnaros"
@@ -52,32 +52,38 @@ module GildedRose
         end
       end
     end
+
+    def items
+      @items ||= @raw_items.map do |item|
+        ItemFactory.create_item(name: item.name, sell_in: item.sell_in, quality: item.quality)
+      end
+    end
   end
-  
+
   class Item
     attr_accessor :name, :sell_in, :quality
-  
+
     def initialize(name, sell_in, quality)
       @name = name
       @sell_in = sell_in
       @quality = quality
     end
-  
+
     def to_s()
       "#{@name}, #{@sell_in}, #{@quality}"
     end
   end
-  
+
   class GenericItem < Item
     def update_quality
       if @quality > 0
         @quality -= 1
       end
     end
-  
+
     def update_sell_in
       @sell_in -= 1
     end
-  end  
+  end
 end
 
