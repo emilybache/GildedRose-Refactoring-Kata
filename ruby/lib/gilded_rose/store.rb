@@ -85,5 +85,41 @@ module GildedRose
       @sell_in -= 1
     end
   end
+
+  class AgedBrieItem < Item
+    def update_quality
+      if @quality > 0
+        @quality -= 1
+      end
+    end
+
+    def update_sell_in
+      @sell_in -= 1
+    end
+  end
+
+  class BackstagePassesItem < Item
+    def update_quality
+      if @quality > 0
+        @quality -= 1
+      end
+    end
+
+    def update_sell_in
+      @sell_in -= 1
+    end
+  end
+
+  class SulfurasItem < Item
+    def update_quality
+      if @quality > 0
+        @quality -= 1
+      end
+    end
+
+    def update_sell_in
+      @sell_in -= 1
+    end
+  end
 end
 
