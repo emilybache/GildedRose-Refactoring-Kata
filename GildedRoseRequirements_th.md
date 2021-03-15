@@ -29,7 +29,7 @@ First an introduction to our system:
 
 เมื่อเร็วๆ นี้เราพึ่งได้ลงนามกับผู้ผลิตสินค้าประเภทของขลัง และเราต้องการที่จะเพิ่มความสามารถใหม่เข้าไปในระบบ:
 
-- คุณภาพสินค้าประเภท "Conjured" จะลดคุณภาพลงเร็วกว่าสินค้าปกติถึงสองเท่า
+- คุณภาพสินค้าประเภท "Conjured" จะเสื่อมลงเร็วกว่าสินค้าปกติถึงสองเท่า
 
 Feel free to make any changes to the UpdateQuality method and add any 
 new code as long as everything still works correctly. However, do not 
@@ -38,6 +38,5 @@ in the corner who will insta-rage and one-shot you as he doesn't
 believe in shared code ownership (you can make the UpdateQuality 
 method and Items property static if you like, we'll cover for you).
 
-Just for clarification, an item can never have its Quality increase 
-above 50, however "Sulfuras" is a legendary item and as such its 
-Quality is 80 and it never alters.
+ย้ำอีกครั้งหนึ่ง, สินค้าคุณภาพของสินค้ามีค่าสูงสุดคือ 50 
+อย่างไรก็ตามสินค้าประเภท "Sulfuras" เป็นสินค้าหายากในตำนานมีค่า Quality เป็น 80 เสมอไม่เปลี่ยนแปลง.
