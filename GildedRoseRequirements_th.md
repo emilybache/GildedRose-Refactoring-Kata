@@ -12,26 +12,24 @@ can begin selling a new category of items.
 First an introduction to our system:
 
 - สินค้าแต่ละชิ้นจะต้องขายภายในระยะเวลาที่กำหนดไว้ในตัวแปร "SellIn" (มีหน่วยเป็น*วัน*) 
-  - ยกตัวอย่างเช่น ต้องขายภายใน 3 วัน SellIn มีค่าเท่ากับ 3
-- มูลค่าของสินค้าแต่ละชิ้นจะแสดงไว้ในตัวแปร "Quality"
+- สินค้าแต่ละชิ้นมีตัวแปร "Quality" ที่สามารถบ่งชี้ถึงมูลค่าของสินค้า
 - ระบบจะทำการคำนวนค่า "SellIn" และ "Quality" ของสินค้าทุกชิ้นในช่วงเวลาสุดท้ายของทุกวัน
 
 ง่ายอะดิ, ใช่ป่ะ? Well this is where it gets interesting:
 
 - เมื่อสินค้าเลยกำหนดขายไปแล้ว "Quality" ของสินค้าจะลดลงเป็นสองเท่า
 - "Quality" ของสินค้าไม่มีทางติดลบได้
-- สินค้าประเภท "Aged Brie" มูลค่าของสินค้าจะเพิ่มสูงขึ้นตามระยะเวลา
+- คุณภาพของสินค้าประเภท "Aged Brie" จะเพิ่มสูงขึ้นตามระยะเวลา
 - "Quality" มีค่าสูงสุดคือ 50 
-- สินค้าประเภท "Sulfuras" เป็นสินค้าในตำนานหายากลดมูลค่าจะไม่ลดลงและไม่ได้มีไว้เพื่อขาย
-- สินค้าประเภท "Backstage passes" เหมือนกันกับสินค้าประเภท aged brie, increases in Quality as it's SellIn 
-value approaches; Quality increases by 2 when there are 10 days or less 
-and by 3 when there are 5 days or less but Quality drops to 0 after the 
-concert
+- สินค้าประเภท "Sulfuras" เป็นสินค้าในตำนานหายาก คุณภาพของสินค้าจะไม่ลดลงและไม่ได้มีไว้เพื่อขาย
+- สินค้าประเภท "Backstage passes" คุณภาพของสินค้าเหมือนกันกับสินค้าประเภท aged brie 
+เพียงแต่หากใกล้ถึงวันแสดง 10 วันก่อนหน้าหรือน้อยกว่าคุณภาพของสินค้าประเภทนี้จะเพิ่มทีละ 2  
+และถ้าใกล้ถึงวันแสดง 5 วันหรือน้อยกว่าคุณภาพจะเพิ่มทีละ 3
+อย่างไรก็ตามคุณภาพของสินค้าจะกลายเป็น 0 ทันทีหลังการแสดงจบลง
 
-We have recently signed a supplier of conjured items. This requires an 
-update to our system:
+เมื่อเร็วๆ นี้เราพึ่งได้ลงนามกับผู้ผลิตสินค้าประเภทของขลัง และเราต้องการที่จะเพิ่มความสามารถใหม่เข้าไปในระบบ:
 
-- "Conjured" items degrade in Quality twice as fast as normal items
+- คุณภาพสินค้าประเภท "Conjured" จะลดคุณภาพลงเร็วกว่าสินค้าปกติถึงสองเท่า
 
 Feel free to make any changes to the UpdateQuality method and add any 
 new code as long as everything still works correctly. However, do not 
