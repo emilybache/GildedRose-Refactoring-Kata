@@ -1,15 +1,11 @@
-# Gilded Rose Requirements Specification
+# ข้อกำหนดความต้องการของระบบ Gilded Rose
 
-Hi and welcome to team Gilded Rose. As you know, we are a small inn with a 
-prime location in a prominent city ran by a friendly innkeeper named 
-Allison. We also buy and sell only the finest goods. Unfortunately, our 
-goods are constantly degrading in quality as they approach their sell by 
-date. We have a system in place that updates our inventory for us. It was 
-developed by a no-nonsense type named Leeroy, who has moved on to new 
-adventures. Your task is to add the new feature to our system so that we 
-can begin selling a new category of items. 
+ยินดีต้อนรับสู่ทีม Gilded Rose อย่างที่คุณทราบแล้วว่า เราคือโรงแรมขนาดเล็กที่ตั้งอยู่ทำเลทองของประเทศกรุงเทพ
+นอกจากนี้เรายังซื้อและขายเฉพาะสินค้าที่ดีที่สุด แต่น่าเสียดายยิ่งใกล้ถึงวันกำหนดขายสินค้า คุณภาพของสินค้าก็จะลดลงอย่างต่อเนื่อง
+ตอนนี้เรามีระบบที่ช่วอัปเดตสินค้าคงคลังให้เรา มันถูกพัฒนาโดยโปรแกรมเมอร์ศิษย์เอกของพระอินทร์ ที่ตอนนี้ได้ย้ายกลับไปอยู่กับพระอินทร์
+เป็นการถาวรแล้ว เราจึงอยากให้คุณช่วยเพิ่มฟีเจอร์ใหม่เพื่อให้เราสามารถขายสินค้าประเภทใหม่ได้
 
-First an introduction to our system:
+ก่อนอื่นเราขอแนะนำการทำงานของระบบปัจจุบัน:
 
 - สินค้าแต่ละชิ้นจะต้องขายภายในระยะเวลาที่กำหนดไว้ในตัวแปร "SellIn" (มีหน่วยเป็น*วัน*) 
 - สินค้าแต่ละชิ้นมีตัวแปร "Quality" ที่สามารถบ่งชี้ถึงมูลค่าของสินค้า
@@ -17,26 +13,25 @@ First an introduction to our system:
 
 ง่ายอะดิ, ใช่ป่ะ? Well this is where it gets interesting:
 
-- เมื่อสินค้าเลยกำหนดขายไปแล้ว "Quality" ของสินค้าจะลดลงเป็นสองเท่า
+- เมื่อสินค้าเลยกำหนดขายไปแล้ว "Quality" ของสินค้าจะลดลงเป็นสองเท่าจากปกติ
 - "Quality" ของสินค้าไม่มีทางติดลบได้
 - คุณภาพของสินค้าประเภท "Aged Brie" จะเพิ่มสูงขึ้นตามระยะเวลา
 - "Quality" มีค่าสูงสุดคือ 50 
 - สินค้าประเภท "Sulfuras" เป็นสินค้าในตำนานหายาก คุณภาพของสินค้าจะไม่ลดลงและไม่ได้มีไว้เพื่อขาย
 - สินค้าประเภท "Backstage passes" คุณภาพของสินค้าเหมือนกันกับสินค้าประเภท aged brie 
-เพียงแต่หากใกล้ถึงวันแสดง 10 วันก่อนหน้าหรือน้อยกว่าคุณภาพของสินค้าประเภทนี้จะเพิ่มทีละ 2  
-และถ้าใกล้ถึงวันแสดง 5 วันหรือน้อยกว่าคุณภาพจะเพิ่มทีละ 3
+เพียงแต่หากใกล้ถึงวันแสดง 10 วันก่อนหน้าหรือน้อยกว่าคุณภาพของสินค้าประเภทนี้จะเพิ่มทีละ 2 และถ้าใกล้ถึงวันก่อนวันแสดง 5 วันหรือน้อยกว่าคุณภาพจะเพิ่มทีละ 3
 อย่างไรก็ตามคุณภาพของสินค้าจะกลายเป็น 0 ทันทีหลังการแสดงจบลง
 
-เมื่อเร็วๆ นี้เราพึ่งได้ลงนามกับผู้ผลิตสินค้าประเภทของขลัง และเราต้องการที่จะเพิ่มความสามารถใหม่เข้าไปในระบบ:
+เมื่อเร็วๆ นี้เราพึ่งได้ลงนามกับผู้ผลิตสินค้าประเภทของขลังและของปลุกเสก 
+และเราต้องการที่จะเพิ่มความสามารถใหม่เข้าไปในระบบ:
 
-- คุณภาพสินค้าประเภท "Conjured" จะเสื่อมลงเร็วกว่าสินค้าปกติถึงสองเท่า
+- คุณภาพสินค้าประเภท "Conjured" จะเสื่อมลงเร็วกว่าสินค้าปกติถึงสองเท่าจากปกติ
 
-Feel free to make any changes to the UpdateQuality method and add any 
-new code as long as everything still works correctly. However, do not 
-alter the Item class or Items property as those belong to the goblin 
-in the corner who will insta-rage and one-shot you as he doesn't 
-believe in shared code ownership (you can make the UpdateQuality 
-method and Items property static if you like, we'll cover for you).
+คุณสามารถปรับปรุงแก้ไขได้ทุกอย่างภายในเมธอด UpdateQuality และสามารถเพิ่มโค้ดใหม่ได้เลย
+ตราบใดที่ทุกอย่างยังคงทำงานได้ถูกต้อง อย่างไรก็ตามห้ามแก้ไขคลาส Item และคุณสมบัติของคลาส
+เพราะมันถูกลงอาคมจากโปรแกรมเมอร์จอมขมังเวทย์ที่ไม่เชื่อในเรื่องการแบ่งปันความเป็นเจ้าของโค้ด
+ร่วมกับผู้อื่น (ถ้าคุณยังอยากจะแก้ไขทั้งเมธอด UpdateQuality และคุณสมบัติของคลาส Item เราก็จะ
+นิมนต์หลวงปู่เค็มมาช่วยคุ้มกันคุณ)
 
 ย้ำอีกครั้งหนึ่ง, สินค้าคุณภาพของสินค้ามีค่าสูงสุดคือ 50 
 อย่างไรก็ตามสินค้าประเภท "Sulfuras" เป็นสินค้าหายากในตำนานมีค่า Quality เป็น 80 เสมอไม่เปลี่ยนแปลง.
