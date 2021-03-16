@@ -20,6 +20,18 @@ Alternatively, use the "Text-Based" tests provided in this repository. (Read mor
 
 Whichever testing approach you choose, the idea of the exercise is to do some deliberate practice, and improve your skills at designing test cases and refactoring. The idea is not to re-write the code from scratch, but rather to practice designing tests, taking small steps, running the tests often, and incrementally improving the design. 
 
+### Gilded Rose Requirements in other languages 
+
+- [English](GildedRoseRequirements.txt)
+- [Español](GildedRoseRequirements_es.md)
+- [Français](GildedRoseRequirements_fr.md)
+- [日本語](GildedRoseRequirements_jp.md)
+- [Português](GildedRoseRequirements_pt-BR.md)
+- [Русский](GildedRoseRequirements_ru.txt)
+- [ไทย](GildedRoseRequirements_th.md)
+- [中文](GildedRoseRequirements_zh.txt)
+
+
 ## Text-Based Approval Testing
 
 This code comes with comprehensive tests that use this approach. For information about how to run them, see the [texttests README](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/master/texttests)
