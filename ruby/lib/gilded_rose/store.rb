@@ -68,11 +68,6 @@ module GildedRose
   end
 
   class BackstagePassesItemWrapper < AbstractItemWrapper;
-    # if sell_in is 0, then quality becomes 0
-    # if quality is already 50, then quality stays at 50
-    # if sell in is 5 or below, quality increases by 3
-    # if sell in is 10 or below, quality increases by 2
-    # if sell in is 10 or greater, quality increases by 1
     def update_quality
       if item.sell_in == 0
         item.quality = 0
@@ -97,6 +92,10 @@ module GildedRose
     end
     def update_sell_in
     end
+  end
+
+  class ConjuredItemWrapper < AbstractItemWrapper
+    #items degrade in Quality twice as fast as normal items
   end
 end
 
