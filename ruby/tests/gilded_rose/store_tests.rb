@@ -89,6 +89,27 @@ module GildedRose
       assert_equal initial_item_quality, item.quality
     end
 
+    test "Backstage passes quality increases by 1 when the item has more than 10 days to expire" do
+      initial_item_quality = 10
+      item = make_item(name: "Backstage passes to a TAFKAL80ETC concert", sell_in: 11, quality: initial_item_quality)
+
+      gilded_rose = Store.new([item])
+      gilded_rose.update_quality
+
+      assert_equal initial_item_quality + 1, item.quality
+    end
+
+    test "Backstage passes quality never goes above 50" do
+      initial_item_quality = 50
+
+      item = make_item(name: "Backstage passes to a TAFKAL80ETC concert", quality: initial_item_quality)
+
+      gilded_rose = Store.new([item])
+      gilded_rose.update_quality
+
+      assert_equal initial_item_quality, item.quality
+    end
+
     test "Backstage passes quality increases by 2 when the item has 10 days or less to expire" do
       initial_item_quality = 10
 
@@ -122,6 +143,11 @@ module GildedRose
       gilded_rose.update_quality
 
       assert_equal 0, item.quality
+    end
+
+    private
+    def make_item(name:, sell_in: 1, quality:)
+      Item.new(name, sell_in, quality)
     end
   end
 end

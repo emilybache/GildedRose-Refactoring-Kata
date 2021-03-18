@@ -7,49 +7,8 @@ module GildedRose
   
     def update_quality()
       items.each do |item|
-        if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
-          if item.quality > 0
-            if item.name != "Sulfuras, Hand of Ragnaros"
-              item.quality = item.quality - 1
-            end
-          end
-        else
-          if item.quality < 50
-            item.quality = item.quality + 1
-            if item.name == "Backstage passes to a TAFKAL80ETC concert"
-              if item.sell_in < 11
-                if item.quality < 50
-                  item.quality = item.quality + 1
-                end
-              end
-              if item.sell_in < 6
-                if item.quality < 50
-                  item.quality = item.quality + 1
-                end
-              end
-            end
-          end
-        end
-        if item.name != "Sulfuras, Hand of Ragnaros"
-          item.sell_in = item.sell_in - 1
-        end
-        if item.sell_in < 0
-          if item.name != "Aged Brie"
-            if item.name != "Backstage passes to a TAFKAL80ETC concert"
-              if item.quality > 0
-                if item.name != "Sulfuras, Hand of Ragnaros"
-                  item.quality = item.quality - 1
-                end
-              end
-            else
-              item.quality = item.quality - item.quality
-            end
-          else
-            if item.quality < 50
-              item.quality = item.quality + 1
-            end
-          end
-        end
+        item.update_quality
+        item.update_sell_in
       end
     end
 
@@ -80,7 +39,9 @@ module GildedRose
     end
 
     def update_quality
-      if item.quality > 0
+      if item.sell_in <= 0 && item.quality > 0
+        item.quality -= 2
+      elsif item.quality > 0
         item.quality -= 1
       end
     end
@@ -98,8 +59,44 @@ module GildedRose
   end
 
   class GenericItemWrapper < AbstractItemWrapper; end
-  class AgedBrieItemWrapper < AbstractItemWrapper; end
-  class BackstagePassesItemWrapper < AbstractItemWrapper; end
-  class SulfurasItemWrapper < AbstractItemWrapper; end
+  class AgedBrieItemWrapper < AbstractItemWrapper;
+    def update_quality
+      if item.quality < 50
+        item.quality = item.quality + 1
+      end
+    end
+  end
+
+  class BackstagePassesItemWrapper < AbstractItemWrapper;
+    # if sell_in is 0, then quality becomes 0
+    # if quality is already 50, then quality stays at 50
+    # if sell in is 5 or below, quality increases by 3
+    # if sell in is 10 or below, quality increases by 2
+    # if sell in is 10 or greater, quality increases by 1
+    def update_quality
+      if item.sell_in == 0
+        item.quality = 0
+      elsif reached_max_quality?
+        # noop
+      elsif item.sell_in < 6
+        item.quality += 3
+      elsif item.sell_in < 11
+        item.quality += 2
+      else
+        item.quality += 1
+      end
+    end
+
+    def reached_max_quality?
+      item.quality >= 50
+    end
+  end
+
+  class SulfurasItemWrapper < AbstractItemWrapper;
+    def update_quality
+    end
+    def update_sell_in
+    end
+  end
 end
 
