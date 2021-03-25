@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1616684997838" clover="3.2.0">
+  <project timestamp="1616684997838" name="All files">
+    <metrics statements="31" coveredstatements="31" conditionals="35" coveredconditionals="33" methods="3" coveredmethods="3" elements="69" coveredelements="67" complexity="0" loc="31" ncloc="31" packages="1" files="1" classes="1"/>
+    <file name="gilded_rose.js" path="/home/spoutnik/APPS/gildedRose/GildedRose-Refactoring-Kata/js-jest/src/gilded_rose.js">
+      <metrics statements="31" coveredstatements="31" conditionals="35" coveredconditionals="33" methods="3" coveredmethods="3"/>
+      <line num="3" count="16" type="stmt"/>
+      <line num="4" count="16" type="stmt"/>
+      <line num="5" count="16" type="stmt"/>
+      <line num="11" count="16" type="stmt"/>
+      <line num="14" count="16" type="stmt"/>
+      <line num="15" count="16" type="cond" truecount="4" falsecount="0"/>
+      <line num="16" count="7" type="cond" truecount="2" falsecount="0"/>
+      <line num="17" count="6" type="cond" truecount="2" falsecount="0"/>
+      <line num="18" count="3" type="stmt"/>
+      <line num="22" count="9" type="cond" truecount="2" falsecount="0"/>
+      <line num="23" count="8" type="stmt"/>
+      <line num="24" count="8" type="cond" truecount="2" falsecount="0"/>
+      <line num="25" count="6" type="cond" truecount="2" falsecount="0"/>
+      <line num="26" count="5" type="cond" truecount="2" falsecount="0"/>
+      <line num="27" count="4" type="stmt"/>
+      <line num="30" count="6" type="cond" truecount="2" falsecount="0"/>
+      <line num="31" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="32" count="2" type="stmt"/>
+      <line num="38" count="16" type="cond" truecount="2" falsecount="0"/>
+      <line num="39" count="13" type="stmt"/>
+      <line num="41" count="16" type="cond" truecount="2" falsecount="0"/>
+      <line num="42" count="5" type="cond" truecount="2" falsecount="0"/>
+      <line num="43" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="44" count="2" type="cond" truecount="1" falsecount="1"/>
+      <line num="45" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="46" count="1" type="stmt"/>
+      <line num="50" count="1" type="stmt"/>
+      <line num="53" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="54" count="1" type="stmt"/>
+      <line num="60" count="16" type="stmt"/>
+      <line num="64" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
