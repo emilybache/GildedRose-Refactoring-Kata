@@ -22,14 +22,14 @@ Whichever testing approach you choose, the idea of the exercise is to do some de
 
 ### Gilded Rose Requirements in other languages 
 
-- [English](GildedRoseRequirements.txt)
+- [English](GildedRoseRequirements.md)
 - [Español](GildedRoseRequirements_es.md)
 - [Français](GildedRoseRequirements_fr.md)
 - [日本語](GildedRoseRequirements_jp.md)
 - [Português](GildedRoseRequirements_pt-BR.md)
-- [Русский](GildedRoseRequirements_ru.txt)
+- [Русский](GildedRoseRequirements_ru.md)
 - [ไทย](GildedRoseRequirements_th.md)
-- [中文](GildedRoseRequirements_zh.txt)
+- [中文](GildedRoseRequirements_zh.md)
 
 
 ## Text-Based Approval Testing
