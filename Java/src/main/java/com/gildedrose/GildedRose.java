@@ -44,7 +44,7 @@ class GildedRose {
             }
 
             if (!currentItem.name.equals(ITEM_SULFURAS_HAND_OF_RAGNAROS)) {
-                currentItem.sellIn = currentItem.sellIn - 1;
+                decreaseSellIn(currentItem);
             }
 
             if (currentItem.sellIn < 0) {
@@ -73,5 +73,9 @@ class GildedRose {
 
     private void increaseQuality(Item item) {
         item.quality = item.quality + 1;
+    }
+
+    private void decreaseSellIn(Item item) {
+        item.sellIn = item.sellIn - 1;
     }
 }
