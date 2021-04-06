@@ -8,9 +8,7 @@ class GildedRoseTest {
 
     @Test
     void foo() {
-        Item[] items = new Item[] { new Item("foo", 0, 0) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
+        GildedRose app = GildedRoseAppTester.runFor(1, new Item("foo", 0, 0));
         assertEquals("foo", app.items[0].name);
     }
 
