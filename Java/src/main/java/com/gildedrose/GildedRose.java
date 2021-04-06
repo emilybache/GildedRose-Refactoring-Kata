@@ -20,23 +20,23 @@ class GildedRose {
                     && !currentItem.name.equals(ITEM_BACKSTAGE_PASSES)) {
                 if (currentItem.quality > MIN_QUALITY_LEVEL) {
                     if (!currentItem.name.equals(ITEM_SULFURAS_HAND_OF_RAGNAROS)) {
-                        currentItem.quality = currentItem.quality - 1;
+                        decreaseQuality(currentItem);
                     }
                 }
             } else {
                 if (currentItem.quality < MAX_QUALITY_LEVEL) {
-                    currentItem.quality = currentItem.quality + 1;
+                    increaseQuality(currentItem);
 
                     if (currentItem.name.equals(ITEM_BACKSTAGE_PASSES)) {
                         if (currentItem.sellIn < 11) {
                             if (currentItem.quality < MAX_QUALITY_LEVEL) {
-                                currentItem.quality = currentItem.quality + 1;
+                                increaseQuality(currentItem);
                             }
                         }
 
                         if (currentItem.sellIn < 6) {
                             if (currentItem.quality < MAX_QUALITY_LEVEL) {
-                                currentItem.quality = currentItem.quality + 1;
+                                increaseQuality(currentItem);
                             }
                         }
                     }
@@ -52,7 +52,7 @@ class GildedRose {
                     if (!currentItem.name.equals(ITEM_BACKSTAGE_PASSES)) {
                         if (currentItem.quality > MIN_QUALITY_LEVEL) {
                             if (!currentItem.name.equals(ITEM_SULFURAS_HAND_OF_RAGNAROS)) {
-                                currentItem.quality = currentItem.quality - 1;
+                                decreaseQuality(currentItem);
                             }
                         }
                     } else {
@@ -60,10 +60,18 @@ class GildedRose {
                     }
                 } else {
                     if (currentItem.quality < MAX_QUALITY_LEVEL) {
-                        currentItem.quality = currentItem.quality + 1;
+                        increaseQuality(currentItem);
                     }
                 }
             }
         }
+    }
+
+    private void decreaseQuality(Item item) {
+        item.quality = item.quality - 1;
+    }
+
+    private void increaseQuality(Item item) {
+        item.quality = item.quality + 1;
     }
 }
