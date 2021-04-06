@@ -12,8 +12,8 @@ diff_program:meld
 #executable:${TEXTTEST_HOME}/cpp/cmake-build-debug/test/cpp_texttest/GildedRoseTextTests
 
 # Settings for the Java version
-#executable:com.gildedrose.TexttestFixture
-#interpreter:java
+executable:com.gildedrose.TexttestFixture
+interpreter:java
 # note you'll also need to update the file environment.gr with your classpath if you keep your classfiles somewhere unusual
 
 # Settings for the Ruby version
