@@ -20,10 +20,38 @@ class GildedRoseTest {
     }
 
     @Test
+    void testDexterityVestZeroQuality() {
+        GildedRose app = GildedRoseAppTester.runFor(1, new Item("+5 Dexterity Vest", 10, 1));
+        assertEquals(9, app.items[0].sellIn);
+        assertEquals(0, app.items[0].quality);
+    }
+
+    @Test
+    void testDexterityVestNotNegativeQuality() {
+        GildedRose app = GildedRoseAppTester.runFor(1, new Item("+5 Dexterity Vest", 10, -1));
+        assertEquals(9, app.items[0].sellIn);
+        assertEquals(0, app.items[0].quality);
+    }
+
+    @Test
     void testAgedBrie() {
         GildedRose app = GildedRoseAppTester.runFor(1, new Item("Aged Brie", 2, 0));
         assertEquals(1, app.items[0].sellIn);
         assertEquals(1, app.items[0].quality);
+    }
+
+    @Test
+    void testAgedBrieMaxQuality() {
+        GildedRose app = GildedRoseAppTester.runFor(1, new Item("Aged Brie", 2, 49));
+        assertEquals(1, app.items[0].sellIn);
+        assertEquals(50, app.items[0].quality);
+    }
+
+    @Test
+    void testAgedBrieDontPassMaxQuality() {
+        GildedRose app = GildedRoseAppTester.runFor(1, new Item("Aged Brie", 2, 99));
+        assertEquals(1, app.items[0].sellIn);
+        assertEquals(50, app.items[0].quality);
     }
 
     @Test
@@ -55,17 +83,31 @@ class GildedRoseTest {
     }
 
     @Test
-    void testBackstagePasses10() {
+    void testBackstagePasses10DaysLeftMaxQuality() {
         GildedRose app = GildedRoseAppTester.runFor(1, new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49));
         assertEquals(9, app.items[0].sellIn);
         assertEquals(50, app.items[0].quality);
     }
 
     @Test
-    void testBackstagePasses5() {
-        GildedRose app = GildedRoseAppTester.runFor(1, new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49));
+    void testBackstagePasses10DaysLeftIncreaseTwoQuality() {
+        GildedRose app = GildedRoseAppTester.runFor(1, new Item("Backstage passes to a TAFKAL80ETC concert", 10, 40));
+        assertEquals(9, app.items[0].sellIn);
+        assertEquals(42, app.items[0].quality);
+    }
+
+    @Test
+    void testBackstagePasses5DaysLeftMaxQuality() {
+        GildedRose app = GildedRoseAppTester.runFor(1, new Item("Backstage passes to a TAFKAL80ETC concert", 5, 48));
         assertEquals(4, app.items[0].sellIn);
         assertEquals(50, app.items[0].quality);
+    }
+
+    @Test
+    void testBackstagePasses5DaysIncreaseTwoQuality() {
+        GildedRose app = GildedRoseAppTester.runFor(1, new Item("Backstage passes to a TAFKAL80ETC concert", 5, 40));
+        assertEquals(4, app.items[0].sellIn);
+        assertEquals(43, app.items[0].quality);
     }
 
 //    @Test
