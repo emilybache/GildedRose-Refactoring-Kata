@@ -17,7 +17,7 @@ public class DefaultQualityBehaviorTest {
 
     @Test
     void decreaseQuality() {
-        Item item = getItem(10);
+        Item item = getItem(5,10);
         qualityBehavior.processQualityUpdate(item);
 
         assertEquals(9, item.quality);
@@ -25,7 +25,7 @@ public class DefaultQualityBehaviorTest {
 
     @Test
     void decreaseNegativeQuality() {
-        Item item = getItem(-10);
+        Item item = getItem(5,-10);
         qualityBehavior.processQualityUpdate(item);
 
         assertEquals(0, item.quality);
@@ -33,13 +33,37 @@ public class DefaultQualityBehaviorTest {
 
     @Test
     void decreaseQualityZero() {
-        Item item = getItem(0);
+        Item item = getItem(5,0);
         qualityBehavior.processQualityUpdate(item);
 
         assertEquals(0, item.quality);
     }
 
-    private Item getItem(int quality) {
-        return new Item("SomeItem", 0, quality);
+    @Test
+    void decreaseQualityFaster() {
+        Item item = getItem(0,4);
+        qualityBehavior.processQualityUpdate(item);
+
+        assertEquals(2, item.quality);
+    }
+
+    @Test
+    void decreaseQualityFasterNegativeSellIn() {
+        Item item = getItem(-1,4);
+        qualityBehavior.processQualityUpdate(item);
+
+        assertEquals(2, item.quality);
+    }
+
+    @Test
+    void decreaseQualityFasterRespectLowerLimit() {
+        Item item = getItem(0,1);
+        qualityBehavior.processQualityUpdate(item);
+
+        assertEquals(0, item.quality);
+    }
+
+    private Item getItem(int sellIn, int quality) {
+        return new Item("SomeItem", sellIn, quality);
     }
 }
