@@ -7,6 +7,10 @@ public class IncreasingQualityBehavior implements QualityBehavior {
     public static final int MAX_QUALITY_LEVEL = 50;
     public static final int MIN_QUALITY_LEVEL = 0;
 
+    public static IncreasingQualityBehavior newInstance() {
+        return new IncreasingQualityBehavior();
+    }
+
     @Override
     public void processQualityUpdate(Item item) {
         increaseQuality(item);

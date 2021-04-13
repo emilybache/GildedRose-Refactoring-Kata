@@ -4,6 +4,10 @@ import com.gildedrose.Item;
 
 public class DefaultSellInBehavior implements SellInBehavior {
 
+    public static DefaultSellInBehavior newInstance() {
+        return new DefaultSellInBehavior();
+    }
+
     @Override
     public void processSellInUpdate(Item item) {
         decreaseSellIn(item);

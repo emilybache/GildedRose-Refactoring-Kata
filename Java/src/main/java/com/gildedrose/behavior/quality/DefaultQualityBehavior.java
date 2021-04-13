@@ -9,6 +9,10 @@ public class DefaultQualityBehavior implements QualityBehavior {
     public static final int DEFAULT_QUALITY_DECREASE = 1;
     public static final int FASTER_QUALITY_DECREASE = 2;
 
+    public static DefaultQualityBehavior newInstance() {
+        return new DefaultQualityBehavior();
+    }
+
     @Override
     public void processQualityUpdate(Item item) {
         decreaseQuality(item);
