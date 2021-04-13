@@ -18,6 +18,7 @@ public class ItemBehaviorPicker {
     public static final String ITEM_AGED_BRIE = "Aged Brie";
     public static final String ITEM_SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
     public static final String ITEM_BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
+    public static final String ITEM_CONJURED_MANA_CAKE = "Conjured Mana Cake";
 
     public static ItemBehavior forName(String name) {
 
@@ -25,6 +26,7 @@ public class ItemBehaviorPicker {
             case ITEM_AGED_BRIE: return getAgedBrieItemBehavior();
             case ITEM_SULFURAS_HAND_OF_RAGNAROS: return getSulfurusHandOfRagnarosItemBehavior();
             case ITEM_BACKSTAGE_PASSES: return getBackstagePassesItemBehavior();
+            case ITEM_CONJURED_MANA_CAKE: return getConjuredItemBehavior();
             default: return getDefaultItemBehavior();
         }
     }
@@ -40,6 +42,10 @@ public class ItemBehaviorPicker {
     private static ItemBehavior getBackstagePassesItemBehavior() {
         List<QualityStage> stages = new ArrayList<>(Arrays.asList(QualityStage.of(10,2), QualityStage.of(5,3)));
         return ItemBehaviorImpl.of(StagedIncreasingQualityBehavior.withStages(stages, 1), DecreasingSellInBehavior.newInstance());
+    }
+
+    private static ItemBehavior getConjuredItemBehavior() {
+        return ItemBehaviorImpl.of(DecreasingQualityBehavior.newInstance(2, 4), DecreasingSellInBehavior.newInstance());
     }
 
     private static ItemBehavior getDefaultItemBehavior() {
