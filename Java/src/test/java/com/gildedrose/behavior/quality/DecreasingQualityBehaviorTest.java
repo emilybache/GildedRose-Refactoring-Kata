@@ -9,10 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DecreasingQualityBehaviorTest {
 
     private QualityBehavior qualityBehavior;
+    private QualityBehavior fastDecreasingQualityBehavior;
 
     @BeforeEach
     public void setUp() throws Exception {
-        qualityBehavior = new DecreasingQualityBehavior();
+        qualityBehavior = DecreasingQualityBehavior.newInstance();
+        fastDecreasingQualityBehavior = DecreasingQualityBehavior.newInstance(2,4);
     }
 
     @Test
@@ -59,6 +61,54 @@ public class DecreasingQualityBehaviorTest {
     void decreaseQualityFasterRespectLowerLimit() {
         Item item = getItem(0,1);
         qualityBehavior.processQualityUpdate(item);
+
+        assertEquals(0, item.quality);
+    }
+
+    @Test
+    void fastDecreaseQuality() {
+        Item item = getItem(5,10);
+        fastDecreasingQualityBehavior.processQualityUpdate(item);
+
+        assertEquals(8, item.quality);
+    }
+
+    @Test
+    void fastDecreaseNegativeQuality() {
+        Item item = getItem(5,-10);
+        fastDecreasingQualityBehavior.processQualityUpdate(item);
+
+        assertEquals(0, item.quality);
+    }
+
+    @Test
+    void fastDecreaseQualityZero() {
+        Item item = getItem(5,0);
+        fastDecreasingQualityBehavior.processQualityUpdate(item);
+
+        assertEquals(0, item.quality);
+    }
+
+    @Test
+    void fastDecreaseQualityFaster() {
+        Item item = getItem(0,8);
+        fastDecreasingQualityBehavior.processQualityUpdate(item);
+
+        assertEquals(4, item.quality);
+    }
+
+    @Test
+    void fastDecreaseQualityFasterNegativeSellIn() {
+        Item item = getItem(-1,8);
+        fastDecreasingQualityBehavior.processQualityUpdate(item);
+
+        assertEquals(4, item.quality);
+    }
+
+    @Test
+    void fastDecreaseQualityFasterRespectLowerLimit() {
+        Item item = getItem(0,1);
+        fastDecreasingQualityBehavior.processQualityUpdate(item);
 
         assertEquals(0, item.quality);
     }
