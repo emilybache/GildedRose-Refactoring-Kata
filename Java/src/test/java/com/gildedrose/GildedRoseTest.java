@@ -110,10 +110,17 @@ class GildedRoseTest {
         assertEquals(43, app.items[0].quality);
     }
 
-//    @Test
-//    void testConjuredManaCake() {
-//        GildedRose app = GildedRoseAppTester.runFor(1, new Item("Conjured Mana Cake", 3, 6));
-//        assertEquals(2, app.items[0].sellIn);
-//        assertEquals(5, app.items[0].quality);
-//    }
+    @Test
+    void testConjuredManaCake() {
+        GildedRose app = GildedRoseAppTester.runFor(1, new Item("Conjured Mana Cake", 3, 6));
+        assertEquals(2, app.items[0].sellIn);
+        assertEquals(4, app.items[0].quality);
+    }
+
+    @Test
+    void testConjuredManaCakeExpired() {
+        GildedRose app = GildedRoseAppTester.runFor(1, new Item("Conjured Mana Cake", 0, 6));
+        assertEquals(-1, app.items[0].sellIn);
+        assertEquals(2, app.items[0].quality);
+    }
 }
