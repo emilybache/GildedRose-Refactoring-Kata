@@ -39,6 +39,14 @@ public class IncreasingQualityBehaviorTest {
         assertEquals(50, item.quality);
     }
 
+    @Test
+    void increaseNegativeQuality() {
+        Item item = getItem(-10);
+        qualityBehavior.processQualityUpdate(item);
+
+        assertEquals(0, item.quality);
+    }
+
     private Item getItem(int quality) {
         return new Item("SomeItem", 0, quality);
     }
