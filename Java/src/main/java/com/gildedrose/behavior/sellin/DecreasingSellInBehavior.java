@@ -2,10 +2,10 @@ package com.gildedrose.behavior.sellin;
 
 import com.gildedrose.Item;
 
-public class DefaultSellInBehavior implements SellInBehavior {
+public class DecreasingSellInBehavior implements SellInBehavior {
 
-    public static DefaultSellInBehavior newInstance() {
-        return new DefaultSellInBehavior();
+    public static DecreasingSellInBehavior newInstance() {
+        return new DecreasingSellInBehavior();
     }
 
     @Override

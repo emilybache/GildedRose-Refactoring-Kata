@@ -2,15 +2,15 @@ package com.gildedrose.behavior.quality;
 
 import com.gildedrose.Item;
 
-public class DefaultQualityBehavior implements QualityBehavior {
+public class DecreasingQualityBehavior implements QualityBehavior {
 
     public static final int MAX_QUALITY_LEVEL = 50;
     public static final int MIN_QUALITY_LEVEL = 0;
     public static final int DEFAULT_QUALITY_DECREASE = 1;
     public static final int FASTER_QUALITY_DECREASE = 2;
 
-    public static DefaultQualityBehavior newInstance() {
-        return new DefaultQualityBehavior();
+    public static DecreasingQualityBehavior newInstance() {
+        return new DecreasingQualityBehavior();
     }
 
     @Override

@@ -6,13 +6,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DefaultSellInBehaviorTest {
+public class DecreasingSellInBehaviorTest {
 
     private SellInBehavior sellInBehavior;
 
     @BeforeEach
     public void setUp() throws Exception {
-        sellInBehavior = new DefaultSellInBehavior();
+        sellInBehavior = new DecreasingSellInBehavior();
     }
 
     @Test

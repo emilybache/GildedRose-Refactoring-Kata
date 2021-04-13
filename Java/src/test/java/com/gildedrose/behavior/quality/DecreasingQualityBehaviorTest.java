@@ -6,13 +6,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DefaultQualityBehaviorTest {
+public class DecreasingQualityBehaviorTest {
 
     private QualityBehavior qualityBehavior;
 
     @BeforeEach
     public void setUp() throws Exception {
-        qualityBehavior = new DefaultQualityBehavior();
+        qualityBehavior = new DecreasingQualityBehavior();
     }
 
     @Test

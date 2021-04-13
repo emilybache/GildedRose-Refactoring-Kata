@@ -2,12 +2,12 @@ package com.gildedrose.behavior;
 
 import com.gildedrose.behavior.item.ItemBehavior;
 import com.gildedrose.behavior.item.ItemBehaviorImpl;
-import com.gildedrose.behavior.quality.DefaultQualityBehavior;
+import com.gildedrose.behavior.quality.DecreasingQualityBehavior;
 import com.gildedrose.behavior.quality.ImmutableQualityBehavior;
 import com.gildedrose.behavior.quality.IncreasingQualityBehavior;
 import com.gildedrose.behavior.quality.QualityStage;
 import com.gildedrose.behavior.quality.StagedIncreasingQualityBehavior;
-import com.gildedrose.behavior.sellin.DefaultSellInBehavior;
+import com.gildedrose.behavior.sellin.DecreasingSellInBehavior;
 import com.gildedrose.behavior.sellin.ImmutableSellInBehavior;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class ItemBehaviorPicker {
     }
 
     private static ItemBehavior getAgedBrieItemBehavior() {
-        return ItemBehaviorImpl.of(IncreasingQualityBehavior.newInstance(), DefaultSellInBehavior.newInstance());
+        return ItemBehaviorImpl.of(IncreasingQualityBehavior.newInstance(), DecreasingSellInBehavior.newInstance());
     }
 
     private static ItemBehavior getSulfurusHandOfRagnarosItemBehavior() {
@@ -39,10 +39,10 @@ public class ItemBehaviorPicker {
 
     private static ItemBehavior getBackstagePassesItemBehavior() {
         List<QualityStage> stages = new ArrayList<>(Arrays.asList(QualityStage.of(10,2), QualityStage.of(5,3)));
-        return ItemBehaviorImpl.of(StagedIncreasingQualityBehavior.withStages(stages, 1), DefaultSellInBehavior.newInstance());
+        return ItemBehaviorImpl.of(StagedIncreasingQualityBehavior.withStages(stages, 1), DecreasingSellInBehavior.newInstance());
     }
 
     private static ItemBehavior getDefaultItemBehavior() {
-        return ItemBehaviorImpl.of(DefaultQualityBehavior.newInstance(), DefaultSellInBehavior.newInstance());
+        return ItemBehaviorImpl.of(DecreasingQualityBehavior.newInstance(), DecreasingSellInBehavior.newInstance());
     }
 }
