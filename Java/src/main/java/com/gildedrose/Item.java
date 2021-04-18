@@ -14,6 +14,12 @@ public class Item {
         this.quality = quality;
     }
 
+    public Item updateQuality(Item item) {
+        System.out.println("Unkown item : " + item.name);
+		return item;
+        
+    }
+
    @Override
    public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
