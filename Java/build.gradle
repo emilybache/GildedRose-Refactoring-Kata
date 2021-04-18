@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "io.freefair.lombok" version "6.0.0-m2"
 }
 
 repositories {
@@ -11,6 +12,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.6.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.6.2'
     testImplementation 'com.approvaltests:approvaltests:5.0.0'
+    implementation 'org.mockito:mockito-core:3.9.0'
 }
 
 group = 'com.gildedrose'
