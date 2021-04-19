@@ -6,7 +6,9 @@ public class TestItems {
 
         Item[] items = new Item[] {
                 new AgedBrie("Aged Brie", 2, 0), //
-                new Sulfuras("Sulfuras", 10, 5) //
+                new Sulfuras("Sulfuras", 10, 5), //
+                new BackStagePass("BackStagePass", 20, 20)
+                
                 
         };
 
