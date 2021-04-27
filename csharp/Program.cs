@@ -40,7 +40,7 @@ namespace csharp
             var app = new GildedRose(Items);
 
 
-            for (var i = 0; i < 31; i++)
+            for (var i = 0; i < 11; i++)
             {
                 Console.WriteLine("-------- day " + i + " --------");
                 Console.WriteLine("name, sellIn, quality");

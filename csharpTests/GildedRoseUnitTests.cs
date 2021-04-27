@@ -24,14 +24,36 @@ namespace csharp.Tests
         }
 
         [TestMethod()]
-        public void UpdateQualityTestForAgedBrie_SellDatePassed_IncreaseQualityByTwo()
+        public void UpdateQualityTestForAgedBrie_SellDateIsLessThan10ButGreaterThan5_IncreaseQualityByTwo()
         {
-            IList<Item> Items = new List<Item> { new Item { Name = "Aged Brie", SellIn = 0, Quality = 0 } };
+            IList<Item> Items = new List<Item> { new Item { Name = "Aged Brie", SellIn = 10, Quality = 0 } };
             GildedRose app = new GildedRose(Items);
 
             app.UpdateQuality();
 
             Assert.AreEqual(2, Items[0].Quality);
+        }
+
+        [TestMethod()]
+        public void UpdateQualityTestForAgedBrie_SellDateIsLessThan5_IncreaseQualityByThree()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = "Aged Brie", SellIn = 5, Quality = 0 } };
+            GildedRose app = new GildedRose(Items);
+
+            app.UpdateQuality();
+
+            Assert.AreEqual(3, Items[0].Quality);
+        }
+
+        [TestMethod()]
+        public void UpdateQualityTestForAgedBrie_AfterConcert_DropToZero()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = "Aged Brie", SellIn = 0, Quality = 10 }};
+            GildedRose app = new GildedRose(Items);
+
+            app.UpdateQuality();
+
+            Assert.AreEqual(0, Items[0].Quality);
         }
 
         [TestMethod()]
@@ -46,7 +68,7 @@ namespace csharp.Tests
         }
 
         [TestMethod()]
-        public void UpdateQualityTest_QualityOfItemIsNeverNegative_MinimumValue()
+        public void UpdateQualityTest_QualityOfItemIsNeverNegative_MinimumValue0()
         {
             IList<Item> Items = new List<Item> { new Item { Name = "+5 Dexterity Vest", SellIn = 0, Quality = 0 } };
             GildedRose app = new GildedRose(Items);
@@ -56,14 +78,48 @@ namespace csharp.Tests
             Assert.AreEqual(0, Items[0].Quality);
         }
 
-        public void UpdateQualityTest_QualityOfItemNeverAboveDefinedValue_MaximumValue()
+        [TestMethod()]
+        public void UpdateQualityTest_QualityOfItemNeverAboveDefinedValue_MaximumValue50()
         {
-            IList<Item> Items = new List<Item> { new Item { Name = "+5 Dexterity Vest", SellIn = 0, Quality = 0 } };
+            IList<Item> Items = new List<Item> { new Item { Name = "Aged Brie", SellIn = 1, Quality = 49 } };
             GildedRose app = new GildedRose(Items);
 
             app.UpdateQuality();
 
-            Assert.AreEqual(0, Items[0].Quality);
+            Assert.AreEqual(50, Items[0].Quality);
+        }
+
+        [TestMethod()]
+        public void UpdateQualityTest_LegendaryItems_NeverAltar()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80 } };
+            GildedRose app = new GildedRose(Items);
+
+            app.UpdateQuality();
+
+            Assert.AreEqual(80, Items[0].Quality);
+        }
+
+        [TestMethod()]
+        public void UpdateQualityTest_LegendaryItems_MaximumValue80()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 1, Quality = 80} };
+            GildedRose app = new GildedRose(Items);
+
+            app.UpdateQuality();
+
+            Assert.AreEqual(80, Items[0].Quality);
+        }
+
+        [TestMethod()]
+        public void UpdateQualityTest_ReduceSellIn_By1Daily()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = "Aged Brie", SellIn = 1, Quality = 30 } };
+            GildedRose app = new GildedRose(Items);
+
+            app.UpdateQuality();
+
+            Assert.AreEqual(0, Items[0].SellIn);
         }
     }
 }
