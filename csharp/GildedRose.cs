@@ -1,8 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace csharp
 {
-    public class GildedRose
+    interface IUpdateInterface
+    {
+        void CalculateItemQuality(Item item, int decrementValue, int incrementValue); //takes 3 self explanatory params.
+        void CalculateSpecialItemQuality(Item item); // Aged Brie Method
+        void MinMaxRules(Item item); // Minimum and Maximum Rules for item quality
+        void ReduceSellIn(Item item); // Reduce number of days left method
+    }
+
+    public class GildedRose : IUpdateInterface
     {
         IList<Item> Items;
         public GildedRose(IList<Item> Items)
@@ -12,78 +21,108 @@ namespace csharp
 
         public void UpdateQuality()
         {
-            foreach(var Item in Items)
+            foreach (var Item in Items) // Changed this to a simpler loop
             {
-                if (Item.Name != "Aged Brie" && Item.Name != "Backstage passes to a TAFKAL80ETC concert")
+                //Console.WriteLine(Item.Name);
+                switch (Item.Name)
                 {
-                    if (Item.Quality > 0)
-                    {
-                        if (Item.Name != "Sulfuras, Hand of Ragnaros")
-                        {
-                            Item.Quality = Item.Quality - 1;
-                        }
-                    }
+                    case "Aged Brie":
+                        CalculateSpecialItemQuality(Item);
+                        break;
+                    case "Sulfuras, Hand of Ragnaros":
+                        CalculateLegendaryItemQuality
+                            (Item, 0, 0);
+                        break;
+                    case "Conjured Mana Cake":
+                        CalculateItemQuality(Item, 4, 0);
+                        break;
+                    default:
+                        CalculateItemQuality(Item, 2, 0);
+                        break;
                 }
-                else
-                {
-                    if (Item.Quality < 50)
-                    {
-                        Item.Quality = Item.Quality + 1;
-
-                        if (Item.Name == "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (Item.SellIn < 11)
-                            {
-                                if (Item.Quality < 50)
-                                {
-                                    Item.Quality = Item.Quality + 1;
-                                }
-                            }
-
-                            if (Item.SellIn < 6)
-                            {
-                                if (Item.Quality < 50)
-                                {
-                                    Item.Quality = Item.Quality + 1;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (Item.Name != "Sulfuras, Hand of Ragnaros")
-                {
-                    Item.SellIn = Item.SellIn - 1;
-                }
-
-                if (Item.SellIn < 0)
-                {
-                    if (Item.Name != "Aged Brie")
-                    {
-                        if (Item.Name != "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (Item.Quality > 0)
-                            {
-                                if (Item.Name != "Sulfuras, Hand of Ragnaros")
-                                {
-                                    Item.Quality = Item.Quality - 1;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            Item.Quality = Item.Quality - Item.Quality;
-                        }
-                    }
-                    else
-                    {
-                        if (Item.Quality < 50)
-                        {
-                            Item.Quality = Item.Quality + 1;
-                        }
-                    }
-                }
+                //if (Item.Name == "Aged Brie")
+                //{
+                //    CalculateSpecialItemQuality(Item);
+                //    //MinMaxRules(Item);
+                //    //return;
+                //}
+                //else if (Item.Name == "Sulfuras, Hand of Ragnaros")
+                //{
+                //    //CalculateQuality(Item, 0, 0);
+                //    //return;
+                //}
+                //else if (Item.Name == "Conjured Mana Cake")
+                //{
+                //    CalculateStandardItemQuality(Item, 4, 0);
+                //    //return;
+                //}
+                //else
+                //{
+                //    CalculateStandardItemQuality(Item, 2, 0);
+                //    //return;
+                //}
             }
         }
+
+        public void CalculateItemQuality(Item item, int decrementValue, int IncrementValue) // To calculate the quality of each item
+        {
+            //if (item.SellIn > 0 )
+            {
+                item.Quality = item.Quality - decrementValue;
+            }
+            MinMaxRules(item);
+            ReduceSellIn(item);
+        }
+        public void CalculateLegendaryItemQuality(Item item, int decrementValue, int IncrementValue) // To calculate the quality of each item
+        {
+            ////if (item.SellIn > 0 )
+            //{
+            //    item.Quality = item.Quality - decrementValue;
+            //}
+            //MinMaxRules(item);
+            ReduceSellIn(item);
+        }
+        public void CalculateSpecialItemQuality(Item item) // Specific for the AgedBrie Special Item
+        {
+            if (item.SellIn == 0)
+            {
+                item.Quality = 0;
+            }
+
+            if (item.SellIn <= 10 && item.SellIn > 5 && item.SellIn > 0)
+            {
+                item.Quality = item.Quality + 2;
+            }
+
+            if (item.SellIn <= 5 && item.SellIn > 0)
+            {
+                item.Quality = item.Quality + 3;
+            }
+            ReduceSellIn(item);
+            MinMaxRules(item);
+        }
+
+        public void MinMaxRules(Item item) //Minimum and Maximum Rules
+        {
+            if (item.Quality <= 0)
+            {
+                item.Quality = 0;
+            }
+            if (item.Quality >= 50)
+            {
+                item.Quality = 50;
+            }
+        }
+
+        public void ReduceSellIn(Item item) //This will take care of reducing the number of days after each  day
+        {
+            if (item.SellIn >= 1)
+            {
+                item.SellIn = item.SellIn - 1;
+            }
+        }
+
+
+
     }
 }
