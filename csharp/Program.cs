@@ -7,7 +7,7 @@ namespace csharp
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("OMGHAI!");
+            //Console.WriteLine("OMGHAI!");
 
             IList<Item> Items = new List<Item>{
                 new Item {Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20},
@@ -50,6 +50,7 @@ namespace csharp
                 }
                 Console.WriteLine("");
                 app.UpdateQuality();
+                Console.Read();
             }
         }
     }
