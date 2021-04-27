@@ -24,16 +24,16 @@ namespace csharp
             foreach (var Item in Items) // Changed this to a simpler loop
             {
                 //Console.WriteLine(Item.Name);
-                switch (Item.Name)
+                switch (Categorize(Item.Name))
                 {
-                    case "Aged Brie":
+                    case 1:
                         CalculateSpecialItemQuality(Item);
                         break;
-                    case "Sulfuras, Hand of Ragnaros":
+                    case 2:
                         CalculateLegendaryItemQuality
                             (Item, 0, 0);
                         break;
-                    case "Conjured Mana Cake":
+                    case 3:
                         CalculateItemQuality(Item, 4, 0);
                         break;
                     default:
@@ -116,13 +116,33 @@ namespace csharp
 
         public void ReduceSellIn(Item item) //This will take care of reducing the number of days after each  day
         {
-            if (item.SellIn >= 1)
+            //if (item.SellIn >= 1)
             {
                 item.SellIn = item.SellIn - 1;
             }
         }
 
-
+        // Here is an attempt to categorize the items since am not allowed to touch the items class
+        public int Categorize(String itemName) //This will take care of reducing the number of days after each  day
+        {
+            int categoryID;
+            switch (itemName)
+            {
+                case string n when n.Contains("Aged Brie"):
+                    categoryID = 1;
+                    break;
+                case string n when n.Contains("Sulfuras"):
+                    categoryID = 2;
+                    break;
+                case string n when n.Contains("Conjured"):
+                    categoryID = 3;
+                    break;
+                default:
+                    categoryID = 4;
+                    break;
+            }
+            return categoryID;
+        }
 
     }
 }
