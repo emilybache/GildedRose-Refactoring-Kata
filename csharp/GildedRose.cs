@@ -8,6 +8,7 @@ namespace csharp
     {
         void CalculateItemQuality(Item item, int decrementValue, int incrementValue); //takes 3 self explanatory params.
         void CalculateSpecialItemQuality(Item item); // Aged Brie Method
+        void CalculateLegendaryItemQuality(Item item); // Calculate legendary item
         void MinMaxRules(Item item); // Minimum and Maximum Rules for item quality
         void ReduceSellIn(Item item); // Reduce number of days left method
     }
