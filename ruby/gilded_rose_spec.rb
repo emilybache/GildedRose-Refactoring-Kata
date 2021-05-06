@@ -2,8 +2,12 @@ require File.join(File.dirname(__FILE__), "gilded_rose")
 
 describe GildedRose do
   describe "#update_quality" do
-    def updated_items(items)
+    def update_items(items)
       GildedRose.new(items).update_quality
+    end
+
+    def updated_items(items)
+      update_items(items)
       items
     end
 
@@ -200,6 +204,14 @@ describe GildedRose do
         items = updated_items([Item.new(item_name, -1, 5)])
         expect(items[0].sell_in).to eq(-1)
       end
+    end
+
+    context "when process nil" do
+      it { expect { update_items(nil) }.to raise_error }
+    end
+
+    context "when process an array which contains nil" do
+      it { expect { update_items([nil]) }.to raise_error }
     end
   end
 end
