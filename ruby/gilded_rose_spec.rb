@@ -207,11 +207,11 @@ describe GildedRose do
     end
 
     context "when process nil" do
-      it { expect { update_items(nil) }.to raise_error }
+      it { expect { update_items(nil) }.to raise_error(NoMethodError) }
     end
 
     context "when process an array which contains nil" do
-      it { expect { update_items([nil]) }.to raise_error }
+      it { expect { update_items([nil]) }.to raise_error(NoMethodError) }
     end
   end
 end
