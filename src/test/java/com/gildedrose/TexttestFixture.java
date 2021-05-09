@@ -1,20 +1,13 @@
 package com.gildedrose;
 
+import com.gildedrose.utils.EncapsulatedItem;
+import com.gildedrose.utils.EncapsulateItemBuilder;
+
 public class TexttestFixture {
     public static void main(String[] args) {
         System.out.println("OMGHAI!");
 
-        Item[] items = new Item[] {
-                new Item("+5 Dexterity Vest", 10, 20), //
-                new Item("Aged Brie", 2, 0), //
-                new Item("Elixir of the Mongoose", 5, 7), //
-                new Item("Sulfuras, Hand of Ragnaros", 0, 80), //
-                new Item("Sulfuras, Hand of Ragnaros", -1, 80),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
-                // this conjured item does not work properly yet
-                new Item("Conjured Mana Cake", 3, 6) };
+        final EncapsulatedItem[] items = buildItems();
 
         GildedRose app = new GildedRose(items);
 
@@ -26,12 +19,26 @@ public class TexttestFixture {
         for (int i = 0; i < days; i++) {
             System.out.println("-------- day " + i + " --------");
             System.out.println("name, sellIn, quality");
-            for (Item item : items) {
+            for (EncapsulatedItem item : items) {
                 System.out.println(item);
             }
             System.out.println();
             app.updateQuality();
         }
+    }
+
+    private static EncapsulatedItem[] buildItems() {
+        return new EncapsulatedItem[] {
+                new EncapsulateItemBuilder().named("+5 Dexterity Vest").toSellIn(10).ofQuality(20).build(),
+                new EncapsulateItemBuilder().named("Aged Brie").toSellIn(2).ofQuality(0).build(),
+                new EncapsulateItemBuilder().named("Elixir of the Mongoose").toSellIn(5).ofQuality(7).build(),
+                new EncapsulateItemBuilder().named("Sulfuras, Hand of Ragnaros").toSellIn(0).ofQuality(80).build(),
+                new EncapsulateItemBuilder().named("Sulfuras, Hand of Ragnaros").toSellIn(-1).ofQuality(80).build(),
+                new EncapsulateItemBuilder().named("Backstage passes to a TAFKAL80ETC concert").toSellIn(15).ofQuality(20).build(),
+                new EncapsulateItemBuilder().named("Backstage passes to a TAFKAL80ETC concert").toSellIn(10).ofQuality(49).build(),
+                new EncapsulateItemBuilder().named("Backstage passes to a TAFKAL80ETC concert").toSellIn(5).ofQuality(49).build(),
+                new EncapsulateItemBuilder().named("Conjured Mana Cake").toSellIn(3).ofQuality(6).build(),};
+
     }
 
 }
