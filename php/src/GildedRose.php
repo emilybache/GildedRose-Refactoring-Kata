@@ -75,9 +75,15 @@ final class GildedRose
                 if ($item->quality > 0) {
                     $this->lowerQuality($item, 1);
                 }
+                if ($item->name === 'Conjured Mana Cake') {
+                    $this->lowerQuality($item, 1);
+                }
             }
 
             if ($item->sell_in <= 0) {
+                if ($item->name === 'Conjured Mana Cake') {
+                    $this->lowerQuality($item, 1);
+                }
                 if ($item->name === 'Aged Brie') {
                     if ($item->quality < 50) {
                         $this->increaseQuality($item, 1);
