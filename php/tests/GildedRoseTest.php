@@ -36,7 +36,9 @@ class GildedRoseTest extends TestCase
         self::assertSame(-2, $items[0]->sell_in);
     }
 
-    /** @dataProvider qualityNeverNegativeScenario */
+    /**
+     * @dataProvider qualityNeverNegativeScenario
+     */
     public function testQualityNeverNegative(array $qualityNeverNegativeScenario): void
     {
         $items = [new Item('foo', $qualityNeverNegativeScenario['data']['sell_in'], $qualityNeverNegativeScenario['data']['quality'])];
@@ -50,18 +52,35 @@ class GildedRoseTest extends TestCase
     {
         return [
             [[
-                'data' => ['sell_in' => 1, 'quality' => 0],
-                'expect' => ['sell_in' => 0, 'quality' => 0],
+                'data' => [
+                    'sell_in' => 1,
+                    'quality' => 0,
+                ],
+                'expect' => [
+                    'sell_in' => 0,
+                    'quality' => 0,
+                    
+                ],
             ]],
             [[
-                'data' => ['sell_in' => -1, 'quality' => 1],
-                'expect' => ['sell_in' => -2, 'quality' => 0],
-            ]]
+                'data' => [
+                    'sell_in' => -1,
+                    'quality' => 1,
+                ],
+                'expect' => [
+                    'sell_in' => -2,
+                    'quality' => 0,
+                    
+                ],
+            ]],
         ];
     }
+
     /** end of QualityNeverNegativeScenario */
 
-    /** @dataProvider agedBrieScenario */
+    /**
+     * @dataProvider agedBrieScenario
+     */
     public function testAgedBrieQualityIncreases(array $agedBrieScenario): void
     {
         $items = [new Item('Aged Brie', $agedBrieScenario['data']['sell_in'], $agedBrieScenario['data']['quality'])];
@@ -75,18 +94,35 @@ class GildedRoseTest extends TestCase
     {
         return [
             [[
-                'data' => ['sell_in' => 11, 'quality' => 49],
-                'expect' => ['sell_in' => 10, 'quality' => 50],
+                'data' => [
+                    'sell_in' => 11,
+                    'quality' => 49,
+                ],
+                'expect' => [
+                    'sell_in' => 10,
+                    'quality' => 50,
+                    
+                ],
             ]],
             [[
-                'data' => ['sell_in' => 0, 'quality' => 47],
-                'expect' => ['sell_in' => -1, 'quality' => 49],
-            ]]
+                'data' => [
+                    'sell_in' => 0,
+                    'quality' => 47,
+                ],
+                'expect' => [
+                    'sell_in' => -1,
+                    'quality' => 49,
+                    
+                ],
+            ]],
         ];
     }
+
     /** end of agedBrieScenario */
 
-    /** @dataProvider sulfurasScenario */
+    /**
+     * @dataProvider sulfurasScenario
+     */
     public function testSulfurasQualityAndSellinStays(array $sulfurasScenario): void
     {
         $items = [new Item('Sulfuras, Hand of Ragnaros', $sulfurasScenario['data']['sell_in'], $sulfurasScenario['data']['quality'])];
@@ -100,22 +136,46 @@ class GildedRoseTest extends TestCase
     {
         return [
             [[
-                'data' => ['sell_in' => 31, 'quality' => 80],
-                'expect' => ['sell_in' => 31, 'quality' => 80],
+                'data' => [
+                    'sell_in' => 31,
+                    'quality' => 80,
+                ],
+                'expect' => [
+                    'sell_in' => 31,
+                    'quality' => 80,
+                    
+                ],
             ]],
             [[
-                'data' => ['sell_in' => 0, 'quality' => 80],
-                'expect' => ['sell_in' => 0, 'quality' => 80],
+                'data' => [
+                    'sell_in' => 0,
+                    'quality' => 80,
+                ],
+                'expect' => [
+                    'sell_in' => 0,
+                    'quality' => 80,
+                    
+                ],
             ]],
             [[
-                'data' => ['sell_in' => -1, 'quality' => 80],
-                'expect' => ['sell_in' => -1, 'quality' => 80],
-            ]]
+                'data' => [
+                    'sell_in' => -1,
+                    'quality' => 80,
+                ],
+                'expect' => [
+                    'sell_in' => -1,
+                    'quality' => 80,
+                    
+                ],
+            ]],
         ];
     }
+
     /** end of sulfurasScenario */
 
-    /** @dataProvider backstagePassScenario */
+    /**
+     * @dataProvider backstagePassScenario
+     */
     public function testBackstagePassQuality(array $backstagePassScenario): void
     {
         $items = [new Item('Backstage passes to a TAFKAL80ETC concert', $backstagePassScenario['data']['sell_in'], $backstagePassScenario['data']['quality'])];
@@ -129,26 +189,57 @@ class GildedRoseTest extends TestCase
     {
         return [
             [[
-                'data' => ['sell_in' => 31, 'quality' => 43],
-                'expect' => ['sell_in' => 30, 'quality' => 44],
+                'data' => [
+                    'sell_in' => 31,
+                    'quality' => 43,
+                ],
+                'expect' => [
+                    'sell_in' => 30,
+                    'quality' => 44,
+                    
+                ],
             ]],
             [[
-                'data' => ['sell_in' => 10, 'quality' => 44],
-                'expect' => ['sell_in' => 9, 'quality' => 46],
+                'data' => [
+                    'sell_in' => 10,
+                    'quality' => 44,
+                ],
+                'expect' => [
+                    'sell_in' => 9,
+                    'quality' => 46,
+                    
+                ],
             ]],
             [[
-                'data' => ['sell_in' => 1, 'quality' => 46],
-                'expect' => ['sell_in' => 0, 'quality' => 49],
+                'data' => [
+                    'sell_in' => 1,
+                    'quality' => 46,
+                ],
+                'expect' => [
+                    'sell_in' => 0,
+                    'quality' => 49,
+                    
+                ],
             ]],
             [[
-                'data' => ['sell_in' => 0, 'quality' => 49],
-                'expect' => ['sell_in' => -1, 'quality' => 0],
-            ]]
+                'data' => [
+                    'sell_in' => 0,
+                    'quality' => 49,
+                ],
+                'expect' => [
+                    'sell_in' => -1,
+                    'quality' => 0,
+                    
+                ],
+            ]],
         ];
     }
+
     /** end of backstageScenario */
 
-    /** @dataProvider conjuredItemsScenario */
+    /**
+     * @dataProvider conjuredItemsScenario
+     */
     public function testConjuredItems(array $conjuredItemsScenario): void
     {
         $items = [new Item('Conjured Mana Cake', $conjuredItemsScenario['data']['sell_in'], $conjuredItemsScenario['data']['quality'])];
@@ -162,14 +253,29 @@ class GildedRoseTest extends TestCase
     {
         return [
             [[
-                'data' => ['sell_in' => 31, 'quality' => 50],
-                'expect' => ['sell_in' => 30, 'quality' => 48],
+                'data' => [
+                    'sell_in' => 31,
+                    'quality' => 50,
+                ],
+                'expect' => [
+                    'sell_in' => 30,
+                    'quality' => 48,
+                    
+                ],
             ]],
             [[
-                'data' => ['sell_in' => 0, 'quality' => 48],
-                'expect' => ['sell_in' => -1, 'quality' => 44],
-            ]]
+                'data' => [
+                    'sell_in' => 0,
+                    'quality' => 48,
+                ],
+                'expect' => [
+                    'sell_in' => -1,
+                    'quality' => 44,
+                    
+                ],
+            ]],
         ];
     }
+
     /** end of conjuredItemsScenario */
 }

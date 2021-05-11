@@ -7,35 +7,14 @@ GildedRose Kata.
 
 The kata uses:
 
-- [PHP 7.3 or 7.4 or 8.0+](https://www.php.net/downloads.php)
+- [PHP 8.0+](https://www.php.net/downloads.php)
 - [Composer](https://getcomposer.org)
-
-Recommended:
-
 - [Git](https://git-scm.com/downloads)
 
-Clone the repository
-
-```sh
-git clone git@github.com:emilybache/GildedRose-Refactoring-Kata.git
-```
-
-or
-
-```shell script
-git clone https://github.com/emilybache/GildedRose-Refactoring-Kata.git
-```
-
-Install all the dependencies using composer
-
-```shell script
-cd ./GildedRose-Refactoring-Kata/php
-composer install
-```
 
 ## Dependencies
 
-The project uses composer to install:
+The project used composer to install:
 
 - [PHPUnit](https://phpunit.de/)
 - [ApprovalTests.PHP](https://github.com/approvals/ApprovalTests.php)
@@ -46,19 +25,49 @@ The project uses composer to install:
 ## Folders
 
 - `src` - contains the two classes:
-    - `Item.php` - this class should not be changed
-    - `GildedRose.php` - this class needs to be refactored, and the new feature added
-- `tests` - contains the tests
+    - `Item.php` - this class was not changed;
+    - `GildedRose.php` - this class was refactored, and the new feature added;
+- `tests` - contains the tests:
     - `GildedRoseTest.php` - starter test.
-        - Tip: ApprovalTests has been included as a dev dependency, see the PHP version of
-          the [Theatrical Players Refactoring Kata](https://github.com/emilybache/Theatrical-Players-Refactoring-Kata/)
-          for an example
 - `Fixture`
-    - `texttest_fixture.php` this could be used by an ApprovalTests, or run from the command line
+    - `texttest_fixture.php` this was used by an ApprovalTests, and run from the command line
 
 ## Testing
 
-PHPUnit is configured for testing, a composer script has been provided. To run the unit tests, from the root of the PHP
+Tests were written for all the requirement specifications listed in ["Gilded Rose Requirements"](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/master/GildedRoseRequirements.txt).
+
+Test methods takes initial (starting) values, that can be changed accordingly. E.g., "31" for sell_in value and "50" for quality value:
+
+```shell
+$items = [new Item('+5 Dexterity Vest', 31, 50)];
+```
+puts them in GildedRose Class updateQuality() method and checks for expected values. E.g., "30" for sell_in value and "49" for quality value:
+
+```shell
+self::assertSame(30, $items[0]->sell_in);
+self::assertSame(49, $items[0]->quality);
+```
+
+Furthermore, where more than one arbitrary arguments are desired for single test, @dataProvider method was used and relevant Scenarios were created. E.g., 'data' array accepts initial values for sell_in and quality and 'expect' array - expected ones.
+
+```shell
+public function qualityNeverNegativeScenario(): array
+    {
+        return [
+            [[
+                'data' => [
+                    'sell_in' => 1,
+                    'quality' => 0,
+                ],
+                'expect' => [
+                    'sell_in' => 0,
+                    'quality' => 0,
+                    
+                ]
+            ]]
+```
+
+To run the unit tests, from the root of the PHP
 project run:
 
 ```shell script
@@ -72,6 +81,14 @@ PHPUnit `composer test` can be run:
 pu
 ```
 
+### Approval Test
+
+'sell_in' and 'quality' values of GildedRose items for 31 day were generated via terminal command from the root of the PHP project:
+
+```shell
+php fixtures/texttest_fixture.php
+```
+and compared to provided ["Approval Test document"](tests/approvals/ApprovalTest.testTestFixture.approved.txt) until data were identical.
 ### Tests with Coverage Report
 
 To run all test and generate a html coverage report run:

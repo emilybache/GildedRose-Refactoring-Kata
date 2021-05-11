@@ -4,7 +4,9 @@ namespace GildedRose;
 
 final class GildedRose
 {
-    public function __construct(private array $items)
+    public function __construct(
+        private array $items
+    )
     {
     }
 
@@ -17,7 +19,7 @@ final class GildedRose
             }
 
             $disabledNames = ['Aged Brie', 'Backstage passes to a TAFKAL80ETC concert'];
-            if (in_array($item->name, $disabledNames)) {
+            if (in_array($item->name, $disabledNames, true)) {
                 if ($item->quality < 50) {
                     $this->increaseQuality($item, 1);
                     if ($item->name === 'Backstage passes to a TAFKAL80ETC concert') {
@@ -45,9 +47,9 @@ final class GildedRose
                     if ($item->quality < 50) {
                         $this->increaseQuality($item, 1);
                     }
-                } else if ($item->name === 'Backstage passes to a TAFKAL80ETC concert') {
+                } elseif ($item->name === 'Backstage passes to a TAFKAL80ETC concert') {
                     $this->lowerQuality($item, $item->quality);
-                } else if ($item->quality > 0) {
+                } elseif ($item->quality > 0) {
                     $this->lowerQuality($item, 1);
                 }
             }
@@ -75,6 +77,6 @@ final class GildedRose
 
     private function lowerSellIn(Item $item): void
     {
-        $item->sell_in -= 1;
+        --$item->sell_in;
     }
 }
