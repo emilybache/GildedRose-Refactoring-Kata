@@ -18,7 +18,7 @@ we can begin selling a new category of items. First an introduction to our syste
 
 Pretty simple, right? Well this is where it gets interesting:
 
-	- Once the sell by date has passed, Quality degrades twice as fast
+	+ Once the sell by date has passed, Quality degrades twice as fast
 	- The Quality of an item is never negative
 	- "Aged Brie" actually increases in Quality the older it gets
 	- The Quality of an item is never more than 50
@@ -54,12 +54,6 @@ final class GildedRose
     {
         /** @var Item $item */
         foreach ($this->items as $item) {
-            //conjured quality -2  + test. test first!
-//            if ($item->name === 'Conjured Mana Cake') {
-//                $this->lowerQuality($item, 1);
-//            }
-
-            //spare Sulfuras from quality drop
             if ($item->name === 'Sulfuras, Hand of Ragnaros') {
                 continue;
             }
