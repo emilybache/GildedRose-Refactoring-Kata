@@ -26,5 +26,5 @@
 
 guard :rspec, cmd: 'rspec', spec_paths: ["./"] do
   watch(%r{.+_spec\.rb$}) { |m| "./#{m[0]}" }
-  watch("gilded_rose.rb") { "./gilded_rose_spec.rb" }
+  watch(%r{(.+)(?!_spec)\.rb$}) { |m| "./#{m[1]}_spec.rb" }
 end
