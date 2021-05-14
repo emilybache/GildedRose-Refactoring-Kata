@@ -16,16 +16,14 @@ class GildedRose
 
   def first_step(item)
     if item.name == AGED_BRIE || item.name == BACKSTAGE_PASS
-      if item.quality < 50
+      return unless item.quality < 50
+      increment_item_quality(item)
+      return if item.name == AGED_BRIE
+      if item.sell_in < 11 && item.quality < 50
         increment_item_quality(item)
-        if item.name == BACKSTAGE_PASS
-          if item.sell_in < 11 && item.quality < 50
-            increment_item_quality(item)
-          end
-          if item.sell_in < 6 && item.quality < 50
-            increment_item_quality(item)
-          end
-        end
+      end
+      if item.sell_in < 6 && item.quality < 50
+        increment_item_quality(item)
       end
     else
       if item.quality > 0 && item.name != SULFURAS
