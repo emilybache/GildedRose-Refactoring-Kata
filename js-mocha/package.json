@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Gilded Rose kata in Javascript with Mocha",
   "scripts": {
-    "test": "mocha --compilers js:babel/register"
+    "test": "mocha --require @babel/register"
   },
   "repository": {
     "type": "git",
@@ -21,8 +21,10 @@
   },
   "homepage": "https://github.com/emilybache/GildedRose-Refactoring-Kata",
   "devDependencies": {
-    "babel": "^5.8.23",
+    "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.0",
+    "@babel/register": "^7.13.0",
     "chai": "^4.2.0",
-    "mocha": "^5.2.0"
+    "mocha": "^8.4.0"
   }
 }
