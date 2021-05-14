@@ -20,13 +20,12 @@ class GildedRose
     when AGED_BRIE
       increment_item_quality(item)
     when BACKSTAGE_PASS
-      if item.sell_in >= 11
-        increment_item_quality(item)
-      elsif (6...11).cover?(item.sell_in)
-        increment_item_quality(item, 2)
-      elsif item.sell_in < 6
-        increment_item_quality(item, 3)
+      increment_amount = case item.sell_in
+      when (11..) then 1
+      when (6...11) then 2
+      when (...6) then 3
       end
+      increment_item_quality(item, increment_amount)
     else
       if item.quality > 0
         item.quality = item.quality - 1
