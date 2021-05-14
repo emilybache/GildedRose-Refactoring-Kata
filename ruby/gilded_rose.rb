@@ -1,42 +1,50 @@
+# frozen_string_literal: true
+
 class GildedRose
+
+  AGED_BRIE = "Aged Brie"
+  BACKSTAGE_PASS = "Backstage passes to a TAFKAL80ETC concert"
+  SULFURAS = "Sulfuras, Hand of Ragnaros"
 
   def initialize(items)
     @items = items
   end
 
-  def update_quality()
-    @items.each do |item|
-      if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
-        if item.quality > 0
-          if item.name != "Sulfuras, Hand of Ragnaros"
-            item.quality = item.quality - 1
+  def increment_item_quality(item)
+    item.quality = item.quality + 1
+  end
+
+  def first_step(item)
+    if item.name == AGED_BRIE || item.name == BACKSTAGE_PASS
+      if item.quality < 50
+        increment_item_quality(item)
+        if item.name == BACKSTAGE_PASS
+          if item.sell_in < 11 && item.quality < 50
+            increment_item_quality(item)
           end
-        end
-      else
-        if item.quality < 50
-          item.quality = item.quality + 1
-          if item.name == "Backstage passes to a TAFKAL80ETC concert"
-            if item.sell_in < 11
-              if item.quality < 50
-                item.quality = item.quality + 1
-              end
-            end
-            if item.sell_in < 6
-              if item.quality < 50
-                item.quality = item.quality + 1
-              end
-            end
+          if item.sell_in < 6 && item.quality < 50
+            increment_item_quality(item)
           end
         end
       end
-      if item.name != "Sulfuras, Hand of Ragnaros"
+    else
+      if item.quality > 0 && item.name != SULFURAS
+        item.quality = item.quality - 1
+      end
+    end
+  end
+
+  def update_quality()
+    @items.each do |item|
+      first_step(item)
+      if item.name != SULFURAS
         item.sell_in = item.sell_in - 1
       end
       if item.sell_in < 0
-        if item.name != "Aged Brie"
-          if item.name != "Backstage passes to a TAFKAL80ETC concert"
+        if item.name != AGED_BRIE
+          if item.name != BACKSTAGE_PASS
             if item.quality > 0
-              if item.name != "Sulfuras, Hand of Ragnaros"
+              if item.name != SULFURAS
                 item.quality = item.quality - 1
               end
             end
@@ -45,7 +53,7 @@ class GildedRose
           end
         else
           if item.quality < 50
-            item.quality = item.quality + 1
+            increment_item_quality(item)
           end
         end
       end
