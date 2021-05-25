@@ -10,7 +10,7 @@ program GildedRose_texttest
   type(Item) :: it
 
   call init_item(it, "foo", 10, 20)
-  if (trim(it%name) /= "foo" ) then
+  if (trim(it%name) /= "fixMe" ) then
     write(*,*) "ERRORUnity test Failed"
     stop 1
   else
