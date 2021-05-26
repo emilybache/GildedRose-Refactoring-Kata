@@ -1,0 +1,22 @@
+version: '2'
+services:
+  base:
+    build:
+      context: .
+    volumes:
+      - .:/app
+
+  lint:
+    extends:
+      service: base
+    command: rubocop
+
+  auto-correct:
+    extends:
+      service: base
+    command: bundle exec rubocop --auto-correct
+
+  test:
+    extends:
+      service: base
+    command: bundle exec rspec gilded_rose_spec.rb

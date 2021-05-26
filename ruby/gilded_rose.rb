@@ -1,45 +1,37 @@
-class GildedRose
+# frozen_string_literal: true
 
+class GildedRose
   def initialize(items)
     @items = items
   end
 
-  def update_quality()
+  def update_quality
     @items.each do |item|
-      case item.name
-      when "Sulfuras, Hand of Ragnaros"
-      when "Backstage passes to a TAFKAL80ETC concert"
+      if item.name.include?('Backstage passes')
         item.quality += 1 if item.sell_in > 10
-        item.quality += 2 if item.sell_in <= 10 and item.sell_in > 5
+        item.quality += 2 if (item.sell_in <= 10) && (item.sell_in > 5)
         item.quality += 3 if item.sell_in <= 5
         item.sell_in -= 1
-        item.quality = 0 if item.sell_in < 0 
-      when "Aged Brie"
-        item.sell_in -= 1
-        if item.quality < 50 
-          if item.sell_in < 0
-            item.quality += 2
-          else
-            item.quality += 1
-          end
+        item.quality = 0 if item.sell_in.negative?
+      elsif !item.name.include?('Sulfuras')
+        factor = 0
+        factor = case item.name
+                 when 'Aged Brie'
+                   1
+                 when /Conjured/
+                   -2
+                 else
+                   -1
+                 end
+        if (item.quality >= 0) && (item.quality <= 50)
+          item.sell_in -= 1
+          item.quality += factor
+          item.quality += factor if item.sell_in.negative?
         end
-      when /Conjured/
-        item.sell_in -= 1
-        if item.quality > 0 
-          item.quality -= 2
-          item.quality -= 2 if item.sell_in < 0
-        end
-      else
-        item.sell_in -= 1
-        if item.quality > 0
-          item.quality -= 1
-          item.quality -= 1 if item.sell_in < 0
-        end
+        item.quality = 50 if item.quality > 50
+        item.quality = 0 if item.quality.negative?
       end
-      if item.quality < 0
-        item.quality = 0
-      end
-    end 
+    end
   end
 end
 
@@ -52,7 +44,7 @@ class Item
     @quality = quality
   end
 
-  def to_s()
+  def to_s
     "#{@name}, #{@sell_in}, #{@quality}"
   end
 end
