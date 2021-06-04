@@ -1,3 +1,4 @@
+// class to create items with name, sell by date, and quality
 export class Item {
     name: string;
     sellIn: number;
@@ -63,7 +64,7 @@ export class GildedRose {
                 }
             }
         }
-        console.log(this.items);
+        
         return this.items;
     }
 }
