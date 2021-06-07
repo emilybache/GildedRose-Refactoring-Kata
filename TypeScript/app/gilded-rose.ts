@@ -22,6 +22,7 @@ export class GildedRose {
     updateQuality() {
         var maxQuality = 50;
         var minQuality = 0;
+        var conjured = 'Conjured';
         for (let i = 0; i < this.items.length; i++) {
             if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert' 
             && this.items[i].name != 'Sulfuras, Hand of Ragnaros' && this.items[i].quality >minQuality) {
@@ -58,14 +59,13 @@ export class GildedRose {
                             if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
                                 this.items[i].quality -= 1;
                             }
-                        }
-                        
+                        }                        
                     // set quality to 0 after sellIn date passes
                     } else {
                         this.items[i].quality = 0;
                     }
                     //  aged brie increases in quality here
-                } else {
+                } else if (this.items[i].name == 'Aged Brie') {
                     if (this.items[i].quality < maxQuality) {
                         this.items[i].quality += 1;
                     }

@@ -3,80 +3,96 @@ import { Item, GildedRose } from '../app/gilded-rose';
 
 
 // General Tests to ensure it works for newly created item
-describe('Gilded Rose', function () {
+describe('Gilded Rose', () => {
 
-    it('should foo', function() {
-        const gildedRose = new GildedRose([ new Item('foo', 0, 0) ]);
-        const items = gildedRose.updateQuality();
-        expect(items[0].name).to.equal('foo');
+    describe('General tests', () => {
+        var gildedRose: GildedRose;
+        
+        beforeEach(() => {
+            gildedRose = new GildedRose([new Item('foo', 5, 5)]);
+        });
+        
+        it('Foo should be added to item array', () => {
+            const items = gildedRose.updateQuality()[0];
+            expect(items.name).to.equal('foo');
+        });
+        
+        it('should give back updated sellIn ', () => {
+            const items = gildedRose.updateQuality()[0];
+            expect(items.sellIn).to.equal(4);
+        });
+        
+        it('should give back updated quality', () => {
+            const items = gildedRose.updateQuality()[0];
+            expect(items.quality).to.equal(4);
+        });
+
+        
+        it('Quality decreases twice as fast after sellIn date', () => {
+            gildedRose.items[0].sellIn = -1;
+            const items = gildedRose.updateQuality()[0];
+            expect(items.quality).to.equal(3);
+        });
+
+        it('Quality should not go negative', () => {
+            gildedRose.items[0].quality = 0;
+            gildedRose.items[0].sellIn = -1;
+            const items = gildedRose.updateQuality()[0];
+            expect(items.quality).to.equal(0);
+        });
     });
-
-});
-
-describe('Gilded Rose', function () {
-    it('Should give back updated SellIn', function () {
-      const gildedRose = new GildedRose([ new Item('foo', 5, 5)]);
-      const items = gildedRose.updateQuality();
-      expect(items[0].sellIn).to.equal(4);
-    });
-});
-
-describe('Gilded Rose', function () {
-    it('Should give back updated Quality', function () {
-      const gildedRose = new GildedRose([ new Item('foo', 5, 5)]);
-      const items = gildedRose.updateQuality();
-      expect(items[0].quality).to.equal(4);
-    });
-});
-
-describe('Gilded Rose', function () {
-    it('Quality should go down twice as much after sellIn date passes', function () {
-      const gildedRose = new GildedRose([ new Item('foo', -1, 5)]);
-      const items = gildedRose.updateQuality();
-      expect(items[0].quality).to.equal(3);
-    });
-});
-
-describe('Gilded Rose', function () {
-    it('Quality should not go negative', function () {
-      const gildedRose = new GildedRose([ new Item('foo', -1, 0)]);
-      const items = gildedRose.updateQuality();
-      expect(items[0].quality).to.equal(0);
-    });
-});
+}); 
 
 // tests for backstage passes
-describe('Backstage Pass', function () {
-    it('Backstage pass should increase in quality by 2 with only 10 days left', function () {
-        const gildedRose = new GildedRose ([ new Item('Backstage passes to a TAFKAL80ETC concert', 10, 5)]);
-        const items = gildedRose.updateQuality();
-        expect(items[0].quality).to.equal(7);
-    })
-})
+describe('Gilded Rose', () => {
 
-describe('Backstage Pass', function () {
-    it('Backstage pass should increase in quality by 3 with 5 days left', function () {
-        const gildedRose = new GildedRose ([ new Item('Backstage passes to a TAFKAL80ETC concert', 5, 5)]);
-        const items = gildedRose.updateQuality();
-        expect(items[0].quality).to.equal(8);
-    })
-})
+    describe('Backstage passes to a TAFKAL80ETC concert Tests', () => {
+        var gildedRose: GildedRose;
+        
+        beforeEach(() => {
+            gildedRose = new GildedRose([new Item('Backstage passes to a TAFKAL80ETC concert', 10, 5)]);
+        });
+        
+        it('Backstage passes to a TAFKAL80ETC concert should be added to item array', () => {
+            const items = gildedRose.updateQuality()[0];
+            expect(items.name).to.equal('Backstage passes to a TAFKAL80ETC concert');
+        });
+        
+        it('should give back updated sellIn ', () => {
+            const items = gildedRose.updateQuality()[0];
+            expect(items.sellIn).to.equal(9);
+        });
+        
+        it('should give back updated quality, Backstage passes increase in quality as days go on', () => {
+            gildedRose.items[0].sellIn = 12;
+            const items = gildedRose.updateQuality()[0];
+            expect(items.quality).to.equal(6);
+        });
 
-describe('Backstage Pass', function () {
-    it('Backstage pass should increase in quality by 3, but quality is at 49', function () {
-        const gildedRose = new GildedRose ([ new Item('Backstage passes to a TAFKAL80ETC concert', 4, 49)]);
-        const items = gildedRose.updateQuality();
-        expect(items[0].quality).to.equal(50);
-    })
-})
+        it('Backstage pass quality should increase by 2 with 10 or less days', () => {
+            const items = gildedRose.updateQuality()[0];
+            expect(items.quality).to.equal(7);
+        });
 
-describe('Backstage Pass', function () {
-    it('Backstage pass quality should drop to 0 after concert', function () {
-        const gildedRose = new GildedRose ([ new Item('Backstage passes to a TAFKAL80ETC concert', 0, 50)]);
-        const items = gildedRose.updateQuality();
-        expect(items[0].quality).to.equal(0);
-    })
-})
+        it('Backstage pass quality should increase by 3 with 5 or less days', () => {
+            gildedRose.items[0].sellIn = 2;
+            const items = gildedRose.updateQuality()[0];
+            expect(items.quality).to.equal(8);
+        });
+
+        it('Backstage Pass quality drops to 0 after concert', () => {
+            gildedRose.items[0].sellIn = -1;
+            const items = gildedRose.updateQuality()[0];
+            expect(items.quality).to.equal(0);
+        });
+
+        it('Backstage Pass quality caps at 50', () => {
+            gildedRose.items[0].quality = 50;
+            const items = gildedRose.updateQuality()[0];
+            expect(items.quality).to.equal(50);
+        });
+    });
+}); 
 
 // tests for aged brie
 describe('Gilded Rose', () => {
