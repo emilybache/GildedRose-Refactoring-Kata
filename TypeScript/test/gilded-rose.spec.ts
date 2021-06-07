@@ -10,3 +10,25 @@ describe('Gilded Rose', function () {
     });
 
 });
+
+describe('Gilded Rose', function () {
+    it('Should give back updated SellIn', function () {
+      const gildedRose = new GildedRose([ new Item('foo', 5, 5)]);
+      const items = gildedRose.updateQuality();
+      
+      expect(items[0].sellIn).to.equal(4);
+      expect(items[0].quality).to.equal(4);
+    });
+});
+
+describe('Gilded Rose', function () {
+    it('Should give back updated Quality', function () {
+      const gildedRose = new GildedRose([ new Item('foo', 5, 5)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(4);
+    });
+});
+
+
+
+
