@@ -167,25 +167,25 @@ describe('Testing with multiple items at once', () => {
     });
     // Expect Sulfuras, Hand of Ragnaros sellIn to stay the same, all others to decrease
     it('should degrade all SellIn values on update', () => {
-        const itemss = gildedRose.updateQuality();
-        expect(itemss[0].sellIn).to.equal(1);
-        expect(itemss[1].sellIn).to.equal(99);
-        expect(itemss[2].sellIn).to.equal(6);
-        expect(itemss[3].sellIn).to.equal(0);
-        expect(itemss[4].sellIn).to.equal(19);
-        expect(itemss[5].sellIn).to.equal(74);
-        expect(itemss[6].sellIn).to.equal(9);
+        const items = gildedRose.updateQuality();
+        expect(items[0].sellIn).to.equal(1);
+        expect(items[1].sellIn).to.equal(99);
+        expect(items[2].sellIn).to.equal(6);
+        expect(items[3].sellIn).to.equal(0);
+        expect(items[4].sellIn).to.equal(19);
+        expect(items[5].sellIn).to.equal(74);
+        expect(items[6].sellIn).to.equal(9);
     });
     // expect Sulfuras, Hand of Ragnaros quality to stay the same, Aged brie and Concert tickets to increase, all else to decrease
     it('should degrade all Quality values on update', () => {
-        const itemss = gildedRose.updateQuality();
-        expect(itemss[0].quality).to.equal(80);
-        expect(itemss[1].quality).to.equal(0);
-        expect(itemss[2].quality).to.equal(12);
-        expect(itemss[3].quality).to.equal(49);
-        expect(itemss[4].quality).to.equal(24);
-        expect(itemss[5].quality).to.equal(44);
-        expect(itemss[6].quality).to.equal(14);
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).to.equal(80);
+        expect(items[1].quality).to.equal(0);
+        expect(items[2].quality).to.equal(12);
+        expect(items[3].quality).to.equal(49);
+        expect(items[4].quality).to.equal(24);
+        expect(items[5].quality).to.equal(44);
+        expect(items[6].quality).to.equal(14);
         
     });        
 });

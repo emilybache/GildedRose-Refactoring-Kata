@@ -30,16 +30,16 @@ export class GildedRose {
                 if (this.items[i].quality < maxQuality) {
                     this.items[i].quality += 1;
                     if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
-                        if (this.items[i].sellIn <= 10) {
+                        if (this.items[i].sellIn <= 10 && this.items[i].sellIn > 5) {
                             // quality goes up by 2 when days are 10 or less
                             if (this.items[i].quality < maxQuality) {
                                 this.items[i].quality += 1;
                             }
                         }
                        // quality goes up by 3 when days are 5 of less
-                        if (this.items[i].sellIn <= 5) {
+                        else if (this.items[i].sellIn <= 5) {
                             if (this.items[i].quality < maxQuality) {
-                                this.items[i].quality += 1;
+                                this.items[i].quality += 2;
                             }
                         }
                     }
@@ -60,8 +60,9 @@ export class GildedRose {
                             }
                         }
                         
+                    // set quality to 0 after sellIn date passes
                     } else {
-                        this.items[i].quality -= this.items[i].quality;
+                        this.items[i].quality = 0;
                     }
                     //  aged brie increases in quality here
                 } else {
