@@ -89,30 +89,30 @@ describe('Gilded Rose', () => {
         });
         
         it('Aged Brie should be added to item array', () => {
-            const actualUpdatedItem = gildedRose.updateQuality()[0];
-            expect(actualUpdatedItem.name).to.equal('Aged Brie');
+            const items = gildedRose.updateQuality()[0];
+            expect(items.name).to.equal('Aged Brie');
         });
         
         it('should give back updated sellIn ', () => {
-            const actualUpdatedItem = gildedRose.updateQuality()[0];
-            expect(actualUpdatedItem.sellIn).to.equal(6);
+            const items = gildedRose.updateQuality()[0];
+            expect(items.sellIn).to.equal(6);
         });
         
         it('should give back updated quality, Aged Brie increases in quality as days go on', () => {
-            const actualUpdatedItem = gildedRose.updateQuality()[0];
-            expect(actualUpdatedItem.quality).to.equal(12);
+            const items = gildedRose.updateQuality()[0];
+            expect(items.quality).to.equal(12);
         });
 
         it('Aged Brie quality caps at 50', () => {
             gildedRose.items[0].quality = 50;
-            const actualUpdatedItem = gildedRose.updateQuality()[0];
-            expect(actualUpdatedItem.quality).to.equal(50);
+            const items = gildedRose.updateQuality()[0];
+            expect(items.quality).to.equal(50);
         });
         
         it('Aged Brie quality continues to go up even after sellIn date passes', () => {
             gildedRose.items[0].sellIn = -12;
-            const actualUpdatedItem = gildedRose.updateQuality()[0];
-            expect(actualUpdatedItem.quality).to.equal(13);
+            const items = gildedRose.updateQuality()[0];
+            expect(items.quality).to.equal(13);
         });
     });
 }); 
@@ -128,25 +128,64 @@ describe('Gilded Rose', () => {
         });
         
         it('Sulfuras, Hand of Ragnaros should be added to item array', () => {
-            const actualUpdatedItem = gildedRose.updateQuality()[0];
-            expect(actualUpdatedItem.name).to.equal('Sulfuras, Hand of Ragnaros');
+            const items = gildedRose.updateQuality()[0];
+            expect(items.name).to.equal('Sulfuras, Hand of Ragnaros');
         });
         
         it('Sulfuras, Hand of Ragnaros, should not have an updated sellIn ', () => {
-            const actualUpdatedItem = gildedRose.updateQuality()[0];
-            expect(actualUpdatedItem.sellIn).to.equal(1);
+            const items = gildedRose.updateQuality()[0];
+            expect(items.sellIn).to.equal(1);
         });
         
         it('Sulfuras, Hand of Ragnaros quality should not change', () => {
-            const actualUpdatedItem = gildedRose.updateQuality()[0];
-            expect(actualUpdatedItem.quality).to.equal(80);
+            const items = gildedRose.updateQuality()[0];
+            expect(items.quality).to.equal(80);
         });
 
         it('Sulfuras, Hand of Ragnaros should not have degraded quality even after sellIn date passes', () => {
             gildedRose.items[0].sellIn = -10;
-            const actualUpdatedItem = gildedRose.updateQuality()[0];
-            expect(actualUpdatedItem.quality).to.equal(80);
+            const items = gildedRose.updateQuality()[0];
+            expect(items.quality).to.equal(80);
         });
     });
 }); 
 
+// tests for multiple items 
+describe('Testing with multiple items at once', () => {
+    var gildedRose: GildedRose;
+    
+    beforeEach(() => {
+        gildedRose = new GildedRose([
+            new Item('Sulfuras, Hand of Ragnaros', 1, 80),
+            new Item('Bens Diary', 100, 1),
+            new Item('Aged Brie', 7, 11),
+            new Item('Wizards Wand', 1, 50),
+            new Item('Wizards Hat', 20, 25),
+            new Item('Kings Crown', 75, 45),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 10, 12),
+        ]);
+    });
+    // Expect Sulfuras, Hand of Ragnaros sellIn to stay the same, all others to decrease
+    it('should degrade all SellIn values on update', () => {
+        const itemss = gildedRose.updateQuality();
+        expect(itemss[0].sellIn).to.equal(1);
+        expect(itemss[1].sellIn).to.equal(99);
+        expect(itemss[2].sellIn).to.equal(6);
+        expect(itemss[3].sellIn).to.equal(0);
+        expect(itemss[4].sellIn).to.equal(19);
+        expect(itemss[5].sellIn).to.equal(74);
+        expect(itemss[6].sellIn).to.equal(9);
+    });
+    // expect Sulfuras, Hand of Ragnaros quality to stay the same, Aged brie and Concert tickets to increase, all else to decrease
+    it('should degrade all Quality values on update', () => {
+        const itemss = gildedRose.updateQuality();
+        expect(itemss[0].quality).to.equal(80);
+        expect(itemss[1].quality).to.equal(0);
+        expect(itemss[2].quality).to.equal(12);
+        expect(itemss[3].quality).to.equal(49);
+        expect(itemss[4].quality).to.equal(24);
+        expect(itemss[5].quality).to.equal(44);
+        expect(itemss[6].quality).to.equal(14);
+        
+    });        
+});
