@@ -1,11 +1,26 @@
-# Erlang
+GildedRose
+=====
 
-## Prerequisites
+You will need to install [erlang](https://www.erlang.org/), and [rebar3](https://github.com/erlang/rebar3). I recommend following the instructions from JetBrains: [Getting Started with Erlang](https://www.jetbrains.com/help/idea/getting-started-with-erlang.html).
 
-- Erlang/OTP 20 or later
+When you open this project with IntelliJ I recommend that you do 
 
-## Running Tests
+    File | New | Project from existing sources 
 
-```
-./rebar3 eunit
-```
+Then be sure to select "Erlang" as the project type, and configure the rebar3 location correctly.
+
+Build
+-----
+
+    $ rebar3 compile
+
+Run Tests
+---------
+
+    $ rebar3 eunit
+
+TextTest Fixture
+----------------
+To run for 30 days:
+
+    $ update_quality_main.escript 30
