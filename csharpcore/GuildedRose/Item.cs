@@ -1,4 +1,4 @@
-﻿namespace csharpcore
+﻿namespace GuildedRose
 {
     public class Item
     {
