@@ -4,9 +4,9 @@ using System.IO;
 using System.Text;
 using ApprovalTests;
 using ApprovalTests.Reporters;
-using GuildedRose;
+using GildedRoseKata;
 
-namespace GuildedRoseTests
+namespace GildedRoseTests
 {
     [UseReporter(typeof(DiffReporter))]
     public class ApprovalTest

@@ -1,4 +1,4 @@
-﻿namespace GuildedRose
+﻿namespace GildedRoseKata
 {
     public class Item
     {

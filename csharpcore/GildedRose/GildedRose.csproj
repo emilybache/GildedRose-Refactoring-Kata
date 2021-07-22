@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <StartupObject>GuildedRose.Program</StartupObject>
+    <StartupObject>GildedRoseKata.Program</StartupObject>
   </PropertyGroup>
 
 </Project>
