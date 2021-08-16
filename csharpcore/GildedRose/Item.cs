@@ -1,4 +1,4 @@
-﻿namespace csharpcore
+﻿namespace GildedRoseKata
 {
     public class Item
     {
