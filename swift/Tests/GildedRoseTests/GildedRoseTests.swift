@@ -10,9 +10,7 @@ class GildedRoseTests: XCTestCase {
         XCTAssertEqual("fixme", app.items[0].name);
     }
 
-    static var allTests : [(String, (GildedRoseTests) -> () throws -> Void)] {
-        return [
-            ("testFoo", testFoo),
-        ]
-    }
+    static var allTests = [
+        ("testFoo", testFoo),
+    ]
 }
