@@ -7,7 +7,7 @@ class GildedRoseTests: XCTestCase {
         let items = [Item(name: "foo", sellIn: 0, quality: 0)]
         let app = GildedRose(items: items)
         app.updateQuality()
-        XCTAssertEqual("fixme", app.items[0].name)
+        XCTAssertEqual(app.items[0].name, "fixme")
     }
 
     static var allTests = [
