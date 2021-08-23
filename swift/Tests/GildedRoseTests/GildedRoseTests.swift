@@ -3,16 +3,14 @@ import XCTest
 
 class GildedRoseTests: XCTestCase {
 
-    func testFoo() {
+    func testFoo() throws {
         let items = [Item(name: "foo", sellIn: 0, quality: 0)]
-        let app = GildedRose(items: items);
-        app.updateQuality();
-        XCTAssertEqual("fixme", app.items[0].name);
+        let app = GildedRose(items: items)
+        app.updateQuality()
+        XCTAssertEqual(app.items[0].name, "fixme")
     }
 
-    static var allTests : [(String, (GildedRoseTests) -> () throws -> Void)] {
-        return [
-            ("testFoo", testFoo),
-        ]
-    }
+    static var allTests = [
+        ("testFoo", testFoo),
+    ]
 }
