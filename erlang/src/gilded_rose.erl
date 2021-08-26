@@ -1,6 +1,6 @@
--module('GildedRose').
+-module(gilded_rose).
 
--include("GildedRose.hrl").
+-include("gilded_rose.hrl").
 
 -export([
   update_quality/1

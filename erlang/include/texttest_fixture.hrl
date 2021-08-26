@@ -1,0 +1,1 @@
+-include("gilded_rose.hrl").

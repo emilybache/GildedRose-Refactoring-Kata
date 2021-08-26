@@ -1,6 +1,6 @@
--module('TextTestFixture').
+-module(texttest_fixture).
 
--include("GildedRose.hrl").
+-include("texttest_fixture.hrl").
 
 -export([print_update_quality/2]).
 
@@ -15,6 +15,7 @@ print_update_quality(Days, Items) ->
   io:format("OMGHAI!"),
   lists:foreach(
     fun(Day) -> print_one_day(Day, Items),
-      'GildedRose':update_quality(Items)
-    end, lists:seq(0, Days - 1)).
+      gilded_rose:update_quality(Items)
+    end, lists:seq(0, Days - 1)
+  ).
 
