@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using GildedRose.Models;
+using Microsoft.VisualBasic.CompilerServices;
 
 namespace GildedRoseKata
 {
@@ -50,19 +52,38 @@ namespace GildedRoseKata
                 foreach (Item t in items)
                 {
                     Console.WriteLine(t.Name + ", " + t.SellIn + ", " + t.Quality);
+
+                    // Get the type contained 
                     Type type = t.GetType();
+                    var instance = Activator.CreateInstance(type);
 
-                    object[] parametersArray = new object[] { "Hello" };
+                    // Get a property on the type that is stored in the
+                    // property string
+                    PropertyInfo propSellDaysGone = type.GetProperty("SellDaysGone");
+                    PropertyInfo propSellIn = type.GetProperty("SellIn");
+                    PropertyInfo propQuality = type.GetProperty("Quality");
+                    PropertyInfo propName = type.GetProperty("Name");
 
-                    var singleMethod = type.GetMethods(BindingFlags.Public)
-                        .FirstOrDefault(m => m.Name == "UpdateQuality");
+                    // Set the value of the given property on the given instance
+                    propSellDaysGone.SetValue(instance, i, null);
+                    propSellIn.SetValue(instance, t.SellIn, null);
+                    propQuality.SetValue(instance, t.Quality, null);
+                    propName.SetValue(instance, t.Name, null);
 
-                    singleMethod.Invoke(type, parametersArray);
+                    // Fetch the methods
+                    MethodInfo updateQualityMethod = type.GetMethod("UpdateQuality");
+                    MethodInfo updateSellinMethod = type.GetMethod("UpdateSellIn");
+
+                    // Invoke the respective implementation of the methods
+                    updateQualityMethod.Invoke(instance, new object[0]);
+                    updateSellinMethod.Invoke(instance, new object[0]);
+
+                    Console.WriteLine("");
 
                 }
 
                 Console.WriteLine("");
-                app.UpdateQuality();
+                //app.UpdateQuality();
             }
         }
     }
