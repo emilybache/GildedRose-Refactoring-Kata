@@ -1,4 +1,6 @@
-﻿namespace GildedRoseKata
+﻿using System;
+
+namespace GildedRoseKata
 {
     public class Item
     {
