@@ -50,7 +50,15 @@ namespace GildedRoseKata
                 foreach (Item t in items)
                 {
                     Console.WriteLine(t.Name + ", " + t.SellIn + ", " + t.Quality);
-                    
+                    Type type = t.GetType();
+
+                    object[] parametersArray = new object[] { "Hello" };
+
+                    var singleMethod = type.GetMethods(BindingFlags.Public)
+                        .FirstOrDefault(m => m.Name == "UpdateQuality");
+
+                    singleMethod.Invoke(type, parametersArray);
+
                 }
 
                 Console.WriteLine("");
