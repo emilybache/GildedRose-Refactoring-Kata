@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using System.Reflection;
 using GildedRose.Models;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace GildedRoseKata
 {
