@@ -41,9 +41,9 @@ namespace GildedRoseKata
 				// this conjured item does not work properly yet
 				new Conjured() {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
             };
-            
+
             var app = new GildedRose(items);
-            
+
             for (var i = 0; i < 31; i++)
             {
                 Console.WriteLine("-------- day " + i + " --------");
@@ -55,7 +55,7 @@ namespace GildedRoseKata
 
                     // Get the type contained 
                     Type type = t.GetType();
-                    var instance = Activator.CreateInstance(type);
+                    dynamic instance = Activator.CreateInstance(type) as Item;
 
                     // Get a property on the type that is stored in the
                     // property string
@@ -77,6 +77,10 @@ namespace GildedRoseKata
                     // Invoke the respective implementation of the methods
                     updateQualityMethod.Invoke(instance, new object[0]);
                     updateSellinMethod.Invoke(instance, new object[0]);
+
+                    // update t
+                    t.SellIn = instance.SellIn;
+                    t.Quality = instance.Quality;
 
                     Console.WriteLine("");
 
