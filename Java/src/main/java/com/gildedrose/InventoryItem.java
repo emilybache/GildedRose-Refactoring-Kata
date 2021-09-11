@@ -23,10 +23,10 @@ public class InventoryItem {
     }
 
     protected void decreaseSellIn() {
-        item.sellIn = item.sellIn - 1;
+        item.sellIn--;
     }
 
     protected void decreaseQuality() {
-        if (item.quality > 0) item.quality = item.quality - 1;
+        if (item.quality > 0) item.quality--;
     }
 }
