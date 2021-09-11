@@ -2,5 +2,5 @@
 
 ## Gilded Rose Requirements in other languages
 
-- [English](GildedRoseRequirements.txt)
+- [English](GildedRoseRequirements_en.md)
 - [Español](GildedRoseRequirements_es.md)
