@@ -30,14 +30,14 @@ class GildedRoseTest {
 
     @Test
     void increaseAgedBrieQualityWhenItGetsOlder() {
-        Item[] items = new Item[]{new Item("Aged Brie", 0, 2)};
+        Item[] items = new Item[]{new Item(Constants.AGED_BRIE, 0, 2)};
         GildedRose.updateQuality(new GildedRose(items));
         assertEquals(4, items[0].quality);
     }
 
     @Test
     void neverMustHaveAnItemWithMoreThan50OfQuality() {
-        Item[] items = new Item[]{new Item("Aged Brie", 0, 50)};
+        Item[] items = new Item[]{new Item(Constants.AGED_BRIE, 0, 50)};
         GildedRose.updateQuality(new GildedRose(items));
         assertEquals(50, items[0].quality);
     }
@@ -45,26 +45,33 @@ class GildedRoseTest {
 
     @Test
     void neverModifySulfurasQuality() {
-        Item[] items = new Item[]{new Item("Sulfuras, Hand of Ragnaros", 0, 50)};
+        Item[] items = new Item[]{new Item(Constants.SULFURAS, 0, 50)};
         GildedRose.updateQuality(new GildedRose(items));
         assertEquals(50, items[0].quality);
     }
 
     @Test
     void neverModifySulfurasQualityEvenISGreaterThan50() {
-        Item[] items = new Item[]{new Item("Sulfuras, Hand of Ragnaros", 0, 80)};
+        Item[] items = new Item[]{new Item(Constants.SULFURAS, 0, 80)};
         GildedRose.updateQuality(new GildedRose(items));
         assertEquals(80, items[0].quality);
     }
 
     @Test
     void mustIncreaseBackstagePassesQualityWhenItsSellInApproaches() {
-        Item[] items = new Item[]{new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-            new Item("Backstage passes to a TAFKAL80ETC concert", 10, 20),
-            new Item("Backstage passes to a TAFKAL80ETC concert", 5, 20)};
+        Item[] items = new Item[]{new Item(Constants.BACKSTAGE, 15, 20),
+            new Item(Constants.BACKSTAGE, 10, 20),
+            new Item(Constants.BACKSTAGE, 5, 20)};
         GildedRose.updateQuality(new GildedRose(items));
         assertEquals(21, items[0].quality);
         assertEquals(22, items[1].quality);
         assertEquals(23, items[2].quality);
+    }
+
+    @Test
+    void mustDecreaseQualityTwiceAsFastIfItemIsConjured() {
+        Item[] items = new Item[]{new Item(Constants.CONJURED, 0, 20)};
+        GildedRose.updateQuality(new GildedRose(items));
+        assertEquals(16, items[0].quality);
     }
 }

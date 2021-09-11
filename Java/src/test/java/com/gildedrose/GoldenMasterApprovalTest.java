@@ -19,7 +19,7 @@ class GoldenMasterApprovalTest {
     }
 
     private String[] itemTypes() {
-        return new String[]{"common item", "Aged Brie", "Backstage passes to a TAFKAL80ETC concert", "Sulfuras, Hand of Ragnaros"};
+        return new String[]{Constants.AGED_BRIE, Constants.BACKSTAGE, "Common item", Constants.CONJURED, Constants.SULFURAS};
     }
 
     private Integer[] sellInRangeValues() {

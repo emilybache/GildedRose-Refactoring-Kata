@@ -13,13 +13,14 @@ public class InventoryItem {
         if (item.name.equals(SULFURAS)) return new Sulfuras(item);
         if (item.name.equals(AGED_BRIE)) return new AgedBrie(item);
         if (item.name.equals(BACKSTAGE)) return new Backstage(item);
+        if (item.name.equals(CONJURED)) return new Conjured(item);
         return new InventoryItem(item);
     }
 
     void age() {
         decreaseQuality();
         decreaseSellIn();
-        if (item.sellIn < 0) decreaseQuality();
+        if (item.sellIn < Constants.SELLIN_DAY) decreaseQuality();
     }
 
     protected void decreaseSellIn() {
@@ -27,6 +28,6 @@ public class InventoryItem {
     }
 
     protected void decreaseQuality() {
-        if (item.quality > 0) item.quality--;
+        if (item.quality > Constants.MIN_QUALITY) item.quality--;
     }
 }
