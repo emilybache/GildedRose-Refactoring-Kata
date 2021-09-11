@@ -36,7 +36,7 @@ class GoldenMasterApprovalTest {
             .setSellIn(sellIn)
             .setQuality(quality)
             .createItem();
-        new GildedRose(new Item[]{item}).updateQuality();
+        GildedRose.updateQuality(new GildedRose(new Item[]{item}));
         return item;
     }
 }
