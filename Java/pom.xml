@@ -10,8 +10,8 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
-        <java.version>1.8</java.version>
-        <junit.jupiter.version>5.6.2</junit.jupiter.version>
+        <java.version>16</java.version>
+        <junit.jupiter.version>5.7.2</junit.jupiter.version>
         <maven.maven-surefire-plugin.version>3.0.0-M4</maven.maven-surefire-plugin.version>
     </properties>
 
