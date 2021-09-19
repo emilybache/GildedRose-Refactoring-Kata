@@ -9,9 +9,16 @@ describe("Gilded Rose", function() {
 });
 
 describe("Gilded Rose check common rules", function () {
-  it("should foo", function () {
-    const gildedRose = new ItemUpdater(new Item("Aged Brie", 10, 0));
+  it("Item quality should decrease by one", function () {
+    const gildedRose = new ItemUpdater(new Item("+5 Dexterity Vest", 10, 20));
     const item = gildedRose.updateQuality();
-    expect(item.quality).toBe(10);
+    expect(item.quality).toBe(19);
   });
+
+  it("Item quality should not decrease by one", function () {
+    const gildedRose = new ItemUpdater(new Item("+5 Dexterity Vest", 10, 0));
+    const item = gildedRose.updateQuality();
+    expect(item.quality).toBe(0);
+  });
+
 });
