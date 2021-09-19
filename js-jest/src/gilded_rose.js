@@ -6,6 +6,16 @@ class Item {
   }
 }
 
+class ItemUpdater {
+  constructor(item) {
+    this.item = item;
+  }
+
+  updateQuality() {
+    return this.item;
+  }
+}
+
 class Shop {
   constructor(items=[]){
     this.items = items;
@@ -63,5 +73,6 @@ class Shop {
 
 module.exports = {
   Item,
-  Shop
+  Shop,
+  ItemUpdater
 }
