@@ -1,4 +1,4 @@
-const { ItemUpdater } = require("../gilded_rose");
+const { ItemUpdater } = require("../item_updater");
 
 class BackStagePassesUpdater extends ItemUpdater {
     updateQuality() {

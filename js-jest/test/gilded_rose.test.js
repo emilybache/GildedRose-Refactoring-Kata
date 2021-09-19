@@ -1,8 +1,9 @@
-const {Shop, Item, ItemUpdater} = require("../src/gilded_rose");
+const {Shop, Item} = require("../src/gilded_rose");
 const {AgedBrieUpdater} = require("../src/item_updaters/aged_brie_updater");
 const {SulfurasUpdater } = require("../src/item_updaters/sulfuras_updater");
 const {BackStagePassesUpdater } = require("../src/item_updaters/backstage_passes_updater");
 const {ConjuredUpdater } = require("../src/item_updaters/conjured_updater");
+const {ItemUpdater } = require("../src/item_updater");
 
 describe("Gilded Rose check common rules", function () {
   it("Item quality should decrease by one", function () {
@@ -86,12 +87,19 @@ describe("Gilded Rose check Conjured rules", function () {
 });
 
 describe("Gilded Rose system test", function() {
-  it("should check list of itemUpater", function() {
+  it("should check list of itemUpaters", function () {
     const itemUpdaters = [
       new ItemUpdater(new Item("+5 Dexterity Vest", 10, 20)),
       new AgedBrieUpdater(new Item("Aged Brie", 2, 0)),
+      new ItemUpdater(new Item("Elixir of the Mongoose", 5, 7)),
+      new SulfurasUpdater(new Item("Sulfuras, Hand of Ragnaros", 0, 80)),
+      new SulfurasUpdater(new Item("Sulfuras, Hand of Ragnaros", -1, 80)),
+      new BackStagePassesUpdater(new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20)),
+      new BackStagePassesUpdater(new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49)),
+      new BackStagePassesUpdater(new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49)),
+      new ConjuredUpdater(new Item("Conjured Mana Cake", 3, 6)),
     ];
-    
+
     const days = Number(process.argv[2]) || 2;
     const gildedRose = new Shop(itemUpdaters);
     
