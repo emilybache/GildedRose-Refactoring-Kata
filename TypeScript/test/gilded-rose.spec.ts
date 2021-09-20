@@ -67,4 +67,32 @@ describe('Gilded Rose', function () {
          */
         expect(result[2].quality).to.equal(20); 
     });
+
+    // The Quality of an item is never more than 50
+    it('should quality never more than 50', function() {
+        const dataset = [
+            new Item('Aged Brie', 10, 49),
+            new Item('Aged Brie', 7, 50),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 8, 49),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 3, 50),
+        ]
+
+        const result = updateQuality(dataset);
+
+        expect(result[0].name).to.equal('Aged Brie');
+        expect(result[0].sellIn).to.equal(9);
+        expect(result[0].quality).to.equal(50);
+
+        expect(result[1].name).to.equal('Aged Brie');
+        expect(result[1].sellIn).to.equal(6);
+        expect(result[1].quality).to.equal(50);
+
+        expect(result[2].name).to.equal('Backstage passes to a TAFKAL80ETC concert');
+        expect(result[2].sellIn).to.equal(7);
+        expect(result[2].quality).to.equal(50);
+
+        expect(result[3].name).to.equal('Backstage passes to a TAFKAL80ETC concert');
+        expect(result[3].sellIn).to.equal(2);
+        expect(result[3].quality).to.equal(50);
+    });
 });
