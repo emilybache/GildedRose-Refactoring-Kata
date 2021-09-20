@@ -6,7 +6,7 @@ const updateQuality = (dataset:Item[]) => new GildedRose(dataset).updateQuality(
 describe('Gilded Rose', function () {
 
     // quality of the normal items degrades by 1
-    it('quality should degrades quality by 1', function() {
+    it('should degrades quality by 1', function() {
         const dataset = [
             new Item('item 1', 31, 12),
             new Item('item 2', 45, 21),
@@ -24,7 +24,7 @@ describe('Gilded Rose', function () {
     });
 
     // Once the sell by date has passed, Quality degrades twice as fast
-    it('quality should degrades twice as fast', function() {
+    it('should degrades quality twice as fast', function() {
         const dataset = [
             new Item('item 1', 0, 10),
             new Item('item 2', -5, 17),
@@ -41,4 +41,30 @@ describe('Gilded Rose', function () {
         expect(result[1].quality).to.equal(15);
     });
 
+    // "Aged Brie" actually increases in Quality the older it gets
+    it('should increases quality by 1 for "Aged Brie"', function() {
+        const dataset = [
+            new Item('Aged Brie', 5, 15),
+            new Item('Aged Brie', 10, 12),
+            new Item('Aged Brie', 0, 18),
+        ]
+
+        const result = updateQuality(dataset);
+
+        expect(result[0].name).to.equal('Aged Brie');
+        expect(result[0].sellIn).to.equal(4);
+        expect(result[0].quality).to.equal(16);
+
+        expect(result[1].name).to.equal('Aged Brie');
+        expect(result[1].sellIn).to.equal(9);
+        expect(result[1].quality).to.equal(13);
+
+        expect(result[2].name).to.equal('Aged Brie');
+        expect(result[2].sellIn).to.equal(-1);
+        /* 
+         * TODO: need clarifications, as of the requirement doc expected result should be 19 
+         * but quality increases twice when input SellIn <= 0. 
+         */
+        expect(result[2].quality).to.equal(20); 
+    });
 });
