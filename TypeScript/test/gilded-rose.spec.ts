@@ -126,6 +126,7 @@ describe('Gilded Rose', function () {
             new Item('Backstage passes to a TAFKAL80ETC concert', 5, 22),
             new Item('Backstage passes to a TAFKAL80ETC concert', 3, 35),
             new Item('Backstage passes to a TAFKAL80ETC concert', 0, 15),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 14, 10),
         ]
 
         const result = updateQuality(dataset);
@@ -149,5 +150,9 @@ describe('Gilded Rose', function () {
         expect(result[4].name).to.equal('Backstage passes to a TAFKAL80ETC concert');
         expect(result[4].sellIn).to.equal(-1);
         expect(result[4].quality).to.equal(0);
+
+        expect(result[5].name).to.equal('Backstage passes to a TAFKAL80ETC concert');
+        expect(result[5].sellIn).to.equal(13);
+        expect(result[5].quality).to.equal(11);
     });
 });
