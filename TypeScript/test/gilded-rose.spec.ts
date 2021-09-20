@@ -155,4 +155,33 @@ describe('Gilded Rose', function () {
         expect(result[5].sellIn).to.equal(13);
         expect(result[5].quality).to.equal(11);
     });
+
+
+    // "Conjured" items degrade in Quality twice as fast as normal items
+    it('should degrade in Quality of the "Conjured" items, twice as fast as normal items', function() {
+        const dataset = [
+            new Item('Conjured', 10, 17),
+            new Item('Conjured', 0, 20),
+            new Item('Conjured', 0, 1),
+            new Item('Conjured', -1, 4),
+        ]
+
+        const result = updateQuality(dataset);
+
+        expect(result[0].name).to.equal('Conjured');
+        expect(result[0].sellIn).to.equal(9);
+        expect(result[0].quality).to.equal(15);
+
+        expect(result[1].name).to.equal('Conjured');
+        expect(result[1].sellIn).to.equal(-1);
+        expect(result[1].quality).to.equal(16);
+
+        expect(result[2].name).to.equal('Conjured');
+        expect(result[2].sellIn).to.equal(-1);
+        expect(result[2].quality).to.equal(0);
+
+        expect(result[3].name).to.equal('Conjured');
+        expect(result[3].sellIn).to.equal(-2);
+        expect(result[3].quality).to.equal(0);
+    });
 });
