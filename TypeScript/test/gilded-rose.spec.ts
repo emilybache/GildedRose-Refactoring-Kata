@@ -113,4 +113,41 @@ describe('Gilded Rose', function () {
         expect(result[1].sellIn).to.equal(0);
         expect(result[1].quality).to.equal(80);
     });
+
+    /* 
+     * "Backstage passes", Quality increases by 2 when there are 10 days or less 
+     * "Backstage passes", Quality increases by 3 when there are 5 days or less
+     * "Backstage passes", Quality drops to 0 after the concert
+     */
+    it('should increases quality value depends on the SellIn value for "Backstage passes"', function() {
+        const dataset = [
+            new Item('Backstage passes to a TAFKAL80ETC concert', 10, 43),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 7, 24),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 5, 22),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 3, 35),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 0, 15),
+        ]
+
+        const result = updateQuality(dataset);
+
+        expect(result[0].name).to.equal('Backstage passes to a TAFKAL80ETC concert');
+        expect(result[0].sellIn).to.equal(9);
+        expect(result[0].quality).to.equal(45);
+
+        expect(result[1].name).to.equal('Backstage passes to a TAFKAL80ETC concert');
+        expect(result[1].sellIn).to.equal(6);
+        expect(result[1].quality).to.equal(26);
+
+        expect(result[2].name).to.equal('Backstage passes to a TAFKAL80ETC concert');
+        expect(result[2].sellIn).to.equal(4);
+        expect(result[2].quality).to.equal(25);
+
+        expect(result[3].name).to.equal('Backstage passes to a TAFKAL80ETC concert');
+        expect(result[3].sellIn).to.equal(2);
+        expect(result[3].quality).to.equal(38);
+
+        expect(result[4].name).to.equal('Backstage passes to a TAFKAL80ETC concert');
+        expect(result[4].sellIn).to.equal(-1);
+        expect(result[4].quality).to.equal(0);
+    });
 });
