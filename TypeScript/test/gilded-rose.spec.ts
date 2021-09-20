@@ -95,4 +95,22 @@ describe('Gilded Rose', function () {
         expect(result[3].sellIn).to.equal(2);
         expect(result[3].quality).to.equal(50);
     });
+
+     // "Sulfuras", being a legendary item, never has to be sold or decreases in Quality
+     it('should legendary item, never has to be changed', function() {
+        const dataset = [
+            new Item('Sulfuras, Hand of Ragnaros', 10, 80),
+            new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+        ]
+
+        const result = updateQuality(dataset);
+
+        expect(result[0].name).to.equal('Sulfuras, Hand of Ragnaros');
+        expect(result[0].sellIn).to.equal(10);
+        expect(result[0].quality).to.equal(80);
+
+        expect(result[1].name).to.equal('Sulfuras, Hand of Ragnaros');
+        expect(result[1].sellIn).to.equal(0);
+        expect(result[1].quality).to.equal(80);
+    });
 });
