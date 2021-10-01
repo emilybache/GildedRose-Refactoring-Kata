@@ -35,7 +35,7 @@ Cela nécessite une mise à jour de notre système :
 - les éléments "Conjured" voient leur qualité se dégrader de deux fois plus vite que les objets normaux.
 
 Vous pouvez faire les changements que vous voulez à la méthode `updateQuality` et ajouter autant de code que vous voulez, tant que tout fonctionne correctement.
-Cependant, nous devons vous prévenir, vous ne devez en aucun cas modifier la classe `Item` ou ses propriétés car cette classe appartient au gobelin de l'étage et il entrera dans une rage instantanée et vous tuera sans délai : il ne croit pas au partage du code.
+Cependant, nous devons vous prévenir, vous ne devez en aucun cas modifier la classe `Item` ou ses propriétés car cette classe appartient au gobelin à l'étage qui entrerait dans une rage instantanée et vous tuerait sans délai : il ne croit pas au partage du code.
 (Vous pouvez ajouter une méthode `updateQuality` et des propriétés statiques dans la classe `Item` si vous voulez, nous vous couvrirons)
 
 Juste une précision, un produit ne peut jamais voir sa qualité augmenter au-dessus de 50, cependant "Sulfuras" est un objet légendaire et comme tel sa qualité est de 80 et elle ne change jamais.
