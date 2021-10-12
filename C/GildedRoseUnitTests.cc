@@ -16,7 +16,7 @@ TEST_GROUP(TestGildedRoseGroup)
 
 TEST(TestGildedRoseGroup, FirstTest)
 {
-    Item items[2];
+    Item items[1];
     init_item(items, "Foo", 0, 0);
     update_quality(items, 1);
     STRCMP_EQUAL("fixme", items[0].name);
