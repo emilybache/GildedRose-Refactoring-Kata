@@ -1,5 +1,6 @@
 #include <string.h>
 #include "GildedRose.h"
+#include <stdio.h>
 
 Item*
 init_item(Item* item, const char *name, int sellIn, int quality)
@@ -11,7 +12,14 @@ init_item(Item* item, const char *name, int sellIn, int quality)
     return item;
 }
 
-void update_quality(Item items[], int size) 
+extern char* 
+print_item(char* buffer, Item* item) 
+{
+    sprintf(buffer, "%s, %d, %d", item->name, item->sellIn, item->quality);
+}
+
+void 
+update_quality(Item items[], int size) 
 {
     int i;
     
