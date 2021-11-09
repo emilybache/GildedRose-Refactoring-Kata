@@ -1,12 +1,18 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "es5",
-        "strict": true,
-        "noImplicitAny": false,
-        "sourceMap": false
-    },
-    "exclude": [
-        "node_modules"
-    ]
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "strict": true,
+    "noImplicitAny": false,
+    "sourceMap": false,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "app/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }
