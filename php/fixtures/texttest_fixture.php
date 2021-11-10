@@ -6,6 +6,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use GildedRose\GildedRose;
 use GildedRose\Item;
+use GildedRose\StrategyResolver;
 
 echo 'OMGHAI!' . PHP_EOL;
 
@@ -22,7 +23,7 @@ $items = [
     new Item('Conjured Mana Cake', 3, 6),
 ];
 
-$app = new GildedRose($items);
+$app = new GildedRose($items, new StrategyResolver());
 
 $days = 2;
 if (count($argv) > 1) {
