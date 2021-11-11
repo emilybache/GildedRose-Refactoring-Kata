@@ -46,6 +46,9 @@ export class GildedRose {
         case 'Backstage passes to a TAFKAL80ETC concert':
           this.updateBackstageProduct(item)
           return item
+        case 'Conjured Mana Cake':
+          this.updateConjuredProduct(item)
+          return item
         default:
           this.updateNormalProduct(item)
           return item
@@ -54,22 +57,13 @@ export class GildedRose {
   }
 
   private updateLegendaryProduct(item: Item) {
+    item.sellIn = item.sellIn - 1
     item.quality = Item.legendaryQuality
   }
 
   private updateAgedBrie(item: Item) {
-    //
     item.sellIn = item.sellIn - 1
-
     item.quality = this.incrementQuality(item)
-
-    if (!this.isOutdated(item)) {
-      return
-    }
-
-    item.quality = this.incrementQuality(item)
-
-    return { ...item, sellIn: item.sellIn - 1, quality: 0 }
   }
 
   private updateBackstageProduct(item: Item) {
@@ -94,6 +88,15 @@ export class GildedRose {
     item.sellIn = item.sellIn - 1
     item.quality = this.decrementQuality(item)
     if (this.isOutdated(item)) {
+      item.quality = this.decrementQuality(item)
+    }
+  }
+  private updateConjuredProduct(item: Item) {
+    item.sellIn = item.sellIn - 1
+    item.quality = this.decrementQuality(item)
+    item.quality = this.decrementQuality(item)
+    if (this.isOutdated(item)) {
+      item.quality = this.decrementQuality(item)
       item.quality = this.decrementQuality(item)
     }
   }
