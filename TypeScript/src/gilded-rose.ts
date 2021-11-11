@@ -23,8 +23,9 @@ export class GildedRose {
   }
 
   // est périmité ?
-  // should increase quality ?
-
+  isOutdated(item: Item) {
+    return item.sellIn < 0
+  }
   shouldDecreaseQuality(item: Item) {
     return (
       item.name != 'Aged Brie' &&
@@ -53,19 +54,19 @@ export class GildedRose {
       const currentProductName = item.name
       // PART 1
       if (this.shouldDecreaseQuality(item)) {
-        item.quality = item.quality - 1
+        item.quality = this.decrementQuality(item)
       } else {
         if (item.quality < Item.maxQualityThreshold) {
-          item.quality = item.quality + 1
+          item.quality = this.incrementQuality(item)
           if (currentProductName == 'Backstage passes to a TAFKAL80ETC concert') {
             if (item.sellIn < 11) {
               if (item.quality < Item.maxQualityThreshold) {
-                item.quality = item.quality + 1
+                item.quality = this.incrementQuality(item)
               }
             }
             if (item.sellIn < 6) {
               if (item.quality < Item.maxQualityThreshold) {
-                item.quality = item.quality + 1
+                item.quality = this.incrementQuality(item)
               }
             }
           }
@@ -74,18 +75,18 @@ export class GildedRose {
       // part 2
       item.sellIn = item.sellIn - 1
       // part 3
-      if (item.sellIn < 0) {
+      if (this.isOutdated(item)) {
         if (currentProductName != 'Aged Brie') {
           if (currentProductName != 'Backstage passes to a TAFKAL80ETC concert') {
             if (item.quality > Item.minQualityThreshold) {
-              item.quality = item.quality - 1
+              item.quality = this.decrementQuality(item)
             }
           } else {
             item.quality = item.quality - item.quality
           }
         } else {
           if (item.quality < Item.maxQualityThreshold) {
-            item.quality = item.quality + 1
+            item.quality = this.incrementQuality(item)
           }
         }
       }
