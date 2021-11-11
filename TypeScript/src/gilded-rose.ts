@@ -26,12 +26,9 @@ export class GildedRose {
   isOutdated(item: Item) {
     return item.sellIn < 0
   }
+
   shouldDecreaseQuality(item: Item) {
-    return (
-      item.name != 'Aged Brie' &&
-      item.name != 'Backstage passes to a TAFKAL80ETC concert' &&
-      item.quality > Item.minQualityThreshold
-    )
+    return item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
   }
 
   isLegendayProduct(item: Item) {
@@ -39,11 +36,17 @@ export class GildedRose {
   }
 
   incrementQuality(item: Item) {
-    return item.quality + 1
+    if (item.quality < Item.maxQualityThreshold) {
+      return item.quality + 1
+    }
+    return item.quality
   }
 
   decrementQuality(item: Item) {
-    return item.quality - 1
+    if (item.quality > Item.minQualityThreshold) {
+      return item.quality - 1
+    }
+    return item.quality
   }
 
   updateQuality() {
@@ -56,39 +59,31 @@ export class GildedRose {
       if (this.shouldDecreaseQuality(item)) {
         item.quality = this.decrementQuality(item)
       } else {
-        if (item.quality < Item.maxQualityThreshold) {
-          item.quality = this.incrementQuality(item)
-          if (currentProductName == 'Backstage passes to a TAFKAL80ETC concert') {
-            if (item.sellIn < 11) {
-              if (item.quality < Item.maxQualityThreshold) {
-                item.quality = this.incrementQuality(item)
-              }
-            }
-            if (item.sellIn < 6) {
-              if (item.quality < Item.maxQualityThreshold) {
-                item.quality = this.incrementQuality(item)
-              }
-            }
+        item.quality = this.incrementQuality(item)
+        if (currentProductName === 'Backstage passes to a TAFKAL80ETC concert') {
+          if (item.sellIn < 11) {
+            item.quality = this.incrementQuality(item)
+          }
+          if (item.sellIn < 6) {
+            item.quality = this.incrementQuality(item)
           }
         }
       }
       // part 2
       item.sellIn = item.sellIn - 1
       // part 3
-      if (this.isOutdated(item)) {
-        if (currentProductName != 'Aged Brie') {
-          if (currentProductName != 'Backstage passes to a TAFKAL80ETC concert') {
-            if (item.quality > Item.minQualityThreshold) {
-              item.quality = this.decrementQuality(item)
-            }
-          } else {
-            item.quality = item.quality - item.quality
-          }
+      if (!this.isOutdated(item)) {
+        return
+      }
+
+      if (currentProductName !== 'Aged Brie') {
+        if (currentProductName !== 'Backstage passes to a TAFKAL80ETC concert') {
+          item.quality = this.decrementQuality(item)
         } else {
-          if (item.quality < Item.maxQualityThreshold) {
-            item.quality = this.incrementQuality(item)
-          }
+          item.quality = item.quality - item.quality
         }
+      } else {
+        item.quality = this.incrementQuality(item)
       }
     })
 
