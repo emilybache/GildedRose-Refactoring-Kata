@@ -10,7 +10,8 @@ export class Item {
     this.quality = quality
   }
 
-  static normalMaxQuality = 50
+  static maxQualityThreshold = 50
+  static minQualityThreshold = 0
   static legendaryQuality = 80
 }
 
@@ -28,12 +29,20 @@ export class GildedRose {
     return (
       item.name != 'Aged Brie' &&
       item.name != 'Backstage passes to a TAFKAL80ETC concert' &&
-      item.quality > 0
+      item.quality > Item.minQualityThreshold
     )
   }
 
   isLegendayProduct(item: Item) {
     return item.name === 'Sulfuras, Hand of Ragnaros'
+  }
+
+  incrementQuality(item: Item) {
+    return item.quality + 1
+  }
+
+  decrementQuality(item: Item) {
+    return item.quality - 1
   }
 
   updateQuality() {
@@ -46,16 +55,16 @@ export class GildedRose {
       if (this.shouldDecreaseQuality(item)) {
         item.quality = item.quality - 1
       } else {
-        if (item.quality < 50) {
+        if (item.quality < Item.maxQualityThreshold) {
           item.quality = item.quality + 1
           if (currentProductName == 'Backstage passes to a TAFKAL80ETC concert') {
             if (item.sellIn < 11) {
-              if (item.quality < 50) {
+              if (item.quality < Item.maxQualityThreshold) {
                 item.quality = item.quality + 1
               }
             }
             if (item.sellIn < 6) {
-              if (item.quality < 50) {
+              if (item.quality < Item.maxQualityThreshold) {
                 item.quality = item.quality + 1
               }
             }
@@ -68,14 +77,14 @@ export class GildedRose {
       if (item.sellIn < 0) {
         if (currentProductName != 'Aged Brie') {
           if (currentProductName != 'Backstage passes to a TAFKAL80ETC concert') {
-            if (item.quality > 0) {
+            if (item.quality > Item.minQualityThreshold) {
               item.quality = item.quality - 1
             }
           } else {
             item.quality = item.quality - item.quality
           }
         } else {
-          if (item.quality < 50) {
+          if (item.quality < Item.maxQualityThreshold) {
             item.quality = item.quality + 1
           }
         }
