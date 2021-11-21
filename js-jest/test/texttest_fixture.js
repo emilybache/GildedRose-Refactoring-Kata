@@ -1,4 +1,3 @@
-
 const { Shop, Item } = require("../src/gilded_rose");
 
 const items = [
@@ -22,6 +21,8 @@ console.log("OMGHAI!");
 for (let day = 0; day < days; day++) {
   console.log(`\n-------- day ${day} --------`);
   console.log("name, sellIn, quality");
-  items.forEach(item => console.log(`${item.name}, ${item.sellIn}, ${item.quality}`));
+  items.forEach((item) =>
+    console.log(`${item.name}, ${item.sellIn}, ${item.quality}`)
+  );
   gildedRose.updateQuality();
 }

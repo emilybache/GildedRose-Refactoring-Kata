@@ -1,67 +1,68 @@
 class Item {
-  constructor(name, sellIn, quality){
+  constructor(name, sellIn, quality) {
     this.name = name;
     this.sellIn = sellIn;
     this.quality = quality;
   }
 }
-
+const rules = [
+  {
+    pattern: /^Aged Brie/,
+    quality: (itemQuality, itemSellIn) => itemQuality + 1,
+    sellIn: (itemQuality, itemSellIn) => itemSellIn - 1,
+  },
+  {
+    pattern: /^Sulfuras/,
+    quality: (itemQuality, itemSellIn) => itemQuality,
+    sellIn: (itemQuality, itemSellIn) => itemSellIn,
+  },
+  {
+    pattern: /^Backstage passes/,
+    quality: (itemQuality, itemSellIn) => {
+      if (itemSellIn <= 0) {
+        return 0;
+      } else if (itemSellIn < 6) {
+        return itemQuality + 3;
+      } else if (itemSellIn < 11) {
+        return itemQuality + 2;
+      } else {
+        return itemQuality + 1;
+      }
+    },
+    sellIn: (itemQuality, itemSellIn) => itemSellIn - 1,
+  },
+  {
+    pattern: /^Conjured/,
+    quality: (itemQuality, itemSellIn) => itemQuality - 2,
+    sellIn: (itemQuality, itemSellIn) => itemSellIn - 1,
+  },
+  {
+    pattern: "*",
+    quality: (itemQuality, itemSellIn) => itemQuality - 1,
+    sellIn: (itemQuality, itemSellIn) => itemSellIn - 1,
+  },
+];
 class Shop {
-  constructor(items=[]){
+  constructor(items = []) {
     this.items = items;
   }
   updateQuality() {
-    for (let i = 0; i < this.items.length; i++) {
-      if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-        if (this.items[i].quality > 0) {
-          if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-            this.items[i].quality = this.items[i].quality - 1;
-          }
-        }
-      } else {
-        if (this.items[i].quality < 50) {
-          this.items[i].quality = this.items[i].quality + 1;
-          if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
-            if (this.items[i].sellIn < 11) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-            if (this.items[i].sellIn < 6) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-          }
+    this.items = this.items.map((item) => {
+      for (let i = 0; i < rules.length; i++) {
+        const rule = rules[i];
+        if (rule.pattern === "*" || item.name.match(rule.pattern)) {
+          item.sellIn = rule.sellIn(item.quality, item.sellIn);
+          item.quality = rule.quality(item.quality, item.sellIn);
+          break;
         }
       }
-      if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
-      }
-      if (this.items[i].sellIn < 0) {
-        if (this.items[i].name != 'Aged Brie') {
-          if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-            if (this.items[i].quality > 0) {
-              if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-                this.items[i].quality = this.items[i].quality - 1;
-              }
-            }
-          } else {
-            this.items[i].quality = this.items[i].quality - this.items[i].quality;
-          }
-        } else {
-          if (this.items[i].quality < 50) {
-            this.items[i].quality = this.items[i].quality + 1;
-          }
-        }
-      }
-    }
-
+      return item;
+    });
     return this.items;
   }
 }
 
 module.exports = {
   Item,
-  Shop
-}
+  Shop,
+};
