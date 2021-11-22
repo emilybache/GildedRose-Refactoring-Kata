@@ -9,8 +9,4 @@ class GildedRoseTests: XCTestCase {
         app.updateQuality()
         XCTAssertEqual(app.items[0].name, "fixme")
     }
-
-    static var allTests = [
-        ("testFoo", testFoo),
-    ]
 }
