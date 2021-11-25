@@ -16,10 +16,10 @@ public class Normal implements ItemType {
     public void updateQuality() {
         item.decrementSellInDate();
         if (item.qualityIsHigherThanZero()) {
-            if (item.sellInDatePasses()) {
-                item.decrementQualityBy2();
-            } else {
+            if (item.beforeSellInDate()) {
                 item.decrementQuality();
+            } else {
+                item.decrementQualityBy2();
             }
         }
     }

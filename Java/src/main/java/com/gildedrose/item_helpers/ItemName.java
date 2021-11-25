@@ -2,11 +2,11 @@ package com.gildedrose.item_helpers;
 
 public enum ItemName {
 
-    SULFURA("Sulfura"),
+    LEGENDARY("Sulfuras, Hand of Ragnaros"),
     NORMAL("Normal"),
     AGED_BRIE("Aged Brie"),
-    BACKSTAGE_PASS("Backstage pass"),
-    CONJURED("Conjured");
+    BACKSTAGE_PASS("Backstage passes to a TAFKAL80ETC concert"),
+    CONJURED("Conjured Mana Cake");
 
     private final String name;
 
@@ -21,9 +21,9 @@ public enum ItemName {
 
     public static ItemName getItemName(String input) {
         for (ItemName itemName : ItemName.values()) {
-            String itemNameStr = itemName.toString().toUpperCase();
-            if (itemNameStr.contains(input.toUpperCase()))
+            if (itemName.name.equalsIgnoreCase(input)) {
                 return itemName;
+            }
         }
         return NORMAL;
     }

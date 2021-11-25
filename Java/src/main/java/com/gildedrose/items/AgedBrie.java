@@ -15,12 +15,10 @@ public class AgedBrie implements ItemType {
     @Override
     public void updateQuality() {
         item.decrementSellInDate();
-        if (item.qualityIsHigherThanZero()) {
-            if (item.sellInDatePasses()) {
-                item.incrementQualityByTwo();
-            } else {
-                item.incrementQuality();
-            }
+        if (item.beforeSellInDate()) {
+            item.incrementQuality();
+        } else {
+            item.incrementQualityByTwo();
         }
     }
 
