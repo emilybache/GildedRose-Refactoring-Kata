@@ -4,25 +4,21 @@ import com.gildedrose.Item;
 import com.gildedrose.item_helpers.ItemHandler;
 import com.gildedrose.item_helpers.ItemType;
 
-public class BackstagePass implements ItemType {
+public class AgedBrieItem implements ItemType {
 
     private final ItemHandler item;
 
-    public BackstagePass(Item item) {
+    public AgedBrieItem(Item item) {
         this.item = new ItemHandler(item);
     }
 
     @Override
     public void updateQuality() {
         item.decrementSellInDate();
-        if (item.sellInDaysMoreThan10Days()) {
+        if (item.beforeSellInDate()) {
             item.incrementQuality();
-        } else if (item.sellInLessThan10Days()) {
-            item.incrementQualityByTwo();
-        } else if (item.sellInLessThan5Days()) {
-            item.incrementQualityBy3();
         } else {
-            item.makeQualityZero();
+            item.incrementQualityByTwo();
         }
     }
 

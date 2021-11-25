@@ -1,12 +1,13 @@
 package com.gildedrose.item_helpers;
 
 import com.gildedrose.Item;
-import com.gildedrose.items.AgedBrie;
-import com.gildedrose.items.BackstagePass;
-import com.gildedrose.items.Conjured;
-import com.gildedrose.items.Legendary;
-import com.gildedrose.items.Normal;
+import com.gildedrose.items.AgedBrieItem;
+import com.gildedrose.items.BackstagePassItem;
+import com.gildedrose.items.ConjuredItem;
+import com.gildedrose.items.LegendaryItem;
+import com.gildedrose.items.NormalItem;
 
+import static com.gildedrose.item_helpers.ItemHandler.validate;
 import static com.gildedrose.item_helpers.ItemName.getItemName;
 
 public class ItemFactory {
@@ -15,18 +16,20 @@ public class ItemFactory {
     }
 
     public static ItemType getItem(Item item) {
+        validate(item);
         ItemName itemName = getItemName(item.name);
         switch (itemName) {
             case AGED_BRIE:
-                return new AgedBrie(item);
+                return new AgedBrieItem(item);
             case LEGENDARY:
-                return new Legendary(item);
+                return new LegendaryItem(item);
             case BACKSTAGE_PASS:
-                return new BackstagePass(item);
+                return new BackstagePassItem(item);
             case CONJURED:
-                return new Conjured(item);
+                return new ConjuredItem(item);
             default:
-                return new Normal(item);
+                return new NormalItem(item);
         }
     }
+
 }

@@ -2,16 +2,36 @@ package com.gildedrose.item_helpers;
 
 import com.gildedrose.Item;
 
+import static com.gildedrose.item_helpers.ItemName.LEGENDARY;
 import static java.lang.Math.max;
 
 public class ItemHandler {
 
     private static final int LEGENDARY_ITEM_QUALITY = 80;
+    protected static final String NEGATIVE_QUALITY_ERROR_MESSAGE = "Quality cannot be negative! Current value: ";
+    protected static final String NOT_LEGENDARY_ITEM_ERROR_MESSAGE = "Item is legendary, quality must be always 80! Current value: ";
 
     private final Item item;
 
     public ItemHandler(Item item) {
         this.item = item;
+    }
+
+    static void validate(Item item) {
+        if (qualityIsNegative(item)) {
+            throw new IllegalArgumentException(NEGATIVE_QUALITY_ERROR_MESSAGE + item.quality);
+        }
+        if (isNotLegendary(item)) {
+            throw new IllegalArgumentException(NOT_LEGENDARY_ITEM_ERROR_MESSAGE + item.quality);
+        }
+    }
+
+    private static boolean qualityIsNegative(Item item) {
+        return item.quality < 0;
+    }
+
+    private static boolean isNotLegendary(Item item) {
+        return item.name.equals(LEGENDARY.toString()) && item.quality != 80;
     }
 
     public void decrementSellInDate() {
