@@ -1,47 +1,27 @@
 package com.gildedrose.items;
 
 import com.gildedrose.Item;
+import com.gildedrose.item_helpers.ItemHandler;
 import com.gildedrose.item_helpers.ItemType;
-
-import static java.lang.Math.max;
 
 public class Conjured implements ItemType {
 
-    private final Item item;
+    private final ItemHandler item;
 
     public Conjured(Item item) {
-        this.item = item;
+        this.item = new ItemHandler(item);
     }
 
     @Override
     public void updateQuality() {
-        decrementSellInDate();
-        if (qualityIsGreaterThanZero()) {
-            if (sellInDatePasses()) {
-                decrementQualityByFour();
+        item.decrementSellInDate();
+        if (item.qualityIsHigherThanZero()) {
+            if (item.sellInDatePasses()) {
+                item.decrementQualityBy4();
             } else {
-                decrementQuality();
+                item.decrementQuality();
             }
         }
     }
 
-    private boolean qualityIsGreaterThanZero() {
-        return item.quality > 0;
-    }
-
-    private void decrementSellInDate() {
-        this.item.sellIn--;
-    }
-
-    private void decrementQualityByFour() {
-        this.item.quality = max(this.item.quality - 4, 0);
-    }
-
-    private boolean sellInDatePasses() {
-        return this.item.sellIn < 0;
-    }
-
-    private void decrementQuality() {
-        this.item.quality--;
-    }
 }

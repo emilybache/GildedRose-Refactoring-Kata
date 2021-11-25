@@ -1,48 +1,27 @@
 package com.gildedrose.items;
 
 import com.gildedrose.Item;
+import com.gildedrose.item_helpers.ItemHandler;
 import com.gildedrose.item_helpers.ItemType;
-
-import static java.lang.Math.max;
 
 public class AgedBrie implements ItemType {
 
-    private final Item item;
+    private final ItemHandler item;
 
     public AgedBrie(Item item) {
-        this.item = item;
+        this.item = new ItemHandler(item);
     }
 
     @Override
     public void updateQuality() {
-        decrementSellInDate();
-        if (qualityIsPositive()) {
-            if (sellInDatePasses()) {
-                incrementQualityByTwo();
+        item.decrementSellInDate();
+        if (item.qualityIsHigherThanZero()) {
+            if (item.sellInDatePasses()) {
+                item.incrementQualityByTwo();
             } else {
-                incrementQuality();
+                item.incrementQuality();
             }
         }
-    }
-
-    private boolean qualityIsPositive() {
-        return item.quality > 0;
-    }
-
-    private void decrementSellInDate() {
-        this.item.sellIn--;
-    }
-
-    private boolean sellInDatePasses() {
-        return this.item.sellIn < 0;
-    }
-
-    private void incrementQualityByTwo() {
-        this.item.quality = max(this.item.quality + 2, 0);
-    }
-
-    private void incrementQuality() {
-        this.item.quality++;
     }
 
 }
