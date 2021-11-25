@@ -1,6 +1,6 @@
 package com.gildedrose.items;
 
-import com.gildedrose.Item;
+import com.gildedrose.main.Item;
 import com.gildedrose.item_helpers.ItemHandler;
 import com.gildedrose.item_helpers.ItemType;
 
@@ -18,7 +18,7 @@ public class AgedBrieItem implements ItemType {
         if (item.beforeSellInDate()) {
             item.incrementQuality();
         } else {
-            item.incrementQualityByTwo();
+            item.incrementQualityBy2();
         }
     }
 

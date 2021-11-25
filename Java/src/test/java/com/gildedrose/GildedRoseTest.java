@@ -1,23 +1,15 @@
 package com.gildedrose;
 
+import com.gildedrose.main.GildedRose;
+import com.gildedrose.main.Item;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static com.gildedrose.item_helpers.ItemName.*;
-import static java.util.Collections.singletonList;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GildedRoseTest {
-
-    @Test
-    void foo() {
-        List<Item> items = singletonList(new Item("foo", 0, 0));
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals("foo", app.items.get(0).name);
-    }
 
     @Test
     void testNormalItem() {
@@ -46,9 +38,9 @@ class GildedRoseTest {
 
 
     @Test
-    void testSulfuraItem() {
+    void testLegendaryItem() {
         int days = 20;
-        Item legendaryItem = new Item(LEGENDARY.toString(), 10, 40);
+        Item legendaryItem = new Item(LEGENDARY.toString(), 10, 80);
         GildedRose app = new GildedRose(legendaryItem);
         for (int i = 0; i < days; i++) {
             app.updateQuality();

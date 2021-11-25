@@ -1,6 +1,6 @@
 package com.gildedrose.items;
 
-import com.gildedrose.Item;
+import com.gildedrose.main.Item;
 import com.gildedrose.item_helpers.ItemHandler;
 import com.gildedrose.item_helpers.ItemType;
 

@@ -1,6 +1,6 @@
 package com.gildedrose.item_helpers;
 
-import com.gildedrose.Item;
+import com.gildedrose.main.Item;
 import com.gildedrose.items.AgedBrieItem;
 import com.gildedrose.items.BackstagePassItem;
 import com.gildedrose.items.ConjuredItem;

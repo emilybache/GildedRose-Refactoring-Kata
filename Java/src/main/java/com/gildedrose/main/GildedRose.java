@@ -1,12 +1,12 @@
-package com.gildedrose;
+package com.gildedrose.main;
 
 import java.util.List;
 
 import static com.gildedrose.item_helpers.ItemFactory.getItem;
 import static java.util.Collections.singletonList;
 
-class GildedRose {
-    List<Item> items;
+public class GildedRose {
+    private final List<Item> items;
 
     public GildedRose(List<Item> items) {
         this.items = items;

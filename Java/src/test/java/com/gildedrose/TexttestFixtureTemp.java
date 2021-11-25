@@ -1,5 +1,8 @@
 package com.gildedrose;
 
+import com.gildedrose.main.GildedRose;
+import com.gildedrose.main.Item;
+
 import static java.util.Arrays.asList;
 
 public class TexttestFixtureTemp {
