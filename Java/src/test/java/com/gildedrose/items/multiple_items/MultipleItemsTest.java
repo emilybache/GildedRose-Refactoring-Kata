@@ -1,4 +1,4 @@
-package com.gildedrose.items;
+package com.gildedrose.items.multiple_items;
 
 import com.gildedrose.main.GildedRose;
 import com.gildedrose.main.Item;

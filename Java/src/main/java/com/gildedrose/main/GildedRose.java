@@ -2,7 +2,7 @@ package com.gildedrose.main;
 
 import java.util.List;
 
-import static com.gildedrose.item_helpers.ItemFactory.getItem;
+import static com.gildedrose.item_helpers.ItemFactory.getItemType;
 import static java.util.Collections.singletonList;
 
 public class GildedRose {
@@ -17,6 +17,6 @@ public class GildedRose {
     }
 
     public void updateQuality() {
-        items.forEach(item -> getItem(item).updateQuality());
+        items.forEach(item -> getItemType(item).updateQuality());
     }
 }

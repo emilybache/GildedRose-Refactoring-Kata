@@ -14,7 +14,7 @@ public class ItemFactory {
     private ItemFactory() {
     }
 
-    public static ItemType getItem(Item item) {
+    public static ItemType getItemType(Item item) {
         validateQuality(item);
         ItemName itemName = getItemName(item.name);
         switch (itemName) {
