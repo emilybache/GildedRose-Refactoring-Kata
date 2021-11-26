@@ -1,6 +1,6 @@
 # Gilded Rose Kata in Java
 
-Forked version of the Gilded-Rose-Refactoring-Kate project, original can be found
+Forked Java version of the Gilded-Rose-Refactoring-Kate project, original can be found
 [here](https://github.com/emilybache/GildedRose-Refactoring-Kata).
 
 # Requirements
