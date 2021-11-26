@@ -46,6 +46,7 @@ as such its Quality is 80 and it never alters.
 
 * Quality increases or decreases when sell-in days pass or is constant.
 * Quality of an item cannot be negative value.
+* Quality of an item cannot be higher than 50.
 * If item is Legendary, it's quality is always 80 and never changes.
 
 ## Types of items
