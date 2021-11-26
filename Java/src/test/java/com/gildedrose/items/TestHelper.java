@@ -8,16 +8,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestHelper {
 
-    public static void testItem(Item item, int days, int expectedQuality, int expectedSellIn) {
+    public static void testItem(Item item, int daysToPass, int expectedSellIn, int expectedQuality) {
         // given
         GildedRose app = new GildedRose(item);
         // when
-        for (int i = 0; i < days; i++) {
+        for (int i = 0; i < daysToPass; i++) {
             app.updateQuality();
+            System.out.println(item);
         }
         //then
-        assertEquals(expectedQuality, item.quality);
         assertEquals(expectedSellIn, item.sellIn);
+        assertEquals(expectedQuality, item.quality);
     }
 
     public static void testItemException(Item item) {
@@ -26,4 +27,5 @@ public class TestHelper {
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(QUALITY_ERROR_MESSAGE));
     }
+
 }

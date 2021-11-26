@@ -6,26 +6,26 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import static com.gildedrose.item_helpers.ItemName.AGED_BRIE;
+import static com.gildedrose.item_helpers.ItemName.CONJURED;
 import static com.gildedrose.items.TestHelper.testItem;
 import static com.gildedrose.items.TestHelper.testItemException;
 
 @TestMethodOrder(OrderAnnotation.class)
-class AgedBrieItemTest {
+class ConjuredItemTest {
 
-    private final Item item = new Item(AGED_BRIE.toString(), 5, 20);
-    private final Item itemError = new Item(AGED_BRIE.toString(), 10, -5);
+    private final Item item = new Item(CONJURED.toString(), 5, 20);
+    private final Item itemError = new Item(CONJURED.toString(), 10, -5);
 
     @Test
     @Order(1)
-    void incrementQualityByOneSuccess() {
-        testItem(item, 2, 3, 22);
+    void decrementQualityByOneSuccess() {
+        testItem(item, 2, 3, 18);
     }
 
     @Test
     @Order(2)
-    void incrementQualityByTwoSuccess() {
-        testItem(item, 7, -2, 29);
+    void decrementQualityByFourSuccess() {
+        testItem(item, 10, -5, 0);
     }
 
     @Test
@@ -33,5 +33,4 @@ class AgedBrieItemTest {
     void negativeQualityFail() {
         testItemException(itemError);
     }
-
 }
