@@ -15,7 +15,7 @@ public class ItemFactory {
     }
 
     public static ItemType getItemType(Item item) {
-        validateQuality(item);
+        QualityValidator.validateQuality(item);
         ItemName itemName = getItemName(item.name);
         switch (itemName) {
             case AGED_BRIE:
@@ -31,15 +31,4 @@ public class ItemFactory {
         }
     }
 
-    public static final String QUALITY_ERROR_MESSAGE = "Quality cannot be negative! Current value: ";
-
-    private static void validateQuality(Item item) {
-        if (qualityIsNegative(item)) {
-            throw new IllegalArgumentException(QUALITY_ERROR_MESSAGE + item.quality);
-        }
-    }
-
-    private static boolean qualityIsNegative(Item item) {
-        return item.quality < 0;
-    }
 }

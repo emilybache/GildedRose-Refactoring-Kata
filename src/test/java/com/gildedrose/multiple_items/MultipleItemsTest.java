@@ -43,6 +43,9 @@ class MultipleItemsTest {
         int days = 20;
         for (int i = 0; i < days; i++) {
             gildedRose.updateQuality();
+            for (Item item : items) {
+                System.out.println(item);
+            }
         }
     }
 

@@ -3,6 +3,7 @@ package com.gildedrose.item_helpers;
 import com.gildedrose.main.Item;
 
 import static java.lang.Math.max;
+import static java.lang.Math.min;
 
 public class ItemHandler {
 
@@ -37,15 +38,15 @@ public class ItemHandler {
     }
 
     public void incrementQuality() {
-        item.quality = max(item.quality + 1, 0);
+        item.quality = min(item.quality + 1, 50);
     }
 
     public void incrementQualityBy2() {
-        item.quality = max(item.quality + 2, 0);
+        item.quality = min(item.quality + 2, 50);
     }
 
     public void incrementQualityBy3() {
-        item.quality = max(item.quality + 3, 0);
+        item.quality = min(item.quality + 3, 50);
     }
 
     public void decrementQuality() {

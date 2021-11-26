@@ -8,10 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 import static com.gildedrose.helper.TestHelper.testItem;
-import static com.gildedrose.helper.TestHelper.testItemException;
+import static com.gildedrose.item_helpers.QualityValidator.NOT_LEGENDARY_ITEM_ERROR_MESSAGE;
 import static com.gildedrose.item_helpers.ItemName.LEGENDARY;
 import static com.gildedrose.items.LegendaryItem.LEGENDARY_ITEM_QUALITY;
-import static com.gildedrose.items.LegendaryItem.NOT_LEGENDARY_ITEM_ERROR_MESSAGE;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -43,10 +42,4 @@ class LegendaryItemTest {
         assertTrue(actualMessage.contains(NOT_LEGENDARY_ITEM_ERROR_MESSAGE));
     }
 
-
-    @Test
-    @Order(4)
-    void negativeQualityFail() {
-        testItemException(itemError);
-    }
 }

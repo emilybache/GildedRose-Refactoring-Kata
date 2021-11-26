@@ -3,7 +3,8 @@ package com.gildedrose.helper;
 import com.gildedrose.main.GildedRose;
 import com.gildedrose.main.Item;
 
-import static com.gildedrose.item_helpers.ItemFactory.QUALITY_ERROR_MESSAGE;
+import static com.gildedrose.item_helpers.QualityValidator.OUT_OF_BOUND_QUALITY_MESSAGE;
+import static com.gildedrose.item_helpers.QualityValidator.QUALITY_ERROR_MESSAGE;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestHelper {
@@ -25,6 +26,13 @@ public class TestHelper {
         Exception exception = assertThrows(IllegalArgumentException.class, gildedRose::updateQuality);
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(QUALITY_ERROR_MESSAGE));
+    }
+
+    public static void testItemQualityAboveLimitException(Item item) {
+        GildedRose gildedRose = new GildedRose(item);
+        Exception exception = assertThrows(IllegalArgumentException.class, gildedRose::updateQuality);
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(OUT_OF_BOUND_QUALITY_MESSAGE));
     }
 
 }
