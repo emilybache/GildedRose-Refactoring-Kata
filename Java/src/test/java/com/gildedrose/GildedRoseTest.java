@@ -36,7 +36,6 @@ class GildedRoseTest {
         }
     }
 
-
     @Test
     void testLegendaryItem() {
         int days = 20;

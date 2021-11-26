@@ -8,7 +8,7 @@ import static java.lang.Math.max;
 
 public class ItemHandler {
 
-    protected static final String QUALITY_ERROR_MESSAGE = "Quality cannot be negative! Current value: ";
+    public static final String QUALITY_ERROR_MESSAGE = "Quality cannot be negative! Current value: ";
 
     private final Item item;
 
