@@ -1,8 +1,8 @@
 package com.gildedrose.items;
 
-import com.gildedrose.main.Item;
 import com.gildedrose.item_helpers.ItemHandler;
 import com.gildedrose.item_helpers.ItemType;
+import com.gildedrose.main.Item;
 
 public class AgedBrieItem implements ItemType {
 

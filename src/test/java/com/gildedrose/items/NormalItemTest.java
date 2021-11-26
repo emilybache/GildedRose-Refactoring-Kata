@@ -1,4 +1,4 @@
-package com.gildedrose.items.items;
+package com.gildedrose.items;
 
 import com.gildedrose.main.Item;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
@@ -6,15 +6,15 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import static com.gildedrose.item_helpers.ItemName.CONJURED;
-import static com.gildedrose.items.helper.TestHelper.testItem;
-import static com.gildedrose.items.helper.TestHelper.testItemException;
+import static com.gildedrose.helper.TestHelper.testItem;
+import static com.gildedrose.helper.TestHelper.testItemException;
+import static com.gildedrose.item_helpers.ItemName.NORMAL;
 
 @TestMethodOrder(OrderAnnotation.class)
-class ConjuredItemTest {
+class NormalItemTest {
 
-    private final Item item = new Item(CONJURED.toString(), 5, 20);
-    private final Item itemError = new Item(CONJURED.toString(), 10, -5);
+    private final Item item = new Item(NORMAL.toString(), 5, 20);
+    private final Item itemError = new Item(NORMAL.toString(), 10, -5);
 
     @Test
     @Order(1)
@@ -24,8 +24,8 @@ class ConjuredItemTest {
 
     @Test
     @Order(2)
-    void decrementQualityByFourSuccess() {
-        testItem(item, 10, -5, 0);
+    void decrementQualityByTwoSuccess() {
+        testItem(item, 10, -5, 5);
     }
 
     @Test

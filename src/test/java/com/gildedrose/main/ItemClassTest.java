@@ -1,6 +1,5 @@
-package com.gildedrose.items.main;
+package com.gildedrose.main;
 
-import com.gildedrose.main.Item;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
