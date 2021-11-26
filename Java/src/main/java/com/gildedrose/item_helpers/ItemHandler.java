@@ -12,14 +12,6 @@ public class ItemHandler {
         this.item = item;
     }
 
-    public boolean qualityIsHigherThanZero() {
-        return item.quality > 0;
-    }
-
-    public void makeQualityZero() {
-        item.quality = 0;
-    }
-
     public void decrementSellInDate() {
         item.sellIn--;
     }
@@ -28,20 +20,24 @@ public class ItemHandler {
         return item.sellIn >= 0;
     }
 
-    public boolean sellInLessThan5Days() {
+    public boolean lessThan5DaysToSellIn() {
         return item.sellIn >= 0 && item.sellIn <= 5;
     }
 
-    public boolean sellInLessThan10Days() {
+    public boolean lessThan10DaysToSellIn() {
         return item.sellIn >= 5 && item.sellIn <= 10;
     }
 
-    public boolean sellInMoreThan10Days() {
+    public boolean moreThan10DaysToSellIn() {
         return item.sellIn >= 10;
     }
 
+    public void makeQualityZero() {
+        item.quality = 0;
+    }
+
     public void incrementQuality() {
-        item.quality++;
+        item.quality = max(item.quality + 1, 0);
     }
 
     public void incrementQualityBy2() {
@@ -53,7 +49,7 @@ public class ItemHandler {
     }
 
     public void decrementQuality() {
-        item.quality--;
+        item.quality = max(item.quality - 1, 0);
     }
 
     public void decrementQualityBy2() {

@@ -1,8 +1,8 @@
 package com.gildedrose.items;
 
-import com.gildedrose.main.Item;
 import com.gildedrose.item_helpers.ItemHandler;
 import com.gildedrose.item_helpers.ItemType;
+import com.gildedrose.main.Item;
 
 public class NormalItem implements ItemType {
 
@@ -15,12 +15,10 @@ public class NormalItem implements ItemType {
     @Override
     public void updateQuality() {
         item.decrementSellInDate();
-        if (item.qualityIsHigherThanZero()) {
-            if (item.beforeSellInDate()) {
-                item.decrementQuality();
-            } else {
-                item.decrementQualityBy2();
-            }
+        if (item.beforeSellInDate()) {
+            item.decrementQuality();
+        } else {
+            item.decrementQualityBy2();
         }
     }
 

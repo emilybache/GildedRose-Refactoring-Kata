@@ -1,8 +1,8 @@
 package com.gildedrose.items;
 
-import com.gildedrose.main.Item;
 import com.gildedrose.item_helpers.ItemHandler;
 import com.gildedrose.item_helpers.ItemType;
+import com.gildedrose.main.Item;
 
 public class BackstagePassItem implements ItemType {
 
@@ -15,11 +15,11 @@ public class BackstagePassItem implements ItemType {
     @Override
     public void updateQuality() {
         item.decrementSellInDate();
-        if (item.sellInMoreThan10Days()) {
+        if (item.moreThan10DaysToSellIn()) {
             item.incrementQuality();
-        } else if (item.sellInLessThan10Days()) {
+        } else if (item.lessThan10DaysToSellIn()) {
             item.incrementQualityBy2();
-        } else if (item.sellInLessThan5Days()) {
+        } else if (item.lessThan5DaysToSellIn()) {
             item.incrementQualityBy3();
         } else {
             item.makeQualityZero();
