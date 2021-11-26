@@ -3,7 +3,7 @@ package com.gildedrose.items;
 import com.gildedrose.main.GildedRose;
 import com.gildedrose.main.Item;
 
-import static com.gildedrose.item_helpers.ItemHandler.QUALITY_ERROR_MESSAGE;
+import static com.gildedrose.item_helpers.ItemFactory.QUALITY_ERROR_MESSAGE;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestHelper {

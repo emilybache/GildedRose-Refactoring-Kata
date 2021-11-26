@@ -1,8 +1,8 @@
 package com.gildedrose.items;
 
-import com.gildedrose.main.Item;
 import com.gildedrose.item_helpers.ItemHandler;
 import com.gildedrose.item_helpers.ItemType;
+import com.gildedrose.main.Item;
 
 import static com.gildedrose.item_helpers.ItemName.LEGENDARY;
 
@@ -13,6 +13,7 @@ public class LegendaryItem implements ItemType {
     private final ItemHandler item;
 
     public LegendaryItem(Item item) {
+        validate(item);
         this.item = new ItemHandler(item);
     }
 
@@ -21,7 +22,13 @@ public class LegendaryItem implements ItemType {
         item.decrementSellInDate();
     }
 
-    public static boolean isNotLegendary(Item item) {
+    private void validate(Item item) {
+        if (notLegendary(item)) {
+            throw new IllegalArgumentException(NOT_LEGENDARY_ITEM_ERROR_MESSAGE + item.quality);
+        }
+    }
+
+    public boolean notLegendary(Item item) {
         return item.name.equals(LEGENDARY.toString()) && item.quality != LEGENDARY_ITEM_QUALITY;
     }
 

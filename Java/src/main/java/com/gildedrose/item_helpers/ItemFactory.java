@@ -1,13 +1,12 @@
 package com.gildedrose.item_helpers;
 
-import com.gildedrose.main.Item;
 import com.gildedrose.items.AgedBrieItem;
 import com.gildedrose.items.BackstagePassItem;
 import com.gildedrose.items.ConjuredItem;
 import com.gildedrose.items.LegendaryItem;
 import com.gildedrose.items.NormalItem;
+import com.gildedrose.main.Item;
 
-import static com.gildedrose.item_helpers.ItemHandler.validate;
 import static com.gildedrose.item_helpers.ItemName.getItemName;
 
 public class ItemFactory {
@@ -16,7 +15,7 @@ public class ItemFactory {
     }
 
     public static ItemType getItem(Item item) {
-        validate(item);
+        validateQuality(item);
         ItemName itemName = getItemName(item.name);
         switch (itemName) {
             case AGED_BRIE:
@@ -32,4 +31,15 @@ public class ItemFactory {
         }
     }
 
+    public static final String QUALITY_ERROR_MESSAGE = "Quality cannot be negative! Current value: ";
+
+    private static void validateQuality(Item item) {
+        if (qualityIsNegative(item)) {
+            throw new IllegalArgumentException(QUALITY_ERROR_MESSAGE + item.quality);
+        }
+    }
+
+    private static boolean qualityIsNegative(Item item) {
+        return item.quality < 0;
+    }
 }
