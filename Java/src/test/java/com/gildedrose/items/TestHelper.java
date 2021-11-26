@@ -14,7 +14,6 @@ public class TestHelper {
         // when
         for (int i = 0; i < daysToPass; i++) {
             app.updateQuality();
-            System.out.println(item);
         }
         //then
         assertEquals(expectedSellIn, item.sellIn);
