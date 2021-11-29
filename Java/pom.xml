@@ -24,6 +24,11 @@
             <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.approvaltests</groupId>
+            <artifactId>approvaltests</artifactId>
+            <version>12.1.1</version>
+        </dependency>
     </dependencies>
 
     <build>
