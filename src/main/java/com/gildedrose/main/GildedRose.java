@@ -1,5 +1,7 @@
 package com.gildedrose.main;
 
+import com.gildedrose.item_helpers.ItemType;
+
 import static com.gildedrose.item_helpers.ItemFactory.getItemType;
 import static java.util.Arrays.stream;
 
@@ -11,6 +13,10 @@ public class GildedRose {
   }
 
   public void updateQuality() {
-    stream(items).forEach(item -> getItemType(item).updateQuality());
+    stream(items).forEach(item -> {
+      ItemType itemType = getItemType(item);
+      itemType.validateQuality();
+      itemType.updateQuality();
+    });
   }
 }

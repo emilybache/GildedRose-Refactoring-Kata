@@ -22,7 +22,6 @@ public class ItemFactory {
     if (itemType == null) {
       itemType = new NormalItem(item);
     }
-    itemType.validateQuality();
     return itemType;
   }
 
