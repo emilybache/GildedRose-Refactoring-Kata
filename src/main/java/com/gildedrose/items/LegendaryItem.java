@@ -27,7 +27,7 @@ public class LegendaryItem implements ItemType {
   public void decrementSellInDate() {
     item.sellIn--;
   }
-  
+
   public static boolean isLegendary(Item item) {
     return item.name.equals(LEGENDARY);
   }
