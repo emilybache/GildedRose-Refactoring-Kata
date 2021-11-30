@@ -35,7 +35,7 @@ class LegendaryItemTest {
   @Test
   @Order(3)
   void testFakeLegendaryItemExceptionFail() {
-    GildedRose gildedRose = new GildedRose(fakeLegendaryItem);
+    GildedRose gildedRose = new GildedRose(new Item[]{fakeLegendaryItem});
     Exception exception = assertThrows(IllegalArgumentException.class, gildedRose::updateQuality);
     String actualMessage = exception.getMessage();
     assertTrue(actualMessage.contains(NOT_LEGENDARY_ITEM_ERROR_MESSAGE));
