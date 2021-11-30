@@ -8,8 +8,9 @@ import com.gildedrose.items.NormalItem;
 import com.gildedrose.main.Item;
 
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Stream.of;
 
 public class ItemFactory {
 
@@ -26,9 +27,9 @@ public class ItemFactory {
   }
 
   private static Map<String, ItemType> getItems(Item item) {
-    return Stream.of(new NormalItem(item), new AgedBrieItem(item), new LegendaryItem(item),
-            new BackstagePassItem(item), new ConjuredItem(item))
-        .collect(Collectors.toMap(ItemType::getName, itemType -> itemType));
+    return of(new NormalItem(item), new AgedBrieItem(item), new LegendaryItem(item),
+        new BackstagePassItem(item), new ConjuredItem(item))
+        .collect(toMap(ItemType::getName, itemType -> itemType));
   }
 
 }
