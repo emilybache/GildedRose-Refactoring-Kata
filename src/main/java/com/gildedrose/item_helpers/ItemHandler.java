@@ -19,7 +19,7 @@ public class ItemHandler {
   public boolean beforeSellInDate() {
     return item.sellIn >= 0;
   }
-  
+
   public void decrementQuality() {
     item.quality = max(item.quality - 1, 0);
   }
