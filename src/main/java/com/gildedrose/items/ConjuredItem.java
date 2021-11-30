@@ -6,20 +6,27 @@ import com.gildedrose.main.Item;
 
 public class ConjuredItem implements ItemType {
 
-    private final ItemHandler item;
+  public static final String CONJURED = "Conjured Mana Cake";
 
-    public ConjuredItem(Item item) {
-        this.item = new ItemHandler(item);
-    }
+  private final ItemHandler item;
 
-    @Override
-    public void updateQuality() {
-        item.decrementSellInDate();
-        if (item.beforeSellInDate()) {
-            item.decrementQualityBy2();
-        } else {
-            item.decrementQualityBy4();
-        }
+  public ConjuredItem(Item item) {
+    this.item = new ItemHandler(item);
+  }
+
+  @Override
+  public void updateQuality() {
+    item.decrementSellInDate();
+    if (item.beforeSellInDate()) {
+      item.decrementQualityBy2();
+    } else {
+      item.decrementQualityBy4();
     }
+  }
+
+  @Override
+  public String getName() {
+    return CONJURED;
+  }
 
 }

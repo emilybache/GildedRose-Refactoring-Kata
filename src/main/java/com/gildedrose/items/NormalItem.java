@@ -6,20 +6,26 @@ import com.gildedrose.main.Item;
 
 public class NormalItem implements ItemType {
 
-    private final ItemHandler item;
+  public static final String NORMAL = "Normal";
+  private final ItemHandler item;
 
-    public NormalItem(Item item) {
-        this.item = new ItemHandler(item);
-    }
+  public NormalItem(Item item) {
+    this.item = new ItemHandler(item);
+  }
 
-    @Override
-    public void updateQuality() {
-        item.decrementSellInDate();
-        if (item.beforeSellInDate()) {
-            item.decrementQuality();
-        } else {
-            item.decrementQualityBy2();
-        }
+  @Override
+  public void updateQuality() {
+    item.decrementSellInDate();
+    if (item.beforeSellInDate()) {
+      item.decrementQuality();
+    } else {
+      item.decrementQualityBy2();
     }
+  }
+
+  @Override
+  public String getName() {
+    return NORMAL;
+  }
 
 }

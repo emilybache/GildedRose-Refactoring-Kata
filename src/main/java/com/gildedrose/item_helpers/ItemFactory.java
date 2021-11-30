@@ -7,28 +7,28 @@ import com.gildedrose.items.LegendaryItem;
 import com.gildedrose.items.NormalItem;
 import com.gildedrose.main.Item;
 
-import static com.gildedrose.item_helpers.ItemName.getItemName;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ItemFactory {
 
-    private ItemFactory() {
-    }
+  private ItemFactory() {
+  }
 
-    public static ItemType getItemType(Item item) {
-        QualityValidator.validateQuality(item);
-        ItemName itemName = getItemName(item.name);
-        switch (itemName) {
-            case AGED_BRIE:
-                return new AgedBrieItem(item);
-            case LEGENDARY:
-                return new LegendaryItem(item);
-            case BACKSTAGE_PASS:
-                return new BackstagePassItem(item);
-            case CONJURED:
-                return new ConjuredItem(item);
-            default:
-                return new NormalItem(item);
-        }
+  public static ItemType getItemType(Item item) {
+    QualityValidator.validateQuality(item);
+    ItemType itemType = getItems(item).get(item.name);
+    if (itemType == null) {
+      itemType = new NormalItem(item);
     }
+    return itemType;
+  }
+
+  private static Map<String, ItemType> getItems(Item item) {
+    return Stream.of(new NormalItem(item), new AgedBrieItem(item), new LegendaryItem(item),
+            new BackstagePassItem(item), new ConjuredItem(item))
+        .collect(Collectors.toMap(ItemType::getName, itemType -> itemType));
+  }
 
 }
