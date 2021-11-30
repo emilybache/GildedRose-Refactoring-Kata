@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import static com.gildedrose.helper.TestHelper.testItem;
-import static com.gildedrose.helper.TestHelper.testItemException;
+import static com.gildedrose.helper.TestHelper.*;
 import static com.gildedrose.items.BackstagePassItem.BACKSTAGE_PASS;
 
 @TestMethodOrder(OrderAnnotation.class)
@@ -15,6 +14,7 @@ class BackstagePassItemTest {
 
   private final Item item = new Item(BACKSTAGE_PASS, 15, 20);
   private final Item itemError = new Item(BACKSTAGE_PASS, 10, -5);
+  private final Item itemAboveLimitQuality = new Item(BACKSTAGE_PASS, 10, 60);
 
   @Test
   @Order(1)
@@ -41,9 +41,15 @@ class BackstagePassItemTest {
   }
 
   @Test
-  @Order(2)
+  @Order(5)
   void negativeQualityFail() {
     testItemException(itemError);
+  }
+
+  @Test
+  @Order(6)
+  void QualityAboveLimitFail() {
+    testItemQualityAboveLimitException(itemAboveLimitQuality);
   }
 
 }
