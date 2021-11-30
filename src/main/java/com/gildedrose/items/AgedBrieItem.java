@@ -36,10 +36,14 @@ public class AgedBrieItem implements ItemType {
     }
   }
 
+  @Override
+  public String getName() {
+    return AGED_BRIE;
+  }
+
   public void incrementQuality() {
     item.quality = min(item.quality + 1, 50);
   }
-
 
   public void incrementQualityBy2() {
     item.quality = min(item.quality + 2, 50);
@@ -51,11 +55,6 @@ public class AgedBrieItem implements ItemType {
 
   public boolean beforeSellInDate() {
     return item.sellIn >= 0;
-  }
-
-  @Override
-  public String getName() {
-    return AGED_BRIE;
   }
 
 }

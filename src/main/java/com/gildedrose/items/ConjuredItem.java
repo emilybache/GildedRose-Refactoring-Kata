@@ -36,6 +36,11 @@ public class ConjuredItem implements ItemType {
     }
   }
 
+  @Override
+  public String getName() {
+    return CONJURED;
+  }
+
   public void decrementSellInDate() {
     item.sellIn--;
   }
@@ -50,11 +55,6 @@ public class ConjuredItem implements ItemType {
 
   public void decrementQualityBy4() {
     item.quality = max(item.quality - 4, 0);
-  }
-
-  @Override
-  public String getName() {
-    return CONJURED;
   }
 
 }

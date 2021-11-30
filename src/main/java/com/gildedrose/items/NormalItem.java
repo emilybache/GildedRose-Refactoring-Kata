@@ -35,6 +35,11 @@ public class NormalItem implements ItemType {
     }
   }
 
+  @Override
+  public String getName() {
+    return NORMAL;
+  }
+
   public void decrementSellInDate() {
     item.sellIn--;
   }
@@ -49,11 +54,6 @@ public class NormalItem implements ItemType {
 
   public void decrementQualityBy2() {
     item.quality = max(item.quality - 2, 0);
-  }
-
-  @Override
-  public String getName() {
-    return NORMAL;
   }
 
 }

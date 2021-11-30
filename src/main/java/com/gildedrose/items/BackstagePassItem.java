@@ -39,6 +39,11 @@ public class BackstagePassItem implements ItemType {
       throw new IllegalArgumentException(OUT_OF_BOUND_QUALITY_MESSAGE + item.quality);
   }
 
+  @Override
+  public String getName() {
+    return BACKSTAGE_PASS;
+  }
+
   public void decrementSellInDate() {
     item.sellIn--;
   }
@@ -71,9 +76,5 @@ public class BackstagePassItem implements ItemType {
     item.quality = min(item.quality + 3, 50);
   }
 
-  @Override
-  public String getName() {
-    return BACKSTAGE_PASS;
-  }
 
 }
