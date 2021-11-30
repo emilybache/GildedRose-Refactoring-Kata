@@ -16,7 +16,7 @@ public class ConjuredItem implements ItemType {
     public void updateQuality() {
         item.decrementSellInDate();
         if (item.beforeSellInDate()) {
-            item.decrementQuality();
+            item.decrementQualityBy2();
         } else {
             item.decrementQualityBy4();
         }

@@ -18,8 +18,8 @@ class ConjuredItemTest {
 
     @Test
     @Order(1)
-    void decrementQualityByOneSuccess() {
-        testItem(item, 2, 3, 18);
+    void decrementQualityByTwoSuccess() {
+        testItem(item, 2, 3, 16);
     }
 
     @Test
