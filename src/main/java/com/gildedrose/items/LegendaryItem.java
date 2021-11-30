@@ -7,6 +7,7 @@ public class LegendaryItem implements ItemType {
 
   public static final int LEGENDARY_ITEM_QUALITY = 80;
   public static final String LEGENDARY = "Sulfuras, Hand of Ragnaros";
+  public static final String NOT_LEGENDARY_ITEM_ERROR_MESSAGE = "Item is legendary, quality must be always 80! Current value: ";
 
   private final Item item;
 
@@ -22,7 +23,7 @@ public class LegendaryItem implements ItemType {
 
   @Override
   public void validateQuality() {
-    if (isLegendaryWrongQuality(item)) {
+    if (qualityIsNotLegendary(item)) {
       throw new IllegalArgumentException(NOT_LEGENDARY_ITEM_ERROR_MESSAGE + item.quality);
     }
   }
@@ -36,8 +37,8 @@ public class LegendaryItem implements ItemType {
     item.sellIn--;
   }
 
-  public static boolean isLegendaryWrongQuality(Item item) {
-    return item.name.equals(LEGENDARY) && item.quality != LEGENDARY_ITEM_QUALITY;
+  public static boolean qualityIsNotLegendary(Item item) {
+    return item.quality != LEGENDARY_ITEM_QUALITY;
   }
 
 }
