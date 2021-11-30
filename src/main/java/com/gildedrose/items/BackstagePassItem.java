@@ -3,6 +3,8 @@ package com.gildedrose.items;
 import com.gildedrose.item_helpers.ItemType;
 import com.gildedrose.main.Item;
 
+import static com.gildedrose.item_helpers.ItemType.qualityIsAbove50;
+import static com.gildedrose.item_helpers.ItemType.qualityIsNegative;
 import static java.lang.Math.min;
 
 public class BackstagePassItem implements ItemType {
@@ -27,6 +29,14 @@ public class BackstagePassItem implements ItemType {
     } else {
       makeQualityZero();
     }
+  }
+
+  @Override
+  public void validateQuality() {
+    if (qualityIsNegative(item)) {
+      throw new IllegalArgumentException(QUALITY_ERROR_MESSAGE + item.quality);
+    } else if (qualityIsAbove50(item))
+      throw new IllegalArgumentException(OUT_OF_BOUND_QUALITY_MESSAGE + item.quality);
   }
 
   public void decrementSellInDate() {

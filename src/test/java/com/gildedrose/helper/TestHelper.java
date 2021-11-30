@@ -3,8 +3,8 @@ package com.gildedrose.helper;
 import com.gildedrose.main.GildedRose;
 import com.gildedrose.main.Item;
 
-import static com.gildedrose.item_helpers.QualityValidator.OUT_OF_BOUND_QUALITY_MESSAGE;
-import static com.gildedrose.item_helpers.QualityValidator.QUALITY_ERROR_MESSAGE;
+import static com.gildedrose.item_helpers.ItemType.OUT_OF_BOUND_QUALITY_MESSAGE;
+import static com.gildedrose.item_helpers.ItemType.QUALITY_ERROR_MESSAGE;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestHelper {

@@ -14,9 +14,17 @@ public class LegendaryItem implements ItemType {
     this.item = item;
   }
 
+
   @Override
   public void updateQuality() {
     decrementSellInDate();
+  }
+
+  @Override
+  public void validateQuality() {
+    if (isLegendaryWrongQuality(item)) {
+      throw new IllegalArgumentException(NOT_LEGENDARY_ITEM_ERROR_MESSAGE + item.quality);
+    }
   }
 
   @Override
@@ -28,12 +36,8 @@ public class LegendaryItem implements ItemType {
     item.sellIn--;
   }
 
-  public static boolean isLegendary(Item item) {
-    return item.name.equals(LEGENDARY);
-  }
-
-  public static boolean isNotLegendary(Item item) {
-    return !item.name.equals(LEGENDARY);
+  public static boolean isLegendaryWrongQuality(Item item) {
+    return item.name.equals(LEGENDARY) && item.quality != LEGENDARY_ITEM_QUALITY;
   }
 
 }

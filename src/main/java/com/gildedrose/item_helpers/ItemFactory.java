@@ -17,11 +17,11 @@ public class ItemFactory {
   }
 
   public static ItemType getItemType(Item item) {
-    QualityValidator.validateQuality(item);
     ItemType itemType = getItems(item).get(item.name);
     if (itemType == null) {
       itemType = new NormalItem(item);
     }
+    itemType.validateQuality();
     return itemType;
   }
 

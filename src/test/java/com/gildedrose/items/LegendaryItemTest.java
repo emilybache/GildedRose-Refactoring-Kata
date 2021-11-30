@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 import static com.gildedrose.helper.TestHelper.testItem;
-import static com.gildedrose.item_helpers.QualityValidator.NOT_LEGENDARY_ITEM_ERROR_MESSAGE;
+import static com.gildedrose.item_helpers.ItemType.NOT_LEGENDARY_ITEM_ERROR_MESSAGE;
 import static com.gildedrose.items.LegendaryItem.LEGENDARY;
 import static com.gildedrose.items.LegendaryItem.LEGENDARY_ITEM_QUALITY;
 import static org.junit.jupiter.api.Assertions.assertThrows;
