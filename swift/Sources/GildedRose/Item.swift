@@ -12,6 +12,6 @@ public class Item {
 
 extension Item: CustomStringConvertible {
     public var description: String {
-        return self.name + ", " + String(self.sellIn) + ", " + String(self.quality);
+        name + ", " + String(sellIn) + ", " + String(quality);
     }
 }
