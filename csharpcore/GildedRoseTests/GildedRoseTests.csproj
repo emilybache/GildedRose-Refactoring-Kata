@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="altcover" Version="8.2.831" />
     <PackageReference Include="ApprovalTests" Version="5.5.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
     <PackageReference Include="ShouldFluent" Version="1.1.19" />
