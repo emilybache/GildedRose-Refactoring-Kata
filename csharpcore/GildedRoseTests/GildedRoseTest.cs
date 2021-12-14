@@ -7,11 +7,21 @@ namespace GildedRoseTests
 {
     public class GildedRoseTest
     {
-
         const string AgedBrie = "Aged Brie";
         const string BackstagePass = "Backstage passes to a TAFKAL80ETC concert";
         const string Sulfuras = "Sulfuras, Hand of Ragnaros";
         const string Vest = "+5 Dexterity Vest";
+
+        [Fact]
+        public void when_updatequality_is_called_sellin_and_quality_are_decreased()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = Vest, SellIn = 2, Quality = 10 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+            var sut = Items[0];
+            sut.SellIn.Should().Equal(1);
+            sut.Quality.Should().Equal(9);
+        }
 
         [Fact]
         public void when_sellin_is_negative_for_all_items_except_aged_brie_quality_is_decreased_twice_as_fast()
@@ -31,6 +41,16 @@ namespace GildedRoseTests
             app.UpdateQuality();
             var sut = Items[0];
             sut.Quality.Should().Equal(19);
+        }
+
+        [Fact]
+        public void when_sellin_is_changed_quality_is_decreased_but_never_negative()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = Vest, SellIn = 10, Quality = 0 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+            var sut = Items[0];
+            sut.Quality.Should().Equal(0);
         }
 
         [Fact]
