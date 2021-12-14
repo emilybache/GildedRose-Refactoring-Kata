@@ -298,3 +298,7 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 .vscode
+
+# Misc
+[Tt]est[Rr]eports*/
+
