@@ -28,17 +28,9 @@ final class GildedRose
      */
     private $maxQuality = 50;
 
-    /**
-     * @var Array
-     */
-    private $itemTypes;
-
     public function __construct(array $items)
     {
         $this->items = $items;
-
-        // This could be collected from a database or stored on the item
-        $this->itemTypes = ['aged', 'conjured', 'backstagePasses', 'legendary'];
     }
 
     public function updateQuality(): void
@@ -72,7 +64,6 @@ final class GildedRose
         ];
         $legendaryRules = [];
 
-        $specialItems = [];
         foreach ($this->items as $item) {
             if (isset($ruleItems[$item->name])) {
                 $ruleArrayName = $ruleItems[$item->name] . "Rules";
@@ -82,25 +73,8 @@ final class GildedRose
                 if ($item->quality > $this->minQuality) {
                     $item->quality = $item->quality + $this->qualityModifier;
                 }
-                
                 $item->sell_in = $item->sell_in - 1;
             }
-            
-                /*if ($item->quality < 50) {
-                    $item->quality = $item->quality + 1;
-                    if ($item->name == 'Backstage passes to a TAFKAL80ETC concert') {
-                        if ($item->sell_in < 11) {
-                            if ($item->quality < 50) {
-                                $item->quality = $item->quality + 1;
-                            }
-                        }
-                        if ($item->sell_in < 6) {
-                            if ($item->quality < 50) {
-                                $item->quality = $item->quality + 1;
-                            }
-                        }
-                    }
-                }*/
         }
     }
 
@@ -126,7 +100,6 @@ final class GildedRose
 
             // make sure default is set
             $qualityModifier = $qualityModifier ?? $this->qualityModifier;
-
             $qualityModifier = ($item->sell_in < 1) ? $qualityModifier * 2: $qualityModifier;
 
             $minQuality = $rules['minQuality'] ?? $this->minQuality;
