@@ -1,16 +1,35 @@
 class Item {
-  constructor(name, sellIn, quality){
+  constructor(name, sellIn, quality) {
     this.name = name;
     this.sellIn = sellIn;
     this.quality = quality;
   }
 }
 
+class Rules {
+  constructor(dailyQualityChangeValue, maxQuality, minQuality, tenDayChange, fiveDayChange,
+    isZeroDayQualityDrop, zeroDayQualityValue) {
+    this.dailyQualityChangeValue = dailyQualityChangeValue;
+    this.maxQuality = maxQuality;
+    this.minQuality = minQuality;
+    this.tenDayChange = tenDayChange;
+    this.fiveDayChange = fiveDayChange;
+    this.isZeroDayQualityDrop = isZeroDayQualityDrop;
+    this.zeroDayQualityValue = zeroDayQualityValue;
+  }
+}
+
 class Shop {
-  constructor(items=[]){
+  constructor(items = []) {
     this.items = items;
   }
+
+
   updateQuality() {
+    const rules = {
+      'Aged Brie': new Rules(1, 50, 0, 1, 1),
+      'Backstage passes to a TAFKAL80ETC concert': new Rules(1, 50, 0)
+    }
     for (let i = 0; i < this.items.length; i++) {
       if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
         if (this.items[i].quality > 0) {
