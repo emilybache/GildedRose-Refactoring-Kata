@@ -31,6 +31,7 @@ Whichever testing approach you choose, the idea of the exercise is to do some de
 - [ไทย](GildedRoseRequirements_th.md)
 - [中文](GildedRoseRequirements_zh.txt)
 - [한국어](GildedRoseRequirements_kr.md)
+- [German](GildedRoseRequirements_de.md)
 
 ## Text-Based Approval Testing
 
