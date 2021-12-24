@@ -9,7 +9,7 @@ class Item {
 //This class will hold the rules for the items. making it easier to accomodate future additions to the shop
 class Rules {
   constructor(dailyQualityChangeValue, maxQuality, minQuality, tenDayChange, fiveDayChange,
-    isZeroDayQualityDrop, zeroDayQualityValue, isSellInValueChangeAllowed, isConcert) {
+    isZeroDayQualityDrop, zeroDayQualityValue, isSellInValueChangeAllowed) {
     this.dailyQualityChangeValue = dailyQualityChangeValue;
     this.maxQuality = maxQuality;
     this.minQuality = minQuality;
@@ -18,7 +18,6 @@ class Rules {
     this.isZeroDayQualityDrop = isZeroDayQualityDrop;
     this.zeroDayQualityValue = zeroDayQualityValue;
     this.isSellInValueChangeAllowed = isSellInValueChangeAllowed;
-    this.isConcert = isConcert;
   }
 }
 
@@ -28,13 +27,13 @@ class Shop {
   }
 
 
-  updateQualityNew() {
+  updateQuality() {
     const rules = {
-      'Aged Brie': new Rules(1, 50, 0, 1, 1, false, 0, true, false),
-      'Backstage passes to a TAFKAL80ETC concert': new Rules(1, 50, 0, 2, 3, true, 0, true, true),
-      'Sulfuras, Hand of Ragnaros': new Rules(0, Infinity, 0, 0, 0, false, 0, false, false),
-      'Conjured Mana Cake': new Rules(-2, 50, 0, -2, -2, false, 0, true, false),
-      'DEFAULT': new Rules(-1, 50, 0, -1, -1, false, 0, true, false)
+      'Aged Brie': new Rules(1, 50, 0, 1, 1, false, 0, true),
+      'Backstage passes to a TAFKAL80ETC concert': new Rules(1, 50, 0, 2, 3, true, 0, true),
+      'Sulfuras, Hand of Ragnaros': new Rules(0, Infinity, 0, 0, 0, false, 0, false),
+      'Conjured Mana Cake': new Rules(-2, 50, 0, -2, -2, false, 0, true),
+      'DEFAULT': new Rules(-1, 50, 0, -1, -1, false, 0, true)
     }
     //1. Iterate over the item list
     for (let i = 0; i < this.items.length; i++) {
@@ -54,13 +53,10 @@ class Shop {
   }
 
   applyRule(itemObj, ruleObj) {
-    //Decrease the sellin value 
     if (itemObj.sellIn <= 0 && !ruleObj.isZeroDayQualityDrop) {
       //if sell in day is less than 0 then add the quality by 2 times dailyChangeValue 
-      //Not applicable for concert tickets
-      if (!itemObj.isConcert) {
-        itemObj.quality = itemObj.quality + 2 * ruleObj.dailyQualityChangeValue;
-      }
+      //Not applicable for concert tickets aka zero day quality drop items
+      itemObj.quality = itemObj.quality + 2 * ruleObj.dailyQualityChangeValue;
     } else if (itemObj.sellIn <= 0 && ruleObj.isZeroDayQualityDrop) {
       /*
       if sell in day is 0 and quality drop is required on 0 day
@@ -111,55 +107,55 @@ class Shop {
     }
   }
 
-  updateQuality() {
-    for (let i = 0; i < this.items.length; i++) {
-      if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-        if (this.items[i].quality > 0) {
-          if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-            this.items[i].quality = this.items[i].quality - 1;
-          }
-        }
-      } else {
-        if (this.items[i].quality < 50) {
-          this.items[i].quality = this.items[i].quality + 1;
-          if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
-            if (this.items[i].sellIn < 11) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-            if (this.items[i].sellIn < 6) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-          }
-        }
-      }
-      if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
-      }
-      if (this.items[i].sellIn < 0) {
-        if (this.items[i].name != 'Aged Brie') {
-          if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-            if (this.items[i].quality > 0) {
-              if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-                this.items[i].quality = this.items[i].quality - 1;
-              }
-            }
-          } else {
-            this.items[i].quality = this.items[i].quality - this.items[i].quality;
-          }
-        } else {
-          if (this.items[i].quality < 50) {
-            this.items[i].quality = this.items[i].quality + 1;
-          }
-        }
-      }
-    }
+  // updateQuality() {
+  //   for (let i = 0; i < this.items.length; i++) {
+  //     if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
+  //       if (this.items[i].quality > 0) {
+  //         if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
+  //           this.items[i].quality = this.items[i].quality - 1;
+  //         }
+  //       }
+  //     } else {
+  //       if (this.items[i].quality < 50) {
+  //         this.items[i].quality = this.items[i].quality + 1;
+  //         if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
+  //           if (this.items[i].sellIn < 11) {
+  //             if (this.items[i].quality < 50) {
+  //               this.items[i].quality = this.items[i].quality + 1;
+  //             }
+  //           }
+  //           if (this.items[i].sellIn < 6) {
+  //             if (this.items[i].quality < 50) {
+  //               this.items[i].quality = this.items[i].quality + 1;
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //     if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
+  //       this.items[i].sellIn = this.items[i].sellIn - 1;
+  //     }
+  //     if (this.items[i].sellIn < 0) {
+  //       if (this.items[i].name != 'Aged Brie') {
+  //         if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
+  //           if (this.items[i].quality > 0) {
+  //             if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
+  //               this.items[i].quality = this.items[i].quality - 1;
+  //             }
+  //           }
+  //         } else {
+  //           this.items[i].quality = this.items[i].quality - this.items[i].quality;
+  //         }
+  //       } else {
+  //         if (this.items[i].quality < 50) {
+  //           this.items[i].quality = this.items[i].quality + 1;
+  //         }
+  //       }
+  //     }
+  //   }
 
-    return this.items;
-  }
+  //   return this.items;
+  // }
 
 
 }
