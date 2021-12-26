@@ -1,18 +1,22 @@
-﻿using Xunit;
+﻿
+using GildedRoseKata;
+
 using System;
 using System.IO;
 using System.Text;
-using ApprovalTests;
-using ApprovalTests.Reporters;
-using GildedRoseKata;
+using System.Threading.Tasks;
+
+using VerifyXunit;
+
+using Xunit;
 
 namespace GildedRoseTests
 {
-    [UseReporter(typeof(DiffReporter))]
+    [UsesVerify]
     public class ApprovalTest
     {
         [Fact]
-        public void ThirtyDays()
+        public Task ThirtyDays()
         {
             var fakeoutput = new StringBuilder();
             Console.SetOut(new StringWriter(fakeoutput));
@@ -21,7 +25,7 @@ namespace GildedRoseTests
             Program.Main(new string[] { });
             var output = fakeoutput.ToString();
 
-            Approvals.Verify(output);
+            return Verifier.Verify(output);
         }
     }
 }
