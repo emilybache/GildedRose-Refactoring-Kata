@@ -26,6 +26,6 @@ Kürzlich haben wir einen Lieferanten für "beschworene" (`conjured`) Artikel un
 * "Beschworene" Artikel verlieren doppelt so schnell an Qualität wie normale Gegenstände
 
 Solange alles einwandfrei funktioniert kannst Du beliebige Änderungen an der Methode `updateQuality` vornehmen und so viel Code hinzufügen wie Du möchtest. Aber Vorsicht: Die `Item`-Klasse oder ihre Eigenschaften darfst Du in keiner Weise ändern, denn diese Klasse gehört dem Kobold in der Ecke, welcher sofort wütend wird und Dich sofort töten würde, denn er glaubt nicht an die Kultur von gemeinsamem Code (`shared code`). 
-(Wenn Du möchtest kannst Du die `updateQuality`-Methode und die `Item`-Eigenschaften statisch machen, das regeln wir dann.) 
+(Wenn Du möchtest kannst Du die `updateQuality`-Methode und die `Item`-Eigenschaft statisch machen, das regeln wir dann.) 
 
 Sicherheitshalber noch ein Hinweis: Die Qualität eines Artikels kann nie höher als 50 sein, aber `Sulfuras` ist ein legendärer Artikel und als solcher beträgt seine Qualität 80 und ändert sich auch nie. 
