@@ -46,16 +46,7 @@
 (defmodule gilded-rose
   (export all))
 
-;;; Item
-
-(defrecord item
-  name sellin quality)
-
-;; for external use by 'import'
-(defun make-item (name sellin quality)
-  (make-item name name sellin sellin quality quality))
-(defun item-name (item)
-  (item-name item))
+(include-lib "include/gilded-rose-item.lfe")
 
 ;; update-quality
 
