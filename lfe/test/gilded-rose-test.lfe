@@ -9,5 +9,5 @@
 (include-lib "include/gilded-rose-item.lfe")
 
 (deftest update-quality-test
-  (is-equal "foo" (item-name (car (update-quality
-                                   (list (make-item name "foo" sellin 0 quality 0)))))))
+  (is-equal "fixme" (item-name (car (update-quality
+                                     (list (make-item name "foo" sellin 0 quality 0)))))))
