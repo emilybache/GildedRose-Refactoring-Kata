@@ -1,4 +1,4 @@
-import { Item, GildedRose } from '@/gilded-rose';
+import { Item, GildedRose } from '../app/gilded-rose';
 
 const items = [
   new Item("+5 Dexterity Vest", 10, 20), //
@@ -14,7 +14,12 @@ const items = [
 
 
 const gildedRose = new GildedRose(items);
-var days: number = 2;
+
+let days: number = 2;
+if (process.argv.length > 2) {
+    days = +process.argv[2];
+  }
+
 for (let i = 0; i < days; i++) {
   console.log("-------- day " + i + " --------");
   console.log("name, sellIn, quality");
