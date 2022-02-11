@@ -1,16 +1,3 @@
-export const RULES = [
-  {
-    name: "Aged Brie",
-    qualityPerDay: 1,
-    staticQuality: undefined,
-  },
-  {
-    name: "Backstage passes to a TAFKAL80ETC concert",
-    qualityPerDay: 1,
-    staticQuality: undefined,
-  }
-]
-
 export class Item {
   name: string;
   sellIn: number;
