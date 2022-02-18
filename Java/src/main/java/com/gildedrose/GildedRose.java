@@ -51,27 +51,35 @@ class GildedRose {
             }
 
             // ----- Block 3 ----- Item sell date is less than 0
-            if (item.sellIn < 0) {
+            handleIfExpired(item);
+        }
+    }
 
-                // Reduce quality of items by - 1 if greater than 0 and not AB, BptaTc or SHoR
-                if (!item.name.equals("Aged Brie")) {
-                    if (!item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (item.quality > 0) {
-                            if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                                item.quality = item.quality - 1;
-                            }
-                        }
-                    } else {
-                        // Item quality goes to 0 of BptaTc as item sell date is less than 0
-                        item.quality = item.quality - item.quality;
-                    }
+    private void handleIfExpired(Item item) {
+        if (item.sellIn < 0) {
 
-                // Increase quality of item if AB
-                } else {
-                    if (item.quality < 50) {
-                        item.quality = item.quality + 1;
+            handleExpired(item);
+        }
+    }
+
+    private void handleExpired(Item item) {
+        // Reduce quality of items by - 1 if greater than 0 and not AB, BptaTc or SHoR
+        if (!item.name.equals("Aged Brie")) {
+            if (!item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+                if (item.quality > 0) {
+                    if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
+                        item.quality = item.quality - 1;
                     }
                 }
+            } else {
+                // Item quality goes to 0 of BptaTc as item sell date is less than 0
+                item.quality = item.quality - item.quality;
+            }
+
+        // Increase quality of item if AB
+        } else {
+            if (item.quality < 50) {
+                item.quality = item.quality + 1;
             }
         }
     }
