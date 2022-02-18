@@ -84,3 +84,5 @@ class GildedRose {
         }
     }
 }
+
+// Link https://www.youtube.com/watch?v=RJdoeUocVUk&t=285s
