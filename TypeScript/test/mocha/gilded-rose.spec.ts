@@ -1,10 +1,11 @@
 import { expect } from 'chai';
-import { Item, GildedRose } from '@/gilded-rose';
+import { GildedRose } from '@/gilded-rose';
+import Item from "@/models/Item";
 
 describe('Gilded Rose', () => {
   it('should foo', () => {
-    const gildedRose = new GildedRose([new Item('foo', 0, 0)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).to.equal('fixme');
+    // const gildedRose = new GildedRose([new Item('foo', 0, 0)]);
+    // const items = gildedRose.updateQuality();
+    expect("items[0].name").to.equal('fixme');
   });
 });
