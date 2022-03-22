@@ -3,78 +3,65 @@ package com.gildedrose;
 class GildedRose {
     Item[] items;
 
-    String itemName;
-    int itemQuality;
-    int itemSellIn;
-
     public GildedRose(Item[] items) {
         this.items = items;
     }
 
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
-            itemName = items[i].name;
-            itemQuality = items[i].quality;
-            itemSellIn = items[i].sellIn;
+            String itemName = items[i].name;
+            int itemQuality = items[i].quality;
+            int itemSellIn = items[i].sellIn;
 
-            if (!itemIsAgedBrie(itemName)
-                    && !itemIsBackstagePasses(itemName)) {
-                if (itemQuality > 0) {
-                    if (!itemIsSulfuras(itemName)) {
-                        decreaseByOne(itemQuality);
-                    }
-                }
-            } else {
-                if (itemQuality < 50) {
-                    itemQuality = itemQuality + 1;
-
-                    if (itemIsBackstagePasses(itemName)) {
-                        if (itemSellIn < 11) {
-                            if (itemQuality < 50) {
-                                increaseByOne(itemQuality);
-                            }
-                        }
-
-                        if (itemSellIn < 6) {
-                            if (itemQuality < 50) {
-                                increaseByOne(itemQuality);
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (!itemIsSulfuras(itemName)) {
-                decreaseByOne(itemSellIn);
-            }
+            adjustQualityNotation(itemName, itemQuality, itemSellIn);
+            lowerSellInNotation(itemName, itemSellIn);
 
             if (itemSellIn < 0) {
-                if (!itemIsAgedBrie(itemName)) {
-                    if (!itemIsBackstagePasses(itemName)) {
-                        if (itemQuality > 0) {
-                            if (!itemIsSulfuras(itemName)) {
-                                decreaseByOne(itemQuality);
-                            }
-                        }
-                    } else {
-                        decreaseByOne(itemQuality);
-                    }
-                } else {
-                    if (itemQuality < 50) {
+                if (isDecreasableItem(itemName, itemQuality)) {
+                    decreaseByOne(itemQuality);
+                } else if (itemQuality < 50) {
                         increaseByOne(itemQuality);
-                    }
                 }
             }
         }
     }
 
-    public void increaseByOne (int itemValue) {
-        itemValue++;
+    public void adjustQualityNotation(String itemName, int itemQuality, int itemSellIn) {
+        if (isDecreasableItem(itemName, itemQuality)) {
+            decreaseByOne(itemQuality);
+        } else if (qualityLowerThanFifty(itemQuality)) {
+                increaseByOne(itemQuality);
+                backstagePassesExtraQualityCheck(itemName, itemQuality, itemSellIn);
+        }
     }
 
-    public void decreaseByOne (int itemValue) {
-        itemValue--;
+    public void backstagePassesExtraQualityCheck(String itemName, int itemQuality, int itemSellIn) {
+        if (itemIsBackstagePasses(itemName) && qualityLowerThanFifty(itemQuality)) {
+            if (itemSellIn < 11) {
+                increaseByOne(itemQuality);
+            }
+
+            if (itemSellIn < 6) {
+                increaseByOne(itemQuality);
+            }
+        }
     }
+
+    public void lowerSellInNotation(String itemName, int itemSellIn) {
+        if (!itemIsSulfuras(itemName)) {
+            decreaseByOne(itemSellIn);
+        }
+    }
+
+    public int increaseByOne (int incomingValue) {
+        return incomingValue += 1;
+    }
+
+    public int decreaseByOne (int incomingValue) {
+        return incomingValue -= 1;
+    }
+
+
 
     public boolean itemIsSulfuras(String itemName) {
         return ProjectConstants.SULFURAS.equals(itemName) ? true : false;
@@ -86,5 +73,20 @@ class GildedRose {
 
     public boolean itemIsAgedBrie(String itemName) {
         return ProjectConstants.AGED_BRIE.equals(itemName) ? true : false;
+    }
+
+    public boolean qualityHigherThanZero(int itemQuality) {
+        return itemQuality > 0;
+    }
+
+    public boolean qualityLowerThanFifty(int itemQuality) {
+        return itemQuality < 50;
+    }
+
+    public boolean isDecreasableItem(String itemName, int itemQuality) {
+        return qualityHigherThanZero(itemQuality) &&
+            !itemIsAgedBrie(itemName) &&
+            !itemIsBackstagePasses(itemName) &&
+            !itemIsSulfuras(itemName);
     }
 }

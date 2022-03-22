@@ -12,37 +12,61 @@ public class GildedRoseTest {
 
     GildedRose app;
 
+    Item[] items;
+
     @BeforeAll
     public void init() {
-        Item[] items = new Item[] { new Item(ProjectConstants.SULFURAS, 0, 0) };
+        items = new Item[] { new Item(ProjectConstants.SULFURAS, 0, 0),
+                                new Item(ProjectConstants.ELIXIR, 2, 54) };
         app = new GildedRose(items);
     }
 
     @Test
-    public void increaseByOne() {
-        int initial = 2;
-        app.increaseByOne(initial);
-        assertEquals("3", initial);
+    public void increaseByOneTest() {
+        int result = app.increaseByOne(2);
+        assertEquals(3, result);
     }
 
     @Test
-    public void decreaseByOne() {
-        int initial = 2;
-        app.decreaseByOne(initial);
-        assertEquals("1", initial);
+    public void decreaseByOneTest() {
+        int result = app.decreaseByOne(2);
+        assertEquals(1, result);
     }
 
     @Test
-    public void itemIsSulfuras() {
+    public void itemIsSulfurasTest() {
         String itemName = app.items[0].name;
         boolean result = app.itemIsSulfuras(itemName);
         assertTrue(result);
     }
 
     @Test
-    public void ItemIsAgedBrieFalse() {
+    public void ItemIsAgedBrieFalseTest() {
         String itemName = app.items[0].name;
         boolean result = app.itemIsAgedBrie(itemName);
         assertFalse(result);
+    }
+
+    @Test
+    public void qualityComparisonTest() {
+        int firstItemQuality = app.items[0].quality;
+        int secondItemQuality = app.items[1].quality;
+
+        assertFalse(app.qualityHigherThanZero(firstItemQuality));
+        assertTrue(app.qualityHigherThanZero(secondItemQuality));
+
+        assertTrue(app.qualityLowerThanFifty(firstItemQuality));
+        assertFalse(app.qualityLowerThanFifty(secondItemQuality));
+    }
+
+    @Test
+    public void isDecreaseItemTest() {
+        String firstItemName = app.items[0].name;
+        int firstItemQuality = app.items[0].quality;
+        String secondItemName = app.items[1].name;
+        int secondItemQuality = app.items[1].quality;
+
+        assertFalse(app.isDecreasableItem(firstItemName, firstItemQuality));
+        assertTrue(app.isDecreasableItem(secondItemName, secondItemQuality));
     }
 }
