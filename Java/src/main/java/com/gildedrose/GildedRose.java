@@ -3,60 +3,88 @@ package com.gildedrose;
 class GildedRose {
     Item[] items;
 
+    String itemName;
+    int itemQuality;
+    int itemSellIn;
+
     public GildedRose(Item[] items) {
         this.items = items;
     }
 
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
-            if (!items[i].name.equals("Aged Brie")
-                    && !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (items[i].quality > 0) {
-                    if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                        items[i].quality = items[i].quality - 1;
+            itemName = items[i].name;
+            itemQuality = items[i].quality;
+            itemSellIn = items[i].sellIn;
+
+            if (!itemIsAgedBrie(itemName)
+                    && !itemIsBackstagePasses(itemName)) {
+                if (itemQuality > 0) {
+                    if (!itemIsSulfuras(itemName)) {
+                        decreaseByOne(itemQuality);
                     }
                 }
             } else {
-                if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
+                if (itemQuality < 50) {
+                    itemQuality = itemQuality + 1;
 
-                    if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (items[i].sellIn < 11) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
+                    if (itemIsBackstagePasses(itemName)) {
+                        if (itemSellIn < 11) {
+                            if (itemQuality < 50) {
+                                increaseByOne(itemQuality);
                             }
                         }
 
-                        if (items[i].sellIn < 6) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
+                        if (itemSellIn < 6) {
+                            if (itemQuality < 50) {
+                                increaseByOne(itemQuality);
                             }
                         }
                     }
                 }
             }
 
-            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                items[i].sellIn = items[i].sellIn - 1;
+            if (!itemIsSulfuras(itemName)) {
+                decreaseByOne(itemSellIn);
             }
 
-            if (items[i].sellIn < 0) {
-                if (!items[i].name.equals("Aged Brie")) {
-                    if (!items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (items[i].quality > 0) {
-                            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                                items[i].quality = items[i].quality - 1;
+            if (itemSellIn < 0) {
+                if (!itemIsAgedBrie(itemName)) {
+                    if (!itemIsBackstagePasses(itemName)) {
+                        if (itemQuality > 0) {
+                            if (!itemIsSulfuras(itemName)) {
+                                decreaseByOne(itemQuality);
                             }
                         }
                     } else {
-                        items[i].quality = items[i].quality - items[i].quality;
+                        decreaseByOne(itemQuality);
                     }
                 } else {
-                    if (items[i].quality < 50) {
-                        items[i].quality = items[i].quality + 1;
+                    if (itemQuality < 50) {
+                        increaseByOne(itemQuality);
                     }
                 }
             }
         }
+    }
+
+    public void increaseByOne (int itemValue) {
+        itemValue++;
+    }
+
+    public void decreaseByOne (int itemValue) {
+        itemValue--;
+    }
+
+    public boolean itemIsSulfuras(String itemName) {
+        return ProjectConstants.SULFURAS.equals(itemName) ? true : false;
+    }
+
+    public boolean itemIsBackstagePasses(String itemName) {
+        return ProjectConstants.BACKSTAGE_PASSES.equals(itemName) ? true : false;
+    }
+
+    public boolean itemIsAgedBrie(String itemName) {
+        return ProjectConstants.AGED_BRIE.equals(itemName) ? true : false;
     }
 }
