@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use GildedRose\Core\Container;
 use GildedRose\GildedRose;
 use GildedRose\Item;
 
@@ -22,7 +23,7 @@ $items = [
     new Item('Conjured Mana Cake', 3, 6),
 ];
 
-$app = new GildedRose($items);
+$app = (new Container())->get(GildedRose::class, [$items]);
 
 $days = 2;
 if (count($argv) > 1) {
