@@ -5,14 +5,17 @@ declare(strict_types=1);
 namespace Tests;
 
 use GildedRose\GildedRose;
-use GildedRose\Item;
+use GildedRose\Item\AgedBrieItem;
+use GildedRose\Item\BackstagePassItem;
+use GildedRose\Item\NormalItem;
+use GildedRose\Item\SulfurasItem;
 use PHPUnit\Framework\TestCase;
 
 class GildedRoseTest extends TestCase
 {
     public function testQualityNeverIsNegative(): void
     {
-        $items = [new Item("foo", 0, 0)];
+        $items = [new NormalItem("foo", 0, 0)];
         $app = new GildedRose($items);
 
         $app->updateQuality();
@@ -22,7 +25,7 @@ class GildedRoseTest extends TestCase
 
     public function testSulfurasCouldNotBeSold(): void
     {
-        $items = [new Item("Sulfuras, Hand of Ragnaros", 10, 0)];
+        $items = [new SulfurasItem("Sulfuras, Hand of Ragnaros", 10, 0)];
         $app = new GildedRose($items);
 
         $app->updateQuality();
@@ -32,7 +35,7 @@ class GildedRoseTest extends TestCase
 
     public function testSulfurasCouldNotDecreaseQuality(): void
     {
-        $items = [new Item("Sulfuras, Hand of Ragnaros", 10, 10)];
+        $items = [new SulfurasItem("Sulfuras, Hand of Ragnaros", 10, 10)];
         $app = new GildedRose($items);
 
         $app->updateQuality();
@@ -42,7 +45,7 @@ class GildedRoseTest extends TestCase
 
     public function testQualityCouldNotBeMoreThanFifty(): void
     {
-        $items = [new Item("Aged Brie", 10, 50)];
+        $items = [new AgedBrieItem("Aged Brie", 10, 50)];
         $app = new GildedRose($items);
 
         $app->updateQuality();
@@ -52,7 +55,7 @@ class GildedRoseTest extends TestCase
 
     public function testItemWithDatePassedQualityDecreaseByTwice(): void
     {
-        $items = [new Item("foo", -1, 40)];
+        $items = [new NormalItem("foo", -1, 40)];
         $app = new GildedRose($items);
 
         $app->updateQuality();
@@ -62,7 +65,7 @@ class GildedRoseTest extends TestCase
 
     public function testAgedBrieIncreaseQualityWhenItGetsOlder(): void
     {
-        $items = [new Item("Aged Brie", 1, 40)];
+        $items = [new AgedBrieItem("Aged Brie", 1, 40)];
         $app = new GildedRose($items);
 
         $app->updateQuality();
@@ -72,7 +75,7 @@ class GildedRoseTest extends TestCase
 
     public function testAgedBrieIncreaseByTwoQualityWhenDatePassed(): void
     {
-        $items = [new Item("Aged Brie", -1, 40)];
+        $items = [new AgedBrieItem("Aged Brie", -1, 40)];
         $app = new GildedRose($items);
 
         $app->updateQuality();
@@ -81,7 +84,7 @@ class GildedRoseTest extends TestCase
     }
 
     public function testAgedBrieIncreaseByTwoQualityWhenDatePassedAndNotMoreThanFifty() {
-        $items = [new Item("Aged Brie", -1, 50)];
+        $items = [new AgedBrieItem("Aged Brie", -1, 50)];
         $app = new GildedRose($items);
 
         $app->updateQuality();
@@ -90,7 +93,7 @@ class GildedRoseTest extends TestCase
     }
 
     public function testBackstagePassesIncreaseQualityByTwoWhenSelinLessThanTen() {
-        $items = [new Item("Backstage passes to a TAFKAL80ETC concert", 10, 40)];
+        $items = [new BackstagePassItem("Backstage passes to a TAFKAL80ETC concert", 10, 40)];
         $app = new GildedRose($items);
 
         $app->updateQuality();
@@ -99,7 +102,7 @@ class GildedRoseTest extends TestCase
     }
 
     public function testBackstagePassesIncreaseQualityByTwoWhenSellinLessThanSix() {
-        $items = [new Item("Backstage passes to a TAFKAL80ETC concert", 6, 40)];
+        $items = [new BackstagePassItem("Backstage passes to a TAFKAL80ETC concert", 6, 40)];
         $app = new GildedRose($items);
 
         $app->updateQuality();
@@ -108,7 +111,7 @@ class GildedRoseTest extends TestCase
     }
 
     public function testBackstagePassesIncreaseQualityByThreeWhenSellinLessThanFive() {
-        $items = [new Item("Backstage passes to a TAFKAL80ETC concert", 5, 40)];
+        $items = [new BackstagePassItem("Backstage passes to a TAFKAL80ETC concert", 5, 40)];
         $app = new GildedRose($items);
 
         $app->updateQuality();
@@ -117,7 +120,7 @@ class GildedRoseTest extends TestCase
     }
 
     public function testBackstagePassesIncreaseQualityByTwoWhenSellinLessThanSixAndNotMoreThanFifty() {
-        $items = [new Item("Backstage passes to a TAFKAL80ETC concert", 6, 49)];
+        $items = [new BackstagePassItem("Backstage passes to a TAFKAL80ETC concert", 6, 49)];
         $app = new GildedRose($items);
 
         $app->updateQuality();
@@ -126,7 +129,7 @@ class GildedRoseTest extends TestCase
     }
 
     public function testBackstagePassesIncreaseQualityByThreeWhenSellinLessThanFiveAndNotMoreThanFifty() {
-        $items = [new Item("Backstage passes to a TAFKAL80ETC concert", 5, 48)];
+        $items = [new BackstagePassItem("Backstage passes to a TAFKAL80ETC concert", 5, 48)];
         $app = new GildedRose($items);
 
         $app->updateQuality();
@@ -135,7 +138,7 @@ class GildedRoseTest extends TestCase
     }
 
     public function testBackstagePassesQualityDropsToZeroAfterConcert() {
-        $items = [new Item("Backstage passes to a TAFKAL80ETC concert", 0, 40)];
+        $items = [new BackstagePassItem("Backstage passes to a TAFKAL80ETC concert", 0, 40)];
         $app = new GildedRose($items);
 
         $app->updateQuality();
@@ -144,7 +147,7 @@ class GildedRoseTest extends TestCase
     }
 
     public function testBackstagePassesQualityIncreaseQualityByOneWhenDateIsMoreThanTen() {
-        $items = [new Item("Backstage passes to a TAFKAL80ETC concert", 11, 40)];
+        $items = [new BackstagePassItem("Backstage passes to a TAFKAL80ETC concert", 11, 40)];
         $app = new GildedRose($items);
 
         $app->updateQuality();

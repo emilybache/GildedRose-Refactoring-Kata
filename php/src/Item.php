@@ -3,8 +3,7 @@
 declare(strict_types=1);
 
 namespace GildedRose;
-
-final class Item
+abstract class Item
 {
     public string $name;
 
@@ -24,7 +23,9 @@ final class Item
         return "{$this->name}, {$this->sellIn}, {$this->quality}";
     }
 
-    public function increaseQuality(): void
+    abstract public function update();
+
+    protected function increaseQuality(): void
     {
         if ($this->quality >= 50) {
             return;
@@ -32,7 +33,7 @@ final class Item
         $this->quality += 1;
     }
 
-    public function decreaseQuality(): void
+    protected function decreaseQuality(): void
     {
         if ($this->quality <= 0) {
             return;
