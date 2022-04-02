@@ -6,20 +6,11 @@ namespace GildedRose;
 
 final class Item
 {
-    /**
-     * @var string
-     */
-    public $name;
+    public string $name;
 
-    /**
-     * @var int
-     */
-    public $sellIn;
+    public int $sellIn;
 
-    /**
-     * @var int
-     */
-    public $quality;
+    public int $quality;
 
     public function __construct(string $name, int $sellIn, int $quality)
     {

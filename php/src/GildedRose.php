@@ -9,7 +9,7 @@ final class GildedRose
     /**
      * @var Item[]
      */
-    private $items;
+    private array $items;
 
     public function __construct(array $items)
     {
