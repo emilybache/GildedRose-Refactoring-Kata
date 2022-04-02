@@ -33,45 +33,30 @@ final class GildedRose
                     $item->quality = $item->quality + 1;
                     if ($item->name === 'Backstage passes to a TAFKAL80ETC concert') {
                         if ($item->sellIn < 11) {
-                            $this->increaseQuality($item);
+                            $item->increaseQuality();
                         }
                         if ($item->sellIn < 6) {
-                            $this->increaseQuality($item);
+                            $item->increaseQuality();
                         }
                     }
                 }
             } else {
-                $this->decreaseQuality($item);
+                $item->decreaseQuality();
             }
 
             $item->sellIn = $item->sellIn - 1;
 
             if ($item->sellIn < 0) {
                 if ($item->name === 'Aged Brie') {
-                    $this->increaseQuality($item);
+                    $item->increaseQuality();
                 } else {
                     if ($item->name === 'Backstage passes to a TAFKAL80ETC concert') {
                         $item->quality = $item->quality - $item->quality;
                     } else {
-                        $this->decreaseQuality($item);
+                        $item->decreaseQuality();
                     }
                 }
             }
-        }
-    }
-
-    private function increaseQuality(Item &$item): void
-    {
-        if ($item->quality >= 50) {
-            return;
-        }
-        $item->quality += 1;
-    }
-
-    private function decreaseQuality(Item &$item): void
-    {
-        if ($item->quality > 0) {
-            $item->quality -= 1;
         }
     }
 }
