@@ -14,22 +14,22 @@ final class Item
     /**
      * @var int
      */
-    public $sell_in;
+    public $sellIn;
 
     /**
      * @var int
      */
     public $quality;
 
-    public function __construct(string $name, int $sell_in, int $quality)
+    public function __construct(string $name, int $sellIn, int $quality)
     {
         $this->name = $name;
-        $this->sell_in = $sell_in;
+        $this->sellIn = $sellIn;
         $this->quality = $quality;
     }
 
     public function __toString(): string
     {
-        return "{$this->name}, {$this->sell_in}, {$this->quality}";
+        return "{$this->name}, {$this->sellIn}, {$this->quality}";
     }
 }
