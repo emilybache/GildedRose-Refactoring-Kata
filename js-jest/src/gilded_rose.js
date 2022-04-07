@@ -16,7 +16,8 @@ class Shop {
       const item = this.items[i];
       if (item.name === "Sulfuras, Hand of Ragnaros") continue;
 
-      item.sellIn = item.sellIn - 1;
+      item.sellIn -= 1;
+
       switch (item.name) {
         case "Aged Brie":
           this.updateAgedBrie(item);
@@ -33,39 +34,42 @@ class Shop {
     return this.items;
   }
   updateAgedBrie(item) {
-    if (item.quality < 50) {
-      item.quality = item.quality + 1;
-
-      if (item.sellIn < 0) {
-        item.quality = item.quality + 1;
-      }
-    }
-  }
-  updateBackstagePasses(item) {
-    if (item.quality < 50) {
-      item.quality = item.quality + 1;
-
-      if (item.sellIn < 10 && item.quality < 50) {
-        item.quality = item.quality + 1;
-      }
-      if (item.sellIn < 5 && item.quality < 50) {
-        item.quality = item.quality + 1;
-      }
-    }
+    let quality = item.quality;
 
     if (item.sellIn < 0) {
-      item.quality = item.quality - item.quality;
+      quality += 2;
+    } else {
+      quality += 1;
     }
+
+    item.quality = quality < 50 ? quality : 50;
+  }
+  updateBackstagePasses(item) {
+    let quality = item.quality;
+
+    if (item.sellIn < 0) {
+      quality = 0;
+    } else if (item.sellIn < 5) {
+      quality += 3;
+    } else if (item.sellIn < 10) {
+      quality += 2;
+    } else {
+      quality += 1;
+    }
+
+    item.quality = quality < 50 ? quality : 50;
   }
 
   updateTheOthers(item) {
-    if (item.quality > 0) {
-      item.quality = item.quality - 1;
+    let quality = item.quality;
 
-      if (item.sellIn < 0) {
-        item.quality = item.quality - 1;
-      }
+    if (item.sellIn < 0) {
+      quality -= 2;
+    } else {
+      quality -= 1;
     }
+
+    item.quality = quality > 0 ? quality : 0;
   }
 }
 
