@@ -62,7 +62,7 @@ export class AcceptanceGildedRose {
 }
 
 test('acceptance tests', () => {
-  const names = ['Aged Brie', 'Backstage passes to a TAFKAL80ETC concert', 'Sulfuras, Hand of Ragnaros']
+  const names = ['Aged Brie', 'Backstage passes to a TAFKAL80ETC concert', 'Sulfuras, Hand of Ragnaros', 'Other']
   const sellIns = [-1, 0, 1, 2, 5, 6, 7, 10, 11, 12, 13, 14, 15]
   const qualities = [-1, 1, 2, 48, 49, 50, 51]
 
