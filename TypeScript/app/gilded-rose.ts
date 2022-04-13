@@ -38,13 +38,9 @@ function updateItemSellIn({name, sellIn}: Item) {
 }
 
 function updateItemQuality({name, quality, sellIn, ...rest}: Item): number {
-  if (name === 'Sulfuras, Hand of Ragnaros') {
-    return quality
-  }
+  if (name === 'Sulfuras, Hand of Ragnaros') return quality
   
-  if (name == 'Aged Brie') {
-    return incrementQuality({quality});
-  }
+  if (name == 'Aged Brie') return incrementQuality({quality});
 
   if (name == 'Backstage passes to a TAFKAL80ETC concert') {
     let itemCopy = { name, quality, sellIn, ...rest }
