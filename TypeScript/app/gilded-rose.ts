@@ -33,57 +33,39 @@ export class GildedRose {
 }
 
 
-function updateItemQuality(item: Item): number {
-  if (item.name === 'Sulfuras, Hand of Ragnaros') {
-    return item.quality
+function updateItemQuality({name, quality, sellIn, ...rest}: Item): number {
+  if (name === 'Sulfuras, Hand of Ragnaros') {
+    return quality
   }
   
-  if (item.name == 'Aged Brie') {
-    return incrementQuality(item);
-  }
-
-  if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
-    let itemCopy = { ...item }
-    itemCopy.quality = incrementQuality(itemCopy);
-    if (item.sellIn < 11) itemCopy.quality = incrementQuality(itemCopy)
-    if (item.sellIn < 6) itemCopy.quality = incrementQuality(itemCopy)
-    return itemCopy.quality
-  }
-
-  if (item.quality > 0) {
-    return item.quality - 1
-  }
-
-  return item.quality
-}
-
-
-function incrementQuality(item: Item): number {
-  if (item.quality < 50) {
-    return item.quality + 1
-  }
-  return item.quality
-}
-
-function sellInBelow0({quality, name, sellIn}: Item): number {
-  if (sellIn >= 0) return quality
-
-  if (name == 'Sulfuras, Hand of Ragnaros') return quality;
-
   if (name == 'Aged Brie') {
-    if (quality < 50) {
-      return quality + 1
-    }
-    return quality
+    return incrementQuality({quality});
   }
 
   if (name == 'Backstage passes to a TAFKAL80ETC concert') {
-    return 0
-  } 
-
-  if (quality > 0) {
-    return quality - 1
+    let itemCopy = { name, quality, sellIn, ...rest }
+    itemCopy.quality = incrementQuality(itemCopy);
+    if (sellIn < 11) itemCopy.quality = incrementQuality(itemCopy)
+    if (sellIn < 6) itemCopy.quality = incrementQuality(itemCopy)
+    return itemCopy.quality
   }
 
+  return quality > 0 ? quality - 1 : quality
+}
+
+function sellInBelow0({ quality, name, sellIn }: Item): number {
+  if (sellIn >= 0) return quality
+
+  if (name == 'Sulfuras, Hand of Ragnaros') return quality
+
+  if (name == 'Aged Brie') return incrementQuality({quality})
+
+  if (name == 'Backstage passes to a TAFKAL80ETC concert') return 0
+   
+  return quality > 0 ? quality - 1 : quality
+}
+
+function incrementQuality({ quality }: Pick<Item, 'quality'>): number {
+  if (quality < 50) return quality + 1
   return quality
 }
