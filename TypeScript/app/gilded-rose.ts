@@ -32,11 +32,12 @@ export class GildedRose {
   }
 
   private updateItemQuality(item: Item): number {
-    if (item.name === 'Sulfuras, Hand of Ragnaros') return item.quality
+    if (item.name === 'Sulfuras, Hand of Ragnaros') {
+      return item.quality
+    }
     
     if (item.name == 'Aged Brie') {
-      item.quality = this.incrementQuality(item);
-      return item.quality
+      return this.incrementQuality(item);
     }
 
     if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
@@ -47,8 +48,7 @@ export class GildedRose {
     }
 
     if (item.quality > 0) {
-      item.quality = item.quality - 1
-      return item.quality
+      return item.quality - 1
     }
 
     return item.quality
