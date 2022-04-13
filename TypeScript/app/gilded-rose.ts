@@ -26,8 +26,8 @@ export class GildedRose {
 
 function updateItems(items: Item[]): Item[] {
   return items 
-    .map((item) => ({ ...item, quality: updateItemQuality(item) }))
-    .map((item) => ({ ...item, sellIn: updateItemSellIn(item) }))
+    .map(item => ({ ...item, quality: updateItemQuality(item) }))
+    .map(item => ({ ...item, sellIn: updateItemSellIn(item) }))
     .map(item => ({ ...item, quality: updateExpiredItemQuality(item) }))
 }
 
