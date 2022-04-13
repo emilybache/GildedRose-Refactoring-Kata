@@ -1,7 +1,7 @@
 import { Item, GildedRose } from '@/gilded-rose'
 
 /**
- * A copy of the unrefactored GildedRose class which will be used for acceptance tests
+ * A copy of the unrefactored GildedRose class used for acceptance tests
  */
 export class AcceptanceGildedRose {
   items: Array<Item>
