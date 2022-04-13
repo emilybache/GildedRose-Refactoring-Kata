@@ -45,32 +45,32 @@ export class GildedRose {
       if (item.name != 'Sulfuras, Hand of Ragnaros') {
         item.sellIn = item.sellIn - 1;
       }
-      item.quality = this.sellInBelow0(item)
+      item.quality = sellInBelow0(item)
     })
 
     return this.items;
   }
+}
 
-  private sellInBelow0({quality, name, sellIn}: Item): number {
-    if (sellIn >= 0) return quality
+function sellInBelow0({quality, name, sellIn}: Item): number {
+  if (sellIn >= 0) return quality
 
-    if (name == 'Sulfuras, Hand of Ragnaros') return quality;
+  if (name == 'Sulfuras, Hand of Ragnaros') return quality;
 
-    if (name == 'Aged Brie') {
-      if (quality < 50) {
-        return quality + 1
-      }
-      return quality
+  if (name == 'Aged Brie') {
+    if (quality < 50) {
+      return quality + 1
     }
-
-    if (name == 'Backstage passes to a TAFKAL80ETC concert') {
-      return 0
-    } 
-
-    if (quality > 0) {
-      return quality - 1
-    }
-
     return quality
   }
+
+  if (name == 'Backstage passes to a TAFKAL80ETC concert') {
+    return 0
+  } 
+
+  if (quality > 0) {
+    return quality - 1
+  }
+
+  return quality
 }
