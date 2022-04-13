@@ -4,10 +4,10 @@ import { Item, GildedRose } from '@/gilded-rose'
  * A copy of the unrefactored GildedRose class which will be used for acceptance tests
  */
 export class AcceptanceGildedRose {
-  items: Array<Item>;
+  items: Array<Item>
 
   constructor(items = [] as Array<Item>) {
-    this.items = items;
+    this.items = items
   }
 
   updateQuality() {
@@ -36,7 +36,7 @@ export class AcceptanceGildedRose {
         }
       }
       if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
+        this.items[i].sellIn = this.items[i].sellIn - 1
       }
       if (this.items[i].sellIn < 0) {
         if (this.items[i].name != 'Aged Brie') {
@@ -57,7 +57,7 @@ export class AcceptanceGildedRose {
       }
     }
 
-    return this.items;
+    return this.items
   }
 }
 
