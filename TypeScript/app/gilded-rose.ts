@@ -28,19 +28,13 @@ function updateItems(items: Item[]): Item[] {
   return items 
     .map((item) => ({ ...item, quality: updateItemQuality(item) }))
     .map((item) => ({ ...item, sellIn: updateItemSellIn(item) }))
-    .map(item => ({ ...item, quality: sellInBelow0(item) }))
+    .map(item => ({ ...item, quality: updateExpiredItemQuality(item) }))
 }
 
-function updateItemSellIn({name, sellIn}: Item) {
-  if (name == 'Sulfuras, Hand of Ragnaros') return sellIn
-
-  return sellIn - 1;
-}
-
-function updateItemQuality({name, quality, sellIn, ...rest}: Item): number {
+function updateItemQuality({ name, quality, sellIn, ...rest }: Item): number {
   if (name === 'Sulfuras, Hand of Ragnaros') return quality
   
-  if (name == 'Aged Brie') return incrementQuality({quality});
+  if (name == 'Aged Brie') return incrementQuality({ quality });
 
   if (name == 'Backstage passes to a TAFKAL80ETC concert') {
     let itemCopy = { name, quality, sellIn, ...rest }
@@ -50,15 +44,21 @@ function updateItemQuality({name, quality, sellIn, ...rest}: Item): number {
     return itemCopy.quality
   }
 
-  return decrementQuality({quality})
+  return decrementQuality({ quality })
 }
 
-function sellInBelow0({ quality, name, sellIn }: Item): number {
+function updateItemSellIn({ name, sellIn }: Item) {
+  if (name == 'Sulfuras, Hand of Ragnaros') return sellIn
+
+  return sellIn - 1;
+}
+
+function updateExpiredItemQuality({ quality, name, sellIn }: Item): number {
   if (sellIn >= 0) return quality
 
   if (name == 'Sulfuras, Hand of Ragnaros') return quality
 
-  if (name == 'Aged Brie') return incrementQuality({quality})
+  if (name == 'Aged Brie') return incrementQuality({ quality })
 
   if (name == 'Backstage passes to a TAFKAL80ETC concert') return 0
    
