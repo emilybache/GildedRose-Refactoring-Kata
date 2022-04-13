@@ -18,16 +18,10 @@ export class GildedRose {
   }
 
   updateQuality() {
-    this.items = this.items.map((item) => ({
-      ...item,
-      quality: updateItemQuality(item)
-    })).map((item) => ({
-      ...item,
-      sellIn: updateItemSellIn(item)
-    })).map(item => ({
-      ...item,
-      quality: sellInBelow0(item)
-    }))
+    this.items = this.items
+      .map((item) => ({ ...item, quality: updateItemQuality(item) }))
+      .map((item) => ({ ...item, sellIn: updateItemSellIn(item) }))
+      .map(item => ({ ...item, quality: sellInBelow0(item) }))
     return this.items;
   }
 }
