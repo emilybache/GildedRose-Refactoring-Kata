@@ -1,37 +1,37 @@
 export class Item {
-  name: string;
-  sellIn: number;
-  quality: number;
+  name: string
+  sellIn: number
+  quality: number
 
   constructor(name, sellIn, quality) {
-    this.name = name;
-    this.sellIn = sellIn;
-    this.quality = quality;
+    this.name = name
+    this.sellIn = sellIn
+    this.quality = quality
   }
 }
 
 export class GildedRose {
-  items: Array<Item>;
+  items: Array<Item>
 
   constructor(items = [] as Array<Item>) {
-    this.items = items;
+    this.items = items
   }
 
   updateQuality() {
-    this.items = updateItems(this.items)
-    return this.items;
+    this.items = [...updateItems(this.items)]
+    return this.items
   }
 }
 
 
-function updateItems(items: Item[]): Item[] {
+function updateItems(items: readonly Readonly<Item>[]): readonly Readonly<Item>[] {
   return items 
     .map(item => ({ ...item, quality: updateItemQuality(item) }))
     .map(item => ({ ...item, sellIn: updateItemSellIn(item) }))
     .map(item => ({ ...item, quality: updateExpiredItemQuality(item) }))
 }
 
-function updateItemQuality({ name, quality, sellIn, ...rest }: Item): number {
+function updateItemQuality({ name, quality, sellIn, ...rest }: Readonly<Item>): number {
   switch (name) {
     case 'Sulfuras, Hand of Ragnaros': return quality
     case 'Aged Brie': return incrementQuality({ quality });
@@ -46,14 +46,14 @@ function updateItemQuality({ name, quality, sellIn, ...rest }: Item): number {
   }
 }
 
-function updateItemSellIn({ name, sellIn }: Item) {
+function updateItemSellIn({ name, sellIn }: Readonly<Item>) {
   switch (name) {
     case 'Sulfuras, Hand of Ragnaros': return sellIn
     default: return sellIn - 1
   }
 }
 
-function updateExpiredItemQuality({ quality, name, sellIn }: Item): number {
+function updateExpiredItemQuality({ quality, name, sellIn }: Readonly<Item>): number {
   const isExpired = sellIn < 0
   if (!isExpired) return quality
 
@@ -65,12 +65,12 @@ function updateExpiredItemQuality({ quality, name, sellIn }: Item): number {
   }
 }
 
-function decrementQuality({ quality }: Pick<Item, 'quality'>): number {
+function decrementQuality({ quality }: Readonly<Pick<Item, 'quality'>>): number {
   if (quality < 1) return quality
   return quality - 1
 }
 
-function incrementQuality({ quality }: Pick<Item, 'quality'>): number {
+function incrementQuality({ quality }: Readonly<Pick<Item, 'quality'>>): number {
   if (quality >= 50) return quality
   return quality + 1
 }
