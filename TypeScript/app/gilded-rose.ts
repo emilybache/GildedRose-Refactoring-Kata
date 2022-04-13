@@ -79,7 +79,10 @@ function incrementQuality({ quality }: Readonly<Pick<Item, 'quality'>>): number 
   return quality + 1
 }
 
-function updateConjuredItemQuality(previousItem: Item, currentItem: Item | ConjuredItem): number {
+function updateConjuredItemQuality(
+  previousItem: Readonly<Item>,
+  currentItem: Readonly<Item | ConjuredItem>
+): number {
   const isConjured = 'conjured' in currentItem && currentItem.conjured
   if (!isConjured) return currentItem.quality
   const diff = previousItem.quality - currentItem.quality
