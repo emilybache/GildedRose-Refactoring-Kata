@@ -54,7 +54,8 @@ function updateItemSellIn({ name, sellIn }: Item) {
 }
 
 function updateExpiredItemQuality({ quality, name, sellIn }: Item): number {
-  if (sellIn >= 0) return quality
+  const isExpired = sellIn < 0
+  if (!isExpired) return quality
 
   switch (name) {
     case 'Sulfuras, Hand of Ragnaros': return quality
