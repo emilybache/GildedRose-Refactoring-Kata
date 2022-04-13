@@ -83,8 +83,8 @@ function updateConjuredItemQuality(
   previousItem: Readonly<Item>,
   currentItem: Readonly<Item | ConjuredItem>
 ): number {
-  const isConjured = 'conjured' in currentItem && currentItem.conjured
-  if (!isConjured) return currentItem.quality
+  const isItemConjured = 'conjured' in currentItem && currentItem.conjured
+  if (!isItemConjured) return currentItem.quality
   const diff = previousItem.quality - currentItem.quality
   if (diff >= 0) return currentItem.quality
 
