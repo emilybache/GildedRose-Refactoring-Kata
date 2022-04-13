@@ -50,7 +50,7 @@ function updateItemQuality({name, quality, sellIn, ...rest}: Item): number {
     return itemCopy.quality
   }
 
-  return quality > 0 ? quality - 1 : quality
+  return decrementQuality({quality})
 }
 
 function sellInBelow0({ quality, name, sellIn }: Item): number {
@@ -62,6 +62,10 @@ function sellInBelow0({ quality, name, sellIn }: Item): number {
 
   if (name == 'Backstage passes to a TAFKAL80ETC concert') return 0
    
+  return decrementQuality({quality})
+}
+
+function decrementQuality({ quality }: Pick<Item, 'quality'>): number {
   return quality > 0 ? quality - 1 : quality
 }
 
