@@ -24,11 +24,15 @@ export class GildedRose {
   }
 }
 
-function updateItems(items: readonly Readonly<Item>[]): readonly Readonly<Item>[] {
+function updateItems(items: readonly Readonly<Item | ConjuredItem>[]): readonly Readonly<Item | ConjuredItem>[] {
   return items 
     .map(item => ({ ...item, quality: updateItemQuality(item) }))
     .map(item => ({ ...item, sellIn: updateItemSellIn(item) }))
     .map(item => ({ ...item, quality: updateExpiredItemQuality(item) }))
+    .map((item, i) => {
+      const previousItem = items[i]
+      return ({ ...item, quality: updateConjuredItemQuality(previousItem, item) })
+    })
 }
 
 function updateItemQuality({ name, quality, sellIn, ...rest }: Readonly<Item>): number {
@@ -73,4 +77,13 @@ function decrementQuality({ quality }: Readonly<Pick<Item, 'quality'>>): number 
 function incrementQuality({ quality }: Readonly<Pick<Item, 'quality'>>): number {
   if (quality >= 50) return quality
   return quality + 1
+}
+
+function updateConjuredItemQuality(previousItem: Item, currentItem: Item | ConjuredItem): number {
+  const isConjured = 'conjured' in currentItem && currentItem.conjured
+  if (!isConjured) return currentItem.quality
+  const diff = previousItem.quality - currentItem.quality
+  if (diff >= 0) return currentItem.quality
+
+  return previousItem.quality - (diff * 2)
 }
