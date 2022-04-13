@@ -51,26 +51,26 @@ export class GildedRose {
     return this.items;
   }
 
-  private sellInBelow0(item: Item): number {
-    if (item.sellIn >= 0) return item.quality
+  private sellInBelow0({quality, name, sellIn}: Item): number {
+    if (sellIn >= 0) return quality
 
-    if (item.name == 'Sulfuras, Hand of Ragnaros') return item.quality;
+    if (name == 'Sulfuras, Hand of Ragnaros') return quality;
 
-    if (item.name == 'Aged Brie') {
-      if (item.quality < 50) {
-        return item.quality + 1
+    if (name == 'Aged Brie') {
+      if (quality < 50) {
+        return quality + 1
       }
-      return item.quality
+      return quality
     }
 
-    if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
+    if (name == 'Backstage passes to a TAFKAL80ETC concert') {
       return 0
     } 
 
-    if (item.quality > 0) {
-      return item.quality - 1
+    if (quality > 0) {
+      return quality - 1
     }
 
-    return item.quality
+    return quality
   }
 }
