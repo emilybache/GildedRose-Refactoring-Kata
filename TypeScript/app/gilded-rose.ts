@@ -31,9 +31,8 @@ export class GildedRose {
 }
 
 function updateSellIn(item: Item) {
-  if (item.name != 'Sulfuras, Hand of Ragnaros') {
-    item.sellIn = item.sellIn - 1;
-  }
+  if (item.name == 'Sulfuras, Hand of Ragnaros') return
+  item.sellIn = item.sellIn - 1;
 }
 
 function updateItemQuality({name, quality, sellIn, ...rest}: Item): number {
