@@ -20,12 +20,16 @@ export class GildedRose {
   updateQuality() {
     this.items.forEach((item, i) => {
       item.quality = updateItemQuality(item)
-
-      item.sellIn = updateItemSellIn(item)
-
-      item.quality = sellInBelow0(item)
     })
 
+
+    this.items.forEach((item, i) => {
+      item.sellIn = updateItemSellIn(item)
+    })
+
+    this.items.forEach((item, i) => {
+      item.quality = sellInBelow0(item)
+    })
     return this.items;
   }
 }
