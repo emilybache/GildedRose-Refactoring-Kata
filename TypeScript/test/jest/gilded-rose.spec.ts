@@ -1,4 +1,4 @@
-import { Item, GildedRose } from '@/gilded-rose'
+import { Item, GildedRose, ConjuredItem } from '@/gilded-rose'
 
 /**
  * A copy of the unrefactored GildedRose class used for acceptance tests
@@ -74,6 +74,32 @@ test('acceptance tests', () => {
 
         expect(gildedRose.updateQuality()).toEqual(acceptanceGildedRose.updateQuality())
         expect(gildedRose.items).toEqual(acceptanceGildedRose.items)
+      }
+    }
+  }
+})
+
+function decayRate(previousValue: number, currentValue: number): number {
+  const diff = currentValue - previousValue
+  return diff > 0 ? diff : 0
+}
+
+test('"Conjured" items degrade in Quality twice as fast as normal items', () => {
+  for (const name of names) {
+    for (const sellIn of sellIns) {
+      for (const quality of qualities) {
+        const gildedRoseWithConjuredItems = new GildedRose([{ name, sellIn, quality, conjured: true}])
+        const gildedRoseWithNormalItems = new GildedRose([new Item(name, sellIn, quality)])
+
+        const conjuredQualityBefore = gildedRoseWithConjuredItems.items[0].quality
+        const conjuredQualityAfter = gildedRoseWithConjuredItems.updateQuality()[0].quality
+        const conjuredQualityDecayRate = decayRate(conjuredQualityBefore, conjuredQualityAfter) 
+        
+        const normalQualityBefore = gildedRoseWithNormalItems.items[0].quality
+        const normalQualityAfter = gildedRoseWithNormalItems.updateQuality()[0].quality
+        const normalQualityDecayRate = decayRate(normalQualityBefore, normalQualityAfter)
+
+        expect(conjuredQualityDecayRate).toEqual(normalQualityDecayRate * 2)
       }
     }
   }

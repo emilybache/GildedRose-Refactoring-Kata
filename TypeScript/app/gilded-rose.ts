@@ -10,10 +10,11 @@ export class Item {
   }
 }
 
+export type ConjuredItem = Item & { conjured: true }
 export class GildedRose {
-  items: Array<Item>
+  items: Array<Item | ConjuredItem>
 
-  constructor(items = [] as Array<Item>) {
+  constructor(items = [] as Array<Item | ConjuredItem>) {
     this.items = items
   }
 
