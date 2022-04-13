@@ -19,7 +19,7 @@ export class GildedRose {
 
   updateQuality() {
     this.items.forEach((item, i) => {
-      this.updateItemQuality(item)
+      item.quality = this.updateItemQuality(item)
 
       if (item.name != 'Sulfuras, Hand of Ragnaros') {
         item.sellIn = item.sellIn - 1;
@@ -31,18 +31,27 @@ export class GildedRose {
     return this.items;
   }
 
-  private updateItemQuality(item: Item) {
-    if (item.name === 'Sulfuras, Hand of Ragnaros') {
-      return
-    } else if (item.name == 'Aged Brie') {
+  private updateItemQuality(item: Item): number {
+    if (item.name === 'Sulfuras, Hand of Ragnaros') return item.quality
+    
+    if (item.name == 'Aged Brie') {
       this.incrementQuality(item);
-    } else if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
+      return item.quality
+    }
+
+    if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
       this.incrementQuality(item);
       if (item.sellIn < 11) this.incrementQuality(item)
       if (item.sellIn < 6) this.incrementQuality(item)
-    } else if (item.quality > 0) {
-      item.quality = item.quality - 1
+      return item.quality
     }
+
+    if (item.quality > 0) {
+      item.quality = item.quality - 1
+      return item.quality
+    }
+
+    return item.quality
   }
   
 
