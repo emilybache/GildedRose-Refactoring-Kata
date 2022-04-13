@@ -66,7 +66,8 @@ function sellInBelow0({ quality, name, sellIn }: Item): number {
 }
 
 function decrementQuality({ quality }: Pick<Item, 'quality'>): number {
-  return quality > 0 ? quality - 1 : quality
+  if (quality < 1) return quality
+  return quality - 1
 }
 
 function incrementQuality({ quality }: Pick<Item, 'quality'>): number {
