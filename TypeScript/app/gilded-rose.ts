@@ -32,37 +32,36 @@ function updateItems(items: Item[]): Item[] {
 }
 
 function updateItemQuality({ name, quality, sellIn, ...rest }: Item): number {
-  if (name === 'Sulfuras, Hand of Ragnaros') return quality
-  
-  if (name == 'Aged Brie') return incrementQuality({ quality });
-
-  if (name == 'Backstage passes to a TAFKAL80ETC concert') {
-    let itemCopy = { name, quality, sellIn, ...rest }
-    itemCopy.quality = incrementQuality(itemCopy);
-    if (sellIn < 11) itemCopy.quality = incrementQuality(itemCopy)
-    if (sellIn < 6) itemCopy.quality = incrementQuality(itemCopy)
-    return itemCopy.quality
+  switch (name) {
+    case 'Sulfuras, Hand of Ragnaros': return quality
+    case 'Aged Brie': return incrementQuality({ quality });
+    case 'Backstage passes to a TAFKAL80ETC concert': {
+      let itemCopy = { name, quality, sellIn, ...rest }
+      itemCopy.quality = incrementQuality(itemCopy);
+      if (sellIn < 11) itemCopy.quality = incrementQuality(itemCopy)
+      if (sellIn < 6) itemCopy.quality = incrementQuality(itemCopy)
+      return itemCopy.quality
+    }
+    default: return decrementQuality({ quality })
   }
-
-  return decrementQuality({ quality })
 }
 
 function updateItemSellIn({ name, sellIn }: Item) {
-  if (name == 'Sulfuras, Hand of Ragnaros') return sellIn
-
-  return sellIn - 1;
+  switch (name) {
+    case 'Sulfuras, Hand of Ragnaros': return sellIn
+    default: return sellIn - 1
+  }
 }
 
 function updateExpiredItemQuality({ quality, name, sellIn }: Item): number {
   if (sellIn >= 0) return quality
 
-  if (name == 'Sulfuras, Hand of Ragnaros') return quality
-
-  if (name == 'Aged Brie') return incrementQuality({ quality })
-
-  if (name == 'Backstage passes to a TAFKAL80ETC concert') return 0
-   
-  return decrementQuality({quality})
+  switch (name) {
+    case 'Sulfuras, Hand of Ragnaros': return quality
+    case 'Aged Brie': return incrementQuality({ quality })
+    case 'Backstage passes to a TAFKAL80ETC concert': return 0
+    default: return decrementQuality({ quality })
+  }
 }
 
 function decrementQuality({ quality }: Pick<Item, 'quality'>): number {
