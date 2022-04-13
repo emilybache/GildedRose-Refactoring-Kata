@@ -23,7 +23,6 @@ export class GildedRose {
   }
 }
 
-
 function updateItems(items: readonly Readonly<Item>[]): readonly Readonly<Item>[] {
   return items 
     .map(item => ({ ...item, quality: updateItemQuality(item) }))

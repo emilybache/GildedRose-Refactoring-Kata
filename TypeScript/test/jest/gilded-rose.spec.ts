@@ -66,7 +66,6 @@ const sellIns = [-1, 0, 1, 2, 5, 6, 7, 10, 11, 12, 13, 14, 15]
 const qualities = [-1, 1, 2, 48, 49, 50, 51]
 
 test('acceptance tests', () => {
-
   for (const name of names) {
     for (const sellIn of sellIns) {
       for (const quality of qualities) {
