@@ -70,6 +70,6 @@ function decrementQuality({ quality }: Pick<Item, 'quality'>): number {
 }
 
 function incrementQuality({ quality }: Pick<Item, 'quality'>): number {
-  if (quality < 50) return quality + 1
-  return quality
+  if (quality >= 50) return quality
+  return quality + 1
 }
