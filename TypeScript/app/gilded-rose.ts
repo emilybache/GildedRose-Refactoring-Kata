@@ -58,18 +58,18 @@ export class GildedRose {
 
     if (item.name == 'Aged Brie') {
       if (item.quality < 50) {
-        item.quality = item.quality + 1;
+        item.quality++
       }
       return
     }
 
     if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
-      item.quality = item.quality - item.quality;
+      item.quality = 0
       return
     } 
 
     if (item.quality > 0) {
-      item.quality = item.quality - 1;
+      item.quality--
       return
     }
   }
