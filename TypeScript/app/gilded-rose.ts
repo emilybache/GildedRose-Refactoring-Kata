@@ -46,31 +46,31 @@ export class GildedRose {
         item.sellIn = item.sellIn - 1;
       }
       if (item.sellIn < 0) {
-        this.sellInBelow0(item);
+        item.quality = this.sellInBelow0(item)
       }
     })
 
     return this.items;
   }
 
-  private sellInBelow0(item: Item) {
-    if (item.name == 'Sulfuras, Hand of Ragnaros') return
+  private sellInBelow0(item: Item): number {
+    if (item.name == 'Sulfuras, Hand of Ragnaros') return item.quality;
 
     if (item.name == 'Aged Brie') {
       if (item.quality < 50) {
-        item.quality++
+        return item.quality + 1
       }
-      return
+      return item.quality
     }
 
     if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
-      item.quality = 0
-      return
+      return 0
     } 
 
     if (item.quality > 0) {
-      item.quality--
-      return
+      return item.quality - 1
     }
+
+    return item.quality
   }
 }
