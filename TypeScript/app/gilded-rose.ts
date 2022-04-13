@@ -19,7 +19,7 @@ export class GildedRose {
 
   updateQuality() {
     this.items.forEach((item, i) => {
-      item.quality = this.updateItemQuality(item)
+      item.quality = updateItemQuality(item)
 
       if (item.name != 'Sulfuras, Hand of Ragnaros') {
         item.sellIn = item.sellIn - 1;
@@ -30,37 +30,39 @@ export class GildedRose {
 
     return this.items;
   }
+}
 
-  private updateItemQuality(item: Item): number {
-    if (item.name === 'Sulfuras, Hand of Ragnaros') {
-      return item.quality
-    }
-    
-    if (item.name == 'Aged Brie') {
-      return this.incrementQuality(item);
-    }
 
-    if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
-      item.quality = this.incrementQuality(item);
-      if (item.sellIn < 11) item.quality = this.incrementQuality(item)
-      if (item.sellIn < 6) item.quality = this.incrementQuality(item)
-      return item.quality
-    }
-
-    if (item.quality > 0) {
-      return item.quality - 1
-    }
-
+function updateItemQuality(item: Item): number {
+  if (item.name === 'Sulfuras, Hand of Ragnaros') {
     return item.quality
   }
   
-
-  private incrementQuality(item: Item): number {
-    if (item.quality < 50) {
-      return item.quality + 1
-    }
-    return item.quality
+  if (item.name == 'Aged Brie') {
+    return incrementQuality(item);
   }
+
+  if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
+    let itemCopy = { ...item }
+    itemCopy.quality = incrementQuality(itemCopy);
+    if (item.sellIn < 11) itemCopy.quality = incrementQuality(itemCopy)
+    if (item.sellIn < 6) itemCopy.quality = incrementQuality(itemCopy)
+    return itemCopy.quality
+  }
+
+  if (item.quality > 0) {
+    return item.quality - 1
+  }
+
+  return item.quality
+}
+
+
+function incrementQuality(item: Item): number {
+  if (item.quality < 50) {
+    return item.quality + 1
+  }
+  return item.quality
 }
 
 function sellInBelow0({quality, name, sellIn}: Item): number {
