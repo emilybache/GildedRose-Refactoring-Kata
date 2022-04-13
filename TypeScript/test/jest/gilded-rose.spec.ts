@@ -1,4 +1,4 @@
-import { Item, GildedRose, ConjuredItem } from '@/gilded-rose'
+import { Item, GildedRose } from '@/gilded-rose'
 
 /**
  * A copy of the unrefactored GildedRose class used for acceptance tests
