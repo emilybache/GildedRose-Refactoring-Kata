@@ -21,7 +21,7 @@ export class GildedRose {
     this.items.forEach((item, i) => {
       item.quality = updateItemQuality(item)
 
-      updateSellIn(item)
+      item.sellIn = updateSellIn(item)
 
       item.quality = sellInBelow0(item)
     })
@@ -30,9 +30,9 @@ export class GildedRose {
   }
 }
 
-function updateSellIn(item: Item) {
-  if (item.name == 'Sulfuras, Hand of Ragnaros') return
-  item.sellIn = item.sellIn - 1;
+function updateSellIn({name, sellIn}: Item) {
+  if (name == 'Sulfuras, Hand of Ragnaros') return sellIn
+  return sellIn - 1;
 }
 
 function updateItemQuality({name, quality, sellIn, ...rest}: Item): number {
