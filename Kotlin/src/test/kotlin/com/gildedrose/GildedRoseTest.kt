@@ -48,6 +48,28 @@ internal class GildedRoseTest {
     }
 
     @Test
+    fun ordinaryItemsDecreaseInSellIn() {
+        val elixir = gildedRose.items.first { it.name.startsWith("Elixir") }
+        while (elixir.sellIn >= 0) {
+            val sellIn = elixir.sellIn
+            gildedRose.updateQuality()
+            assertEquals(sellIn - 1, elixir.sellIn)
+        }
+    }
+
+    @Test
+    fun ordinaryItemsDecreaseInQualityUntilZero() {
+        val elixir = gildedRose.items.first { it.name.startsWith("Elixir") }
+        while (elixir.quality != 0) {
+            val quality = elixir.quality
+            gildedRose.updateQuality()
+            assertTrue(elixir.quality < quality)
+        }
+        gildedRose.updateQuality()
+        assertEquals(0, elixir.quality)
+    }
+
+    @Test
     fun agedBrieIncreasesInQuality() {
         items.first { it.name == "Aged Brie" }.also { agedBrie ->
             while (agedBrie.quality < 50) {
