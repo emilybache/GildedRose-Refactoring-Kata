@@ -5,43 +5,34 @@ import org.junit.jupiter.api.Test
 
 internal class GildedRoseTest {
 
-    val items = arrayOf(
-        Item("+5 Dexterity Vest", 10, 20), //
-        Item("Aged Brie", 2, 0), //
-        Item("Elixir of the Mongoose", 5, 7), //
-        Item("Sulfuras, Hand of Ragnaros", 0, 80), //
-        Item("Sulfuras, Hand of Ragnaros", -1, 80),
-        Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-        Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-        Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
-        // this conjured item does not work properly yet
-        Item("Conjured Mana Cake", 3, 6)
+    private val gildedRose = GildedRose(
+        arrayOf(
+            Item("+5 Dexterity Vest", 10, 20), //
+            Item("Aged Brie", 2, 0), //
+            Item("Elixir of the Mongoose", 5, 7), //
+            Item("Sulfuras, Hand of Ragnaros", 0, 80), //
+            Item("Sulfuras, Hand of Ragnaros", -1, 80),
+            Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
+            Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
+            Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+            // this conjured item does not work properly yet
+            Item("Conjured Mana Cake", 3, 6)
+        )
     )
 
     @Test
-    fun foo() {
-        val items = arrayOf<Item>(Item("foo", 0, 0))
-        val app = GildedRose(items)
-        app.updateQuality()
-        assertEquals("foo", app.items[0].name)
-
-    }
-
-    @Test
     fun allItemsHaveASellInValue() {
-        items.forEach {
+        gildedRose.items.forEach {
             assertNotNull(it.sellIn)
         }
 
     }
 
-    private val gildedRose = GildedRose(items)
-
     @Test
     fun qualityIsNeverNegative() {
-        (items.map { it.sellIn }.maxOrNull()!! downTo -3).forEach {
+        (gildedRose.items.map { it.sellIn }.maxOrNull()!! downTo -3).forEach {
             gildedRose.updateQuality()
-            items.forEach {
+            gildedRose.items.forEach {
                 assertTrue(it.quality >= 0, "The quality of an item is never negative")
             }
         }
@@ -49,10 +40,10 @@ internal class GildedRoseTest {
 
     @Test
     fun qualityIsNeverMoreThanFifty() {
-        (items.map { it.sellIn }.maxOrNull()!! downTo -3).forEach {
+        (gildedRose.items.map { it.sellIn }.maxOrNull()!! downTo -3).forEach {
             gildedRose.updateQuality()
             assertFalse(
-                items
+                gildedRose.items
                     .filterNot { it.name.startsWith("Sulfuras") }
                     .map { it.quality }
                     .maxOrNull()!!
@@ -98,18 +89,20 @@ internal class GildedRoseTest {
 
     @Test
     fun agedBrieIncreasesInQuality() {
-        items.first { it.name == "Aged Brie" }.also { agedBrie ->
+        gildedRose.items.first { it.name == "Aged Brie" }.also { agedBrie ->
             while (agedBrie.quality < 50) {
                 val quality = agedBrie.quality
                 gildedRose.updateQuality()
                 assertTrue(agedBrie.quality > quality)
             }
+            gildedRose.updateQuality()
+            assertTrue(agedBrie.quality == 50)
         }
     }
 
     @Test
     fun sulfurasNeverHasToBeSoldOrDecreasesInQuality() {
-        val sulfuras = items.first { it.name.startsWith("Sulfuras") }
+        val sulfuras = gildedRose.items.first { it.name.startsWith("Sulfuras") }
         val quality = sulfuras.quality
         val sellIn = sulfuras.sellIn
         gildedRose.updateQuality()
@@ -117,6 +110,28 @@ internal class GildedRoseTest {
         assertEquals(sellIn, sulfuras.sellIn)
     }
 
+    @Test
+    fun backstagePassesAreDifferent() {
+        val backstage = gildedRose.items.first { it.name.startsWith("Backstage") }
+        while (backstage.sellIn > 10) {
+            val quality = backstage.quality
+            gildedRose.updateQuality()
+            assertEquals(quality + 1, backstage.quality)
+        }
+        while (backstage.sellIn > 5) {
+            val quality = backstage.quality
+            gildedRose.updateQuality()
+            assertEquals(quality + 2, backstage.quality)
+        }
+        while (backstage.sellIn > 0) {
+            val quality = backstage.quality
+            gildedRose.updateQuality()
+            assertEquals(quality + 3, backstage.quality)
+        }
+        gildedRose.updateQuality()
+        assertEquals(-1, backstage.sellIn)
+        assertEquals(0, backstage.quality)
+    }
 }
 
 
