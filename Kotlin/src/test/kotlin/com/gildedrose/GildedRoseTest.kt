@@ -58,6 +58,16 @@ internal class GildedRoseTest {
         }
     }
 
+    @Test
+    fun sulfurasNeverHasToBeSoldOrDecreasesInQuality() {
+        val sulfuras = items.first { it.name.startsWith("Sulfuras") }
+        val quality = sulfuras.quality
+        val sellIn = sulfuras.sellIn
+        gildedRose.updateQuality()
+        assertEquals(quality, sulfuras.quality)
+        assertEquals(sellIn, sulfuras.sellIn)
+    }
+
 }
 
 
