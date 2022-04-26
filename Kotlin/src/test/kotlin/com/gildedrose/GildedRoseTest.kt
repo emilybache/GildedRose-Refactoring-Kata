@@ -132,5 +132,3 @@ internal class GildedRoseTest {
         assertEquals(0, backstage.quality)
     }
 }
-
-
