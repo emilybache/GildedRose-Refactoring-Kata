@@ -40,15 +40,10 @@ internal class GildedRoseTest {
 
     @Test
     fun qualityIsNeverMoreThanFifty() {
+        val notSulfuras = gildedRose.items.filterNot { it.name.startsWith("Sulfuras") }
         (gildedRose.items.map { it.sellIn }.maxOrNull()!! downTo -3).forEach {
             gildedRose.updateQuality()
-            assertFalse(
-                gildedRose.items
-                    .filterNot { it.name.startsWith("Sulfuras") }
-                    .map { it.quality }
-                    .maxOrNull()!!
-                        > 50
-            )
+            assertFalse(notSulfuras.map { it.quality }.maxOrNull()!! > 50)
         }
     }
 
@@ -85,6 +80,10 @@ internal class GildedRoseTest {
         val quality = elixir.quality
         gildedRose.updateQuality()
         assertEquals(quality - 2, elixir.quality)
+        while (elixir.sellIn > -3) {
+            gildedRose.updateQuality()
+            assertEquals(0, elixir.quality)
+        }
     }
 
     @Test
