@@ -48,6 +48,20 @@ internal class GildedRoseTest {
     }
 
     @Test
+    fun qualityIsNeverMoreThanFifty() {
+        (items.map { it.sellIn }.maxOrNull()!! downTo -3).forEach {
+            gildedRose.updateQuality()
+            assertFalse(
+                items
+                    .filterNot { it.name.startsWith("Sulfuras") }
+                    .map { it.quality }
+                    .maxOrNull()!!
+                        > 50
+            )
+        }
+    }
+
+    @Test
     fun ordinaryItemsDecreaseInSellIn() {
         val elixir = gildedRose.items.first { it.name.startsWith("Elixir") }
         while (elixir.sellIn >= 0) {
