@@ -39,7 +39,7 @@ internal class GildedRoseTest {
 
     @Test
     fun qualityIsNeverNegative() {
-        (1..100).forEach {
+        (items.map { it.sellIn }.maxOrNull()!! downTo -3).forEach {
             gildedRose.updateQuality()
             items.forEach {
                 assertTrue(it.quality >= 0, "The quality of an item is never negative")
@@ -67,6 +67,19 @@ internal class GildedRoseTest {
         }
         gildedRose.updateQuality()
         assertEquals(0, elixir.quality)
+    }
+
+    @Test
+    fun afterSellByDateHasPassedQualityDecreasesTwiceAsFase() {
+        val elixir = gildedRose.items.first { it.name.startsWith("Elixir") }
+        while (elixir.sellIn > 0) {
+            val quality = elixir.quality
+            gildedRose.updateQuality()
+            assertEquals(quality - 1, elixir.quality)
+        }
+        val quality = elixir.quality
+        gildedRose.updateQuality()
+        assertEquals(quality - 2, elixir.quality)
     }
 
     @Test
