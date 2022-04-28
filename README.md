@@ -6,6 +6,8 @@ This is a fork from [Emily Bache's original repo](https://github.com/emilybache/
 
 Note that I also have an entirely separate repo - [gilded-rose-kata](https://github.com/claresudbery/gilded-rose-kata) - which is a *copy* of the original. I created this so that I could do some actual refactoring, but to be honest I'm now thinking I could also have done that in the fork. Maybe I'll sort that out at some point.
 
+Note that I also added a section to my [clare-wiki](https://clare-wiki.herokuapp.com/pages/think/code-princ/Refactoring#approval-testing) which has a few more notes on getting started with approval testing.
+
 ## Emily's Intro
 
 This Kata was originally created by Terry Hughes (http://twitter.com/TerryHughes). It is already on GitHub [here](https://github.com/NotMyself/GildedRose). See also [Bobby Johnson's description of the kata](http://iamnotmyself.com/2011/02/13/refactor-this-the-gilded-rose-kata/).
