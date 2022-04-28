@@ -21,7 +21,7 @@ diff_program:meld
 #interpreter:ruby
 
 # Settings for the C# version
-executable:${TEXTTEST_HOME}/GildedRose.exe
+executable:${TEXTTEST_HOME}/csharp/bin/Debug/csharp.exe
 
 # Settings for the Perl version
 #executable:${TEXTTEST_HOME}/perl/texttest_fixture.pl
