@@ -32,6 +32,8 @@ Whichever testing approach you choose, the idea of the exercise is to do some de
 
 This code comes with comprehensive tests that use this approach. For information about how to run them, see the [texttests README](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/master/texttests)
 
+Note from Clare: You can also see my [clare-wiki section](https://clare-wiki.herokuapp.com/pages/think/code-princ/Refactoring#approval-testing) which has a few more notes on getting started.
+
 ## Get going quickly using Cyber-Dojo
 
 I've also set this kata up on [cyber-dojo](https://cyber-dojo.org) for several languages, so you can get going really quickly:
