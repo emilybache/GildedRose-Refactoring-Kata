@@ -1,0 +1,29 @@
+======================================
+Gilded Rose İş Talimatları
+======================================
+
+Merhaba, Gilded Rose takımına hoşgeldiniz. Bildiğiniz üzere bizim, şehirde küçük bir dükkanımız var. Prensip gereği sadece en iyi malları satarız.
+Ne yazık ki mallarımız zamanla eski kalitelerini yitirmekte. Normalde elimizdeki malların kalitesini takip etmek için Leeroy diye bir yazılımcıya yazdırdığımız bir sistem vardı fakat Leeroy artık barşka işlerle uğraşıyor bu yüzdende sistem eski kaldı ve yenilenmesi gerek.
+
+Sistemimizin nasıl çalıştığı hakkında biraz bilgi:
+
+	- Bütün eşyalar "SellIn" isminde bir değere sahip, bu değer eşyanın kaç gün içinde satılması gerektiğini gösteriyor
+	- Bütün eşyaların "Quality" isminde bir değeri var, bu değer eşyanın kalitesini gösteriyor
+	- Her günün sonunda bu iki değer de değişiyor.
+
+Aslında temelinde oldukça basit bir sistem fakat karmaşık kısımları da var:
+
+	- Bir eşya satılması gereken zaman içinde("SellIn") satılamazsa, kalitesi("Quality") iki kat daha hızlı düşer.
+	- Hiçbir eşyanın kalitesi("Quality") negatif olamaz.
+	- "Aged Brie" ismindeki eşya diğer eşyalardan farklı olarak, eskidikçe("SellIn") kalitesi("Quality") artar.
+	- Hiçbir eşyanın kalitesi("Quality") 50'den fazla olamaz.
+	- "Sulfuras" efsanevi bir eşyadır, bu yüzden ne kadar eskirse eskirsin("SellIn") kalitesinde("Quality") herhangi bir değişim olmaz.
+	- "Backstage passes" eşyaları aynı "Aged Brie" gibi eskidikçe("SellIn") değerlenir("Quality"). Konser zamanına("SellIn") 10 gün kala 2, 5 gün kala 3 artar, daha uzun bir süre varsa 1 artar.
+
+Yakın bir zamanda büyülü eşyalar("Conjured") satan bir firmayla anlaştık:
+
+	- "Conjured" eşyaların kalitesi("Quality") normal eşyalarınkinden 2 kat daha hızlı eksilir.
+
+Sistem çalıştığı sürece kodda istediğin gibi değişiklik yapabilir veya yeni kod ekleyebilirsin.
+
+Bir de "Sulfuras" efsanevi bir eşya olduğu için normal eşyaların aksine kalitesi 80'dir ve hiç değişmez.
