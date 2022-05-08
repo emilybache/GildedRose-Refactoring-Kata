@@ -22,7 +22,7 @@ abstract class GildedRoseBaseTest {
     ) {
         val item = Item(name, initialSellIn, initialQuality)
         val items = arrayOf(item)
-        val app = GildedRose(items)
+        val app = GildedRoseLegacy(items)
 
         (1..numberDays).forEach { _ ->
             app.updateQuality()
@@ -44,7 +44,7 @@ abstract class GildedRoseBaseTest {
     ) {
         val item = Item(name, initialSellIn, initialQuality)
         val items = arrayOf(item)
-        val app = GildedRoseLegacy(items)
+        val app = GildedRose(items)
 
         (1..numberDays).forEach { _ ->
             app.updateQuality()
