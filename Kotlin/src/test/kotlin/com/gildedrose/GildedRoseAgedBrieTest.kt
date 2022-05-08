@@ -1,15 +1,19 @@
 package com.gildedrose
 
 import org.junit.jupiter.api.TestInstance
-import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 internal class GildedRoseAgedBrieTest : GildedRoseBaseTest() {
 
-    private val combinationsToTest = arrayOf(
+    // Below are all testcases for this test, with the following arguments:
+    // - name
+    // - initialSellIn
+    // - initialQuality
+    // - numberDays
+    // - resultingSellIn
+    // - resultingQuality
+    override val combinationsToTest = arrayOf(
         // tests where sellIn and quality are initially the same
         Arguments.of("Aged Brie", 5, 5, 1, 4, 6),
         Arguments.of("Aged Brie", 5, 5, 2, 3, 7),
@@ -69,40 +73,6 @@ internal class GildedRoseAgedBrieTest : GildedRoseBaseTest() {
         Arguments.of("Aged Brie", -1, -2, 3, -4, 4),
         Arguments.of("Aged Brie", 100, -1, 1, 99, 0),
         Arguments.of("Aged Brie", 100, 100, 1, 99, 100),
-
         Arguments.of("Aged Brie", 1, 0, 16, -15, 31),
-
         )
-
-
-    @ParameterizedTest(name = "{0}: initial sellIn:{1} and initial quality:{2}, after {3} days: sellIn:{4} and quality {5}, using Legacy algorithm")
-    @MethodSource("combinationsSource")
-    fun `given input item, when some days are passed, then the item state is correctly modified, using Legacy algorithm`(
-        name: String,
-        initialSellIn: Int,
-        initialQuality: Int,
-        numberDays: Int,
-        resultingSellIn: Int,
-        resultingQuality: Int
-    ) {
-        testGildedRose(name, initialSellIn, initialQuality, numberDays, resultingSellIn, resultingQuality)
-    }
-
-    @ParameterizedTest(name = "{0}: initial sellIn:{1} and initial quality:{2}, after {3} days: sellIn:{4} and quality {5}, using Refactored algorithm")
-    @MethodSource("combinationsSource")
-    fun `given input item, when some days are passed, then the item state is correctly modified, using Refactored algorithm`(
-        name: String,
-        initialSellIn: Int,
-        initialQuality: Int,
-        numberDays: Int,
-        resultingSellIn: Int,
-        resultingQuality: Int
-    ) {
-        testGildedRose(name, initialSellIn, initialQuality, numberDays, resultingSellIn, resultingQuality)
-    }
-
-
-    fun combinationsSource(): Stream<Arguments> = Stream.of(*combinationsToTest)
-
-
 }
