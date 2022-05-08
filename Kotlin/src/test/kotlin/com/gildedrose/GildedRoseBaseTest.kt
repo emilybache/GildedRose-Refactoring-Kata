@@ -36,7 +36,7 @@ abstract class GildedRoseBaseTest {
         testGildedRose(name, initialSellIn, initialQuality, numberDays, resultingSellIn, resultingQuality)
     }
 
-    fun testGildedRose(
+    private fun testGildedRose(
         name: String,
         initialSellIn: Int,
         initialQuality: Int,
@@ -48,7 +48,7 @@ abstract class GildedRoseBaseTest {
         val items = arrayOf(item)
         val app = GildedRose(items)
 
-        (1..numberDays).forEach() {
+        (1..numberDays).forEach { _ ->
             app.updateQuality()
         }
         Assertions.assertThat(item.name).isEqualTo(name)
@@ -56,7 +56,7 @@ abstract class GildedRoseBaseTest {
         Assertions.assertThat(item.quality).isEqualTo(resultingQuality)
     }
 
-    fun combinationsSource(): Stream<Arguments> = Stream.of(*combinationsToTest)
+    private fun combinationsSource(): Stream<Arguments> = Stream.of(*combinationsToTest)
 
 
 }
