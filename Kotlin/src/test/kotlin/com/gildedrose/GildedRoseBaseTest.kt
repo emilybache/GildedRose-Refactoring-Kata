@@ -20,7 +20,16 @@ abstract class GildedRoseBaseTest {
         resultingSellIn: Int,
         resultingQuality: Int
     ) {
-        testGildedRose(name, initialSellIn, initialQuality, numberDays, resultingSellIn, resultingQuality)
+        val item = Item(name, initialSellIn, initialQuality)
+        val items = arrayOf(item)
+        val app = GildedRose(items)
+
+        (1..numberDays).forEach { _ ->
+            app.updateQuality()
+        }
+        Assertions.assertThat(item.name).isEqualTo(name)
+        Assertions.assertThat(item.sellIn).isEqualTo(resultingSellIn)
+        Assertions.assertThat(item.quality).isEqualTo(resultingQuality)
     }
 
     @ParameterizedTest(name = "{0}: initial sellIn:{1} and initial quality:{2}, after {3} days: sellIn:{4} and quality {5}, using Refactored algorithm")
@@ -33,20 +42,9 @@ abstract class GildedRoseBaseTest {
         resultingSellIn: Int,
         resultingQuality: Int
     ) {
-        testGildedRose(name, initialSellIn, initialQuality, numberDays, resultingSellIn, resultingQuality)
-    }
-
-    private fun testGildedRose(
-        name: String,
-        initialSellIn: Int,
-        initialQuality: Int,
-        numberDays: Int,
-        resultingSellIn: Int,
-        resultingQuality: Int
-    ) {
         val item = Item(name, initialSellIn, initialQuality)
         val items = arrayOf(item)
-        val app = GildedRose(items)
+        val app = GildedRoseLegacy(items)
 
         (1..numberDays).forEach { _ ->
             app.updateQuality()
