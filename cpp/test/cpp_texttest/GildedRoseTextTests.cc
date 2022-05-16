@@ -1,10 +1,9 @@
 #include <iostream>
 #include "GildedRose.h"
 
-int
-print_item(Item& item)
+void print_item(Item& item)
 {
-    return std::cout << item.name << ", " <<  item.sellIn << ", " item.quality << std::endl;
+    std::cout << item.name << ", " <<  item.sellIn << ", " << item.quality << std::endl;
 }
 
 int main()
@@ -33,7 +32,7 @@ int main()
 		std::cout << "name, sellIn, quality" << std::endl;
         for (auto& item : items)
         {
-            print_item(&item);
+            print_item(item);
         }
 		std::cout << std::endl;
         app.updateQuality();
