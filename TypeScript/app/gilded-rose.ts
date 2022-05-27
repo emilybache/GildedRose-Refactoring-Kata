@@ -30,43 +30,30 @@ export class GildedRose {
         itemSellin -= 1;
       }
 
-      if (!itemName.includes('Aged Brie') && !itemName.includes('Backstage passes')) {
-        if (itemQuality > 0) {
-          itemQuality = itemQuality - 1
-        }
-      } else {
-        if (itemQuality < 50) {
+      switch (true) {
+        case itemName.includes('Aged Brie'):
+          itemQuality = itemQuality + 1;
+          break;
+        case itemName.includes('Backstage passes'):
           itemQuality = itemQuality + 1
-          if (itemName.includes('Backstage passes')) {
-            if (itemSellin < 11) {
-              if (itemQuality < 50) {
-                itemQuality = itemQuality + 1
-              }
-            }
-            if (itemSellin < 6) {
-              if (itemQuality < 50) {
-                itemQuality = itemQuality + 1
-              }
-            }
-          }
-        }
-      }
-      if (itemSellin < 0) {
-        if (!itemName.includes('Aged Brie')) {
-          if (!itemName.includes('Backstage passes')) {
-            if (itemQuality > 0) {
-              itemQuality = itemQuality - 1
-            }
-          } else {
+          if (itemSellin < 11) {
+            itemQuality = itemQuality + 1
+          } else if (itemSellin < 6) {
+            itemQuality = itemQuality + 1
+          } else if (itemSellin < 0) {
             itemQuality = itemQuality - itemQuality
           }
-        } else {
-          if (itemQuality < 50) {
-            itemQuality = itemQuality + 1
+          break;
+        default:
+          if (itemQuality > 0) {
+            itemQuality = itemQuality - 1
           }
-        }
+          if (itemSellin < 0) {
+            itemQuality = itemQuality - itemQuality
+          }
+          break;
       }
-      this.items[i].quality = itemQuality;
+      this.items[i].quality = itemQuality > 50 ? 50 : itemQuality;
       this.items[i].sellIn = itemSellin;
     }
 
