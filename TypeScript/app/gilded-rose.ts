@@ -35,29 +35,30 @@ export class GildedRose {
           itemQuality = itemQuality + 1;
           break;
         case itemName.includes('Backstage passes'):
-          itemQuality = itemQuality + 1;
           if (itemSellin < 11) {
             itemQuality = itemQuality + 2;
           } else if (itemSellin < 6) {
             itemQuality = itemQuality + 3;
           } else if (itemSellin < 0) {
             itemQuality = 0;
+          } else {
+            itemQuality = itemQuality + 1;
           }
           break;
         case itemName.includes('Conjured'):
-          if (itemQuality > 0) {
-            itemQuality = itemQuality - 1;
-          }
-          if (itemSellin < 0) {
-            itemQuality = itemQuality - itemQuality;
-          }
-          break;
-        default:
           if (itemQuality > 0) {
             itemQuality = itemQuality - 2;
           }
           if (itemSellin < 0) {
             itemQuality = itemQuality - itemQuality * 2;
+          }
+          break;
+        default:
+          if (itemQuality > 0) {
+            itemQuality = itemQuality - 1;
+          }
+          if (itemSellin < 0) {
+            itemQuality = itemQuality - itemQuality;
           }
           break;
       }
