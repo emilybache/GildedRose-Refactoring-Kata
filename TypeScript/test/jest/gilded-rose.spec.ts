@@ -16,7 +16,7 @@ describe('Gilded Rose', () => {
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe('foo');
   });
-  it('The quality of Conjured item should be degraded by twice', () => {
+  it('The quality of Conjured item should be degraded by twice more than normal items', () => {
     const items = gildedRose.updateQuality();
     expect(items[1].quality).toBe(6);
   });
