@@ -23,15 +23,16 @@ export class GildedRose {
       let itemName = currentItem.name;
       let itemQuality = currentItem.quality;
       let itemSellin = currentItem.sellIn;
-      if (!itemName.includes('Sulfuras')) {
-        itemSellin = itemSellin - 1;
+      
+      if (itemName.includes('Sulfuras')) {
+        continue;
+      } else {
+        itemSellin -= 1;
       }
 
       if (!itemName.includes('Aged Brie') && !itemName.includes('Backstage passes')) {
         if (itemQuality > 0) {
-          if (!itemName.includes('Sulfuras')) {
-            itemQuality = itemQuality - 1
-          }
+          itemQuality = itemQuality - 1
         }
       } else {
         if (itemQuality < 50) {
@@ -54,9 +55,7 @@ export class GildedRose {
         if (!itemName.includes('Aged Brie')) {
           if (!itemName.includes('Backstage passes')) {
             if (itemQuality > 0) {
-              if (!itemName.includes('Sulfuras, Hand of Ragnaros')) {
-                itemQuality = itemQuality - 1
-              }
+              itemQuality = itemQuality - 1
             }
           } else {
             itemQuality = itemQuality - itemQuality
@@ -67,6 +66,8 @@ export class GildedRose {
           }
         }
       }
+      this.items[i].quality = itemQuality;
+      this.items[i].sellIn = itemSellin;
     }
 
     return this.items;
