@@ -28,12 +28,8 @@ function calculateQuality(state: TItem): number {
         }
     }
 
-    if(state.isConjured) {
+    if(state.isConjured || state.sellIn < 0) {
         degradeRate = 2;
-    }
-
-    if(state.sellIn <= 0) {
-        return calculatedQuality;
     }
 
     calculatedQuality = calculatedQuality - (qualityIdentifier * degradeRate);
