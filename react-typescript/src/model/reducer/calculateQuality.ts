@@ -1,6 +1,6 @@
-import Item from "../../types"
+import { TItem } from "../../types"
 
-function calculateQuality(state: Item): number {
+function calculateQuality(state: TItem): number {
     const sellInAmount = state.sellIn;
     
     let calculatedQuality = state.quality;

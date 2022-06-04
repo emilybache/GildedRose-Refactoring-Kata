@@ -1,6 +1,6 @@
 import { useStore } from "../model";
 import EEvents from "../model/EEvents";
-import Item from "../types"
+import { TItem } from "../types"
 
 function useItem() {
     const { state, dispatch } = useStore();
@@ -8,9 +8,9 @@ function useItem() {
     return {
         items: state,
         
-        updateItem: (item: Item):void => {
+        updateItem: (item: TItem):void => {
             dispatch({
-                type: EEvents.SOLD_ITEM,
+                type: EEvents.NEXT_DAY,
                 payload: {
                     name: item.name
                 }

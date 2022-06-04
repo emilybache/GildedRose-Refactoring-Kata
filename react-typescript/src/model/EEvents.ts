@@ -1,5 +1,5 @@
 const enum EEvents {
-    SOLD_ITEM = 'SOLD_ITEM',
+    NEXT_DAY = 'NEXT_DAY',
 }
 
 export default EEvents;

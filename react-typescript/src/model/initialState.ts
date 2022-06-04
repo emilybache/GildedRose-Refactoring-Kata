@@ -1,4 +1,4 @@
- const GildedRose = {
+const initialState = {
     items: [
         {
             name: '+5 Dexterity Vest',
@@ -9,7 +9,7 @@
         {
             name: 'Aged Brie',
             sellIn: 2,
-            quality: 0,
+            quality: 5,
             isConjured: false
         },
         {
@@ -36,7 +36,7 @@
             quality: 6,
             isConjured: true
         },
-    ]
+    ],
 }
 
-export default GildedRose;
+export default initialState;

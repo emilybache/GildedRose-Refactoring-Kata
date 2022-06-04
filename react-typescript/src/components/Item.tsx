@@ -1,12 +1,12 @@
 import useItem from "../hooks/useItem";
-import Item from "../types"
+import { TItem } from "../types"
 
 function Items() {
   const { items, updateItem } = useItem();
   return (
     <div className="Item">
       <ul>
-        {items.map((item: Item) => {
+        {items.map((item: TItem) => {
           return (
           <li key={item.name}>
             Name: {item.name} Quality: {item.quality} SellIn: {item.sellIn} <button onClick={() => updateItem(item)}></button> 

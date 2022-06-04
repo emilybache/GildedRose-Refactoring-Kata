@@ -5,4 +5,11 @@ type TItem = {
     isConjured: boolean
 }
 
-export default TItem;
+type TGildedRose = {
+    items: TItem[]
+}
+
+export type {
+    TItem,
+    TGildedRose
+}
