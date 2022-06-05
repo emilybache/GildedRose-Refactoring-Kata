@@ -1,22 +1,10 @@
 import { useStore } from "../model";
-import EEvents from "../model/EEvents";
-import { TItem } from "../types"
-
-function useItem() {
-    const { state, dispatch } = useStore();
-
-    return {
-        items: state,
-        
-        updateItem: (item: TItem):void => {
-            dispatch({
-                type: EEvents.NEXT_DAY,
-                payload: {
-                    name: item.name
-                }
-            });
-        }
-    };
+import {TItem} from "../types";
+ 
+function useItem(item: TItem): TItem {
+  const { state } = useStore();
+  const itemFound = state.items.find(target => target.name.toLowerCase().includes(item.name.toLowerCase()));
+  return itemFound === undefined ? item : itemFound;
 }
 
 export default useItem;

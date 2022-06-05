@@ -1,12 +1,6 @@
-import { useReducer } from "react";
-import initialState from "./initialState";
-import reducer from "./reducer";
+import { useContext } from "react";
+import StoreContext from "./storeContext";
 
 export default function useStore() {
-    const [state, dispatch] = useReducer(reducer, initialState.items);
-
-    return {
-        state,
-        dispatch
-    }
+    return useContext(StoreContext);
 }
