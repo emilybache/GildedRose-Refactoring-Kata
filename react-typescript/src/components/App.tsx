@@ -9,7 +9,7 @@ function App(): JSX.Element {
     padding: 0;
   }
   html, body {
-    background-color: RGB(132, 151, 149);
+    background-color: RGB(255, 255, 253);
     color: RGB(227, 226, 215);
     width: 100%;
     height: 100%;

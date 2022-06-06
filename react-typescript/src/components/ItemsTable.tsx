@@ -3,25 +3,37 @@ import styled from "styled-components";
 import { TTable } from "../types";
 
 function ItemTable({ columns, data }: TTable): JSX.Element {
-    const ItemsSection = styled.section`
-  height: 85vh;
-  ul {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-    height: 100%;
-    color: white;
-    justify-content: center;
-    align-items: center;
+    const ItemsTable = styled.table`
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&family=Ubuntu:wght@300;400;500&display=swap');
+    height: 60%;
+    border: 1px solid RGB(12, 16, 36);
+    border-radius: 10px;
+    min-height: 30%;
+    color: RGB(12, 16, 36);
+th, td, tr {
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+    border: none;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 1.2rem;
   }
-  li {
-    list-style: none;
-    display: inline-block;
-    height: 10%;
-    width: 40%;
-    border: 1px solid white;
-    margin: 3% 3%;
+
+
+  th {
+    font-weight: 300;
+  }
+
+  tr {
+    font-weight: 100;
+  }
+
+  tr:nth-child(n):hover {
+    background-color: #f2f2f2;
+  }
+
+  tr:nth-child(2n + 1) {
+    background-color: RGB(245, 245, 243);
   }
 `;
     const {
@@ -36,10 +48,9 @@ function ItemTable({ columns, data }: TTable): JSX.Element {
     });
 
     return (
-
-        <table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
+        <ItemsTable {...getTableProps()}>
    
-          <thead>
+          <thead className="header">
    
             {headerGroups.map(headerGroup => (
    
@@ -47,27 +58,9 @@ function ItemTable({ columns, data }: TTable): JSX.Element {
    
                 {headerGroup.headers.map(column => (
    
-                  <th
-   
-                    {...column.getHeaderProps()}
-   
-                    style={{
-   
-                      borderBottom: 'solid 3px red',
-   
-                      background: 'aliceblue',
-   
-                      color: 'black',
-   
-                      fontWeight: 'bold',
-   
-                    }}
-   
-                  >
-   
+                  <th {...column.getHeaderProps()}>
                     {column.render('Header')}
-   
-                  </th>
+                    </th>
    
                 ))}
    
@@ -94,16 +87,7 @@ function ItemTable({ columns, data }: TTable): JSX.Element {
                       <td
    
                         {...cell.getCellProps()}
-   
-                        style={{
-   
-                          padding: '10px',
-   
-                          border: 'solid 1px gray',
-   
-                          background: 'papayawhip',
-   
-                        }}
+
    
                       >
    
@@ -123,8 +107,7 @@ function ItemTable({ columns, data }: TTable): JSX.Element {
    
           </tbody>
    
-        </table>
-   
+        </ItemsTable>
       )
 }
 
