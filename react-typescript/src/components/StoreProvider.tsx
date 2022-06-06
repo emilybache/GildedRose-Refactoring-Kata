@@ -2,10 +2,7 @@ import { useReducer } from "react";
 import initialState from "../model/initialState";
 import reducer from "../model/reducer";
 import StoreContext from "../model/storeContext";
-
-type TProps = {
-    children: JSX.Element;
-}
+import { TProps } from "../types";
 
 function StoreProvider({ children }: TProps): JSX.Element {
   const [state, dispatch] = useReducer(reducer, initialState);

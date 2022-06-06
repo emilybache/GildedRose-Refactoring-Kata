@@ -1,4 +1,6 @@
-const initialState = {
+import { TState } from "../types";
+
+const initialState: TState = {
     items: [
         {
             name: '+5 Dexterity Vest',

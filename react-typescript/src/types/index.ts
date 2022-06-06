@@ -1,8 +1,19 @@
+import { Column } from "react-table";
+
 type TItem = {
     name: string,
     sellIn: number,
     quality: number,
     isConjured: boolean
+}
+
+type TProps = {
+    children: JSX.Element;
+}
+
+type TTable = {
+    columns: Column[],
+    data: TItem[]
 }
 
 type TState = {
@@ -27,5 +38,7 @@ export type {
     TItem,
     TState,
     TAction,
-    TContext
+    TContext,
+    TProps,
+    TTable
 };

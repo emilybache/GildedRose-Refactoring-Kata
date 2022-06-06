@@ -1,9 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
-import ItemsSection from './ItemsSection';
+import { createGlobalStyle } from "styled-components";
 
-function App(): JSX.Element {
-
-  const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
@@ -23,13 +20,5 @@ function App(): JSX.Element {
     -moz-osx-font-smoothing: grayscale;
   }
 `
-  return (
-    <section>
-      <GlobalStyle />
-      {/* <Header /> */}
-      <ItemsSection />
-    </section>
-  );
-}
 
-export default App;
+export default GlobalStyle;
