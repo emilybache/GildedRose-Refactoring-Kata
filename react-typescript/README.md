@@ -1,1 +1,1 @@
-run with ```npm start run```
+run with ```npm run start```
