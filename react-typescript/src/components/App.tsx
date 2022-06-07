@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import ItemsSection from './ItemsSection';
+import Header from './Header';
 
 function App(): JSX.Element {
 
@@ -9,15 +10,14 @@ function App(): JSX.Element {
     padding: 0;
   }
   html, body {
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&family=Ubuntu:wght@300;400;500;700&display=swap');
+    font-family: 'Roboto', sans-serif;
     background-color: RGB(255, 255, 253);
     color: RGB(227, 226, 215);
     width: 100%;
     height: 100%;
   }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-        sans-serif;
     text-align: center;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -26,7 +26,7 @@ function App(): JSX.Element {
   return (
     <section>
       <GlobalStyle />
-      {/* <Header /> */}
+      <Header />
       <ItemsSection />
     </section>
   );

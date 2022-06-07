@@ -1,41 +1,57 @@
-import { useTable } from "react-table";
+import { usePagination, useTable } from "react-table";
 import styled from "styled-components";
 import { TTable } from "../types";
 
-function ItemTable({ columns, data }: TTable): JSX.Element {
-    const ItemsTable = styled.table`
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&family=Ubuntu:wght@300;400;500&display=swap');
-    height: 60%;
-    border: 1px solid RGB(12, 16, 36);
-    border-radius: 10px;
-    min-height: 30%;
+const ItemsTable = styled.section`
+  height: 80%;
     color: RGB(12, 16, 36);
-th, td, tr {
-    font-family: 'Roboto', sans-serif;
+    table {
+        width: 100%;
+        height: 100%;
+    }
+th, td, tr, thead,  {
     outline: none;
     border: none;
     border-collapse: collapse;
-    text-align: center;
+    text-align: left;
     font-size: 1.2rem;
+  }
+  p {
+    padding: .5rem;
+  }
+
+  .button {
+      align-self: center;
   }
 
 
+  .data {
+      height: 10%;
+      font-weight: 300;
+      font-size: 1.1rem;
+  }
   th {
-    font-weight: 300;
+    background-color: RGB(245, 245, 243);
+    font-size: .9rem;
+    font-weight: 800;
+    height: 5%;
+  }
+
+  td {
+      height: 100%;
   }
 
   tr {
     font-weight: 100;
   }
 
-  tr:nth-child(n):hover {
-    background-color: #f2f2f2;
-  }
-
-  tr:nth-child(2n + 1) {
+  tr:nth-child(2n) {
     background-color: RGB(245, 245, 243);
   }
 `;
+
+function ItemTable({ columns, data }: TTable): JSX.Element {
+    
     const {
         getTableProps,
         getTableBodyProps,
@@ -45,70 +61,44 @@ th, td, tr {
     } = useTable({
         columns,
         data,
-    });
+    }, usePagination);
 
     return (
         <ItemsTable {...getTableProps()}>
-   
-          <thead className="header">
-   
-            {headerGroups.map(headerGroup => (
-   
-              <tr>
-   
-                {headerGroup.headers.map(column => (
-   
-                  <th {...column.getHeaderProps()}>
-                    {column.render('Header')}
-                    </th>
-   
+            <table>
+            <thead className="header">
+                {headerGroups.map(headerGroup => (
+                    <tr>
+                        {
+                        headerGroup.headers.map(column => (
+                            <th {...column.getHeaderProps()}>
+                                <p>{column.render('Header')}</p>
+                            </th>
+                        ))
+                        }
+                    </tr>
                 ))}
-   
-              </tr>
-   
-            ))}
-   
-          </thead>
-   
-          <tbody {...getTableBodyProps()}>
-   
-            {rows.map(row => {
-   
-              prepareRow(row)
-   
-              return (
-   
-                <tr {...row.getRowProps()}>
-   
-                  {row.cells.map(cell => {
-   
-                    return (
-   
-                      <td
-   
-                        {...cell.getCellProps()}
+            </thead>
 
-   
-                      >
-   
-                        {cell.render('Cell')}
-   
-                      </td>
-   
+            <tbody {...getTableBodyProps()}>
+                {rows.map(row => {
+                    prepareRow(row)
+                    return (
+                        <tr {...row.getRowProps()}>
+                            {row.cells.map(cell => {
+                                return (
+                                    <td {...cell.getCellProps()} className="data">
+                                        <p>{cell.render('Cell')}</p>
+                                    </td>
+                                )
+                            })}
+                        </tr>
                     )
-   
-                  })}
-   
-                </tr>
-   
-              )
-   
-            })}
-   
-          </tbody>
-   
+                })}
+            </tbody>
+            </table>
         </ItemsTable>
-      )
+    )
 }
 
 export default ItemTable;
