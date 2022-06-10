@@ -2,7 +2,7 @@ public class Item {
     public var name: String
     public var sellIn: Int
     public var quality: Int
-    
+
     public init(name: String, sellIn: Int, quality: Int) {
         self.name = name
         self.sellIn = sellIn
@@ -12,6 +12,6 @@ public class Item {
 
 extension Item: CustomStringConvertible {
     public var description: String {
-        name + ", " + String(sellIn) + ", " + String(quality);
+        name + ", " + String(sellIn) + ", " + String(quality)
     }
 }
