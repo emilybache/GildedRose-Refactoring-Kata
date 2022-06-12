@@ -28,16 +28,20 @@ class GildedRose(object):
             self.adjust_quality(item, qualityIncrease)
             
         if item.name == self.BACKSTAGE_PASSES:
-            self.adjust_quality(item, self.qualityIncrease)
-            if item.sell_in < 11:
-                self.adjust_quality(item, self.qualityIncrease)
-            if item.sell_in < 6:
-                self.adjust_quality(item, self.qualityIncrease)
-            if isExpired:
-                item.quality = item.quality - item.quality
+            self.update_backstagepasses_quality(item, isExpired)
         
         if item.name != self.SULFURAS:
             item.sell_in = item.sell_in - 1
+
+    # BAckstage Passes logic to update the item quality based on number of days
+    def update_backstagepasses_quality(self, item, isExpired):
+        self.adjust_quality(item, self.qualityIncrease)
+        if item.sell_in < 11:
+            self.adjust_quality(item, self.qualityIncrease)
+        if item.sell_in < 6:
+            self.adjust_quality(item, self.qualityIncrease)
+        if isExpired:
+            item.quality = item.quality - item.quality
         
     # Logic to determine the Quality Decrease rate based on Expired date and conjured item
     def determine_degrate_quality_rate(self, item, isExpired):
