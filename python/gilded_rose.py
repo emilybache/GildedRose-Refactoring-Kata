@@ -17,14 +17,15 @@ class GildedRose(object):
 
     def update_item_quality(self, item):
         isExpired = item.sell_in < 0
-        qualityDecrease = -1 if item.name != self.CONJURED else -2
+        qualityDecrease = self.determine_degrate_quality_rate(item,isExpired)
         doesDegradeQaulity = item.name != self.AGED_BRIE and item.name != self.BACKSTAGE_PASSES and item.name != self.SULFURAS
         
         if doesDegradeQaulity:
             self.adjust_quality(item, qualityDecrease)
         
         if item.name == self.AGED_BRIE:
-            self.adjust_quality(item, self.qualityIncrease)
+            qualityIncrease = 2 if isExpired else 1
+            self.adjust_quality(item, qualityIncrease)
             
         if item.name == self.BACKSTAGE_PASSES:
             self.adjust_quality(item, self.qualityIncrease)
@@ -32,18 +33,17 @@ class GildedRose(object):
                 self.adjust_quality(item, self.qualityIncrease)
             if item.sell_in < 6:
                 self.adjust_quality(item, self.qualityIncrease)
+            if isExpired:
+                item.quality = item.quality - item.quality
         
         if item.name != self.SULFURAS:
             item.sell_in = item.sell_in - 1
         
-        
-        if isExpired:
-            if doesDegradeQaulity:
-                self.adjust_quality(item, qualityDecrease)
-            if item.quality == self.BACKSTAGE_PASSES:
-                item.quality = item.quality - item.quality
-            if item.quality == self.AGED_BRIE:
-                self.adjust_quality(item, self.qualityIncrease)
+    # Logic to determine the Quality Decrease rate based on Expired date and conjured item
+    def determine_degrate_quality_rate(self, item, isExpired):
+        qualityDecrease = -1 if item.name != self.CONJURED else -2
+        return qualityDecrease * 2 if isExpired else qualityDecrease
+
 
     # Update the quality item value if the quality value is within the range 0 to 50
     def adjust_quality(self, item, quality_increase_decrease):
