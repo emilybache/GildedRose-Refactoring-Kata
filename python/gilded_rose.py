@@ -5,6 +5,7 @@ class GildedRose(object):
     AGED_BRIE = "Aged Brie"
     BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert"
     SULFURAS = "Sulfuras, Hand of Ragnaros"
+    CONJURED = "Conjured Mana Cake"
     qualityIncrease = 1
 
     def __init__(self, items):
@@ -16,10 +17,11 @@ class GildedRose(object):
 
     def update_item_quality(self, item):
         isExpired = item.sell_in < 0
+        qualityDecrease = -1 if item.name != self.CONJURED else -2
         doesDegradeQaulity = item.name != self.AGED_BRIE and item.name != self.BACKSTAGE_PASSES and item.name != self.SULFURAS
         
         if doesDegradeQaulity:
-            self.adjust_quality(item, - self.qualityIncrease)
+            self.adjust_quality(item, qualityDecrease)
         
         if item.name == self.AGED_BRIE:
             self.adjust_quality(item, self.qualityIncrease)
@@ -37,7 +39,7 @@ class GildedRose(object):
         
         if isExpired:
             if doesDegradeQaulity:
-                self.adjust_quality(item, - self.qualityIncrease)
+                self.adjust_quality(item, qualityDecrease)
             if item.quality == self.BACKSTAGE_PASSES:
                 item.quality = item.quality - item.quality
             if item.quality == self.AGED_BRIE:
