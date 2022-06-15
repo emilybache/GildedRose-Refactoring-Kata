@@ -10,21 +10,22 @@ let items = [
     Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 10, quality: 49),
     Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 5, quality: 49),
     // this conjured item does not work properly yet
-    Item(name: "Conjured Mana Cake", sellIn: 3, quality: 6)]
+    Item(name: "Conjured Mana Cake", sellIn: 3, quality: 6),
+]
 
-let app = GildedRose(items: items);
+let app = GildedRose(items: items)
 
-var days = 2;
+var days = 2
 if CommandLine.argc > 1 {
     days = Int(CommandLine.arguments[1])! + 1
 }
 
-for i in 0..<days {
-    print("-------- day \(i) --------");
-    print("name, sellIn, quality");
+for i in 0 ..< days {
+    print("-------- day \(i) --------")
+    print("name, sellIn, quality")
     for item in items {
-        print(item);
+        print(item)
     }
-    print("");
-    app.updateQuality();
+    print("")
+    app.updateQuality()
 }
