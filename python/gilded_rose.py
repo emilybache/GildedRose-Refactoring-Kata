@@ -2,11 +2,11 @@
 
 class GildedRose(object):
 
-    AGED_BRIE = "Aged Brie"
-    BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert"
-    SULFURAS = "Sulfuras, Hand of Ragnaros"
-    CONJURED = "Conjured Mana Cake"
-    qualityIncrease = 1
+    __AGED_BRIE = "Aged Brie"
+    __BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert"
+    __SULFURAS = "Sulfuras, Hand of Ragnaros"
+    __CONJURED = "Conjured Mana Cake"
+    
 
     def __init__(self, items):
         self.items = items
@@ -16,36 +16,37 @@ class GildedRose(object):
             self.update_item_quality(item)
 
     def update_item_quality(self, item):
+        qualityIncrease = 1
         isExpired = item.sell_in < 0
         qualityDecrease = self.determine_degrate_quality_rate(item,isExpired)
-        doesDegradeQaulity = item.name != self.AGED_BRIE and item.name != self.BACKSTAGE_PASSES and item.name != self.SULFURAS
+        doesDegradeQaulity = item.name != GildedRose.__AGED_BRIE and item.name != GildedRose.__BACKSTAGE_PASSES and item.name != GildedRose.__SULFURAS
         
         if doesDegradeQaulity:
             self.adjust_quality(item, qualityDecrease)
         
-        if item.name == self.AGED_BRIE:
+        if item.name == GildedRose.__AGED_BRIE:
             qualityIncrease = 2 if isExpired else 1
             self.adjust_quality(item, qualityIncrease)
             
-        if item.name == self.BACKSTAGE_PASSES:
-            self.update_backstagepasses_quality(item, isExpired)
+        if item.name == GildedRose.__BACKSTAGE_PASSES:
+            self.update_backstagepasses_quality(item, isExpired, qualityIncrease)
         
-        if item.name != self.SULFURAS:
+        if item.name != GildedRose.__SULFURAS:
             item.sell_in = item.sell_in - 1
 
     # BAckstage Passes logic to update the item quality based on number of days
-    def update_backstagepasses_quality(self, item, isExpired):
-        self.adjust_quality(item, self.qualityIncrease)
+    def update_backstagepasses_quality(self, item, isExpired, qualityIncrease):
+        self.adjust_quality(item, qualityIncrease)
         if item.sell_in < 11:
-            self.adjust_quality(item, self.qualityIncrease)
+            self.adjust_quality(item, qualityIncrease)
         if item.sell_in < 6:
-            self.adjust_quality(item, self.qualityIncrease)
+            self.adjust_quality(item, qualityIncrease)
         if isExpired:
             item.quality = item.quality - item.quality
         
     # Logic to determine the Quality Decrease rate based on Expired date and conjured item
     def determine_degrate_quality_rate(self, item, isExpired):
-        qualityDecrease = -1 if item.name != self.CONJURED else -2
+        qualityDecrease = -1 if item.name != GildedRose.__CONJURED else -2
         return qualityDecrease * 2 if isExpired else qualityDecrease
 
 
