@@ -1,6 +1,11 @@
-# Group 2 Gilded Rose Refactoring Kata
-
-
+# Group 2 Gilded Rose Refactoring Kata  
+#### SWE6733 - Emerging Software Engineering Processes - Dr. Reza Parizi  
+<br>
+#### **Group 2:**
+Scrum Mast: Matt Decker  
+Product Owner: Devika Kandel Neupane    
+Developer: Ifeanyi Okoye   
+Developer: Cameron Mitchel Page 
 
 This Kata was originally created by Terry Hughes (http://twitter.com/TerryHughes). It is already on GitHub [here](https://github.com/NotMyself/GildedRose). See also [Bobby Johnson's description of the kata](http://iamnotmyself.com/2011/02/13/refactor-this-the-gilded-rose-kata/).
 
