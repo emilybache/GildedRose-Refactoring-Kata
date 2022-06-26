@@ -10,6 +10,7 @@ The mob session will likely take several hours and not having the dev environmen
   - You will now recieve text from the command line letting you know the objects were recieved.  
 2. Download Visual Studio Code (I chose to use Visual Studio Code for Junit integration but other IDEs will work as well). If you choose a different set up, please **verify** it works before the mob!
   - If you choose to download Visual Studio Code, please use the following link: https://code.visualstudio.com/download
+  - If you already have VS Code installed, from command line: "code -v" will let you know what version you have.
 3. Download Java SE and Verify it is Installed
   - In the command line: java -version (this will let you know if java is installed and what version you have.
   - If you do not have Java installed, go to: https://www.oracle.com/java/technologies/downloads/ and follow the download/setup instructions.
