@@ -1,6 +1,6 @@
 # Group 2 Gilded Rose Refactoring Kata  
 #### SWE6733 - Emerging Software Engineering Processes - Dr. Reza Parizi  
-<br>
+
 #### **Group 2:**
 Scrum Mast: Matt Decker  
 Product Owner: Devika Kandel Neupane    
