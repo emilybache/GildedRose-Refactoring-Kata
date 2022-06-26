@@ -12,7 +12,10 @@ The mob session will likely take several hours and not having the dev environmen
   - If you choose to download Visual Studio Code, please use the following link: https://code.visualstudio.com/download
 3. Download Java SE and Verify it is Installed
   - In the command line: java -version (this will let you know if java is installed and what version you have.
+  -If you do not have Java installed, go to: https://www.oracle.com/java/technologies/downloads/ and follow the download/setup instructions.
   - To check if you need to update Java SE: type "Configure Java" in the search bar of Windows 10.
     - Run the application
     - Click the "Update Tab"
     - Click "Update Now" at the bottom of the screen.
+    - Java SE should now be updated.
+4.
