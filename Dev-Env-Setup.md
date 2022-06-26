@@ -9,4 +9,10 @@ The mob session will likely take several hours and not having the dev environmen
   - Once you verify you are in the file path that you want: git clone <past https code copied from repo>
   - You will now recieve text from the command line letting you know the objects were recieved.  
 2. Download Visual Studio Code (I chose to use Visual Studio Code for Junit integration but other IDEs will work as well). If you choose a different set up, please **verify** it works before the mob!
- 
+  - If you choose to download Visual Studio Code, please use the following link: https://code.visualstudio.com/download
+3. Download Java SE and Verify it is Installed
+  - In the command line: java -version (this will let you know if java is installed and what version you have.
+  - To check if you need to update Java SE: type "Configure Java" in the search bar of Windows 10.
+    - Run the application
+    - Click the "Update Tab"
+    - Click "Update Now" at the bottom of the screen.
