@@ -101,7 +101,45 @@ describe('Gilded Rose', () => {
     });
   });
 
-  describe('Any normal item', () => {
+  describe('Conjured item', () => {
+    it('one iteration, not passed sell date', () => {
+      const gildedRose = new GildedRose([new Item('Conjured', 5, 31)]);
+      gildedRose.updateQuality();
+      expect(gildedRose.items[0].quality).to.equal(29);
+    });
+
+    it('one iteration, passed sell date', () => {
+      const gildedRose = new GildedRose([new Item('Conjured', -1, 31)]);
+      gildedRose.updateQuality();
+      expect(gildedRose.items[0].quality).to.equal(27);
+    });
+
+    it('multiple iterations, not reaching negative quality and not passed sell date', () => {
+      const gildedRose = new GildedRose([new Item('Conjured', 21, 31)]);
+      for (let i = 0; i < 10; ++i) {
+        gildedRose.updateQuality();
+      }
+      expect(gildedRose.items[0].quality).to.equal(11);
+    });
+
+    it('multiple iterations, not reaching negative quality and passed sell date', () => {
+      const gildedRose = new GildedRose([new Item('Conjured', 5, 37)]);
+      for (let i = 0; i < 10; ++i) {
+        gildedRose.updateQuality();
+      }
+      expect(gildedRose.items[0].quality).to.equal(7);
+    });
+
+    it('multiple iterations, reaching negative quality and passed sell date', () => {
+      const gildedRose = new GildedRose([new Item('Conjured', 5, 12)]);
+      for (let i = 0; i < 10; ++i) {
+        gildedRose.updateQuality();
+      }
+      expect(gildedRose.items[0].quality).to.equal(0);
+    });
+  });
+
+  describe('Regular item', () => {
     it('one iteration, not passed sell date', () => {
       const gildedRose = new GildedRose([new Item('Any normal item', 5, 31)]);
       gildedRose.updateQuality();
@@ -130,7 +168,7 @@ describe('Gilded Rose', () => {
       expect(gildedRose.items[0].quality).to.equal(15);
     });
 
-    it('multiple iterations, reaching max quality and passed sell date', () => {
+    it('multiple iterations, reaching negative quality and passed sell date', () => {
       const gildedRose = new GildedRose([new Item('Any normal item', 5, 12)]);
       for (let i = 0; i < 10; ++i) {
         gildedRose.updateQuality();
@@ -138,10 +176,4 @@ describe('Gilded Rose', () => {
       expect(gildedRose.items[0].quality).to.equal(0);
     });
   });
-
-  // it('should foo', () => {
-  //   const gildedRose = new GildedRose([new Item('foo', 0, 0)]);
-  //   const items = gildedRose.updateQuality();
-  //   expect(items[0].name).to.equal('fixme');
-  // });
 });

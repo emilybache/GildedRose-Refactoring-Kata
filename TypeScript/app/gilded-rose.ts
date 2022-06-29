@@ -10,6 +10,13 @@ export class Item {
   }
 }
 
+export enum ItemType {
+  Sulfuras = 'Sulfuras, Hand of Ragnaros',
+  BackstagePass = 'Backstage passes to a TAFKAL80ETC concert',
+  AgedBrie = 'Aged Brie',
+  ConjuredItem = 'Conjured',
+}
+
 export class GildedRose {
   items: Array<Item>;
 
@@ -38,6 +45,12 @@ export class GildedRose {
       ++item.quality;
   }
 
+  private static updateConjuredItem(item: Item) {
+    item.quality -= 2;
+    if (item.sellIn < 0)
+      item.quality -= 2;
+  }
+
   private static updateRegularItem(item: Item) {
     --item.quality;
     if (item.sellIn < 0)
@@ -54,14 +67,17 @@ export class GildedRose {
   private updateItemQuality(item: Item) {
     --item.sellIn;
     switch (item.name) {
-      case 'Sulfuras, Hand of Ragnaros':
+      case ItemType.Sulfuras:
         GildedRose.updateSulfuras(item);
         break;
-      case 'Backstage passes to a TAFKAL80ETC concert':
+      case ItemType.BackstagePass:
         GildedRose.updateBackstagePass(item);
         break;
-      case 'Aged Brie':
+      case ItemType.AgedBrie:
         GildedRose.updateAgedBrie(item);
+        break;
+      case ItemType.ConjuredItem:
+        GildedRose.updateConjuredItem(item);
         break;
       default:
         GildedRose.updateRegularItem(item);
