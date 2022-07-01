@@ -100,4 +100,18 @@ class GildedRoseTest {
 
         assertEquals(0, app.items[0].quality);
     }
+
+    @Test
+    void conjuredItemsDegrade2x() {
+        Item[] items = new Item[] { new Item("Conjured Brie", 1, 50) };
+        GildedRose app = new GildedRose(items);
+
+        // twice as fast as normal degrade = -2
+        app.updateQuality();
+        assertEquals(48, app.items[0].quality);
+
+        // twice as fast as sellIn has passed = -4
+        app.updateQuality();
+        assertEquals(44, app.items[0].quality);
+    }
 }

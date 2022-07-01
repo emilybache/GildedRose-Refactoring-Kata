@@ -30,12 +30,19 @@ class GildedRose {
                 } else if (item.sellIn <= 10) {
                     item.quality += 2;
                 }
+            } else if (item.name.startsWith("Conjured")) {
+                // conjured is twice the degrade rate as regular items
+                if (item.sellIn <= 0) {
+                    item.quality -= 4;
+                }  else {
+                    item.quality -= 2;
+                }
             } else {
                 // just a regular item
                 if (item.sellIn <= 0) {
                     item.quality -= 2;
                 }  else {
-                    item.quality --;
+                    item.quality--;
                 }
             }
 
