@@ -19,31 +19,26 @@ class GildedRose {
     }
 
     private void updateItemQuality(Item item) {
+        int adjustment;
             if (!item.name.equals(AGED_BRIE)
                     && !item.name.equals(BACKSTAGE)) {
                 if (item.quality > 0) {
-                    if (!item.name.equals(SULFURAS)) {
-                        item.quality = item.quality - 1;
+                    if (!item.name.equals(SULFURAS)) {                        
+                        adjustQuality(item, adjustment=-1);
                     }
                 }
-            } else {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1;
+            } else {                                
+                adjustQuality(item, adjustment=+1);
 
-                    if (item.name.equals(BACKSTAGE)) {
-                        if (item.sellIn < 11) {
-                            if (item.quality < 50) {
-                                item.quality = item.quality + 1;
-                            }
-                        }
-
-                        if (item.sellIn < 6) {
-                            if (item.quality < 50) {
-                                item.quality = item.quality + 1;
-                            }
-                        }
+                if (item.name.equals(BACKSTAGE)) {
+                    if (item.sellIn < 11) {                        
+                        adjustQuality(item, adjustment=1);                        
                     }
-                }
+
+                    if (item.sellIn < 6) {                                                    
+                        adjustQuality(item, adjustment=1);                        
+                    }
+                }                
             }
 
             if (!item.name.equals(SULFURAS)) {
@@ -52,26 +47,26 @@ class GildedRose {
 
             if (item.sellIn < 0) {
                 if (!item.name.equals(AGED_BRIE)) {
-                    if (!item.name.equals(BACKSTAGE)) {
-                        if (item.quality > 0) {
-                            if (!item.name.equals(SULFURAS)) {
-                                item.quality = item.quality - 1;
-                            }
-                        }
+                    if (!item.name.equals(BACKSTAGE)) {                        
+                        if (!item.name.equals(SULFURAS)) {                            
+                            adjustQuality(item, adjustment=-1); 
+                        }                        
                     } else {
                         item.quality = item.quality - item.quality;
                     }
-                } else {
-                    if (item.quality < 50) {
-                        int adjustment = 1;
-                        adjustQuality(item, adjustment);                        
-                    }
+                } else {                    
+                    int adjustment = 1;
+                    adjustQuality(item, adjustment);                                        
                 }
             }
         }
 
     public void adjustQuality(Item item, int adjustment) {
-        item.quality = item.quality + adjustment;             
+        int newQuality = item.quality + adjustment;
+        boolean isValid = newQuality <= 50 && newQuality >= 0;
+        if (isValid) {
+            item.quality = newQuality;
+        }        
     }
 
     public Item[] getItems() {
