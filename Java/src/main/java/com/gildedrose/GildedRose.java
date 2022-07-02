@@ -1,7 +1,7 @@
 package com.gildedrose;
 
-class GildedRose {   
-    
+class GildedRose {
+
     public static final String AGED_BRIE = "Aged Brie";
     public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
     public static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
@@ -19,26 +19,25 @@ class GildedRose {
     }
 
     private void updateItemQuality(Item item) {
-        int adjustment;
             if (!item.name.equals(AGED_BRIE)
                     && !item.name.equals(BACKSTAGE)) {
                 if (item.quality > 0) {
-                    if (!item.name.equals(SULFURAS)) {                        
-                        adjustQuality(item, adjustment=-1);
+                    if (!item.name.equals(SULFURAS)) {
+                        adjustQuality(item, -1);
                     }
                 }
-            } else {                                
-                adjustQuality(item, adjustment=+1);
+            } else {
+                adjustQuality(item, 1);
 
                 if (item.name.equals(BACKSTAGE)) {
-                    if (item.sellIn < 11) {                        
-                        adjustQuality(item, adjustment=1);                        
+                    if (item.sellIn < 11) {
+                        adjustQuality(item, 1);
                     }
 
-                    if (item.sellIn < 6) {                                                    
-                        adjustQuality(item, adjustment=1);                        
+                    if (item.sellIn < 6) {
+                        adjustQuality(item, 1);
                     }
-                }                
+                }
             }
 
             if (!item.name.equals(SULFURAS)) {
@@ -47,16 +46,16 @@ class GildedRose {
 
             if (item.sellIn < 0) {
                 if (!item.name.equals(AGED_BRIE)) {
-                    if (!item.name.equals(BACKSTAGE)) {                        
-                        if (!item.name.equals(SULFURAS)) {                            
-                            adjustQuality(item, adjustment=-1); 
-                        }                        
+                    if (!item.name.equals(BACKSTAGE)) {
+                        if (!item.name.equals(SULFURAS)) {
+                            adjustQuality(item, -1);
+                        }
                     } else {
                         item.quality = item.quality - item.quality;
                     }
-                } else {                    
+                } else {
                     int adjustment = 1;
-                    adjustQuality(item, adjustment);                                        
+                    adjustQuality(item, adjustment);
                 }
             }
         }
@@ -66,7 +65,7 @@ class GildedRose {
         boolean isValid = newQuality <= 50 && newQuality >= 0;
         if (isValid) {
             item.quality = newQuality;
-        }        
+        }
     }
 
     public Item[] getItems() {
