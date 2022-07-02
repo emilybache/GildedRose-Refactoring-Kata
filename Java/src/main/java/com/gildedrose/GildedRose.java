@@ -63,12 +63,16 @@ class GildedRose {
                     }
                 } else {
                     if (item.quality < 50) {
-                        item.quality = item.quality + 1;
+                        int adjustment = 1;
+                        adjustQuality(item, adjustment);                        
                     }
                 }
             }
         }
 
+    public void adjustQuality(Item item, int adjustment) {
+        item.quality = item.quality + adjustment;             
+    }
 
     public Item[] getItems() {
         return items;
