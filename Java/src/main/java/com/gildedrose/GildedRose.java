@@ -1,9 +1,10 @@
 package com.gildedrose;
 
 class GildedRose {
-    Item[] items;
 
-    public GildedRose(Item[] items) {
+    private Item[] items;
+
+    public GildedRose(Item... items) {
         this.items = items;
     }
 
@@ -58,5 +59,9 @@ class GildedRose {
                 }
             }
         }
+    }
+
+    public Item[] getItems() {
+        return items;
     }
 }
