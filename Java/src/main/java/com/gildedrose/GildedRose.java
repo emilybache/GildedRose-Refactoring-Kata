@@ -6,7 +6,9 @@ class GildedRose {
     public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
     public static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
     public static final String CONJURED = "Conjured Mana Cake";
+
     private Item[] items;
+
 
     private Item[] items;
 
@@ -21,6 +23,7 @@ class GildedRose {
     }
 
     private void updateItemQuality(Item item) {
+
         boolean isExpired = item.sellIn < 1;
         int degradeRate = determineDegradeRate(item, isExpired);
         boolean doesDegrade = !item.name.equals(AGED_BRIE) && !item.name.equals(BACKSTAGE) && !item.name.equals(SULFURAS);
@@ -29,6 +32,18 @@ class GildedRose {
         if (doesDegrade) {
             adjustQuality(item, degradeRate);
         }
+
+            int degradeRate = item.name.equals(CONJURED) ? -2 : -1;
+            if (!item.name.equals(AGED_BRIE)
+                    && !item.name.equals(BACKSTAGE)) {
+                if (item.quality > 0) {
+                    if (!item.name.equals(SULFURAS)) {
+                        adjustQuality(item, degradeRate);
+                    }
+                }
+            } else {
+                adjustQuality(item, 1);
+
 
         if (item.name.equals(AGED_BRIE)) {
             int adjustment = isExpired ? 2 : 1;
@@ -44,10 +59,27 @@ class GildedRose {
         }
     }
 
+
     private void updateBackStagePass(Item item, boolean isExpired) {
         adjustQuality(item, 1);
         if (item.sellIn < 11) {
             adjustQuality(item, 1);
+
+            if (item.sellIn < 0) {
+                if (!item.name.equals(AGED_BRIE)) {
+                    if (!item.name.equals(BACKSTAGE)) {
+                        if (!item.name.equals(SULFURAS)) {
+                            adjustQuality(item, degradeRate);
+                        }
+                    } else {
+                        item.quality = item.quality - item.quality;
+                    }
+                } else {
+                    int adjustment = 1;
+                    adjustQuality(item, adjustment);
+                }
+            }
+
         }
 
         if (item.sellIn < 6) {
