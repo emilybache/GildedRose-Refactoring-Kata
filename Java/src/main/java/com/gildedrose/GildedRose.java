@@ -19,6 +19,7 @@ class GildedRose {
             updateItemQuality(item);
         }
     }
+    
 
     private void updateItemQuality(Item item) {
         boolean isExpired = item.sellIn < 1;
