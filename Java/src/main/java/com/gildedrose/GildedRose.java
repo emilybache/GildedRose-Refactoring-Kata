@@ -6,7 +6,7 @@ class GildedRose {
     public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
     public static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
     public static final String CONJURED = "Conjured Mana Cake";
-    private Item[] items;
+
 
     private Item[] items;
 
@@ -14,7 +14,7 @@ class GildedRose {
         this.items = items;
     }
 
-    public void updateQuality() {        
+    public void updateQuality() {
         for (Item item : items) {
             updateItemQuality(item);
         }
@@ -33,7 +33,7 @@ class GildedRose {
         if (item.name.equals(AGED_BRIE)) {
             int adjustment = isExpired ? 2 : 1;
             adjustQuality(item, adjustment);
-        } 
+        }
 
         if (item.name.equals(BACKSTAGE)) {
             updateBackStagePass(item, isExpired);
@@ -55,7 +55,7 @@ class GildedRose {
         }
         if (isExpired) {
             item.quality = item.quality - item.quality;
-        } 
+        }
     }
 
     private int determineDegradeRate(Item item, boolean isExpired) {

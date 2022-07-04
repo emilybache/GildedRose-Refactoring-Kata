@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Java-Approvals/.mvn/wrapper"/>
+	<classpathentry kind="src" path="Java-Approvals/src/main/java"/>
+	<classpathentry kind="src" path="Java-Approvals/src/test/java"/>
+	<classpathentry kind="src" path="Java-Cucumber/.mvn/wrapper"/>
+	<classpathentry kind="src" path="Java-Cucumber/src/main/java"/>
+	<classpathentry kind="src" path="Java-Cucumber/src/test/java"/>
+	<classpathentry kind="src" path="Java-Spock/src/main/java"/>
+	<classpathentry kind="src" path="Java/.mvn/wrapper"/>
+	<classpathentry kind="src" path="Java/src/main/java"/>
+	<classpathentry kind="src" path="Java/src/test/java"/>
+	<classpathentry kind="lib" path="Java-Approvals/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="Java-Cucumber/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="Java-Spock/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="Java/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="output" path="Java/target/classes"/>
+</classpath>
