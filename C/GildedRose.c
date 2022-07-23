@@ -71,7 +71,7 @@ update_quality(Item items[], int size)
         {
             if (strcmp(items[i].name, "Aged Brie"))
             {
-                if (strcmp(items[i].name, "Backstage passes to a TAFKAL80ETC concert"))
+                if (strcmp(items[i].name, "Backstage  passes to a TAFKAL80ETC concert"))
                 {
                     if (items[i].quality > 0)
                     {
