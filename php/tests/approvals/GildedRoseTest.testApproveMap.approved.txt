@@ -1,0 +1,6 @@
+[zero] -> Lance
+[one] -> Jim
+[two] -> James
+[three] -> LLewellyn
+[four] -> Asaph
+[five] -> Dana

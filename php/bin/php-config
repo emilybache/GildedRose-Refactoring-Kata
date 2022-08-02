@@ -1,0 +1,98 @@
+#! /bin/sh
+
+SED="/usr/bin/sed"
+prefix="/Applications/MAMP/bin/php/php8.0.8"
+datarootdir="/Applications/MAMP/bin/php/php8.0.8/php"
+exec_prefix="/Applications/MAMP/bin/php/php8.0.8"
+version="8.0.8"
+vernum="80008"
+include_dir="${prefix}/include/php"
+includes="-I$include_dir -I$include_dir/main -I$include_dir/TSRM -I$include_dir/Zend -I$include_dir/ext -I$include_dir/ext/date/lib"
+ldflags=" -L/Applications/MAMP/Library/lib"
+libs="  -largon2 -lreadline -lncurses -lldap -llber -lstdc++ -liconv -lintl -lbz2 -lnetwork -lm -lresolv -lxml2 -lkrb5 -lssl -lcrypto -lsqlite3 -lz -lcurl -lssl -lcrypto -lxml2 -lssl -lcrypto -lz -lpng16 -lz -lwebp -ljpeg -lfreetype -licuio -licui18n -licuuc -licudata -lonig -lsqlite3 -lxml2 -lxml2 -lsodium -largon2 -lxml2 -lxml2 -lxml2 -lxslt -lxml2 -lz -llzma -lpthread -liconv -licui18n -licuuc -licudata -lm -lxml2 -lexslt -lxslt -lxml2 -lz -llzma -lpthread -liconv -licui18n -licuuc -licudata -lm -lxml2 -lzip -lz -lssl -lcrypto "
+extension_dir='/Applications/MAMP/bin/php/php8.0.8/lib/php/extensions/no-debug-non-zts-20200930'
+man_dir=`eval echo ${datarootdir}/man`
+program_prefix=""
+program_suffix=""
+exe_extension=""
+php_cli_binary=NONE
+php_cgi_binary=NONE
+configure_options=" '--with-apxs2=/Applications/MAMP/Library/bin/apxs' '--with-zlib' '--with-zlib-dir=/Applications/MAMP/Library' '--prefix=/Applications/MAMP/bin/php/php8.0.8' '--exec-prefix=/Applications/MAMP/bin/php/php8.0.8' '--sysconfdir=/Applications/MAMP/bin/php/php8.0.8/conf' '--with-config-file-path=/Applications/MAMP/bin/php/php8.0.8/conf' '--enable-ftp' '--with-bz2=/Applications/MAMP/Library' '--with-mysqli=mysqlnd' '--enable-mbstring=all' '--with-curl=/Applications/MAMP/Library' '--enable-sockets' '--enable-bcmath' '--enable-soap' '--enable-calendar' '--with-pgsql=shared,/Applications/MAMP/Library/pg' '--enable-exif' '--with-xsl=/Applications/MAMP/Library' '--with-pdo-mysql=mysqlnd' '--with-pdo-pgsql=shared,/Applications/MAMP/Library/pg' '--with-openssl=/Applications/MAMP/Library' '--enable-opcache' '--with-tidy=shared,/Applications/MAMP/Library' '--with-readline' '--with-mhash' '--with-sodium=/Applications/MAMP/Library' '--with-password-argon2=/Applications/MAMP/Library' '--with-zip' '--with-xmlrpc' '--with-kerberos' '--with-pdo-sqlite' '--with-sqlite3' '--with-ldap=/Applications/MAMP/Library' '--with-ldap-sasl' '--with-imap=shared,/Applications/MAMP/Library/lib/imap-2007f/lib' '--with-imap-ssl=/Applications/MAMP/Library' '--disable-phpdbg' '--enable-cgi' '--with-webp' '--with-jpeg' '--with-freetype' '--enable-pcntl' '--enable-intl' '--with-iconv=/Applications/MAMP/Library' '--with-gettext=/Applications/MAMP/Library' '--enable-gd' 'KERBEROS_CFLAGS=-I/usr/include' 'KERBEROS_LIBS=-lkrb5' 'SQLITE_CFLAGS= ' 'SQLITE_LIBS=-lsqlite3' 'JPEG_CFLAGS= ' 'JPEG_LIBS=-ljpeg' 'SASL_CFLAGS=-I/usr/include/sasl' 'SASL_LIBS=-lsasl2'"
+php_sapis=" apache2handler cli cgi"
+ini_dir=""
+ini_path="/Applications/MAMP/bin/php/php8.0.8/conf"
+
+# Set php_cli_binary and php_cgi_binary if available
+for sapi in $php_sapis; do
+  case $sapi in
+  cli)
+    php_cli_binary="${exec_prefix}/bin/${program_prefix}php${program_suffix}${exe_extension}"
+    ;;
+  cgi)
+    php_cgi_binary="${exec_prefix}/bin/${program_prefix}php-cgi${program_suffix}${exe_extension}"
+    ;;
+  esac
+done
+
+# Determine which (if any) php binary is available
+if test "$php_cli_binary" != "NONE"; then
+  php_binary="$php_cli_binary"
+else
+  php_binary="$php_cgi_binary"
+fi
+
+# Remove quotes
+configure_options=`echo $configure_options | $SED -e "s#'##g"`
+
+case "$1" in
+--prefix)
+  echo $prefix;;
+--includes)
+  echo $includes;;
+--ldflags)
+  echo $ldflags;;
+--libs)
+  echo $libs;;
+--extension-dir)
+  echo $extension_dir;;
+--include-dir)
+  echo $include_dir;;
+--php-binary)
+  echo $php_binary;;
+--php-sapis)
+  echo $php_sapis;;
+--configure-options)
+  echo $configure_options;;
+--man-dir)
+  echo $man_dir;;
+--ini-path)
+  echo $ini_path;;
+--ini-dir)
+  echo $ini_dir;;
+--version)
+  echo $version;;
+--vernum)
+  echo $vernum;;
+*)
+  cat << EOF
+Usage: $0 [OPTION]
+Options:
+  --prefix            [$prefix]
+  --includes          [$includes]
+  --ldflags           [$ldflags]
+  --libs              [$libs]
+  --extension-dir     [$extension_dir]
+  --include-dir       [$include_dir]
+  --man-dir           [$man_dir]
+  --php-binary        [$php_binary]
+  --php-sapis         [$php_sapis]
+  --ini-path          [$ini_path]
+  --ini-dir           [$ini_dir]
+  --configure-options [$configure_options]
+  --version           [$version]
+  --vernum            [$vernum]
+EOF
+  exit 1;;
+esac
+
+exit 0

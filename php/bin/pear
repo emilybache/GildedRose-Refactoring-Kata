@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# first find which PHP binary to use
+if test "x$PHP_PEAR_PHP_BIN" != "x"; then
+  PHP="$PHP_PEAR_PHP_BIN"
+else
+  if test "/Applications/MAMP/bin/php/php8.0.8/bin/php" = '@'php_bin'@'; then
+    PHP=php
+  else
+    PHP="/Applications/MAMP/bin/php/php8.0.8/bin/php"
+  fi
+fi
+
+# then look for the right pear include dir
+if test "x$PHP_PEAR_INSTALL_DIR" != "x"; then
+  INCDIR=$PHP_PEAR_INSTALL_DIR
+  INCARG="-d include_path=$PHP_PEAR_INSTALL_DIR"
+else
+  if test "/Applications/MAMP/bin/php/php8.0.8/lib/php" = '@'php_dir'@'; then
+    INCDIR=`dirname $0`
+    INCARG=""
+  else
+    INCDIR="/Applications/MAMP/bin/php/php8.0.8/lib/php"
+    INCARG="-d include_path=/Applications/MAMP/bin/php/php8.0.8/lib/php"
+  fi
+fi
+
+exec $PHP -C -q $INCARG -d date.timezone=UTC -d output_buffering=1 -d variables_order=EGPCS -d open_basedir="" -d safe_mode=0 -d register_argc_argv="On" -d auto_prepend_file="" -d auto_append_file="" $INCDIR/pearcmd.php "$@"
