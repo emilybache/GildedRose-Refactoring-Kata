@@ -1,7 +1,12 @@
 # 高木追記
-php8のバイナリをgitにあげているので以下コマンドで一時的にパスを通してください
-export PATH=./bin:$PATH
-
+* php8のバイナリをgitにあげているので以下コマンドで一時的にパスを通してください
+* export PATH=./bin:$PATH
+* composer install
+* composer test
+*  
+* test　fixtureの実行 日付を変更するとapprovedファイルと近くなる
+* php fixtures/texttext_fixture.php
+`days=2 -> days=31`
 # GildedRose Kata - PHP Version
 
 See the [top level readme](../README.md) for general information about this exercise. This is the PHP version of the
