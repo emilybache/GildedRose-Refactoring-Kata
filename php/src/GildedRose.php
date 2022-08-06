@@ -11,59 +11,68 @@ final class GildedRose
      */
     private $items;
 
+    private mixed $item;
+
     public function __construct(array $items)
     {
         $this->items = $items;
     }
 
+    /*
+    仕様解析
+        [共通仕様]
+        ・qualityはマイナスにならない、かつ50以上にならない
+        ・sell_inの計算をしてからqualityの計算を行う
+        [商品：Aged Brie]
+        ・引数のsell_inを-1する
+        ・計算後sell_inが0未満の場合、quality+2する
+        ・計算後sell_inが0以上の場合、quality+1する
+    */
+
+    /**
+     * メイン処理
+     */
     public function updateQuality(): void
     {
-        foreach ($this->items as $item) {
-            if ($item->name != 'Aged Brie' and $item->name != 'Backstage passes to a TAFKAL80ETC concert') {
-                if ($item->quality > 0) {
-                    if ($item->name != 'Sulfuras, Hand of Ragnaros') {
-                        $item->quality = $item->quality - 1;
-                    }
-                }
-            } else {
-                if ($item->quality < 50) {
-                    $item->quality = $item->quality + 1;
-                    if ($item->name == 'Backstage passes to a TAFKAL80ETC concert') {
-                        if ($item->sell_in < 11) {
-                            if ($item->quality < 50) {
-                                $item->quality = $item->quality + 1;
-                            }
-                        }
-                        if ($item->sell_in < 6) {
-                            if ($item->quality < 50) {
-                                $item->quality = $item->quality + 1;
-                            }
-                        }
-                    }
-                }
-            }
-
-            if ($item->name != 'Sulfuras, Hand of Ragnaros') {
-                $item->sell_in = $item->sell_in - 1;
-            }
-
-            if ($item->sell_in < 0) {
-                if ($item->name != 'Aged Brie') {
-                    if ($item->name != 'Backstage passes to a TAFKAL80ETC concert') {
-                        if ($item->quality > 0) {
-                            if ($item->name != 'Sulfuras, Hand of Ragnaros') {
-                                $item->quality = $item->quality - 1;
-                            }
-                        }
-                    } else {
-                        $item->quality = $item->quality - $item->quality;
-                    }
-                } else {
-                    if ($item->quality < 50) {
-                        $item->quality = $item->quality + 1;
-                    }
-                }
+        foreach ($this->items as $this->item) {
+            if ($this->item->name === 'Aged Brie') {
+                // 商品：Aged Brieの処理
+                $this->agedBrie();
             }
         }
     }
+
+    /**
+     * 商品：Aged Brie計算処理
+     */
+    private function agedBrie(): void
+    {
+        $this->calcSellInSubtraction();
+        $this->calcQualityAddition();
+
+        // sell_inが0未満の場合、qualityを再加算する
+        if ($this->item->sell_in < 0) {
+            $this->calcQualityAddition();
+        }
+    }
+
+    /**
+     * sell_inの減算を行う
+     */
+    private function calcSellInSubtraction(): void
+    {
+        --$this->item->sell_in;
+    }
+
+    /**
+     * qualityの加算を行う
+     */
+    private function calcQualityAddition(): void
+    {
+        // 50未満の場合計算
+        if ($this->item->quality < 50) {
+            ++$this->item->quality;
+        }
+    }
 }
+
