@@ -27,6 +27,8 @@ final class GildedRose
         ・引数のsell_inを-1する
         ・計算後sell_inが0未満の場合、quality+2する
         ・計算後sell_inが0以上の場合、quality+1する
+        [商品：Sulfuras]
+        ・sell_in、qualityどちらも変更しない
     */
 
     /**
@@ -38,6 +40,9 @@ final class GildedRose
             if ($this->item->name === 'Aged Brie') {
                 // 商品：Aged Brieの処理
                 $this->agedBrie();
+            } elseif ($this->item->name === 'Sulfuras, Hand of Ragnaros') {
+                // 商品：Sulfurasの処理
+                $this->sulfuras();
             }
         }
     }
@@ -54,6 +59,14 @@ final class GildedRose
         if ($this->item->sell_in < 0) {
             $this->calcQualityAddition();
         }
+    }
+
+    /**
+     * 商品：Sulfuras計算処理
+     */
+    private function sulfuras(): void
+    {
+        // 何もしない
     }
 
     /**

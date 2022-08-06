@@ -67,6 +67,39 @@ class GildedRoseTest extends TestCase
         $this->assertSame(50, $items[0]->quality);
     }
 
+    /**
+     * Sulfuras：sell_inが1以上、qualityが80
+     * 期待値：sell_in、qualityどちらも変更なし
+     */
+    public function testSulfurasNormal(): void
+    {
+        $items = [new Item('Sulfuras, Hand of Ragnaros', 5, 80)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertSame('Sulfuras, Hand of Ragnaros', $items[0]->name);
+        $this->assertSame(5, $items[0]->sell_in);
+        $this->assertSame(80, $items[0]->quality);
+    }
+
+    /**
+     * 複数商品
+     */
+    public function testMixCase(): void
+    {
+        $items = [
+            new Item('Aged Brie', 5, 10),
+            new Item('Sulfuras, Hand of Ragnaros', 5, 80),
+        ];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertSame('Aged Brie', $items[0]->name);
+        $this->assertSame(4, $items[0]->sell_in);
+        $this->assertSame(11, $items[0]->quality);
+        $this->assertSame('Sulfuras, Hand of Ragnaros', $items[1]->name);
+        $this->assertSame(5, $items[1]->sell_in);
+        $this->assertSame(80, $items[1]->quality);
+    }
+
     // テストエラーの原因が特定できないので後で調査する
     /*
     public function testApproveArray()
