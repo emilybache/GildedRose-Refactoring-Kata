@@ -35,6 +35,10 @@ final class GildedRose
             ・計算後sell_inが10未満の場合、さらにquality+1する
             ・計算後sell_inが5未満の場合、さらにquality+1する
             ・計算後sell_inが0未満の場合、qualityを0にする
+        [その他商品]
+        ・引数のsell_inを-1する
+        ・引数のqualityを-1する
+            ・sell_inが0未満の場合、さらにquality-1する ★仕様書に記載なかったがコード上はこのようになっている
     */
 
     /**
@@ -52,6 +56,9 @@ final class GildedRose
             } elseif ($this->item->name === 'Backstage passes to a TAFKAL80ETC concert') {
                 // 商品：Backstage passesの処理
                 $this->backstagePasses();
+            } else {
+                // その他商品の処理
+                $this->others();
             }
         }
     }
@@ -101,6 +108,20 @@ final class GildedRose
     }
 
     /**
+     * その他商品
+     */
+    private function others(): void
+    {
+        $this->calcSellInSubtraction();
+        $this->calcQualitySubtraction();
+
+        // sell_inが0未満の場合、sell_inを再減算する
+        if ($this->item->sell_in < 0) {
+            $this->calcQualitySubtraction();
+        }
+    }
+
+    /**
      * sell_inの減算を行う
      */
     private function calcSellInSubtraction(): void
@@ -116,6 +137,17 @@ final class GildedRose
         // 50未満の場合計算
         if ($this->item->quality < 50) {
             ++$this->item->quality;
+        }
+    }
+
+    /**
+     * qualityの減算を行う
+     */
+    private function calcQualitySubtraction(): void
+    {
+        // 1以上の場合計算
+        if ($this->item->quality >= 1) {
+            --$this->item->quality;
         }
     }
 }

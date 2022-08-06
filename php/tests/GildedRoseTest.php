@@ -194,6 +194,55 @@ class GildedRoseTest extends TestCase
     }
 
     /**
+     * Foo：sell_inが1以上、qualityが50未満
+     * 期待値：sell_inが-1、qualityが-1
+     */
+    public function testFooNormal(): void
+    {
+        $items = [new Item('Foo', 5, 10)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertSame('Foo', $items[0]->name);
+        $this->assertSame(4, $items[0]->sell_in);
+        $this->assertSame(9, $items[0]->quality);
+    }
+
+    /**
+     * Foo：sell_inが0以下、qualityが50未満
+     * 期待値：sell_inが-1、qualityが-2
+     */
+    public function testFooSellIn0OrLess(): void
+    {
+        $items = [new Item('Foo', 0, 10)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertSame('Foo', $items[0]->name);
+        $this->assertSame(-1, $items[0]->sell_in);
+        $this->assertSame(8, $items[0]->quality);
+
+        $items = [new Item('Foo', -1, 10)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertSame('Foo', $items[0]->name);
+        $this->assertSame(-2, $items[0]->sell_in);
+        $this->assertSame(8, $items[0]->quality);
+    }
+
+    /**
+     * Foo：sell_inが1以上、qualityが0
+     * 期待値：sell_inが-1、qualityは変更なし
+     */
+    public function testFooQuality0(): void
+    {
+        $items = [new Item('Foo', 5, 0)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertSame('Foo', $items[0]->name);
+        $this->assertSame(4, $items[0]->sell_in);
+        $this->assertSame(0, $items[0]->quality);
+    }
+
+    /**
      * 複数商品
      */
     public function testMixCase(): void
@@ -202,6 +251,7 @@ class GildedRoseTest extends TestCase
             new Item('Aged Brie', 5, 10),
             new Item('Sulfuras, Hand of Ragnaros', 5, 80),
             new Item('Backstage passes to a TAFKAL80ETC concert', 5, 10),
+            new Item('Foo', 5, 10),
         ];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
@@ -214,6 +264,9 @@ class GildedRoseTest extends TestCase
         $this->assertSame('Backstage passes to a TAFKAL80ETC concert', $items[2]->name);
         $this->assertSame(4, $items[2]->sell_in);
         $this->assertSame(13, $items[2]->quality);
+        $this->assertSame('Foo', $items[3]->name);
+        $this->assertSame(4, $items[3]->sell_in);
+        $this->assertSame(9, $items[3]->quality);
     }
 
     // テストエラーの原因が特定できないので後で調査する
