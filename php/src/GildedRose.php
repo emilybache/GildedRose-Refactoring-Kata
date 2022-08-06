@@ -35,6 +35,9 @@ final class GildedRose
             ・計算後sell_inが10未満の場合、さらにquality+1する
             ・計算後sell_inが5未満の場合、さらにquality+1する
             ・計算後sell_inが0未満の場合、qualityを0にする
+        [商品：Conjured]
+        ・引数のsell_inを-1する
+        ・引数のqualityを-2する
         [その他商品]
         ・引数のsell_inを-1する
         ・引数のqualityを-1する
@@ -56,6 +59,9 @@ final class GildedRose
             } elseif ($this->item->name === 'Backstage passes to a TAFKAL80ETC concert') {
                 // 商品：Backstage passesの処理
                 $this->backstagePasses();
+            } elseif ($this->item->name === 'Conjured Mana Cake') {
+                // 商品：Conjuredの処理
+                $this->conjured();
             } else {
                 // その他商品の処理
                 $this->others();
@@ -108,6 +114,17 @@ final class GildedRose
     }
 
     /**
+     * 商品：Conjured計算処理
+     */
+    private function conjured(): void
+    {
+        $this->calcSellInSubtraction();
+        // 新たな関数は作成せず減算処理を2回実行する
+        $this->calcQualitySubtraction();
+        $this->calcQualitySubtraction();
+    }
+
+    /**
      * その他商品
      */
     private function others(): void
@@ -151,4 +168,3 @@ final class GildedRose
         }
     }
 }
-
