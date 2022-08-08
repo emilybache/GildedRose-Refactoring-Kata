@@ -285,6 +285,62 @@ class GildedRoseTest extends TestCase
     }
 
     /**
+     * Conjured：sell_inが0以下、qualityが50未満
+     * 期待値：sell_inが-1、qualityが-4
+     */
+    public function testConjuredSellIn0OrLess(): void
+    {
+        $items = [new Item('Conjured Mana Cake', 0, 10)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertSame('Conjured Mana Cake', $items[0]->name);
+        $this->assertSame(-1, $items[0]->sell_in);
+        $this->assertSame(6, $items[0]->quality);
+
+        $items = [new Item('Conjured Mana Cake', -1, 10)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertSame('Conjured Mana Cake', $items[0]->name);
+        $this->assertSame(-2, $items[0]->sell_in);
+        $this->assertSame(6, $items[0]->quality);
+    }
+
+    /**
+     * Conjured：sell_inが0以下、qualityが2以下
+     * 期待値：sell_inが-1、qualityを減算、0が下限
+     */
+    public function testConjuredSellIn0OrLessAndQuality2OrLess(): void
+    {
+        $items = [new Item('Conjured Mana Cake', 0, 2)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertSame('Conjured Mana Cake', $items[0]->name);
+        $this->assertSame(-1, $items[0]->sell_in);
+        $this->assertSame(0, $items[0]->quality);
+
+        $items = [new Item('Conjured Mana Cake', 0, 1)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertSame('Conjured Mana Cake', $items[0]->name);
+        $this->assertSame(-1, $items[0]->sell_in);
+        $this->assertSame(0, $items[0]->quality);
+    }
+
+    /**
+     * Conjured：sell_inが0、qualityが0
+     * 期待値：sell_inが-1、qualityは変更なし
+     */
+    public function testConjuredSellIn0AndQuality0(): void
+    {
+        $items = [new Item('Conjured Mana Cake', 0, 0)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertSame('Conjured Mana Cake', $items[0]->name);
+        $this->assertSame(-1, $items[0]->sell_in);
+        $this->assertSame(0, $items[0]->quality);
+    }
+
+    /**
      * 複数商品
      */
     public function testMixCase(): void

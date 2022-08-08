@@ -38,10 +38,11 @@ final class GildedRose
         [商品：Conjured]
         ・引数のsell_inを-1する
         ・引数のqualityを-2する
+            ・sell_inが0未満の場合、さらにquality-2する
         [その他商品]
         ・引数のsell_inを-1する
         ・引数のqualityを-1する
-            ・sell_inが0未満の場合、さらにquality-1する ★仕様書に記載なかったがコード上はこのようになっている
+            ・sell_inが0未満の場合、さらにquality-1する
     */
 
     /**
@@ -119,9 +120,12 @@ final class GildedRose
     private function conjured(): void
     {
         $this->calcSellInSubtraction();
-        // 新たな関数は作成せず減算処理を2回実行する
-        $this->calcQualitySubtraction();
-        $this->calcQualitySubtraction();
+        $this->calcQualityDoubleSubtraction();
+        
+        // sell_inが0未満の場合、sell_inを再減算する
+        if ($this->item->sell_in < 0) {
+            $this->calcQualityDoubleSubtraction();
+        }
     }
 
     /**
@@ -165,6 +169,22 @@ final class GildedRose
         // 1以上の場合計算
         if ($this->item->quality >= 1) {
             --$this->item->quality;
+        }
+    }
+
+    /**
+     * qualityを2倍の減算を行う
+     */
+    private function calcQualityDoubleSubtraction(): void
+    {
+        // 1以上の場合計算
+        if ($this->item->quality >= 1) {
+            $this->item->quality -=2;
+        }
+
+        // qualityが0未満の場合、0を設定
+        if ($this->item->quality < 0) {
+            $this->item->quality = 0;
         }
     }
 }
