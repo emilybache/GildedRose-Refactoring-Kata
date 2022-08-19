@@ -2,6 +2,8 @@
 
 This is the Gilded Rose kata in JavaScript with Jest.
 
+See `docs/GildedRoseRequirements-Simple.txt` for the business requirements.
+
 ## Getting started
 
 Install dependencies
