@@ -71,6 +71,7 @@ start-lable.
     go to start-lable.
 end-lable.
     close items.
+    close in-items.
 goback.
 
 end program GildedRose.
