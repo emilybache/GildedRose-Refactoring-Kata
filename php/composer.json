@@ -2,7 +2,7 @@
     "name": "emilybache/gilded-rose-refactoring-kata",
     "description": "A kata to practice refactoring, tests and polymorphism",
     "require": {
-        "php": "^7.3 || ^8.1"
+        "php": "^8.1"
     },
     "autoload": {
         "psr-4": {
