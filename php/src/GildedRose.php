@@ -22,56 +22,57 @@ final class GildedRose
     public function updateQuality(): void
     {
         foreach ($this->items as $item) {
-            if ($item->name != self::AGED_BRIE && $item->name != self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT) {
-                if ($item->quality > 0) {
-                    if ($item->name != self::SULFURAS_HAND_OF_RAGNAROS) {
-                        $item->quality -= 1;
-                    }
-                }
-            } else {
-                if ($item->quality < 50) {
-                    $item->quality += 1;
-                    if ($item->name == self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT) {
-                        if ($item->sell_in < 11) {
-                            if ($item->quality < 50) {
-                                $item->quality += 1;
-                            }
-                        }
-                        if ($item->sell_in < 6) {
-                            if ($item->quality < 50) {
-                                $item->quality += 1;
-                            }
-                        }
-                    }
-                }
-            }
-
             if ($item->name != self::SULFURAS_HAND_OF_RAGNAROS) {
                 $item->sell_in -= 1;
             }
 
+            if ($item->name != self::AGED_BRIE && $item->name != self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT) {
+                if ($item->name != self::SULFURAS_HAND_OF_RAGNAROS) {
+                    $this->decreaseItemQuality($item);
+                    if ($this->isSellDatePassed($item)) {
+                        $this->decreaseItemQuality($item);
+                    }
+                }
+            } else {
+                $this->increaseItemQuality($item);
+                if ($item->name == self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT) {
+                    if ($item->sell_in <= 10) {
+                        $this->increaseItemQuality($item);
+                    }
+                    if ($item->sell_in <= 5) {
+                        $this->increaseItemQuality($item);
+                    }
+                }
+            }
+
             if ($this->isSellDatePassed($item)) {
                 if ($item->name != self::AGED_BRIE) {
-                    if ($item->name != self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT) {
-                        if ($item->quality > 0) {
-                            if ($item->name != self::SULFURAS_HAND_OF_RAGNAROS) {
-                                $item->quality -= 1;
-                            }
-                        }
-                    } else {
+                    if ($item->name === self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT) {
                         $item->quality = 0;
                     }
                 } else {
-                    if ($item->quality < 50) {
-                        $item->quality += 1;
-                    }
+                    $this->increaseItemQuality($item);
                 }
             }
         }
     }
 
-    private function isSellDatePassed($item): bool
+    private function isSellDatePassed(Item $item): bool
     {
         return $item->sell_in < 0;
+    }
+
+    private function increaseItemQuality(Item $item): void
+    {
+        if ($item->quality < 50) {
+            $item->quality += 1;
+        }
+    }
+
+    private function decreaseItemQuality(Item $item): void
+    {
+        if ($item->quality > 0) {
+            $item->quality -= 1;
+        }
     }
 }
