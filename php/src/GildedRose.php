@@ -6,44 +6,65 @@ namespace GildedRose;
 
 final class GildedRose
 {
-    private const SULFURAS_HAND_OF_RAGNAROS = 'Sulfuras, Hand of Ragnaros';
-    private const BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT = 'Backstage passes to a TAFKAL80ETC concert';
-    private const AGED_BRIE = 'Aged Brie';
     /**
      * @var Item[]
      */
     private $items;
+    private CommandFactory $commandFactory;
 
     public function __construct(array $items)
     {
         $this->items = $items;
+        $this->commandFactory = new CommandFactory();
     }
 
     public function updateQuality(): void
     {
         foreach ($this->items as $item) {
-            if ($item->name === self::AGED_BRIE) {
-                (new AgedBrieCommand())->execute($item);
-            }
+            $command = $this->commandFactory->createFor($item->name);
 
-            if ($item->name === self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT) {
-                (new BackstageCommand())->execute($item);
-            }
-
-            if (in_array($item->name,
-                    [
-                        self::AGED_BRIE,
-                        self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT,
-                        self::SULFURAS_HAND_OF_RAGNAROS
-                    ]
-                ) === false) {
-                (new NormalCommand())->execute($item);
-            }
+            $command->execute($item);
         }
     }
 }
 
-final class AgedBrieCommand
+
+interface Command
+{
+    public function execute(Item $item): void;
+}
+
+final class CommandFactory
+{
+    private const SULFURAS_HAND_OF_RAGNAROS = 'Sulfuras, Hand of Ragnaros';
+    private const BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT = 'Backstage passes to a TAFKAL80ETC concert';
+    private const AGED_BRIE = 'Aged Brie';
+
+    public function createFor(string $itemName): Command
+    {
+        if ($itemName === self::AGED_BRIE) {
+            return new AgedBrieCommand();
+        }
+
+        if ($itemName === self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT) {
+            return new BackstageCommand();
+        }
+
+        if (in_array($itemName,
+                [
+                    self::AGED_BRIE,
+                    self::BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT,
+                    self::SULFURAS_HAND_OF_RAGNAROS
+                ]
+            ) === false) {
+            return new NormalCommand();
+        }
+
+        return new NoopCommand();
+    }
+}
+
+final class AgedBrieCommand implements Command
 {
     public function execute(Item $item): void
     {
@@ -56,7 +77,7 @@ final class AgedBrieCommand
     }
 }
 
-final class BackstageCommand
+final class BackstageCommand implements Command
 {
     public function execute(Item $item): void
     {
@@ -78,7 +99,7 @@ final class BackstageCommand
     }
 }
 
-final class NormalCommand
+final class NormalCommand implements Command
 {
     public function execute(Item $item): void
     {
@@ -87,5 +108,13 @@ final class NormalCommand
         if ($item->isSellDatePassed()) {
             $item->decreaseQuality();
         }
+    }
+}
+
+final class NoopCommand implements Command
+{
+    public function execute(Item $item): void
+    {
+        // noop
     }
 }
