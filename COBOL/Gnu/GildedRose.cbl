@@ -11,11 +11,11 @@ file-control.
 data division.
 file section.
    fd in-items.
-   01 in-item pic x(58).
+   01 in-item pic x(54).
    fd items.
    01 item.
-      02 sell-in pic 9(4).
-      02 quality pic 9(4).
+      02 sell-in pic s9(2).
+      02 quality pic s9(2).
       02 name pic x(50).
 
 working-storage section.
