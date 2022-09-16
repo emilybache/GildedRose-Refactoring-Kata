@@ -1,1 +1,1 @@
-cobc --free --std=mf -O GildedRose.cbl
+cobc --free --std=mf -O *.cbl
