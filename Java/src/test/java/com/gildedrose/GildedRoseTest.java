@@ -13,7 +13,8 @@ class GildedRoseTest {
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         Item updatedItem = app.items[0];
-        assertEquals(new Item("test_item", 2, 9), updatedItem);
+        assertEquals(2, updatedItem.sellIn);
+        assertEquals(9, updatedItem.quality);
     }
 
     @Test
@@ -23,7 +24,8 @@ class GildedRoseTest {
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         Item updatedItem = app.items[0];
-        assertEquals(new Item("test_item", -1, 8), updatedItem);
+        assertEquals(-1, updatedItem.sellIn);
+        assertEquals(8, updatedItem.quality);
     }
 
     @Test
@@ -43,7 +45,8 @@ class GildedRoseTest {
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         Item updatedItem = app.items[0];
-        assertEquals(new Item("Aged Brie", 4, 11), updatedItem);
+        assertEquals(4, updatedItem.sellIn);
+        assertEquals(11, updatedItem.quality);
     }
 
     @Test
