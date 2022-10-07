@@ -20,7 +20,7 @@
         "phpstan/phpstan-phpunit": "^0.12.18",
         "symplify/easy-coding-standard": "^9.3",
         "symplify/phpstan-extensions": "^9.3",
-        "approvals/approval-tests": "^1.4"
+        "approvals/approval-tests": "dev-Main"
     },
     "scripts": {
         "checkcode": "phpcs src tests --standard=PSR12",
