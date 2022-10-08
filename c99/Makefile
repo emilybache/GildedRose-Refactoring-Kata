@@ -8,11 +8,11 @@
 #   make memtest - run memory leak analysis
 
 # The _POSIX_C_SOURCE definition prevents the compiler from throwing warnings
-CFLAGS = `pkg-config --cflags check` -g --std=c99 -D_POSIX_C_SOURCE=200809L
+CFLAGS = `pkg-config --cflags check` -g --std=c99 -D_POSIX_C_SOURCE=200809L -fprofile-arcs -ftest-coverage
 LIBS = `pkg-config --libs check`
 
 # All files that should be part of your test should start with 'test_'
-TEST_SRC = $(wildcard test_*.c)
+TEST_SRC = $(filter-out $(wildcard test_unity_*.c), $(wildcard test_*.c)) # Don't include unity test suite here. Run that via `./run-once-cmake.sh`
 TEST_BASE = $(basename ${TEST_SRC})
 TEST_OBJECTS = $(addsuffix .o, ${TEST_BASE})
 
@@ -32,7 +32,10 @@ TEST_APP = test_gildedrose
 GOLDEN_APP = golden_rose
 
 all: ${TEST_APP} ${GOLDEN_APP}
+	rm -f *.gcda
+	rm -f *.gcov
 	./${TEST_APP}
+	gcov GildedRose.c
 
 ${TEST_APP}: ${TEST_OBJECTS} ${OBJECT_UNDER_TEST}
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
@@ -49,3 +52,6 @@ clean:
 	rm -f *.o
 	rm -f ${TEST_APP}
 	rm -f ${GOLDEN_APP}
+	rm -f *.gcda
+	rm -f *.gcno
+	rm -f *.gcov

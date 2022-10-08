@@ -1,0 +1,7 @@
+golden_rose
+test_gildedrose
+*.gcov
+*.gcda
+*.gcno
+*.o
+build/

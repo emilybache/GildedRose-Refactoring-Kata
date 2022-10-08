@@ -1,6 +1,9 @@
 #include "unity.h"
 #include "GildedRose.h"
 
+void setUp (void) {} /* Is run before every test, put unit init calls here. */
+void tearDown (void) {} /* Is run after every test, put unit clean-up calls here. */
+
 void test_NameOfItem(void)
 {
     Item items[1];
@@ -15,4 +18,3 @@ int main(void)
     RUN_TEST(test_NameOfItem);
     return UNITY_END();
 }
-
