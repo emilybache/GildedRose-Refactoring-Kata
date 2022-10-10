@@ -9,9 +9,7 @@ class ItemProcessor
 
   def update_item_quality
     if (item.name != 'Aged Brie') && (item.name != 'Backstage passes to a TAFKAL80ETC concert')
-      if item.quality > 0
-        item.quality -= 1 if item.name != 'Sulfuras, Hand of Ragnaros'
-      end
+      decrease_item_quality
     else
       if item.quality < 50
         item.quality += 1
@@ -25,9 +23,7 @@ class ItemProcessor
     if item.sell_in < 0
       if item.name != 'Aged Brie'
         if item.name != 'Backstage passes to a TAFKAL80ETC concert'
-          if item.quality > 0
-            item.quality -= 1 if item.name != 'Sulfuras, Hand of Ragnaros'
-          end
+          decrease_item_quality
         else
           item.quality = item.quality - item.quality
         end
@@ -39,5 +35,9 @@ class ItemProcessor
 
   def increase_item_quality
     item.quality += 1 if item.quality < 50
+  end
+
+  def decrease_item_quality
+    item.quality -= 1 if item.quality > 0 && item.name != 'Sulfuras, Hand of Ragnaros'
   end
 end
