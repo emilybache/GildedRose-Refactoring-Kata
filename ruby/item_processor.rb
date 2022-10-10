@@ -19,7 +19,7 @@ class ItemProcessor
         end
       end
     end
-    item.sell_in = item.sell_in - 1 if item.name != 'Sulfuras, Hand of Ragnaros'
+    old_item
     if item.sell_in < 0
       if item.name != 'Aged Brie'
         if item.name != 'Backstage passes to a TAFKAL80ETC concert'
@@ -39,5 +39,9 @@ class ItemProcessor
 
   def decrease_item_quality
     item.quality -= 1 if item.quality > 0 && item.name != 'Sulfuras, Hand of Ragnaros'
+  end
+
+  def old_item
+    item.sell_in = item.sell_in - 1 if item.name != 'Sulfuras, Hand of Ragnaros'
   end
 end
