@@ -14,33 +14,37 @@ class ItemProcessor
     return if never_sold
 
     old_item
+    other_items
+  end
 
+  def other_items
+    item.quality += quality_identifier
+  end
+
+  def quality_increase
+    return 50 if quality > 50
+    return 0 if item.quality < 0
+
+    quality
+  end
+
+  def quality_identifier
+    incrementor = 0
     if name == 'Aged Brie'
-      increase_item_quality
-      increase_item_quality if sell_in < 0
+      incrementor += 1
+      incrementor += 1 if sell_in < 0
     elsif name == 'Backstage passes to a TAFKAL80ETC concert'
-      increase_item_quality if sell_in < 11
-      increase_item_quality if sell_in < 6
-      quality -= quality if sell_in < 0
+      incrementor += 1 if sell_in < 11
+      incrementor += 1 if sell_in < 6
+      incrementor -= quality if sell_in < 0
     elsif name == 'Conjured Mana Cake'
-      decrease_item_quality
-      decrease_item_quality
-      if sell_in < 0
-        decrease_item_quality
-        decrease_item_quality
-      end
+      incrementor -= 2
+      incrementor -= 2 if sell_in < 0
     else
-      decrease_item_quality
-      decrease_item_quality if sell_in < 0
+      incrementor -= 1
+      incrementor -= 1 if sell_in < 0
     end
-  end
-
-  def increase_item_quality
-    quality += 1 if quality < 50
-  end
-
-  def decrease_item_quality
-    quality -= 1 if item.quality > 0
+    incrementor
   end
 
   def old_item
