@@ -22,6 +22,13 @@ class ItemProcessor
       increase_item_quality if sell_in < 11
       increase_item_quality if sell_in < 6
       quality -= quality if sell_in < 0
+    elsif name == 'Conjured Mana Cake'
+      decrease_item_quality
+      decrease_item_quality
+      if sell_in < 0
+        decrease_item_quality
+        decrease_item_quality
+      end
     else
       decrease_item_quality
       decrease_item_quality if sell_in < 0
