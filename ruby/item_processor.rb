@@ -16,12 +16,8 @@ class ItemProcessor
       if item.quality < 50
         item.quality += 1
         if item.name == 'Backstage passes to a TAFKAL80ETC concert'
-          if item.sell_in < 11
-            item.quality += 1 if item.quality < 50
-          end
-          if item.sell_in < 6
-            item.quality += 1 if item.quality < 50
-          end
+          increase_item_quality if item.sell_in < 11
+          increase_item_quality if item.sell_in < 6
         end
       end
     end
@@ -36,8 +32,12 @@ class ItemProcessor
           item.quality = item.quality - item.quality
         end
       else
-        item.quality += 1 if item.quality < 50
+        increase_item_quality
       end
     end
+  end
+
+  def increase_item_quality
+    item.quality += 1 if item.quality < 50
   end
 end
