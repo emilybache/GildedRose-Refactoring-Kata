@@ -8,6 +8,8 @@ class ItemProcessor
   end
 
   def update_item_quality
+    return if never_sold
+
     if (item.name != 'Aged Brie') && (item.name != 'Backstage passes to a TAFKAL80ETC concert')
       decrease_item_quality
     else
@@ -43,5 +45,9 @@ class ItemProcessor
 
   def old_item
     item.sell_in = item.sell_in - 1 if item.name != 'Sulfuras, Hand of Ragnaros'
+  end
+
+  def never_sold
+    item.name == 'Sulfuras, Hand of Ragnaros'
   end
 end
