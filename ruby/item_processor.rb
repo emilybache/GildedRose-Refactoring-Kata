@@ -1,33 +1,36 @@
 # frozen_string_literal: true
 
 class ItemProcessor
-  attr_accessor :item
+  attr_accessor :item, :name, :sell_in, :quality
 
   def initialize(item)
     @item = item
+    @quality = item.quality
+    @sell_in = item.sell_in
+    @name = item.name
   end
 
   def update_item_quality
     return if never_sold
 
-    if (item.name != 'Aged Brie') && (item.name != 'Backstage passes to a TAFKAL80ETC concert')
+    if (name != 'Aged Brie') && (name != 'Backstage passes to a TAFKAL80ETC concert')
       decrease_item_quality
     else
-      if item.quality < 50
-        item.quality += 1
-        if item.name == 'Backstage passes to a TAFKAL80ETC concert'
-          increase_item_quality if item.sell_in < 11
-          increase_item_quality if item.sell_in < 6
+      if quality < 50
+        quality += 1
+        if name == 'Backstage passes to a TAFKAL80ETC concert'
+          increase_item_quality if sell_in < 11
+          increase_item_quality if sell_in < 6
         end
       end
     end
     old_item
-    if item.sell_in < 0
-      if item.name != 'Aged Brie'
-        if item.name != 'Backstage passes to a TAFKAL80ETC concert'
+    if sell_in < 0
+      if name != 'Aged Brie'
+        if name != 'Backstage passes to a TAFKAL80ETC concert'
           decrease_item_quality
         else
-          item.quality = item.quality - item.quality
+          quality -= quality
         end
       else
         increase_item_quality
@@ -36,18 +39,18 @@ class ItemProcessor
   end
 
   def increase_item_quality
-    item.quality += 1 if item.quality < 50
+    quality += 1 if quality < 50
   end
 
   def decrease_item_quality
-    item.quality -= 1 if item.quality > 0 && item.name != 'Sulfuras, Hand of Ragnaros'
+    quality -= 1 if item.quality > 0
   end
 
   def old_item
-    item.sell_in = item.sell_in - 1 if item.name != 'Sulfuras, Hand of Ragnaros'
+    item.sell_in -= 1
   end
 
   def never_sold
-    item.name == 'Sulfuras, Hand of Ragnaros'
+    name == 'Sulfuras, Hand of Ragnaros'
   end
 end
