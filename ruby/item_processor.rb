@@ -13,28 +13,18 @@ class ItemProcessor
   def update_item_quality
     return if never_sold
 
-    if (name != 'Aged Brie') && (name != 'Backstage passes to a TAFKAL80ETC concert')
-      decrease_item_quality
-    else
-      if quality < 50
-        quality += 1
-        if name == 'Backstage passes to a TAFKAL80ETC concert'
-          increase_item_quality if sell_in < 11
-          increase_item_quality if sell_in < 6
-        end
-      end
-    end
     old_item
-    if sell_in < 0
-      if name != 'Aged Brie'
-        if name != 'Backstage passes to a TAFKAL80ETC concert'
-          decrease_item_quality
-        else
-          quality -= quality
-        end
-      else
-        increase_item_quality
-      end
+
+    if name == 'Aged Brie'
+      increase_item_quality
+      increase_item_quality if sell_in < 0
+    elsif name == 'Backstage passes to a TAFKAL80ETC concert'
+      increase_item_quality if sell_in < 11
+      increase_item_quality if sell_in < 6
+      quality -= quality if sell_in < 0
+    else
+      decrease_item_quality
+      decrease_item_quality if sell_in < 0
     end
   end
 
