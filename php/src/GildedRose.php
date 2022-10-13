@@ -9,6 +9,7 @@ final class GildedRose
     private const AGED_BRIE = 'Aged Brie';
     private const BACKSTAGE = 'Backstage passes to a TAFKAL80ETC concert';
     private const SHR = 'Sulfuras, Hand of Ragnaros';
+    private const CONJURED = 'Conjured Mana Cake';
 
     private const MAX_THRESHOLD = 50;
     private const MIN_THRESHOLD = 0;
@@ -30,6 +31,11 @@ final class GildedRose
     {
         foreach ($this->items as $item) {
             if (!$this->isLegendaryItem($item)) {
+                $item->quality = $this->subtractQuality($item);
+            }
+
+            // The quality of conjured items degrade twice as fast as normal items, so subtract once again
+            if ($this->isConjuredItem($item)) {
                 $item->quality = $this->subtractQuality($item);
             }
 
@@ -82,6 +88,11 @@ final class GildedRose
     private function sellDateReached(Item $item): bool
     {
         return $item->sell_in < 0;
+    }
+
+    private function isConjuredItem(Item $item): bool
+    {
+        return $item->name === self::CONJURED;
     }
 
     private function subtractQuality(Item $item): int

@@ -16,6 +16,7 @@ class GildedRoseTest extends TestCase
             new Item('+5 Dexterity Vest', 10, 20),
             new Item('Aged Brie', 2, 0),
             new Item('Sulfuras, Hand of Ragnaros', 0, 80),
+            new Item('Conjured Mana Cake', 1, 6),
         ];
 
         $gildedRose = new GildedRose($items);
@@ -30,5 +31,8 @@ class GildedRoseTest extends TestCase
 
         $this->assertSame(0, $items[2]->sell_in);
         $this->assertSame(80, $items[2]->quality);
+
+        $this->assertSame(0, $items[3]->sell_in);
+        $this->assertSame(4, $items[3]->quality);
     }
 }
