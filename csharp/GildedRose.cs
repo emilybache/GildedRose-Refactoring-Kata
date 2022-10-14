@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace csharp
 {
@@ -12,77 +14,96 @@ namespace csharp
 
         public void UpdateQuality()
         {
-            for (var i = 0; i < Items.Count; i++)
+            foreach (var item in Items)
             {
-                if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
-                {
-                    if (Items[i].Quality > 0)
-                    {
-                        if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-                        {
-                            Items[i].Quality = Items[i].Quality - 1;
-                        }
-                    }
-                }
-                else
-                {
-                    if (Items[i].Quality < 50)
-                    {
-                        Items[i].Quality = Items[i].Quality + 1;
+                if (item.Name.ToLower().Contains("backstage passes")) { BackstagePassesDailyChange(item); continue; }
+                else if (item.Name.ToLower().Contains("aged")) { AgingItemDailyChange(item); continue; }
+                else if (item.Name.ToLower().Contains("conjured")) { ConjuredItemDailyChange(item); continue; }
+                else if (!item.Name.ToLower().Contains("sulfuras")) NormalItemsDailyChange(item);
 
-                        if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (Items[i].SellIn < 11)
-                            {
-                                if (Items[i].Quality < 50)
-                                {
-                                    Items[i].Quality = Items[i].Quality + 1;
-                                }
-                            }
+            }
+        }
 
-                            if (Items[i].SellIn < 6)
-                            {
-                                if (Items[i].Quality < 50)
-                                {
-                                    Items[i].Quality = Items[i].Quality + 1;
-                                }
-                            }
-                        }
-                    }
-                }
+        //Conjured Items quality drops twice faster than normal items quality
+        private void ConjuredItemDailyChange(Item conjuredItem)
+        {
+            conjuredItem.SellIn--;
+            if (conjuredItem.SellIn < 0)
+            {
+                if (conjuredItem.Quality == 0) return;
+                else if (conjuredItem.Quality < 4) { conjuredItem.Quality = 0; return; }
+                else conjuredItem.Quality -= 4;
+                return;
+            }
+            else
+            {
+                if (conjuredItem.Quality == 0) return;
+                else if (conjuredItem.Quality < 2) { conjuredItem.Quality = 0; return; }
+                else conjuredItem.Quality -= 2;
+            }
+        }
+        //Items quality drops by quality rate each time day ends and if  sellin < 0 drop rate is dbled
+        private void NormalItemsDailyChange(Item normalItem)
+        {
+            normalItem.SellIn--;
+            if (normalItem.SellIn < 0)
+            {
+                if (normalItem.Quality == 0) return;
+                else if (normalItem.Quality < 2) { normalItem.Quality = 0; return; }
+                else normalItem.Quality -= 2;
+                return;
+            }
+            else
+            {
+                if (normalItem.Quality == 0) return;
+                else if (normalItem.Quality < 1) { normalItem.Quality = 0; return; }
+                else normalItem.Quality--;
+            }
+        }
 
-                if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-                {
-                    Items[i].SellIn = Items[i].SellIn - 1;
-                }
+        private void BackstagePassesDailyChange(Item pass)
+        {
+            pass.SellIn--;
+            if (pass.SellIn < 0)
+            {
+                if (pass.Quality == 0) return;
+                else pass.Quality = 0; return;
+            } 
+            else if (pass.SellIn <= 5)
+            {
+                if (pass.Quality == 50) return;
+                else if (pass.Quality >= 47) { pass.Quality = 50; return; }
+                else pass.Quality += 3;
+                return;
+            }
+            else if (pass.SellIn <= 10)
+            {
+                if (pass.Quality == 50) return;
+                else if (pass.Quality >= 48) { pass.Quality = 50; return; }
+                else pass.Quality += 2;
+                return;
+            }
+            else
+            {
+                if (pass.Quality == 50) return;
+                else pass.Quality++;
+            }
+        }
 
-                if (Items[i].SellIn < 0)
-                {
-                    if (Items[i].Name != "Aged Brie")
-                    {
-                        if (Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (Items[i].Quality > 0)
-                            {
-                                if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-                                {
-                                    Items[i].Quality = Items[i].Quality - 1;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            Items[i].Quality = Items[i].Quality - Items[i].Quality;
-                        }
-                    }
-                    else
-                    {
-                        if (Items[i].Quality < 50)
-                        {
-                            Items[i].Quality = Items[i].Quality + 1;
-                        }
-                    }
-                }
+        private void AgingItemDailyChange(Item agingItem)
+        {
+            agingItem.SellIn--;
+            if (agingItem.SellIn < 0)
+            {
+                if (agingItem.Quality == 50) return;
+                else if (agingItem.Quality >= 49) { agingItem.Quality = 50; return; }
+                else agingItem.Quality += 2;
+                return;
+            }
+            else
+            {
+                if (agingItem.Quality == 50) return;
+                else agingItem.Quality++;
             }
         }
     }
