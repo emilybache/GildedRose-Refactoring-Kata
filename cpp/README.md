@@ -49,6 +49,18 @@ The `GildedRose.cc` file, i.e. the code under test, is identical in all four var
 
     $ ctest -VV --tests-regex Catch2Approval
 
+## How to run with test coverage
+1. go to build directory
+2. Run:
+    $ lcov --directory ./ --capture --output-file ../lcov.info -rc lcov_branch_coverage=1
+3. in bottom right corner of VS Code press "Watch"
+3. Coverage will now be visible in VSCode.
+
+## How to run during a typical TDD cycle
+    $ cmake --build .
+    $ ctest -VV --tests-regex GildedRoseGoogletestUnitTests
+    $ lcov --directory ./ --capture --output-file ../lcov.info -rc lcov_branch_coverage=1
+
 ## How to build and run tests using the [CLion IDE](https://www.jetbrains.com/clion/)
 
 1. Start CLion
