@@ -2,7 +2,7 @@
 
 Bonjour et bienvenue dans l'équipe de la Rose dorée.
 
-Comme vous le savez, notre petite taverne située à proximité d'une cité importante est dirigée par l'amicale aubergiste Allison.
+Comme vous le savez, notre petite taverne située à proximité d'une cité importante est dirigée par l'aubergiste amicale Allison.
 
 Nous achetons et vendons uniquement les meilleurs produits.
 Malheureusement, la qualité de nos marchandises se dégrade constamment à l'approche de leur date de péremption.
@@ -36,6 +36,6 @@ Cela nécessite une mise à jour de notre système :
 
 Vous pouvez faire les changements que vous voulez à la méthode `updateQuality` et ajouter autant de code que vous voulez, tant que tout fonctionne correctement.
 Cependant, nous devons vous prévenir, vous ne devez en aucun cas modifier la classe `Item` ou ses propriétés car cette classe appartient au gobelin à l'étage qui entrerait dans une rage instantanée et vous tuerait sans délai : il ne croit pas au partage du code.
-(Vous pouvez ajouter rendre la méthode `updateQuality` statique, ainsi que des propriétés dans la classe `Item` si vous voulez, nous vous couvrirons)
+(Vous pouvez rendre la méthode `updateQuality` statique, ainsi que des propriétés dans la classe `Item` si vous voulez, nous vous couvrirons)
 
 Juste une précision, un produit ne peut jamais voir sa qualité augmenter au-dessus de 50, cependant "Sulfuras" est un objet légendaire et comme tel sa qualité est de 80 et elle ne change jamais.
