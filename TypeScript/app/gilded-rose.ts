@@ -41,16 +41,17 @@ export class GildedRose {
         iterationItem.sellIn = iterationItem.sellIn - 1;
       }
       if (iterationItem.sellIn < 0) {
-        if (iterationItem.name != CNST.AGED_BRIE) {
-          if (iterationItem.name != CNST.BCST_TAF) {
-            if (iterationItem.quality > 0) {
-              if (iterationItem.name != CNST.SULFURAS) {
-                iterationItem.quality = iterationItem.quality - 1;
-              }
-            }
+        if (
+          iterationItem.name != CNST.AGED_BRIE &&
+          iterationItem.name != CNST.BCST_TAF
+        ) {
+          if (
+            iterationItem.quality > 0 &&
+            iterationItem.name != CNST.SULFURAS
+          ) {
+            iterationItem.quality = iterationItem.quality - 1;
           } else {
-            iterationItem.quality =
-              iterationItem.quality - iterationItem.quality;
+            iterationItem.quality = 0;
           }
         } else {
           if (iterationItem.quality < 50) {
