@@ -26,19 +26,19 @@ export class GildedRose {
         [CNST.AGED_BRIE, CNST.BCST_TAF].includes(iterationItem.name) &&
         iterationItem.quality > 0
       ) {
-        iterationItem.quality = iterationItem.quality - 1;
+        iterationItem.quality -= 1;
       } else {
         if (iterationItem.quality < 50) {
-          iterationItem.quality = iterationItem.quality + 1;
+          iterationItem.quality += 1;
           if (iterationItem.name == CNST.BCST_TAF) {
             if (iterationItem.sellIn < 11) {
-              iterationItem.quality = iterationItem.quality + 1;
+              iterationItem.quality += 1;
             }
           }
         }
       }
       if (iterationItem.name != CNST.SULFURAS) {
-        iterationItem.sellIn = iterationItem.sellIn - 1;
+        iterationItem.sellIn -= 1;
       }
       if (iterationItem.sellIn < 0) {
         if (
@@ -49,13 +49,13 @@ export class GildedRose {
             iterationItem.quality > 0 &&
             iterationItem.name != CNST.SULFURAS
           ) {
-            iterationItem.quality = iterationItem.quality - 1;
+            iterationItem.quality -= 1;
           } else {
             iterationItem.quality = 0;
           }
         } else {
           if (iterationItem.quality < 50) {
-            iterationItem.quality = iterationItem.quality + 1;
+            iterationItem.quality += 1;
           }
         }
       }
