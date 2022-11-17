@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { Item, GildedRose } from '@/gilded-rose';
-
+import {  GildedRose } from '@/gilded-rose';
+import { Item } from '@/Item';
 describe('Gilded Rose', () => {
   it('should foo', () => {
     const gildedRose = new GildedRose([new Item('foo', 0, 0)]);
