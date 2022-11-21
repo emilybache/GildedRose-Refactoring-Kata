@@ -32,8 +32,16 @@ class GildedRose(object):
                     item.quality = 0
                     return
 
-            self.adjust_quality(item) if item.sell_in >= 0 else self.adjust_quality(item, -2)
+            if "Conjured" in item.name and item.sell_in >= 0:
+                return self.adjust_quality(item, -2)
+            elif "Conjured" in item.name:
+                return self.adjust_quality(item, -4)
 
+            if item.sell_in >= 0:
+                return self.adjust_quality(item)
+            else:
+                return self.adjust_quality(item, -2)
+            
 
 class Item:
     def __init__(self, name, sell_in, quality):

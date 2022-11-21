@@ -90,7 +90,11 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
 
-        self.assertEqual(4, items[0].quality) # TODO
+        self.assertEqual(3, items[0].quality)
+        
+        gilded_rose.update_quality()
+        self.assertEqual(-1, items[0].quality) # Sell in below zero, degrade -4 quality
+
 
 if __name__ == '__main__':
     unittest.main()
