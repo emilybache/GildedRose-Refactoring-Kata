@@ -5,15 +5,11 @@ class GildedRose(object):
     def __init__(self, items):
         self.items = items
 
-    def adjust_quality(self, item, rate=-1, set_to_zero=False):
+    def adjust_quality(self, item, rate):
         """
         Adjust the quality of an item, defaults to -1
         Quality cannot be less than 0 or bumped beyond 50
         """
-        if set_to_zero:
-            item.quality = 0
-            return
-
         if item.quality <= 0 or item.quality >= 50:
             return
 
@@ -43,7 +39,7 @@ class GildedRose(object):
                 rate = -2 if has_positive_sell_in else -4
                 return self.adjust_quality(item, rate)
 
-            return self.adjust_quality(item) if has_positive_sell_in else self.adjust_quality(item, -2)
+            return self.adjust_quality(item, -1) if has_positive_sell_in else self.adjust_quality(item, -2)
             
 
 class Item:
