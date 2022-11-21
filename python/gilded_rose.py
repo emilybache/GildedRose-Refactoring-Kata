@@ -16,31 +16,23 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
-            if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert":
-                if item.name != "Sulfuras, Hand of Ragnaros":
-                    self.adjust_quality(item)
-
-            else:
-                if item.quality < 50:
-                    self.adjust_quality(item, 1)
-                    if item.name == "Backstage passes to a TAFKAL80ETC concert":
-                        if item.sell_in < 11:
-                            if item.quality < 50:
-                                self.adjust_quality(item, 1)
-                        if item.sell_in < 6:
-                            if item.quality < 50:
-                                self.adjust_quality(item, 1)
             if item.name != "Sulfuras, Hand of Ragnaros":
-                item.sell_in = item.sell_in - 1
-            if item.sell_in < 0:
-                if item.name != "Aged Brie":
-                    if item.name != "Backstage passes to a TAFKAL80ETC concert":
-                        if item.name != "Sulfuras, Hand of Ragnaros":
-                            self.adjust_quality(item)
-                    else:
-                        item.quality = 0
+                item.sell_in -= 1
+
+            if item.name == "Aged Brie":
+                self.adjust_quality(item, 1) if item.sell_in >= 0 else self.adjust_quality(item, 2)
+                return
+
+            if item.name == "Backstage passes to a TAFKAL80ETC concert":
+                if item.sell_in <= 10 and item.sell_in > 5:
+                    return self.adjust_quality(item, 2)
+                elif item.sell_in > 0 and item.sell_in <= 5:
+                    return self.adjust_quality(item, 3)
                 else:
-                    self.adjust_quality(item, 1)
+                    item.quality = 0
+                    return
+
+            self.adjust_quality(item) if item.sell_in >= 0 else self.adjust_quality(item, -2)
 
 
 class Item:
