@@ -20,11 +20,10 @@ class GildedRose(object):
 
             item.sell_in -= 1
             has_positive_sell_in = item.sell_in >= 0
-            rate = -1
+            rate = -1 if has_positive_sell_in else -2
 
             if item.name == "Aged Brie":
-                rate = 1 if has_positive_sell_in else 2
-                return self.adjust_quality(item, rate)
+                rate = abs(rate)
 
             if item.name == "Backstage passes to a TAFKAL80ETC concert":
                 if 5 <= item.sell_in <= 10:
@@ -32,14 +31,12 @@ class GildedRose(object):
                 elif 0 <= item.sell_in <= 5:
                     rate = 3
                 else:
-                    rate = -item.quality
-                return self.adjust_quality(item, rate)
+                    rate = 1 if has_positive_sell_in else -item.quality
 
             if "Conjured" in item.name:
-                rate = -2 if has_positive_sell_in else -4
-                return self.adjust_quality(item, rate)
+                rate *= 2
 
-            return self.adjust_quality(item, -1) if has_positive_sell_in else self.adjust_quality(item, -2)
+            return self.adjust_quality(item, rate)
             
 
 class Item:

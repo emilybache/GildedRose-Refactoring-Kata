@@ -63,6 +63,13 @@ class GildedRoseTest(unittest.TestCase):
         Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but
         Quality drops to 0 after the concert
         """
+        # Standard - quality increases with age
+        items = [Item("Backstage passes to a TAFKAL80ETC concert", 15, 10)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+
+        self.assertEqual(11, items[0].quality)
+
         # Ten days or less - quality increases by 2
         items = [Item("Backstage passes to a TAFKAL80ETC concert", 9, 10)]
         gilded_rose = GildedRose(items)
