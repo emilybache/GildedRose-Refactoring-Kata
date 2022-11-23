@@ -7,8 +7,9 @@ class GildedRose {
         this.items = items;
     }
 
-    public void updateInventory() {
+    public void updateStorage() {
         for (Item item : items) {
+            new StrorageItem(item);
             updateItem(item);
         }
     }

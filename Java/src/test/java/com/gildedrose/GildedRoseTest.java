@@ -11,7 +11,7 @@ class GildedRoseTest {
     void foo() {
         Item[] items = new Item[] { new Item("foo", 0, 0) };
         GildedRose app = new GildedRose(items);
-        app.updateInventory();
+        app.updateStorage();
         assertEquals("foo", app.items[0].name);
     }
 
@@ -22,7 +22,7 @@ class GildedRoseTest {
         final Item standardItem = new Item("spam", startingSellin, startingQuality);
         GildedRose app = new GildedRose(new Item[]{standardItem});
 
-        app.updateInventory();
+        app.updateStorage();
 
         assertThat(standardItem.sellIn).isEqualTo(startingSellin - 1);
         assertThat(standardItem.quality).isEqualTo(startingQuality - 1);
@@ -34,7 +34,7 @@ class GildedRoseTest {
         Item secondItem = new Item("Second Standard Item", 3, 2);
         GildedRose app = new GildedRose(new Item[]{firstItem, secondItem});
 
-        app.updateInventory();
+        app.updateStorage();
 
         assertThat(firstItem.sellIn).isEqualTo(4);
         assertThat(firstItem.quality).isEqualTo(3);
@@ -47,7 +47,7 @@ class GildedRoseTest {
         Item item = new Item("Standard Item", -1, 6);
         GildedRose app = new GildedRose(new Item[]{item});
 
-        app.updateInventory();
+        app.updateStorage();
 
         assertThat(item.quality).isEqualTo(4);
     }
@@ -57,7 +57,7 @@ class GildedRoseTest {
         Item item = new Item("Standard Item", 1, 6);
         GildedRose app = new GildedRose(new Item[]{item});
 
-        app.updateInventory();
+        app.updateStorage();
 
         assertThat(item.quality).isEqualTo(5);
     }
@@ -67,7 +67,7 @@ class GildedRoseTest {
         Item item = new Item("Standard Item", 5, 1);
         GildedRose app = new GildedRose(new Item[]{item});
 
-        app.updateInventory();
+        app.updateStorage();
 
         assertThat(item.quality).isZero();
     }
@@ -77,7 +77,7 @@ class GildedRoseTest {
         Item item = new Item("First Standard Item", 4, 0);
         GildedRose app = new GildedRose(new Item[]{item});
 
-        app.updateInventory();
+        app.updateStorage();
 
         assertThat(item.quality).isZero();
     }
@@ -87,7 +87,7 @@ class GildedRoseTest {
         Item item = new Item("Aged Brie", 5, 6);
         GildedRose app = new GildedRose(new Item[]{item});
 
-        app.updateInventory();
+        app.updateStorage();
 
         assertThat(item.quality).isEqualTo(7);
     }
@@ -97,7 +97,7 @@ class GildedRoseTest {
         Item item = new Item("Aged Brie", 5, 49);
         GildedRose app = new GildedRose(new Item[]{item});
 
-        app.updateInventory();
+        app.updateStorage();
 
         assertThat(item.quality).isEqualTo(50);
     }
@@ -107,7 +107,7 @@ class GildedRoseTest {
         Item item = new Item("Aged Brie", 0, 6);
         GildedRose app = new GildedRose(new Item[]{item});
 
-        app.updateInventory();
+        app.updateStorage();
 
         assertThat(item.quality).isEqualTo(8);
     }
@@ -117,7 +117,7 @@ class GildedRoseTest {
         Item item = new Item("Aged Brie", 0, 50);
         GildedRose app = new GildedRose(new Item[]{item});
 
-        app.updateInventory();
+        app.updateStorage();
 
         assertThat(item.quality).isEqualTo(50);
     }
@@ -127,7 +127,7 @@ class GildedRoseTest {
         Item item = new Item("Aged Brie", 5, 50);
         GildedRose app = new GildedRose(new Item[]{item});
 
-        app.updateInventory();
+        app.updateStorage();
 
         assertThat(item.quality).isEqualTo(50);
     }
@@ -137,7 +137,7 @@ class GildedRoseTest {
         Item item = new Item("Sulfuras, Hand of Ragnaros", -1, 80);
         GildedRose app = new GildedRose(new Item[]{item});
 
-        app.updateInventory();
+        app.updateStorage();
 
         assertThat(item.sellIn).isEqualTo(-1);
     }
