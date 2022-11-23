@@ -4,11 +4,13 @@ public class StorageItem {
     public static final String AGED_BRIE = "Aged Brie";
     public static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
-    private Item item;
+    protected Item item;
 
     public static StorageItem createItem(Item item) {
-        if (item.name.equals(AGED_BRIE)){
+        if (item.name.equals(AGED_BRIE)) {
             return new AgeddBrie(item);
+        } else if (item.name.equals(BACKSTAGE_PASSES)) {
+            return new BackstagePasses(item);
         }
         return new StorageItem(item);
     }
@@ -26,17 +28,7 @@ public class StorageItem {
     }
 
     protected void updateQuality() {
-        if (item.name.equals(BACKSTAGE_PASSES)) {
-            increaseQuality();
-
-            if (item.sellIn < 11) {
-                increaseQuality();
-            }
-
-            if (item.sellIn < 6) {
-                increaseQuality();
-            }
-        } else if (item.name.equals(SULFURAS)) {
+        if (item.name.equals(SULFURAS)) {
             return;
         } else decreaseQuality();
     }
@@ -53,9 +45,7 @@ public class StorageItem {
     }
 
     protected void updateExpired() {
-        if (item.name.equals(BACKSTAGE_PASSES)) {
-            item.quality = 0;
-        } else if (item.name.equals(SULFURAS)) {
+        if (item.name.equals(SULFURAS)) {
             return;
         } else {
             decreaseQuality();
