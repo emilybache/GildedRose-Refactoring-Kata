@@ -10,6 +10,8 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.6.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.6.2'
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.23.1'
 }
 
 group = 'com.gildedrose'
@@ -17,5 +19,13 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 test {
+    // Discover and execute JUnit4-based tests
+    useJUnit()
+
+    // Discover and execute TestNG-based tests
+    useTestNG()
+
+    // Discover and execute JUnit Platform-based (JUnit 5, JUnit Jupiter) tests
+    // Note that JUnit 5 has the ability to execute JUnit 4 tests as well
     useJUnitPlatform()
 }
