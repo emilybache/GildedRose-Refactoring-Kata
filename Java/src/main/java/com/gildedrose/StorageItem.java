@@ -1,20 +1,20 @@
 package com.gildedrose;
 
 public class StorageItem {
-    public static final String AGED_BRIE = "Aged Brie";
-    public static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
-    public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
     protected Item item;
 
     public static StorageItem createItem(Item item) {
-        if (item.name.equals(AGED_BRIE)) {
+        if (item.name.equals(AgeddBrie.NAME)) {
             return new AgeddBrie(item);
         }
-        if (item.name.equals(BACKSTAGE_PASSES)) {
+        if (item.name.equals(BackstagePasses.NAME)) {
             return new BackstagePasses(item);
         }
-        if (item.name.equals(SULFURAS)) {
+        if (item.name.equals(Sulfuras.NAME)) {
             return new Sulfuras(item);
+        }
+        if (item.name.equals(Conjured.NAME)) {
+            return new Conjured(item);
         }
         return new StorageItem(item);
     }

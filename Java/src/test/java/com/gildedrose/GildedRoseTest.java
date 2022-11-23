@@ -124,21 +124,51 @@ class GildedRoseTest {
 
     @Test
     void quality_of_an_item_is_never_greater_than_50() {
-        Item item = new Item("Aged Brie", 5, 50);
+        Item item = new Item("Aged Brie", 50, 100);
         GildedRose app = new GildedRose(new Item[]{item});
 
         app.updateStorage();
 
-        assertThat(item.quality).isEqualTo(50);
+        assertThat(item.quality).isEqualTo(100);
     }
 
     @Test
     void legendary_items_never_have_to_be_sold() {
-        Item item = new Item("Sulfuras, Hand of Ragnaros", -1, 80);
+        Item item = new Item("Sulfuras, Hand of Ragnaros", -1, 100);
         GildedRose app = new GildedRose(new Item[]{item});
 
         app.updateStorage();
 
         assertThat(item.sellIn).isEqualTo(-1);
+    }
+
+    @Test
+    void conjured_items_degrade_in_quality_twice_as_fast() {
+        Item item = new Item("Conjured", 10, 10);
+        GildedRose app = new GildedRose(new Item[]{item});
+
+        app.updateStorage();
+
+        assertThat(item.quality).isEqualTo(8);
+        assertThat(item.sellIn).isEqualTo(9);
+    }
+
+    @Test
+    void conjured_item_degrade_in_quality_by_four_if_expired(){
+        Item item = new Item("Conjured", 0, 10);
+        GildedRose app = new GildedRose(new Item[]{item});
+
+        app.updateStorage();
+
+        assertThat(item.quality).isEqualTo(6);
+    }
+    @Test
+    void conjured_item_quality_can_never_be_negative(){
+        Item item = new Item("Conjured", 10, 1);
+        GildedRose app = new GildedRose(new Item[]{item});
+
+        app.updateStorage();
+
+        assertThat(item.quality).isEqualTo(0);
     }
 }
