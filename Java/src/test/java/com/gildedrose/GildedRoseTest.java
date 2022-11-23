@@ -81,4 +81,24 @@ class GildedRoseTest {
 
         assertThat(item.quality).isZero();
     }
+
+    @Test
+    void aged_items_increase_in_quality_over_time() {
+        Item item = new Item("Aged Brie", 5, 6);
+        GildedRose app = new GildedRose(new Item[]{item});
+
+        app.updateQuality();
+
+        assertThat(item.quality).isEqualTo(7);
+    }
+
+    @Test
+    void aged_item_quality_49_increases_up_to_50() {
+        Item item = new Item("Aged Brie", 5, 49);
+        GildedRose app = new GildedRose(new Item[]{item});
+
+        app.updateQuality();
+
+        assertThat(item.quality).isEqualTo(50);
+    }
 }
