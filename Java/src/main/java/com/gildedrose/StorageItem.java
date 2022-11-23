@@ -4,19 +4,18 @@ public class StorageItem {
     protected Item item;
 
     public static StorageItem createItem(Item item) {
-        if (item.name.equals(AgeddBrie.NAME)) {
-            return new AgeddBrie(item);
+        switch (item.name) {
+            case AgeddBrie.NAME:
+                return new AgeddBrie(item);
+            case BackstagePasses.NAME:
+                return new BackstagePasses(item);
+            case Sulfuras.NAME:
+                return new Sulfuras(item);
+            case Conjured.NAME:
+                return new Conjured(item);
+            case default:
+                return new StorageItem(item);
         }
-        if (item.name.equals(BackstagePasses.NAME)) {
-            return new BackstagePasses(item);
-        }
-        if (item.name.equals(Sulfuras.NAME)) {
-            return new Sulfuras(item);
-        }
-        if (item.name.equals(Conjured.NAME)) {
-            return new Conjured(item);
-        }
-        return new StorageItem(item);
     }
 
     public StorageItem(Item item) {
