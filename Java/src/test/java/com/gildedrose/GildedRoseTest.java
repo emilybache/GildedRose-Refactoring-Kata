@@ -101,4 +101,34 @@ class GildedRoseTest {
 
         assertThat(item.quality).isEqualTo(50);
     }
+
+    @Test
+    void aged_item_quality_increases_twice_as_fast_past_sellin_date() {
+        Item item = new Item("Aged Brie", 0, 6);
+        GildedRose app = new GildedRose(new Item[]{item});
+
+        app.updateQuality();
+
+        assertThat(item.quality).isEqualTo(8);
+    }
+
+    @Test
+    void aged_item_quality_50_past_sellin_date_does_not_increase() {
+        Item item = new Item("Aged Brie", 0, 50);
+        GildedRose app = new GildedRose(new Item[]{item});
+
+        app.updateQuality();
+
+        assertThat(item.quality).isEqualTo(50);
+    }
+
+    @Test
+    void quality_of_an_item_is_never_greater_than_50() {
+        Item item = new Item("Aged Brie", 5, 50);
+        GildedRose app = new GildedRose(new Item[]{item});
+
+        app.updateQuality();
+
+        assertThat(item.quality).isEqualTo(50);
+    }
 }
