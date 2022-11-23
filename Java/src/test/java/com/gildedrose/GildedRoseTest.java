@@ -27,4 +27,18 @@ class GildedRoseTest {
         assertThat(standardItem.sellIn).isEqualTo(startingSellin - 1);
         assertThat(standardItem.quality).isEqualTo(startingQuality - 1);
     }
+
+    @Test
+    void multiple_items_degrade_each_day() {
+        Item firstItem = new Item("First Standard Item", 5, 4);
+        Item secondItem = new Item("Second Standard Item", 3, 2);
+        GildedRose app = new GildedRose(new Item[]{firstItem, secondItem});
+
+        app.updateQuality();
+
+        assertThat(firstItem.sellIn).isEqualTo(4);
+        assertThat(firstItem.quality).isEqualTo(3);
+        assertThat(secondItem.sellIn).isEqualTo(2);
+        assertThat(secondItem.quality).isEqualTo(1);
+    }
 }
