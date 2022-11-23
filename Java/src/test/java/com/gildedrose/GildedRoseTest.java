@@ -131,4 +131,14 @@ class GildedRoseTest {
 
         assertThat(item.quality).isEqualTo(50);
     }
+
+    @Test
+    void legendary_items_never_have_to_be_sold() {
+        Item item = new Item("Sulfuras, Hand of Ragnaros", -1, 80);
+        GildedRose app = new GildedRose(new Item[]{item});
+
+        app.updateQuality();
+
+        assertThat(item.sellIn).isEqualTo(-1);
+    }
 }
