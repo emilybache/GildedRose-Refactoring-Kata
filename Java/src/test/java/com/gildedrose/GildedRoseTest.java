@@ -41,4 +41,44 @@ class GildedRoseTest {
         assertThat(secondItem.sellIn).isEqualTo(2);
         assertThat(secondItem.quality).isEqualTo(1);
     }
+
+    @Test
+    void item_quality_degrades_twice_as_fast_past_sellin_date() {
+        Item item = new Item("Standard Item", -1, 6);
+        GildedRose app = new GildedRose(new Item[]{item});
+
+        app.updateQuality();
+
+        assertThat(item.quality).isEqualTo(4);
+    }
+
+    @Test
+    void item_quality_degrades_by_one_with_one_day_left() {
+        Item item = new Item("Standard Item", 1, 6);
+        GildedRose app = new GildedRose(new Item[]{item});
+
+        app.updateQuality();
+
+        assertThat(item.quality).isEqualTo(5);
+    }
+
+    @Test
+    void item_quality_degrades_down_to_zero() {
+        Item item = new Item("Standard Item", 5, 1);
+        GildedRose app = new GildedRose(new Item[]{item});
+
+        app.updateQuality();
+
+        assertThat(item.quality).isZero();
+    }
+
+    @Test
+    void item_quality_is_never_negative() {
+        Item item = new Item("First Standard Item", 4, 0);
+        GildedRose app = new GildedRose(new Item[]{item});
+
+        app.updateQuality();
+
+        assertThat(item.quality).isZero();
+    }
 }
