@@ -9,8 +9,12 @@ public class StorageItem {
     public static StorageItem createItem(Item item) {
         if (item.name.equals(AGED_BRIE)) {
             return new AgeddBrie(item);
-        } else if (item.name.equals(BACKSTAGE_PASSES)) {
+        }
+        if (item.name.equals(BACKSTAGE_PASSES)) {
             return new BackstagePasses(item);
+        }
+        if (item.name.equals(SULFURAS)) {
+            return new Sulfuras(item);
         }
         return new StorageItem(item);
     }
@@ -28,15 +32,10 @@ public class StorageItem {
     }
 
     protected void updateQuality() {
-        if (item.name.equals(SULFURAS)) {
-            return;
-        } else decreaseQuality();
+        decreaseQuality();
     }
 
     protected void updateSelling() {
-        if (item.name.equals(SULFURAS)) {
-            return;
-        }
         item.sellIn--;
     }
 
@@ -45,11 +44,7 @@ public class StorageItem {
     }
 
     protected void updateExpired() {
-        if (item.name.equals(SULFURAS)) {
-            return;
-        } else {
-            decreaseQuality();
-        }
+        decreaseQuality();
     }
 
     protected void increaseQuality() {
