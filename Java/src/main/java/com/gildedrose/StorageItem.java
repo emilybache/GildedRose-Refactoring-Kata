@@ -1,9 +1,19 @@
 package com.gildedrose;
 
-public class StrorageItem {
+public class StorageItem {
+    public static final String AGED_BRIE = "Aged Brie";
+    public static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
+    public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
     private Item item;
 
-    public StrorageItem(Item item) {
+    public static StorageItem createItem(Item item) {
+        if (item.name.equals(AGED_BRIE)){
+            return new AgeddBrie(item);
+        }
+        return new StorageItem(item);
+    }
+
+    public StorageItem(Item item) {
         this.item = item;
     }
 
@@ -16,9 +26,7 @@ public class StrorageItem {
     }
 
     protected void updateQuality() {
-        if (item.name.equals("Aged Brie")) {
-            increaseQuality();
-        } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+        if (item.name.equals(BACKSTAGE_PASSES)) {
             increaseQuality();
 
             if (item.sellIn < 11) {
@@ -28,13 +36,13 @@ public class StrorageItem {
             if (item.sellIn < 6) {
                 increaseQuality();
             }
-        } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
+        } else if (item.name.equals(SULFURAS)) {
             return;
         } else decreaseQuality();
     }
 
     protected void updateSelling() {
-        if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
+        if (item.name.equals(SULFURAS)) {
             return;
         }
         item.sellIn--;
@@ -45,11 +53,9 @@ public class StrorageItem {
     }
 
     protected void updateExpired() {
-        if (item.name.equals("Aged Brie")) {
-            increaseQuality();
-        } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+        if (item.name.equals(BACKSTAGE_PASSES)) {
             item.quality = 0;
-        } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
+        } else if (item.name.equals(SULFURAS)) {
             return;
         } else {
             decreaseQuality();

@@ -9,7 +9,7 @@ class GildedRose {
 
     public void updateStorage() {
         for (Item item : items) {
-            new StrorageItem(item).dailyUpdateItem();
+            StorageItem.createItem(item).dailyUpdateItem();
         }
     }
 }
