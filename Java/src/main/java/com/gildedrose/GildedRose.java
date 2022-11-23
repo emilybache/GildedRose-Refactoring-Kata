@@ -23,32 +23,27 @@ class GildedRose {
 
     private static void updateQuality(Item item) {
         if (item.name.equals("Aged Brie")) {
-            if (item.quality < 50) {
-                item.quality++;
-            }
+            increaseQuality(item);
         } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+            increaseQuality(item);
+
             if (item.sellIn < 11) {
-                if (item.quality < 50) {
-                    item.quality++;
-                }
+                increaseQuality(item);
             }
 
             if (item.sellIn < 6) {
-                if (item.quality < 50) {
-                    item.quality++;
-                }
+                increaseQuality(item);
             }
         } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
             return;
-        } else if (item.quality > 0) {
-            item.quality--;
-        }
+        } else decreaseQuality(item);
     }
 
     private static void updateSelling(Item item) {
-        if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-            item.sellIn--;
+        if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
+            return;
         }
+        item.sellIn--;
     }
 
     private static boolean isExpired(Item item) {
@@ -56,20 +51,26 @@ class GildedRose {
     }
 
     private static void updateExpired(Item item) {
-        if (!item.name.equals("Aged Brie")) {
-            if (!item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (item.quality > 0) {
-                    if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                        item.quality--;
-                    }
-                }
-            } else {
-                item.quality = 0;
-            }
+        if (item.name.equals("Aged Brie")) {
+            increaseQuality(item);
+        } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+            item.quality = 0;
+        } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
+            return;
         } else {
-            if (item.quality < 50) {
-                item.quality++;
-            }
+            decreaseQuality(item);
+        }
+    }
+
+    private static void increaseQuality(Item item) {
+        if (item.quality < 50) {
+            item.quality++;
+        }
+    }
+
+    private static void decreaseQuality(Item item) {
+        if (item.quality > 0) {
+            item.quality--;
         }
     }
 }
