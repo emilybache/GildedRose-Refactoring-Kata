@@ -19,3 +19,8 @@ sourceCompatibility = '1.8'
 test {
     useJUnitPlatform()
 }
+
+task text(type: JavaExec) {
+   main = "com.gildedrose.TexttestFixture"
+   classpath = sourceSets.test.runtimeClasspath
+}
