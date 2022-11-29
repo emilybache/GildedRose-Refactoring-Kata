@@ -1,6 +1,6 @@
 import Base
 
-mutable struct Item{T<:Real}
+mutable struct Item{T<:Integer}
     name::String
     sellin::T
     quality::T
