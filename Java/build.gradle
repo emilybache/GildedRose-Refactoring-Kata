@@ -20,7 +20,8 @@ test {
     useJUnitPlatform()
 }
 
-task text(type: JavaExec) {
-   main = "com.gildedrose.TexttestFixture"
-   classpath = sourceSets.test.runtimeClasspath
+task texttest(type: JavaExec) {
+    main = "com.gildedrose.TexttestFixture"
+    classpath = sourceSets.test.runtimeClasspath
+    args "30"
 }
