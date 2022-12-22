@@ -13,6 +13,8 @@ class GildedRose {
     SulfurasItemHandler.class,
     ItemType.BACKSTAGE_PASSES,
     BackstagePassesItemHandler.class,
+    ItemType.CONJURED,
+    ConjuredItemHandler.class,
     ItemType.GENERIC,
     GenericItemHandler.class
   );
