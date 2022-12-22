@@ -6,17 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 class GildedRose {
-  public static final String AGED_BRIE = "Aged Brie";
-  public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
-  public static final String BACKSTAGE_PASSES =
-    "Backstage passes to a TAFKAL80ETC concert";
-  private static Map<String, Class<? extends ItemHandler>> itemHandlerMap = Map.of(
-    AGED_BRIE,
+  private static final Map<ItemType, Class<? extends ItemHandler>> ITEM_HANDLER_MAP = Map.of(
+    ItemType.AGED_BRIE,
     AgedBrieItemHandler.class,
-    SULFURAS,
+    ItemType.SULFURAS,
     SulfurasItemHandler.class,
-    BACKSTAGE_PASSES,
-    BackstagePassesItemHandler.class
+    ItemType.BACKSTAGE_PASSES,
+    BackstagePassesItemHandler.class,
+    ItemType.GENERIC,
+    GenericItemHandler.class
   );
   // make package-private
   public final List<Item> items;
@@ -27,14 +25,18 @@ class GildedRose {
 
   // todo: refactor this to use Guice
   private static void handleDay(Item item) {
-    // todo: refactor to use enum
     try {
-      ItemHandler itemHandler = itemHandlerMap
-        .getOrDefault(item.name, GenericItemHandler.class)
+      ItemHandler itemHandler = ITEM_HANDLER_MAP
+        .get(ItemType.forDisplayName(item.name))
         .getDeclaredConstructor()
         .newInstance();
       itemHandler.handleDay(item);
-    } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+    } catch (
+      InstantiationException
+      | IllegalAccessException
+      | InvocationTargetException
+      | NoSuchMethodException e
+    ) {
       throw new RuntimeException(e);
     }
   }
