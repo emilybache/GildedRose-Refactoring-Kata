@@ -79,4 +79,42 @@ class GildedRoseTest {
         app.updateQuality();
         assertEquals(app.items[0].quality, 0);
     }
+
+    @Test
+    public void qualityIsNeverNegative() {
+        // todo: should add a similar case for conjured
+        int quality = 1;
+        Item[] items = new Item[] { new Item("generic item", 5, quality) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(app.items[0].quality, 0);
+        app.updateQuality();
+        assertEquals(app.items[0].quality, 0);
+        app.updateQuality();
+        assertEquals(app.items[0].quality, 0);
+    }
+
+    @Test
+    public void qualityIsNeverOverFiftyForAgedBrie() {
+        Item[] items = new Item[] { new Item(GildedRose.AGED_BRIE, 5, 50) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(app.items[0].quality, 50);
+        app.updateQuality();
+        assertEquals(app.items[0].quality, 50);
+        app.updateQuality();
+        assertEquals(app.items[0].quality, 50);
+    }
+
+    @Test
+    public void qualityIsNeverOverFiftyForBackstagePasses() {
+        Item[] items = new Item[] { new Item(GildedRose.BACKSTAGE_PASSES, 5, 50) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(app.items[0].quality, 50);
+        app.updateQuality();
+        assertEquals(app.items[0].quality, 50);
+        app.updateQuality();
+        assertEquals(app.items[0].quality, 50);
+    }
 }
