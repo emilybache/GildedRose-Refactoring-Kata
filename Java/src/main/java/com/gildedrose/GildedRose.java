@@ -19,6 +19,14 @@ class GildedRose {
     }
 
     private static void handleDay(Item item) {
+        switch (item.name) {
+            case AGED_BRIE:
+                handleAgedBrie(item);
+                return;
+            case SULFURAS:
+                handleSulfuras(item);
+                return;
+        }
         if (!item.name.equals(AGED_BRIE)
             && !item.name.equals(BACKSTAGE_PASSES)) {
             if (item.quality > 0) {
@@ -67,5 +75,16 @@ class GildedRose {
                 }
             }
         }
+    }
+
+    private static void handleSulfuras(Item item) {
+
+    }
+
+    private static void handleAgedBrie(Item item) {
+        if (item.quality != 50) {
+            item.quality += 1;
+        }
+        item.sellIn -= 1;
     }
 }
