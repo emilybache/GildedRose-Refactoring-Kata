@@ -44,4 +44,39 @@ class GildedRoseTest {
         app.updateQuality();
         assertEquals(app.items[0].quality, SULFURAS_QUALITY);
     }
+
+    @Test
+    public void backstagePassesQualityIncreasesByTwoWhenThereAreTenDaysOrLessBeforeTheConcert() {
+        int quality = 0;
+        Item[] items = new Item[] { new Item(GildedRose.BACKSTAGE_PASSES, 10, quality) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(app.items[0].quality, 2);
+        app.updateQuality();
+        assertEquals(app.items[0].quality, 4);
+    }
+
+    @Test
+    public void backstagePassesQualityIncreasesByThreeWhenThereAreFiveDaysOrLessBeforeTheConcert() {
+        int quality = 0;
+        Item[] items = new Item[] { new Item(GildedRose.BACKSTAGE_PASSES, 5, quality) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(app.items[0].quality, 3);
+        app.updateQuality();
+        assertEquals(app.items[0].quality, 6);
+        app.updateQuality();
+        assertEquals(app.items[0].quality, 9);
+    }
+
+    @Test
+    public void backstagePassesQualityDropsToZeroAfterTheConcert() {
+        int quality = 10;
+        Item[] items = new Item[] { new Item(GildedRose.BACKSTAGE_PASSES, 1, quality) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(app.items[0].quality, 13);
+        app.updateQuality();
+        assertEquals(app.items[0].quality, 0);
+    }
 }
