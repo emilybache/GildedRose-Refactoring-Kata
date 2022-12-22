@@ -21,10 +21,9 @@ class GildedRose {
   private static void handleDay(Item item) {
     switch (item.name) {
       case AGED_BRIE:
-        handleAgedBrie(item);
+        AgedBrieItem.handleDay(item);
         return;
       case SULFURAS:
-        handleSulfuras(item);
         return;
       case BACKSTAGE_PASSES:
         BackstagePassesItem.handleDay(item);
@@ -32,16 +31,5 @@ class GildedRose {
       default:
         GenericItem.handleDay(item);
     }
-  }
-
-
-  private static void handleSulfuras(Item item) {
-  }
-
-  private static void handleAgedBrie(Item item) {
-    if (item.quality != 50) {
-      item.quality += 1;
-    }
-    item.sellIn -= 1;
   }
 }
