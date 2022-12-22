@@ -141,4 +141,52 @@ class GildedRoseTest {
         app.updateQuality();
         assertEquals(app.items[0].quality, 1);
     }
+
+    @Test
+    public void sellInDateDecreasesByOneEachDayForAgedBrie() {
+        Item[] items = new Item[] { new Item(GildedRose.AGED_BRIE, 5, 1) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(app.items[0].sellIn, 4);
+        app.updateQuality();
+        assertEquals(app.items[0].sellIn, 3);
+        app.updateQuality();
+        assertEquals(app.items[0].sellIn, 2);
+    }
+
+    @Test
+    public void sellInDateDecreasesByOneEachDayForBackstagePasses() {
+        Item[] items = new Item[] { new Item(GildedRose.BACKSTAGE_PASSES, 5, 1) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(app.items[0].sellIn, 4);
+        app.updateQuality();
+        assertEquals(app.items[0].sellIn, 3);
+        app.updateQuality();
+        assertEquals(app.items[0].sellIn, 2);
+    }
+
+    @Test
+    public void sellInDateDecreasesByOneEachDayForGenericItems() {
+        Item[] items = new Item[] { new Item("generic item", 5, 1) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(app.items[0].sellIn, 4);
+        app.updateQuality();
+        assertEquals(app.items[0].sellIn, 3);
+        app.updateQuality();
+        assertEquals(app.items[0].sellIn, 2);
+    }
+
+    @Test
+    public void sellInDateCanBeNegative() {
+        Item[] items = new Item[] { new Item("generic item", 1, 1) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(app.items[0].sellIn, 0);
+        app.updateQuality();
+        assertEquals(app.items[0].sellIn, -1);
+        app.updateQuality();
+        assertEquals(app.items[0].sellIn, -2);
+    }
 }
