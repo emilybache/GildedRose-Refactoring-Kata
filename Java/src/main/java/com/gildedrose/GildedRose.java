@@ -27,41 +27,15 @@ class GildedRose {
         handleSulfuras(item);
         return;
       case BACKSTAGE_PASSES:
-        handleBackstagePasses(item);
+        BackstagePassesItem.handleDay(item);
         return;
       default:
-        handleGenericItem(item);
+        GenericItem.handleDay(item);
     }
   }
 
-  private static void handleGenericItem(Item item) {
-    item.sellIn -= 1;
-    if (item.quality == 0) {
-      return;
-    }
-    if (item.sellIn < 0) {
-      item.quality -= 1;
-    }
-    item.quality -= 1;
-  }
-
-  private static void handleBackstagePasses(Item item) {
-    // todo: make it so these items can't be initialized with over 50
-    if (item.quality == 50) {
-      return;
-    }
-    if (item.sellIn == 0) {
-      item.quality = 0;
-    } else if (item.sellIn <= 5) {
-      item.quality += 3;
-    } else if (item.sellIn <= 10) {
-      item.quality += 2;
-    }
-    item.sellIn -= 1;
-  }
 
   private static void handleSulfuras(Item item) {
-
   }
 
   private static void handleAgedBrie(Item item) {
