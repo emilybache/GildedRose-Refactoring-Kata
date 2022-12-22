@@ -26,6 +26,9 @@ class GildedRose {
             case SULFURAS:
                 handleSulfuras(item);
                 return;
+            case BACKSTAGE_PASSES:
+                handleBackstagePasses(item);
+                return;
         }
         if (!item.name.equals(AGED_BRIE)
             && !item.name.equals(BACKSTAGE_PASSES)) {
@@ -75,6 +78,25 @@ class GildedRose {
                 }
             }
         }
+    }
+
+    private static void handleBackstagePasses(Item item) {
+        // todo: make it so these items can't be initialized with over 50
+        if (item.sellIn == 0) {
+            item.quality = 0;
+            return;
+        }
+        if (item.quality == 50) {
+            return;
+        }
+        if (item.sellIn <= 10) {
+            if (item.sellIn <= 5) {
+                item.quality += 3;
+            } else {
+                item.quality += 2;
+            }
+        }
+        item.sellIn -= 1;
     }
 
     private static void handleSulfuras(Item item) {
