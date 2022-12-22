@@ -179,8 +179,32 @@ class GildedRoseTest {
     }
 
     @Test
-    public void sellInDateCanBeNegative() {
+    public void sellInDateCanBeNegativeForGenericItems() {
         Item[] items = new Item[] { new Item("generic item", 1, 1) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(app.items.get(0).sellIn, 0);
+        app.updateQuality();
+        assertEquals(app.items.get(0).sellIn, -1);
+        app.updateQuality();
+        assertEquals(app.items.get(0).sellIn, -2);
+    }
+
+    @Test
+    public void sellInDateCanBeNegativeForAgedBrie() {
+        Item[] items = new Item[] { new Item(GildedRose.AGED_BRIE, 1, 1) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(app.items.get(0).sellIn, 0);
+        app.updateQuality();
+        assertEquals(app.items.get(0).sellIn, -1);
+        app.updateQuality();
+        assertEquals(app.items.get(0).sellIn, -2);
+    }
+
+    @Test
+    public void sellInDateCanBeNegativeForBackStagePasses() {
+        Item[] items = new Item[] { new Item(GildedRose.BACKSTAGE_PASSES, 1, 1) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals(app.items.get(0).sellIn, 0);

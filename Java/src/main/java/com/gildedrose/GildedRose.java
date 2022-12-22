@@ -82,19 +82,15 @@ class GildedRose {
 
     private static void handleBackstagePasses(Item item) {
         // todo: make it so these items can't be initialized with over 50
-        if (item.sellIn == 0) {
-            item.quality = 0;
-            return;
-        }
         if (item.quality == 50) {
             return;
         }
-        if (item.sellIn <= 10) {
-            if (item.sellIn <= 5) {
-                item.quality += 3;
-            } else {
-                item.quality += 2;
-            }
+        if (item.sellIn == 0) {
+            item.quality = 0;
+        } else if (item.sellIn <= 5) {
+            item.quality += 3;
+        } else if (item.sellIn <= 10) {
+            item.quality += 2;
         }
         item.sellIn -= 1;
     }
