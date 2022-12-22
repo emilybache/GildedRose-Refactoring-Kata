@@ -117,4 +117,28 @@ class GildedRoseTest {
         app.updateQuality();
         assertEquals(app.items[0].quality, 50);
     }
+
+    @Test
+    public void qualityDecreasesByOneEachDayForGenericItems() {
+        Item[] items = new Item[] { new Item("generic item", 5, 5) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(app.items[0].quality, 4);
+        app.updateQuality();
+        assertEquals(app.items[0].quality, 3);
+        app.updateQuality();
+        assertEquals(app.items[0].quality, 2);
+    }
+
+    @Test
+    public void qualityDecreasesByTwoEachDayForGenericItemsAfterSellInDate() {
+        Item[] items = new Item[] { new Item("generic item", 1, 6) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(app.items[0].quality, 5);
+        app.updateQuality();
+        assertEquals(app.items[0].quality, 3);
+        app.updateQuality();
+        assertEquals(app.items[0].quality, 1);
+    }
 }
