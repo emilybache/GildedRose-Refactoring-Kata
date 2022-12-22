@@ -190,5 +190,21 @@ class GildedRoseTest {
         assertEquals(app.items.get(0).sellIn, -2);
     }
 
-    // todo: add test that multiple items update at once (so can pass in multiple items)
+    @Test
+    public void itUpdatesAllItemsPassedIn() {
+        Item[] items = new Item[] {
+            new Item("generic item 1", 5, 5),
+            new Item("generic item 2", 5, 10)
+        };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(app.items.get(0).quality, 4);
+        assertEquals(app.items.get(1).quality, 9);
+        app.updateQuality();
+        assertEquals(app.items.get(0).quality, 3);
+        assertEquals(app.items.get(1).quality, 8);
+        app.updateQuality();
+        assertEquals(app.items.get(0).quality, 2);
+        assertEquals(app.items.get(1).quality, 7);
+    }
 }
