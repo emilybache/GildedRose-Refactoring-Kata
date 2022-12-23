@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class BackstagePassesItemHandler extends ItemHandler {
+public class BackstagePassesItemHandler implements ItemHandler {
 
   @Override
   public void handleDay(Item item) {

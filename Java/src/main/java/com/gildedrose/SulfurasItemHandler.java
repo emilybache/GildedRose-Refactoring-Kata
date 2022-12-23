@@ -1,3 +1,7 @@
 package com.gildedrose;
 
-public class SulfurasItemHandler extends ItemHandler {}
+public class SulfurasItemHandler implements ItemHandler {
+
+  @Override
+  public void handleDay(Item item) {}
+}

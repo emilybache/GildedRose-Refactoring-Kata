@@ -4,7 +4,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 public class ItemHandlerFactory {
-
   private static final Map<ItemType, Class<? extends ItemHandler>> ITEM_HANDLER_MAP = Map.of(
     ItemType.AGED_BRIE,
     AgedBrieItemHandler.class,

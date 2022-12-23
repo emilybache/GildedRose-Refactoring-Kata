@@ -1,6 +1,7 @@
 package com.gildedrose;
 
-public class ConjuredItemHandler extends ItemHandler {
+public class ConjuredItemHandler implements ItemHandler {
+
   @Override
   public void handleDay(Item item) {
     item.quality -= 2;

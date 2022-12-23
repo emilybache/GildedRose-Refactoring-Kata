@@ -18,7 +18,9 @@ public enum ItemType {
   public static ItemType forDisplayName(String displayName) {
     return Arrays
       .stream(ItemType.values())
-      .filter(itemType -> itemType.getDisplayName().equals(displayName)).findFirst().orElse(GENERIC);
+      .filter(itemType -> itemType.getDisplayName().equals(displayName))
+      .findFirst()
+      .orElse(GENERIC);
   }
 
   public String getDisplayName() {

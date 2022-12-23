@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class AgedBrieItemHandler extends ItemHandler {
+public class AgedBrieItemHandler implements ItemHandler {
 
   public AgedBrieItemHandler() {}
 

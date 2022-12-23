@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class GenericItemHandler extends ItemHandler {
+public class GenericItemHandler implements ItemHandler {
 
   @Override
   public void handleDay(Item item) {
