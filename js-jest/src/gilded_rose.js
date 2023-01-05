@@ -5,7 +5,7 @@ class Item {
     this.quality = quality;
   }
 }
-// TODO: You just started using the switch statement and increment variables. Uncomment the bottom code and run the tests to see the last working version.
+
 class Shop {
   constructor(items=[]){
     this.items = items;
@@ -29,15 +29,14 @@ class Shop {
           itemSellIn--
           break;
         case 'Backstage passes to a TAFKAL80ETC concert':
-          let daysLeft = this.items[i].sellIn
           switch (true) {
-            case (daysLeft < 0):
+            case (itemSellIn < 0):
               itemQuality = 0
               break;
-            case (daysLeft <= 5):
+            case (itemSellIn <= 5):
               itemQuality += 3
               break;
-            case (daysLeft <= 10):
+            case (itemSellIn <= 10):
               itemQuality += 2
               break;
             default:
