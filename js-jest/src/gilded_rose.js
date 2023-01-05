@@ -12,59 +12,50 @@ class Shop {
   }
   updateQuality() {
 
-    for (let i = 0; i < this.items.length; i++) {
-
-      // Initialize three variables for easier reading below.
-      let itemSellIn = this.items[i].sellIn
-      let itemQuality = this.items[i].quality
-      let itemName = this.items[i].name
+    this.items.forEach(item => {
 
       // Set a degradation multiplier to 2 if expiration date has passed
       // Otherwise set it to 1 (no multiplier)
-      let degradationMultiplier = itemSellIn < 0 ? 2 : 1
+      let degradationMultiplier = item.sellIn < 0 ? 2 : 1
 
-      switch (itemName) {
+      switch (item.name) {
         case 'Aged Brie':
-          itemQuality++
-          itemSellIn--
+          item.quality++
+          item.sellIn--
           break;
         case 'Backstage passes to a TAFKAL80ETC concert':
           switch (true) {
-            case (itemSellIn < 0):
-              itemQuality = 0
+            case (item.sellIn < 0):
+              item.quality = 0
               break;
-            case (itemSellIn <= 5):
-              itemQuality += 3
+            case (item.sellIn <= 5):
+              item.quality += 3
               break;
-            case (itemSellIn <= 10):
-              itemQuality += 2
+            case (item.sellIn <= 10):
+              item.quality += 2
               break;
             default:
-              itemQuality++
+              item.quality++
               break;
           }
-          itemSellIn--
+          item.sellIn--
           break;
         case 'Sulfuras, Hand of Ragnaros':
           break;
         case 'Conjured Mana Cake':
-          itemQuality -= (2 * degradationMultiplier)
-          itemSellIn--
+          item.quality -= (2 * degradationMultiplier)
+          item.sellIn--
           break;
         default:
-          itemQuality -= (1 * degradationMultiplier)
-          itemSellIn--
+          item.quality -= (1 * degradationMultiplier)
+          item.sellIn--
       }
 
       // Item quality cannot be higher than 50 or lower than 0.
-      if (itemQuality > 50) itemQuality = 50
-      if (itemQuality < 0) itemQuality = 0
+      if (item.quality > 50) item.quality = 50
+      if (item.quality < 0) item.quality = 0
 
-      // Use the modified variables to set the actual properties on the item
-      this.items[i].sellIn = itemSellIn
-      this.items[i].quality = itemQuality
-
-    }
+    })
       
     return this.items;
   }
