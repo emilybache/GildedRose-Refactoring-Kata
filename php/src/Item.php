@@ -4,32 +4,17 @@ declare(strict_types=1);
 
 namespace GildedRose;
 
-final class Item
+final class Item implements \Stringable
 {
-    /**
-     * @var string
-     */
-    public $name;
-
-    /**
-     * @var int
-     */
-    public $sell_in;
-
-    /**
-     * @var int
-     */
-    public $quality;
-
-    public function __construct(string $name, int $sell_in, int $quality)
-    {
-        $this->name = $name;
-        $this->sell_in = $sell_in;
-        $this->quality = $quality;
+    public function __construct(
+        public string $name,
+        public int $sellIn,
+        public int $quality
+    ) {
     }
 
     public function __toString(): string
     {
-        return "{$this->name}, {$this->sell_in}, {$this->quality}";
+        return (string) "{$this->name}, {$this->sellIn}, {$this->quality}";
     }
 }

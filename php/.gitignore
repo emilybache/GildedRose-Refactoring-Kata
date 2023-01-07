@@ -1,6 +1,6 @@
-/.idea 
-/report.xml 
-/.phpstorm.meta.php 
-/.phpunit.result.cache
+/.idea
 /build
 /vendor
+/.editorconfig
+/.phpunit.result.cache
+/composer.lock

@@ -25,7 +25,7 @@ $items = [
 $app = new GildedRose($items);
 
 $days = 2;
-if (count($argv) > 1) {
+if ((is_countable($argv) ? count($argv) : 0) > 1) {
     $days = (int) $argv[1];
 }
 

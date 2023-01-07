@@ -3,34 +3,45 @@
 declare(strict_types=1);
 
 use PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symplify\EasyCodingStandard\ValueObject\Option;
+use PhpCsFixer\Fixer\Strict\DeclareStrictTypesFixer;
+use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $services = $containerConfigurator->services();
-    $services->set(ArraySyntaxFixer::class)
-        ->call('configure', [[
-            'syntax' => 'short',
-        ]]);
+// composer require --dev symplify/easy-coding-standard
+// vendor/bin/ecs init
 
-    $parameters = $containerConfigurator->parameters();
-    $parameters->set(Option::PATHS, [
-        __DIR__ . '/fixtures',
+return static function (ECSConfig $ecsConfig): void {
+    $ecsConfig->paths([
         __DIR__ . '/src',
         __DIR__ . '/tests',
+        __DIR__ . '/ecs.php',  // check this file too!
     ]);
 
-    $parameters->set
-    (Option::SETS,
-        [
-            SetList::CLEAN_CODE,
-            SetList::COMMON,
-            SetList::PSR_12,
-        ]
-    );
+    $ecsConfig->skip([
+        // rules to skip
+    ]);
 
-    $parameters->set(Option::INDENTATION, "spaces");
+    // run and fix, one by one
+    $ecsConfig->sets([
+        SetList::SPACES,
+        SetList::ARRAY,
+        SetList::DOCBLOCK,
+        SetList::NAMESPACES,
+        SetList::CONTROL_STRUCTURES,
+        SetList::CLEAN_CODE,
+        SetList::STRICT,
+        SetList::PSR_12,
+        SetList::PHPUNIT,
+    ]);
 
-    $parameters->set(Option::LINE_ENDING, "\n");
+    // add declare(strict_types=1); to all php files:
+    $ecsConfig->rule(DeclareStrictTypesFixer::class);
+
+    // change $array = array(); to $array = [];
+    $ecsConfig->ruleWithConfiguration(ArraySyntaxFixer::class, [
+        'syntax' => 'short',
+    ]);
+
+    // [default: PHP_EOL]; other options: "\n"
+    $ecsConfig->lineEnding("\n");
 };
