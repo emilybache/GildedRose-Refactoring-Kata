@@ -8,6 +8,7 @@ parameters:
         - tests
         - fixtures
 
+    # max is the highest level
     level: max
 
     checkGenericClassInNonGenericObjectType: false
