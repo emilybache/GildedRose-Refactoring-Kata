@@ -35,7 +35,7 @@ Whichever testing approach you choose, the idea of the exercise is to do some de
 
 ## Text-Based Approval Testing
 
-This code comes with comprehensive tests that use this approach. For information about how to run them, see the [texttests README](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/master/texttests)
+Most language versions of this code have a [TextTest](https://texttest.org) fixture for Approval testing. For information about this, see the [TextTests README](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/master/texttests)
 
 ## Translating this code
 
@@ -51,8 +51,3 @@ Please don't write too much code in the starting position or add too many unit t
 
 If your programming language doesn't have an easy way to add a command-line interface, then the TextTest fixture is probably not necessary.
 
-## Better Code Hub
-
-I analysed this repo according to the clean code standards on [Better Code Hub](https://bettercodehub.com) just to get an independent opinion of how bad the code is. Perhaps unsurprisingly, the compliance score is low!
-
-[![BCH compliance](https://bettercodehub.com/edge/badge/emilybache/GildedRose-Refactoring-Kata?branch=master)](https://bettercodehub.com/) 
