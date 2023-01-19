@@ -12,6 +12,26 @@ class GildedRose {
         this.items = items;
     }
 
+    public void updateQuality() {
+        for (Item item : this.items) {
+            // update each item individually
+            switch (item.name) {
+                case AGED_BRIE:
+                    updateAgedBrie(item);
+                    continue;
+
+                case BACKSTAGE_PASS:
+                    updateBackStage(item);
+                    continue;
+                case SULFURAS:
+                    updateSulfuras(item);
+                    continue;
+                default:
+                    updateNormalItem(item);
+                    continue;
+            }
+        }
+    }
 
     public void updateAgedBrie(Item item) {
 
@@ -72,32 +92,6 @@ class GildedRose {
         }
     }
 
-    public void updateQuality() {
-        for (Item item : this.items) {
 
-            // only sulfuras don't sell
-            // hence update sellin value for all items except sulfuras here
-
-            if (item.name != SULFURAS) {
-
-            }
-
-            switch (item.name) {
-                case AGED_BRIE:
-                    updateAgedBrie(item);
-                    continue;
-
-                case BACKSTAGE_PASS:
-                    updateBackStage(item);
-                    continue;
-                case SULFURAS:
-                    updateSulfuras(item);
-                    continue;
-                default:
-                    updateNormalItem(item);
-                    continue;
-            }
-        }
-    }
 
 }
