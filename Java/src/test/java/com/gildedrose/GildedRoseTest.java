@@ -43,6 +43,7 @@ class GildedRoseTest {
 
             //3.b After sellIn
             Arguments.of(new GildedRose(new Item[]{new Item("Aged Brie", 0, 50)}), "Aged Brie", -1, 50),
+            Arguments.of(new GildedRose(new Item[]{new Item("Aged Brie", 0, 48)}), "Aged Brie", -1, 50),
 
             Arguments.of(new GildedRose(new Item[]{new Item("Elixir of the Mongoose", 5, 7)}), "Elixir of the Mongoose", 4, 6),
 
