@@ -18,8 +18,9 @@ class GildedRose {
 
     private void updateQualityForConjured(Item item) {
         if (item.sellIn > 0) {
-
             item.quality = degradeQualityBy(item.quality, 2);
+        } else {
+            item.quality = degradeQualityBy(item.quality, 4);
         }
         item.sellIn = item.sellIn - 1;
     }

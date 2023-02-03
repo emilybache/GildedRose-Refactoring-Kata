@@ -23,10 +23,14 @@ class GildedRoseTest {
             Arguments.of(new GildedRose(new Item[]{new Item("Normal Item", 0, 0)}), "Normal Item", -1, 0),
             Arguments.of(new GildedRose(new Item[]{new Item("Normal Item", 0, 10)}), "Normal Item", -1, 8),
 
-            //1. Conjured item
-            //1.a Before sellIn
+            //2. Conjured item
+            //2.a Before sellIn
             Arguments.of(new GildedRose(new Item[]{new Item("Conjured Mana Cake", 1, 10)}), "Conjured Mana Cake", 0, 8),
             Arguments.of(new GildedRose(new Item[]{new Item("Conjured Mana Cake", 1, 0)}), "Conjured Mana Cake", 0, 0),
+
+            //2.b after sellIn
+            Arguments.of(new GildedRose(new Item[]{new Item("Conjured Mana Cake", 0, 0)}),"Conjured Mana Cake", -1, 0),
+            Arguments.of(new GildedRose(new Item[]{new Item("Conjured Mana Cake", 0, 10)}), "Conjured Mana Cake", -1, 6),
 
 
             Arguments.of(new GildedRose(new Item[]{new Item("+5 Dexterity Vest", 10, 20)}), "+5 Dexterity Vest", 9, 19),
