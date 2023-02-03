@@ -1,6 +1,10 @@
 package com.gildedrose;
 
+import static com.gildedrose.Constants.MAX_QUALITY;
+import static com.gildedrose.Constants.MIN_QUALITY;
+
 class GildedRose {
+
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -25,10 +29,6 @@ class GildedRose {
         item.sellIn = item.sellIn - 1;
     }
 
-    private Integer degradeQualityBy(int currentQuality, int degradeBy) {
-        return Math.max(currentQuality - degradeBy, 0);
-    }
-
     private void updateQuality(Item item) {
         if (!item.name.equals("Aged Brie")
             && !item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
@@ -44,13 +44,13 @@ class GildedRose {
                 if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                     if (item.sellIn < 11) {
                         if (item.quality < 50) {
-                            item.quality = item.quality + 1;
+                            item.quality = upgradeQualityBy(item.quality, 1);
                         }
                     }
 
                     if (item.sellIn < 6) {
                         if (item.quality < 50) {
-                            item.quality = item.quality + 1;
+                            item.quality = upgradeQualityBy(item.quality, 1);
                         }
                     }
                 }
@@ -78,5 +78,13 @@ class GildedRose {
                 }
             }
         }
+    }
+
+    private Integer degradeQualityBy(int currentQuality, int degradeBy) {
+        return Math.max(currentQuality - degradeBy, MIN_QUALITY);
+    }
+
+    private Integer upgradeQualityBy(int currentQuality, int upgradeBy) {
+        return Math.min(currentQuality + upgradeBy, MAX_QUALITY);
     }
 }
