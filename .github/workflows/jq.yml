@@ -8,7 +8,7 @@ on:
             - jq/*
 
 jobs:
-    build:
+    test-jq-translation:
         runs-on: ubuntu-latest
 
         steps:
@@ -32,9 +32,8 @@ jobs:
               run: |
                   ! ./test-gilded-rose.sh
 
-            - name: Expect texttest fixture output
+            - name: Expect texttest fixture output (aka 'verify')
               working-directory: jq
-              # intentionally fail this step to be in the red
               run: |
-                  jaq --arg days 9 -nr "$(cat gilded-rose.jq) $(cat texttest_fixture.jq)" |
+                  jaq --arg days 10 -nr "$(cat gilded-rose.jq) $(cat texttest_fixture.jq)" |
                   diff - texttest-10-day-result
