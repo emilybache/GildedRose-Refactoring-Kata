@@ -35,5 +35,5 @@ jobs:
             - name: Expect texttest fixture output (aka 'verify')
               working-directory: jq
               run: |
-                  jaq --arg days 10 -nr "$(cat gilded-rose.jq) $(cat texttest_fixture.jq)" |
-                  diff - texttest-10-day-result
+                  jaq --arg days 31 -nr "$(cat gilded-rose.jq) $(cat texttest_fixture.jq)" |
+                    diff - ../texttests/ThirtyDays/stdout.gr
