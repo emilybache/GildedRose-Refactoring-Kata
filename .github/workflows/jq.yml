@@ -22,6 +22,7 @@ jobs:
                   toolchain: stable
                   override: true
 
+            # TODO: this step takes ~2m, consider using https://github.com/marketplace/actions/cargo-install
             - name: Install jaq
               run: |
                   cargo install --locked --git https://github.com/01mf02/jaq
@@ -33,6 +34,7 @@ jobs:
 
             - name: Expect texttest fixture output
               working-directory: jq
+              # intentionally fail this step to be in the red
               run: |
-                  jaq --arg days 10 -nr "$(cat gilded-rose.jq) $(cat texttest_fixture.jq)" |
+                  jaq --arg days 9 -nr "$(cat gilded-rose.jq) $(cat texttest_fixture.jq)" |
                   diff - texttest-10-day-result
