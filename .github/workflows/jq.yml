@@ -1,0 +1,30 @@
+name: jq
+
+on:
+    pull_request:
+        branches:
+            - main
+        paths:
+            - jq/*
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Set up Rust
+              uses: actions/setup-rust@v1
+              with:
+                  rust-version: stable
+
+            - name: Install jaq
+              run: |
+                  cargo install --locked --git https://github.com/01mf02/jaq
+
+            - name: Run tests on jq directory
+              working-directory: jq
+              run: |
+                  ./test-gilded-rose.sh
