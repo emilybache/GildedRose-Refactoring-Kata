@@ -1,0 +1,39 @@
+name: jq
+
+on:
+    pull_request:
+        branches:
+            - main
+        paths:
+            - jq/*
+
+jobs:
+    test-jq-translation:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Setup Rust Toolchain
+              uses: actions-rs/toolchain@v1
+              with:
+                  profile: minimal
+                  toolchain: stable
+                  override: true
+
+            # TODO: this step takes ~2m, consider using https://github.com/marketplace/actions/cargo-install
+            - name: Install jaq
+              run: |
+                  cargo install --locked --git https://github.com/01mf02/jaq
+
+            - name: Expect unit test to fail
+              working-directory: jq
+              run: |
+                  ! ./test-gilded-rose.sh
+
+            - name: Expect texttest fixture output (aka 'verify')
+              working-directory: jq
+              run: |
+                  jaq --arg days 31 -nr "$(cat gilded-rose.jq) $(cat texttest_fixture.jq)" |
+                    diff - ../texttests/ThirtyDays/stdout.gr
