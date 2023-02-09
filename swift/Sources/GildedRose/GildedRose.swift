@@ -23,9 +23,11 @@ public class GildedRose {
     }
 
     private func updateItemQuality(_ item: Item) {
+        let itemQualityDegradationAmount = item.name.lowercased().range(of: "conjured") != nil ? GildedRose.itemQualityDegradationAmount * 2 : GildedRose.itemQualityDegradationAmount
+        
         if item.name != GildedRose.agedBrieString, item.name != GildedRose.backstagePassString {
             if item.name != GildedRose.sulfurasString {
-                self.adjustQuality(item, adjustment: item.name.lowercased().range(of: "conjured") != nil ? GildedRose.itemQualityDegradationAmount * 2 : GildedRose.itemQualityDegradationAmount)
+                self.adjustQuality(item, adjustment: itemQualityDegradationAmount)
             }
         } else {
             self.adjustQuality(item, adjustment: 1)
@@ -47,7 +49,7 @@ public class GildedRose {
             if item.name != GildedRose.agedBrieString {
                 if item.name != GildedRose.backstagePassString {
                     if item.name != GildedRose.sulfurasString {
-                        self.adjustQuality(item, adjustment: item.name.lowercased().range(of: "conjured") != nil ? GildedRose.itemQualityDegradationAmount * 2 : GildedRose.itemQualityDegradationAmount)
+                        self.adjustQuality(item, adjustment: itemQualityDegradationAmount)
                     }
                 } else {
                     self.adjustQuality(item, adjustment: -item.quality)
