@@ -1,12 +1,12 @@
 full_name:Gilded Rose Refactoring Kata
 
 # set your preferred editor and diff tool.
-view_program:subl
-diff_program:meld
+view_program:code
+diff_program:code
 
 # Settings for the Python version
-#executable:${TEXTTEST_HOME}/python/texttest_fixture.py
-#interpreter:python
+executable:/home/facu/Downloads/codigos/Entrevistas_codigos/StockAgile/GildedRose-Refactoring-Kata/python/texttest_fixture.py
+interpreter:python3
 
 # Settings for the cpp version
 #executable:${TEXTTEST_HOME}/cpp/cmake-build-debug/test/cpp_texttest/GildedRoseTextTests
