@@ -59,4 +59,8 @@ class GildedRose {
             }
         }
     }
+
+    public void updateQuantities(){
+
+    }
 }
