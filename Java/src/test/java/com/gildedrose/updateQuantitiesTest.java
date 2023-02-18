@@ -59,7 +59,6 @@ class updateQuantitiesTest {
         app.updateQuantities();
         assertEquals(2, app.items.length);
     }
-
 }
 
 

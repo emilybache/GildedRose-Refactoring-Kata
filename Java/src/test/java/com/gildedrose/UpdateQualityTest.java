@@ -139,5 +139,21 @@ class UpdateQualityTest {
         }
     }
 
+    /**
+     * Testing for "Conjured" items
+     */
+
+
+    @Test
+    void itemConjuredQualityTwiceAsFastAsNormalItems() {
+        System.out.println("\"Conjured\" items degrade in Quality twice as fast as normal items");
+        Item[] items = new Item[]{
+            new Item("Conjured Mana Cake", 3, 6)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(4, app.items[0].quality);
+    }
 
 }
+
+
