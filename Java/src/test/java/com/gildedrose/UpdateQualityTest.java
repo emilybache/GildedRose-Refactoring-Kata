@@ -126,15 +126,15 @@ class UpdateQualityTest {
 
 
     @Test
-    void itemSulfurasNotDecreasedQuality() {
-        System.out.println("\"Sulfuras\", being a legendary item, never decreases in Quality");
-        Item[] items = new Item[]{new Item("Sulfuras, Hand of Ragnaros", 5, 79)};
+    void itemSulfurasNotChangeQuality() {
+        System.out.println("\"Sulfuras\", being a legendary item, never decreases in Quality and stays the same");
+        Item[] items = new Item[]{new Item("Sulfuras, Hand of Ragnaros", 5, 44)};
         GildedRose app = new GildedRose(items);
         assertEquals("Sulfuras, Hand of Ragnaros", app.items[0].name);
         for (int i = 0; i < 10; i++) {
             app.updateQuality();
         }
-        assertEquals(79, app.items[0].quality);
+        assertEquals(44, app.items[0].quality);
     }
 
     @Test
