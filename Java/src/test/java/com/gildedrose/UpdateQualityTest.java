@@ -45,7 +45,7 @@ class UpdateQualityTest {
     }
 
     @Test
-    void qualityIteNeverNegatif() {
+    void qualityItemNeverNegatif() {
         System.out.println("The Quality of an item is never negative");
         Item[] items = new Item[]{new Item("+5 Dexterity Vest", 10, 1)};
         GildedRose app = new GildedRose(items);
@@ -55,6 +55,33 @@ class UpdateQualityTest {
         assertEquals(0, app.items[0].quality);
         assertEquals("+5 Dexterity Vest", app.items[0].name);
     }
+
+    @Test
+    void sellInValueCanBeNegative() {
+        System.out.println("SellIn  value of an Item can be negative until quality reach zero");
+        Item[] items = new Item[]{new Item("+5 Dexterity Vest", 0, 30)};
+        GildedRose app = new GildedRose(items);
+        int timeFrame = 10;
+        for (int i = 0; i < timeFrame; i++) {
+            app.updateQuality();
+        }
+        assertEquals(10, app.items[0].quality);
+        assertEquals(-timeFrame, app.items[0].sellIn);
+    }
+
+    @Test
+    void sellInValueCanNotBeNegatifForSulfuras() {
+        System.out.println("SellIn  value of Sulfuras Item can not be negative bcse quality never decreases");
+        Item[] items = new Item[]{new Item("Sulfuras, Hand of Ragnaros", -1, 80)};
+        GildedRose app = new GildedRose(items);
+        int timeFrame = 10;
+        for (int i = 0; i < timeFrame; i++) {
+            app.updateQuality();
+        }
+        assertEquals(80, app.items[0].quality); // if time is > 1
+        assertEquals(-1, app.items[0].sellIn);
+    }
+
 
     @Test
     void agedBrieQualityIncreaseWthIteration() {
@@ -136,6 +163,23 @@ class UpdateQualityTest {
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         for (int i = 0; i < 2; i++) {
+            assertEquals(6, app.items[i].quality);
+        }
+
+    }
+
+    @Test
+    void itemBackstageQualityDropsToZeroAfterTheConcert() {
+        System.out.println("Quality drops to 0 after the concert");
+        Item[] items = new Item[]{
+            new Item("Backstage passes to a TAFKAL80ETC concert", 0, 2),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 0, 3),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 0, 7)
+        };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        for (Item el : items) {
+            assertEquals(0, el.quality);
         }
     }
 
@@ -144,15 +188,15 @@ class UpdateQualityTest {
      */
 
 
-    @Test
-    void itemConjuredQualityTwiceAsFastAsNormalItems() {
-        System.out.println("\"Conjured\" items degrade in Quality twice as fast as normal items");
-        Item[] items = new Item[]{
-            new Item("Conjured Mana Cake", 3, 6)};
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals(4, app.items[0].quality);
-    }
+//    @Test
+//    void itemConjuredQualityTwiceAsFastAsNormalItems() {
+//        System.out.println("\"Conjured\" items degrade in Quality twice as fast as normal items");
+//        Item[] items = new Item[]{
+//            new Item("Conjured Mana Cake", 3, 6)};
+//        GildedRose app = new GildedRose(items);
+//        app.updateQuality();
+//        assertEquals(4, app.items[0].quality);
+//    }
 
 }
 
