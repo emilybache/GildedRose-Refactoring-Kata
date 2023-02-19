@@ -45,7 +45,7 @@ class UpdateQualityTest {
     }
 
     @Test
-    void qualityIteNeverNegatif() {
+    void qualityItemNeverNegatif() {
         System.out.println("The Quality of an item is never negative");
         Item[] items = new Item[]{new Item("+5 Dexterity Vest", 10, 1)};
         GildedRose app = new GildedRose(items);
@@ -55,6 +55,33 @@ class UpdateQualityTest {
         assertEquals(0, app.items[0].quality);
         assertEquals("+5 Dexterity Vest", app.items[0].name);
     }
+
+    @Test
+    void sellInValueCanBeNegative() {
+        System.out.println("SellIn  value of an Item can be negative until quality reach zero");
+        Item[] items = new Item[]{new Item("+5 Dexterity Vest", 0, 30)};
+        GildedRose app = new GildedRose(items);
+        int timeFrame = 10;
+        for (int i = 0; i < timeFrame; i++) {
+            app.updateQuality();
+        }
+        assertEquals(10, app.items[0].quality);
+        assertEquals(-timeFrame, app.items[0].sellIn);
+    }
+
+    @Test
+    void sellInValueCanNotBeNegatifForSulfuras() {
+        System.out.println("SellIn  value of Sulfuras Item can not be negative bcse quality never decreases");
+        Item[] items = new Item[]{new Item("Sulfuras, Hand of Ragnaros", -1, 80)};
+        GildedRose app = new GildedRose(items);
+        int timeFrame = 10;
+        for (int i = 0; i < timeFrame; i++) {
+            app.updateQuality();
+        }
+        assertEquals(80, app.items[0].quality); // if time is > 1
+        assertEquals(-1, app.items[0].sellIn);
+    }
+
 
     @Test
     void agedBrieQualityIncreaseWthIteration() {
@@ -99,15 +126,15 @@ class UpdateQualityTest {
 
 
     @Test
-    void itemSulfurasNotDecreasedQuality() {
-        System.out.println("\"Sulfuras\", being a legendary item, never decreases in Quality");
-        Item[] items = new Item[]{new Item("Sulfuras, Hand of Ragnaros", 5, 79)};
+    void itemSulfurasNotChangeQuality() {
+        System.out.println("\"Sulfuras\", being a legendary item, never decreases in Quality and stays the same");
+        Item[] items = new Item[]{new Item("Sulfuras, Hand of Ragnaros", 5, 44)};
         GildedRose app = new GildedRose(items);
         assertEquals("Sulfuras, Hand of Ragnaros", app.items[0].name);
         for (int i = 0; i < 10; i++) {
             app.updateQuality();
         }
-        assertEquals(79, app.items[0].quality);
+        assertEquals(44, app.items[0].quality);
     }
 
     @Test
@@ -136,6 +163,23 @@ class UpdateQualityTest {
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         for (int i = 0; i < 2; i++) {
+            assertEquals(6, app.items[i].quality);
+        }
+
+    }
+
+    @Test
+    void itemBackstageQualityDropsToZeroAfterTheConcert() {
+        System.out.println("Quality drops to 0 after the concert");
+        Item[] items = new Item[]{
+            new Item("Backstage passes to a TAFKAL80ETC concert", 0, 2),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 0, 3),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 0, 7)
+        };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        for (Item el : items) {
+            assertEquals(0, el.quality);
         }
     }
 
@@ -145,10 +189,32 @@ class UpdateQualityTest {
 
 
     @Test
-    void itemConjuredQualityTwiceAsFastAsNormalItems() {
-        System.out.println("\"Conjured\" items degrade in Quality twice as fast as normal items");
+    void itemConjuredQualityTwiceAsFastAsNormalItemsWithPositiveSellIn() {
+        System.out.println("\"Conjured\" items degrade in Quality twice as fast as normal items when sellin is positive");
         Item[] items = new Item[]{
             new Item("Conjured Mana Cake", 3, 6)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(4, app.items[0].quality);
+    }
+
+    @Test
+    void itemConjuredQualityTwiceAsFastAsNormalItemsWhenSellInIsZero() {
+        System.out.println("\"Conjured\" items degrade in Quality twice as fast as normal items when sellin is wero");
+        Item[] items = new Item[]{
+            new Item("Conjured Mana Cake", 0, 10)
+        };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(8, app.items[0].quality);
+    }
+
+    @Test
+    void itemConjuredQualityTwiceAsFastAsNormalItemsWithNegativeSellIn() {
+        System.out.println("\"Conjured\" items degrade in Quality twice as fast as normal items when sellin is negtive");
+        Item[] items = new Item[]{
+            new Item("Conjured Mana Cake", -1, 8)
+        };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals(4, app.items[0].quality);
