@@ -156,7 +156,7 @@ class UpdateQualityTest {
         Item[] items = new Item[]{
             new Item("Backstage passes to a TAFKAL80ETC concert", 10, 0),
             new Item("Backstage passes to a TAFKAL80ETC concert", 9, 0),
-            new Item("Backstage passes to a TAFKAL80ETC concert", 8, 49)
+            new Item("Backstage passes to a TAFKAL80ETC concert", 8, 48)
         };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -172,7 +172,7 @@ class UpdateQualityTest {
         Item[] items = new Item[]{
             new Item("Backstage passes to a TAFKAL80ETC concert", 5, 3),
             new Item("Backstage passes to a TAFKAL80ETC concert", 4, 3),
-            new Item("Backstage passes to a TAFKAL80ETC concert", 2, 49)
+            new Item("Backstage passes to a TAFKAL80ETC concert", 3, 48)
         };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
