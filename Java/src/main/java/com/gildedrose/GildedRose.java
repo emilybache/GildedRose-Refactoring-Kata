@@ -12,13 +12,7 @@ class GildedRose {
             if (!items[i].name.equals("Aged Brie")
                 && !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                 if (items[i].quality > 0) {
-                    if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                        items[i].quality = items[i].quality - 1;
-
-                        if (items[i].name.equals("Conjured Mana Cake") && items[i].quality > 0) {
-                            items[i].quality = items[i].quality - 1;
-                        }
-                    }
+                    updateItem(items[i]);
                 }
             } else {
                 if (items[i].quality < 50) {
@@ -43,13 +37,7 @@ class GildedRose {
                 if (!items[i].name.equals("Aged Brie")) {
                     if (!items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                         if (items[i].quality > 0) {
-                            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                                items[i].quality = items[i].quality - 1;
-
-                                if (items[i].name.equals("Conjured Mana Cake") && items[i].quality > 0) {
-                                    items[i].quality = items[i].quality - 1;
-                                }
-                            }
+                            updateItem(items[i]);
                         }
                     } else {
                         items[i].quality = items[i].quality - items[i].quality;
@@ -62,4 +50,16 @@ class GildedRose {
             }
         }
     }
+     public void updateItem(Item item){
+         if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
+             item.quality = item.quality - 1;
+
+             if (item.name.equals("Conjured Mana Cake") && item.quality > 0) {
+                 item.quality = item.quality - 1;
+             }
+         }
+
+
+     }
+
 }
