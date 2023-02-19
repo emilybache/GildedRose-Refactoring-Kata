@@ -18,20 +18,22 @@ public class Item {
         return this.name;
     }
 
+    // No setter for Name because it is not necessary yet
+
     public int getSellIn() {
         return this.sellIn;
     }
 
-    public void setSellIn(int value) {
-        this.sellIn = value;
+    public void setSellIn(int sellIn) {
+        this.sellIn = sellIn;
     }
 
     public int getQuality() {
         return this.quality;
     }
 
-    public void setQuality(int value) {
-        this.quality = value;
+    public void setQuality(int quality) {
+        this.quality = quality;
     }
 
     @Override
