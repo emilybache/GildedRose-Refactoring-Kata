@@ -34,9 +34,7 @@ class GildedRose {
                 updateNormalAndConjuredItems(items[i]);
             }
 
-            items[i].sellIn = items[i].sellIn - 1;
-
-            if (items[i].sellIn < 0) {
+            if (items[i].sellIn <= 0) {
 
                 if (items[i].name.equals("Aged Brie") && items[i].quality < 50) {
                     items[i].quality = items[i].quality + 1;
@@ -50,6 +48,7 @@ class GildedRose {
                     items[i].quality = items[i].quality - items[i].quality;
                 }
             }
+            items[i].sellIn = items[i].sellIn - 1;
         }
     }
 
