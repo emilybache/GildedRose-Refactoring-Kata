@@ -51,4 +51,10 @@ class  ItemTest {
         assertEquals(1, items[0].getQuality());
         assertEquals(0, items[0].getSellIn());
     }
+
+    @Test
+    void toItemString() {
+        Item[] items = new Item[]{new Item("Elixir of the Mongoose", 0, 5)};
+        assertEquals("Elixir of the Mongoose, 0, 5", items[0].toString());
+    }
 }
