@@ -34,13 +34,22 @@ class UpdateQualityTest {
     }
 
     @Test
-    void qualityDegradationSpeedAfterOneIterationWhenOutdated() {
-        System.out.println("Once the sell by date has passed, Quality degrades twice as fast");
+    void qualityDegradationSpeedAfterOneIterationWhenZERO() {
+        System.out.println("Once the sell by date is zero, Quality degrades twice as fast");
         Item[] items = new Item[]{new Item("+5 Dexterity Vest", 0, 20)};
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-        System.out.println("Quality: " + app.items[0].quality);
         assertEquals(18, app.items[0].quality);
+        assertEquals("+5 Dexterity Vest", app.items[0].name);
+    }
+
+    @Test
+    void qualityDegradationSpeedAfterOneIterationWhenOutdated() {
+        System.out.println("Once the sell by date has passed, Quality degrades twice as fast");
+        Item[] items = new Item[]{new Item("+5 Dexterity Vest", -1, 18)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(16, app.items[0].quality);
         assertEquals("+5 Dexterity Vest", app.items[0].name);
     }
 
@@ -96,6 +105,16 @@ class UpdateQualityTest {
         app.updateQuality();
         assertEquals(3, app.items[0].quality);
     }
+
+    @Test
+    void agedBrieQualityIncreaseWthIterationFasterWhenOutdated() {
+        System.out.println("\"Aged Brie\" actually increases in Quality the older it gets and twicer when outdatd");
+        Item[] items = new Item[]{new Item("Aged Brie", -1, 20)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(22, app.items[0].quality);
+    }
+
 
     @Test
     void qualityItemNoMore50() {
@@ -175,6 +194,19 @@ class UpdateQualityTest {
             new Item("Backstage passes to a TAFKAL80ETC concert", 0, 2),
             new Item("Backstage passes to a TAFKAL80ETC concert", 0, 3),
             new Item("Backstage passes to a TAFKAL80ETC concert", 0, 7)
+        };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        for (Item el : items) {
+            assertEquals(0, el.quality);
+        }
+    }
+
+    @Test
+    void itemBackstageQualityDropsToZeroAfterTheConcertEvenIf50() {
+        System.out.println("Quality drops to 0 after the concert even if quality is 50");
+        Item[] items = new Item[]{
+            new Item("Backstage passes to a TAFKAL80ETC concert", 0, 50),
         };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
