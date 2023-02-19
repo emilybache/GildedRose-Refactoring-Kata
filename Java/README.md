@@ -13,3 +13,17 @@ For e.g. 10 days:
 ```
 ./gradlew -q text --args 10
 ```
+
+
+### test cases:
+
+There are two unit tests:
+    * GildedRoseTest
+    * ItemTest
+
+Run
+    mvn clean test
+
+### test coverage:
+
+100%
