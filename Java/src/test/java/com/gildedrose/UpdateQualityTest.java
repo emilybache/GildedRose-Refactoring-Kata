@@ -56,13 +56,15 @@ class UpdateQualityTest {
     @Test
     void qualityItemNeverNegatif() {
         System.out.println("The Quality of an item is never negative");
-        Item[] items = new Item[]{new Item("+5 Dexterity Vest", 10, 1)};
+        Item[] items = new Item[]{
+            new Item("+5 Dexterity Vest", 10, 1),
+            new Item("Conjured Mana Cake", 10, 1)
+        };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         app.updateQuality();
-        System.out.println("Quality: " + app.items[0].quality);
         assertEquals(0, app.items[0].quality);
-        assertEquals("+5 Dexterity Vest", app.items[0].name);
+        assertEquals(0, app.items[1].quality);
     }
 
     @Test
@@ -238,7 +240,7 @@ class UpdateQualityTest {
         };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-        assertEquals(8, app.items[0].quality);
+        assertEquals(6, app.items[0].quality);
     }
 
     @Test
