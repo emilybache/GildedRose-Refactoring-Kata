@@ -69,6 +69,25 @@ class UpdateQualityTest {
     }
 
     @Test
+    void sellInValueIsOneForNormalItem() {
+        System.out.println("Normal item SellIn value is one to test if statement limit for negative value");
+        Item[] items = new Item[]{new Item("+5 Dexterity Vest", 1, 30)};
+        GildedRose app = new GildedRose(items);
+            app.updateQuality();
+        assertEquals(29, app.items[0].quality);
+        assertEquals(0, app.items[0].sellIn);
+    }
+
+    @Test
+    void sellInValueIsOneForAgedBrie() {
+        System.out.println("Aged Brie item SellIn value is one to test if statement limit for negative value");
+        Item[] items = new Item[]{new Item("Aged Brie", 1, 30)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(31, app.items[0].quality);  //new Item("Aged Brie", 2, 0),
+        assertEquals(0, app.items[0].sellIn);
+    }
+    @Test
     void sellInValueCanBeNegativeStartAtZero() {
         System.out.println("SellIn  value of an Item can be negative until quality reach zero: start with a zero sellin Value");
         Item[] items = new Item[]{new Item("+5 Dexterity Vest", 0, 30)};
@@ -96,7 +115,7 @@ class UpdateQualityTest {
 
     @Test
     void sellInValueCanNotChangeForSulfuras() {
-        System.out.println("SellIn  value of Sulfuras Item can not change");
+        System.out.println("SellIn value of Sulfuras Item can not change");
         Item[] items = new Item[]{new Item("Sulfuras, Hand of Ragnaros", -1, 80)};
         GildedRose app = new GildedRose(items);
         for (int i = 0; i < 10; i++) {
