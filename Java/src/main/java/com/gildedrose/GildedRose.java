@@ -31,21 +31,20 @@ class GildedRose {
                     }
                 }
             } else {
-                updateNormalAndConjuredItem(items[i]);
+                updateNormalAndConjuredItems(items[i]);
             }
 
             items[i].sellIn = items[i].sellIn - 1;
 
             if (items[i].sellIn < 0) {
 
-                if (items[i].name.equals("Aged Brie")) {
-                    if (items[i].quality < 50) {
-                        items[i].quality = items[i].quality + 1;
-                    }
+                if (items[i].name.equals("Aged Brie") && items[i].quality < 50) {
+                    items[i].quality = items[i].quality + 1;
                 }
-                if (items[i].name.equals("+5 Dexterity Vest") | items[i].name.equals("Elixir of the Mongoose") |
+
+                if (items[i].name.equals("+5 Dexterity Vest") || items[i].name.equals("Elixir of the Mongoose") ||
                     items[i].name.equals("Conjured Mana Cake")) {
-                    updateNormalAndConjuredItem(items[i]);
+                    updateNormalAndConjuredItems(items[i]);
                 }
                 if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                     items[i].quality = items[i].quality - items[i].quality;
@@ -54,14 +53,13 @@ class GildedRose {
         }
     }
 
-    public void updateNormalAndConjuredItem(Item item) {
+    private void updateNormalAndConjuredItems(Item item) {
         if (item.quality > 0) {
             item.quality = item.quality - 1;
             if (item.name.equals("Conjured Mana Cake") && item.quality > 0) {
                 item.quality = item.quality - 1;
             }
         }
-
     }
 
 }
