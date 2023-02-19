@@ -69,8 +69,8 @@ class UpdateQualityTest {
     }
 
     @Test
-    void sellInValueCanBeNegative() {
-        System.out.println("SellIn  value of an Item can be negative until quality reach zero");
+    void sellInValueCanBeNegativeStartAtZero() {
+        System.out.println("SellIn  value of an Item can be negative until quality reach zero: start with a zero sellin Value");
         Item[] items = new Item[]{new Item("+5 Dexterity Vest", 0, 30)};
         GildedRose app = new GildedRose(items);
         int timeFrame = 10;
@@ -79,6 +79,19 @@ class UpdateQualityTest {
         }
         assertEquals(10, app.items[0].quality);
         assertEquals(-timeFrame, app.items[0].sellIn);
+    }
+
+    @Test
+    void sellInValueCanBeNegativeStartNegativeSellInValue() {
+        System.out.println("SellIn  value of an Item can be  until quality reach zero: start with a negative sellinValue");
+        Item[] items = new Item[]{new Item("+5 Dexterity Vest", -5, 30)};
+        GildedRose app = new GildedRose(items);
+        int timeFrame = 10;
+        for (int i = 0; i < timeFrame; i++) {
+            app.updateQuality();
+        }
+        assertEquals(10, app.items[0].quality);
+        assertEquals(-5 -timeFrame, app.items[0].sellIn);
     }
 
     @Test
@@ -207,7 +220,7 @@ class UpdateQualityTest {
         };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-            assertEquals(0, app.items[0].quality);
+        assertEquals(0, app.items[0].quality);
     }
 
     /**
