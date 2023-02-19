@@ -188,15 +188,37 @@ class UpdateQualityTest {
      */
 
 
-//    @Test
-//    void itemConjuredQualityTwiceAsFastAsNormalItems() {
-//        System.out.println("\"Conjured\" items degrade in Quality twice as fast as normal items");
-//        Item[] items = new Item[]{
-//            new Item("Conjured Mana Cake", 3, 6)};
-//        GildedRose app = new GildedRose(items);
-//        app.updateQuality();
-//        assertEquals(4, app.items[0].quality);
-//    }
+    @Test
+    void itemConjuredQualityTwiceAsFastAsNormalItemsWithPositiveSellIn() {
+        System.out.println("\"Conjured\" items degrade in Quality twice as fast as normal items when sellin is positive");
+        Item[] items = new Item[]{
+            new Item("Conjured Mana Cake", 3, 6)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(4, app.items[0].quality);
+    }
+
+    @Test
+    void itemConjuredQualityTwiceAsFastAsNormalItemsWhenSellInIsZero() {
+        System.out.println("\"Conjured\" items degrade in Quality twice as fast as normal items when sellin is wero");
+        Item[] items = new Item[]{
+            new Item("Conjured Mana Cake", 0, 10)
+        };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(8, app.items[0].quality);
+    }
+
+    @Test
+    void itemConjuredQualityTwiceAsFastAsNormalItemsWithNegativeSellIn() {
+        System.out.println("\"Conjured\" items degrade in Quality twice as fast as normal items when sellin is negtive");
+        Item[] items = new Item[]{
+            new Item("Conjured Mana Cake", -1, 8)
+        };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(4, app.items[0].quality);
+    }
 
 }
 
