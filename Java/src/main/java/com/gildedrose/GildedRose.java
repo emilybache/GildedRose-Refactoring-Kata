@@ -15,7 +15,7 @@ class GildedRose {
                 continue;
             }
 
-            // first if defnie what should decrease and what should increase
+            // first we define what should increase and what should decrease
             if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert") |
                 items[i].name.equals("Aged Brie")) {
                 if (items[i].quality < 50) {
