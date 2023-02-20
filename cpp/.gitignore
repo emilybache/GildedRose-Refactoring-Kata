@@ -2,3 +2,4 @@
 .vs
 cmake-build-debug
 build
+coverage

@@ -32,10 +32,7 @@ The `GildedRose.cc` file, i.e. the code under test, is identical in all four var
     $ cd ${GIT_FOLDER}/GildedRose-Refactoring-Kata/cpp/build
     $ ctest -N
     Test project ${GIT_FOLDER}/GildedRose-Refactoring-Kata/cpp/build
-      Test #1: GildedRoseCatch2ApprovalTests
-      Test #2: GildedRoseCatch2UnitTests
-      Test #3: GildedRoseGoogletestApprovalTests
-      Test #4: GildedRoseGoogletestUnitTests
+      Test #1: GildedRoseGoogletestUnitTests
 
 ### Run all tests
 
@@ -52,14 +49,16 @@ The `GildedRose.cc` file, i.e. the code under test, is identical in all four var
 ## How to run with test coverage
 1. go to build directory
 2. Run:
-    $ lcov --directory ./ --capture --output-file ../lcov.info -rc lcov_branch_coverage=1
-3. in bottom right corner of VS Code press "Watch"
-3. Coverage will now be visible in VSCode.
+    $ mkdir ../coverage
+3. Run:
+    $ lcov --directory ./ --capture --output-file ../coverage/lcov.info -rc lcov_branch_coverage=1
+4. In VS Code run "Coverage Gutters: Display Coverage"
+5. Coverage will now be visible in VSCode (left border in the editor when viewing source code).
 
 ## How to run during a typical TDD cycle
     $ cmake --build .
     $ ctest -VV --tests-regex GildedRoseGoogletestUnitTests
-    $ lcov --directory ./ --capture --output-file ../lcov.info -rc lcov_branch_coverage=1
+    $ lcov --directory ./ --capture --output-file ../coverage/lcov.info -rc lcov_branch_coverage=1
 
 ## How to build and run tests using the [CLion IDE](https://www.jetbrains.com/clion/)
 
@@ -70,7 +69,7 @@ The `GildedRose.cc` file, i.e. the code under test, is identical in all four var
 4. Select menu `Run - Run...`
 4. Select what test variant to run, e.g. `GildedRoseCatch2ApprovalTests`.
 
-## How to build and run tests using Visual Studio 2019 
+## How to build and run tests using Visual Studio 2019
 
 1. Start Visual Studio 2019
 2. Select `Open a local folder`
