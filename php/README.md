@@ -7,14 +7,15 @@ GildedRose Kata.
 
 The kata uses:
 
-- [PHP 7.3 or 7.4 or 8.0+](https://www.php.net/downloads.php)
+- [8.0+](https://www.php.net/downloads.php)
 - [Composer](https://getcomposer.org)
 
 Recommended:
 
 - [Git](https://git-scm.com/downloads)
 
-Clone the repository
+See [GitHub cloning a repository](https://help.github.com/en/articles/cloning-a-repository) for details on how to
+create a local copy of this project on your computer.
 
 ```sh
 git clone git@github.com:emilybache/GildedRose-Refactoring-Kata.git
@@ -41,7 +42,6 @@ The project uses composer to install:
 - [ApprovalTests.PHP](https://github.com/approvals/ApprovalTests.php)
 - [PHPStan](https://github.com/phpstan/phpstan)
 - [Easy Coding Standard (ECS)](https://github.com/symplify/easy-coding-standard)
-- [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer/wiki)
 
 ## Folders
 
@@ -56,20 +56,30 @@ The project uses composer to install:
 - `Fixture`
     - `texttest_fixture.php` this could be used by an ApprovalTests, or run from the command line
 
+## Fixture
+
+To run the fixture from the php directory:
+
+```shell
+php .\fixtures\texttest_fixture.php 10
+```
+
+Change **10** to the required days.
+
 ## Testing
 
 PHPUnit is configured for testing, a composer script has been provided. To run the unit tests, from the root of the PHP
 project run:
 
 ```shell script
-composer test
+composer tests
 ```
 
-A Windows a batch file has been created, like an alias on Linux/Mac (e.g. `alias pu="composer test"`), the same
-PHPUnit `composer test` can be run:
+A Windows a batch file has been created, like an alias on Linux/Mac (e.g. `alias pu="composer tests"`), the same
+PHPUnit `composer tests` can be run:
 
 ```shell script
-pu
+pu.bat
 ```
 
 ### Tests with Coverage Report
@@ -82,6 +92,8 @@ composer test-coverage
 
 The test-coverage report will be created in /builds, it is best viewed by opening /builds/**index.html** in your
 browser.
+
+The [XDEbug](https://xdebug.org/download) extension is required for generating the coverage report.
 
 ## Code Standard
 
@@ -100,7 +112,7 @@ On Windows a batch file has been created, like an alias on Linux/Mac (e.g. `alia
 PHPUnit `composer check-cs` can be run:
 
 ```shell script
-cc
+cc.bat
 ```
 
 ### Fix Code
@@ -115,7 +127,7 @@ On Windows a batch file has been created, like an alias on Linux/Mac (e.g. `alia
 PHPUnit `composer fix-cs` can be run:
 
 ```shell script
-fc
+fc.bat
 ```
 
 ## Static Analysis
@@ -130,7 +142,7 @@ On Windows a batch file has been created, like an alias on Linux/Mac (e.g. `alia
 PHPUnit `composer phpstan` can be run:
 
 ```shell script
-ps
+ps.bat
 ```
 
 **Happy coding**!
