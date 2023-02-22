@@ -14,6 +14,11 @@ final class GildedRose
     ) {
     }
 
+    public function getItems(): array
+    {
+        return $this->items;
+    }
+
     public function updateQuality(): void
     {
         foreach ($this->items as $item) {
