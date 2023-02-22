@@ -6,6 +6,8 @@
     "noImplicitAny": false,
     "sourceMap": false,
     "baseUrl": "./",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "paths": {
       "@/*": [
         "app/*"
