@@ -22,7 +22,13 @@ final class GildedRose
     public function updateQuality(): void
     {
         foreach ($this->items as $item) {
-            switch ($item->name) {
+
+            $name = $item->name;
+            if(str_starts_with(strtolower($name), 'conjured')) {
+                $name = 'conjured';
+            }
+
+            switch ($name) {
                 case 'Aged Brie':
                     $item->sellIn--;
                     if ($item->quality < 50) {
@@ -50,6 +56,15 @@ final class GildedRose
                     break;
                 case 'Sulfuras, Hand of Ragnaros':
                     $item->quality = 80;
+                    break;
+                case 'conjured':
+                    $item->sellIn--;
+                    if($item->quality > 0) {
+                        $item->quality--;
+                        if($item->quality > 0) {
+                            $item->quality--;
+                        }
+                    }
                     break;
                 default: // Normal Items
                     $item->sellIn--;

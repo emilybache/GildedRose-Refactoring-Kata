@@ -405,4 +405,52 @@ class GildedRoseTest extends TestCase
         $this->assertSame(0, $updatedItems[0]->quality);
     } // END testBackstagePassQualityIs0AfterConcert()
 
+
+    /**
+     * Conjured Items test
+     */
+    public function testConjuredItemQualityDegrade(): void
+    {
+        echo ("Starting " . __FUNCTION__ . PHP_EOL);
+
+        $name = "ConjuredFoo";
+        $sellIn = 10;
+        $quality = 20;
+
+        $items = [
+            new Item($name, $sellIn, $quality)
+        ];
+
+        $gildedRose = new GildedRose($items);
+
+        $gildedRose->updateQuality();
+
+        $conjuredItems = $gildedRose->getItems();
+        $this->assertSame($name, $conjuredItems[0]->name);
+        $this->assertSame(($sellIn - 1), $conjuredItems[0]->sellIn);
+        $this->assertSame(($quality - 2), $conjuredItems[0]->quality);
+    } // END testConjuredItemQualityDegrade()
+
+    public function testConjuredAgedBrieQualityDegradeAsNormal(): void
+    {
+        echo ("Starting " . __FUNCTION__ . PHP_EOL);
+
+        $name = "Conjured Aged Brie";
+        $sellIn = 10;
+        $quality = 20;
+
+        $items = [
+            new Item($name, $sellIn, $quality)
+        ];
+
+        $gildedRose = new GildedRose($items);
+
+        $gildedRose->updateQuality();
+
+        $conjuredItems = $gildedRose->getItems();
+        $this->assertSame($name, $conjuredItems[0]->name);
+        $this->assertSame(($sellIn - 1), $conjuredItems[0]->sellIn);
+        $this->assertSame(($quality - 2), $conjuredItems[0]->quality);
+    } // END testConjuredAgedBrieQualityDegradeAsNormal()
+
 }
