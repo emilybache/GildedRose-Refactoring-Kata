@@ -14,8 +14,8 @@ public class Item {
         this.quality = quality;
     }
 
-   @Override
-   public String toString() {
+    @Override
+    public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
     }
 }
