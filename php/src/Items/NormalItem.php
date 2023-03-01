@@ -10,11 +10,6 @@ use GildedRose\Items\Interface\ItemInterface;
 
 class NormalItem extends AbstractItem implements ItemInterface
 {
-    /**
-     * @param Item $item
-     *
-     * @return void
-     */
     public function updateQuality(Item $item): void
     {
         $this->decreaseQuality($item, $this->getQualityDecrease($item));

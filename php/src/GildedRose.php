@@ -14,9 +14,6 @@ final class GildedRose
     ) {
     }
 
-    /**
-     * @return void
-     */
     public function updateQuality(): void
     {
         foreach ($this->items as $item) {

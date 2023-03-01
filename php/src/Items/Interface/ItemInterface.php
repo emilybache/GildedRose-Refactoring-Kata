@@ -8,17 +8,7 @@ use GildedRose\Item;
 
 interface ItemInterface
 {
-    /**
-     * @param Item $item
-     *
-     * @return void
-     */
     public function updateQuality(Item $item): void;
 
-    /**
-     * @param Item $item
-     *
-     * @return void
-     */
     public function updateSellIn(Item $item): void;
 }

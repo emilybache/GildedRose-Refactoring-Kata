@@ -10,11 +10,6 @@ use GildedRose\Items\Interface\ItemInterface;
 
 class SulfurasItem extends AbstractItem implements ItemInterface
 {
-    /**
-     * @param Item $item
-     *
-     * @return void
-     */
     public function updateQuality(Item $item): void
     {
         // Do nothing, Sulfuras never changes in quality

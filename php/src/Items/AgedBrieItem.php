@@ -10,11 +10,6 @@ use GildedRose\Items\Interface\ItemInterface;
 
 class AgedBrieItem extends AbstractItem implements ItemInterface
 {
-    /**
-     * @param Item $item
-     *
-     * @return void
-     */
     public function updateQuality(Item $item): void
     {
         // "Aged Brie" actually increases in Quality the older it gets

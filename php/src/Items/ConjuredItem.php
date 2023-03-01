@@ -10,11 +10,6 @@ use GildedRose\Items\Interface\ItemInterface;
 
 class ConjuredItem extends AbstractItem implements ItemInterface
 {
-    /**
-     * @param Item $item
-     *
-     * @return void
-     */
     public function updateQuality(Item $item): void
     {
         // "Conjured" items degrade in Quality twice as fast as normal items
