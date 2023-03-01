@@ -4,3 +4,7 @@
 /.editorconfig
 /.phpunit.result.cache
 /composer.lock
+.history
+.vscode
+.bash_history
+.composer

@@ -5,3 +5,5 @@ obj
 vendor
 .idea
 *.iml
+.history
+.vscode
