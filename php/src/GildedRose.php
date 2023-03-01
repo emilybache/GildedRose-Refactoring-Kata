@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace GildedRose;
 
+use GildedRose\Items\Factory\ItemFactory;
+
 final class GildedRose
 {
     /**

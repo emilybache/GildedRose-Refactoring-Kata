@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GildedRose;
+namespace GildedRose\Items\Factory;
 
+use GildedRose\Item;
 use GildedRose\Items\AgedBrieItem;
 use GildedRose\Items\BackstagePassItem;
 use GildedRose\Items\ConjuredItem;
