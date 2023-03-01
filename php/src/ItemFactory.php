@@ -25,10 +25,10 @@ class ItemFactory
     public static function createItem(Item $item): ItemInterface
     {
         return match(true) {
-            strpos($item->name, self::AGED_BRIE_ITEM) !== false => new AgedBrieItem(),
-            strpos($item->name, self::BACKSTAGE_ITEM) !== false => new BackstagePassItem(),
-            strpos($item->name, self::SULFURAS_ITEM) !== false => new SulfurasItem(),
-            strpos($item->name, self::CONJURED_ITEM) !== false => new ConjuredItem(),
+            str_contains($item->name, self::AGED_BRIE_ITEM) => new AgedBrieItem(),
+            str_contains($item->name, self::BACKSTAGE_ITEM) => new BackstagePassItem(),
+            str_contains($item->name, self::SULFURAS_ITEM) => new SulfurasItem(),
+            str_contains($item->name, self::CONJURED_ITEM) => new ConjuredItem(),
             default => new NormalItem()
         };
     }
