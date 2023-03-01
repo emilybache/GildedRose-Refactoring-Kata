@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace GildedRose\ItemUpdater\Abstract;
+namespace GildedRose\Items\Abstract;
 
 use GildedRose\Item;
-use GildedRose\ItemUpdater\Interface\ItemUpdaterInterface;
+use GildedRose\Items\Interface\ItemInterface;
 
-abstract class AbstractItemUpdater implements ItemUpdaterInterface
+abstract class AbstractItem implements ItemInterface
 {
     private const MIN_QUALITY = 0;
     private const MAX_QUALITY = 50;

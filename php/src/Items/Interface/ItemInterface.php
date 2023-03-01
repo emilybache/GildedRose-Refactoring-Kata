@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace GildedRose\ItemUpdater\Interface;
+namespace GildedRose\Items\Interface;
 
 use GildedRose\Item;
 
-interface ItemUpdaterInterface
+interface ItemInterface
 {
     /**
      * @param Item $item

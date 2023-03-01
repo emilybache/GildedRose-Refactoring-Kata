@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace GildedRose\ItemUpdater;
+namespace GildedRose\Items;
 
 use GildedRose\Item;
-use GildedRose\ItemUpdater\Abstract\AbstractItemUpdater;
-use GildedRose\ItemUpdater\Interface\ItemUpdaterInterface;
+use GildedRose\Items\Abstract\AbstractItem;
+use GildedRose\Items\Interface\ItemInterface;
 
-class ConjuredItemUpdater extends AbstractItemUpdater implements ItemUpdaterInterface
+class ConjuredItem extends AbstractItem implements ItemInterface
 {
     /**
      * @param Item $item
