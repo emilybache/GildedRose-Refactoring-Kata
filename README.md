@@ -51,6 +51,15 @@ The project uses composer to install:
 - `src` - contains the two classes:
     - `Item.php` - this class should not be changed
     - `GildedRose.php` - this class needs to be refactored, and the new feature added
+    - `Items` - This folder contains all Items Class
+      - `Abstract` - This folder store Abstract of all Item Class
+      - `Interface` - This folder store Interface of all Item Class
+      - `Factory` - This folder store Factory, create Item instance
+      - `AgedBrieItem.php` 
+      - `BackstagePassItem.php`
+      - `ConjuredItem.php`
+      - `NormalItem.php`
+      - `SulfurasItem.php`
 - `tests` - contains the tests
     - `GildedRoseTest.php` - starter test.
         - Tip: ApprovalTests has been included as a dev dependency, see the PHP version of
