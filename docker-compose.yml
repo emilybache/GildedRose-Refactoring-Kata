@@ -1,9 +1,9 @@
 version: "3.9"
 
 services:
-  php-cli:
-    container_name: php-cli
-    image: customer-core-api-php-cli
+  kata-cli:
+    container_name: kata-cli
+    image: kata-cli
     build:
       context: .docker/php
       args:

@@ -3,9 +3,6 @@
 </p>
 # GildedRose Kata - PHP Version
 
-See the [top level readme](../README.md) for general information about this exercise. This is the PHP version of the
-GildedRose Kata.
-
 ## Installation
 
 The kata uses:
@@ -28,6 +25,16 @@ or
 
 ```shell script
 git clone https://github.com/thang-tran-nfq/GildedRose-Refactoring-Kata.git
+```
+
+Setup docker-compose
+```shell script
+docker-compose up -d
+```
+
+Exec the docker container
+```shell script
+docker exec -it php-cli bash 
 ```
 
 Install all the dependencies using composer
