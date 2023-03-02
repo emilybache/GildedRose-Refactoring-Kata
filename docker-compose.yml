@@ -1,20 +1,15 @@
 version: "3.9"
 
 services:
-  kata-cli:
-    container_name: kata-cli
+  php-cli:
+    container_name: php-cli
     image: kata-cli
     build:
       context: .docker/php
       args:
         - INSTALL_INTL=true
-        - INSTALL_MYSQL=true
-        - INSTALL_APCU=true
-        - INSTALL_OPCACHE=true
-        - INSTALL_AMQP=false
-        - INSTALL_PHPREDIS=false
-        - INSTALL_PCOV=true
         - INSTALL_YAML=true
+        - INSTALL_XDEBUG=true
     volumes:
       - .docker/php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
       - ./:/var/www
