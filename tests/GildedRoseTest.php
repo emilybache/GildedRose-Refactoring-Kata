@@ -79,7 +79,7 @@ class GildedRoseTest extends TestCase
     public function testBackstageIncreaseQualityBy2WhenSellInLessThanOrEqual10(): void
     {
         $items = [
-            new Item('Backstage', 9, 10),
+            new Item('Backstage passes', 9, 10),
         ];
         $GildedRose = new GildedRose($items);
         $GildedRose->updateQuality();
@@ -90,7 +90,7 @@ class GildedRoseTest extends TestCase
     public function testBackstageIncreaseQualityBy3WhenSellInLessThanOrEqual5(): void
     {
         $items = [
-            new Item('Backstage', 4, 10),
+            new Item('Backstage passes', 4, 10),
         ];
         $GildedRose = new GildedRose($items);
         $GildedRose->updateQuality();
@@ -101,7 +101,7 @@ class GildedRoseTest extends TestCase
     public function testBackstageSetQualityZeroWhenSellInLessThanOrEqualZero(): void
     {
         $items = [
-            new Item('Backstage', 0, 10),
+            new Item('Backstage passes', 0, 10),
         ];
         $GildedRose = new GildedRose($items);
         $GildedRose->updateQuality();
