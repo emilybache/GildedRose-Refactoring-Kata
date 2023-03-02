@@ -1,16 +1,17 @@
 <p align="center">
   <img src="https://avatars.githubusercontent.com/u/5228734?s=280&v=4" alt="NFQ Group"/>
 </p>
+
 # GildedRose Kata - PHP Version
 
 ## Installation
 
-The kata uses:
+##### The kata uses:
 
 - [8.0+](https://www.php.net/downloads.php)
 - [Composer](https://getcomposer.org)
 
-Recommended:
+##### Recommended:
 
 - [Git](https://git-scm.com/downloads)
 
@@ -27,17 +28,17 @@ or
 git clone https://github.com/thang-tran-nfq/GildedRose-Refactoring-Kata.git
 ```
 
-Setup docker-compose
+##### Setup docker-compose
 ```shell script
 docker-compose up -d
 ```
 
-Exec the docker container
+##### Exec the docker container
 ```shell script
 docker exec -it php-cli bash 
 ```
 
-Install all the dependencies using composer
+##### Install all the dependencies using composer
 
 ```shell script
 cd ./GildedRose-Refactoring-Kata
@@ -46,7 +47,7 @@ composer install
 
 ## Dependencies
 
-The project uses composer to install:
+##### The project uses composer to install:
 
 - [PHPUnit](https://phpunit.de/)
 - [ApprovalTests.PHP](https://github.com/approvals/ApprovalTests.php)
@@ -77,7 +78,7 @@ The project uses composer to install:
 
 ## Fixture
 
-To run the fixture from the php directory:
+##### To run the fixture from the php directory:
 
 ```shell
 php .\fixtures\texttest_fixture.php 10
@@ -92,13 +93,6 @@ project run:
 
 ```shell script
 composer tests
-```
-
-A Windows a batch file has been created, like an alias on Linux/Mac (e.g. `alias pu="composer tests"`), the same
-PHPUnit `composer tests` can be run:
-
-```shell script
-pu.bat
 ```
 
 ### Tests with Coverage Report
@@ -127,13 +121,6 @@ To check code, but not fix errors:
 composer check-cs
 ``` 
 
-On Windows a batch file has been created, like an alias on Linux/Mac (e.g. `alias cc="composer check-cs"`), the same
-PHPUnit `composer check-cs` can be run:
-
-```shell script
-cc.bat
-```
-
 ### Fix Code
 
 ECS provides may code fixes, automatically, if advised to run --fix, the following script can be run:
@@ -142,26 +129,12 @@ ECS provides may code fixes, automatically, if advised to run --fix, the followi
 composer fix-cs
 ```
 
-On Windows a batch file has been created, like an alias on Linux/Mac (e.g. `alias fc="composer fix-cs"`), the same
-PHPUnit `composer fix-cs` can be run:
-
-```shell script
-fc.bat
-```
-
 ## Static Analysis
 
 PHPStan is used to run static analysis checks:
 
 ```shell script
 composer phpstan
-```
-
-On Windows a batch file has been created, like an alias on Linux/Mac (e.g. `alias ps="composer phpstan"`), the same
-PHPUnit `composer phpstan` can be run:
-
-```shell script
-ps.bat
 ```
 
 **Happy coding**!
