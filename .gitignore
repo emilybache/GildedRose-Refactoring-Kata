@@ -1,9 +1,10 @@
-bin
-obj
-*.sln.DotSettings.user
-.vs
-vendor
-.idea
-*.iml
+/.idea
+/build
+/vendor
+/.editorconfig
+/.phpunit.result.cache
+/composer.lock
 .history
 .vscode
+.bash_history
+.composer
