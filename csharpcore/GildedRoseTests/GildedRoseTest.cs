@@ -155,5 +155,35 @@ namespace GildedRoseTests
             Assert.Equal(-1, Items[0].SellIn);
             Assert.Equal(0, Items[0].Quality);
         }
+
+        [Fact]
+        public void conjured_quality_decrease_by_two_before_sell_by_date_has_passed()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = "Conjured", SellIn = 3, Quality = 5 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+            Assert.Equal(2, Items[0].SellIn);
+            Assert.Equal(3, Items[0].Quality);
+        }
+
+        [Fact]
+        public void conjured_quality_decrease_by_four_after_sell_by_date_has_passed()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = "Conjured", SellIn = 0, Quality = 5 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+            Assert.Equal(-1, Items[0].SellIn);
+            Assert.Equal(1, Items[0].Quality);
+        }
+
+        [Fact]
+        public void conjured_with_0_quality_is_still_0_after_sell_by_date_has_passed()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = "Conjured", SellIn = 0, Quality = 0 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+            Assert.Equal(-1, Items[0].SellIn);
+            Assert.Equal(0, Items[0].Quality);
+        }
     }
 }
