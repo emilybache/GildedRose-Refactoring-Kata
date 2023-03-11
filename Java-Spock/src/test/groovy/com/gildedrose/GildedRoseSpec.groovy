@@ -19,7 +19,7 @@ class GildedRoseSpec extends Specification {
         app.updateQuality();
 
         then: "the quality is correct"
-        app.items[0].name == "fixme"
+        app.items[0].name == "foo"
     }
 
 }
