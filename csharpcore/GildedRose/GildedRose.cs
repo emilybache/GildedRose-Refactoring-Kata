@@ -26,17 +26,18 @@ namespace GildedRoseKata
                 {
                     SetQuality(i, quantity => quantity + 1, quantity  => quantity + 2);
                 }
-                else if (Items[i].Name == "Conjured")
-                {
-                    SetQuality(i, quantity => quantity - 2, quantity  => quantity - 4);
-                }
                 else if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
                 {
                     SetQuality(i, quantity => GetNewBackstageQuality(i), q => 0);
                 }
                 else
                 {
-                    SetQuality(i, quantity => quantity - 1, quantity => quantity - 2);
+                    int coef = 1;
+                    if (Items[i].Name == "Conjured")
+                    {
+                        coef = 2;
+                    }
+                    SetQuality(i, quantity => quantity - 1 * coef, quantity => quantity - 2 * coef);
                 }
             }
         }
