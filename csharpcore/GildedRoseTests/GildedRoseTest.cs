@@ -1,7 +1,8 @@
 ﻿using Xunit;
 using System.Collections.Generic;
+using GildedRoseKata;
 
-namespace csharpcore
+namespace GildedRoseTests
 {
     public class GildedRoseTest
     {
