@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace GildedRoseKata
 {
@@ -23,60 +24,57 @@ namespace GildedRoseKata
 
                 if (Items[i].Name == "Aged Brie")
                 {
-                    IncreaseQualityByOne(i);
-                    if (Items[i].SellIn < 0)
-                    {
-                        IncreaseQualityByOne(i);
-                    }
+                    SetQuality(i, quantity => quantity + 1, quantity  => quantity + 2);
                 }
                 else if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
                 {
-                    IncreaseBackstageQuality(i);
-                    if (Items[i].SellIn < 0)
-                    {
-                        Items[i].Quality = 0;
-                    }
+                    SetQuality(i, quantity => GetNewBackstageQuality(i), q => 0);
                 }
                 else
                 {
-                    DecreaseQualityByOne(i);
-                    if (Items[i].SellIn < 0)
-                    {
-                        DecreaseQualityByOne(i);
-                    }
+                    SetQuality(i, quantity => quantity - 1, quantity => quantity - 2);
                 }
             }
         }
 
-        private void IncreaseBackstageQuality(int i)
+        private void SetQuality(int itemIndex, Func<int, int> beforeSellBy, Func<int, int> afterSellBy)
         {
-            IncreaseQualityByOne(i);
+            bool wasAbove50 = Items[itemIndex].Quality > 50;
 
-            if (Items[i].SellIn < 10)
+            if (Items[itemIndex].SellIn >= 0)
             {
-                IncreaseQualityByOne(i);
+                Items[itemIndex].Quality = beforeSellBy(Items[itemIndex].Quality);
+            }
+            else
+            {
+                Items[itemIndex].Quality = afterSellBy(Items[itemIndex].Quality);
             }
 
-            if (Items[i].SellIn < 5)
+            if (!wasAbove50 && Items[itemIndex].Quality > 50)
             {
-                IncreaseQualityByOne(i);
+                Items[itemIndex].Quality = 50;
+            }
+            if (Items[itemIndex].Quality < 0)
+            {
+                Items[itemIndex].Quality = 0;
             }
         }
 
-        private void DecreaseQualityByOne(int i)
+        private int GetNewBackstageQuality(int itemIndex)
         {
-            if (Items[i].Quality > 0)
-            {
-                Items[i].Quality = Items[i].Quality - 1;
-            }
-        }
+            int newQuantity = Items[itemIndex].Quality;
+            ++newQuantity;
 
-        private void IncreaseQualityByOne(int i)
-        {
-            if (Items[i].Quality < 50)
+            if (Items[itemIndex].SellIn < 10)
             {
-                Items[i].Quality = Items[i].Quality + 1;
+                ++newQuantity;
             }
+
+            if (Items[itemIndex].SellIn < 5)
+            {
+                ++newQuantity;
+            }
+            return newQuantity;
         }
     }
 }
