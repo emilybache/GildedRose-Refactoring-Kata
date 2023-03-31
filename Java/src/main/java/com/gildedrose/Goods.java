@@ -12,9 +12,9 @@ public interface Goods {
 	
 	public void updateQualityForExpiredItem(Item item);
 	
-	default void addQualityWhenWithInLimit(Item item, int limit) {
+	default void addQualityWhenWithInLimit(Item item, int limit, int qualityToAdd) {
 		if (isWithInLimit(limit, item.quality)) {
-			item.quality++;
+			item.quality = Math.min(limit, item.quality + qualityToAdd);
 		}
 	}
 }
