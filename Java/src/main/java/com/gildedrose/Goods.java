@@ -1,5 +1,10 @@
 package com.gildedrose;
 
-public abstract class Goods {
+public interface Goods {
+	
+	public void updateQuality(Item item);
 
+	default void updateSellInDays(Item item) {
+		item.sellIn--;
+	}
 }
