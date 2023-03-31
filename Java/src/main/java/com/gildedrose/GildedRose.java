@@ -60,6 +60,7 @@ class GildedRose {
         }
     }
     
+    
 	private void updateSellInDays(Item item) {
 		item.sellIn--;
 	}
