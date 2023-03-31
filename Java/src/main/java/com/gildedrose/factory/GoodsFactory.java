@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 
 import com.gildedrose.AgedBrie;
 import com.gildedrose.BackStagePasses;
+import com.gildedrose.Conjured;
 import com.gildedrose.Goods;
 import com.gildedrose.GoodsType;
 import com.gildedrose.Generic;
@@ -20,6 +21,7 @@ public class GoodsFactory {
 		goods.put(GoodsType.AGED_BRIE.getGoodsName(), AgedBrie::new);
 		goods.put(GoodsType.BACK_STAGE_PASSES.getGoodsName(), BackStagePasses::new);
 		goods.put(GoodsType.SULFURAS.getGoodsName(), Sulfuras::new);
+		goods.put(GoodsType.CONJURED.getGoodsName(), Conjured::new);
 
 		GOODS_SUPPLIER = Collections.unmodifiableMap(goods);
 	}

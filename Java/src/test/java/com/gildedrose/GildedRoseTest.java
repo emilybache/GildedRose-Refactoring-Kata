@@ -13,7 +13,8 @@ class GildedRoseTest {
 	private static Stream<Arguments> getTestItemsForSellInDayCheck() {
 		return Stream.of(
 				Arguments.of(new Item[] { new Item(GoodsType.AGED_BRIE.getGoodsName(), 1, 1) }, 0),
-				Arguments.of(new Item[] { new Item(GoodsType.SULFURAS.getGoodsName(), 1, 1) }, 1)
+				Arguments.of(new Item[] { new Item(GoodsType.SULFURAS.getGoodsName(), 1, 1) }, 1),
+				Arguments.of(new Item[] { new Item(GoodsType.CONJURED.getGoodsName(), 1, 1) }, 0)
 
 		);
 	}
@@ -48,7 +49,12 @@ class GildedRoseTest {
 				Arguments.of(new Item[] { new Item("Coffee Day", -1, 2) }, 0),
 				
 				Arguments.of(new Item[] { new Item(GoodsType.SULFURAS.getGoodsName(), -1, 10) }, 10),
-				Arguments.of(new Item[] { new Item(GoodsType.SULFURAS.getGoodsName(), 1, 10) }, 10)
+				Arguments.of(new Item[] { new Item(GoodsType.SULFURAS.getGoodsName(), 1, 10) }, 10),
+				
+				Arguments.of(new Item[] { new Item(GoodsType.CONJURED.getGoodsName(), -1, 10) }, 6),
+				Arguments.of(new Item[] { new Item(GoodsType.CONJURED.getGoodsName(), 1, 10) }, 8),
+				Arguments.of(new Item[] { new Item(GoodsType.CONJURED.getGoodsName(), -1, 2) }, 0),
+				Arguments.of(new Item[] { new Item(GoodsType.CONJURED.getGoodsName(), 1, 2) }, 0)
 
 		);
 	}
