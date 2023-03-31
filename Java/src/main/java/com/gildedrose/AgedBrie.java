@@ -1,25 +1,22 @@
 package com.gildedrose;
 
+import static com.gildedrose.rule.ValidationRule.isExpired;
+
 public class AgedBrie implements Goods {
+	
 	private static final int MAX_ALLOWED_QUALITY = 50;
 
 	@Override
 	public void updateQuality(Item item) {
-		addQualityWhenWithInLimit(item);
+		Goods.super.addQualityWhenWithInLimit(item, MAX_ALLOWED_QUALITY);
 
 	}
-	
+
 	@Override
 	public void updateQualityForExpiredItem(Item item) {
-		if (item.sellIn < 0) {
-			addQualityWhenWithInLimit(item);
-		}
-
-	}
-
-	private void addQualityWhenWithInLimit(Item item) {
-		if (item.quality < MAX_ALLOWED_QUALITY) {
-			item.quality++;
+		if (isExpired(item)) {
+			Goods.super.addQualityWhenWithInLimit(item, MAX_ALLOWED_QUALITY);
 		}
 	}
+
 }
