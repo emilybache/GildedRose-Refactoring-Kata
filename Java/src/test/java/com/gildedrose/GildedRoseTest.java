@@ -41,7 +41,11 @@ class GildedRoseTest {
 				Arguments.of(new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 12, 10) }, 11),
 				Arguments.of(new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 12, 50) }, 50),
 
-				Arguments.of(new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", -1, 10) }, 0)
+				Arguments.of(new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", -1, 10) }, 0),
+
+				Arguments.of(new Item[] { new Item("Coffee Day", 1, 1) }, 0),
+				Arguments.of(new Item[] { new Item("Coffee Day", -1, 1) }, 0),
+				Arguments.of(new Item[] { new Item("Coffee Day", -1, 2) }, 0)
 
 		);
 	}
