@@ -7,4 +7,6 @@ public interface Goods {
 	default void updateSellInDays(Item item) {
 		item.sellIn--;
 	}
+	
+	public void updateQualityForExpiredItem(Item item);
 }

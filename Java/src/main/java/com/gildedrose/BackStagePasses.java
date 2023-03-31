@@ -5,6 +5,7 @@ public class BackStagePasses implements Goods {
 	private static final int MAX_ALLOWED_QUALITY = 50;
 	private static final int SELL_IN_MAX_THRESHOLD_DAY = 11;
 	private static final int SELL_IN_MIN_THRESHOLD_DAY = 6;
+	private static final int ZERO = 0;
 
 	@Override
 	public void updateQuality(Item item) {
@@ -20,6 +21,13 @@ public class BackStagePasses implements Goods {
 	private void addQualityWhenWithInLimit(Item item) {
 		if (item.quality < MAX_ALLOWED_QUALITY) {
 			item.quality++;
+		}
+	}
+
+	@Override
+	public void updateQualityForExpiredItem(Item item) {
+		if (item.sellIn < 0) {
+			item.quality = ZERO;
 		}
 	}
 }

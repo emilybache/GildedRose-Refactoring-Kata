@@ -45,7 +45,10 @@ class GildedRoseTest {
 
 				Arguments.of(new Item[] { new Item("Coffee Day", 1, 1) }, 0),
 				Arguments.of(new Item[] { new Item("Coffee Day", -1, 1) }, 0),
-				Arguments.of(new Item[] { new Item("Coffee Day", -1, 2) }, 0)
+				Arguments.of(new Item[] { new Item("Coffee Day", -1, 2) }, 0),
+				
+				Arguments.of(new Item[] { new Item(GoodsType.SULFURAS.getGoodsName(), -1, 10) }, 10),
+				Arguments.of(new Item[] { new Item(GoodsType.SULFURAS.getGoodsName(), 1, 10) }, 10)
 
 		);
 	}

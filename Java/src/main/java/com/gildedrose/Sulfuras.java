@@ -15,4 +15,10 @@ public class Sulfuras implements Goods {
 		// decreases in quality.
 	}
 
+	@Override
+	public void updateQualityForExpiredItem(Item item) {
+		// Do nothing because Sulfuras being a legendary item, never has to be sold or
+		// decreases in quality.		
+	}
+
 }

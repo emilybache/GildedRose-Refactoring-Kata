@@ -21,6 +21,13 @@ class SulfurasTest {
 				Arguments.of(new Item(GoodsType.SULFURAS.getGoodsName(), 2, 2), 2),
 				Arguments.of(new Item(GoodsType.SULFURAS.getGoodsName(), 1, 50), 1));
 	}
+	
+	private static Stream<Arguments> getTestExpiredItemsWithExpectedQuality() {
+		return Stream.of(
+				Arguments.of(new Item(GoodsType.SULFURAS.getGoodsName(), -1, 2), 2),
+				Arguments.of(new Item(GoodsType.SULFURAS.getGoodsName(), -1, 50), 50)
+				);
+	}
 
 	@ParameterizedTest(name = "Test updateQuality - {index}")
 	@MethodSource("getTestItemsWithExpectedQuality")
@@ -37,5 +44,14 @@ class SulfurasTest {
 		sulfurus.updateSellInDays(item);
 		assertEquals(expectedSellin, item.sellIn);
 	}
+	
+	@ParameterizedTest(name = "Test updateQuality for expired items- {index}")
+	@MethodSource("getTestExpiredItemsWithExpectedQuality")
+	void testUpdateQualityForExpiredItems(Item item, int expectedQuality) {
+		Sulfuras sulfurus = new Sulfuras();
+		sulfurus.updateQualityForExpiredItem(item);
+		assertEquals(expectedQuality, item.quality);
+	}
+
 
 }

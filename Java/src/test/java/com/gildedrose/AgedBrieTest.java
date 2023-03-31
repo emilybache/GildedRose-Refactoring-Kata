@@ -23,6 +23,13 @@ class AgedBrieTest {
 				Arguments.of(new Item(GoodsType.AGED_BRIE.getGoodsName(), 1, 50), 0)
 				);
 	}
+	
+	private static Stream<Arguments> getTestExpiredItemsWithExpectedQuality() {
+		return Stream.of(
+				Arguments.of(new Item(GoodsType.AGED_BRIE.getGoodsName(), -1, 2), 3), 
+				Arguments.of(new Item(GoodsType.AGED_BRIE.getGoodsName(), 1, 2), 2)
+				);
+	}
 
 
 	@ParameterizedTest(name = "Test updateQuality - {index}")
@@ -40,6 +47,14 @@ class AgedBrieTest {
 		agedBrie.updateSellInDays(item);
 		assertEquals(expectedSellin, item.sellIn);
 
+	}
+	
+	@ParameterizedTest(name = "Test updateQuality for expired items - {index}")
+	@MethodSource("getTestExpiredItemsWithExpectedQuality")
+	void testtestUpdateQualityForExpiredItems(Item item, int expectedQuality) {
+		AgedBrie agedBrie = new AgedBrie();
+		agedBrie.updateQualityForExpiredItem(item);
+		assertEquals(expectedQuality, item.quality);
 	}
 
 }

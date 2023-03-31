@@ -24,6 +24,12 @@ class BackStagePassesTest {
 				Arguments.of(new Item(GoodsType.BACK_STAGE_PASSES.getGoodsName(), 1, 50), 0)
 				);
 	}
+	
+	private static Stream<Arguments> getTestExpiredItemsWithExpectedQuality() {
+		return Stream.of(
+				Arguments.of(new Item(GoodsType.BACK_STAGE_PASSES.getGoodsName(), -1, 2), 0),
+				Arguments.of(new Item(GoodsType.BACK_STAGE_PASSES.getGoodsName(), 1, 2), 2));
+	}
 
 
 
@@ -33,7 +39,6 @@ class BackStagePassesTest {
 		BackStagePasses backStagePasses = new BackStagePasses();
 		backStagePasses.updateQuality(item);
 		assertEquals(expectedQuality, item.quality);
-
 	}
 
 	@ParameterizedTest(name = "Test updateSellIn - {index}")
@@ -42,7 +47,14 @@ class BackStagePassesTest {
 		BackStagePasses backStagePasses = new BackStagePasses();
 		backStagePasses.updateSellInDays(item);
 		assertEquals(expectedSellin, item.sellIn);
-
+	}
+	
+	@ParameterizedTest(name = "Test updateQuality for expired items - {index}")
+	@MethodSource("getTestExpiredItemsWithExpectedQuality")
+	void testUpdateQualityForExpiredItems(Item item, int expectedQuality) {
+		BackStagePasses backStagePasses = new BackStagePasses();
+		backStagePasses.updateQualityForExpiredItem(item);
+		assertEquals(expectedQuality, item.quality);
 	}
 
 }

@@ -7,4 +7,11 @@ public class Generic implements Goods {
 			item.quality--;
 		}
 	}
+
+	@Override
+	public void updateQualityForExpiredItem(Item item) {
+		if (item.sellIn < 0 && item.quality > 0) {
+			item.quality--;
+		}
+	}
 }
