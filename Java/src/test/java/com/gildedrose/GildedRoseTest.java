@@ -1,6 +1,5 @@
 package com.gildedrose;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -13,8 +12,8 @@ class GildedRoseTest {
 	
 	private static Stream<Arguments> getTestItemsForSellInDayCheck() {
 		return Stream.of(
-				Arguments.of(new Item[] { new Item("Aged Brie", 1, 1) }, 0),
-				Arguments.of(new Item[] { new Item("Sulfuras, Hand of Ragnaros", 1, 1) }, 1)
+				Arguments.of(new Item[] { new Item(GoodsType.AGED_BRIE.getGoodsName(), 1, 1) }, 0),
+				Arguments.of(new Item[] { new Item(GoodsType.SULFURAS.getGoodsName(), 1, 1) }, 1)
 
 		);
 	}
@@ -28,20 +27,21 @@ class GildedRoseTest {
 	}
 	
 	private static Stream<Arguments> getTestItemsForQualityCheck() {
-		return Stream.of(Arguments.of(new Item[] { new Item("Aged Brie", 1, 1) }, 2),
-				Arguments.of(new Item[] { new Item("Aged Brie", 1, 50) }, 50),
+		return Stream.of(
+				Arguments.of(new Item[] { new Item(GoodsType.AGED_BRIE.getGoodsName(), 1, 1) }, 2),
+				Arguments.of(new Item[] { new Item(GoodsType.AGED_BRIE.getGoodsName(), 1, 50) }, 50),
 
-				Arguments.of(new Item[] { new Item("Aged Brie", -1, 1) }, 3),
-				Arguments.of(new Item[] { new Item("Aged Brie", -1, 50) }, 50),
+				Arguments.of(new Item[] { new Item(GoodsType.AGED_BRIE.getGoodsName(), -1, 1) }, 3),
+				Arguments.of(new Item[] { new Item(GoodsType.AGED_BRIE.getGoodsName(), -1, 50) }, 50),
 
-				Arguments.of(new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 5, 10) }, 13),
-				Arguments.of(new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 5, 50) }, 50),
-				Arguments.of(new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 10, 10) }, 12),
-				Arguments.of(new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 10, 50) }, 50),
-				Arguments.of(new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 12, 10) }, 11),
-				Arguments.of(new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 12, 50) }, 50),
+				Arguments.of(new Item[] { new Item(GoodsType.BACK_STAGE_PASSES.getGoodsName(), 5, 10) }, 13),
+				Arguments.of(new Item[] { new Item(GoodsType.BACK_STAGE_PASSES.getGoodsName(), 5, 50) }, 50),
+				Arguments.of(new Item[] { new Item(GoodsType.BACK_STAGE_PASSES.getGoodsName(), 10, 10) }, 12),
+				Arguments.of(new Item[] { new Item(GoodsType.BACK_STAGE_PASSES.getGoodsName(), 10, 50) }, 50),
+				Arguments.of(new Item[] { new Item(GoodsType.BACK_STAGE_PASSES.getGoodsName(), 12, 10) }, 11),
+				Arguments.of(new Item[] { new Item(GoodsType.BACK_STAGE_PASSES.getGoodsName(), 12, 50) }, 50),
 
-				Arguments.of(new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", -1, 10) }, 0),
+				Arguments.of(new Item[] { new Item(GoodsType.BACK_STAGE_PASSES.getGoodsName(), -1, 10) }, 0),
 
 				Arguments.of(new Item[] { new Item("Coffee Day", 1, 1) }, 0),
 				Arguments.of(new Item[] { new Item("Coffee Day", -1, 1) }, 0),
