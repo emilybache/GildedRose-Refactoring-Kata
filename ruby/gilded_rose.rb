@@ -37,6 +37,15 @@ class GildedRose
         quality: self.regular_quality_limit(next_quality)
       }
     end,
+    "Conjured Mana Cake" => Proc.new do |sell_in:, quality:|
+      next_sell_in = sell_in -1
+      {
+        sell_in: next_sell_in,
+        quality: self.regular_quality_limit(
+          quality + (next_sell_in < 0 ? -4 : -2)
+        )
+      }
+    end,
   }
 
   def self.regular_quality_limit(unsanitized_quality)

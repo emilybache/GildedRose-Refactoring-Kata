@@ -122,6 +122,30 @@ describe GildedRose do
       expect(items[0].sell_in).to eq 1 # does not change
       expect(items[0].quality).to eq 80 # always 80
     end
+
+    it "degrades conjured cake quickly" do
+      items = [Item.new("Conjured Mana Cake", 2, 9)]
+      updater = GildedRose.new(items)
+      updater.update_quality()
+
+      expect(items[0].sell_in).to eq 1
+      expect(items[0].quality).to eq 7 # degrades twice as fast
+
+      updater.update_quality()
+
+      expect(items[0].sell_in).to eq 0
+      expect(items[0].quality).to eq 5 # still above zero
+
+      updater.update_quality()
+
+      expect(items[0].sell_in).to eq -1
+      expect(items[0].quality).to eq 1 # still above zero
+
+      updater.update_quality()
+
+      expect(items[0].sell_in).to eq -2
+      expect(items[0].quality).to eq 0 # does not go below zero
+    end
   end
 
 end
