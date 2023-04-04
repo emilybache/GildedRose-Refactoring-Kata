@@ -1,4 +1,50 @@
 class GildedRose
+  REGULAR_MAX_QUALITY = 50
+  REGULAR_MIN_QUALITY = 0
+  INVENTORY_CLASSIFICATION = {
+    nil => Proc.new do |sell_in:, quality:|
+      next_sell_in = sell_in -1
+      {
+        sell_in: next_sell_in,
+        quality: self.regular_quality_limit(
+          quality + (next_sell_in < 0 ? -2 : -1)
+        )
+      }
+    end,
+    'Aged Brie' => Proc.new do |sell_in:, quality:|
+      next_sell_in = sell_in -1
+      {
+        sell_in: next_sell_in,
+        quality: self.regular_quality_limit(
+          quality + (next_sell_in < 0 ? 2 : 1)
+        )
+      }
+    end,
+    'Sulfuras, Hand of Ragnaros' => Proc.new do |sell_in:, quality:|
+      {
+        sell_in: sell_in,
+        quality: 80
+      }
+    end,
+    'Backstage passes to a TAFKAL80ETC concert' => Proc.new do |sell_in:, quality:|
+      next_sell_in = sell_in -1
+      next_quality = quality + 1
+      next_quality += 1 if next_sell_in < 10
+      next_quality += 1 if next_sell_in < 5
+      next_quality = 0 if next_sell_in < 0
+      {
+        sell_in: next_sell_in,
+        quality: self.regular_quality_limit(next_quality)
+      }
+    end,
+  }
+
+  def self.regular_quality_limit(unsanitized_quality)
+    [
+      [REGULAR_MIN_QUALITY, unsanitized_quality].max,
+      REGULAR_MAX_QUALITY
+    ].min
+  end
 
   def initialize(items)
     @items = items
@@ -6,49 +52,12 @@ class GildedRose
 
   def update_quality()
     @items.each do |item|
-      if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
-        if item.quality > 0
-          if item.name != "Sulfuras, Hand of Ragnaros"
-            item.quality = item.quality - 1
-          end
-        end
-      else
-        if item.quality < 50
-          item.quality = item.quality + 1
-          if item.name == "Backstage passes to a TAFKAL80ETC concert"
-            if item.sell_in < 11
-              if item.quality < 50
-                item.quality = item.quality + 1
-              end
-            end
-            if item.sell_in < 6
-              if item.quality < 50
-                item.quality = item.quality + 1
-              end
-            end
-          end
-        end
-      end
-      if item.name != "Sulfuras, Hand of Ragnaros"
-        item.sell_in = item.sell_in - 1
-      end
-      if item.sell_in < 0
-        if item.name != "Aged Brie"
-          if item.name != "Backstage passes to a TAFKAL80ETC concert"
-            if item.quality > 0
-              if item.name != "Sulfuras, Hand of Ragnaros"
-                item.quality = item.quality - 1
-              end
-            end
-          else
-            item.quality = item.quality - item.quality
-          end
-        else
-          if item.quality < 50
-            item.quality = item.quality + 1
-          end
-        end
-      end
+      new_values = (INVENTORY_CLASSIFICATION[item.name] || INVENTORY_CLASSIFICATION[nil]).call(
+        sell_in: item.sell_in,
+        quality: item.quality
+      )
+      item.sell_in = new_values[:sell_in]
+      item.quality = new_values[:quality]
     end
   end
 end
