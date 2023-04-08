@@ -42,7 +42,7 @@ namespace GildedRoseTests
 
             var app = new GildedRose(Items);
 
-            int days = 2;
+            int days = 31;
             if (args.Length > 0)
             {
                 days = int.Parse(args[0]) + 1;
