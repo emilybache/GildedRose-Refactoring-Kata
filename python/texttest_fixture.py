@@ -4,7 +4,7 @@ from __future__ import print_function
 from gilded_rose import *
 
 if __name__ == "__main__":
-    print ("OMGHAI!")
+    print("OMGHAI!")
     items = [
              Item(name="+5 Dexterity Vest", sell_in=10, quality=20),
              Item(name="Aged Brie", sell_in=2, quality=0),

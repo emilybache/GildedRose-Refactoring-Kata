@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+SULFURAS = "Sulfuras, Hand of Ragnaros"
+BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert"
+AGED_BRIE = "Aged Brie"
+
 
 class GildedRose(object):
 
@@ -7,33 +11,30 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
-            if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert":
-                if item.quality > 0:
-                    if item.name != "Sulfuras, Hand of Ragnaros":
-                        item.quality = item.quality - 1
+            increment = 1
+            if item.name != AGED_BRIE and item.name != BACKSTAGE_PASSES and item.name != SULFURAS:
+                self.regulateQuality(-increment, item)
             else:
-                if item.quality < 50:
-                    item.quality = item.quality + 1
-                    if item.name == "Backstage passes to a TAFKAL80ETC concert":
-                        if item.sell_in < 11:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-                        if item.sell_in < 6:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-            if item.name != "Sulfuras, Hand of Ragnaros":
-                item.sell_in = item.sell_in - 1
+                self.regulateQuality(increment, item)
+                if item.name == BACKSTAGE_PASSES:
+                    if item.sell_in < 11 or item.sell_in < 6:
+                        self.regulateQuality(increment, item)
+
+            if item.name != SULFURAS:
+                item.sell_in = item.sell_in - increment
             if item.sell_in < 0:
-                if item.name != "Aged Brie":
-                    if item.name != "Backstage passes to a TAFKAL80ETC concert":
-                        if item.quality > 0:
-                            if item.name != "Sulfuras, Hand of Ragnaros":
-                                item.quality = item.quality - 1
-                    else:
-                        item.quality = item.quality - item.quality
+                if item.name != AGED_BRIE and item.name != BACKSTAGE_PASSES and item.name != SULFURAS:
+                    self.regulateQuality(-increment, item)
                 else:
-                    if item.quality < 50:
-                        item.quality = item.quality + 1
+                    if item.name == BACKSTAGE_PASSES:
+                        item.quality = item.quality - item.quality
+                    elif item.name == AGED_BRIE:
+                        self.regulateQuality(increment, item)
+
+    def regulateQuality(self, increment, item):
+        newQuality = item.quality + increment
+        if 0 <= newQuality <= 50:
+            item.quality = newQuality
 
 
 class Item:
