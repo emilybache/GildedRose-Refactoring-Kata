@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+SULFURAS = "Sulfuras, Hand of Ragnaros"
+BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert"
+BRIE = "Aged Brie"
+
 
 class GildedRose(object):
 
@@ -7,33 +11,31 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
-            if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert":
-                if item.quality > 0:
-                    if item.name != "Sulfuras, Hand of Ragnaros":
-                        item.quality = item.quality - 1
-            else:
-                if item.quality < 50:
-                    item.quality = item.quality + 1
-                    if item.name == "Backstage passes to a TAFKAL80ETC concert":
-                        if item.sell_in < 11:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-                        if item.sell_in < 6:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-            if item.name != "Sulfuras, Hand of Ragnaros":
-                item.sell_in = item.sell_in - 1
-            if item.sell_in < 0:
-                if item.name != "Aged Brie":
-                    if item.name != "Backstage passes to a TAFKAL80ETC concert":
-                        if item.quality > 0:
-                            if item.name != "Sulfuras, Hand of Ragnaros":
-                                item.quality = item.quality - 1
-                    else:
-                        item.quality = item.quality - item.quality
-                else:
-                    if item.quality < 50:
-                        item.quality = item.quality + 1
+            self.update_item_quality(item)
+
+    def update_item_quality(self, item):
+        condition = item.name != BRIE and item.name != BACKSTAGE and item.name != SULFURAS
+        if condition:
+            self.adjust_quality(-1, item)
+        else:
+            self.adjust_quality(1, item)
+        if item.name == BACKSTAGE:
+            if item.sell_in < 11 or item.sell_in < 6:
+                self.adjust_quality(1, item)
+        if item.name != SULFURAS:
+            item.sell_in = item.sell_in - 1
+        if item.sell_in < 0:
+            if condition:
+                self.adjust_quality(-1, item)
+            if item.name == BRIE:
+                self.adjust_quality(1, item)
+            elif item.name == BACKSTAGE:
+                item.quality = item.quality - item.quality
+
+    def adjust_quality(self, adjustment, item):
+        new_quality = item.quality + adjustment
+        if 50 >= new_quality >= 0:
+            item.quality = new_quality
 
 
 class Item:
