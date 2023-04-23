@@ -1,80 +1,92 @@
 #include "GildedRose.h"
 
-GildedRose::GildedRose(vector<Item> & items) : items(items)
-{}
-    
-void GildedRose::updateQuality() 
+GildedRose::GildedRose(vector<Item>& items) : items(items)
 {
-    for (int i = 0; i < items.size(); i++)
+
+}
+
+void GildedRose::updateQualityAgedBrie(int index)
+{
+    if (items[index].quality < 50)
     {
-        if (items[i].name != "Aged Brie" && items[i].name != "Backstage passes to a TAFKAL80ETC concert")
+        items[index].quality += 1;
+    }
+    items[index].sellIn -= 1;
+    if (items[index].sellIn < 0 && items[index].quality<50)
+    {
+        items[index].quality += 1;
+    }
+}
+void GildedRose::updateQualityBackstagePasses(int index)
+{
+    if (items[index].quality < 50)
+    {
+        items[index].quality += 1;
+
+        if (items[index].sellIn <= 10 && items[index].quality < 50)
         {
-            if (items[i].quality > 0)
-            {
-                if (items[i].name != "Sulfuras, Hand of Ragnaros")
-                {
-                    items[i].quality = items[i].quality - 1;
-                }
-            }
+            items[index].quality += 1;
         }
+        if (items[index].sellIn <= 5 && items[index].quality < 50)
+        {
+            items[index].quality += 1;
+        }
+    }
+    items[index].sellIn -= 1;
+    if (items[index].sellIn < 0)
+    {
+        items[index].quality = 0;
+    }
+    
+}
+void GildedRose::updateQualitySulfuras(int index)
+{
+}
+void GildedRose::updateQualityConjured(int index)
+{
+    if (items[index].quality > 0)
+    {
+        items[index].quality -= 2;
+    }
+    items[index].sellIn -= 1;
+    if (items[index].sellIn < 0 && items[index].quality>0)
+    {
+        items[index].quality -= 2;
+    }
+    if (items[index].quality < 0)
+    {
+        items[index].quality = 0;
+    }
+}
+void GildedRose::updateQualityNormal(int index)
+{
+    if (items[index].quality > 0)
+    {
+        items[index].quality -= 1;
+       
+    }
+    items[index].sellIn -= 1;
+    if (items[index].sellIn < 0 && items[index].quality>0)
+    {
+        items[index].quality -= 1;
+    }
+}
+
+void GildedRose::updateQuality()
+{
+    for (int itemIndex = 0; itemIndex < items.size(); itemIndex++)
+    {
+
+        if (items[itemIndex].name == "Aged Brie")
+            updateQualityAgedBrie(itemIndex);
+        else if (items[itemIndex].name == "Backstage passes to a TAFKAL80ETC concert")
+            updateQualityBackstagePasses(itemIndex);
+        else if (items[itemIndex].name == "Sulfuras, Hand of Ragnaros")
+            updateQualitySulfuras(itemIndex);
+        else if (items[itemIndex].name == "Conjured Mana Cake")
+            updateQualityConjured(itemIndex);
         else
-        {
-            if (items[i].quality < 50)
-            {
-                items[i].quality = items[i].quality + 1;
-
-                if (items[i].name == "Backstage passes to a TAFKAL80ETC concert")
-                {
-                    if (items[i].sellIn < 11)
-                    {
-                        if (items[i].quality < 50)
-                        {
-                            items[i].quality = items[i].quality + 1;
-                        }
-                    }
-
-                    if (items[i].sellIn < 6)
-                    {
-                        if (items[i].quality < 50)
-                        {
-                            items[i].quality = items[i].quality + 1;
-                        }
-                    }
-                }
-            }
-        }
-
-        if (items[i].name != "Sulfuras, Hand of Ragnaros")
-        {
-            items[i].sellIn = items[i].sellIn - 1;
-        }
-
-        if (items[i].sellIn < 0)
-        {
-            if (items[i].name != "Aged Brie")
-            {
-                if (items[i].name != "Backstage passes to a TAFKAL80ETC concert")
-                {
-                    if (items[i].quality > 0)
-                    {
-                        if (items[i].name != "Sulfuras, Hand of Ragnaros")
-                        {
-                            items[i].quality = items[i].quality - 1;
-                        }
-                    }
-                }
-                else
-                {
-                    items[i].quality = items[i].quality - items[i].quality;
-                }
-            }
-            else
-            {
-                if (items[i].quality < 50)
-                {
-                    items[i].quality = items[i].quality + 1;
-                }
-            }
-        }
+            updateQualityNormal(itemIndex);
+        
     }
 }
