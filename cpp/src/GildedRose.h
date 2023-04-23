@@ -5,24 +5,21 @@ using namespace std;
 
 class Item
 {
-    private:
+    public:
         string name;
         int sellIn;
         int quality;
     
-    public:
-        Item(string name, int sellIn, int quality) : name(name), sellIn(sellIn), quality(quality) 
+        Item(string name, int sellIn, int quality) : name(name), sellIn(sellIn), quality(quality)
         {
         }
 };
 
 class GildedRose
 {
-    private:
+    public:
         vector<Item> & items;
     
-    public:
         GildedRose(vector<Item> & items);
-        void updateQuality();
+        void update();
 };
-
