@@ -12,7 +12,7 @@ void updateQuality(int q, int value)
     }
 }
 
-void GildedRose::update()
+void GildedRose::updateData()
 {
     for (auto &item: this->items)
     {
