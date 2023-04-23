@@ -21,5 +21,5 @@ class GildedRose
         vector<Item> & items;
     
         GildedRose(vector<Item> & items);
-        void update();
+        void updateData();
 };
