@@ -6,6 +6,10 @@ namespace csharp
     {
         const int MinQuality = 0;
         const int MaxQuality = 50;
+        const string AgedBrie = "Aged Brie";
+        const string Sulfuras = "Sulfuras, Hand of Ragnaros";
+        const string BackstagePasses = "Backstage passes to a TAFKAL80ETC concert";
+        const string Conjured = "Conjured Mana Cake";
         IList<Item> Items;
         public GildedRose(IList<Item> Items)
         {
@@ -87,15 +91,15 @@ namespace csharp
             {
                 switch (Items[itemIndex].Name)
                 {
-                    case "Aged Brie":
+                    case AgedBrie:
                         Items[itemIndex] = GetNewAgedBrie(Items[itemIndex]);
                         break;
-                    case "Sulfuras, Hand of Ragnaros":
+                    case Sulfuras:
                         break;
-                    case "Backstage passes to a TAFKAL80ETC concert":
+                    case BackstagePasses:
                         Items[itemIndex] = GetNewBackstagesPasses(Items[itemIndex]);
                         break;
-                    case "Conjured Mana Cake":
+                    case Conjured:
                         Items[itemIndex] = GetNewConjured(Items[itemIndex]);
                         break;
                     default:
