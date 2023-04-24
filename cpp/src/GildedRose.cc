@@ -14,7 +14,7 @@ void updateQuality(int q, int value)
 
 void GildedRose::updateData()
 {
-    for (auto &item: this->items)
+    for (auto &item: items)
     {
         item.sellIn -= (item.name == "Sulfuras, Hand of Ragnaros") ? 0 : 1;
 
