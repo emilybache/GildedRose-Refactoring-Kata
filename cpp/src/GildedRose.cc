@@ -33,7 +33,7 @@ void GildedRose::updateData()
         {
             if (item.sellIn < 0)
             {
-                updateQuality(item.quality, -item.quality);
+                item.quality = 0;
             }
             else if (item.sellIn < 5)
             {
