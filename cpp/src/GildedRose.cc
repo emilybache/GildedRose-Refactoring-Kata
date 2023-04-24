@@ -20,8 +20,11 @@ void GildedRose::updateData()
 
         if (item.name == "Aged Brie")
         {
-            updateQuality(item.quality, 1);
             if (item.sellIn < 0)
+            {
+                updateQuality(item.quality, 2);
+            }
+            else
             {
                 updateQuality(item.quality, 1);
             }
