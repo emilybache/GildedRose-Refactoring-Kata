@@ -4,6 +4,8 @@ namespace csharp
 {
     public class GildedRose
     {
+        const int MinQuality = 0;
+        const int MaxQuality = 50;
         IList<Item> Items;
         public GildedRose(IList<Item> Items)
         {
@@ -12,7 +14,7 @@ namespace csharp
         void UpdateItem(ref Item item, int sellInValueFactor, int qualityValueFactor)
         {
             item.SellIn += sellInValueFactor;
-            item.Quality = Math.Max(0, Math.Min(50, item.Quality + qualityValueFactor));
+            item.Quality = Math.Max(MinQuality, Math.Min(MaxQuality, item.Quality + qualityValueFactor));
 
         }
         bool IsExpired(Item item)
@@ -33,7 +35,10 @@ namespace csharp
         Item GetNewBackstagesPasses(Item item)
         {
             if (IsExpired(item))
+            {
+                UpdateItem(ref item, -1, 0);
                 item.Quality = 0;
+            }
             else
             {
                 if (item.SellIn <= 10 && item.SellIn > 5)
@@ -48,6 +53,7 @@ namespace csharp
                 {
                     UpdateItem(ref item, -1, 1);
                 }
+
             }
             return item;
         }
