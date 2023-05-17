@@ -1,7 +1,11 @@
 package com.gildedrose;
 
+import com.gildedrose.common.InvalidQualityException;
+import com.gildedrose.domain.Item;
+import com.gildedrose.service.GildedRose;
+
 public class TexttestFixture {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidQualityException {
         System.out.println("OMGHAI!");
 
         Item[] items = new Item[] {
