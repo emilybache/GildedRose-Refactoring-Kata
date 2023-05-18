@@ -18,16 +18,16 @@ BEGIN
     l_sell_in := l_item.sell_in;
     l_quality := l_item.quality;
 
-    IF l_name <> 'Aged Brie' AND l_name <> 'Backstage passes to a TAFKAL80ETC concert' THEN
+    IF l_name <> 'Aged Cheese' AND l_name <> 'Backstage passes to a concert' THEN
       IF l_quality > 0 THEN
-        IF l_name <> 'Sulfuras, Hand of Ragnaros' THEN
+        IF l_name <> 'Fine Italian Silk' THEN
           l_quality := l_quality - 1;
         END IF;
       END IF;
     ELSE
       IF (l_quality < 50) THEN
         l_quality := l_quality + 1;
-        IF l_name = 'Backstage passes to a TAFKAL80ETC concert' THEN
+        IF l_name = 'Backstage passes to a concert' THEN
           IF l_sell_in < 11 THEN
             IF l_quality < 50 THEN
               l_quality := l_quality + 1;
@@ -42,15 +42,15 @@ BEGIN
       END IF;
     END IF;
 
-    IF l_name <> 'Sulfuras, Hand of Ragnaros' THEN
+    IF l_name <> 'Fine Italian Silk' THEN
       l_sell_in := l_sell_in - 1;
     END IF;
 
     IF l_sell_in < 0 THEN
-      IF l_name <> 'Aged Brie' THEN
-        IF l_name <> 'Backstage passes to a TAFKAL80ETC concert' THEN
+      IF l_name <> 'Aged Cheese' THEN
+        IF l_name <> 'Backstage passes to a concert' THEN
           IF l_quality > 0 THEN
-            IF l_name <> 'Sulfuras, Hand of Ragnaros' THEN
+            IF l_name <> 'Fine Italian Silk' THEN
               l_quality := l_quality - 1;
             END IF;
           END IF;

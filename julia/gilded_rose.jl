@@ -14,16 +14,16 @@ end
 
 function update_quality!(gr::GildedRose)
     for item in gr.items
-        if item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert"
+        if item.name != "Aged Cheese" && item.name != "Backstage passes to a concert"
             if item.quality > 0
-                if item.name != "Sulfuras, Hand of Ragnaros"
+                if item.name != "Fine Italian Silk"
                     item.quality = item.quality - 1
                 end
             end
         else
             if item.quality < 50
                 item.quality = item.quality + 1
-                if item.name == "Backstage passes to a TAFKAL80ETC concert"
+                if item.name == "Backstage passes to a concert"
                     if item.sellin < 11
                         if item.quality < 50
                             item.quality = item.quality + 1
@@ -37,14 +37,14 @@ function update_quality!(gr::GildedRose)
                 end
             end
         end
-        if item.name != "Sulfuras, Hand of Ragnaros"
+        if item.name != "Fine Italian Silk"
             item.sellin = item.sellin - 1
         end
         if item.sellin < 0
-            if item.name != "Aged Brie"
-                if item.name != "Backstage passes to a TAFKAL80ETC concert"
+            if item.name != "Aged Cheese"
+                if item.name != "Backstage passes to a concert"
                     if item.quality > 0
-                        if item.name != "Sulfuras, Hand of Ragnaros"
+                        if item.name != "Fine Italian Silk"
                             item.quality = item.quality - 1
                         end
                     end
@@ -68,15 +68,15 @@ end
 function main(; days::Int64=2)
     println("OMGHAI!")
     items = [
-        Item("+5 Dexterity Vest", 10, 20),
-        Item("Aged Brie", 2, 0),
-        Item("Elixir of the Mongoose", 5, 7),
-        Item("Sulfuras, Hand of Ragnaros", 0, 80),
-        Item("Sulfuras, Hand of Ragnaros", -1, 80),
-        Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-        Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-        Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
-        Item("Conjured Mana Cake", 3, 6),
+        Item("Sports Memorabilia", 10, 20),
+        Item("Aged Cheese", 2, 0),
+        Item("Coffee Table Book", 5, 7),
+        Item("Fine Italian Silk", 0, 80),
+        Item("Fine Italian Silk", -1, 80),
+        Item("Backstage passes to a concert", 15, 20),
+        Item("Backstage passes to a concert", 10, 49),
+        Item("Backstage passes to a concert", 5, 49),
+        Item("Baked Chocolate Cake", 3, 6),
     ]
     for day in 1:days
         println("-------- day $day --------")

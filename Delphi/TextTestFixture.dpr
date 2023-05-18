@@ -20,16 +20,16 @@ begin
     Writeln('OMGHAI!');
 
     Items := TObjectList<TItem>.Create;
-    Items.Add(TItem.Create('+5 Dexterity Vest', 10, 20));
-    Items.Add(TItem.Create('Aged Brie', 2, 0));
-    Items.Add(TItem.Create('Elixir of the Mongoose', 5, 7));
-    Items.Add(TItem.Create('Sulfuras, Hand of Ragnaros', 0, 80));
-    Items.Add(TItem.Create('Sulfuras, Hand of Ragnaros', -1, 80));
-    Items.Add(TItem.Create('Backstage passes to a TAFKAL80ETC concert', 15, 20));
-    Items.Add(TItem.Create('Backstage passes to a TAFKAL80ETC concert', 10, 49));
-    Items.Add(TItem.Create('Backstage passes to a TAFKAL80ETC concert', 5, 49));
-    // this conjured item does not work properly yet
-    Items.Add(TItem.Create('Conjured Mana Cake', 3, 6));
+    Items.Add(TItem.Create('Sports Memorabilia', 10, 20));
+    Items.Add(TItem.Create('Aged Cheese', 2, 0));
+    Items.Add(TItem.Create('Coffee Table Book', 5, 7));
+    Items.Add(TItem.Create('Fine Italian Silk', 0, 80));
+    Items.Add(TItem.Create('Fine Italian Silk', -1, 80));
+    Items.Add(TItem.Create('Backstage passes to a concert', 15, 20));
+    Items.Add(TItem.Create('Backstage passes to a concert', 10, 49));
+    Items.Add(TItem.Create('Backstage passes to a concert', 5, 49));
+    // this Baked item does not work properly yet
+    Items.Add(TItem.Create('Baked Chocolate Cake', 3, 6));
 
     App := TGildedRose.Create(Items);
 

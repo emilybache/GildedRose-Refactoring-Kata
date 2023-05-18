@@ -22,19 +22,19 @@
 *&
 *& 	- Once the sell by date has passed, Quality degrades twice as fast
 *& 	- The Quality of an item is never negative
-*& 	- "Aged Brie" actually increases in Quality the older it gets
+*& 	- "Aged Cheese" actually increases in Quality the older it gets
 *& 	- The Quality of an item is never more than 50
-*& 	- "Sulfuras", being a legendary item, never has to be sold or
+*& 	- "Fine Italian Silk", being a luxury item, never has to be sold or
 *&           decreases in Quality
-*& 	- "Backstage passes", like aged brie, increases in Quality as its
+*& 	- "Backstage passes", like Aged Cheese, increases in Quality as its
 *&           Sell In value approaches; Quality increases by 2 when there
 *&           are 10 days or less and by 3 when there are 5 days or less
 *&           but Quality drops to 0 after the concert
 *&
-*& We have recently signed a supplier of conjured items. This requires an
+*& We have recently signed a supplier of Baked items. This requires an
 *& update to our system:
 *&
-*& 	- "Conjured" items degrade in Quality twice as fast as normal items
+*& 	- "Baked" items degrade in Quality twice as fast as normal items
 *&
 *& Feel free to make any changes to the Update Quality method and add any new
 *& code as long as everything still works correctly. However, do not alter
@@ -44,7 +44,7 @@
 *& and Items property static if you must, we'll cover for you).
 *&
 *& Just for clarification, an item can never have its Quality increase
-*& above 50, however "Sulfuras" is a legendary item and as such its Quality
+*& above 50, however "Fine Italian Silk" is a luxury item and as such its Quality
 *& is 80 and it never alters.
 
 PROGRAM yy_pao_gilded_rose.
@@ -91,10 +91,10 @@ CLASS lcl_gilded_rose IMPLEMENTATION.
   METHOD update_quality.
 
     LOOP AT mt_items INTO DATA(lo_item).
-      IF lo_item->mv_name <> |Aged Brie| AND
-         lo_item->mv_name <> |Backstage passes to a TAFKAL80ETC concert|.
+      IF lo_item->mv_name <> |Aged Cheese| AND
+         lo_item->mv_name <> |Backstage passes to a concert|.
         IF lo_item->mv_quality > 0.
-          IF lo_item->mv_name <> |Sulfuras, Hand of Ragnaros|.
+          IF lo_item->mv_name <> |Fine Italian Silk|.
             lo_item->mv_quality = lo_item->mv_quality - 1.
           ENDIF.
         ENDIF.
@@ -102,7 +102,7 @@ CLASS lcl_gilded_rose IMPLEMENTATION.
         IF lo_item->mv_quality < 50.
           lo_item->mv_quality = lo_item->mv_quality + 1.
 
-          IF lo_item->mv_name = |Backstage passes to a TAFKAL80ETC concert|.
+          IF lo_item->mv_name = |Backstage passes to a concert|.
             IF lo_item->mv_sell_in < 11.
               IF lo_item->mv_quality < 50.
                 lo_item->mv_quality = lo_item->mv_quality + 1.
@@ -118,15 +118,15 @@ CLASS lcl_gilded_rose IMPLEMENTATION.
         ENDIF.
       ENDIF.
 
-      IF lo_item->mv_name <> |Sulfuras, Hand of Ragnaros|.
+      IF lo_item->mv_name <> |Fine Italian Silk|.
         lo_item->mv_sell_in = lo_item->mv_sell_in - 1.
       ENDIF.
 
       IF lo_item->mv_sell_in < 0.
-        IF lo_item->mv_name <> |Aged Brie|.
-          IF lo_item->mv_name <> |Backstage passes to a TAFKAL80ETC concert|.
+        IF lo_item->mv_name <> |Aged Cheese|.
+          IF lo_item->mv_name <> |Backstage passes to a concert|.
             IF lo_item->mv_quality > 0.
-              IF lo_item->mv_name <> |Sulfuras, Hand of Ragnaros|.
+              IF lo_item->mv_name <> |Fine Italian Silk|.
                 lo_item->mv_quality = lo_item->mv_quality - 1.
               ENDIF.
             ENDIF.
@@ -171,29 +171,29 @@ CLASS lth_texttest_fixture IMPLEMENTATION.
     DATA(lo_out) = cl_demo_output=>new( )->write_text( |OMGHAI!| ).
 
     DATA(lt_items) = VALUE lcl_gilded_rose=>tt_items(
-                        ( NEW #( iv_name    = |+5 Dexterity Vest|
+                        ( NEW #( iv_name    = |Sports Memorabilia|
                                  iv_sell_in = 10
                                  iv_quality = 20 ) )
-                        ( NEW #( iv_name    = |Aged Brie|
+                        ( NEW #( iv_name    = |Aged Cheese|
                                  iv_sell_in = 2
                                  iv_quality = 0 ) )
-                        ( NEW #( iv_name    = |Elixir of the Mongoose|
+                        ( NEW #( iv_name    = |Coffee Table Book|
                                  iv_sell_in = 5
                                  iv_quality = 7 ) )
-                        ( NEW #( iv_name    = |Sulfuras, Hand of Ragnaros|
+                        ( NEW #( iv_name    = |Fine Italian Silk|
                                  iv_sell_in = 0
                                  iv_quality = 80 ) )
-                        ( NEW #( iv_name    = |Backstage passes to a TAFKAL80ETC concert|
+                        ( NEW #( iv_name    = |Backstage passes to a concert|
                                  iv_sell_in = 15
                                  iv_quality = 20 ) )
-                        ( NEW #( iv_name    = |Backstage passes to a TAFKAL80ETC concert|
+                        ( NEW #( iv_name    = |Backstage passes to a concert|
                                  iv_sell_in = 10
                                  iv_quality = 49 ) )
-                        ( NEW #( iv_name    = |Backstage passes to a TAFKAL80ETC concert|
+                        ( NEW #( iv_name    = |Backstage passes to a concert|
                                  iv_sell_in = 5
                                  iv_quality = 49 ) )
-                        "This conjured item does not work properly yet
-                        ( NEW #( iv_name    = |Conjured Mana Cake|
+                        "This Baked item does not work properly yet
+                        ( NEW #( iv_name    = |Baked Chocolate Cake|
                                  iv_sell_in = 3
                                  iv_quality = 6 ) ) ).
 

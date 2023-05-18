@@ -5,15 +5,15 @@
 -export([main/1]).
 
 -define(ALL_ITEMS, [
-  #item{name = "+5 Dexterity Vest", sell_in = 10, quality = 20},
-  #item{name = "Aged Brie", sell_in = 2, quality = 0},
-  #item{name = "Elixir of the Mongoose", sell_in = 5, quality = 7},
-  #item{name = "Sulfuras, Hand of Ragnaros", sell_in = 0, quality = 80},
-  #item{name = "Sulfuras, Hand of Ragnaros", sell_in = -1, quality = 80},
-  #item{name = "Backstage passes to a TAFKAL80ETC concert", sell_in = 15, quality = 20},
-  #item{name = "Backstage passes to a TAFKAL80ETC concert", sell_in = 10, quality = 49},
-  #item{name = "Backstage passes to a TAFKAL80ETC concert", sell_in = 5, quality = 49},
-  #item{name = "Conjured Mana Cake", sell_in = 3, quality = 6}
+  #item{name = "Sports Memorabilia", sell_in = 10, quality = 20},
+  #item{name = "Aged Cheese", sell_in = 2, quality = 0},
+  #item{name = "Coffee Table Book", sell_in = 5, quality = 7},
+  #item{name = "Fine Italian Silk", sell_in = 0, quality = 80},
+  #item{name = "Fine Italian Silk", sell_in = -1, quality = 80},
+  #item{name = "Backstage passes to a concert", sell_in = 15, quality = 20},
+  #item{name = "Backstage passes to a concert", sell_in = 10, quality = 49},
+  #item{name = "Backstage passes to a concert", sell_in = 5, quality = 49},
+  #item{name = "Baked Chocolate Cake", sell_in = 3, quality = 6}
 ]).
 
 main([Days]) ->

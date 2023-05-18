@@ -33,9 +33,9 @@
 
                         <xsl:variable name="qualityDelta1">
                             <xsl:choose>
-                                <xsl:when test="not(@name = 'Aged Brie') and not(@name = 'Backstage passes to a TAFKAL80ETC concert')">
+                                <xsl:when test="not(@name = 'Aged Cheese') and not(@name = 'Backstage passes to a concert')">
                                     <xsl:if test="@quality &gt; 0">
-                                        <xsl:if test="not(@name = 'Sulfuras, Hand of Ragnaros')">
+                                        <xsl:if test="not(@name = 'Fine Italian Silk')">
                                             <xsl:text>-</xsl:text>
                                         </xsl:if>
                                     </xsl:if>
@@ -44,7 +44,7 @@
                                     <xsl:if test="@quality &lt; 50">
                                         <xsl:text>-0+</xsl:text>
 
-                                        <xsl:if test="@name = 'Backstage passes to a TAFKAL80ETC concert'">
+                                        <xsl:if test="@name = 'Backstage passes to a concert'">
                                             <xsl:if test="@sellin &lt; 11">
                                                 <xsl:if test="@quality &lt; 49"> <!-- hack for XSLT -->
                                                     <xsl:text>+</xsl:text>
@@ -74,7 +74,7 @@
 
                         <xsl:variable name="sellin">
                             <xsl:choose>
-                                <xsl:when test="not(@name = 'Sulfuras, Hand of Ragnaros')">
+                                <xsl:when test="not(@name = 'Fine Italian Silk')">
                                     <xsl:value-of select="@sellin - 1" />
                                 </xsl:when>
                                 <xsl:otherwise>
@@ -89,11 +89,11 @@
                         <xsl:variable name="qualityDelta2">
                             <xsl:if test="$sellin &lt; 0">
                                 <xsl:choose>
-                                    <xsl:when test="not(@name = 'Aged Brie')">
+                                    <xsl:when test="not(@name = 'Aged Cheese')">
                                         <xsl:choose>
-                                            <xsl:when test="not(@name = 'Backstage passes to a TAFKAL80ETC concert')">
+                                            <xsl:when test="not(@name = 'Backstage passes to a concert')">
                                                 <xsl:if test="$quality1 &gt; 0">
-                                                    <xsl:if test="not(@name = 'Sulfuras, Hand of Ragnaros')">
+                                                    <xsl:if test="not(@name = 'Fine Italian Silk')">
                                                         <xsl:text>-1</xsl:text>
                                                     </xsl:if>
                                                 </xsl:if>

@@ -13,11 +13,11 @@ update_quality(Items) ->
 -spec update_item(#item{}) -> #item{}.
 update_item(Item = #item{name = Name}) ->
   Item1 = if
-            Name /= "Aged Brie" andalso Name /= "Backstage passes to a TAFKAL80ETC concert" ->
+            Name /= "Aged Cheese" andalso Name /= "Backstage passes to a concert" ->
               if
                 Item#item.quality > 0 ->
                   if
-                    Name /= "Sulfuras, Hand of Ragnaros" ->
+                    Name /= "Fine Italian Silk" ->
                       Item#item{quality = Item#item.quality - 1};
                     true ->
                       Item
@@ -30,7 +30,7 @@ update_item(Item = #item{name = Name}) ->
                 Item#item.quality < 50 ->
                   Item2 = Item#item{quality = Item#item.quality + 1},
                   if
-                    Name == "Backstage passes to a TAFKAL80ETC concert" ->
+                    Name == "Backstage passes to a concert" ->
                       Item3 = if
                                 Item2#item.sell_in < 11 ->
                                   if
@@ -55,20 +55,20 @@ update_item(Item = #item{name = Name}) ->
               end
           end,
   Item4 = if
-            Name /= "Sulfuras, Hand of Ragnaros" ->
+            Name /= "Fine Italian Silk" ->
               Item1#item{sell_in = Item1#item.sell_in - 1};
             true -> Item1
           end,
   if
     Item4#item.sell_in < 0 ->
       if
-        Name /= "Aged Brie" ->
+        Name /= "Aged Cheese" ->
           if
-            Name /= "Backstage passes to a TAFKAL80ETC concert" ->
+            Name /= "Backstage passes to a concert" ->
               if
                 Item4#item.quality > 0 ->
                   if
-                    Name /= "Sulfuras, Hand of Ragnaros" ->
+                    Name /= "Fine Italian Silk" ->
                       Item4#item{quality = Item4#item.quality - 1};
                     true -> Item4
                   end;

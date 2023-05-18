@@ -40,16 +40,16 @@ DECLARE
 BEGIN
   -- given
   TRUNCATE TABLE item;
-  CALL new_item('+5 Dexterity Vest', 10, 20);
-  CALL new_item('Aged Brie', 2, 0);
-  CALL new_item('Elixir of the Mongoose', 5, 7);
-  CALL new_item('Sulfuras, Hand of Ragnaros', 0, 80);
-  CALL new_item('Sulfuras, Hand of Ragnaros', -1, 80);
-  CALL new_item('Backstage passes to a TAFKAL80ETC concert', 15, 20);
-  CALL new_item('Backstage passes to a TAFKAL80ETC concert', 10, 49);
-  CALL new_item('Backstage passes to a TAFKAL80ETC concert', 5, 49);
-  -- this conjured item does not work properly yet ;
-  CALL new_item('Conjured Mana Cake', 3, 6);
+  CALL new_item('Sports Memorabilia', 10, 20);
+  CALL new_item('Aged Cheese', 2, 0);
+  CALL new_item('Coffee Table Book', 5, 7);
+  CALL new_item('Fine Italian Silk', 0, 80);
+  CALL new_item('Fine Italian Silk', -1, 80);
+  CALL new_item('Backstage passes to a concert', 15, 20);
+  CALL new_item('Backstage passes to a concert', 10, 49);
+  CALL new_item('Backstage passes to a concert', 5, 49);
+  -- this Baked item does not work properly yet ;
+  CALL new_item('Baked Chocolate Cake', 3, 6);
   days := 1;
 
   -- when
@@ -62,29 +62,29 @@ BEGIN
   END LOOP;
 
   -- then
-  expected := ARRAY[ 
+  expected := ARRAY[
     '-------- day 0 --------',
     'name, sellIn, quality',
-    '+5 Dexterity Vest, 10, 20',
-    'Aged Brie, 2, 0',
-    'Backstage passes to a TAFKAL80ETC concert, 5, 49', 
-    'Backstage passes to a TAFKAL80ETC concert, 10, 49',
-    'Backstage passes to a TAFKAL80ETC concert, 15, 20',
-    'Conjured Mana Cake, 3, 6', 
-    'Elixir of the Mongoose, 5, 7', 
-    'Sulfuras, Hand of Ragnaros, -1, 80', 
-    'Sulfuras, Hand of Ragnaros, 0, 80',
+    'Sports Memorabilia, 10, 20',
+    'Aged Cheese, 2, 0',
+    'Backstage passes to a concert, 5, 49',
+    'Backstage passes to a concert, 10, 49',
+    'Backstage passes to a concert, 15, 20',
+    'Baked Chocolate Cake, 3, 6',
+    'Coffee Table Book, 5, 7',
+    'Fine Italian Silk, -1, 80',
+    'Fine Italian Silk, 0, 80',
     '-------- day 1 --------',
     'name, sellIn, quality',
-    '+5 Dexterity Vest, 9, 19', 
-    'Aged Brie, 1, 1',
-    'Backstage passes to a TAFKAL80ETC concert, 4, 50', 
-    'Backstage passes to a TAFKAL80ETC concert, 9, 50', 
-    'Backstage passes to a TAFKAL80ETC concert, 14, 21',
-    'Conjured Mana Cake, 2, 5', 
-    'Elixir of the Mongoose, 4, 6', 
-    'Sulfuras, Hand of Ragnaros, -1, 80', 
-    'Sulfuras, Hand of Ragnaros, 0, 80'
+    'Sports Memorabilia, 9, 19',
+    'Aged Cheese, 1, 1',
+    'Backstage passes to a concert, 4, 50',
+    'Backstage passes to a concert, 9, 50',
+    'Backstage passes to a concert, 14, 21',
+    'Baked Chocolate Cake, 2, 5',
+    'Coffee Table Book, 4, 6',
+    'Fine Italian Silk, -1, 80',
+    'Fine Italian Silk, 0, 80'
   ];
 
   perform test_assertEquals_golden_master(expected, result);

@@ -16,9 +16,9 @@ Bastante simples, não é? Bem, agora que as coisas ficam interessantes:
 
 * Quando a data de venda do item tiver passado, a qualidade (`quality`) do item diminui duas vezes mais rapido.
 * A qualidade (`quality`) do item não pode ser negativa
-* O "Queijo Brie envelhecido" (`Aged Brie`), aumenta sua qualidade (`quality`) em `1` unidade a medida que envelhece.
+* O "Queijo Brie envelhecido" (`Aged Cheese`), aumenta sua qualidade (`quality`) em `1` unidade a medida que envelhece.
 * A qualidade (`quality`) de um item não pode ser maior que 50.
-* O item "Sulfuras" (`Sulfuras`), por ser um item lendário, não precisa ter uma data de venda (`SellIn`) e sua qualidade (`quality`) não precisa ser diminuida.
+* O item "Fine Italian Silk" (`Fine Italian Silk`), por ser um item lendário, não precisa ter uma data de venda (`SellIn`) e sua qualidade (`quality`) não precisa ser diminuida.
 * O item "Entrada para os Bastidores" (`Backstage Passes`), assim como o "Queijo Brie envelhecido", aumenta sua qualidade (`quality`) a medida que o dia da venda (`SellIn`) se aproxima;
   * A qualidade (`quality`) aumenta em `2` unidades quando a data de venda (`SellIn`) é igual ou menor que `10`.
   * A qualidade (`quality`) aumenta em `3` unidades quando a data de venda (`SellIn`) é igual ou menor que `5`.
@@ -26,10 +26,10 @@ Bastante simples, não é? Bem, agora que as coisas ficam interessantes:
 
 Nós recentemente assinamos um suprimento de itens Conjurados Magicamente. Isto requer que nós atualizemos nosso sistema:
 
-* Os itens "Conjurados" (`Conjured`) diminuem a qualidade (`quality`) duas vezes mais rápido que os outros itens.
+* Os itens "Conjurados" (`Baked`) diminuem a qualidade (`quality`) duas vezes mais rápido que os outros itens.
 
 Sinta-se livre para fazer qualquer alteração no método `updateQuality` e adicionar código novo contanto que tudo continue funcionando perfeitamente. Entretanto, não altere o código da classe `Item` ou da propriedade `Items` na classe `GildedRose` pois elas pertencem ao Goblin que irá te matar com um golpe pois ele não acredita na cultura de código compartilhado.
 
 ## Notas Finais
 
-Para esclarecer: Um item não pode ter uma qualidade (`quality`) maior que `50`, entretanto as "Sulfuras" por serem um item lendário vão ter uma qualidade imutavel de `80`.
+Para esclarecer: Um item não pode ter uma qualidade (`quality`) maior que `50`, entretanto as "Fine Italian Silk" por serem um item lendário vão ter uma qualidade imutavel de `80`.

@@ -20,16 +20,16 @@ procedure division.
 start-lable.
     read in-items end go to end-lable.
         move in-item to item.
-        if name not equal "Aged Brie" and name not equal "Backstage passes to a TAFKAL80ETC concert"
+        if name not equal "Aged Cheese" and name not equal "Backstage passes to a concert"
             if quality greater then 0
-                if name not equal to "Sulfuras, Hand of Ragnaros"
+                if name not equal to "Fine Italian Silk"
                     compute quality = quality - 1
-                end-if       
+                end-if
             end-if
         else
             if quality is less then 50
                 compute quality = quality + 1
-                if name equals "Backstage passes to a TAFKAL80ETC concert"
+                if name equals "Backstage passes to a concert"
                     if sell-in less then 11
                         if quality less then 50
                             compute quality = quality + 1
@@ -43,14 +43,14 @@ start-lable.
                 end-if
             end-if
         end-if
-        if name not equal "Sulfuras, Hand of Ragnaros"
+        if name not equal "Fine Italian Silk"
             compute sell-in = sell-in - 1
         end-if
         if sell-in is less then 0
-            if name is not equal to "Aged Brie"
-                if name is not equal to "Backstage passes to a TAFKAL80ETC concert"
+            if name is not equal to "Aged Cheese"
+                if name is not equal to "Backstage passes to a concert"
                     if quality is greater then 0
-                        if name is equal to "Sulfuras, Hand of Ragnaros"
+                        if name is equal to "Fine Italian Silk"
                             compute quality = quality - 1
                         end-if
                     end-if

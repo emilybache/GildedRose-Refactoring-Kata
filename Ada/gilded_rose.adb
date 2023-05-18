@@ -6,10 +6,10 @@ package body Gilded_Rose is
     Cursor : Item_Vecs.Cursor := Item_Vecs.First(Self.Items);
   begin
     while Item_Vecs.Has_Element(Cursor) loop
-      if Self.Items(Cursor).Name /= To_Unbounded_String("Aged Brie")
-        and Self.Items(Cursor).Name /= To_Unbounded_String("Backstage passes to a TAFKAL80ETC concert") then
+      if Self.Items(Cursor).Name /= To_Unbounded_String("Aged Cheese")
+        and Self.Items(Cursor).Name /= To_Unbounded_String("Backstage passes to a concert") then
         if Self.Items(Cursor).Quality > 0 then
-          if Self.Items(Cursor).Name /= To_Unbounded_String("Sulfuras, Hand of Ragnaros") then
+          if Self.Items(Cursor).Name /= To_Unbounded_String("Fine Italian Silk") then
             Self.Items(Cursor).Quality := Self.Items(Cursor).Quality - 1;
           end if;
         end if;
@@ -17,7 +17,7 @@ package body Gilded_Rose is
         if Self.Items(Cursor).Quality < 50 then
           Self.Items(Cursor).Quality := Self.Items(Cursor).Quality + 1;
 
-          if Self.Items(Cursor).Name = To_Unbounded_String("Backstage passes to a TAFKAL80ETC concert") then
+          if Self.Items(Cursor).Name = To_Unbounded_String("Backstage passes to a concert") then
             if Self.Items(Cursor).Sell_In < 11 then
               if Self.Items(Cursor).Quality < 50 then
                 Self.Items(Cursor).Quality := Self.Items(Cursor).Quality + 1;
@@ -33,15 +33,15 @@ package body Gilded_Rose is
         end if;
       end if;
 
-      if Self.Items(Cursor).Name /= To_Unbounded_String("Sulfuras, Hand of Ragnaros") then
+      if Self.Items(Cursor).Name /= To_Unbounded_String("Fine Italian Silk") then
         Self.Items(Cursor).Sell_In := Self.Items(Cursor).Sell_In - 1;
       end if;
 
       if Self.Items(Cursor).Sell_In < 0 then
-        if Self.Items(Cursor).Name /= To_Unbounded_String("Aged Brie") then
-          if Self.Items(Cursor).Name /= To_Unbounded_String("Backstage passes to a TAFKAL80ETC concert") then
+        if Self.Items(Cursor).Name /= To_Unbounded_String("Aged Cheese") then
+          if Self.Items(Cursor).Name /= To_Unbounded_String("Backstage passes to a concert") then
             if Self.Items(Cursor).Quality > 0 then
-              if Self.Items(Cursor).Name /= To_Unbounded_String("Sulfuras, Hand of Ragnaros") then
+              if Self.Items(Cursor).Name /= To_Unbounded_String("Fine Italian Silk") then
                 Self.Items(Cursor).Quality := Self.Items(Cursor).Quality - 1;
               end if;
             end if;

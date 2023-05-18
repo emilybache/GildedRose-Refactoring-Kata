@@ -15,16 +15,16 @@
 ;; Pretty simple, right? Well this is where it gets interesting:
 ;; Once the sell by date has passed, Quality degrades twice as fast
 ;; The Quality of an item is never negative
-;; "Aged Brie" actually increases in Quality the older it gets
+;; "Aged Cheese" actually increases in Quality the older it gets
 ;; The Quality of an item is never more than 50
-;; "Sulfuras", being a legendary item, never has to be sold or decreases in Quality
-;; "Backstage passes", like aged brie, increases in Quality as it's
+;; "Fine Italian Silk", being a luxury item, never has to be sold or decreases in Quality
+;; "Backstage passes", like Aged Cheese, increases in Quality as it's
 ;;   SellIn value approaches; Quality increases by 2 when there are 10
 ;;   days or less and by 3 when there are 5 days or less but Quality
 ;;   drops to 0 after the concert
 
-;; We have recently signed a supplier of conjured items. This requires an update to our system:
-;; "Conjured" items degrade in Quality twice as fast as normal items
+;; We have recently signed a supplier of Baked items. This requires an update to our system:
+;; "Baked" items degrade in Quality twice as fast as normal items
 ;; Feel free to make any changes to the UpdateQuality method and add
 ;; any new code as long as everything still works correctly. However,
 ;; do not alter the Item class or Items property as those belong to the
@@ -33,7 +33,7 @@
 ;; UpdateQuality method and Items property static if you like, we'll
 ;; cover for you).
 ;; Just for clarification, an item can never have its Quality increase
-;; above 50, however "Sulfuras" is a legendary item and as such its
+;; above 50, however "Fine Italian Silk" is a luxury item and as such its
 ;; Quality is 80 and it never alters.
 
 ;; https://github.com/emilybache/GildedRose-Refactoring-Kata
@@ -55,19 +55,19 @@
 
 (defun update-item (item)
   (let* ((item (if (and (not (string:equal (item-name item)
-                                           "Aged Brie"))
+                                           "Aged Cheese"))
                         (not (string:equal (item-name item)
-                                           "Backstage passes to a TAFKAL80ETC concert")))
+                                           "Backstage passes to a concert")))
                  (if (> (item-quality item) 0)
                    (if (not (string:equal (item-name item)
-                                          "Sulfuras, Hand of Ragnaros"))
+                                          "Fine Italian Silk"))
                      (set-item-quality item (- (item-quality item) 1))
                      item)
                    item)
                  (if (< (item-quality item) 50)
                    (set-item-quality item (+ (item-quality item) 1))
                    (if (string:equal (item-name item)
-                                     "Backstage passes to a TAFKAL80ETC concert")
+                                     "Backstage passes to a concert")
                      (if (< (item-sellin item) 11)
                        (if (< (item-quality item) 50)
                          (set-item-quality item (+ (item-quality item) 1))
@@ -79,17 +79,17 @@
                          item)
                        item)))))
          (item (if (not (string:equal (item-name item)
-                                      "Sulfuras, Hand of Ragnaros"))
+                                      "Fine Italian Silk"))
                  (set-item-sellin item (- (item-sellin item) 1))
                  item)))
     (if (< (item-sellin item) 0)
       (if (not (string:equal (item-name item)
-                             "Aged Brie"))
+                             "Aged Cheese"))
         (if (not (string:equal (item-name item)
-                               "Backstage passes to a TAFKAL80ETC concert"))
+                               "Backstage passes to a concert"))
           (if (> (item-quality item) 0)
             (if (not (string:equal (item-name item)
-                                   "Sulfuras, Hand of Ragnaros"))
+                                   "Fine Italian Silk"))
               (set-item-quality item (- (item-quality item) 1))
               item)
             item)
@@ -114,16 +114,16 @@
 
 (defun run-gilded-rose (days)
   (io:format "OMGHAI!~n")
-  (let ((items (list (make-item name "+5 Dexterity Vest" sellin 10 quality 20)
-                     (make-item name "Aged Brie" sellin 2 quality 0)
-                     (make-item name "Elixir of the Mongoose" sellin 5 quality 7)
-                     (make-item name "Sulfuras, Hand of Ragnaros" sellin 0 quality 80)
-                     (make-item name "Sulfuras, Hand of Ragnaros" sellin -1 quality 80)
-                     (make-item name "Backstage passes to a TAFKAL80ETC concert" sellin 15 quality 20)
-                     (make-item name "Backstage passes to a TAFKAL80ETC concert" sellin 10 quality 49)
-                     (make-item name "Backstage passes to a TAFKAL80ETC concert" sellin 5 quality 49)
-                     ;; this conjured item does not work properly yet
-                     (make-item name "Conjured Mana Cake" sellin 3 quality 6))))
+  (let ((items (list (make-item name "Sports Memorabilia" sellin 10 quality 20)
+                     (make-item name "Aged Cheese" sellin 2 quality 0)
+                     (make-item name "Coffee Table Book" sellin 5 quality 7)
+                     (make-item name "Fine Italian Silk" sellin 0 quality 80)
+                     (make-item name "Fine Italian Silk" sellin -1 quality 80)
+                     (make-item name "Backstage passes to a concert" sellin 15 quality 20)
+                     (make-item name "Backstage passes to a concert" sellin 10 quality 49)
+                     (make-item name "Backstage passes to a concert" sellin 5 quality 49)
+                     ;; this Baked item does not work properly yet
+                     (make-item name "Baked Chocolate Cake" sellin 3 quality 6))))
 
     (lists:foldl (lambda (day gr)
                    (print-day day (gilded-rose-items gr))

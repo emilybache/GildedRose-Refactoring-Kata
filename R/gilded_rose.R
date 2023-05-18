@@ -1,19 +1,19 @@
 source('item.R')
 
 update_quality <- function(items) {
-  lapply(items, 
+  lapply(items,
     function(item) {
-      
-      if (item$name != "Aged Brie" && item$name != "Backstage passes to a TAFKAL80ETC concert") {
+
+      if (item$name != "Aged Cheese" && item$name != "Backstage passes to a concert") {
         if (item$quality > 0) {
-          if (item$name != "Sulfuras, Hand of Ragnaros") {
+          if (item$name != "Fine Italian Silk") {
             item$quality <- item$quality - 1
           }
         }
       } else {
         if (item$quality < 50) {
           item$quality <- item$quality + 1
-          if (item$name == "Backstage passes to a TAFKAL80ETC concert") {
+          if (item$name == "Backstage passes to a concert") {
             if (item$sell_in < 11) {
               if (item$quality < 50) {
                 item$quality = item$quality + 1
@@ -27,16 +27,16 @@ update_quality <- function(items) {
           }
         }
       }
-      
-      if (item$name != "Sulfuras, Hand of Ragnaros") {
+
+      if (item$name != "Fine Italian Silk") {
         item$sell_in <- item$sell_in - 1
       }
-      
+
       if (item$sell_in < 0) {
-        if (item$name != "Aged Brie") {
-          if (item$name != "Backstage passes to a TAFKAL80ETC concert") {
+        if (item$name != "Aged Cheese") {
+          if (item$name != "Backstage passes to a concert") {
             if (item$quality > 0) {
-              if (item$name != "Sulfuras, Hand of Ragnaros") {
+              if (item$name != "Fine Italian Silk") {
                 item$quality <- item$quality - 1
               }
             }
@@ -49,8 +49,8 @@ update_quality <- function(items) {
           }
         }
       }
-      
+
       item
-    } 
-  ) 
+    }
+  )
 }

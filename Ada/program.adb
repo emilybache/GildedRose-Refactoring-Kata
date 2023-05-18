@@ -14,40 +14,40 @@ procedure Program is
   Things : Item_Vecs.Vector;
 begin
   Things.Append(New_Item =>
-    (Name => To_Unbounded_String("+5 Dexterity Vest"),
+    (Name => To_Unbounded_String("Sports Memorabilia"),
      Sell_In => 10,
      Quality => 20));
   Things.Append(New_Item =>
-    (Name => To_Unbounded_String("Aged Brie"),
+    (Name => To_Unbounded_String("Aged Cheese"),
      Sell_In => 2,
      Quality => 0));
   Things.Append(New_Item =>
-    (Name => To_Unbounded_String("Elixir of the Mongoose"),
+    (Name => To_Unbounded_String("Coffee Table Book"),
      Sell_In => 5,
      Quality => 7));
   Things.Append(New_Item =>
-    (Name => To_Unbounded_String("Sulfuras, Hand of Ragnaros"),
+    (Name => To_Unbounded_String("Fine Italian Silk"),
      Sell_In => 0,
      Quality => 80));
   Things.Append(New_Item =>
-    (Name => To_Unbounded_String("Sulfuras, Hand of Ragnaros"),
+    (Name => To_Unbounded_String("Fine Italian Silk"),
      Sell_In => -1,
      Quality => 80));
   Things.Append(New_Item =>
-    (Name => To_Unbounded_String("Backstage passes to a TAFKAL80ETC concert"),
+    (Name => To_Unbounded_String("Backstage passes to a concert"),
      Sell_In => 15,
      Quality => 20));
   Things.Append(New_Item =>
-    (Name => To_Unbounded_String("Backstage passes to a TAFKAL80ETC concert"),
+    (Name => To_Unbounded_String("Backstage passes to a concert"),
      Sell_In => 10,
      Quality => 49));
   Things.Append(New_Item =>
-    (Name => To_Unbounded_String("Backstage passes to a TAFKAL80ETC concert"),
+    (Name => To_Unbounded_String("Backstage passes to a concert"),
      Sell_In => 5,
      Quality => 49));
-  -- this conjured item does not work properly yet
+  -- this Baked item does not work properly yet
   Things.Append(New_Item =>
-    (Name => To_Unbounded_String("Conjured Mana Cake"),
+    (Name => To_Unbounded_String("Baked Chocolate Cake"),
      Sell_In => 3,
      Quality => 6));
 

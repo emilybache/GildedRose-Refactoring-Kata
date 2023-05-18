@@ -20,43 +20,43 @@ contains
 
     subroutine init_item(it, name, sellIn, quality)
        type(Item) :: it
-       character(len=*) :: name 
-       integer :: sellIn 
-       integer :: quality 
+       character(len=*) :: name
+       integer :: sellIn
+       integer :: quality
 
        it%name = trim(name)
        it%sellIn = sellIn
        it%quality = quality
 
-    end  
+    end
 
     function int2str( int_val )
       implicit none
       integer :: int_val
       character( int(log10(real(max(abs(int_val),1)))) + 1 + &
           (1-sign(1,int_val))/2 ) :: int2str
-      character(64) :: all_chars      
+      character(64) :: all_chars
       write(all_chars,*) int_val
       int2str = trim( adjustl( all_chars ) )
     end function
-      
+
     subroutine print_item(it)
-      type(Item) :: it 
+      type(Item) :: it
       write(*,*) trim(it%name), ', ', int2str(it%sellIn), ', ', int2str(it%quality)
-    end subroutine 
-      
+    end subroutine
+
     subroutine update_quality(items, size)
         type(Item), dimension(:) :: items
-        integer :: size 
+        integer :: size
 
-        integer :: i 
+        integer :: i
 
         do i = 1, size
-            if (items(i)%name /= "Aged Brie" .and. items(i)%name /= "Backstage passes to a TAFKAL80ETC concert" ) then
+            if (items(i)%name /= "Aged Cheese" .and. items(i)%name /= "Backstage passes to a concert" ) then
 
                 if (items(i)%quality > 0) then
 
-                    if (items(i)%name /= "Sulfuras, Hand of Ragnaros" ) then
+                    if (items(i)%name /= "Fine Italian Silk" ) then
 
                         items(i)%quality = items(i)%quality - 1
                     endif
@@ -68,8 +68,8 @@ contains
                 if (items(i)%quality < 50) then
 
                     items(i)%quality = items(i)%quality + 1
-    
-                    if ( items(i)%name =="Backstage passes to a TAFKAL80ETC concert") then
+
+                    if ( items(i)%name =="Backstage passes to a concert") then
 
                         if (items(i)%sellIn < 11) then
 
@@ -96,28 +96,28 @@ contains
                 endif
 
             endif
-            if (items(i)%name /= "Sulfuras, Hand of Ragnaros") then
+            if (items(i)%name /= "Fine Italian Silk") then
 
                 items(i)%sellIn = items(i)%sellIn - 1
 
             endif
-    
+
             if (items(i)%sellIn < 0) then
 
-                if (items(i)%name /=  "Aged Brie" ) then
+                if (items(i)%name /=  "Aged Cheese" ) then
 
-                    if (items(i)%name /=  "Backstage passes to a TAFKAL80ETC concert" ) then
+                    if (items(i)%name /=  "Backstage passes to a concert" ) then
 
                         if (items(i)%quality > 0 ) then
 
-                            if (items(i)%name /= "Sulfuras, Hand of Ragnaros" )then
+                            if (items(i)%name /= "Fine Italian Silk" )then
 
                                 items(i)%quality = items(i)%quality - 1
 
                             endif
 
                         endif
-                        
+
                     else
 
                         items(i)%quality = items(i)%quality - items(i)%quality
@@ -137,8 +137,8 @@ contains
             end if
 
         end do
-  
+
     end subroutine
 
-    
+
 end module

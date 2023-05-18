@@ -14,24 +14,24 @@ begin
     ResizeList(Items, 9);
 
     Last := 0;
-    InitItem(Items.Elements^[Last], '+5 Dexterity Vest', 10, 20);
+    InitItem(Items.Elements^[Last], 'Sports Memorabilia', 10, 20);
     Inc(Last);
-    InitItem(Items.Elements^[Last], 'Aged Brie', 2, 0);
+    InitItem(Items.Elements^[Last], 'Aged Cheese', 2, 0);
     Inc(Last);
-    InitItem(Items.Elements^[Last], 'Elixir of the Mongoose', 5, 7);
+    InitItem(Items.Elements^[Last], 'Coffee Table Book', 5, 7);
     Inc(Last);
-    InitItem(Items.Elements^[Last], 'Sulfuras, Hand of Ragnaros', 0, 80);
+    InitItem(Items.Elements^[Last], 'Fine Italian Silk', 0, 80);
     Inc(Last);
-    InitItem(Items.Elements^[Last], 'Sulfuras, Hand of Ragnaros', -1, 80);
+    InitItem(Items.Elements^[Last], 'Fine Italian Silk', -1, 80);
     Inc(Last);
-    InitItem(Items.Elements^[Last], 'Backstage passes to a TAFKAL80ETC concert', 15, 20);
+    InitItem(Items.Elements^[Last], 'Backstage passes to a concert', 15, 20);
     Inc(Last);
-    InitItem(Items.Elements^[Last], 'Backstage passes to a TAFKAL80ETC concert', 10, 49);
+    InitItem(Items.Elements^[Last], 'Backstage passes to a concert', 10, 49);
     Inc(Last);
-    InitItem(Items.Elements^[Last], 'Backstage passes to a TAFKAL80ETC concert', 5, 49);
+    InitItem(Items.Elements^[Last], 'Backstage passes to a concert', 5, 49);
     Inc(Last);
-    { this Conjured item doesn't yet work properly }
-    InitItem(Items.Elements^[Last], 'Conjured Mana Cake', 3, 6);
+    { this Baked item doesn't yet work properly }
+    InitItem(Items.Elements^[Last], 'Baked Chocolate Cake', 3, 6);
     Inc(Last);
     Items.Length := Last;
 

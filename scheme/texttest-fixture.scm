@@ -3,16 +3,16 @@
 (display "OMGHAI!")
 (newline)
 
-(let ((items (list (make-item "+5 Dexterity Vest" 10 20)
-                   (make-item "Aged Brie" 2 0)
-                   (make-item "Elixir of the Mongoose" 5 7)
-                   (make-item "Sulfuras, Hand of Ragnaros" 0 80)
-                   (make-item "Sulfuras, Hand of Ragnaros" -1 80)
-                   (make-item "Backstage passes to a TAFKAL80ETC concert" 15 20)
-                   (make-item "Backstage passes to a TAFKAL80ETC concert" 10 49)
-                   (make-item "Backstage passes to a TAFKAL80ETC concert" 5 49)
-                   ;; this conjured item does not work properly yet
-                   (make-item "Conjured Mana Cake" 3 6)))
+(let ((items (list (make-item "Sports Memorabilia" 10 20)
+                   (make-item "Aged Cheese" 2 0)
+                   (make-item "Coffee Table Book" 5 7)
+                   (make-item "Fine Italian Silk" 0 80)
+                   (make-item "Fine Italian Silk" -1 80)
+                   (make-item "Backstage passes to a concert" 15 20)
+                   (make-item "Backstage passes to a concert" 10 49)
+                   (make-item "Backstage passes to a concert" 5 49)
+                   ;; this Baked item does not work properly yet
+                   (make-item "Baked Chocolate Cake" 3 6)))
       (days  2))
 
     (define (loop day)

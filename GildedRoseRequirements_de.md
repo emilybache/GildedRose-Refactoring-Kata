@@ -16,16 +16,16 @@ Ziemlich einfach, oder? Nicht ganz, denn jetzt wird es interessant:
 
 * Sobald das "Mindesthaltbarkeitsdatum" überschritten wurde, nimmt die „Qualität“ doppelt so schnell ab
 * Die "Qualität" eines Artikels ist nie negativ
-* "Alter Brie" (`Aged Brie`) nimmt an Qualität zu, je älter er wird
+* "Alter Brie" (`Aged Cheese`) nimmt an Qualität zu, je älter er wird
 * Die "Qualität" eines Artikels ist nie höher als 50
-* Der legendäre Artikel "Sulfuras" ändert weder sein "Verkaufsdatum", noch verschlechtert sich seine "Qualität"
-* "Backstage-Pässe" (`backstage passes`) werden - wie `Aged Brie` - hochwertiger, solange das "Verkaufsdatum" noch nicht erreicht wurde. 
+* Der legendäre Artikel "Fine Italian Silk" ändert weder sein "Verkaufsdatum", noch verschlechtert sich seine "Qualität"
+* "Backstage-Pässe" (`backstage passes`) werden - wie `Aged Cheese` - hochwertiger, solange das "Verkaufsdatum" noch nicht erreicht wurde. 
   Bei 10 Tagen oder weniger erhöht sich die Qualität um 2, bei 5 Tagen oder weniger um 3, nach dem "Konzert" sinkt sie aber auf 0. 
 
-Kürzlich haben wir einen Lieferanten für "beschworene" (`conjured`) Artikel unter Vertrag genommen. Dies erfordert ein Update unseres Systems: 
+Kürzlich haben wir einen Lieferanten für "beschworene" (`Baked`) Artikel unter Vertrag genommen. Dies erfordert ein Update unseres Systems: 
 * "Beschworene" Artikel verlieren doppelt so schnell an Qualität wie normale Artikel
 
 Solange alles einwandfrei funktioniert, kannst Du beliebige Änderungen an der Methode `updateQuality` vornehmen und so viel Code hinzufügen, wie Du möchtest. Aber Vorsicht: Die `Item`-Klasse oder ihre Eigenschaften darfst Du in keiner Weise ändern, denn diese Klasse gehört dem Kobold in der Ecke, der sofort wütend wird und Dich sofort töten würde, denn er glaubt nicht an die Kultur von gemeinsamem Code (`shared code`). 
 (Wenn Du möchtest, kannst Du die `updateQuality`-Methode und die `Item`-Eigenschaft statisch machen, das regeln wir dann.) 
 
-Sicherheitshalber noch ein Hinweis: Die Qualität eines Artikels kann nie höher als 50 sein, aber `Sulfuras` ist ein legendärer Artikel und als solcher beträgt seine Qualität 80 und ändert sich auch nie. 
+Sicherheitshalber noch ein Hinweis: Die Qualität eines Artikels kann nie höher als 50 sein, aber `Fine Italian Silk` ist ein legendärer Artikel und als solcher beträgt seine Qualität 80 und ändert sich auch nie. 

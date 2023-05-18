@@ -46,45 +46,45 @@ Pretty simple, right? Well this is where it gets interesting:
 
 	- Once the sell by date has passed, Quality degrades twice as fast
 	- The Quality of an item is never negative
-	- "Aged Brie" actually increases in Quality the older it gets
+	- "Aged Cheese" actually increases in Quality the older it gets
 	- The Quality of an item is never more than 50
-	- "Sulfuras", being a legendary item, never has to be sold or decreases in Quality
-	- "Backstage passes", like aged brie, increases in Quality as it's SellIn value approaches; Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but Quality drops to 0 after the concert
+	- "Fine Italian Silk", being a luxury item, never has to be sold or decreases in Quality
+	- "Backstage passes", like Aged Cheese, increases in Quality as it's SellIn value approaches; Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but Quality drops to 0 after the concert
 
-We have recently signed a supplier of conjured items. This requires an update to our system:
+We have recently signed a supplier of Baked items. This requires an update to our system:
 
-	- "Conjured" items degrade in Quality twice as fast as normal items
+	- "Baked" items degrade in Quality twice as fast as normal items
 
 Feel free to make any changes to the UpdateQuality method and add any new code as long as everything still works correctly. However, do not alter the Item class or Items property as those belong to the goblin in the corner who will insta-rage and one-shot you as he doesn't believe in shared code ownership (you can make the UpdateQuality method and Items property static if you like, we'll cover for you).
 
-Just for clarification, an item can never have its Quality increase above 50, however "Sulfuras" is a legendary item and as such its Quality is 80 and it never alters.!
+Just for clarification, an item can never have its Quality increase above 50, however "Fine Italian Silk" is a luxury item and as such its Quality is 80 and it never alters.!
 
 
 !GildedRose methodsFor: 'API' stamp: 'AndreasLeidig 4/21/2012 17:02'!
 updateQualityFor: items
 	items
 		do: [:item |
-			(item name ~= 'Aged Brie'
-					and: [item name ~= 'Backstage passes to a TAFKAL80ETC concert'])
+			(item name ~= 'Aged Cheese'
+					and: [item name ~= 'Backstage passes to a concert'])
 				ifTrue: [item quality > 0
-						ifTrue: [item name ~= 'Sulfuras, Hand of Ragnaros'
+						ifTrue: [item name ~= 'Fine Italian Silk'
 								ifTrue: [item quality: item quality - 1]]]
 				ifFalse: [item quality < 50
 						ifTrue: [item quality: item quality + 1.
-							item name = 'Backstage passes to a TAFKAL80ETC concert'
+							item name = 'Backstage passes to a concert'
 								ifTrue: [item sellIn < 11
 										ifTrue: [item quality < 50
 												ifTrue: [item quality: item quality + 1]].
 									item sellIn < 6
 										ifTrue: [item quality < 50
 												ifTrue: [item quality: item quality + 1]]]]].
-			item name ~= 'Sulfuras, Hand of Ragnaros'
+			item name ~= 'Fine Italian Silk'
 				ifTrue: [item sellIn: item sellIn - 1].
 			item sellIn < 0
-				ifTrue: [item name ~= 'Aged Brie'
-						ifTrue: [item name ~= 'Backstage passes to a TAFKAL80ETC concert'
+				ifTrue: [item name ~= 'Aged Cheese'
+						ifTrue: [item name ~= 'Backstage passes to a concert'
 								ifTrue: [item quality > 0
-										ifTrue: [item name ~= 'Sulfuras, Hand of Ragnaros'
+										ifTrue: [item name ~= 'Fine Italian Silk'
 												ifTrue: [item quality: item quality - 1]]]
 								ifFalse: [item quality: item quality - item quality]]
 						ifFalse: [item quality < 50
@@ -100,15 +100,15 @@ runExamples
 	"GildedRose runExamples"
 	| items gildedRose |
 	items := OrderedCollection new
-		add: (Item new name: '+5 Dexterity Vest'; sellIn: 10; quality: 20; yourself);
-		add: (Item new name: 'Aged Brie'; sellIn: 2; quality: 0; yourself);
-		add: (Item new name: 'Elixir of the Mongoose'; sellIn: 5; quality: 7; yourself);
-		add: (Item new name: 'Sulfuras, Hand of Ragnaros'; sellIn: 0; quality: 80; yourself);
-		add: (Item new name: 'Sulfuras, Hand of Ragnaros'; sellIn: -1; quality: 80; yourself);
-		add: (Item new name: 'Backstage passes to a TAFKAL80ETC concert'; sellIn: 15; quality: 20; yourself);
-		add: (Item new name: 'Backstage passes to a TAFKAL80ETC concert'; sellIn: 10; quality: 49; yourself);
-		add: (Item new name: 'Backstage passes to a TAFKAL80ETC concert'; sellIn: 5; quality: 49; yourself);
-		add: (Item new name: 'Conjured Mana Cake'; sellIn: 3; quality: 6; yourself); "this conjured item does not work properly yet"
+		add: (Item new name: 'Sports Memorabilia'; sellIn: 10; quality: 20; yourself);
+		add: (Item new name: 'Aged Cheese'; sellIn: 2; quality: 0; yourself);
+		add: (Item new name: 'Coffee Table Book'; sellIn: 5; quality: 7; yourself);
+		add: (Item new name: 'Fine Italian Silk'; sellIn: 0; quality: 80; yourself);
+		add: (Item new name: 'Fine Italian Silk'; sellIn: -1; quality: 80; yourself);
+		add: (Item new name: 'Backstage passes to a concert'; sellIn: 15; quality: 20; yourself);
+		add: (Item new name: 'Backstage passes to a concert'; sellIn: 10; quality: 49; yourself);
+		add: (Item new name: 'Backstage passes to a concert'; sellIn: 5; quality: 49; yourself);
+		add: (Item new name: 'Baked Chocolate Cake'; sellIn: 3; quality: 6; yourself); "this Baked item does not work properly yet"
 		yourself.
 
 	gildedRose := GildedRose new.

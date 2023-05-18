@@ -5,47 +5,47 @@ Module Program
         Console.WriteLine("OMGHAI!")
         Dim Items As IList(Of Item) = New List(Of Item) From {
                 New Item With {
-                .Name = "+5 Dexterity Vest",
+                .Name = "Sports Memorabilia",
                 .SellIn = 10,
                 .Quality = 20
                 },
                 New Item With {
-                .Name = "Aged Brie",
+                .Name = "Aged Cheese",
                 .SellIn = 2,
                 .Quality = 0
                 },
                 New Item With {
-                .Name = "Elixir of the Mongoose",
+                .Name = "Coffee Table Book",
                 .SellIn = 5,
                 .Quality = 7
                 },
                 New Item With {
-                .Name = "Sulfuras, Hand of Ragnaros",
+                .Name = "Fine Italian Silk",
                 .SellIn = 0,
                 .Quality = 80
                 },
                 New Item With {
-                .Name = "Sulfuras, Hand of Ragnaros",
+                .Name = "Fine Italian Silk",
                 .SellIn = - 1,
                 .Quality = 80
                 },
                 New Item With {
-                .Name = "Backstage passes to a TAFKAL80ETC concert",
+                .Name = "Backstage passes to a concert",
                 .SellIn = 15,
                 .Quality = 20
                 },
                 New Item With {
-                .Name = "Backstage passes to a TAFKAL80ETC concert",
+                .Name = "Backstage passes to a concert",
                 .SellIn = 10,
                 .Quality = 49
                 },
                 New Item With {
-                .Name = "Backstage passes to a TAFKAL80ETC concert",
+                .Name = "Backstage passes to a concert",
                 .SellIn = 5,
                 .Quality = 49
                 },
                 New Item With {
-                .Name = "Conjured Mana Cake",
+                .Name = "Baked Chocolate Cake",
                 .SellIn = 3,
                 .Quality = 6
                 }

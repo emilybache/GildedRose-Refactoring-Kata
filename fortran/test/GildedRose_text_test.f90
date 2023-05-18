@@ -14,24 +14,24 @@ program GildedRose_text_test
 
   last = 1
 
-  call init_item(items(last), "+5 Dexterity Vest", 10, 20)
+  call init_item(items(last), "Sports Memorabilia", 10, 20)
   last=last+1
-  call init_item(items(last), "Aged Brie", 2, 0)
+  call init_item(items(last), "Aged Cheese", 2, 0)
   last=last+1
-  call init_item(items(last), "Elixir of the Mongoose", 5, 7)
+  call init_item(items(last), "Coffee Table Book", 5, 7)
   last=last+1
-  call init_item(items(last), "Sulfuras, Hand of Ragnaros", 0, 80)
+  call init_item(items(last), "Fine Italian Silk", 0, 80)
   last=last+1
-  call init_item(items(last), "Sulfuras, Hand of Ragnaros", -1, 80)
+  call init_item(items(last), "Fine Italian Silk", -1, 80)
   last=last+1
-  call init_item(items(last), "Backstage passes to a TAFKAL80ETC concert", 15, 20)
+  call init_item(items(last), "Backstage passes to a concert", 15, 20)
   last=last+1
-  call init_item(items(last), "Backstage passes to a TAFKAL80ETC concert", 10, 49)
+  call init_item(items(last), "Backstage passes to a concert", 10, 49)
   last=last+1
-  call init_item(items(last), "Backstage passes to a TAFKAL80ETC concert", 5, 49)
-  ! this Conjured item doesn't yet work properly
+  call init_item(items(last), "Backstage passes to a concert", 5, 49)
+  ! this Baked item doesn't yet work properly
   last=last+1
-  call init_item(items(last), "Conjured Mana Cake", 3, 6)
+  call init_item(items(last), "Baked Chocolate Cake", 3, 6)
 
   write(*,*) "OMGHAI!"
 
@@ -46,7 +46,7 @@ program GildedRose_text_test
       write(*,*) " "
 
       call update_quality(items, last)
-  enddo 
+  enddo
 
 
 end program

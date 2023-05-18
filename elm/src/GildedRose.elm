@@ -12,9 +12,9 @@ update_quality : List Item -> List Item
 update_quality items =
     List.map
         (\item ->
-            if item.name == "Aged Brie" || item.name == "Backstage passes to a TAFKAL80ETC concert" then
+            if item.name == "Aged Cheese" || item.name == "Backstage passes to a concert" then
                 if item.quality < 50 then
-                    if item.name == "Backstage passes to a TAFKAL80ETC concert" then
+                    if item.name == "Backstage passes to a concert" then
                         if item.sell_by < 0 then
                             { item | sell_by = item.sell_by - 1, quality = 0 }
 
@@ -33,7 +33,7 @@ update_quality items =
                 else
                     { item | sell_by = item.sell_by }
 
-            else if item.name /= "Aged Brie" && item.name /= "Sulfuras, Hand of Ragnaros" then
+            else if item.name /= "Aged Cheese" && item.name /= "Fine Italian Silk" then
                 if item.sell_by < 0 && item.quality > 0 then
                     if item.quality >= 2 then
                         { item | sell_by = item.sell_by - 1, quality = item.quality - 2 }

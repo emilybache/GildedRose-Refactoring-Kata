@@ -22,7 +22,7 @@ If you get this message```LINE 1: CREATE OR REPLACE PROCEDURE public.update_qual
 # Run
 In shell:
 - connect to CLI: ```psql -d kata```
-- add item: ```CALL new_item('+5 Dexterity Vest', 10, 20);```
+- add item: ```CALL new_item('Sports Memorabilia', 10, 20);```
 - check item state: ```SELECT * FROM item;```
 - execute item update: ```CALL update_quality();```
 - check item state: ```SELECT * FROM item;```

@@ -10,16 +10,16 @@ CREATE OR REPLACE PACKAGE BODY texttest IS
    BEGIN
       DELETE FROM ITEM;
 
-      new_item('+5 Dexterity Vest', 10, 20);
-      new_item('Aged Brie', 2, 0);
-      new_item('Elixir of the Mongoose', 5, 7);
-      new_item('Sulfuras, Hand of Ragnaros', 0, 80);
-      new_item('Sulfuras, Hand of Ragnaros', -1, 80);
-      new_item('Backstage passes to a TAFKAL80ETC concert', 15, 20);
-      new_item('Backstage passes to a TAFKAL80ETC concert', 10, 49);
-      new_item('Backstage passes to a TAFKAL80ETC concert', 5, 49);
-      -- this conjured item does not work properly yet ;
-      new_item('Conjured Mana Cake', 3, 6);
+      new_item('Sports Memorabilia', 10, 20);
+      new_item('Aged Cheese', 2, 0);
+      new_item('Coffee Table Book', 5, 7);
+      new_item('Fine Italian Silk', 0, 80);
+      new_item('Fine Italian Silk', -1, 80);
+      new_item('Backstage passes to a concert', 15, 20);
+      new_item('Backstage passes to a concert', 10, 49);
+      new_item('Backstage passes to a concert', 5, 49);
+      -- this Baked item does not work properly yet ;
+      new_item('Baked Chocolate Cake', 3, 6);
    END setup;
 
    PROCEDURE main_test IS
@@ -36,25 +36,25 @@ CREATE OR REPLACE PACKAGE BODY texttest IS
       put_line(v_expected, 'OMGHAI!');
       put_line(v_expected, '-------- day 0 --------');
       put_line(v_expected, 'name, sellIn, quality');
-      put_line(v_expected, '+5 Dexterity Vest, 10, 20' || co_lf || 'Aged Brie, 2, 0');
-      put_line(v_expected, 'Elixir of the Mongoose, 5, 7');
-      put_line(v_expected, 'Sulfuras, Hand of Ragnaros, 0, 80');
-      put_line(v_expected, 'Sulfuras, Hand of Ragnaros, -1, 80');
-      put_line(v_expected, 'Backstage passes to a TAFKAL80ETC concert, 15, 20');
-      put_line(v_expected, 'Backstage passes to a TAFKAL80ETC concert, 10, 49');
-      put_line(v_expected, 'Backstage passes to a TAFKAL80ETC concert, 5, 49');
-      put_line(v_expected, 'Conjured Mana Cake, 3, 6');
+      put_line(v_expected, 'Sports Memorabilia, 10, 20' || co_lf || 'Aged Cheese, 2, 0');
+      put_line(v_expected, 'Coffee Table Book, 5, 7');
+      put_line(v_expected, 'Fine Italian Silk, 0, 80');
+      put_line(v_expected, 'Fine Italian Silk, -1, 80');
+      put_line(v_expected, 'Backstage passes to a concert, 15, 20');
+      put_line(v_expected, 'Backstage passes to a concert, 10, 49');
+      put_line(v_expected, 'Backstage passes to a concert, 5, 49');
+      put_line(v_expected, 'Baked Chocolate Cake, 3, 6');
       put_line(v_expected, '-------- day 1 --------');
       put_line(v_expected, 'name, sellIn, quality');
-      put_line(v_expected, '+5 Dexterity Vest, 9, 19');
-      put_line(v_expected, 'Aged Brie, 1, 1');
-      put_line(v_expected, 'Elixir of the Mongoose, 4, 6');
-      put_line(v_expected, 'Sulfuras, Hand of Ragnaros, 0, 80');
-      put_line(v_expected, 'Sulfuras, Hand of Ragnaros, -1, 80');
-      put_line(v_expected, 'Backstage passes to a TAFKAL80ETC concert, 14, 21');
-      put_line(v_expected, 'Backstage passes to a TAFKAL80ETC concert, 9, 50');
-      put_line(v_expected, 'Backstage passes to a TAFKAL80ETC concert, 4, 50');
-      put_line(v_expected, 'Conjured Mana Cake, 2, 5');
+      put_line(v_expected, 'Sports Memorabilia, 9, 19');
+      put_line(v_expected, 'Aged Cheese, 1, 1');
+      put_line(v_expected, 'Coffee Table Book, 4, 6');
+      put_line(v_expected, 'Fine Italian Silk, 0, 80');
+      put_line(v_expected, 'Fine Italian Silk, -1, 80');
+      put_line(v_expected, 'Backstage passes to a concert, 14, 21');
+      put_line(v_expected, 'Backstage passes to a concert, 9, 50');
+      put_line(v_expected, 'Backstage passes to a concert, 4, 50');
+      put_line(v_expected, 'Baked Chocolate Cake, 2, 5');
 
       put_line(v_result, 'OMGHAI!');
       l_days := 2;

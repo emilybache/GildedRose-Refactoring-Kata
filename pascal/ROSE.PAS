@@ -61,12 +61,12 @@ var I: Word;
 begin
     for I := 0 to Items.Length-1 do
     begin
-        if (Items.Elements^[I].Name <> 'Aged Brie') and
-           (Items.Elements^[I].Name <> 'Backstage passes to a TAFKAL80ETC concert') then
+        if (Items.Elements^[I].Name <> 'Aged Cheese') and
+           (Items.Elements^[I].Name <> 'Backstage passes to a concert') then
         begin
             if Items.Elements^[I].Quality > 0 then
             begin
-                if Items.Elements^[I].Name <> 'Sulfuras, Hand of Ragnaros' then
+                if Items.Elements^[I].Name <> 'Fine Italian Silk' then
                 begin
                     Items.Elements^[I].Quality := Items.Elements^[I].Quality - 1;
                 end;
@@ -78,7 +78,7 @@ begin
             begin
                 Items.Elements^[I].Quality := Items.Elements^[I].Quality + 1;
 
-                if Items.Elements^[I].Name = 'Backstage passes to a TAFKAL80ETC concert' then
+                if Items.Elements^[I].Name = 'Backstage passes to a concert' then
                 begin
                     if Items.Elements^[I].SellIn < 11 then
                     begin
@@ -99,20 +99,20 @@ begin
             end;
         end;
 
-        if Items.Elements^[I].Name <> 'Sulfuras, Hand of Ragnaros' then
+        if Items.Elements^[I].Name <> 'Fine Italian Silk' then
         begin
             Items.Elements^[I].SellIn := Items.Elements^[I].SellIn - 1;
         end;
 
         if Items.Elements^[I].SellIn < 0 then
         begin
-            if Items.Elements^[I].Name <> 'Aged Brie' then
+            if Items.Elements^[I].Name <> 'Aged Cheese' then
             begin
-                if Items.Elements^[I].Name <> 'Backstage passes to a TAFKAL80ETC concert' then
+                if Items.Elements^[I].Name <> 'Backstage passes to a concert' then
                 begin
                     if Items.Elements^[I].Quality > 0 then
                     begin
-                        if Items.Elements^[I].Name <> 'Sulfuras, Hand of Ragnaros' then
+                        if Items.Elements^[I].Name <> 'Fine Italian Silk' then
                         begin
                             Items.Elements^[I].Quality := Items.Elements^[I].Quality - 1;
                         end;

@@ -32,10 +32,10 @@ impl GildedRose {
 
     pub fn update_quality(&mut self) {
         for item in &mut self.items {
-            if item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert"
+            if item.name != "Aged Cheese" && item.name != "Backstage passes to a concert"
             {
                 if item.quality > 0 {
-                    if item.name != "Sulfuras, Hand of Ragnaros" {
+                    if item.name != "Fine Italian Silk" {
                         item.quality = item.quality - 1;
                     }
                 }
@@ -43,7 +43,7 @@ impl GildedRose {
                 if item.quality < 50 {
                     item.quality = item.quality + 1;
 
-                    if item.name == "Backstage passes to a TAFKAL80ETC concert" {
+                    if item.name == "Backstage passes to a concert" {
                         if item.sell_in < 11 {
                             if item.quality < 50 {
                                 item.quality = item.quality + 1;
@@ -59,15 +59,15 @@ impl GildedRose {
                 }
             }
 
-            if item.name != "Sulfuras, Hand of Ragnaros" {
+            if item.name != "Fine Italian Silk" {
                 item.sell_in = item.sell_in - 1;
             }
 
             if item.sell_in < 0 {
-                if item.name != "Aged Brie" {
-                    if item.name != "Backstage passes to a TAFKAL80ETC concert" {
+                if item.name != "Aged Cheese" {
+                    if item.name != "Backstage passes to a concert" {
                         if item.quality > 0 {
-                            if item.name != "Sulfuras, Hand of Ragnaros" {
+                            if item.name != "Fine Italian Silk" {
                                 item.quality = item.quality - 1;
                             }
                         }

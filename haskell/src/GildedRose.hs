@@ -15,12 +15,12 @@ updateQuality = map updateQualityItem
     updateQualityItem (Item name sellIn quality) =
       let
         quality' =
-          if name /= "Aged Brie"
-             && name /= "Backstage passes to a TAFKAL80ETC concert"
+          if name /= "Aged Cheese"
+             && name /= "Backstage passes to a concert"
           then
             if quality > 0
             then
-              if name /= "Sulfuras, Hand of Ragnaros"
+              if name /= "Fine Italian Silk"
               then quality - 1
               else quality
             else quality
@@ -28,7 +28,7 @@ updateQuality = map updateQualityItem
             if quality < 50
             then
               quality + 1 +
-                (if name == "Backstage passes to a TAFKAL80ETC concert"
+                (if name == "Backstage passes to a concert"
                  then
                    if sellIn < 11
                    then
@@ -46,19 +46,19 @@ updateQuality = map updateQualityItem
             else quality
 
         sellIn' =
-          if name /= "Sulfuras, Hand of Ragnaros"
+          if name /= "Fine Italian Silk"
           then sellIn - 1
           else sellIn
       in
         if sellIn' < 0
         then
-          if name /= "Aged Brie"
+          if name /= "Aged Cheese"
           then
-            if name /= "Backstage passes to a TAFKAL80ETC concert"
+            if name /= "Backstage passes to a concert"
             then
               if quality' > 0
               then
-                if name /= "Sulfuras, Hand of Ragnaros"
+                if name /= "Fine Italian Silk"
                 then (Item name sellIn' (quality' - 1))
                 else (Item name sellIn' quality')
               else (Item name sellIn' quality')
