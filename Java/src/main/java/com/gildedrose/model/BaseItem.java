@@ -34,10 +34,14 @@ public class BaseItem {
     }
 
     private void updateQuality() {
-        setQuality(getQuality() - 1);
+        setQuality(getQuality() + qualityChange());
     }
 
     protected boolean isExpired() {
         return item.sellIn < 0;
+    }
+
+    private int qualityChange() {
+        return isExpired() ? -2 : -1;
     }
 }
