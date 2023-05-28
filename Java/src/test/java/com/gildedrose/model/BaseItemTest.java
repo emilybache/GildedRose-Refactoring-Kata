@@ -12,4 +12,11 @@ class BaseItemTest {
         BaseItem baseItem = new BaseItem(new Item("foo", 10, 20));
         assertEquals(10, baseItem.getSellIn());
     }
+
+    @Test
+    void itMutatesTheSellInValueOfTheItem() {
+        BaseItem baseItem = new BaseItem(new Item("foo", 10, 20));
+        baseItem.setSellIn(9);
+        assertEquals(9, baseItem.getSellIn());
+    }
 }

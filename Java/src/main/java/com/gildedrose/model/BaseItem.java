@@ -11,4 +11,8 @@ public class BaseItem {
     public int getSellIn() {
         return item.sellIn;
     }
+
+    public void setSellIn(int sellIn) {
+        this.item.sellIn = sellIn;
+    }
 }
