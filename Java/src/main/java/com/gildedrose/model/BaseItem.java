@@ -27,4 +27,8 @@ public class BaseItem {
     public int getQuality() {
         return item.quality;
     }
+
+    public void setQuality(int quality) {
+        item.quality = quality;
+    }
 }
