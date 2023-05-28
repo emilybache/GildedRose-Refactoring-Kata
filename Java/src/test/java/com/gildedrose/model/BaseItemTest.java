@@ -58,5 +58,18 @@ class BaseItemTest {
         testItem.update();
         assertEquals(8, testItem.getQuality());
     }
+    @Test
+    void givenABaseItemWithZeroQuality_whenUpdated_thenQualityIsNeverNegative() {
+        BaseItem testItem = new BaseItem(new Item("test_item", 0, 0));
+        testItem.update();
+        assertEquals(0, testItem.getQuality());
+    }
+
+    @Test
+    void givenAnExpiredBaseItemWithQualityOne_whenUpdated_thenQualityIsNeverNegative() {
+        BaseItem testItem = new BaseItem(new Item("test_item", -1, 1));
+        testItem.update();
+        assertEquals(0, testItem.getQuality());
+    }
 
 }

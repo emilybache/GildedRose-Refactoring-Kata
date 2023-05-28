@@ -4,6 +4,7 @@ import com.gildedrose.Item;
 
 public class BaseItem {
     private final Item item;
+    private final static int MIN_QUALITY = 0;
     public BaseItem(Item item) {
         this.item = item;
     }
@@ -30,7 +31,7 @@ public class BaseItem {
     }
 
     public void setQuality(int quality) {
-        item.quality = quality;
+        item.quality = Math.max(quality, MIN_QUALITY);
     }
 
     private void updateQuality() {
