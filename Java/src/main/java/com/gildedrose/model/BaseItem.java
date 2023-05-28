@@ -18,6 +18,7 @@ public class BaseItem {
 
     public void update() {
         decrementSellIn();
+        updateQuality();
     }
 
     private void decrementSellIn() {
@@ -30,5 +31,9 @@ public class BaseItem {
 
     public void setQuality(int quality) {
         item.quality = quality;
+    }
+
+    private void updateQuality() {
+        setQuality(getQuality() - 1);
     }
 }
