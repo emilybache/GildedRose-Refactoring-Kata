@@ -13,6 +13,14 @@ public class BaseItem {
     }
 
     public void setSellIn(int sellIn) {
-        this.item.sellIn = sellIn;
+        item.sellIn = sellIn;
+    }
+
+    public void update() {
+        decrementSellIn();
+    }
+
+    private void decrementSellIn() {
+        setSellIn(getSellIn() - 1);
     }
 }
