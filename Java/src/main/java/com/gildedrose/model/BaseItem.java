@@ -36,4 +36,8 @@ public class BaseItem {
     private void updateQuality() {
         setQuality(getQuality() - 1);
     }
+
+    protected boolean isExpired() {
+        return item.sellIn < 0;
+    }
 }

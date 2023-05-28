@@ -46,4 +46,10 @@ class BaseItemTest {
         assertEquals(9, testItem.getQuality());
     }
 
+    @Test
+    void givenAnItemWithPastSellInDate_itIsExpired() {
+        BaseItem testItem = new BaseItem(new Item("test_item", -1, 10));
+        assertTrue(testItem.isExpired());
+    }
+
 }
