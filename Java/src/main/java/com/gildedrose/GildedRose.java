@@ -65,13 +65,13 @@ class GildedRose {
 
     private static void increaseQuality(Item item) {
         if (item.quality < 50) {
-            item.quality = item.quality + 1;
+            item.quality += 1;
         }
     }
 
     private static void decreaseQuality(Item item) {
         if (item.quality > 0) {
-            item.quality = item.quality - 1;
+            item.quality -= 1;
         }
     }
 }
