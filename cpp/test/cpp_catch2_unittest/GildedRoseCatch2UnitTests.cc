@@ -1,5 +1,5 @@
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
-#include "Catch.hpp"
+#include "catch2/catch_all.hpp"
 #include "GildedRose.h"
 
 TEST_CASE("GildedRoseUnitTest", "Foo")
