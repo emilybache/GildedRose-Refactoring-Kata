@@ -78,12 +78,13 @@ function main(; days::Int64=2)
         Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
         Item("Conjured Mana Cake", 3, 6),
     ]
-    for day in 1:days
+    for day in 0:days
         println("-------- day $day --------")
-        println("name, sellin, quality")
+        println("name, sellIn, quality")
         for item in items
             println(item)
         end
+        println()
         update_quality!(GildedRose(items))
     end
 end
