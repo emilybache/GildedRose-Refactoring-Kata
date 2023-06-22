@@ -40,13 +40,15 @@ export class GildedRose {
   private _isBackstagePass = (name: string): boolean =>
     name === "Backstage passes to a TAFKAL80ETC concert";
 
+  private _isConjured = (name: string): boolean => name.includes("Conjured");
+
   private _decayGeneralItem = (item: Item): Item => {
-    const qualityDecay = item.sellIn > 0 ? 1 : 2;
-    return {
+    const newItem = {
       name: item.name,
-      quality: item.quality > 0 ? item.quality - qualityDecay : 0,
+      quality: item.quality - this._getDecayAmount(item),
       sellIn: item.sellIn - 1,
     };
+    return this._applyQualityLimitation(newItem);
   };
 
   private _decayLegendaryItem = (item: Item): Item => {
@@ -82,11 +84,25 @@ export class GildedRose {
   };
 
   private _applyQualityLimitation = (item: Item): Item => {
+    let newQuality = item.quality;
+    if (item.quality > this.QUALITY_LIM) {
+      newQuality = this.QUALITY_LIM;
+    } else if (item.quality < 0) {
+      newQuality = 0;
+    }
     return {
       name: item.name,
-      quality:
-        item.quality > this.QUALITY_LIM ? this.QUALITY_LIM : item.quality,
+      quality: newQuality,
       sellIn: item.sellIn,
     };
+  };
+
+  private _getDecayAmount = (item: Item): number => {
+    const decayAmount = item.sellIn > 0 ? 1 : 2;
+    if (this._isConjured(item.name)) {
+      return decayAmount * 2;
+    } else {
+      return decayAmount;
+    }
   };
 }

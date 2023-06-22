@@ -8,6 +8,8 @@ const legendaryItem = (sellIn: number, quality: number) =>
   new Item("Sulfuras, Hand of Ragnaros", sellIn, quality);
 const backstagePassItem = (sellIn: number, quality: number) =>
   new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quality);
+const conjuredItem = (sellIn: number, quality: number) =>
+  new Item("Conjured test item", sellIn, quality);
 
 describe("Gilded Rose", () => {
   it("should degrade quality", () => {
@@ -100,6 +102,27 @@ describe("Gilded Rose", () => {
       const items = gildedRose.updateQuality();
       expect(items[0].sellIn).toBe(4);
       expect(items[0].quality).toBe(50);
+    });
+  });
+
+  describe("conjured", () => {
+    it("should degrade quality", () => {
+      const gildedRose = new GildedRose([conjuredItem(1, 3)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].sellIn).toBe(0);
+      expect(items[0].quality).toBe(1);
+    });
+    it("should degrade quality twice as fast past sell in date", () => {
+      const gildedRose = new GildedRose([conjuredItem(0, 4)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].sellIn).toBe(-1);
+      expect(items[0].quality).toBe(0);
+    });
+    it("should not degrade quality past 0", () => {
+      const gildedRose = new GildedRose([conjuredItem(0, 1)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].sellIn).toBe(-1);
+      expect(items[0].quality).toBe(0);
     });
   });
 });
