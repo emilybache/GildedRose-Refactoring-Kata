@@ -95,5 +95,11 @@ describe("Gilded Rose", () => {
       expect(items[0].sellIn).toBe(-1);
       expect(items[0].quality).toBe(0);
     });
+    it("should not exceed 50 quality", () => {
+      const gildedRose = new GildedRose([backstagePassItem(5, 50)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].sellIn).toBe(4);
+      expect(items[0].quality).toBe(50);
+    });
   });
 });
