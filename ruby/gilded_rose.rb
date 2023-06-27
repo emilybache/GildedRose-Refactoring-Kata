@@ -1,3 +1,9 @@
+require_relative 'items/backstage_pass_item'
+require_relative 'items/brie_item'
+require_relative 'items/conjured_item'
+require_relative 'items/normal_item'
+require_relative 'items/sulfura_item'
+
 class GildedRose
   QUALITY_LOWER_LIMIT = 0
   QUALITY_UPPER_LIMIT = 50
@@ -10,80 +16,18 @@ class GildedRose
     @items.each do |item|
       case item.name
       when 'Aged Brie'
-        update_aged_brie_quality(item)
+        BrieItem.new(item).spend_day_in_shop
       when 'Backstage passes to a TAFKAL80ETC concert'
-        update_backstage_passes_quality(item)
+        BackstagePassItem.new(item).spend_day_in_shop
       when 'Conjured Mana Cake'
-        update_conjured_quality(item)
+        ConjuredItem.new(item).spend_day_in_shop
       when 'Sulfuras, Hand of Ragnaros'
-        update_sulfuras_quality(item)
+        SulfuraItem.new(item).spend_day_in_shop
       else
-        update_normal_quality(item)
+        NormalItem.new(item).spend_day_in_shop
       end
     end
   end
-
-  def update_aged_brie_quality(item)
-    decrease_sell_in_day(item)
-
-    increase_item_quality(item)
-    increase_item_quality(item) if item.sell_in.negative?
-
-    keep_quality_upper_limit_in_bounds(item)
-  end
-
-  def update_backstage_passes_quality(item)
-    decrease_sell_in_day(item)
-    return item.quality = 0 if item.sell_in.negative?
-
-    increase_item_quality(item)
-    increase_item_quality(item) if item.sell_in < 10
-    increase_item_quality(item) if item.sell_in < 5
-
-    keep_quality_upper_limit_in_bounds(item)
-  end
-
-  def update_conjured_quality(item)
-    decrease_sell_in_day(item)
-
-    decrease_item_quality(item, 2)
-    decrease_item_quality(item, 2) if item.sell_in.negative?
-
-    keep_quality_lower_limit_in_bounds(item)
-  end
-
-  def update_normal_quality(item)
-    decrease_sell_in_day(item)
-
-    decrease_item_quality(item)
-    decrease_item_quality(item) if item.sell_in.negative?
-
-    keep_quality_lower_limit_in_bounds(item)
-  end
-
-  def update_sulfuras_quality(item); end
-
-  private
-
-    def decrease_sell_in_day(item)
-      item.sell_in -= 1
-    end
-
-    def increase_item_quality(item)
-      item.quality += 1
-    end
-
-    def decrease_item_quality(item, by = 1)
-      item.quality -= by
-    end
-
-    def keep_quality_upper_limit_in_bounds(item)
-      item.quality = QUALITY_UPPER_LIMIT if item.quality > QUALITY_UPPER_LIMIT
-    end
-
-    def keep_quality_lower_limit_in_bounds(item)
-      item.quality = QUALITY_LOWER_LIMIT if item.quality < QUALITY_LOWER_LIMIT
-    end
 end
 
 class Item
