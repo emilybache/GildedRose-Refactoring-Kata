@@ -51,10 +51,13 @@ describe GildedRose do
         end
       end
 
-      it 'does never lower the quality below 0' do
-        items = [Item.new(item_name, sell_in, 0)]
-        GildedRose.new(items).update_quality
-        expect(items[0].quality).to eq 0
+      context 'in all cases' do
+        let(:quality) { 0 }
+
+        it 'does never lower the quality below 0' do
+          subject.update_quality
+          expect(items[0].quality).to eq 0
+        end
       end
     end
 
@@ -146,10 +149,13 @@ describe GildedRose do
         end
       end
 
-      it 'does never raise the quality above 50' do
-        items = [Item.new(item_name, sell_in, 50)]
-        GildedRose.new(items).update_quality
-        expect(items[0].quality).to eq 50
+      context 'in all cases' do
+        let(:quality) { 50 }
+
+        it 'does never raise the quality above 50' do
+          subject.update_quality
+          expect(items[0].quality).to eq 50
+        end
       end
     end
 
@@ -213,10 +219,13 @@ describe GildedRose do
         end
       end
 
-      it 'does never raise the quality above 50' do
-        items = [Item.new(item_name, sell_in, 50)]
-        GildedRose.new(items).update_quality
-        expect(items[0].quality).to eq 50
+      context 'in all cases' do
+        let(:quality) { 50 }
+
+        it 'does never raise the quality above 50' do
+          subject.update_quality
+          expect(items[0].quality).to eq 50
+        end
       end
     end
 
@@ -264,10 +273,13 @@ describe GildedRose do
         end
       end
 
-      it 'does never lower the quality below 0' do
-        items = [Item.new(item_name, sell_in, 0)]
-        GildedRose.new(items).update_quality
-        expect(items[0].quality).to eq 0
+      context 'in all cases' do
+        let(:quality) { 0 }
+
+        it 'does never lower the quality below 0' do
+          subject.update_quality
+          expect(items[0].quality).to eq 0
+        end
       end
     end
   end
