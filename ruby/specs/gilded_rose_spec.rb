@@ -188,7 +188,7 @@ describe GildedRose do
       context 'when 1 day left' do
         let(:sell_in) { 1 }
 
-        it 'increases quality by 1' do
+        it 'increases quality by 3' do
           subject.update_quality
           expect(items[0].quality).to eq 6
         end
@@ -202,7 +202,7 @@ describe GildedRose do
       context 'when sell by date has passed' do
         let(:sell_in) { 0 }
 
-        it 'increases quality by 2' do
+        it 'sets the quality to 0' do
           subject.update_quality
           expect(items[0].quality).to eq 0
         end
