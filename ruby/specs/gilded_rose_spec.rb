@@ -220,7 +220,7 @@ describe GildedRose do
       end
     end
 
-    xcontext "when item name is 'Conjured Mana Cake'" do
+    context "when item name is 'Conjured Mana Cake'" do
       let(:item_name) { 'Conjured Mana Cake' }
 
       context 'when sell by date has not passed' do
@@ -245,7 +245,7 @@ describe GildedRose do
 
         it 'lowers sell_in by 1' do
           subject.update_quality
-          expect(items[0].sell_in).to eq 2
+          expect(items[0].sell_in).to eq 0
         end
       end
 
