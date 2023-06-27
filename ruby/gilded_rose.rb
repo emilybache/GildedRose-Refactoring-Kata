@@ -7,6 +7,8 @@ class GildedRose
   def update_quality
     @items.each do |item|
       case item.name
+      when 'Aged Brie'
+        update_aged_brie_quality(item)
       when 'Sulfuras, Hand of Ragnaros'
         update_sulfuras_quality(item)
       else
@@ -49,6 +51,14 @@ class GildedRose
         end
       end
     end
+  end
+
+  def update_aged_brie_quality(item)
+    item.sell_in -= 1
+
+    item.quality += 1
+    item.quality += 1 if item.sell_in.negative?
+    item.quality = 50 if item.quality > 50
   end
 
   def update_sulfuras_quality(item); end

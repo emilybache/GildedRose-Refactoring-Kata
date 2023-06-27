@@ -37,6 +37,20 @@ describe GildedRose do
         end
       end
 
+      context 'when 1 day left' do
+        let(:sell_in) { 1 }
+
+        it 'lowers quality by 1' do
+          subject.update_quality
+          expect(items[0].quality).to eq 2
+        end
+
+        it 'lowers sell_in by 1' do
+          subject.update_quality
+          expect(items[0].sell_in).to eq 0
+        end
+      end
+
       it 'does never lower the quality below 0' do
         items = [Item.new(item_name, sell_in, 0)]
         subject.update_quality
@@ -57,6 +71,20 @@ describe GildedRose do
         it 'does not lower sell_in' do
           subject.update_quality
           expect(items[0].sell_in).to eq 3
+        end
+      end
+
+      context 'when 1 day left' do
+        let(:sell_in) { 1 }
+
+        it 'does not lower quality by 1' do
+          subject.update_quality
+          expect(items[0].quality).to eq 80
+        end
+
+        it 'does not lower sell_in' do
+          subject.update_quality
+          expect(items[0].sell_in).to eq 1
         end
       end
 
@@ -104,9 +132,23 @@ describe GildedRose do
         end
       end
 
+      context 'when 1 day left' do
+        let(:sell_in) { 1 }
+
+        it 'increases quality by 1' do
+          subject.update_quality
+          expect(items[0].quality).to eq 4
+        end
+
+        it 'lowers sell_in by 1' do
+          subject.update_quality
+          expect(items[0].sell_in).to eq 0
+        end
+      end
+
       it 'does never raise the quality above 50' do
         items = [Item.new(item_name, sell_in, 50)]
-        subject.update_quality
+        GildedRose.new(items).update_quality
         expect(items[0].quality).to eq 50
       end
     end
@@ -143,6 +185,20 @@ describe GildedRose do
         end
       end
 
+      context 'when 1 day left' do
+        let(:sell_in) { 1 }
+
+        it 'increases quality by 1' do
+          subject.update_quality
+          expect(items[0].quality).to eq 6
+        end
+
+        it 'lowers sell_in by 1' do
+          subject.update_quality
+          expect(items[0].sell_in).to eq 0
+        end
+      end
+
       context 'when sell by date has passed' do
         let(:sell_in) { 0 }
 
@@ -159,7 +215,7 @@ describe GildedRose do
 
       it 'does never raise the quality above 50' do
         items = [Item.new(item_name, sell_in, 50)]
-        subject.update_quality
+        GildedRose.new(items).update_quality
         expect(items[0].quality).to eq 50
       end
     end
@@ -168,6 +224,20 @@ describe GildedRose do
       let(:item_name) { 'Conjured Mana Cake' }
 
       context 'when sell by date has not passed' do
+        it 'lowers quality by 2' do
+          subject.update_quality
+          expect(items[0].quality).to eq 1
+        end
+
+        it 'lowers sell_in by 1' do
+          subject.update_quality
+          expect(items[0].sell_in).to eq 2
+        end
+      end
+
+      context 'when 1 day left' do
+        let(:sell_in) { 1 }
+
         it 'lowers quality by 2' do
           subject.update_quality
           expect(items[0].quality).to eq 1
@@ -196,7 +266,7 @@ describe GildedRose do
 
       it 'does never lower the quality below 0' do
         items = [Item.new(item_name, sell_in, 0)]
-        subject.update_quality
+        GildedRose.new(items).update_quality
         expect(items[0].quality).to eq 0
       end
     end
