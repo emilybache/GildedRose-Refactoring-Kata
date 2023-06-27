@@ -8,24 +8,20 @@ class GildedRose
   QUALITY_LOWER_LIMIT = 0
   QUALITY_UPPER_LIMIT = 50
 
+  SPECIALITY_ITEM_MAPPER = {
+    'Aged Brie' => BrieItem,
+    'Backstage passes to a TAFKAL80ETC concert' => BackstagePassItem,
+    'Conjured Mana Cake' => ConjuredItem,
+    'Sulfuras, Hand of Ragnaros' => SulfuraItem
+  }.freeze
+
   def initialize(items)
     @items = items
   end
 
   def update_quality
     @items.each do |item|
-      case item.name
-      when 'Aged Brie'
-        BrieItem.new(item).spend_day_in_shop
-      when 'Backstage passes to a TAFKAL80ETC concert'
-        BackstagePassItem.new(item).spend_day_in_shop
-      when 'Conjured Mana Cake'
-        ConjuredItem.new(item).spend_day_in_shop
-      when 'Sulfuras, Hand of Ragnaros'
-        SulfuraItem.new(item).spend_day_in_shop
-      else
-        NormalItem.new(item).spend_day_in_shop
-      end
+      (SPECIALITY_ITEM_MAPPER[item.name] || NormalItem).new(item).spend_day_in_shop
     end
   end
 end

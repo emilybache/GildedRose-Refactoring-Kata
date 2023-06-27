@@ -17,8 +17,8 @@ diff_program:meld
 # note you'll also need to update the file environment.gr with your classpath if you keep your classfiles somewhere unusual
 
 # Settings for the Ruby version
-#executable:${TEXTTEST_HOME}/ruby/texttest_fixture.rb
-#interpreter:ruby
+executable:${TEXTTEST_HOME}/ruby/texttest_fixture.rb
+interpreter:ruby
 
 # Settings for the C# version
 #executable:${TEXTTEST_HOME}/csharp/bin/Debug/csharp.exe
