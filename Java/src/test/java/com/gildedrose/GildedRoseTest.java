@@ -10,25 +10,25 @@ class GildedRoseTest {
     @Test
     @DisplayName("Regular item")
     void updateQualityRegularItem() {
-        Item itemUnderTest = new Item("Sample Regular Item", 1, 5);
-        Item[] items = new Item[] { itemUnderTest };
+        Item item = new Item("Sample Regular Item", 1, 5);
+        Item[] items = new Item[] { item };
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
-        assertEquals(0, itemUnderTest.sellIn);
-        assertEquals(4, itemUnderTest.quality);
+        assertEquals(0, item.sellIn);
+        assertEquals(4, item.quality);
 
         app.updateQuality();
-        assertEquals(-1, itemUnderTest.sellIn);
-        assertEquals(2, itemUnderTest.quality);
+        assertEquals(-1, item.sellIn);
+        assertEquals(2, item.quality);
 
         app.updateQuality();
-        assertEquals(-2, itemUnderTest.sellIn);
-        assertEquals(0, itemUnderTest.quality);
+        assertEquals(-2, item.sellIn);
+        assertEquals(0, item.quality);
 
         app.updateQuality();
-        assertEquals(-3, itemUnderTest.sellIn);
-        assertEquals(0, itemUnderTest.quality);
+        assertEquals(-3, item.sellIn);
+        assertEquals(0, item.quality);
     }
 
     @Test
