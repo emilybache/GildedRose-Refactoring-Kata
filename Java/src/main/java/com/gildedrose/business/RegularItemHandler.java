@@ -7,19 +7,14 @@ import java.util.List;
 
 public class RegularItemHandler implements ItemHandler {
 
-    private static final List<String> LEGENDARY_ITEMS =  Arrays.asList(new String[]{ItemEnum.SULFURAS.getValue()});
+    private static final List<String> LEGENDARY_ITEMS =  Arrays.asList(ItemEnum.SULFURAS.getValue());
 
     @Override
     public void updateItem(Item item) {
         if (!LEGENDARY_ITEMS.contains(item.name)) {
-            if (item.quality > 0) {
-                decrementQuality(item);
-            }
+            decrementQuality(item, item.quality > 0);
             decrementSellIn(item);
-
-            if (hasExpired(item) && item.quality > 0) {
-                decrementQuality(item);
-            }
+            decrementQuality(item,item.sellIn < 0 && item.quality > 0);
         }
     }
 }
