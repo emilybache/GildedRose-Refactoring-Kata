@@ -1,4 +1,6 @@
-package com.gildedrose;
+package com.gildedrose.strategies;
+
+import com.gildedrose.Item;
 
 public enum BackstagePassesStrategy implements QualityUpdateStrategy {
     INSTANCE;
@@ -7,9 +9,9 @@ public enum BackstagePassesStrategy implements QualityUpdateStrategy {
     public void applyTo(Item item) {
         if (item.sellIn <= 0) {
             item.quality = 0;
-        } else if (item.sellIn >= 10) {
+        } else if (item.sellIn > 10) {
             item.quality = Math.min(50, item.quality+1);
-        } else if (item.sellIn >= 5) {
+        } else if (item.sellIn > 5) {
             item.quality = Math.min(50, item.quality+2);
         } else {
             item.quality = Math.min(50, item.quality+3);

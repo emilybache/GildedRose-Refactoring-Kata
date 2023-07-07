@@ -108,7 +108,6 @@ class GildedRoseTest {
     }
 
     @Test
-    @Disabled
     @DisplayName("Conjured Item")
     void updateQualityConjuredItem() {
         Item conjuredItemUnderTest = new Item("Conjured Sample Item", 1, 8);
