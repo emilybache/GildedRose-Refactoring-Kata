@@ -1,58 +1,71 @@
-package gildedrose
+package services
 
-type Item struct {
-	Name            string
-	SellIn, Quality int
+import (
+    "github.com/emilybache/gildedrose-refactoring-kata/lib"
+    "github.com/emilybache/gildedrose-refactoring-kata/models"
+)
+
+type ItemUpdateService struct {
+    logger     lib.Logger
 }
 
-func UpdateQuality(items []*Item) {
-	for i := 0; i < len(items); i++ {
+func NewItemUpdateService(logger lib.Logger) ItemUpdateService {
+    return ItemUpdateService{
+        logger:     logger,
+    }
+}
 
-		if items[i].Name != "Aged Brie" && items[i].Name != "Backstage passes to a TAFKAL80ETC concert" {
-			if items[i].Quality > 0 {
-				if items[i].Name != "Sulfuras, Hand of Ragnaros" {
-					items[i].Quality = items[i].Quality - 1
-				}
-			}
-		} else {
-			if items[i].Quality < 50 {
-				items[i].Quality = items[i].Quality + 1
-				if items[i].Name == "Backstage passes to a TAFKAL80ETC concert" {
-					if items[i].SellIn < 11 {
-						if items[i].Quality < 50 {
-							items[i].Quality = items[i].Quality + 1
-						}
-					}
-					if items[i].SellIn < 6 {
-						if items[i].Quality < 50 {
-							items[i].Quality = items[i].Quality + 1
-						}
-					}
-				}
-			}
-		}
+func (this ItemUpdateService) UpdateQuality(item *models.Item) error {
+    item.Mutex.Lock()
+    defer item.Mutex.Unlock()
 
-		if items[i].Name != "Sulfuras, Hand of Ragnaros" {
-			items[i].SellIn = items[i].SellIn - 1
-		}
+    itemModel := item.Model
 
-		if items[i].SellIn < 0 {
-			if items[i].Name != "Aged Brie" {
-				if items[i].Name != "Backstage passes to a TAFKAL80ETC concert" {
-					if items[i].Quality > 0 {
-						if items[i].Name != "Sulfuras, Hand of Ragnaros" {
-							items[i].Quality = items[i].Quality - 1
-						}
-					}
-				} else {
-					items[i].Quality = items[i].Quality - items[i].Quality
-				}
-			} else {
-				if items[i].Quality < 50 {
-					items[i].Quality = items[i].Quality + 1
-				}
-			}
-		}
-	}
+    if itemModel.Name != "Aged Brie" && itemModel.Name != "Backstage passes to a TAFKAL80ETC concert" {
+        if itemModel.Quality > 0 {
+            if itemModel.Name != "Sulfuras, Hand of Ragnaros" {
+                itemModel.Quality = itemModel.Quality - 1
+            }
+        }
+    } else {
+        if itemModel.Quality < 50 {
+            itemModel.Quality = itemModel.Quality + 1
+            if itemModel.Name == "Backstage passes to a TAFKAL80ETC concert" {
+                if itemModel.SellIn < 11 {
+                    if itemModel.Quality < 50 {
+                        itemModel.Quality = itemModel.Quality + 1
+                    }
+                }
+                if itemModel.SellIn < 6 {
+                    if itemModel.Quality < 50 {
+                        itemModel.Quality = itemModel.Quality + 1
+                    }
+                }
+            }
+        }
+    }
 
+    if itemModel.Name != "Sulfuras, Hand of Ragnaros" {
+        itemModel.SellIn = itemModel.SellIn - 1
+    }
+
+    if itemModel.SellIn < 0 {
+        if itemModel.Name != "Aged Brie" {
+            if itemModel.Name != "Backstage passes to a TAFKAL80ETC concert" {
+                if itemModel.Quality > 0 {
+                    if itemModel.Name != "Sulfuras, Hand of Ragnaros" {
+                        itemModel.Quality = itemModel.Quality - 1
+                    }
+                }
+            } else {
+                itemModel.Quality = itemModel.Quality - itemModel.Quality
+            }
+        } else {
+            if itemModel.Quality < 50 {
+                itemModel.Quality = itemModel.Quality + 1
+            }
+        }
+    }
+
+    return nil
 }

@@ -1,0 +1,66 @@
+definitions:
+  controllers.UpdateQualityRequest:
+    properties:
+      days:
+        minimum: 0
+        type: integer
+      items:
+        items:
+          $ref: '#/definitions/models.ItemModel'
+        type: array
+    required:
+    - items
+    type: object
+  models.ItemModel:
+    properties:
+      name:
+        type: string
+      quality:
+        minimum: 0
+        type: integer
+      sellIn:
+        type: integer
+    required:
+    - name
+    - quality
+    - sellIn
+    type: object
+info:
+  contact: {}
+paths:
+  /status:
+    get:
+      consumes:
+      - application/json
+      description: Return a simple OK response
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Service is up and running
+      summary: Health check (get status)
+      tags:
+      - health
+  /update_quality:
+    post:
+      consumes:
+      - application/json
+      description: Load a full list of items that will be handled by the service and
+        process them, returning the item list with the updated values for the given
+        days
+      parameters:
+      - description: Items info
+        in: body
+        name: message
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.UpdateQualityRequest'
+      responses:
+        "200":
+          description: Result of items with updated quality
+        "400":
+          description: Invalid data in the request
+      summary: Execute Update Quality for all given items and passed days
+      tags:
+      - items
+swagger: "2.0"
