@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+  gilded-rose:
+    image: gilded-rose:latest
+    ports:
+      - 8080:8080

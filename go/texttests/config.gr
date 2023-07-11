@@ -1,8 +1,11 @@
 full_name:Gilded Rose Refactoring Kata
 
 # set your preferred editor and diff tool.
-view_program:subl
-diff_program:meld
+view_program:vim
+diff_program:diff
+
+executable:${TEXTTEST_HOME}/target/bin/gilded-rose
+interpreter:${TEXTTEST_ROOT}/texttest_fixture.sh
 
 # Settings for the Python version
 #executable:${TEXTTEST_HOME}/python/texttest_fixture.py

@@ -1,0 +1,8 @@
+.env
+coverage.html
+coverage.out
+coverage.xml
+target
+!docs/
+docs/*
+!docs/swagger.yaml
