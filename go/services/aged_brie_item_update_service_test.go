@@ -54,10 +54,10 @@ func TestAgedBrieItemUpdateService_QualityNotHigherThan50(t *testing.T) {
 // sellIn date must decrease
 func TestAgedBrieItemUpdateService_SellInIsDecreased(t *testing.T) {
     runTestCase(t, func(
-        sulfurasItemUpdateService SulfurasItemUpdateService,
+        agedBrieItemUpdateService AgedBrieItemUpdateService,
     ) {
         item := models.NewItem(&models.ItemModel{"Aged Brie", 5, 5})
-        sulfurasItemUpdateService.UpdateQuality(item)
+        agedBrieItemUpdateService.UpdateQuality(item)
         assert.Equal(t, 4, item.Model.SellIn)
     })
 }
