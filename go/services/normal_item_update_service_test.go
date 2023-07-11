@@ -14,7 +14,7 @@ func TestNormalItemUpdateService_QualityBeforeSellIn(t *testing.T) {
     ) {
         item := models.NewItem(&models.ItemModel{"Random normal item", 5, 5})
         normalItemUpdateService.UpdateQuality(item)
-        assert.Equal(t, item.Model.Quality, 4)
+        assert.Equal(t, 4, item.Model.Quality)
     })
 }
 
@@ -25,7 +25,7 @@ func TestNormalItemUpdateService_QualityAfterSellIn0Days(t *testing.T) {
     ) {
         item := models.NewItem(&models.ItemModel{"Random normal item", 0, 5})
         normalItemUpdateService.UpdateQuality(item)
-        assert.Equal(t, item.Model.Quality, 3)
+        assert.Equal(t, 3, item.Model.Quality)
     })
 }
 
@@ -36,7 +36,7 @@ func TestNormalItemUpdateService_QualityAfterSellIn4Days(t *testing.T) {
     ) {
         item := models.NewItem(&models.ItemModel{"Random normal item", -4, 5})
         normalItemUpdateService.UpdateQuality(item)
-        assert.Equal(t, item.Model.Quality, 3)
+        assert.Equal(t, 3, item.Model.Quality)
     })
 }
 
@@ -47,6 +47,6 @@ func TestNormalItemUpdateService_QualityNotLowerThan0(t *testing.T) {
     ) {
         item := models.NewItem(&models.ItemModel{"Random normal item", -4, 0})
         normalItemUpdateService.UpdateQuality(item)
-        assert.Equal(t, item.Model.Quality, 0)
+        assert.Equal(t, 0, item.Model.Quality)
     })
 }
