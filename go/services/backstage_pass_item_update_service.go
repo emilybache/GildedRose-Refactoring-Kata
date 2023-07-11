@@ -19,53 +19,22 @@ func (this BackstagePassItemUpdateService) UpdateQuality(item *models.Item) erro
     item.Mutex.Lock()
     defer item.Mutex.Unlock()
 
-    itemModel := item.Model
-
-    if itemModel.Name != "Aged Brie" && itemModel.Name != "Backstage passes to a TAFKAL80ETC concert" {
-        if itemModel.Quality > 0 {
-            if itemModel.Name != "Sulfuras, Hand of Ragnaros" {
-                itemModel.Quality = itemModel.Quality - 1
-            }
-        }
+    if item.Model.SellIn <= 0 {
+        item.Model.Quality = 0
     } else {
-        if itemModel.Quality < 50 {
-            itemModel.Quality = itemModel.Quality + 1
-            if itemModel.Name == "Backstage passes to a TAFKAL80ETC concert" {
-                if itemModel.SellIn < 11 {
-                    if itemModel.Quality < 50 {
-                        itemModel.Quality = itemModel.Quality + 1
-                    }
-                }
-                if itemModel.SellIn < 6 {
-                    if itemModel.Quality < 50 {
-                        itemModel.Quality = itemModel.Quality + 1
-                    }
-                }
-            }
+        increment := 1
+        if item.Model.SellIn <= 5 {
+            increment = 3
+        } else if item.Model.SellIn <= 10 {
+            increment = 2
         }
-    }
-
-    if itemModel.Name != "Sulfuras, Hand of Ragnaros" {
-        itemModel.SellIn = itemModel.SellIn - 1
-    }
-
-    if itemModel.SellIn < 0 {
-        if itemModel.Name != "Aged Brie" {
-            if itemModel.Name != "Backstage passes to a TAFKAL80ETC concert" {
-                if itemModel.Quality > 0 {
-                    if itemModel.Name != "Sulfuras, Hand of Ragnaros" {
-                        itemModel.Quality = itemModel.Quality - 1
-                    }
-                }
-            } else {
-                itemModel.Quality = itemModel.Quality - itemModel.Quality
-            }
+        if (item.Model.Quality + increment) > 50 {
+            item.Model.Quality = 50
         } else {
-            if itemModel.Quality < 50 {
-                itemModel.Quality = itemModel.Quality + 1
-            }
+            item.Model.Quality += increment
         }
     }
+    item.Model.SellIn--
 
     return nil
 }

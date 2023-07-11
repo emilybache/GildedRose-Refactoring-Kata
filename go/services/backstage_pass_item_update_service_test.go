@@ -62,12 +62,23 @@ func TestBackstagePassItemUpdateService_QualityAfterSellIn4Days(t *testing.T) {
     })
 }
 
+// Quality must not be greater than 50
+func TestBackstagePassItemUpdateService_QualityNotHigherThan50(t *testing.T) {
+    runTestCase(t, func(
+        backstagePassItemUpdateService BackstagePassItemUpdateService,
+    ) {
+        item := models.NewItem(&models.ItemModel{"Backstage passes to a TAFKAL80ETC concert", 1, 50})
+        backstagePassItemUpdateService.UpdateQuality(item)
+        assert.Equal(t, 50, item.Model.Quality)
+    })
+}
+
 // sellIn date must decrease
 func TestBackstagePassItemUpdateService_SellInIsDecreased(t *testing.T) {
     runTestCase(t, func(
         backstagePassItemUpdateService BackstagePassItemUpdateService,
     ) {
-        item := models.NewItem(&models.ItemModel{"Random normal item", -4, 0})
+        item := models.NewItem(&models.ItemModel{"Backstage passes to a TAFKAL80ETC concert", -4, 0})
         backstagePassItemUpdateService.UpdateQuality(item)
         assert.Equal(t, -5, item.Model.SellIn)
     })
