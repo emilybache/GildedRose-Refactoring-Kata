@@ -1,0 +1,13 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "gilded-rose.fullname" . }}-pdb
+  labels:
+    {{- include "gilded-rose.labels" . | nindent 4 }}
+    service: backend
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      {{- include "gilded-rose.selectorLabels" . | nindent 6 }}
+      service: backend
