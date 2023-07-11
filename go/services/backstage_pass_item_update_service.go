@@ -5,17 +5,17 @@ import (
     "github.com/emilybache/gildedrose-refactoring-kata/models"
 )
 
-type ItemUpdateService struct {
+type BackstagePassItemUpdateService struct {
     logger     lib.Logger
 }
 
-func NewItemUpdateService(logger lib.Logger) ItemUpdateService {
-    return ItemUpdateService{
+func NewBackstagePassItemUpdateService(logger lib.Logger) BackstagePassItemUpdateService {
+    return BackstagePassItemUpdateService{
         logger:     logger,
     }
 }
 
-func (this ItemUpdateService) UpdateQuality(item *models.Item) error {
+func (this BackstagePassItemUpdateService) UpdateQuality(item *models.Item) error {
     item.Mutex.Lock()
     defer item.Mutex.Unlock()
 
