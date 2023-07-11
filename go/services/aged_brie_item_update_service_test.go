@@ -39,3 +39,14 @@ func TestAgedBrieItemUpdateService_QualityAfterSellIn4Days(t *testing.T) {
         assert.Equal(t, item.Model.Quality, 7)
     })
 }
+
+// Quality must not be greater than 50
+func TestAgedBrieItemUpdateService_QualityNotHigherThan50(t *testing.T) {
+    runTestCase(t, func(
+        agedBrieItemUpdateService AgedBrieItemUpdateService,
+    ) {
+        item := models.NewItem(&models.ItemModel{"Aged Brie", -4, 50})
+        agedBrieItemUpdateService.UpdateQuality(item)
+        assert.Equal(t, item.Model.Quality, 50)
+    })
+}
