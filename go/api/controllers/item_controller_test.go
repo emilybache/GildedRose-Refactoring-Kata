@@ -46,3 +46,17 @@ func TestInvalidItem(t *testing.T) {
         assert.Equal(t, 400, w.Code)
     })
 }
+
+func TestValidItem(t *testing.T) {
+    runTestCase(t, func(
+        handler lib.RequestHandler,
+    ) {
+        req, _ := http.NewRequest("POST", "/update_quality", strings.NewReader(`
+        { "days": 1, "items": [{ "name": "Random normal item", "quality": 5, "sellIn": 5}]}
+        `))
+        req.Header = map[string][]string{"Content-Type": {"application/json"}}
+
+        w := executeRequest(handler, req)
+        assert.Equal(t, 200, w.Code)
+    })
+}
