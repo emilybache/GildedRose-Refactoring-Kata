@@ -43,10 +43,10 @@ func TestNormalItemUpdateService_QualityAfterSellIn4Days(t *testing.T) {
 // Quality must not be lower than 0
 func TestNormalItemUpdateService_QualityNotLowerThan0(t *testing.T) {
     runTestCase(t, func(
-        agedBrieItemUpdateService AgedBrieItemUpdateService,
+        normalItemUpdateService NormalItemUpdateService,
     ) {
         item := models.NewItem(&models.ItemModel{"Random normal item", -4, 0})
-        agedBrieItemUpdateService.UpdateQuality(item)
+        normalItemUpdateService.UpdateQuality(item)
         assert.Equal(t, item.Model.Quality, 0)
     })
 }
