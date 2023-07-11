@@ -50,3 +50,14 @@ func TestNormalItemUpdateService_QualityNotLowerThan0(t *testing.T) {
         assert.Equal(t, 0, item.Model.Quality)
     })
 }
+
+// sellIn date must decrease
+func TestNormalItemUpdateService_SellInIsDecreased(t *testing.T) {
+    runTestCase(t, func(
+        normalItemUpdateService NormalItemUpdateService,
+    ) {
+        item := models.NewItem(&models.ItemModel{"Random normal item", -4, 0})
+        normalItemUpdateService.UpdateQuality(item)
+        assert.Equal(t, -5, item.Model.SellIn)
+    })
+}
