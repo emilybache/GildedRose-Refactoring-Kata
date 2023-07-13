@@ -1,10 +1,7 @@
-(import ../gilded-rose/main)
+(import ../src/main :as shop)
 (use judge)
 
 (do
-  (def items 
-    [@{ :name "foo" :quality 3 :sell-in 5}
-     @{ :name "bar" :quality 6 :sell-in 6}])
-  (main/update-quality items)
-  (def found (find |(= ($ :quality) 2) items))
-  (test (found :name) "fixme"))
+  (def items [(shop/item "foo" 0 0)])
+  (shop/update-quality items)
+  (test ((first items) :name) "fixme"))

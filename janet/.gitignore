@@ -2,7 +2,9 @@
 
 !.gitignore
 !project.janet
-!gilded-rose/
-!gilded-rose/main.janet
+!README.md
+
+!src/
+!src/main.janet
 !test/
 !test/*.janet
