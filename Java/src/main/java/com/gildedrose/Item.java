@@ -1,12 +1,15 @@
 package com.gildedrose;
 
+import lombok.Data;
+
+@Data
 public class Item {
 
-    public String name;
+     String name;
 
-    public int sellIn;
+     int sellIn;
 
-    public int quality;
+     int quality;
 
     public Item(String name, int sellIn, int quality) {
         this.name = name;
