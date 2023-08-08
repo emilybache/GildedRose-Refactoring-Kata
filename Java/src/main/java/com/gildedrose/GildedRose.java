@@ -7,30 +7,30 @@ public class GildedRose {
     public static void updateQuality(Item[] items) {
         for (Item item : items) {
             if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                item.sellIn--;
+                item.sellIn--; // Decrease sellIn for all items except Sulfuras
 
                 if (item.name.equals("Aged Brie")) {
                     increaseQuality(item);
                     if (item.sellIn < 0) {
-                        increaseQuality(item);
+                        increaseQuality(item); // Quality increases twice after sellIn passes
                     }
                 } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                     increaseQuality(item);
                     if (item.sellIn < 11) {
-                        increaseQuality(item);
+                        increaseQuality(item); // Quality increases by 2 when sellIn is 10 or less
                     }
                     if (item.sellIn < 6) {
-                        increaseQuality(item);
+                        increaseQuality(item); // Quality increases by 3 when sellIn is 5 or less
                     }
                     if (item.sellIn < 0) {
-                        item.quality = MIN_QUALITY;
+                        item.quality = MIN_QUALITY; // Quality drops to 0 after the concert
                     }
                 } else if (item.name.equals("Conjured Mana Cake")) {
-                    decreaseQuality(item, 2);
+                    decreaseQuality(item, 2); // Quality decreases twice as fast for conjured items
                 } else {
-                    decreaseQuality(item);
+                    decreaseQuality(item); // Normal items decrease in quality
                     if (item.sellIn < 0) {
-                        decreaseQuality(item);
+                        decreaseQuality(item); // Quality decreases twice after sellIn passes
                     }
                 }
             }
