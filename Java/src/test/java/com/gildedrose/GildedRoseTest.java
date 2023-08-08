@@ -90,4 +90,40 @@ public class GildedRoseTest {
         assertEquals(1, items[8].sellIn);
         assertEquals(2, items[8].quality);
     }
+
+    @Test
+    public void testDay100() {
+        GildedRose app = new GildedRose();
+        for (int i = 0; i < 100; i++) {
+            app.updateQuality(items);
+        }
+
+        // Assertions for Day 100
+        assertEquals(-90, items[0].sellIn);
+        assertEquals(0, items[0].quality);
+
+        assertEquals(-98, items[1].sellIn);
+        assertEquals(50, items[1].quality);
+
+        assertEquals(-95, items[2].sellIn);
+        assertEquals(0, items[2].quality);
+
+        assertEquals(0, items[3].sellIn);
+        assertEquals(80, items[3].quality);
+
+        assertEquals(-1, items[4].sellIn);
+        assertEquals(80, items[4].quality);
+
+        assertEquals(-85, items[5].sellIn);
+        assertEquals(0, items[5].quality);
+
+        assertEquals(-90, items[6].sellIn);
+        assertEquals(0, items[6].quality);
+
+        assertEquals(-95, items[7].sellIn);
+        assertEquals(0, items[7].quality);
+
+        assertEquals(-97, items[8].sellIn);
+        assertEquals(0, items[8].quality);
+    }
 }
