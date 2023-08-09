@@ -101,8 +101,21 @@ class GildedRoseTest {
     class SulfurasTests {
         // "Sulfuras" never has to be sold or decreases in Quality
         @Test
-        @Disabled
         public void testSulfurasItemQualityUnchanged() {
+            app.updateQuality();
+            assertEquals(80, items[3].quality, "Sulfuras Quality should be unchanged");
+
+            app.updateQuality();
+            assertEquals(80, items[4].quality, "Sulfuras Quality should be unchanged");
+        }
+
+        @Test
+        public void testSulfurasItemSellInUnchanged() {
+            app.updateQuality();
+            assertEquals(0, items[3].sellIn, "Sulfuras SellIn should be unchanged");
+
+            app.updateQuality();
+            assertEquals(-1, items[4].sellIn, "Sulfuras SellIn should be unchanged");
         }
     }
 
