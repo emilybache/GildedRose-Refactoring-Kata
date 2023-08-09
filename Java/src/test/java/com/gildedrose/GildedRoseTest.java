@@ -67,14 +67,21 @@ class GildedRoseTest {
     class AgedBrieTests {
         // The Quality of an item is never more than 50, "Aged Brie" actually increases in Quality the older it gets
         @Test
-        @Disabled
         public void testAgedBrieItemQualityNeverMoreThan50() {
+            for(int i=0; i<100; i++) {
+                app.updateQuality();
+            }
+            assertTrue(items[1].quality <= 50, "Aged Brie Quality should never be more than 50");
         }
 
         // "Aged Brie" actually increases in Quality the older it gets
         @Test
-        @Disabled
         public void testAgedBrieItemQualityIncreases() {
+            app.updateQuality();
+            assertEquals(1, items[1].quality, "Aged Brie Quality should increase");
+
+            app.updateQuality();
+            assertEquals(2, items[1].quality, "Aged Brie Quality should increase");
         }
     }
 
