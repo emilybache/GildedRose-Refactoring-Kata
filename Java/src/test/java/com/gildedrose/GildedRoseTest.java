@@ -21,7 +21,8 @@ class GildedRoseTest {
             new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
             new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
             new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
-            new Item("Conjured Mana Cake", 3, 6)
+            new Item("Conjured Mana Cake", 3, 6),
+            new Item("Conjured Mana Cake", 10, 20)
         };
         app = new GildedRose(items);
     }
@@ -201,14 +202,32 @@ class GildedRoseTest {
     class ConjuredTests{
         // The Quality of an item is never negative, "Conjured" items degrade in Quality
         @Test
-        @Disabled
         public void testConjuredItemQualityCannotGoNegative() {
+            for(int i=0; i<10; i++) {
+                app.updateQuality();
+            }
+            assertTrue(items[8].quality > -1, "Conjured Quality should never be negative");
         }
 
         // "Conjured" items degrade in Quality twice as fast as normal items
         @Test
         @Disabled
+        // failed
         public void testConjuredItemQualityDecreasesTwiceAsFast() {
+            app.updateQuality();
+            assertEquals(1, items[8].quality, "Conjured Quality should decrease twice as fast");
+
+            app.updateQuality();
+            assertEquals(16, items[9].quality, "Conjured Quality should decrease twice as fast");
+        }
+
+        @Test
+        public void testConjuredItemSellInDecrease() {
+            app.updateQuality();
+            assertEquals(2, items[8].sellIn, "Conjured SellIn should decrease by 1");
+
+            app.updateQuality();
+            assertEquals(8, items[9].sellIn, "Conjured SellIn should decrease by 1");
         }
     }
 
