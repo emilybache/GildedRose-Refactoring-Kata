@@ -123,32 +123,77 @@ class GildedRoseTest {
     class BackstagePassesTests {
         // The Quality of an item is never more than 50, "Backstage passes" increases in Quality
         @Test
-        @Disabled
         public void testBackstagePassesItemQualityNeverMoreThan50() {
+            for(int i=0; i<100; i++) {
+                app.updateQuality();
+            }
+            assertTrue(items[5].quality <= 50, "Backstage Passes Quality should never be more than 50");
         }
 
         // "Backstage passes" increases in Quality as its SellIn value approaches
         @Test
-        @Disabled
         public void testBackstagePassesItemQualityIncreases() {
+            app.updateQuality();
+            assertEquals(21, items[5].quality, "Backstage Passes Quality should increase");
+
+            app.updateQuality();
+            assertEquals(50, items[6].quality, "Backstage Passes Quality should increase");
+            assertEquals(50, items[7].quality, "Backstage Passes Quality should increase");
         }
 
         // "Backstage passes" Quality increases by 2 when there are 10 days or less
         @Test
-        @Disabled
         public void testBackstagePassesItemQualityIncreasesWhenSellInLessThan11() {
+            for(int i=0; i<5; i++) {
+                app.updateQuality();
+            }
+            // sellIn is 10, quality is 25
+
+            app.updateQuality();
+            assertEquals(27, items[5].quality, "Backstage Passes Quality should increase by 2 when sellIn is 10 or less");
+
+            app.updateQuality();
+            assertEquals(29, items[5].quality, "Backstage Passes Quality should increase by 2 when sellIn is 10 or less");
         }
 
         // "Backstage passes" Quality increases by 3 when there are 5 days or less
         @Test
-        @Disabled
         public void testBackstagePassesItemQualityIncreasesWhenSellInLessThan6() {
+            for(int i=0; i<10; i++) {
+                app.updateQuality();
+            }
+            // sellIn is 5, quality is 35
+
+            app.updateQuality();
+            assertEquals(38, items[5].quality, "Backstage Passes Quality should increase by 3 when sellIn is 5 or less");
+
+            app.updateQuality();
+            assertEquals(41, items[5].quality, "Backstage Passes Quality should increase by 3 when sellIn is 5 or less");
         }
 
         // "Backstage passes" Quality drops to 0 after the concert
         @Test
-        @Disabled
         public void testBackstagePassesItemQualityDropsToZeroAfterConcert() {
+            for(int i=0; i<15; i++) {
+                app.updateQuality();
+            }
+            // sellIn is 0, quality is 50
+
+            app.updateQuality();
+            assertEquals(0, items[5].quality, "Backstage Passes Quality should drop to zero when sellIn is 0 or less");
+
+            app.updateQuality();
+            assertEquals(0, items[5].quality, "Backstage Passes Quality should drop to zero when sellIn is 0 or less");
+        }
+
+        @Test
+        public void testBackstagePassesItemSellInDecrease() {
+            app.updateQuality();
+            assertEquals(14, items[5].sellIn, "Backstage Passes SellIn should decrease by 1");
+            assertEquals(9, items[6].sellIn, "Backstage Passes SellIn should decrease by 1");
+
+            app.updateQuality();
+            assertEquals(3, items[7].sellIn, "Backstage Passes SellIn should decrease by 1");
         }
     }
 
