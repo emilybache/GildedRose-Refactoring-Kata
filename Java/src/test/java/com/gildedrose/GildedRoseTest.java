@@ -30,18 +30,37 @@ class GildedRoseTest {
         // At the end of each day our system lowers both values (Quality and SellIn) for every item
         @Test
         public void testNormalItemQualityAndSellInDecrease() {
+            app.updateQuality();
+            assertEquals(19, items[0].quality);
+            assertEquals(9, items[0].sellIn);
+
+            app.updateQuality();
+            assertEquals(18, items[0].quality);
+            assertEquals(8, items[0].sellIn);
         }
 
-        // The Quality of an item is never negative
+        // The Quality of an item is never negative, quality of a normal item is decreasing each day
         @Test
-        @Disabled
         public void testNormalItemQualityCannotGoNegative() {
+            for(int i=0; i<10; i++) {
+                app.updateQuality();
+            }
+            assertEquals(0, items[2].quality);
         }
 
         // Once the sell by date has passed, Quality degrades twice as fast
         @Test
-        @Disabled
         public void testQualityDegradesTwiceAfterSellPassed() {
+            for(int i=0; i<10; i++) {
+                app.updateQuality();
+            }
+            assertEquals(10, items[0].quality);
+
+            app.updateQuality();
+            assertEquals(8, items[0].quality);
+
+            app.updateQuality();
+            assertEquals(6, items[0].quality);
         }
     }
 
