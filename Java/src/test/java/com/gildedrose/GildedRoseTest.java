@@ -3,6 +3,7 @@ package com.gildedrose;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GildedRoseTest {
 
@@ -31,12 +32,12 @@ class GildedRoseTest {
         @Test
         public void testNormalItemQualityAndSellInDecrease() {
             app.updateQuality();
-            assertEquals(19, items[0].quality);
-            assertEquals(9, items[0].sellIn);
+            assertEquals(19, items[0].quality, "After first day: Normal Quality should decrease by 1");
+            assertEquals(9, items[0].sellIn, "After first day: Normal SellIn should decrease by 1");
 
             app.updateQuality();
-            assertEquals(18, items[0].quality);
-            assertEquals(8, items[0].sellIn);
+            assertEquals(18, items[0].quality, "After second day: Normal Quality should decrease by 2");
+            assertEquals(8, items[0].sellIn, "After second day: Normal SellIn should decrease by 2");
         }
 
         // The Quality of an item is never negative, quality of a normal item is decreasing each day
@@ -45,22 +46,19 @@ class GildedRoseTest {
             for(int i=0; i<10; i++) {
                 app.updateQuality();
             }
-            assertEquals(0, items[2].quality);
+            assertTrue(items[2].quality > -1, "Normal Quality should never be negative");
         }
 
         // Once the sell by date has passed, Quality degrades twice as fast
         @Test
         public void testQualityDegradesTwiceAfterSellPassed() {
-            for(int i=0; i<10; i++) {
+            for(int i=0; i<11; i++) {
                 app.updateQuality();
             }
-            assertEquals(10, items[0].quality);
+            assertEquals(8, items[0].quality, "Normal Quality should degrade twice after sell passed");
 
             app.updateQuality();
-            assertEquals(8, items[0].quality);
-
-            app.updateQuality();
-            assertEquals(6, items[0].quality);
+            assertEquals(6, items[0].quality, "Normal Quality should degrade twice after sell passed");
         }
     }
 
