@@ -83,6 +83,18 @@ class GildedRoseTest {
             app.updateQuality();
             assertEquals(2, items[1].quality, "Aged Brie Quality should increase");
         }
+
+        @Test
+        public void testAgedBrieItemSellInDecrease() {
+            app.updateQuality();
+            assertEquals(1, items[1].sellIn, "Aged Brie SellIn should decrease by 1");
+
+            app.updateQuality();
+            assertEquals(0, items[1].sellIn, "Aged Brie SellIn should decrease by 1");
+
+            app.updateQuality();
+            assertEquals(-1, items[1].sellIn, "Aged Brie SellIn should decrease by 1");
+        }
     }
 
     @Nested
