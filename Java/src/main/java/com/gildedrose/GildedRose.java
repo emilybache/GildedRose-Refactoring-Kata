@@ -18,13 +18,11 @@ class GildedRose {
     private static class NormalItemUpdateStrategy implements UpdateQualityStrategy {
         @Override
         public void updateQuality(Item item) {
-            if (item.quality > MIN_QUALITY) {
-                item.quality = item.quality - 1;
-            }
+            changeQuality(item, -1);
             item.sellIn = item.sellIn - 1;
 
-            if (item.sellIn < 0 && item.quality > MIN_QUALITY) {
-                item.quality = item.quality - 1;
+            if (item.sellIn < 0) {
+                changeQuality(item, -1);
             }
         }
     }
@@ -32,21 +30,15 @@ class GildedRose {
     private static class BackstagePassesUpdateStrategy implements UpdateQualityStrategy {
         @Override
         public void updateQuality(Item item) {
-            if (item.quality < MAX_QUALITY) {
-                item.quality = item.quality + 1;
-
-                if (item.sellIn < 11 && item.quality < MAX_QUALITY) {
-                    item.quality = item.quality + 1;
-                }
-
-                if (item.sellIn < 6 && item.quality < MAX_QUALITY) {
-                    item.quality = item.quality + 1;
-                }
+            changeQuality(item, 1);
+            if (item.sellIn < 11) {
+                changeQuality(item, 1);
             }
-
+            if (item.sellIn < 6) {
+                changeQuality(item, 1);
+            }
             item.sellIn = item.sellIn - 1;
-
-            if (item.sellIn < MIN_QUALITY) {
+            if (item.sellIn < 0) {
                 item.quality = MIN_QUALITY;
             }
         }
@@ -55,14 +47,12 @@ class GildedRose {
     private static class AgedBrieUpdateStrategy implements UpdateQualityStrategy {
         @Override
         public void updateQuality(Item item) {
-            if (item.quality < MAX_QUALITY) {
-                item.quality = item.quality + 1;
-            }
+            changeQuality(item, 1);
 
             item.sellIn = item.sellIn - 1;
 
-            if (item.sellIn < MIN_QUALITY && item.quality < MAX_QUALITY) {
-                item.quality = item.quality + 1;
+            if (item.sellIn < 0) {
+                changeQuality(item, 1);
             }
         }
     }
@@ -72,6 +62,22 @@ class GildedRose {
         public void updateQuality(Item item) {
             // do nothing
         }
+    }
+
+    private static class ConjuredUpdateStrategy implements UpdateQualityStrategy {
+        @Override
+        public void updateQuality(Item item) {
+            changeQuality(item, -2);
+            item.sellIn = item.sellIn - 1;
+
+            if (item.sellIn < 0) {
+                changeQuality(item, -2);
+            }
+        }
+    }
+
+    private static void changeQuality(Item item, int amount) {
+        item.quality = amount < 0 ? Math.max(MIN_QUALITY, item.quality + amount) : Math.min(MAX_QUALITY, item.quality + amount);
     }
 
 
@@ -87,6 +93,7 @@ class GildedRose {
             put("Backstage passes to a TAFKAL80ETC concert", new BackstagePassesUpdateStrategy());
             put("Aged Brie", new AgedBrieUpdateStrategy());
             put("Sulfuras, Hand of Ragnaros", new SulfurasUpdateStrategy());
+            put("Conjured Mana Cake", new ConjuredUpdateStrategy());
         }};
     }
 

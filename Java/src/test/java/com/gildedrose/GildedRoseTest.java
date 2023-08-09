@@ -211,11 +211,9 @@ class GildedRoseTest {
 
         // "Conjured" items degrade in Quality twice as fast as normal items
         @Test
-        @Disabled
-        // failed
         public void testConjuredItemQualityDecreasesTwiceAsFast() {
             app.updateQuality();
-            assertEquals(1, items[8].quality, "Conjured Quality should decrease twice as fast");
+            assertEquals(4, items[8].quality, "Conjured Quality should decrease twice as fast");
 
             app.updateQuality();
             assertEquals(16, items[9].quality, "Conjured Quality should decrease twice as fast");
