@@ -21,7 +21,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: "Please don't submit a PR containing Kata solutions. If you are adding an improvement to the Katas repo, please resubmit this PR and check the `[X]` box in the PR template."
+              body: "Please don't submit a Pull Request containing a Kata solution to the original repo from Emily Bache. If you are instead trying to add an improvement, please resubmit this PR and check the `[X]` box in the PR template."
             })
       - name: Close PR if checkmark is missing
         if: ${{ !contains(github.event.pull_request.body, '[X] I acknowledge') }}
