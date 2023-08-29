@@ -16,10 +16,10 @@ jobs:
         with:
           script: |
             github.rest.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: "Please don't submit a PR containing Kata solutions. If you are adding an improvement to the Katas repo, please resubmit this PR and check the `[X]` box in the PR template."
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "Please don't submit a PR containing Kata solutions. If you are adding an improvement to the Katas repo, please resubmit this PR and check the `[X]` box in the PR template."
             })
       - name: Close PR if checkmark is missing
         if: ${{ !contains(github.event.pull_request.body, '[X] I acknowledge') }}
@@ -27,8 +27,8 @@ jobs:
         with:
           script: |
             github.rest.pulls.update({
-            pull_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            state: 'closed'
+              pull_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'closed'
             })
