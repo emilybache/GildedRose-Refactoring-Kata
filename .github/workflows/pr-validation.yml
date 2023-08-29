@@ -5,6 +5,8 @@ on:
 
 jobs:
   task-check:
+    # Only run from the base repository
+    if: github.event.repository.name == 'emilybache/GildedRose-Refactoring-Kata'
     runs-on: ubuntu-latest
     permissions:
       issues: write
