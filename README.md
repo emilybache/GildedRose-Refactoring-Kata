@@ -23,6 +23,7 @@ Please don't send me a pull request with your solution. It can be a bit confusin
 - [English](GildedRoseRequirements.txt)
 - [Español](GildedRoseRequirements_es.md)
 - [Français](GildedRoseRequirements_fr.md)
+- [Italiano](GildedRoseRequirements_it.md)
 - [日本語](GildedRoseRequirements_jp.md)
 - [Português](GildedRoseRequirements_pt-BR.md)
 - [Русский](GildedRoseRequirements_ru.txt)
