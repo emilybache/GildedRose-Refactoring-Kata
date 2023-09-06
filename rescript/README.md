@@ -1,13 +1,30 @@
+# Gilded Rose
 
+This is the Gilded Rose kata in Rescript with Jest
 
-# Build
+## Getting started
+
+Install dependencies
+
+```sh
+yarn install
 ```
-npm run build
+
+## Running tests
+
+To run all tests
+
+```sh
+yarn test
 ```
 
-# Watch
+To run all tests in watch mode
 
-```
-npm run watch
+```sh
+yarn test:watch
 ```
 
+To start developing
+```sh
+yarn dev:rescript
+```
