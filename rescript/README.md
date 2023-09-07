@@ -28,3 +28,8 @@ To start developing
 ```sh
 yarn dev:rescript
 ```
+
+To run the TextTest file
+```sh
+yarn texttest [days]
+```

@@ -14,7 +14,7 @@
     "test": "jest",
     "test:watch": "jest --watchAll",
     "dev:rescript": "rescript build -w",
-    "start": "node src/Main.bs.js"
+    "texttest": "node src/TextTest.bs.js"
   },
   "name": "rescript",
   "version": "1.0.0",
