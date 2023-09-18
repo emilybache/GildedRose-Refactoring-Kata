@@ -12,7 +12,7 @@ const items = [
   new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
 
   // This Conjured item does not work properly yet
-  new Item("Conjured Mana Cake", 3, 6),
+  new Item("Conjured Mana Cake", 3, 10),
 ];
 
 const days = Number(process.argv[2]) || 2;

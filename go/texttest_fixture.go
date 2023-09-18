@@ -20,7 +20,7 @@ func main() {
 		{"Backstage passes to a TAFKAL80ETC concert", 15, 20},
 		{"Backstage passes to a TAFKAL80ETC concert", 10, 49},
 		{"Backstage passes to a TAFKAL80ETC concert", 5, 49},
-		{"Conjured Mana Cake", 3, 6}, // <-- :O
+		{"Conjured Mana Cake", 3, 10}, // <-- :O
 	}
 
 	days := 2

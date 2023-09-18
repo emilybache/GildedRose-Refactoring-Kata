@@ -52,7 +52,7 @@ my @items = (
     Item.new(    # This Conjured item does not work properly yet
         name    => 'Conjured Mana Cake',
         sell_in => 3,
-        quality => 6
+        quality => 10
     ),
 );
 

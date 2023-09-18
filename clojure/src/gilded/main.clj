@@ -19,7 +19,7 @@
    {:name "Backstage passes to a TAFKAL80ETC concert", :quality 20, :sell-in 15}
    {:name "Backstage passes to a TAFKAL80ETC concert", :quality 49, :sell-in 10}
    {:name "Backstage passes to a TAFKAL80ETC concert", :quality 49, :sell-in 5}
-   {:name "Conjured Mana Cake", :quality 6, :sell-in 3}])
+   {:name "Conjured Mana Cake", :quality 10, :sell-in 3}])
 
 (defn -main [& args]
   (let [n-days (if (nil? (first args))

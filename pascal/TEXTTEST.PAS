@@ -31,7 +31,7 @@ begin
     InitItem(Items.Elements^[Last], 'Backstage passes to a TAFKAL80ETC concert', 5, 49);
     Inc(Last);
     { this Conjured item doesn't yet work properly }
-    InitItem(Items.Elements^[Last], 'Conjured Mana Cake', 3, 6);
+    InitItem(Items.Elements^[Last], 'Conjured Mana Cake', 3, 10);
     Inc(Last);
     Items.Length := Last;
 

@@ -49,7 +49,7 @@ begin
   Things.Append(New_Item =>
     (Name => To_Unbounded_String("Conjured Mana Cake"),
      Sell_In => 3,
-     Quality => 6));
+     Quality => 10));
 
 
   declare

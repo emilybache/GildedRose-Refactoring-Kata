@@ -10,6 +10,6 @@ INSERT INTO item (name, sellIn, quality) VALUES ('Backstage passes to a TAFKAL80
 INSERT INTO item (name, sellIn, quality) VALUES ('Backstage passes to a TAFKAL80ETC concert', 5, 49);
 
 -- this conjured item does not work properly yet
-INSERT INTO item (name, sellIn, quality) VALUES ('Conjured Mana Cake', 3, 6);
+INSERT INTO item (name, sellIn, quality) VALUES ('Conjured Mana Cake', 3, 10);
 
 COMMIT;

@@ -9,7 +9,7 @@
     (shop/item "Backstage passes to a TAFKAL80ETC concert" 20 15)
     (shop/item "Backstage passes to a TAFKAL80ETC concert" 49 10)
     (shop/item "Backstage passes to a TAFKAL80ETC concert" 49 5)
-    (shop/item "Conjured Mana Cake" 6 3)])
+    (shop/item "Conjured Mana Cake" 10 3)])
 
 # judge allows for snapshot testing of stdout, much like the texttest tool. 
 # So something like the following would create a janet-native test of the output of shop/run:

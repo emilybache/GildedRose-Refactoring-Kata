@@ -32,7 +32,7 @@ void example()
     init_item(items + last++, "Elixir of the Mongoose", 5, 7);
     init_item(items + last++, "Sulfuras, Hand of Ragnaros", 0, 80);
     init_item(items + last++, "Backstage passes to a TAFKAL80ETC concert", 15, 20);
-    init_item(items + last++, "Conjured Mana Cake", 3, 6);
+    init_item(items + last++, "Conjured Mana Cake", 3, 10);
     update_quality(items, last);
 }
 

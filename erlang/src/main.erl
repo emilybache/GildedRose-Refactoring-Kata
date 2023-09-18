@@ -13,7 +13,7 @@
   #item{name = "Backstage passes to a TAFKAL80ETC concert", sell_in = 15, quality = 20},
   #item{name = "Backstage passes to a TAFKAL80ETC concert", sell_in = 10, quality = 49},
   #item{name = "Backstage passes to a TAFKAL80ETC concert", sell_in = 5, quality = 49},
-  #item{name = "Conjured Mana Cake", sell_in = 3, quality = 6}
+  #item{name = "Conjured Mana Cake", sell_in = 3, quality = 10}
 ]).
 
 main([Days]) ->

@@ -195,7 +195,7 @@ CLASS lth_texttest_fixture IMPLEMENTATION.
                         "This conjured item does not work properly yet
                         ( NEW #( iv_name    = |Conjured Mana Cake|
                                  iv_sell_in = 3
-                                 iv_quality = 6 ) ) ).
+                                 iv_quality = 10 ) ) ).
 
     DATA(lo_app) = NEW lcl_gilded_rose( it_items = lt_items ).
 

@@ -123,7 +123,7 @@
                      (make-item name "Backstage passes to a TAFKAL80ETC concert" sellin 10 quality 49)
                      (make-item name "Backstage passes to a TAFKAL80ETC concert" sellin 5 quality 49)
                      ;; this conjured item does not work properly yet
-                     (make-item name "Conjured Mana Cake" sellin 3 quality 6))))
+                     (make-item name "Conjured Mana Cake" sellin 3 quality 10))))
 
     (lists:foldl (lambda (day gr)
                    (print-day day (gilded-rose-items gr))

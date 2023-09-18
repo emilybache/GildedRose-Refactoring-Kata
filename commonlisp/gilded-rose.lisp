@@ -112,7 +112,7 @@
                          ("Backstage passes to a TAFKAL80ETC concert" 10 49)
                          ("Backstage passes to a TAFKAL80ETC concert"  5 49)
                          ;; this conjured item does not work properly yet
-                         ("Conjured Mana Cake"                         3  6)))
+                         ("Conjured Mana Cake"                         3  10)))
          (items (loop :for (name sell-in quality) :in descriptions
                       :collect (make-instance 'item
                                               :name name

@@ -10,7 +10,7 @@ let items = [
     Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 10, quality: 49),
     Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 5, quality: 49),
     // this conjured item does not work properly yet
-    Item(name: "Conjured Mana Cake", sellIn: 3, quality: 6),
+    Item(name: "Conjured Mana Cake", sellIn: 3, quality: 10),
 ]
 
 let app = GildedRose(items: items)

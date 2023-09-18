@@ -14,7 +14,7 @@ int main()
         Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
         Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
         // this Conjured item doesn't yet work properly
-        Item("Conjured Mana Cake", 3, 6),
+        Item("Conjured Mana Cake", 3, 10),
     ];
 
     auto app = new GildedRose(items);

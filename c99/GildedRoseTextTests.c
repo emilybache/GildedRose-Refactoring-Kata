@@ -23,7 +23,7 @@ int main()
     init_item(items + last++, "Backstage passes to a TAFKAL80ETC concert", 10, 49);
     init_item(items + last++, "Backstage passes to a TAFKAL80ETC concert", 5, 49);
     // this Conjured item doesn't yet work properly
-    init_item(items + last++, "Conjured Mana Cake", 3, 6);
+    init_item(items + last++, "Conjured Mana Cake", 3, 10);
     
     puts("OMGHAI!");
 

@@ -31,7 +31,7 @@ program GildedRose_text_test
   call init_item(items(last), "Backstage passes to a TAFKAL80ETC concert", 5, 49)
   ! this Conjured item doesn't yet work properly
   last=last+1
-  call init_item(items(last), "Conjured Mana Cake", 3, 6)
+  call init_item(items(last), "Conjured Mana Cake", 3, 10)
 
   write(*,*) "OMGHAI!"
 

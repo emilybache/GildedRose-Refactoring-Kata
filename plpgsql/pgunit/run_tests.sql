@@ -49,7 +49,7 @@ BEGIN
   CALL new_item('Backstage passes to a TAFKAL80ETC concert', 10, 49);
   CALL new_item('Backstage passes to a TAFKAL80ETC concert', 5, 49);
   -- this conjured item does not work properly yet ;
-  CALL new_item('Conjured Mana Cake', 3, 6);
+  CALL new_item('Conjured Mana Cake', 3, 10);
   days := 1;
 
   -- when
@@ -70,7 +70,7 @@ BEGIN
     'Backstage passes to a TAFKAL80ETC concert, 5, 49', 
     'Backstage passes to a TAFKAL80ETC concert, 10, 49',
     'Backstage passes to a TAFKAL80ETC concert, 15, 20',
-    'Conjured Mana Cake, 3, 6', 
+    'Conjured Mana Cake, 3, 10', 
     'Elixir of the Mongoose, 5, 7', 
     'Sulfuras, Hand of Ragnaros, -1, 80', 
     'Sulfuras, Hand of Ragnaros, 0, 80',
@@ -81,7 +81,7 @@ BEGIN
     'Backstage passes to a TAFKAL80ETC concert, 4, 50', 
     'Backstage passes to a TAFKAL80ETC concert, 9, 50', 
     'Backstage passes to a TAFKAL80ETC concert, 14, 21',
-    'Conjured Mana Cake, 2, 5', 
+    'Conjured Mana Cake, 2, 8', 
     'Elixir of the Mongoose, 4, 6', 
     'Sulfuras, Hand of Ragnaros, -1, 80', 
     'Sulfuras, Hand of Ragnaros, 0, 80'

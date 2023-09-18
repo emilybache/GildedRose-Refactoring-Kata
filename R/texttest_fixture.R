@@ -14,7 +14,7 @@ items <- list(
   item('Backstage passes to a TAFKAL80ETC concert', 10, 49),
   item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
   # This Conjured item does not work properly yet
-  item('Conjured Mana Cake', 3, 6)
+  item('Conjured Mana Cake', 3, 10)
 )
 
 days <- 2

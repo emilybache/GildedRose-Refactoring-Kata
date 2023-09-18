@@ -11,7 +11,7 @@ let items: ref<array<Item.t>> = ref([
   Item.make(~name="Backstage passes to a TAFKAL80ETC concert", ~sellIn=15, ~quality=20),
   Item.make(~name="Backstage passes to a TAFKAL80ETC concert", ~sellIn=10, ~quality=49),
   Item.make(~name="Backstage passes to a TAFKAL80ETC concert", ~sellIn=5, ~quality=49),
-  Item.make(~name="Conjured Mana Cake", ~sellIn=3, ~quality=6),
+  Item.make(~name="Conjured Mana Cake", ~sellIn=3, ~quality=10),
 ])
 
 let days = Node.Process.argv->Belt.Array.get(2)->Belt.Option.mapWithDefault(31, int_of_string)

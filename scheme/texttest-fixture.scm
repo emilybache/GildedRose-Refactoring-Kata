@@ -12,7 +12,7 @@
                    (make-item "Backstage passes to a TAFKAL80ETC concert" 10 49)
                    (make-item "Backstage passes to a TAFKAL80ETC concert" 5 49)
                    ;; this conjured item does not work properly yet
-                   (make-item "Conjured Mana Cake" 3 6)))
+                   (make-item "Conjured Mana Cake" 3 10)))
       (days  2))
 
     (define (loop day)

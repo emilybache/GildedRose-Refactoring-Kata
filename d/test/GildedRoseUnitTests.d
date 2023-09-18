@@ -18,7 +18,7 @@ void example()
         Item("Elixir of the Mongoose", 5, 7),
         Item("Sulfuras, Hand of Ragnaros", 0, 80),
         Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-        Item("Conjured Mana Cake", 3, 6),
+        Item("Conjured Mana Cake", 3, 10),
     ];
     auto app = new GildedRose(items);
     app.updateQuality;

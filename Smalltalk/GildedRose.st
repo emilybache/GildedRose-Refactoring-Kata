@@ -108,7 +108,7 @@ runExamples
 		add: (Item new name: 'Backstage passes to a TAFKAL80ETC concert'; sellIn: 15; quality: 20; yourself);
 		add: (Item new name: 'Backstage passes to a TAFKAL80ETC concert'; sellIn: 10; quality: 49; yourself);
 		add: (Item new name: 'Backstage passes to a TAFKAL80ETC concert'; sellIn: 5; quality: 49; yourself);
-		add: (Item new name: 'Conjured Mana Cake'; sellIn: 3; quality: 6; yourself); "this conjured item does not work properly yet"
+		add: (Item new name: 'Conjured Mana Cake'; sellIn: 3; quality: 10; yourself); "this conjured item does not work properly yet"
 		yourself.
 
 	gildedRose := GildedRose new.

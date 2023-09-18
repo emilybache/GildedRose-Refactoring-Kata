@@ -50,7 +50,7 @@ let main argv =
     Items.Add({Name = "Backstage passes to a TAFKAL80ETC concert"; SellIn = 15; Quality = 20})
     Items.Add({Name = "Backstage passes to a TAFKAL80ETC concert"; SellIn = 10; Quality = 49})
     Items.Add({Name = "Backstage passes to a TAFKAL80ETC concert"; SellIn = 5; Quality = 49})
-    Items.Add({Name = "Conjured Mana Cake"; SellIn = 3; Quality = 6})
+    Items.Add({Name = "Conjured Mana Cake"; SellIn = 3; Quality = 10})
 
     let app = new GildedRose(Items)
     for i = 0 to 30 do

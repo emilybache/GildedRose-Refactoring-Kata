@@ -76,7 +76,7 @@ function main(; days::Int64=2)
         Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
         Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
         Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
-        Item("Conjured Mana Cake", 3, 6),
+        Item("Conjured Mana Cake", 3, 10),
     ]
     for day in 0:days
         println("-------- day $day --------")

@@ -19,7 +19,7 @@ CREATE OR REPLACE PACKAGE BODY texttest IS
       new_item('Backstage passes to a TAFKAL80ETC concert', 10, 49);
       new_item('Backstage passes to a TAFKAL80ETC concert', 5, 49);
       -- this conjured item does not work properly yet ;
-      new_item('Conjured Mana Cake', 3, 6);
+      new_item('Conjured Mana Cake', 3, 10);
    END setup;
 
    PROCEDURE main_test IS
@@ -43,7 +43,7 @@ CREATE OR REPLACE PACKAGE BODY texttest IS
       put_line(v_expected, 'Backstage passes to a TAFKAL80ETC concert, 15, 20');
       put_line(v_expected, 'Backstage passes to a TAFKAL80ETC concert, 10, 49');
       put_line(v_expected, 'Backstage passes to a TAFKAL80ETC concert, 5, 49');
-      put_line(v_expected, 'Conjured Mana Cake, 3, 6');
+      put_line(v_expected, 'Conjured Mana Cake, 3, 10');
       put_line(v_expected, '-------- day 1 --------');
       put_line(v_expected, 'name, sellIn, quality');
       put_line(v_expected, '+5 Dexterity Vest, 9, 19');
@@ -54,7 +54,7 @@ CREATE OR REPLACE PACKAGE BODY texttest IS
       put_line(v_expected, 'Backstage passes to a TAFKAL80ETC concert, 14, 21');
       put_line(v_expected, 'Backstage passes to a TAFKAL80ETC concert, 9, 50');
       put_line(v_expected, 'Backstage passes to a TAFKAL80ETC concert, 4, 50');
-      put_line(v_expected, 'Conjured Mana Cake, 2, 5');
+      put_line(v_expected, 'Conjured Mana Cake, 2, 8');
 
       put_line(v_result, 'OMGHAI!');
       l_days := 2;
