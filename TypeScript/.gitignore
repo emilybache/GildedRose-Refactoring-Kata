@@ -8,3 +8,5 @@ test/**/*.js
 test/**/*.js.map
 coverage
 .nyc_output
+.yarn
+.DS_Store
