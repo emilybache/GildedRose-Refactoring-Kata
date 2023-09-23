@@ -77,6 +77,4 @@ describe("Backstage passes 테스트", () => {
     expect(items[0].sellIn).toBe(4);
     expect(items[0].quality).toBe(6);
   });
-
-  // TODO: 콘서트 종료 후 quality 0으로 변경 테스트
 });
