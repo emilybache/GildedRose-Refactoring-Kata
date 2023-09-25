@@ -9,9 +9,9 @@ export class GildedRose {
 
   updateQuality() {
     const updatedItems = this.items.map((item) => {
+      item.handleSellIn();
       item.handleQuality();
 
-      item.handleSellIn();
       return item;
     });
     return updatedItems as ItemClasses;

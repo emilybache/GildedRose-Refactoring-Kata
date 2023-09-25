@@ -22,6 +22,22 @@ describe("Aged Brie 테스트", () => {
     expect(items[0].sellIn).toBe(1);
     expect(items[0].quality).toBe(50);
   });
+
+  it("quality는 음수가 될 수 없음", () => {
+    const gildedRose = new GildedRose([new AgedBrie(2, 0)]);
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].sellIn).toBe(1);
+    expect(items[0].quality).toBe(0);
+  });
+
+  it("sellIn값이 0이 되면 Quality는 2배로 감소", () => {
+    const gildedRose = new GildedRose([new AgedBrie(1, 4)]);
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].sellIn).toBe(0);
+    expect(items[0].quality).toBe(2);
+  });
 });
 
 describe("Surfras 테스트", () => {
@@ -67,5 +83,29 @@ describe("Backstage passes 테스트", () => {
 
     expect(items[0].sellIn).toBe(4);
     expect(items[0].quality).toBe(6);
+  });
+
+  it("Backstage passes의 sellIn값 0일 때, quality 0으로 변경", () => {
+    const gildedRose = new GildedRose([new Passes(1, 3)]);
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].sellIn).toBe(0);
+    expect(items[0].quality).toBe(0);
+  });
+
+  it("quality는 50을 초과할 수 없음", () => {
+    const gildedRose = new GildedRose([new AgedBrie(2, 50)]);
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].sellIn).toBe(1);
+    expect(items[0].quality).toBe(50);
+  });
+
+  it("quality는 음수가 될 수 없음", () => {
+    const gildedRose = new GildedRose([new Passes(1, 0)]);
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].sellIn).toBe(0);
+    expect(items[0].quality).toBe(0);
   });
 });
