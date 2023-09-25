@@ -10,11 +10,6 @@ export class Item {
     this.sellIn = sellIn;
     this.quality = quality;
   }
-
-  // handleSellIn() {
-  //   if (this.name === ITEMS.SURFRAS) return;
-  //   this.sellIn--;
-  // }
 }
 
 export class GildedRose {
@@ -25,14 +20,13 @@ export class GildedRose {
   }
 
   handlePassesQuality(item) {
-    if (item.name == ITEMS.PASSES) {
-      if (6 <= item.sellIn && item.sellIn < 11) {
-        item.quality += 1;
-      }
+    if (item.name !== ITEMS.PASSES) return;
+    if (6 <= item.sellIn && item.sellIn < 11) {
+      item.quality += 1;
+    }
 
-      if (item.sellIn < 6) {
-        item.quality += 2;
-      }
+    if (item.sellIn < 6) {
+      item.quality += 2;
     }
   }
 
@@ -45,7 +39,7 @@ export class GildedRose {
         item.quality = item.quality + 1;
         break;
       case ITEMS.SURFRAS:
-        item.quality = item.quality - item.quality;
+        item.quality = 0;
         break;
       default:
         if (!item.quality) return;
