@@ -8,14 +8,6 @@ export class Item {
     this.sellIn = sellIn;
     this.quality = quality;
   }
-
-  handleQuality() {
-    //
-  }
-
-  handleSellIn() {
-    //
-  }
 }
 
 export class AgedBrie extends Item {
@@ -23,7 +15,7 @@ export class AgedBrie extends Item {
     super("Aged Brie", sellIn, quality);
   }
   handleQuality() {
-    this.quality++;
+    if (this.quality >= 50) return;
     this.quality++;
   }
 
@@ -38,8 +30,6 @@ export class Passes extends Item {
   }
 
   handleQuality() {
-    this.quality--;
-
     if (6 <= this.sellIn && this.sellIn < 11) {
       this.quality += 1;
     }
@@ -60,9 +50,7 @@ export class Surfras extends Item {
     super("Sulfuras, Hand of Ragnaros", sellIn, quality);
   }
   handleQuality() {
-    this.quality = 0;
-    this.quality--;
-    this.quality++;
+    //
   }
 
   handleSellIn() {
