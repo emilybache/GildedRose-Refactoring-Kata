@@ -19,51 +19,53 @@ export class GildedRose {
     this.items = items;
   }
 
+  handleIfSellInIs0(item) {
+    if (item.sellIn >= 0) return;
+
+    switch (item.name) {
+      case ITEMS.BRIE:
+        if (item.quality >= 50) return;
+        item.quality = item.quality + 1;
+        break;
+      case ITEMS.SURFRAS:
+        item.quality = item.quality - item.quality;
+        break;
+      default:
+        if (!item.quality) return;
+        item.quality -= 1;
+        break;
+    }
+  }
+
   updateQuality() {
     for (const item of this.items) {
       if (item.name != ITEMS.BRIE && item.name != ITEMS.PASSES) {
-        if (item.quality > 0) {
-          if (item.name != ITEMS.SURFRAS) {
-            item.quality = item.quality - 1;
-          }
+        if (!item.quality) break;
+        if (item.name != ITEMS.SURFRAS) {
+          item.quality -= 1;
         }
       } else {
         if (item.quality < 50) {
-          item.quality = item.quality + 1;
+          item.quality += 1;
+
           if (item.name == ITEMS.PASSES) {
             if (item.sellIn < 11) {
               if (item.quality < 50) {
-                item.quality = item.quality + 1;
+                item.quality += 1;
               }
             }
+
             if (item.sellIn < 6) {
-              if (item.quality < 50) {
-                item.quality = item.quality + 1;
-              }
+              if (item.quality >= 50) break;
+              item.quality += 1;
             }
           }
         }
       }
       if (item.name != ITEMS.SURFRAS) {
-        item.sellIn = item.sellIn - 1;
+        item.sellIn -= 1;
       }
-      if (item.sellIn < 0) {
-        if (item.name != ITEMS.BRIE) {
-          if (item.name != ITEMS.PASSES) {
-            if (item.quality > 0) {
-              if (item.name != ITEMS.SURFRAS) {
-                item.quality = item.quality - 1;
-              }
-            }
-          } else {
-            item.quality = item.quality - item.quality;
-          }
-        } else {
-          if (item.quality < 50) {
-            item.quality = item.quality + 1;
-          }
-        }
-      }
+      this.handleIfSellInIs0(item);
     }
 
     return this.items;
