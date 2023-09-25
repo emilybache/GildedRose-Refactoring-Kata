@@ -10,6 +10,11 @@ export class Item {
     this.sellIn = sellIn;
     this.quality = quality;
   }
+
+  // handleSellIn() {
+  //   if (this.name === ITEMS.SURFRAS) return;
+  //   this.sellIn--;
+  // }
 }
 
 export class GildedRose {
@@ -17,6 +22,18 @@ export class GildedRose {
 
   constructor(items = [] as Array<Item>) {
     this.items = items;
+  }
+
+  handlePassesQuality(item) {
+    if (item.name == ITEMS.PASSES) {
+      if (6 <= item.sellIn && item.sellIn < 11) {
+        item.quality += 1;
+      }
+
+      if (item.sellIn < 6) {
+        item.quality += 2;
+      }
+    }
   }
 
   handleIfSellInIs0(item) {
@@ -39,33 +56,21 @@ export class GildedRose {
 
   updateQuality() {
     for (const item of this.items) {
-      if (item.name != ITEMS.BRIE && item.name != ITEMS.PASSES) {
-        if (!item.quality) break;
-        if (item.name != ITEMS.SURFRAS) {
-          item.quality -= 1;
-        }
-      } else {
-        if (item.quality < 50) {
-          item.quality += 1;
-
-          if (item.name == ITEMS.PASSES) {
-            if (item.sellIn < 11) {
-              if (item.quality < 50) {
-                item.quality += 1;
-              }
-            }
-
-            if (item.sellIn < 6) {
-              if (item.quality >= 50) break;
-              item.quality += 1;
-            }
-          }
-        }
-      }
+      if (!item.quality) break;
       if (item.name != ITEMS.SURFRAS) {
         item.sellIn -= 1;
       }
       this.handleIfSellInIs0(item);
+
+      if (item.name != ITEMS.BRIE && item.name != ITEMS.PASSES) {
+        if (item.name === ITEMS.SURFRAS) break;
+        item.quality -= 1;
+      }
+
+      if (item.quality >= 50) break;
+      item.quality += 1;
+
+      this.handlePassesQuality(item);
     }
 
     return this.items;
