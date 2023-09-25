@@ -1,4 +1,5 @@
-import { Item, GildedRose } from "@/gilded-rose";
+import { GildedRose } from "@/gilded-rose";
+import { Item } from "@/itemClasses";
 
 describe("Aged Brie 테스트", () => {
   let gildedRose = new GildedRose([new Item("Aged Brie", 1, 0)]);
