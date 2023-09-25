@@ -9,12 +9,14 @@ export class GildedRose {
   }
 
   handleSellIn(item) {
+    //
     if (item.name != ITEMS.SURFRAS) {
       item.sellIn -= 1;
     }
     if (item.sellIn >= 0) return;
     if (item.quality >= 50) return;
 
+    //
     switch (item.name) {
       case ITEMS.BRIE:
         item.quality = item.quality + 1;
@@ -29,6 +31,7 @@ export class GildedRose {
   }
 
   handlePassesQuality(item) {
+    //
     if (item.name !== ITEMS.PASSES) return;
     if (6 <= item.sellIn && item.sellIn < 11) {
       item.quality += 1;
@@ -40,6 +43,7 @@ export class GildedRose {
   }
 
   handleQuality(item) {
+    //
     switch (item.name) {
       case ITEMS.PASSES:
         this.handlePassesQuality(item);
