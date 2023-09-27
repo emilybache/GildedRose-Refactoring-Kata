@@ -35,4 +35,8 @@ diff_program:meld
 #executable:${TEXTTEST_HOME}/julia/texttest_fixture.jl
 #interpreter:julia
 
+# Settings for the PHP version
+#executable:${TEXTTEST_HOME}/php/fixtures/texttest_fixture.php
+#interpreter:php
+
 filename_convention_scheme:standard
