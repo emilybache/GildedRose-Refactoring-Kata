@@ -10,10 +10,10 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
-            self.update_each_item_quality(item)
+            self.__update_each_item_quality(item)
             # print(f'Log: {item}\n')
 
-    def update_each_item_quality(self, item):
+    def __update_each_item_quality(self, item):
         # Update item.sell_in
         if item.name != self.SULFURAS:
             item.sell_in = item.sell_in - 1
