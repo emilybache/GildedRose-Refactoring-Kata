@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+from item_handler import (
+    AgedBrieHandler,
+    BackstagePassesHandler,
+    DefaultItemHandler,
+    SulfurasHandler,
+    ConjuredItemHandler)
+
 
 class GildedRose(object):
 
@@ -7,42 +14,24 @@ class GildedRose(object):
         self.AGED_BRIE = "Aged Brie"
         self.SULFURAS = "Sulfuras, Hand of Ragnaros"
         self.BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert"
+        self.CONJURED = "Conjured Mana Cake"
 
     def update_quality(self):
         for item in self.items:
-            self.update_each_item_quality(item)
+            self.__update_each_item_quality(item)
             # print(f'Log: {item}\n')
 
-    def update_each_item_quality(self, item):
-        # Update item.sell_in
-        if item.name != self.SULFURAS:
-            item.sell_in = item.sell_in - 1
-        # Update item.quality
-        if item.name != self.AGED_BRIE and item.name != self.BACKSTAGE_PASSES:
-            if item.quality > 0:
-                if item.name != self.SULFURAS:
-                    item.quality = item.quality - 1
-        else:
-            if item.quality < 50:
-                item.quality = item.quality + 1
-                if item.name == self.BACKSTAGE_PASSES:
-                    if item.sell_in < 10:
-                        if item.quality < 50:
-                            item.quality = item.quality + 1
-                    if item.sell_in < 5:
-                        if item.quality < 50:
-                            item.quality = item.quality + 1
-        if item.sell_in < 0:
-            if item.name != self.AGED_BRIE:
-                if item.name != self.BACKSTAGE_PASSES:
-                    if item.quality > 0:
-                        if item.name != self.SULFURAS:
-                            item.quality = item.quality - 1
-                else:
-                    item.quality = item.quality - item.quality
-            else:
-                if item.quality < 50:
-                    item.quality = item.quality + 1
+    def __update_each_item_quality(self, item):
+        ITEM_SWITCH = {
+            self.AGED_BRIE: AgedBrieHandler(),
+            self.SULFURAS: SulfurasHandler(),
+            self.BACKSTAGE_PASSES: BackstagePassesHandler(),
+            self.CONJURED: ConjuredItemHandler()
+        }
+        item.handler = ITEM_SWITCH.get(item.name, DefaultItemHandler())
+
+        item.handler.update_sell_in(item)
+        item.handler.update_quality(item)
 
 
 class Item:
