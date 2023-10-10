@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import com.gildedrose.strategy.*;
+
 import java.util.HashMap;
 
 class GildedRose {

@@ -1,4 +1,6 @@
-package com.gildedrose;
+package com.gildedrose.strategy;
+
+import com.gildedrose.Item;
 
 public class StandardItemUpdateStrategy implements ItemUpdateStrategy {
     @Override
