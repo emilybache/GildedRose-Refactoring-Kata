@@ -21,6 +21,21 @@ export class GildedRose {
 
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].name == 'Elixir of the Mongoose'){
+        this.items[i].sellIn = this.items[i].sellIn - 1;
+      }
+
+      if (this.items[i].name == '+5 Dexterity Vest'){
+        this.items[i].sellIn = this.items[i].sellIn -1;
+      }
+      // Check if item name is "Conjured Mana Cake"
+      if (this.items[i].name == 'Conjured Mana Cake') {
+        console.log('Conjured Mana Cake');
+        
+        this.items[i].quality = this.items[i].quality - 2;
+        this.items[i].sellIn = this.items[i].sellIn - 1;
+      }
+      
       // ITEM NAME CHECK
       if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
         if (this.items[i].quality > 0) {
@@ -45,13 +60,13 @@ export class GildedRose {
               } else if (this.items[i].sellIn < 11) {
                 this.items[i].quality = this.items[i].quality + 2
               }
+              if (this.items[i].quality > 50){
+                this.items[i].quality = 50;
+              }
             }
           }
         }
-        // Check if item name is "Conjured Mana Cake"
-        if (this.items[i].name == 'Conjured Mana Cake') {
-          this.items[i].quality = this.items[i].quality - 2;
-        }
+        
         if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
           this.items[i].sellIn = this.items[i].sellIn - 1;
         }
@@ -75,13 +90,10 @@ export class GildedRose {
       }
 
     }
-    console.log(this.items)
+    // console.log(this.items)
     return this.items;
   }
 
-  checkSellInDate() {
-
-  }
 
 
 }
