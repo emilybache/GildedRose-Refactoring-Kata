@@ -1,9 +1,15 @@
-export class Item {
-  name: string;
-  sellIn: number;
-  quality: number;
+export type ItemName =
+  | "Aged Brie"
+  | "Backstage passes to a TAFKAL80ETC concert"
+  | "Conjured Mana Cake"
+  | "Sulfuras, Hand of Ragnaros";
 
-  constructor(name, sellIn, quality) {
+export class Item {
+  name;
+  sellIn;
+  quality;
+
+  constructor(name: ItemName, sellIn: number, quality: number) {
     this.name = name;
     this.sellIn = sellIn;
     this.quality = quality;
