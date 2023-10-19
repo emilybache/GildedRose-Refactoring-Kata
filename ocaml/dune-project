@@ -15,5 +15,7 @@
  (description "The Gilded Rose Refactoring Kata in OCaml")
  (depends
    (ocaml (>= 4.08))
-   dune))
+   dune
+   ppx_deriving
+   (alcotest (>= 1.7.0))))
 
