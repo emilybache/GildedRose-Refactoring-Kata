@@ -1,0 +1,3 @@
+(library
+ (preprocess (pps ppx_deriving.show))
+ (name gilded_rose))
