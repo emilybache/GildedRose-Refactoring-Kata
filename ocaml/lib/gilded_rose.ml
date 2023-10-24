@@ -1,14 +1,23 @@
 module Item = struct
-  type t = { name : string; sell_in : int; quality : int } [@@deriving show]
+  type t = { name : string; sell_in : int; quality : int }
+
+  let show { name; sell_in; quality } =
+    Printf.printf "%s, %d, %d" name sell_in quality
 
   let v name sell_in quality = { name; sell_in; quality }
 end
 
 module Items = struct
-  type items = Item.t list [@@deriving show]
+  type items = Item.t list
 
   let v ?(items = []) () = items
-  let show items : string = show_items items
+
+  let show items =
+    List.iter
+      (fun item ->
+        Item.show item;
+        Printf.printf "\n")
+      items
 
   let update_quality items =
     let update_quality_items ({ name; sell_in; quality } as item : Item.t) =

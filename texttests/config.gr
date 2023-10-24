@@ -39,4 +39,7 @@ diff_program:meld
 #executable:${TEXTTEST_HOME}/php/fixtures/texttest_fixture.php
 #interpreter:php
 
+# Settings for the OCaml version
+# executable:${TEXTTEST_HOME}/ocaml/_build/default/bin/main.exe
+
 filename_convention_scheme:standard

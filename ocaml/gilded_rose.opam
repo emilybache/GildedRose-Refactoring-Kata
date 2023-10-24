@@ -12,7 +12,6 @@ bug-reports:
 depends: [
   "ocaml" {>= "4.08"}
   "dune" {>= "3.11"}
-  "ppx_deriving"
   "alcotest" {>= "1.7.0"}
   "odoc" {with-doc}
 ]
