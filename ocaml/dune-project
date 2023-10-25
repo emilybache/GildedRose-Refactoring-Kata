@@ -16,6 +16,5 @@
  (depends
    (ocaml (>= 4.08))
    dune
-   ppx_deriving
    (alcotest (>= 1.7.0))))
 
