@@ -8,13 +8,12 @@ using NUnit.Framework;
 namespace GildedRoseTests;
 
 [UseReporter(typeof(DiffReporter))]
-[TestFixture]
 public class ApprovalTest
 {
     [Test]
     public void ThirtyDays()
     {
-        StringBuilder fakeOutput = new StringBuilder();
+        var fakeOutput = new StringBuilder();
         Console.SetOut(new StringWriter(fakeOutput));
         Console.SetIn(new StringReader($"a{Environment.NewLine}"));
 
