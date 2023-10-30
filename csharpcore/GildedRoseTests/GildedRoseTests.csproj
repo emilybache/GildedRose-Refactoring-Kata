@@ -7,12 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="ApprovalTests" Version="5.8.0" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+        <PackageReference Include="ApprovalTests" Version="5.9.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
         <PackageReference Include="NUnit" Version="3.13.3" />
-        <PackageReference Include="xunit" Version="2.4.1" />
-        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
-        <PackageReference Include="coverlet.collector" Version="3.1.0" />
+        <PackageReference Include="coverlet.collector" Version="6.0.0"><IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+<PrivateAssets>all</PrivateAssets>
+</PackageReference>
+        <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
     </ItemGroup>
 
     <ItemGroup>
