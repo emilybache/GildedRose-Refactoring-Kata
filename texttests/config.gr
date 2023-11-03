@@ -32,8 +32,8 @@ diff_program:meld
 #interpreter:perl
 
 # Settings for the TypeScript version
-#executable:${TEXTTEST_HOME}/TypeScript/test/golden-master-text-test.js
-#interpreter:node
+#executable:${TEXTTEST_HOME}/TypeScript/texttest_rig.py
+#interpreter:python
 
 # Settings for the Julia version
 #executable:${TEXTTEST_HOME}/julia/texttest_fixture.jl
