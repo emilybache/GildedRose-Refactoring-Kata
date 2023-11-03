@@ -6,7 +6,7 @@
 python test_gilded_rose.py
 ```
 
-### Run the TextTest fixture from the Command-Line
+## Run the TextTest fixture from the Command-Line
 
 For e.g. 10 days:
 
