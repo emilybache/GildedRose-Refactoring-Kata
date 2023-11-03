@@ -1,6 +1,6 @@
 # Gilded Rose starting position in Java
 
-## Run the Text Fixture from Command-Line
+## Run the TextTest Fixture from Command-Line
 
 ```
 ./gradlew -q text
