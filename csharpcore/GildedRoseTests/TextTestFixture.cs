@@ -40,7 +40,7 @@ public static class TextTestFixture
 
         var app = new GildedRose(items);
 
-        int days = 31;
+        int days = 2;
         if (args.Length > 0)
         {
             days = int.Parse(args[0]) + 1;
