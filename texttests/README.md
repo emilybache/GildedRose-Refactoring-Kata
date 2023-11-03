@@ -11,9 +11,21 @@ Before you can run the tests you need to tell texttest which language version of
 
 While you're here, change the settings for editor and diff program to match your preferences. By default it uses 'subl' and 'meld'. It will accept any editors or diff programs that you can run from the command line.
 
-## running TextTest
+## Running TextTest
 
-There is a convenience script - either 'start_texttest.sh' or 'start_texttest.bat' depending on your platform. This script will install a virtual python environment, install texttest, then run the tests on the console.
+The instructions are slightly different depending on your platform.
+
+### Running TextTest on Linux or MacOS
+
+There is a convenience script 'start_texttest.sh' in the root folder of this repo. This script assumes you already have Python installed. This script will first create a virtual python environment and install texttest if you haven't done that before, then run the tests.
+
+### Running TextTest on Windows
+
+Download the installer as explained on [TextTest.org](http://www.texttest.org/getting_started/install_windows.html). Make sure the texttest executable is on your PATH. Then use the convenience script 'start_texttest.bat'  in the root folder of this repo to run the tests on the console.
+
+Windows may warn you that it doesn't trust this installer and be reluctant to download it. If you prefer not to continue with this, an alternative is to run TextTest via Python. First install Python then use the convenience script 'start_texttest_from_python.bat'.
+
+## Interpreting Test Results
 
 You should see output like this if the test passes:
 
@@ -31,26 +43,13 @@ If the test fails it might look like this:
 
 If you press 'v' it will try to open the diff tool you specified in 'config.gr' to show you the difference in output. If you press 'a' it will update the approved file - you will not want to do this if you are refactoring. Any other key will return you to the terminal prompt.
 
-## Installing TextTest command line tool by hand
-
-Follow the instructions on [texttest.org](https://texttest.org/) to install the command-line tool for your platform. You will first need to install Python and probably create a virtual environment before installing TextTest as a python package via pip. 
-
-Open a terminal and change directory to the root folder of the GildedRose-Refactoring-Kata repo. Texttest detects the current working directory and uses that as the variable $TEXTTEST_HOME in the config.gr file. Alternatively set the environment TEXTTEST_HOME to the full path to this location.
-
-Execute this command in a terminal:
-
-    texttest -con
-
-
 ## TextTest user interface
 
-TextTest has a graphical user interface you can use to manage your test cases. With only one test case it may not be worth it, but if you want to add other tests and/or examine test failures more closely it can be helpful. Start texttest without the 'con' argument:
+TextTest has a graphical user interface you can use to manage your test cases. With only one test case it may not be worth it, but if you want to add other tests and/or examine test failures more closely it can be helpful. Be sure to set TEXTTEST_HOME to the root folder of this repository before starting the GUI.
 
-    texttest &
+There are instructions for installing TextTest development tools on [texttest.org](https://texttest.org/)
 
-This should start the GUI for the TextTest tool. Select the test case "ThirtyDays" and press the "Run" button. This will open a new 'runner' window for each test run.
-
-## Running without TextTest
+## Running the test without TextTest
 
 This should be perfectly possible, but is probably less convenient than using TextTest. 
 
@@ -58,7 +57,7 @@ Write a script that will execute the system under test (see "config.gr" for deta
 
 ## Explaining TextTest test cases
 
-Each test case has it's own subdirectory. The name of the directory is the name of the test - in this case "ThirtyDays". The approved version of the output for that test case is kept in that directory. In this case we have three files:
+Under the 'texttests' folder each test case has its own subdirectory. The name of the directory is the name of the test - in this case "ThirtyDays". The approved version of the output for that test case is kept in that directory. In this case we have three files:
 
 - __stderr.gr__ - the expected output to Standard Error (stderr)
 - __stdout.gr__ - the expected output to Standard Output (stdout)
