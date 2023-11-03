@@ -36,8 +36,12 @@ diff_program:meld
 #interpreter:python
 
 # Settings for the Javascript Jest version
-executable:${TEXTTEST_HOME}/js-jest/test/texttest_fixture.js
-interpreter:node
+#executable:${TEXTTEST_HOME}/js-jest/test/texttest_fixture.js
+#interpreter:node
+
+# Settings for the Javascript Mocha version
+#executable:${TEXTTEST_HOME}/js-mocha/test/texttest_fixture.js
+#interpreter:node
 
 # Settings for the Julia version
 #executable:${TEXTTEST_HOME}/julia/texttest_fixture.jl
