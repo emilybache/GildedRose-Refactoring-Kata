@@ -11,7 +11,7 @@ python test_gilded_rose.py
 For e.g. 10 days:
 
 ```
-python texttest_fixture 10
+python texttest_fixture.py 10
 ```
 
 You should make sure the command shown above works when you execute it in a terminal before trying to use TextTest (see below).
