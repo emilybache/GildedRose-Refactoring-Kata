@@ -11,7 +11,11 @@ diff_program:meld
 # Settings for the cpp version
 #executable:${TEXTTEST_HOME}/cpp/cmake-build-debug/test/cpp_texttest/GildedRoseTextTests
 
-# Settings for the Java version
+# Settings for the Java version using Gradle wrapped in a python script
+#executable:${TEXTTEST_HOME}/Java/texttest_rig.py
+#interpreter:python
+
+# Settings for the Java version using the classpath
 #executable:com.gildedrose.TexttestFixture
 #interpreter:java
 # note you'll also need to update the file environment.gr with your classpath if you keep your classfiles somewhere unusual
