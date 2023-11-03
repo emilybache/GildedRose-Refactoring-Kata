@@ -13,13 +13,7 @@ While you're here, change the settings for editor and diff program to match your
 
 ## running TextTest
 
-Follow the instructions on [texttest.org](https://texttest.org/) to install the command-line tool for your platform. You will first need to install Python and probably create a virtual environment before installing TextTest as a python package via pip. 
-
-Open a terminal and change directory to the root folder of the GildedRose-Refactoring-Kata repo. Texttest detects the current working directory and uses that as the variable $TEXTTEST_HOME in the config.gr file. Alternatively set the environment TEXTTEST_HOME to the full path to this location.
-
-Execute this command in a terminal:
-
-    texttest -con
+There is a convenience script - either 'start_texttest.sh' or 'start_texttest.bat' depending on your platform. This script will install a virtual python environment, install texttest, then run the tests on the console.
 
 You should see output like this if the test passes:
 
@@ -36,6 +30,17 @@ If the test fails it might look like this:
 
 
 If you press 'v' it will try to open the diff tool you specified in 'config.gr' to show you the difference in output. If you press 'a' it will update the approved file - you will not want to do this if you are refactoring. Any other key will return you to the terminal prompt.
+
+## Installing TextTest command line tool by hand
+
+Follow the instructions on [texttest.org](https://texttest.org/) to install the command-line tool for your platform. You will first need to install Python and probably create a virtual environment before installing TextTest as a python package via pip. 
+
+Open a terminal and change directory to the root folder of the GildedRose-Refactoring-Kata repo. Texttest detects the current working directory and uses that as the variable $TEXTTEST_HOME in the config.gr file. Alternatively set the environment TEXTTEST_HOME to the full path to this location.
+
+Execute this command in a terminal:
+
+    texttest -con
+
 
 ## TextTest user interface
 
