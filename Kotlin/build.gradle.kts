@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
 	kotlin("jvm") version "1.9.10"
+	application
 }
 
 group = "com.gildedrose"
@@ -31,4 +32,8 @@ tasks.withType<KotlinCompile>().configureEach {
 // config java extension to same target version, to avoid build failure on Gradle 8.x
 java {
 	targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+application {
+	mainClass.set("com.gildedrose.TexttestFixtureKt")
 }

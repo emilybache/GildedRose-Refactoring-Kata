@@ -20,6 +20,10 @@ diff_program:meld
 #interpreter:java
 # note you'll also need to update the file environment.gr with your classpath if you keep your classfiles somewhere unusual
 
+# Settings for the Kotlin version using Gradle wrapped in a python script
+#executable:${TEXTTEST_HOME}/Kotlin/texttest_rig.py
+#interpreter:python
+
 # Settings for the Ruby version
 #executable:${TEXTTEST_HOME}/ruby/texttest_fixture.rb
 #interpreter:ruby
