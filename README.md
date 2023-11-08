@@ -31,6 +31,7 @@ Please don't send me a pull request with your solution. It can be a bit confusin
 - [中文](GildedRoseRequirements_zh.txt)
 - [한국어](GildedRoseRequirements_kr.md)
 - [German](GildedRoseRequirements_de.md)
+- [Euskara](GildedRoseRequirements_eu.md)
 
 ## Text-Based Approval Testing
 
