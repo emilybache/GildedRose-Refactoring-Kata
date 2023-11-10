@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import java.util.Arrays;
+
 class GildedRose {
     Item[] items;
 
@@ -12,24 +14,21 @@ class GildedRose {
     }
 
     public void updateQuality() {
-        for (Item item : items) {
+        Item[] agingItems = Arrays.stream(items).filter(i -> !i.name.equals(sulfuras)).toArray(Item[]::new);
+        for (Item item : agingItems) {
             if (!item.name.equals(agedBrie) && !item.name.equals(backStagePasses)) {
                 if (item.quality > 0) {
-                    if (!item.name.equals(sulfuras)) {
-                        item.quality = item.quality - 1;
-                    }
+                    item.quality = item.quality - 1;
                 }
             } else {
                 if (item.quality < 50) {
                     item.quality = item.quality + 1;
-
                     if (item.name.equals(backStagePasses)) {
                         if (item.sellIn < 11) {
                             if (item.quality < 50) {
                                 item.quality = item.quality + 1;
                             }
                         }
-
                         if (item.sellIn < 6) {
                             if (item.quality < 50) {
                                 item.quality = item.quality + 1;
@@ -39,17 +38,13 @@ class GildedRose {
                 }
             }
 
-            if (!item.name.equals(sulfuras)) {
-                item.sellIn = item.sellIn - 1;
-            }
+            item.sellIn = item.sellIn - 1;
 
             if (item.sellIn < 0) {
                 if (!item.name.equals(agedBrie)) {
                     if (!item.name.equals(backStagePasses)) {
                         if (item.quality > 0) {
-                            if (!item.name.equals(sulfuras)) {
-                                item.quality = item.quality - 1;
-                            }
+                            item.quality = item.quality - 1;
                         }
                     } else {
                         item.quality = 0;
