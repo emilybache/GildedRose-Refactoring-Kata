@@ -80,7 +80,7 @@ class GildedRoseTest {
     void sulfurasNeverDecreases(){
         //TODO: Sulfuras should be protected against instantiation with quality != 80
         Item[] items = new Item[]{
-            new Item("Sulfuras, Hand of Ragnaros", 100, 80)
+            new Item(GildedRose.sulfuras, 100, 80)
         };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -90,7 +90,7 @@ class GildedRoseTest {
 
     @Test
     void backStagePassesIncrease() {
-        String backstage = "Backstage passes to a TAFKAL80ETC concert";
+        String backstage = GildedRose.backStagePasses;
         Item[] items = new Item[]{
             new Item(backstage, 100, 0),
             new Item(backstage, 11, 0),
