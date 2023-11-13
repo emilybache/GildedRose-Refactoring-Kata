@@ -77,12 +77,15 @@ class GildedRoseTest {
     void sulfurasNeverDecreases(){
         //TODO: Sulfuras should be protected against instantiation with quality != 80
         Item[] items = new Item[]{
-            new Item(GildedRose.sulfuras, 100, 80)
+            new Item("Sulfuras, Hand of Ragnaros", 100, 80),
+            new Item("SULFURAS, pants of Ragnar Lothbrok", 200, 80)
         };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals(app.items[0].quality, 80);
         assertEquals(app.items[0].sellIn, 100);
+        assertEquals(app.items[1].quality, 80);
+        assertEquals(app.items[1].sellIn, 200);
     }
 
     @Test
