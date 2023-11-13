@@ -17,23 +17,20 @@ class GildedRoseTest {
     @Test
     void standardItems(){
         Item[] items = new Item[]{
-            new Item("item1", 100, 100),
-            new Item("item2", 50, 50)
+            new Item("item1", 40, 40)
         };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-        assertEquals(app.items[0].quality, 99);
-        assertEquals(app.items[1].quality, 49);
-        assertEquals(app.items[0].sellIn, 99);
-        assertEquals(app.items[1].sellIn, 49);
+        assertEquals(app.items[0].quality, 39);
+        assertEquals(app.items[0].sellIn, 39);
     }
 
     @Test
     void qualityDegradationForExpired(){
-        Item[] items = new Item[]{new Item("item1", 0, 100)};
+        Item[] items = new Item[]{new Item("item1", 0, 40)};
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-        assertEquals(app.items[0].quality, 98);
+        assertEquals(app.items[0].quality, 38);
     }
 
     @Test

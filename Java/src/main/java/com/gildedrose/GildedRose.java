@@ -32,32 +32,25 @@ class GildedRose {
         }
     }
 
-    private int getDecreasedQuality(int oldQuality, int factor){
-        return Math.max(oldQuality - factor, 0);
+    private void changeQuality(Item item, int factor) {
+        item.quality = Math.min(Math.max(item.quality + factor, 0), 50);
     }
-
-    private int getIncreasedQuality(Item item, int factor) {
-        return Math.min(item.quality + factor, 50);
-    }
-
     private void changeQualityOfStandardItems(Item item) {
-        int decreaseFactor = (item.sellIn > 0) ? 1 : 2;
-        item.quality = getDecreasedQuality(item.quality, decreaseFactor);
+        final int decreaseFactor = (item.sellIn > 0) ? -1 : -2;
+        changeQuality(item, decreaseFactor);
     }
-
     private void changeQualityOfBries(Item item) {
-        int increaseFactor = (item.sellIn > 0) ? 1 : 2;
-        item.quality = getIncreasedQuality(item, increaseFactor);
+        final int increaseFactor = (item.sellIn > 0) ? 1 : 2;
+        changeQuality(item, increaseFactor);
     }
-
     private void changeQualityOfPasses(Item item) {
         if (item.sellIn < 0) {
             item.quality = 0;
         } else if (item.sellIn < 5) {
-            item.quality = getIncreasedQuality(item, 3);
+            changeQuality(item, 3);
         } else if (item.sellIn < 10) {
-            item.quality = getIncreasedQuality(item, 2);
+            changeQuality(item, 2);
         } else
-            item.quality = getIncreasedQuality(item, 1);
+            changeQuality(item, 1);
     }
 }
