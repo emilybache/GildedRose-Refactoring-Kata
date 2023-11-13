@@ -6,16 +6,15 @@ import java.util.stream.Stream;
 class GildedRose {
     Item[] items;
 
-    public static String agedBrie = "Aged Brie";
     public GildedRose(Item[] items) {
         this.items = items;
     }
 
     public void updateQuality() {
-        Item[] agingItems = Arrays.stream(items).filter(i -> !i.name.toLowerCase().contains("sulfuras")).toArray(Item[]::new);
-        Stream<Item> bries = Arrays.stream(agingItems).filter(i -> i.name.equals(agedBrie));
+        Item[] agingItems = Arrays.stream(items).filter(i -> !isSulfuras(i)).toArray(Item[]::new);
+        Stream<Item> bries = Arrays.stream(agingItems).filter(this::isBrie);
         Stream<Item> backstagePasses = Arrays.stream(agingItems).filter(this::isBackstagePass);
-        Stream<Item> standardItems = Arrays.stream(agingItems).filter(i -> !isBackstagePass(i) && !i.name.equals(agedBrie));
+        Stream<Item> standardItems = Arrays.stream(agingItems).filter(i -> !(isBackstagePass(i) || isBrie(i)));
         for (Item item : agingItems) {
             item.sellIn--;
         }
@@ -47,5 +46,10 @@ class GildedRose {
     private boolean isBackstagePass(Item i) {
         return i.name.toLowerCase().contains("backstage");
     }
-
+    private boolean isSulfuras(Item i) {
+        return i.name.toLowerCase().contains("sulfuras");
+    }
+    private boolean isBrie(Item i) {
+        return i.name.equals("Aged Brie");
+    }
 }
