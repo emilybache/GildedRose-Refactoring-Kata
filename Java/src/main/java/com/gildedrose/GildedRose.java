@@ -20,11 +20,11 @@ class GildedRose {
         Item[] otherItems = Arrays.stream(agingItems).filter(i -> !i.name.equals(backStagePasses) && !i.name.equals(agedBrie)).toArray(Item[]::new);
         for (Item item : otherItems) {
             item.sellIn = item.sellIn - 1;
-            decreaseQualityOfNormalItems(item);
+            changeQualityOfStandardItems(item);
         }
         for (Item brie : bries) {
             brie.sellIn = brie.sellIn - 1;
-            increaseQualityOfBries(brie);
+            changeQualityOfBries(brie);
         }
         for (Item item : backstagePasses) {
             item.sellIn = item.sellIn - 1;
@@ -40,12 +40,12 @@ class GildedRose {
         return Math.min(item.quality + factor, 50);
     }
 
-    private void decreaseQualityOfNormalItems(Item item) {
+    private void changeQualityOfStandardItems(Item item) {
         int decreaseFactor = (item.sellIn > 0) ? 1 : 2;
         item.quality = getDecreasedQuality(item.quality, decreaseFactor);
     }
 
-    private void increaseQualityOfBries(Item item) {
+    private void changeQualityOfBries(Item item) {
         int increaseFactor = (item.sellIn > 0) ? 1 : 2;
         item.quality = getIncreasedQuality(item, increaseFactor);
     }
