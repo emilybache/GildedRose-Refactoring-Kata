@@ -6,7 +6,6 @@ import java.util.stream.Stream;
 class GildedRose {
     Item[] items;
 
-    public static String backStagePasses = "Backstage passes to a TAFKAL80ETC concert";
     public static String agedBrie = "Aged Brie";
     public GildedRose(Item[] items) {
         this.items = items;
@@ -15,8 +14,8 @@ class GildedRose {
     public void updateQuality() {
         Item[] agingItems = Arrays.stream(items).filter(i -> !i.name.toLowerCase().contains("sulfuras")).toArray(Item[]::new);
         Stream<Item> bries = Arrays.stream(agingItems).filter(i -> i.name.equals(agedBrie));
-        Stream<Item> backstagePasses = Arrays.stream(agingItems).filter(i -> i.name.equals(backStagePasses));
-        Stream<Item> standardItems = Arrays.stream(agingItems).filter(i -> !i.name.equals(backStagePasses) && !i.name.equals(agedBrie));
+        Stream<Item> backstagePasses = Arrays.stream(agingItems).filter(this::isBackstagePass);
+        Stream<Item> standardItems = Arrays.stream(agingItems).filter(i -> !isBackstagePass(i) && !i.name.equals(agedBrie));
         for (Item item : agingItems) {
             item.sellIn--;
         }
@@ -44,4 +43,9 @@ class GildedRose {
         } else
             changeQuality(item, 1);
     }
+
+    private boolean isBackstagePass(Item i) {
+        return i.name.toLowerCase().contains("backstage");
+    }
+
 }

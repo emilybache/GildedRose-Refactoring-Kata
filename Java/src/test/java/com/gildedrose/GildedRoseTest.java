@@ -90,16 +90,15 @@ class GildedRoseTest {
 
     @Test
     void backStagePassesIncrease() {
-        String backstage = GildedRose.backStagePasses;
         Item[] items = new Item[]{
-            new Item(backstage, 100, 0),
-            new Item(backstage, 11, 0),
-            new Item(backstage, 10, 0),
-            new Item(backstage, 6, 0),
-            new Item(backstage, 5, 0),
-            new Item(backstage, 1, 0),
-            new Item(backstage, 0, 50),
-            new Item(backstage, -1, 50),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 100, 0),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 11, 0),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 10, 0),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 6, 0),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 5, 0),
+            new Item("Backstage passes to a IDK concert", 1, 0),
+            new Item("Backstage passes to a Robbie Williams concert", 0, 50),
+            new Item("Backstage passes to a Hank Williams concert", -1, 50),
         };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
