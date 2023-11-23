@@ -11,8 +11,9 @@ public class BackstagePass extends InventoryItem {
     }
 
     @Override
-    public boolean qualityDecreaseInverted() {
-        return true;
+    public int handleQuality() {
+        quality = increaseQualityBelowMaximum();
+        return quality;
     }
 
     @Override

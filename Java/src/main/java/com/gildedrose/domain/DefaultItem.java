@@ -11,11 +11,6 @@ public class DefaultItem extends InventoryItem {
     }
 
     @Override
-    public boolean qualityDecreaseInverted() {
-        return false;
-    }
-
-    @Override
     public int qualityDecreaseAmount() {
         return 1;
     }

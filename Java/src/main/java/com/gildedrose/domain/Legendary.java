@@ -12,11 +12,6 @@ public class Legendary extends InventoryItem {
     }
 
     @Override
-    public boolean qualityDecreaseInverted() {
-        return false;
-    }
-
-    @Override
     public int qualityDecreaseAmount() {
         return 0;
     }

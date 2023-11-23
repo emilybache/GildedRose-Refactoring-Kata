@@ -3,6 +3,8 @@ package com.gildedrose.domain;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import static java.util.stream.IntStream.range;
+
 @NoArgsConstructor
 @Setter
 public abstract class InventoryItem {
@@ -11,8 +13,6 @@ public abstract class InventoryItem {
     public String name;
     public int quality;
     public int sellIn;
-
-    public abstract boolean qualityDecreaseInverted();
 
     public abstract int qualityDecreaseAmount();
 
@@ -33,5 +33,10 @@ public abstract class InventoryItem {
     public int reduceSellIn() {
         sellIn--;
         return sellIn;
+    }
+
+    public int handleQuality() {
+        range(0, qualityDecreaseAmount()).forEach(i -> quality = decreaseQualityAboveZero());
+        return quality;
     }
 }

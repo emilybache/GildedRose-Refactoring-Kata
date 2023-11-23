@@ -3,7 +3,6 @@ package com.gildedrose;
 import com.gildedrose.domain.*;
 import com.gildedrose.domain.InventoryItem;
 
-import static java.util.stream.IntStream.range;
 import static java.util.stream.Stream.of;
 
 class GildedRose {
@@ -26,17 +25,11 @@ class GildedRose {
             // reduce sellIn
             item.sellIn = inventoryItem.reduceSellIn();
 
-            // increase quality when quality decrease is inverted
-            if (inventoryItem.qualityDecreaseInverted()) {
-                item.quality = inventoryItem.increaseQualityBelowMaximum();
-            }
-
-            // decrease quality based on their decrease amount
-            else {
-                range(0, inventoryItem.qualityDecreaseAmount()).forEach(i -> item.quality = inventoryItem.decreaseQualityAboveZero());
-            }
+            // increase or decrease quality based on the items
+            item.quality = inventoryItem.handleQuality();
 
             if (item.sellIn < 0) {
+                // increase or decrease quality more after sell in
                 item.quality = inventoryItem.handleQualityAfterSellIn();
             }
         });
