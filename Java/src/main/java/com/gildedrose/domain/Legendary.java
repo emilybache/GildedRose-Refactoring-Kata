@@ -5,7 +5,6 @@ import com.gildedrose.Item;
 public class Legendary extends InventoryItem {
 
     public Legendary(Item item) {
-        super();
         setName(item.name);
         setSellIn(item.sellIn);
         setQuality(item.quality);

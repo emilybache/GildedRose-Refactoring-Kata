@@ -12,8 +12,7 @@ public class AgedBrie extends InventoryItem {
 
     @Override
     public int handleQuality() {
-        quality = increaseQualityBelowMaximum();
-        return quality;
+        return increaseQualityBelowMaximum();
     }
 
     @Override
@@ -23,7 +22,6 @@ public class AgedBrie extends InventoryItem {
 
     @Override
     public int handleQualityAfterSellIn() {
-        quality = increaseQualityBelowMaximum();
-        return quality;
+        return increaseQualityBelowMaximum();
     }
 }

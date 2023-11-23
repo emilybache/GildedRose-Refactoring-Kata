@@ -17,7 +17,6 @@ public class DefaultItem extends InventoryItem {
 
     @Override
     public int handleQualityAfterSellIn() {
-        quality = decreaseQualityAboveZero();
-        return quality;
+        return decreaseQualityAboveZero();
     }
 }

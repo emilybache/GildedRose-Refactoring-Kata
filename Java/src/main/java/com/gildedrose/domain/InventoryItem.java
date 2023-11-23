@@ -19,8 +19,7 @@ public abstract class InventoryItem {
     public abstract int handleQualityAfterSellIn();
 
     public int decreaseQualityAboveZero() {
-        quality = quality > 0 ? quality - 1 : 0;
-        return quality;
+        return quality > 0 ? quality - 1 : 0;
     }
 
     public int increaseQualityBelowMaximum() {
@@ -31,8 +30,7 @@ public abstract class InventoryItem {
     }
 
     public int reduceSellIn() {
-        sellIn--;
-        return sellIn;
+        return --sellIn;
     }
 
     public int handleQuality() {
