@@ -1,7 +1,7 @@
 package com.gildedrose;
 
 import com.gildedrose.domain.*;
-import com.gildedrose.service.InventoryItem;
+import com.gildedrose.domain.InventoryItem;
 
 import static java.util.stream.IntStream.range;
 import static java.util.stream.Stream.of;

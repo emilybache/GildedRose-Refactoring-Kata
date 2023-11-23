@@ -1,4 +1,4 @@
-package com.gildedrose.service;
+package com.gildedrose.domain;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;

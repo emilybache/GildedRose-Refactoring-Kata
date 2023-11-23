@@ -1,7 +1,6 @@
 package com.gildedrose.domain;
 
 import com.gildedrose.Item;
-import com.gildedrose.service.InventoryItem;
 
 public class DefaultItem extends InventoryItem {
 
