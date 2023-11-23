@@ -1,12 +1,18 @@
 package com.gildedrose;
 
-import static com.gildedrose.Inventory.BACKSTAGE_PASS;
-import static com.gildedrose.Inventory.LEGENDARY;
-import static com.gildedrose.service.InventoryHelper.*;
+import com.gildedrose.domain.*;
+import com.gildedrose.service.InventoryItem;
+
 import static java.util.stream.IntStream.range;
 import static java.util.stream.Stream.of;
 
 class GildedRose {
+
+    private static final String AGED_BRIE = "Aged Brie";
+    private static final String LEGENDARY = "Sulfuras, Hand of Ragnaros";
+    private static final String CONJURED_ITEM = "Conjured Mana Cake";
+    private static final String BACKSTAGE_PASS = "Backstage passes to a TAFKAL80ETC concert";
+
     Item[] items;
 
     GildedRose(Item[] items) {
@@ -15,29 +21,39 @@ class GildedRose {
 
     void updateQuality() {
         of(items).forEach(item -> {
-            // legendary items should not be sold
-            if (itemNotLegendary(item)) item.sellIn--;
+            InventoryItem inventoryItem = inventoryFromItem(item);
+
+            // reduce sellIn
+            item.sellIn = inventoryItem.reduceSellIn();
 
             // increase quality when quality decrease is inverted
-            if (includesItems(item, getInventoriesWithInvertedQualityDecrease())) {
-                increaseQualityBelowMaximum(item);
-
-                // increase backstage passes
-                increaseBackstagePass(item);
+            if (inventoryItem.qualityDecreaseInverted()) {
+                item.quality = inventoryItem.increaseQualityBelowMaximum();
             }
-            // decrease average (non-legendary) items
-            else if (itemNotLegendary(item)) {
-                // decrease quality based on their decrease amount
-                range(0, getQualityDecreaseAmount(item)).forEach(i -> decreaseQualityAboveZero(item));
+
+            // decrease quality based on their decrease amount
+            else {
+                range(0, inventoryItem.qualityDecreaseAmount()).forEach(i -> item.quality = inventoryItem.decreaseQualityAboveZero());
             }
 
             if (item.sellIn < 0) {
-                // increase quality when aged brie
-                if (itemAgedBrie(item)) increaseQualityBelowMaximum(item);
-
-                    // when not aged brie, backstage pass or legendary, decrease quality above zero
-                else decreaseQualityAboveZeroItemsOtherThan(item, BACKSTAGE_PASS, LEGENDARY);
+                item.quality = inventoryItem.handleQualityAfterSellIn();
             }
         });
+    }
+
+    private InventoryItem inventoryFromItem(Item item) {
+        switch (item.name) {
+            case AGED_BRIE:
+                return new AgedBrie(item);
+            case LEGENDARY:
+                return new Legendary(item);
+            case CONJURED_ITEM:
+                return new ConjuredItem(item);
+            case BACKSTAGE_PASS:
+                return new BackstagePass(item);
+            default:
+                return new DefaultItem(item);
+        }
     }
 }
