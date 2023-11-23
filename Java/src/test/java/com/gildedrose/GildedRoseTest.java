@@ -105,6 +105,14 @@ class GildedRoseTest {
         assertEquals(quality, app.items[0].quality);
     }
 
+    @Test
+    void givenConjuredItem_whenUpdateQuality_thenQualityDecreasesDouble() {
+        int quality = 25;
+        GildedRose app = updateQuality(createConjuredItem(quality));
+
+        assertEquals(quality - 2, app.items[0].quality);
+    }
+
     private GildedRose updateQuality(Item... items) {
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -125,5 +133,9 @@ class GildedRoseTest {
 
     private Item createLegendaryItem(int quality) {
         return new Item("Sulfuras, Hand of Ragnaros", 10, quality);
+    }
+
+    private Item createConjuredItem(int quality) {
+        return new Item("Conjured Mana Cake", 6, quality);
     }
 }
