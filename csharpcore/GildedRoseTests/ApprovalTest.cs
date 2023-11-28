@@ -17,7 +17,7 @@ public class ApprovalTest
         Console.SetOut(new StringWriter(fakeOutput));
         Console.SetIn(new StringReader($"a{Environment.NewLine}"));
 
-        TextTestFixture.Main(new string[] { });
+        TextTestFixture.Main(new string[] { "30" });
         var output = fakeOutput.ToString();
 
         Approvals.Verify(output);
