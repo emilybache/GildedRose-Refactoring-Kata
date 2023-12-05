@@ -49,7 +49,7 @@ class GildedRoseTest {
 
     @Test
     void updateQuality_legendaryItem() {
-        GildedRose app = createApp(createItem("Sulfuras, Hand of Ragnaros ", 10, 80));
+        GildedRose app = createApp(createItem("SulFUras, Hand of Ragnaros ", 10, 80));
         app.updateQuality();
 
         assertEquals(10, app.items[0].sellIn);
@@ -57,8 +57,48 @@ class GildedRoseTest {
     }
 
     @Test
-    void updateQuality_agingItem() {
-        fail("NYI");
+    void updateQuality_agingItem_normalIncrease() {
+        GildedRose app = createApp(createItem("Aging Brie", 20, 10));
+        app.updateQuality();
+
+        assertEquals(19, app.items[0].sellIn);
+        assertEquals(11, app.items[0].quality);
+    }
+
+    @Test
+    void updateQuality_agingItem_doubleQualityIncrease() {
+        GildedRose app = createApp(createItem("Aging Brie", 11, 10));
+        app.updateQuality();
+
+        assertEquals(10, app.items[0].sellIn);
+        assertEquals(12, app.items[0].quality);
+    }
+
+    @Test
+    void updateQuality_agingItem_doubleTripleIncrease() {
+        GildedRose app = createApp(createItem("A lot of Aging BRIE", 6, 10));
+        app.updateQuality();
+
+        assertEquals(5, app.items[0].sellIn);
+        assertEquals(13, app.items[0].quality);
+    }
+
+    @Test
+    void updateQuality_agingItem_normalDecrease() {
+        GildedRose app = createApp(createItem("Aging BRIE", 0, 50));
+        app.updateQuality();
+
+        assertEquals(-1, app.items[0].sellIn);
+        assertEquals(49, app.items[0].quality);
+    }
+
+    @Test
+    void updateQuality_agingItem_BackstagePasses_HardDegradation() {
+        GildedRose app = createApp(createItem("Backstage paSSes for", 0, 50));
+        app.updateQuality();
+
+        assertEquals(-1, app.items[0].sellIn);
+        assertEquals(0, app.items[0].quality);
     }
 
     @Test

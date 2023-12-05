@@ -4,8 +4,6 @@ import com.gildedrose.Item;
 
 public class StandardGildedRoseItem extends AbstractGildedRoseItem {
 
-    private final static int MAX_QUALITY = 50;
-
     public StandardGildedRoseItem(Item item) {
         super(item);
         item.quality = Math.min(item.quality, MAX_QUALITY);
