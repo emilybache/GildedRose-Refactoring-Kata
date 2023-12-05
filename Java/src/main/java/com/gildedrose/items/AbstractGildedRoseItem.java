@@ -2,7 +2,7 @@ package com.gildedrose.items;
 
 import com.gildedrose.Item;
 
-public abstract class AbstractGildedRoseItem implements GildedRoseItem{
+public abstract class AbstractGildedRoseItem implements GildedRoseItem {
 
     protected final static int MAX_QUALITY = 50;
 

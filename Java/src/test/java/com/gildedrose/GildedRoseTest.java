@@ -3,7 +3,6 @@ package com.gildedrose;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 class GildedRoseTest {
 
@@ -102,8 +101,21 @@ class GildedRoseTest {
     }
 
     @Test
-    void updateQuality_conjuredItem() {
-        fail("NYI");
+    void updateQuality_conjuredItem_normalStep() {
+        GildedRose app = createApp(createItem("Conjured stuff", 10, 15));
+        app.updateQuality();
+
+        assertEquals(9, app.items[0].sellIn);
+        assertEquals(13, app.items[0].quality);
+    }
+
+    @Test
+    void updateQuality_conjuredItem_doubleDecayAfterLastSellDate() {
+        GildedRose app = createApp(createItem("Conjured stuff", 0, 15));
+        app.updateQuality();
+
+        assertEquals(-1, app.items[0].sellIn);
+        assertEquals(11, app.items[0].quality);
     }
 
     private GildedRose createApp(Item[] items) {

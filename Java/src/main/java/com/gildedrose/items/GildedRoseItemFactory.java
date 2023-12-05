@@ -15,7 +15,7 @@ public class GildedRoseItemFactory {
 
     public static GildedRoseItem create(Item item) {
         if (CONJURED_ITEM.matcher(item.name).matches()) {
-            return new NonStandardGildedRoseItem(item);
+            return new StandardGildedRoseItem(item, StandardGildedRoseItem.STANDARD_DEGRADATION * 2);
         } else if (AGING_ITEM.matcher(item.name).matches()) {
             return new AgingGildedRoseItem(item, false);
         } else if (AGING_HARD_DEGRADATION_ITEM.matcher(item.name).matches()) {
