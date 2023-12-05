@@ -42,14 +42,18 @@ class GildedRoseTest {
     @Test
     void updateQuality_standardItem_maxQuality50() {
         GildedRose app = createApp(createItem("standard", 10, 60));
-
         app.updateQuality();
+
         assertEquals(49, app.items[0].quality);
     }
 
     @Test
     void updateQuality_legendaryItem() {
-        fail("NYI");
+        GildedRose app = createApp(createItem("Sulfuras, Hand of Ragnaros ", 10, 80));
+        app.updateQuality();
+
+        assertEquals(10, app.items[0].sellIn);
+        assertEquals(80, app.items[0].quality);
     }
 
     @Test

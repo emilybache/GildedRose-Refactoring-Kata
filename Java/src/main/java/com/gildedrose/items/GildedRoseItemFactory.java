@@ -13,10 +13,11 @@ public class GildedRoseItemFactory {
     static final Pattern CONJURED_ITEM = Pattern.compile("Conjured.*", CASE_INSENSITIVE);
 
     public static GildedRoseItem create(Item item) {
-        if (LEGENDARY_NAME_PATTERN.matcher(item.name).matches()
-            || AGING_ITEM.matcher(item.name).matches()
+        if (AGING_ITEM.matcher(item.name).matches()
             || CONJURED_ITEM.matcher(item.name).matches()) {
             return new NonStandardGildedRoseItem(item);
+        }  else if (LEGENDARY_NAME_PATTERN.matcher(item.name).matches()) {
+            return new LegendaryGildedRoseItem(item);
         } else {
             return new StandardGildedRoseItem(item);
         }
