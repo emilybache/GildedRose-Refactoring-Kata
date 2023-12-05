@@ -1,4 +1,6 @@
 use std::fmt::{self, Display};
+
+#[derive(Debug, PartialEq)]
 pub struct Item {
     pub name: String,
     pub sell_in: i32,
@@ -94,6 +96,6 @@ mod tests {
         let mut rose = GildedRose::new(items);
         rose.update_quality();
 
-        assert_eq!("fixme", rose.items[0].name);
+        assert_eq!(rose.items[0], Item::new("fixme", -1, 0));
     }
 }
