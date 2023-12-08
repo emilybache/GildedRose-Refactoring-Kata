@@ -20,7 +20,7 @@ Please don't send me a pull request with your solution. It can be a bit confusin
 
 ### Gilded Rose Requirements in other languages 
 
-- [English](GildedRoseRequirements.txt)
+- [English](GildedRoseRequirements.md)
 - [Español](GildedRoseRequirements_es.md)
 - [Français](GildedRoseRequirements_fr.md)
 - [Italiano](GildedRoseRequirements_it.md)
