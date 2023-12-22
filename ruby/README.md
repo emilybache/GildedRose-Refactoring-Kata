@@ -10,7 +10,7 @@ Ensure you have RSpec installed
     gem install rspec
 
 ```
-ruby gilded_rose_spec.rb
+rspec gilded_rose_spec.rb
 ```
 
 ## Run the TextTest fixture from the Command-Line
