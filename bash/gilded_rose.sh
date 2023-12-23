@@ -1,7 +1,7 @@
 #!/bin/bash
 
 update_quality() {
-    local IFS=','
+    local IFS='|'
 
     while read -r name sell_in_str quality_str; do
         declare -i sell_in="$sell_in_str"
@@ -50,7 +50,7 @@ update_quality() {
             fi
         fi
 
-        echo "$name,$sell_in,$quality"
+        echo "$name|$sell_in|$quality"
     done
 }
 
