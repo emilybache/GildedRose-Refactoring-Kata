@@ -3,10 +3,7 @@
 update_quality() {
     local IFS='|'
 
-    while read -r name sell_in_str quality_str; do
-        declare -i sell_in="$sell_in_str"
-        declare -i quality="$quality_str"
-
+    while read -r name sell_in quality; do
         if [[ $name != "Aged Brie" && $name != "Backstage passes to a TAFKAL80ETC concert" ]]; then
             if ((quality > 0)); then
                 if [[ $name != "Sulfuras, Hand of Ragnaros" ]]; then
