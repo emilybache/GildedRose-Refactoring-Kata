@@ -30,8 +30,7 @@ export class GildedRose {
             item.quality = item.quality - 1;
           }
         }
-      } else {
-        if (item.quality < MAX_ITEM_QUALITY) {
+      } else if (item.quality < MAX_ITEM_QUALITY) {
           item.quality = item.quality + 1;
           if (item.name == ItemNames.BACKSTAGE_PASSES) {
             if (item.sellIn < 11) {
@@ -46,7 +45,6 @@ export class GildedRose {
             }
           }
         }
-      }
       if (item.name != ItemNames.SULFURAS) {
         item.sellIn = item.sellIn - 1;
       }
@@ -59,13 +57,11 @@ export class GildedRose {
               }
             }
           } else {
-            item.quality = item.quality - item.quality;
+            item.quality = 0;
           }
-        } else {
-          if (item.quality < MAX_ITEM_QUALITY) {
+        } else if (item.quality < MAX_ITEM_QUALITY) {
             item.quality = item.quality + 1;
           }
-        }
       }
     }
 
