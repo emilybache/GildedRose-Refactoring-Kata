@@ -74,6 +74,11 @@ export class GildedRose {
     }
   }
 
+  private updateConjuredItem(item: Item) {
+    assert(item.name == ItemNames.CONJURED_CAKE);
+    //business logic to be implemented
+  }
+
   updateQuality() {
     for (const item of this.items) {
       switch (item.name) {
