@@ -19,49 +19,201 @@ export class GildedRose {
     this.items = items;
   }
 
-  updateQuality() {
-    for (const item of this.items) {
-      if (
-        item.name != ItemNames.AGED_BRIE &&
-        item.name != ItemNames.BACKSTAGE_PASSES
-      ) {
-        if (item.quality > 0) {
-          if (item.name != ItemNames.SULFURAS) {
-            item.quality = item.quality - 1;
-          }
+  private updateAgedBrieItem(item: Item) {
+    if (
+      item.name != ItemNames.AGED_BRIE &&
+      item.name != ItemNames.BACKSTAGE_PASSES
+    ) {
+      if (item.quality > 0) {
+        if (item.name != ItemNames.SULFURAS) {
+          item.quality = item.quality - 1;
         }
-      } else if (item.quality < MAX_ITEM_QUALITY) {
-          item.quality = item.quality + 1;
-          if (item.name == ItemNames.BACKSTAGE_PASSES) {
-            if (item.sellIn < 11) {
-              if (item.quality < MAX_ITEM_QUALITY) {
-                item.quality = item.quality + 1;
-              }
-            }
-            if (item.sellIn < 6) {
-              if (item.quality < MAX_ITEM_QUALITY) {
-                item.quality = item.quality + 1;
-              }
-            }
-          }
-        }
-      if (item.name != ItemNames.SULFURAS) {
-        item.sellIn = item.sellIn - 1;
       }
-      if (item.sellIn < 0) {
-        if (item.name != ItemNames.AGED_BRIE) {
-          if (item.name != ItemNames.BACKSTAGE_PASSES) {
-            if (item.quality > 0) {
-              if (item.name != ItemNames.SULFURAS) {
-                item.quality = item.quality - 1;
-              }
-            }
-          } else {
-            item.quality = 0;
-          }
-        } else if (item.quality < MAX_ITEM_QUALITY) {
+    } else if (item.quality < MAX_ITEM_QUALITY) {
+      item.quality = item.quality + 1;
+      if (item.name == ItemNames.BACKSTAGE_PASSES) {
+        if (item.sellIn < 11) {
+          if (item.quality < MAX_ITEM_QUALITY) {
             item.quality = item.quality + 1;
           }
+        }
+        if (item.sellIn < 6) {
+          if (item.quality < MAX_ITEM_QUALITY) {
+            item.quality = item.quality + 1;
+          }
+        }
+      }
+    }
+    if (item.name != ItemNames.SULFURAS) {
+      item.sellIn = item.sellIn - 1;
+    }
+    if (item.sellIn < 0) {
+      if (item.name != ItemNames.AGED_BRIE) {
+        if (item.name != ItemNames.BACKSTAGE_PASSES) {
+          if (item.quality > 0) {
+            if (item.name != ItemNames.SULFURAS) {
+              item.quality = item.quality - 1;
+            }
+          }
+        } else {
+          item.quality = 0;
+        }
+      } else if (item.quality < MAX_ITEM_QUALITY) {
+        item.quality = item.quality + 1;
+      }
+    }
+  }
+
+  private updateBackstagePassesItem(item: Item) {
+    if (
+      item.name != ItemNames.AGED_BRIE &&
+      item.name != ItemNames.BACKSTAGE_PASSES
+    ) {
+      if (item.quality > 0) {
+        if (item.name != ItemNames.SULFURAS) {
+          item.quality = item.quality - 1;
+        }
+      }
+    } else if (item.quality < MAX_ITEM_QUALITY) {
+      item.quality = item.quality + 1;
+      if (item.name == ItemNames.BACKSTAGE_PASSES) {
+        if (item.sellIn < 11) {
+          if (item.quality < MAX_ITEM_QUALITY) {
+            item.quality = item.quality + 1;
+          }
+        }
+        if (item.sellIn < 6) {
+          if (item.quality < MAX_ITEM_QUALITY) {
+            item.quality = item.quality + 1;
+          }
+        }
+      }
+    }
+    if (item.name != ItemNames.SULFURAS) {
+      item.sellIn = item.sellIn - 1;
+    }
+    if (item.sellIn < 0) {
+      if (item.name != ItemNames.AGED_BRIE) {
+        if (item.name != ItemNames.BACKSTAGE_PASSES) {
+          if (item.quality > 0) {
+            if (item.name != ItemNames.SULFURAS) {
+              item.quality = item.quality - 1;
+            }
+          }
+        } else {
+          item.quality = 0;
+        }
+      } else if (item.quality < MAX_ITEM_QUALITY) {
+        item.quality = item.quality + 1;
+      }
+    }
+  }
+
+  private updateSulfurasItem(item: Item) {
+    if (
+      item.name != ItemNames.AGED_BRIE &&
+      item.name != ItemNames.BACKSTAGE_PASSES
+    ) {
+      if (item.quality > 0) {
+        if (item.name != ItemNames.SULFURAS) {
+          item.quality = item.quality - 1;
+        }
+      }
+    } else if (item.quality < MAX_ITEM_QUALITY) {
+      item.quality = item.quality + 1;
+      if (item.name == ItemNames.BACKSTAGE_PASSES) {
+        if (item.sellIn < 11) {
+          if (item.quality < MAX_ITEM_QUALITY) {
+            item.quality = item.quality + 1;
+          }
+        }
+        if (item.sellIn < 6) {
+          if (item.quality < MAX_ITEM_QUALITY) {
+            item.quality = item.quality + 1;
+          }
+        }
+      }
+    }
+    if (item.name != ItemNames.SULFURAS) {
+      item.sellIn = item.sellIn - 1;
+    }
+    if (item.sellIn < 0) {
+      if (item.name != ItemNames.AGED_BRIE) {
+        if (item.name != ItemNames.BACKSTAGE_PASSES) {
+          if (item.quality > 0) {
+            if (item.name != ItemNames.SULFURAS) {
+              item.quality = item.quality - 1;
+            }
+          }
+        } else {
+          item.quality = 0;
+        }
+      } else if (item.quality < MAX_ITEM_QUALITY) {
+        item.quality = item.quality + 1;
+      }
+    }
+  }
+
+  private updateNormalItem(item: Item) {
+    if (
+      item.name != ItemNames.AGED_BRIE &&
+      item.name != ItemNames.BACKSTAGE_PASSES
+    ) {
+      if (item.quality > 0) {
+        if (item.name != ItemNames.SULFURAS) {
+          item.quality = item.quality - 1;
+        }
+      }
+    } else if (item.quality < MAX_ITEM_QUALITY) {
+      item.quality = item.quality + 1;
+      if (item.name == ItemNames.BACKSTAGE_PASSES) {
+        if (item.sellIn < 11) {
+          if (item.quality < MAX_ITEM_QUALITY) {
+            item.quality = item.quality + 1;
+          }
+        }
+        if (item.sellIn < 6) {
+          if (item.quality < MAX_ITEM_QUALITY) {
+            item.quality = item.quality + 1;
+          }
+        }
+      }
+    }
+    if (item.name != ItemNames.SULFURAS) {
+      item.sellIn = item.sellIn - 1;
+    }
+    if (item.sellIn < 0) {
+      if (item.name != ItemNames.AGED_BRIE) {
+        if (item.name != ItemNames.BACKSTAGE_PASSES) {
+          if (item.quality > 0) {
+            if (item.name != ItemNames.SULFURAS) {
+              item.quality = item.quality - 1;
+            }
+          }
+        } else {
+          item.quality = 0;
+        }
+      } else if (item.quality < MAX_ITEM_QUALITY) {
+        item.quality = item.quality + 1;
+      }
+    }
+  }
+
+  updateQuality() {
+    for (const item of this.items) {
+      switch (item.name) {
+        case ItemNames.AGED_BRIE:
+          this.updateAgedBrieItem(item);
+          continue;
+        case ItemNames.BACKSTAGE_PASSES:
+          this.updateBackstagePassesItem(item);
+          continue;
+        case ItemNames.SULFURAS:
+          this.updateSulfurasItem(item);
+          continue;
+        default:
+          this.updateNormalItem(item);
+          continue;
       }
     }
 
