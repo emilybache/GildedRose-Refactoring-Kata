@@ -56,15 +56,15 @@ export class GildedRose {
 
   private updateSulfurasItem(item: Item) {
     assert(item.name == ItemNames.SULFURAS);
-    if (item.quality > 0 && item.name != ItemNames.SULFURAS) {
-      item.quality = item.quality - 1;
-    }
-    if (item.sellIn < 0 && item.quality < MAX_ITEM_QUALITY) {
-      item.quality = item.quality + 1;
-    }
+    // this function does not update the item (tests are still passing without any logic in this function)
   }
 
   private updateNormalItem(item: Item) {
+    assert(
+      item.name != ItemNames.AGED_BRIE &&
+        item.name != ItemNames.BACKSTAGE_PASSES &&
+        item.name != ItemNames.SULFURAS
+    );
     if (
       item.name != ItemNames.AGED_BRIE &&
       item.name != ItemNames.BACKSTAGE_PASSES
@@ -76,18 +76,6 @@ export class GildedRose {
       }
     } else if (item.quality < MAX_ITEM_QUALITY) {
       item.quality = item.quality + 1;
-      if (item.name == ItemNames.BACKSTAGE_PASSES) {
-        if (item.sellIn < 11) {
-          if (item.quality < MAX_ITEM_QUALITY) {
-            item.quality = item.quality + 1;
-          }
-        }
-        if (item.sellIn < 6) {
-          if (item.quality < MAX_ITEM_QUALITY) {
-            item.quality = item.quality + 1;
-          }
-        }
-      }
     }
     if (item.name != ItemNames.SULFURAS) {
       item.sellIn = item.sellIn - 1;
