@@ -1,4 +1,3 @@
-
 /*
   A const to hold the names of the items
 */
@@ -8,4 +7,6 @@ const ItemNames = {
   SULFURAS: "Sulfuras, Hand of Ragnaros",
 };
 
-export { ItemNames };
+const MAX_ITEM_QUALITY = 50;
+
+export { ItemNames, MAX_ITEM_QUALITY };

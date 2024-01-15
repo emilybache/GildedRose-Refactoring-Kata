@@ -1,5 +1,4 @@
-import { ItemNames } from "./constants";
-
+import { ItemNames, MAX_ITEM_QUALITY } from "./constants";
 
 export class Item {
   name: string;
@@ -32,16 +31,16 @@ export class GildedRose {
           }
         }
       } else {
-        if (item.quality < 50) {
+        if (item.quality < MAX_ITEM_QUALITY) {
           item.quality = item.quality + 1;
           if (item.name == ItemNames.BACKSTAGE_PASSES) {
             if (item.sellIn < 11) {
-              if (item.quality < 50) {
+              if (item.quality < MAX_ITEM_QUALITY) {
                 item.quality = item.quality + 1;
               }
             }
             if (item.sellIn < 6) {
-              if (item.quality < 50) {
+              if (item.quality < MAX_ITEM_QUALITY) {
                 item.quality = item.quality + 1;
               }
             }
@@ -63,7 +62,7 @@ export class GildedRose {
             item.quality = item.quality - item.quality;
           }
         } else {
-          if (item.quality < 50) {
+          if (item.quality < MAX_ITEM_QUALITY) {
             item.quality = item.quality + 1;
           }
         }
