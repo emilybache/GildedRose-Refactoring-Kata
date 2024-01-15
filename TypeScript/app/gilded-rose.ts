@@ -34,27 +34,15 @@ export class GildedRose {
   }
 
   private updateBackstagePassesItem(item: Item) {
-    if (
-      item.name != ItemNames.AGED_BRIE &&
-      item.name != ItemNames.BACKSTAGE_PASSES
-    ) {
-      if (item.quality > 0) {
-        if (item.name != ItemNames.SULFURAS) {
-          item.quality = item.quality - 1;
-        }
-      }
-    } else if (item.quality < MAX_ITEM_QUALITY) {
+    assert(item.name == ItemNames.BACKSTAGE_PASSES);
+    if (item.quality < MAX_ITEM_QUALITY) {
       item.quality = item.quality + 1;
-      if (item.name == ItemNames.BACKSTAGE_PASSES) {
-        if (item.sellIn < 11) {
-          if (item.quality < MAX_ITEM_QUALITY) {
-            item.quality = item.quality + 1;
-          }
+      if (item.name == ItemNames.BACKSTAGE_PASSES && item.sellIn < 11) {
+        if (item.sellIn < 11 && item.quality < MAX_ITEM_QUALITY) {
+          item.quality = item.quality + 1;
         }
-        if (item.sellIn < 6) {
-          if (item.quality < MAX_ITEM_QUALITY) {
-            item.quality = item.quality + 1;
-          }
+        if (item.sellIn < 6 && item.quality < MAX_ITEM_QUALITY) {
+          item.quality = item.quality + 1;
         }
       }
     }
@@ -62,19 +50,7 @@ export class GildedRose {
       item.sellIn = item.sellIn - 1;
     }
     if (item.sellIn < 0) {
-      if (item.name != ItemNames.AGED_BRIE) {
-        if (item.name != ItemNames.BACKSTAGE_PASSES) {
-          if (item.quality > 0) {
-            if (item.name != ItemNames.SULFURAS) {
-              item.quality = item.quality - 1;
-            }
-          }
-        } else {
-          item.quality = 0;
-        }
-      } else if (item.quality < MAX_ITEM_QUALITY) {
-        item.quality = item.quality + 1;
-      }
+      item.quality = 0;
     }
   }
 
