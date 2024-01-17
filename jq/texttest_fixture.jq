@@ -12,7 +12,7 @@
         { name: "Conjured Mana Cake", sell_in: 3, quality: 6}  # <-- :O
     ] |
     { items: ., day: 0 } |
-    recurse(.day += 1 | .items = (.items | update_quality); .day < ($ARGS.named.days // 2 | tonumber)) |
+    recurse(.day += 1 | .items = (.items | update_quality); .day <= ($ARGS.named.days // 2 | tonumber)) |
     (
         (["-------- day ", (.day | tostring), " --------"] | add),
         ("name, sellIn, quality"),
