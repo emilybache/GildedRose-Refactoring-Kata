@@ -31,4 +31,13 @@ class DefaultItemTest extends TestCase
 
         $this->assertEquals(0, $item->quality);
     }
+
+    public function testQualityDegradesTwiceAsFastAfterSellBy(): void
+    {
+        $item = new Item('foo', 0, 20);
+        $gildedRoseItem = new DefaultItem($item);
+        $gildedRoseItem->ageByOneDay();
+
+        $this->assertEquals(18, $item->quality);
+    }
 }

@@ -25,24 +25,8 @@ final class GildedRose
     public function updateQuality(): void
     {
         foreach ($this->items as $item) {
-
-            if ($item->name === 'Sulfuras, Hand of Ragnaros' || $item->name === 'Backstage passes to a TAFKAL80ETC concert' || $item->name === 'Aged Brie') {
-                $gildedRoseItem = $this->gildedRoseItemFactory->createGildedRoseItem($item);
-                $gildedRoseItem->ageByOneDay();
-                continue;
-            }
-
-            if ($item->quality > 0) {
-                $item->quality = $item->quality - 1;
-            }
-
-            $item->sellIn = $item->sellIn - 1;
-
-            if ($item->sellIn < 0) {
-                if ($item->quality > 0) {
-                    $item->quality = $item->quality - 1;
-                }
-            }
+            $gildedRoseItem = $this->gildedRoseItemFactory->createGildedRoseItem($item);
+            $gildedRoseItem->ageByOneDay();
         }
     }
 }
