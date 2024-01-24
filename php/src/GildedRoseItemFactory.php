@@ -6,6 +6,7 @@ namespace GildedRose;
 
 use GildedRose\GildedRoseItem\BrieItem;
 use GildedRose\GildedRoseItem\BackstagePassItem;
+use GildedRose\GildedRoseItem\ConjuredItem;
 use GildedRose\GildedRoseItem\SulfurasItem;
 use GildedRose\GildedRoseItem\DefaultItem;
 
@@ -20,6 +21,8 @@ class GildedRoseItemFactory
                 return new BackstagePassItem($item);
             case SulfurasItem::NAME:
                 return new SulfurasItem($item);
+            case ConjuredItem::NAME:
+                return new ConjuredItem($item);
             default:
                 return new DefaultItem($item);
         }

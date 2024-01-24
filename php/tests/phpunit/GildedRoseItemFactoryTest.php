@@ -8,6 +8,7 @@ use ApprovalTests\Approvals;
 use GildedRose\GildedRoseItem;
 use GildedRose\GildedRoseItem\BrieItem;
 use GildedRose\GildedRoseItem\BackstagePassItem;
+use GildedRose\GildedRoseItem\ConjuredItem;
 use GildedRose\GildedRoseItem\DefaultItem;
 use GildedRose\GildedRoseItem\SulfurasItem;
 use GildedRose\GildedRoseItemFactory;
@@ -57,5 +58,14 @@ class GildedRoseItemFactoryTest extends TestCase
 
         $this->assertInstanceOf(GildedRoseItem::class, $gildedRoseItem);
         $this->assertInstanceOf(SulfurasItem::class, $gildedRoseItem);
+    }
+
+    public function testCreatingConjuredItem(): void
+    {
+        $item = new Item('Conjured Mana Cake', 0, 0);
+        $gildedRoseItem = $this->factory->createGildedRoseItem($item);
+
+        $this->assertInstanceOf(GildedRoseItem::class, $gildedRoseItem);
+        $this->assertInstanceOf(ConjuredItem::class, $gildedRoseItem);
     }
 }

@@ -84,4 +84,10 @@ class ServiceLevelContext implements Context
     {
         $this->createItem('Sulfuras, Hand of Ragnaros', $initialSellIn, $initialQuality);
     }
+
+    #[Given('a conjured item with a sell-in of :initialSellIn and a quality of :initialQuality')]
+    public function aConjuredItemWithASellInOfAndAQualityOf(int $initialSellIn, int $initialQuality): void
+    {
+        $this->createItem('Conjured Mana Cake', $initialSellIn, $initialQuality);
+    }
 }
