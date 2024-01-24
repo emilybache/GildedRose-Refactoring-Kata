@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace GildedRose;
 
-use GildedRose\GildedRoseItem\BrieItem;
 use GildedRose\GildedRoseItem\BackstagePassItem;
+use GildedRose\GildedRoseItem\BrieItem;
 use GildedRose\GildedRoseItem\ConjuredItem;
-use GildedRose\GildedRoseItem\SulfurasItem;
 use GildedRose\GildedRoseItem\DefaultItem;
+use GildedRose\GildedRoseItem\SulfurasItem;
 
 class GildedRoseItemFactory
 {

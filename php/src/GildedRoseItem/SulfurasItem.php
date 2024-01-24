@@ -11,7 +11,10 @@ class SulfurasItem implements GildedRoseItem
 {
     public const NAME = 'Sulfuras, Hand of Ragnaros';
 
-    public function __construct(private Item $item) {}
+    public function __construct(
+        private Item $item
+    ) {
+    }
 
     public function ageByOneDay(): void
     {

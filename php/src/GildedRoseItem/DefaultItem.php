@@ -9,11 +9,14 @@ use GildedRose\Item;
 
 class DefaultItem implements GildedRoseItem
 {
-    public function __construct(private Item $item) {}
+    public function __construct(
+        private Item $item
+    ) {
+    }
 
     public function ageByOneDay(): void
     {
-        $this->item->sellIn -= 1;
+        --$this->item->sellIn;
         $this->item->quality = max(0, $this->getNewQuality($this->item->quality, $this->item->sellIn));
     }
 

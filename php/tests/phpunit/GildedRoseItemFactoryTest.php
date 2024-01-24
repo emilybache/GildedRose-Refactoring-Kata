@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace PhpUnitTests;
 
-use ApprovalTests\Approvals;
 use GildedRose\GildedRoseItem;
-use GildedRose\GildedRoseItem\BrieItem;
 use GildedRose\GildedRoseItem\BackstagePassItem;
+use GildedRose\GildedRoseItem\BrieItem;
 use GildedRose\GildedRoseItem\ConjuredItem;
 use GildedRose\GildedRoseItem\DefaultItem;
 use GildedRose\GildedRoseItem\SulfurasItem;

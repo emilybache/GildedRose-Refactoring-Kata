@@ -11,11 +11,14 @@ class BackstagePassItem implements GildedRoseItem
 {
     public const NAME = 'Backstage passes to a TAFKAL80ETC concert';
 
-    public function __construct(private Item $item) {}
+    public function __construct(
+        private Item $item
+    ) {
+    }
 
     public function ageByOneDay(): void
     {
-        $this->item->sellIn -= 1;
+        --$this->item->sellIn;
         $this->item->quality = min(50, $this->getNewQuality($this->item->quality, $this->item->sellIn));
     }
 

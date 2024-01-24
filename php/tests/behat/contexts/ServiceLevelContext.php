@@ -1,26 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BehatTests;
 
-use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Step\Given;
 use Behat\Step\Then;
 use Behat\Step\When;
-use GildedRose\Item;
 use GildedRose\GildedRose;
+use GildedRose\Item;
 use PHPUnit\Framework\Assert;
 
 class ServiceLevelContext implements Context
 {
     private Item $item;
-    private GildedRose $gildedRose;
 
-    private function createItem(string $name, int $initialSellIn, int $initialQuality): void
-    {
-        $this->item = new Item($name, $initialSellIn, $initialQuality);
-        $this->gildedRose = new GildedRose([$this->item]);
-    }
+    private GildedRose $gildedRose;
 
     #[Then('I should see :expectedOutput')]
     public function iShouldSee(string $expectedOutput): void
@@ -89,5 +85,11 @@ class ServiceLevelContext implements Context
     public function aConjuredItemWithASellInOfAndAQualityOf(int $initialSellIn, int $initialQuality): void
     {
         $this->createItem('Conjured Mana Cake', $initialSellIn, $initialQuality);
+    }
+
+    private function createItem(string $name, int $initialSellIn, int $initialQuality): void
+    {
+        $this->item = new Item($name, $initialSellIn, $initialQuality);
+        $this->gildedRose = new GildedRose([$this->item]);
     }
 }
