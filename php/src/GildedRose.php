@@ -7,16 +7,31 @@ namespace GildedRose;
 final class GildedRose
 {
     /**
+     * @var Item[]
+     */
+    private array $items;
+
+    private GildedRoseItemFactory $gildedRoseItemFactory;
+
+    /**
      * @param Item[] $items
      */
-    public function __construct(
-        private array $items
-    ) {
+    public function __construct(array $items)
+    {
+        $this->items = $items;
+        $this->gildedRoseItemFactory = new GildedRoseItemFactory();
     }
 
     public function updateQuality(): void
     {
         foreach ($this->items as $item) {
+
+            if ($item->name === 'Sulfuras, Hand of Ragnaros') {
+                $gildedRoseItem = $this->gildedRoseItemFactory->createGildedRoseItem($item);
+                $gildedRoseItem->ageByOneDay();
+                continue;
+            }
+
             if ($item->name !== 'Aged Brie' and $item->name !== 'Backstage passes to a TAFKAL80ETC concert') {
                 if ($item->quality > 0) {
                     if ($item->name !== 'Sulfuras, Hand of Ragnaros') {
