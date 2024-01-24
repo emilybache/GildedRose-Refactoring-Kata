@@ -15,5 +15,10 @@ class BrieItem implements GildedRoseItem
 
     public function ageByOneDay(): void
     {
+        $this->item->sellIn -= 1;
+
+        if ($this->item->quality < 50) {
+            $this->item->quality += 1;
+        }
     }
 }

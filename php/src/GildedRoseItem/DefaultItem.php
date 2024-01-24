@@ -13,5 +13,10 @@ class DefaultItem implements GildedRoseItem
 
     public function ageByOneDay(): void
     {
+        $this->item->sellIn -= 1;
+
+        if ($this->item->quality >= 1) {
+            $this->item->quality -= 1;
+        }
     }
 }
