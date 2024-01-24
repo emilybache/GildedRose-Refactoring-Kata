@@ -16,21 +16,23 @@ class BackstagePassItem implements GildedRoseItem
     public function ageByOneDay(): void
     {
         $this->item->sellIn -= 1;
+        $this->item->quality = min(50, $this->getNewQuality($this->item->quality, $this->item->sellIn));
+    }
 
-        if ($this->item->quality < 50) {
-            $this->item->quality += 1;
-
-            if ($this->item->sellIn <= 10 && $this->item->quality < 50) {
-                $this->item->quality += 1;
-            }
-
-            if ($this->item->sellIn <= 5 && $this->item->quality < 50) {
-                $this->item->quality += 1;
-            }
+    private function getNewQuality(int $previousQuality, int $sellIn): int
+    {
+        if ($sellIn < 0) {
+            return 0;
         }
 
-        if ($this->item->sellIn < 0) {
-            $this->item->quality = 0;
+        if ($sellIn < 5) {
+            return $previousQuality + 3;
         }
+
+        if ($sellIn < 10) {
+            return $previousQuality + 2;
+        }
+
+        return $previousQuality + 1;
     }
 }

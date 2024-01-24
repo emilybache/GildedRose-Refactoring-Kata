@@ -26,7 +26,7 @@ final class GildedRose
     {
         foreach ($this->items as $item) {
 
-            if ($item->name === 'Sulfuras, Hand of Ragnaros') {
+            if ($item->name === 'Sulfuras, Hand of Ragnaros' || $item->name === 'Backstage passes to a TAFKAL80ETC concert') {
                 $gildedRoseItem = $this->gildedRoseItemFactory->createGildedRoseItem($item);
                 $gildedRoseItem->ageByOneDay();
                 continue;
