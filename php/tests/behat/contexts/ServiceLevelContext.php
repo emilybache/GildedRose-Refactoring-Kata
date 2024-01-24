@@ -18,12 +18,6 @@ class ServiceLevelContext implements Context
 
     private GildedRose $gildedRose;
 
-    #[Then('I should see :expectedOutput')]
-    public function iShouldSee(string $expectedOutput): void
-    {
-        Assert::assertEquals([$expectedOutput], $this->result);
-    }
-
     #[Given('an item with a sell-in of :initialSellIn and a quality of :initialQuality')]
     public function anItemWithASellInOfAndAQualityOf(int $initialSellIn, int $initialQuality): void
     {
