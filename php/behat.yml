@@ -1,0 +1,9 @@
+default:
+
+    suites:
+
+        servicelevel:
+            paths:    [ '%paths.base%/tests/behat/feature_files' ]
+            filters:
+                tags: ~@wip
+            contexts: [ 'BehatTests\ServiceLevelContext' ]
