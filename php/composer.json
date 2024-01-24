@@ -21,12 +21,13 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/",
+            "Tests\\": "tests/approval/",
+            "PhpUnitTests\\": "tests/phpunit/",
             "BehatTests\\": "tests/behat/contexts/"
         }
     },
     "scripts": {
-        "tests": "./vendor/bin/phpunit; ./vendor/bin/behat;",
+        "tests": "./vendor/bin/phpunit --testsuite UnitTests; ./vendor/bin/phpunit --testsuite ApprovalTests; ./vendor/bin/behat;",
         "test-coverage": "phpunit --coverage-html build/coverage",
         "check-cs": "ecs check",
         "fix-cs": "ecs check --fix",

@@ -34,7 +34,7 @@ class ApprovalTest extends TestCase
         ob_start();
 
         $argv = ['', '30'];
-        include(__DIR__ . '/../fixtures/texttest_fixture.php');
+        include(__DIR__ . '/../../fixtures/texttest_fixture.php');
 
         $output = ob_get_clean();
 
