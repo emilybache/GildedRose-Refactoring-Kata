@@ -1,0 +1,27 @@
+<?php
+
+declare(strict_types=1);
+
+namespace GildedRose;
+
+use GildedRose\GildedRoseItem\BrieItem;
+use GildedRose\GildedRoseItem\BackstagePassItem;
+use GildedRose\GildedRoseItem\SulfurasItem;
+use GildedRose\GildedRoseItem\DefaultItem;
+
+class GildedRoseItemFactory
+{
+    public function createGildedRoseItem(Item $item): GildedRoseItem
+    {
+        switch ($item->name) {
+            case BrieItem::NAME:
+                return new BrieItem($item);
+            case BackstagePassItem::NAME:
+                return new BackstagePassItem($item);
+            case SulfurasItem::NAME:
+                return new SulfurasItem($item);
+            default:
+                return new DefaultItem($item);
+        }
+    }
+}
