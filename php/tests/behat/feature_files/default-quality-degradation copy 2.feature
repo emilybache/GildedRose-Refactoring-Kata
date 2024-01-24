@@ -5,12 +5,18 @@ Feature: Default quality degradation
 
 
   Scenario: Single quality update
-    Given an item with a sell_in of 20 and a quality of 20
+    Given an item with a sell-in of 20 and a quality of 20
     When I update the quality
     Then the item should have a quality of 19
 
 
   Scenario: Quality updates over multiple days
-    Given an item with a sell_in of 20 and a quality of 20
+    Given an item with a sell-in of 20 and a quality of 20
     When I update the quality 5 times
     Then the item should have a quality of 15
+
+
+Scenario: Quality cannot be negative
+    Given an item with a sell-in of 20 and a quality of 0
+    When I update the quality
+    Then the item should have a quality of 0
