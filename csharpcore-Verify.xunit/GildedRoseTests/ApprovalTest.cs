@@ -12,7 +12,6 @@ using Xunit;
 
 namespace GildedRoseTests
 {
-    [UsesVerify]
     public class ApprovalTest
     {
         [Fact]
