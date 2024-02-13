@@ -11,10 +11,12 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <junit.jupiter.version>5.6.2</junit.jupiter.version>
+        <junit.jupiter.version>5.10.2</junit.jupiter.version>
         <maven.maven-compiler-plugin.version>3.1</maven.maven-compiler-plugin.version>
         <maven.maven-surefire-plugin.version>3.0.0-M4</maven.maven-surefire-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
     <dependencies>
@@ -27,25 +29,9 @@
         <dependency>
             <groupId>com.approvaltests</groupId>
             <artifactId>approvaltests</artifactId>
-            <version>12.1.1</version>
+            <version>22.3.2</version>
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.maven-compiler-plugin.version}</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven.maven-surefire-plugin.version}</version>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
