@@ -7,3 +7,5 @@ vendor
 *.iml
 **/*.received.*
 venv
+**/DS_Store/*
+**/.DS_Store/*
