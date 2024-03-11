@@ -9,7 +9,7 @@ Use your normal build tools.
 For e.g. 10 days:
 
 ```
-GildedRoseTests/bin/Debug/net7.0/GildedRoseTests 10
+GildedRoseTests/bin/Debug/net8.0/GildedRoseTests 10
 ```
 
 You should make sure the command shown above works when you execute it in a terminal before trying to use TextTest (see below). If your tooling has placed the executable somewhere else, you will need to adjust the path above.
@@ -19,5 +19,5 @@ You should make sure the command shown above works when you execute it in a term
 
 There are instructions in the [TextTest Readme](../texttests/README.md) for setting up TextTest. You will need to specify the GildedRoseTests executable and interpreter in [config.gr](../texttests/config.gr). Uncomment this line:
 
-    executable:${TEXTTEST_HOME}/csharpcore/GildedRoseTests/bin/Debug/net7.0/GildedRoseTests
+    executable:${TEXTTEST_HOME}/csharpcore/GildedRoseTests/bin/Debug/net8.0/GildedRoseTests
 
