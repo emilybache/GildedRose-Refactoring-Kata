@@ -5,6 +5,8 @@ namespace GildedRoseKata;
 public class GildedRose
 {
     private readonly IList<Item> _items;
+    const int MinQuality = 0;
+    const int MaxQuality = 50;
 
     public GildedRose(IList<Item> items)
     {
@@ -23,7 +25,7 @@ public class GildedRose
     {
         if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
         {
-            if (item.Quality > 0)
+            if (item.Quality > MinQuality)
             {
                 if (item.Name != "Sulfuras, Hand of Ragnaros")
                 {
@@ -33,7 +35,7 @@ public class GildedRose
         }
         else
         {
-            if (item.Quality < 50)
+            if (item.Quality < MaxQuality)
             {
                 item.Quality = item.Quality + 1;
 
@@ -41,7 +43,7 @@ public class GildedRose
                 {
                     if (item.SellIn < 11)
                     {
-                        if (item.Quality < 50)
+                        if (item.Quality < MaxQuality)
                         {
                             item.Quality = item.Quality + 1;
                         }
@@ -49,7 +51,7 @@ public class GildedRose
 
                     if (item.SellIn < 6)
                     {
-                        if (item.Quality < 50)
+                        if (item.Quality < MaxQuality)
                         {
                             item.Quality = item.Quality + 1;
                         }
@@ -69,7 +71,7 @@ public class GildedRose
             {
                 if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
                 {
-                    if (item.Quality > 0)
+                    if (item.Quality > MinQuality)
                     {
                         if (item.Name != "Sulfuras, Hand of Ragnaros")
                         {
@@ -84,7 +86,7 @@ public class GildedRose
             }
             else
             {
-                if (item.Quality < 50)
+                if (item.Quality < MaxQuality)
                 {
                     item.Quality = item.Quality + 1;
                 }
