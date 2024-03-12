@@ -12,10 +12,10 @@ namespace csharp
 
         public void UpdateQuality()
         {
-            Items.ForEach(item => UpdateQuality(item));
+            Items.ForEach(item => DailyItemUpdate(item));
         }
 
-        private void UpdateQuality(Item item)
+        private void DailyItemUpdate(Item item)
         {
             if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
             {
@@ -87,5 +87,7 @@ namespace csharp
                 }
             }
         }
+        
+        
     }
 }
