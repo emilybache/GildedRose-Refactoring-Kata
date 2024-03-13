@@ -20,14 +20,23 @@ public class GildedRose
             DailyItemUpdate(item);
         }
     }
+
+    private static bool IsLegendaryItem(Item item) => item.Name.ToLower().Contains("sulfuras");
+
+    private static bool IsBackstagePassesItem(Item item) => item.Name.ToLower().Contains("backstage passes");
+
+    private static bool IsBetterWithAgeItem(Item item) => item.Name.ToLower().Equals("aged brie");
+    
+    
+    
     
     private void DailyItemUpdate(Item item)
     {
-        if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
+        if (!IsBetterWithAgeItem(item) && !IsBackstagePassesItem(item))
         {
             if (item.Quality > MinQuality)
             {
-                if (item.Name != "Sulfuras, Hand of Ragnaros")
+                if (!IsLegendaryItem(item))
                 {
                     item.Quality = item.Quality - 1;
                 }
@@ -39,7 +48,7 @@ public class GildedRose
             {
                 item.Quality = item.Quality + 1;
 
-                if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
+                if (IsBackstagePassesItem(item))
                 {
                     if (item.SellIn < 11)
                     {
@@ -60,20 +69,20 @@ public class GildedRose
             }
         }
 
-        if (item.Name != "Sulfuras, Hand of Ragnaros")
+        if (!IsLegendaryItem(item))
         {
             item.SellIn = item.SellIn - 1;
         }
 
         if (item.SellIn < 0)
         {
-            if (item.Name != "Aged Brie")
+            if (!IsBetterWithAgeItem(item))
             {
-                if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
+                if (!IsBackstagePassesItem(item))
                 {
                     if (item.Quality > MinQuality)
                     {
-                        if (item.Name != "Sulfuras, Hand of Ragnaros")
+                        if (!IsLegendaryItem(item))
                         {
                             item.Quality = item.Quality - 1;
                         }
