@@ -13,7 +13,7 @@ I decorated these tests with `[Ignore]` until I get to a stage in the refactorin
 2. small refactorings of the UpdateQuality() method to make it more readable and separate the different (unrelated) handling of the different types.<br>
 3. Extract Increasing/Decreasing Quality into a method.<br>  
 It feels like Quality should have been a TinyType that manages its own limits. However, since we're not allowed to change Item, I'm just extracting a method.
-
+4. Separated the processing of the different types from each other.<br>
 
 
 This is the state of the code now

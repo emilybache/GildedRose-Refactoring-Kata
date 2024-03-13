@@ -31,7 +31,8 @@ public class GildedRose
                                                      !IsBackstagePassesItem(item) &&
                                                      !IsBetterWithAgeItem(item));
 
-
+    private static bool IsExpired(Item item) => item.SellIn < 0;
+    
     private static void IncreaseQuality(Item item, int byValue)
     {
         item.Quality = int.Min(item.Quality + byValue, MaxQuality);
@@ -47,50 +48,45 @@ public class GildedRose
     {
         if (IsLegendaryItem(item)) return;
         
+        item.SellIn -= 1;
+        
         if (IsRegularItem(item))
         {
             DecreaseQuality(item, 1);
+            if (IsExpired(item))
+            {
+                DecreaseQuality(item, 1);
+            }
         }
 
         if (IsBetterWithAgeItem(item))
         {
             IncreaseQuality(item, 1);
+            if (IsExpired(item))
+            {
+                IncreaseQuality(item, 1);
+            }
         }
 
         if(IsBackstagePassesItem(item))
         {
-            if (item.SellIn > 10)
+            if (item.SellIn > 9)
             {
                 IncreaseQuality(item, 1);
             }
-            else if (item.SellIn > 5)
+            else if (item.SellIn > 4)
             {
                 IncreaseQuality(item, 2);
             }
-            else 
+            else if (!IsExpired(item))
             {
                 IncreaseQuality(item, 3);
             }
-        }
-
-        item.SellIn = item.SellIn - 1;
-        
-        if (item.SellIn < 0)
-        {
-            if (IsRegularItem(item))
-            {
-                DecreaseQuality(item, 1);
-            }
-            
-            if(IsBackstagePassesItem(item))
+            else //Expired
             {
                 DecreaseQuality(item, item.Quality);
             }
-
-            if(IsBetterWithAgeItem(item))
-            {
-                IncreaseQuality(item, 1);
-            }
         }
+
     }
 }
