@@ -51,22 +51,25 @@ public class GildedRose
         {
             DecreaseQuality(item, 1);
         }
-        
-        if(IsBetterWithAgeItem(item) || IsBackstagePassesItem(item))
+
+        if (IsBetterWithAgeItem(item))
         {
             IncreaseQuality(item, 1);
+        }
 
-            if (IsBackstagePassesItem(item))
+        if(IsBackstagePassesItem(item))
+        {
+            if (item.SellIn > 10)
             {
-                if (item.SellIn < 11)
-                {
-                    IncreaseQuality(item, 1);
-                }
-
-                if (item.SellIn < 6)
-                {
-                    IncreaseQuality(item, 1);
-                }
+                IncreaseQuality(item, 1);
+            }
+            else if (item.SellIn > 5)
+            {
+                IncreaseQuality(item, 2);
+            }
+            else 
+            {
+                IncreaseQuality(item, 3);
             }
         }
 
