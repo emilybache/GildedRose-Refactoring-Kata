@@ -30,45 +30,42 @@ public class GildedRose
     private static bool IsRegularItem(Item item) => (!IsLegendaryItem(item) &&
                                                      !IsBackstagePassesItem(item) &&
                                                      !IsBetterWithAgeItem(item));
+
+
+    private static void IncreaseQuality(Item item, int byValue)
+    {
+        item.Quality = int.Min(item.Quality + byValue, MaxQuality);
+    }
     
-    
-    
-    
+    private static void DecreaseQuality(Item item, int byValue)
+    {
+        item.Quality = int.Max(item.Quality - byValue, MinQuality);
+    }
+
+
     private void DailyItemUpdate(Item item)
     {
         if (IsLegendaryItem(item)) return;
         
         if (IsRegularItem(item))
         {
-            if (item.Quality > MinQuality)
-            {
-                item.Quality = item.Quality - 1;
-            }
+            DecreaseQuality(item, 1);
         }
         
         if(IsBetterWithAgeItem(item) || IsBackstagePassesItem(item))
         {
-            if (item.Quality < MaxQuality)
+            IncreaseQuality(item, 1);
+
+            if (IsBackstagePassesItem(item))
             {
-                item.Quality = item.Quality + 1;
-
-                if (IsBackstagePassesItem(item))
+                if (item.SellIn < 11)
                 {
-                    if (item.SellIn < 11)
-                    {
-                        if (item.Quality < MaxQuality)
-                        {
-                            item.Quality = item.Quality + 1;
-                        }
-                    }
+                    IncreaseQuality(item, 1);
+                }
 
-                    if (item.SellIn < 6)
-                    {
-                        if (item.Quality < MaxQuality)
-                        {
-                            item.Quality = item.Quality + 1;
-                        }
-                    }
+                if (item.SellIn < 6)
+                {
+                    IncreaseQuality(item, 1);
                 }
             }
         }
@@ -79,23 +76,17 @@ public class GildedRose
         {
             if (IsRegularItem(item))
             {
-                if (item.Quality > MinQuality)
-                {
-                    item.Quality = item.Quality - 1;
-                }
+                DecreaseQuality(item, 1);
             }
             
             if(IsBackstagePassesItem(item))
             {
-                item.Quality = item.Quality - item.Quality;
+                DecreaseQuality(item, item.Quality);
             }
 
             if(IsBetterWithAgeItem(item))
             {
-                if (item.Quality < MaxQuality)
-                {
-                    item.Quality = item.Quality + 1;
-                }
+                IncreaseQuality(item, 1);
             }
         }
     }
