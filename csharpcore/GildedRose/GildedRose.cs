@@ -26,6 +26,10 @@ public class GildedRose
     private static bool IsBackstagePassesItem(Item item) => item.Name.ToLower().Contains("backstage passes");
 
     private static bool IsBetterWithAgeItem(Item item) => item.Name.ToLower().Equals("aged brie");
+
+    private static bool IsRegularItem(Item item) => (!IsLegendaryItem(item) &&
+                                                     !IsBackstagePassesItem(item) &&
+                                                     !IsBetterWithAgeItem(item));
     
     
     
@@ -34,14 +38,15 @@ public class GildedRose
     {
         if (IsLegendaryItem(item)) return;
         
-        if (!IsBetterWithAgeItem(item) && !IsBackstagePassesItem(item))
+        if (IsRegularItem(item))
         {
             if (item.Quality > MinQuality)
             {
                 item.Quality = item.Quality - 1;
             }
         }
-        else
+        
+        if(IsBetterWithAgeItem(item) || IsBackstagePassesItem(item))
         {
             if (item.Quality < MaxQuality)
             {
@@ -72,21 +77,20 @@ public class GildedRose
         
         if (item.SellIn < 0)
         {
-            if (!IsBetterWithAgeItem(item))
+            if (IsRegularItem(item))
             {
-                if (!IsBackstagePassesItem(item))
+                if (item.Quality > MinQuality)
                 {
-                    if (item.Quality > MinQuality)
-                    {
-                        item.Quality = item.Quality - 1;
-                    }
-                }
-                else
-                {
-                    item.Quality = item.Quality - item.Quality;
+                    item.Quality = item.Quality - 1;
                 }
             }
-            else
+            
+            if(IsBackstagePassesItem(item))
+            {
+                item.Quality = item.Quality - item.Quality;
+            }
+
+            if(IsBetterWithAgeItem(item))
             {
                 if (item.Quality < MaxQuality)
                 {
