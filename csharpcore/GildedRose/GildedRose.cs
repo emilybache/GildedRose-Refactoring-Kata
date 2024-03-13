@@ -32,14 +32,13 @@ public class GildedRose
     
     private void DailyItemUpdate(Item item)
     {
+        if (IsLegendaryItem(item)) return;
+        
         if (!IsBetterWithAgeItem(item) && !IsBackstagePassesItem(item))
         {
             if (item.Quality > MinQuality)
             {
-                if (!IsLegendaryItem(item))
-                {
-                    item.Quality = item.Quality - 1;
-                }
+                item.Quality = item.Quality - 1;
             }
         }
         else
@@ -69,11 +68,8 @@ public class GildedRose
             }
         }
 
-        if (!IsLegendaryItem(item))
-        {
-            item.SellIn = item.SellIn - 1;
-        }
-
+        item.SellIn = item.SellIn - 1;
+        
         if (item.SellIn < 0)
         {
             if (!IsBetterWithAgeItem(item))
@@ -82,10 +78,7 @@ public class GildedRose
                 {
                     if (item.Quality > MinQuality)
                     {
-                        if (!IsLegendaryItem(item))
-                        {
-                            item.Quality = item.Quality - 1;
-                        }
+                        item.Quality = item.Quality - 1;
                     }
                 }
                 else
