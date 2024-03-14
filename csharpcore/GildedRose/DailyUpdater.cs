@@ -4,13 +4,17 @@ namespace GildedRoseKata;
 
 public abstract class DailyUpdater
 {
-    protected const int MinQuality = 0;
-    protected const int MaxQuality = 50;
+    private const int MinQuality = 0;
+    private const int MaxQuality = 50;
 
     public void DailyUpdate(Item item)
     {
         UpdateSellIn(item);
         UpdateQuality(item);
+        if (IsExpired(item))
+        {
+            UpdateQuality(item);
+        }
     }
 
     public abstract void UpdateQuality(Item item);
@@ -18,28 +22,22 @@ public abstract class DailyUpdater
 
     protected static bool IsExpired(Item item) => item.SellIn < 0;
 
-    protected static void IncreaseQuality(Item item, int byValue)
+    protected static void IncreaseQuality(Item item, int byValue = 1)
     {
         item.Quality = int.Min(item.Quality + byValue, MaxQuality);
     }
 
-    protected static void DecreaseQuality(Item item, int byValue)
+    protected static void DecreaseQuality(Item item, int byValue = 1)
     {
         item.Quality = int.Max(item.Quality - byValue, MinQuality);
     }
-    
-    
 }
 
 public class DailyUpdaterForRegularItems : DailyUpdater
 {
     public override void UpdateQuality(Item item)
     {
-        DecreaseQuality(item, 1);
-        if (IsExpired(item))
-        {
-            DecreaseQuality(item, 1);
-        }
+        DecreaseQuality(item);
     }
 }
 
@@ -47,11 +45,7 @@ public class DailyUpdaterForBetterWithAgeItems : DailyUpdater
 {
     public override void UpdateQuality(Item item)
     {
-        IncreaseQuality(item, 1);
-        if (IsExpired(item))
-        {
-            IncreaseQuality(item, 1);
-        }
+        IncreaseQuality(item);
     }
 }
 
@@ -62,7 +56,7 @@ public class DailyUpdaterForBackstagePassesItems : DailyUpdater
     {
         if (item.SellIn > 9)
         {
-            IncreaseQuality(item, 1);
+            IncreaseQuality(item);
         }
         else if (item.SellIn > 4)
         {

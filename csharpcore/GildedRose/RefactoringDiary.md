@@ -16,7 +16,9 @@ I decorated these tests with `[Ignore]` until I get to a stage in the refactorin
 5. Used the `Template` design pattern to create DailyUpdater abstract class and derived classes to handle the DailyUpdate's steps for the different types of items.<br>
 The different derived classes will be moved to their own files in the next PR. Left them together for now to show the steps.
 6. Created a `Simple Factory` method to return the appropriate DailyUpdater object for the item type.<br>
-For this PR, I left this method in the GildedRose.cp to show the steps. But in the next PR I'll move it into its own class.
+7. Moved DailyUpdaterFactory to its own class.
+8. Moved the logic of "Once the sell by date has passed, Quality degrades twice as fast" into the DailyUpdater Template class since it's relevant to all types of items.
+9. Moved Decrease/IncreaseItem byValue to be 1 by default.
 
 
 This is the state of the code now
