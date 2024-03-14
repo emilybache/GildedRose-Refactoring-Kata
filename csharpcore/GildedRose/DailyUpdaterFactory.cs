@@ -1,25 +1,48 @@
+using System;
+using System.Collections.Generic;
+
 namespace GildedRoseKata;
 
-public static class DailyUpdaterFactory
+public class DailyUpdaterFactory
 {
-    public static DailyUpdater GetDailyUpdater(Item item)
+    private enum ItemType
+    {
+        Regular,
+        Legendary,
+        BetterWithAge,
+        BackstagePasses
+    }
+
+    private readonly Dictionary<ItemType, DailyUpdater> _dailyUpdaters = new();
+    
+    public DailyUpdater GetDailyUpdater(Item item)
     {
         if (IsLegendaryItem(item))
         {
-            return new DailyUpdaterForLegendaryItems();
+            return GetOrCreateDailyUpdater(ItemType.Legendary, () => new DailyUpdaterForLegendaryItems());
         } 
         
         if (IsBetterWithAgeItem(item))
         {
-            return new DailyUpdaterForBetterWithAgeItems();
+            return GetOrCreateDailyUpdater(ItemType.BetterWithAge, () => new DailyUpdaterForBetterWithAgeItems());
         }
 
-        if (IsBackstagePassesItem(item))
+        if(IsBackstagePassesItem(item))
         {
-            return new DailyUpdaterForBackstagePassesItems();
+            return GetOrCreateDailyUpdater(ItemType.BackstagePasses, () => new DailyUpdaterForBackstagePassesItems());
         }
 
-        return new DailyUpdaterForRegularItems();
+        return GetOrCreateDailyUpdater(ItemType.Regular, () => new DailyUpdaterForRegularItems());
+    }
+
+    private DailyUpdater GetOrCreateDailyUpdater(ItemType itemType, Func<DailyUpdater> createDailyUpdater)
+    {
+        if (!_dailyUpdaters.ContainsKey(itemType))
+        {
+            _dailyUpdaters.Add(itemType, createDailyUpdater());
+        }
+
+        return _dailyUpdaters[itemType];
     }
     
     private static bool IsLegendaryItem(Item item) => item.Name.ToLower().Contains("sulfuras");

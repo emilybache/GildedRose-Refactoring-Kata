@@ -19,6 +19,10 @@ The different derived classes will be moved to their own files in the next PR. L
 7. Moved DailyUpdaterFactory to its own class.
 8. Moved the logic of "Once the sell by date has passed, Quality degrades twice as fast" into the DailyUpdater Template class since it's relevant to all types of items.
 9. Moved Decrease/IncreaseItem byValue to be 1 by default.
+10. Refactored DailyUpdaterFactory to reuse existing Updaters instead of creating new ones every time.<br>
+This could have been done using a dependency injection framework as well (to automatically create and reuse all the updaters). This might actually be the better way to do this. 
+However, I've chosen to use the factory itself to manually manage it using a semi-flyweight pattern.
+
 
 
 This is the state of the code now
