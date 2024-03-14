@@ -12,11 +12,20 @@ Some of the tests failed due to bugs I discovered in the code/existing tests (e.
 I decorated these tests with `[Ignore]` until I get to a stage in the refactoring where I can easily fix the issues and re-introduce the tests.   
 2. small refactorings of the UpdateQuality() method to make it more readable and separate the different (unrelated) handling of the different types.<br>
 3. Extract Increasing/Decreasing Quality into a method.<br>  
-It feels like Quality should have been a TinyType that manages its own limits. However, since we're not allowed to change Item, I'm just extracting a method.
 4. Separated the processing of the different types from each other.<br>
+5. Used the `Template` design pattern to create DailyUpdater abstract class and derived classes to handle the DailyUpdate's steps for the different types of items.<br>
+The different derived classes will be moved to their own files in the next PR. Left them together for now to show the steps.
+6. Created a `Simple Factory` method to return the appropriate DailyUpdater object for the item type.<br>
+For this PR, I left this method in the GildedRose.cp to show the steps. But in the next PR I'll move it into its own class.
 
 
 This is the state of the code now
+
+
+### Considered but dropped
+This is all the design ideas/patterns I've considered but decided against
+- It feels like Quality should have been a `TinyType` that manages its own limits. However, since we're not allowed to change Item I'm not implementing this.
+- 
 
 
 
