@@ -18,7 +18,7 @@ public class ApprovalTest
         TextTestFixture.Main(new string[] { "30" });
         var output = fakeOutput.ToString();
 
-        var expectedOutput = File.ReadAllText(@"C:\MyFiles\Training\GildedRose-Refactoring-Kata\csharpcore\GildedRoseTests\ExpectedApprovalTestOutput_WithoutConjured.txt");
+        var expectedOutput = File.ReadAllText(@"C:\MyFiles\Training\GildedRose-Refactoring-Kata\csharpcore\GildedRoseTests\ExpectedApprovalTestOutput_WithConjured.txt");
         expectedOutput.Should().Be(output);
     }
 }

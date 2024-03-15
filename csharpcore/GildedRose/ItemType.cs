@@ -7,7 +7,8 @@ public static class ItemType
         Regular,
         Legendary,
         BetterWithAge,
-        BackstagePasses
+        BackstagePasses,
+        Conjured
     }
     
     public static bool IsLegendaryItem(Item item) => IsLegendaryItem(item.Name);
@@ -17,4 +18,5 @@ public static class ItemType
 
     public static bool IsBetterWithAgeItem(Item item) => item.Name.ToLower().Equals("aged brie");
 
+    public static bool IsConjuredItem(Item item) => item.Name.ToLower().Contains("conjured");
 }

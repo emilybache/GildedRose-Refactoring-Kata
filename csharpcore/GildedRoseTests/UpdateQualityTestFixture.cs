@@ -246,4 +246,45 @@ public class UpdateQualityTestFixture
         app.UpdateQuality();
         items.Should().BeEquivalentTo(expectedItemsAfterTest);
     }
+    
+    [Test]
+    public void ConjuredItems_WhenNotExpired_Should_DecreaseQualityByTwo()
+    {
+        var items = new List<Item>
+        {
+            new ItemBuilder("Conjured Mana Cake", 1, 4).Build(),
+            new ItemBuilder("some other conjured item", 5, 50).Build()
+        };
+        var expectedItemsAfterTest = new List<Item>
+        {
+            new ItemBuilder("Conjured Mana Cake", 0, 2).Build(),
+            new ItemBuilder("some other conjured item", 4, 48).Build()
+        };
+        
+        var app = new GildedRose(items);
+        app.UpdateQuality();
+        
+        items.Should().BeEquivalentTo(expectedItemsAfterTest);
+    }
+    
+    [Test]
+    public void ConjuredItems_WhenExpired_Should_DecreaseQualityByFourDownToZero()
+    {
+        var items = new List<Item>
+        {
+            new ItemBuilder("Conjured Mana Cake", 0, 3).Build(),
+            new ItemBuilder("some other conjured item", -1, 50).Build()
+        };
+        var expectedItemsAfterTest = new List<Item>
+        {
+            new ItemBuilder("Conjured Mana Cake", -1, 0).Build(),
+            new ItemBuilder("some other conjured item", -2, 46).Build()
+        };
+        
+        var app = new GildedRose(items);
+        app.UpdateQuality();
+        
+        items.Should().BeEquivalentTo(expectedItemsAfterTest);
+    }
+
 }

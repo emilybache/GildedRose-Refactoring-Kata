@@ -25,6 +25,11 @@ public class DailyUpdaterFactory
             return GetOrCreateDailyUpdater(ItemType.ItemKey.BackstagePasses, () => new DailyUpdaterForBackstagePassesItems());
         }
 
+        if (ItemType.IsConjuredItem(item))
+        {
+            return GetOrCreateDailyUpdater(ItemType.ItemKey.Conjured, () => new DailyUpdaterForConjuredItems());
+        }
+
         return GetOrCreateDailyUpdater(ItemType.ItemKey.Regular, () => new DailyUpdaterForRegularItems());
     }
 
