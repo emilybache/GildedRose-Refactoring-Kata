@@ -22,6 +22,9 @@ The different derived classes will be moved to their own files in the next PR. L
 10. Refactored DailyUpdaterFactory to reuse existing Updaters instead of creating new ones every time.<br>
 This could have been done using a dependency injection framework as well (to automatically create and reuse all the updaters). This might actually be the better way to do this. 
 However, I've chosen to use the factory itself to manually manage it using a semi-flyweight pattern.
+11. Moved ItemType and ItemQuality to their own classes to allow re-use
+12. Seperated the derived DailyUpdater classes into their own files.<br>
+Now, adding a new updater won't have to change the existing DailyUpdater file.
 
 
 
