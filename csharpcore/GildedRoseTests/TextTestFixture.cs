@@ -29,7 +29,7 @@ public static class TextTestFixture
                 49
                 ).Build(),
             // this conjured item does not work properly yet
-            new ItemBuilder("Conjured Mana Cake", 3, 6).Build()
+            new ItemBuilder("Conjured Mana Cake", 3, 12).Build()
         };
 
         var app = new GildedRose(items);

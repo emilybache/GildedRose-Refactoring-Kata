@@ -1,16 +1,15 @@
 using System;
 using System.IO;
 using System.Text;
-using System.Threading.Tasks;
+using FluentAssertions;
 using NUnit.Framework;
-using VerifyNUnit;
 
 namespace GildedRoseTests;
 
 public class ApprovalTest
 {
     [Test]
-    public Task ThirtyDays()
+    public void ThirtyDays()
     {
         var fakeOutput = new StringBuilder();
         Console.SetOut(new StringWriter(fakeOutput));
@@ -19,6 +18,7 @@ public class ApprovalTest
         TextTestFixture.Main(new string[] { "30" });
         var output = fakeOutput.ToString();
 
-        return Verifier.Verify(output);
+        var expectedOutput = File.ReadAllText(@"C:\MyFiles\Training\GildedRose-Refactoring-Kata\csharpcore\GildedRoseTests\ExpectedApprovalTestOutput_WithoutConjured.txt");
+        expectedOutput.Should().Be(output);
     }
 }
