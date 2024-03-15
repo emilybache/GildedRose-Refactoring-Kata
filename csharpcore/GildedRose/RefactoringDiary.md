@@ -25,6 +25,8 @@ However, I've chosen to use the factory itself to manually manage it using a sem
 11. Moved ItemType and ItemQuality to their own classes to allow re-use
 12. Seperated the derived DailyUpdater classes into their own files.<br>
 Now, adding a new updater won't have to change the existing DailyUpdater file.
+13. Added a new ItemBuilders hierarchy to enforce building valid items (quality limits and special rules for Legendary items). Also added unit tests and refactored the existing tests to use the new builders.<br>
+note: if we could change Item, this could have been implemented in the Item's constructor itself and by using Quality TinyType. However, since we can't change Item, the builders gives us a nice decoupled way to validate the items are constructed consistently.  
 
 
 
