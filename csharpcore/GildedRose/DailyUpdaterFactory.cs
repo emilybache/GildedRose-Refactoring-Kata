@@ -5,37 +5,30 @@ namespace GildedRoseKata;
 
 public class DailyUpdaterFactory
 {
-    private enum ItemType
-    {
-        Regular,
-        Legendary,
-        BetterWithAge,
-        BackstagePasses
-    }
-
-    private readonly Dictionary<ItemType, DailyUpdater> _dailyUpdaters = new();
+    
+    private readonly Dictionary<ItemType.ItemKey, DailyUpdater> _dailyUpdaters = new();
     
     public DailyUpdater GetDailyUpdater(Item item)
     {
-        if (IsLegendaryItem(item))
+        if (ItemType.IsLegendaryItem(item))
         {
-            return GetOrCreateDailyUpdater(ItemType.Legendary, () => new DailyUpdaterForLegendaryItems());
+            return GetOrCreateDailyUpdater(ItemType.ItemKey.Legendary, () => new DailyUpdaterForLegendaryItems());
         } 
         
-        if (IsBetterWithAgeItem(item))
+        if (ItemType.IsBetterWithAgeItem(item))
         {
-            return GetOrCreateDailyUpdater(ItemType.BetterWithAge, () => new DailyUpdaterForBetterWithAgeItems());
+            return GetOrCreateDailyUpdater(ItemType.ItemKey.BetterWithAge, () => new DailyUpdaterForBetterWithAgeItems());
         }
 
-        if(IsBackstagePassesItem(item))
+        if(ItemType.IsBackstagePassesItem(item))
         {
-            return GetOrCreateDailyUpdater(ItemType.BackstagePasses, () => new DailyUpdaterForBackstagePassesItems());
+            return GetOrCreateDailyUpdater(ItemType.ItemKey.BackstagePasses, () => new DailyUpdaterForBackstagePassesItems());
         }
 
-        return GetOrCreateDailyUpdater(ItemType.Regular, () => new DailyUpdaterForRegularItems());
+        return GetOrCreateDailyUpdater(ItemType.ItemKey.Regular, () => new DailyUpdaterForRegularItems());
     }
 
-    private DailyUpdater GetOrCreateDailyUpdater(ItemType itemType, Func<DailyUpdater> createDailyUpdater)
+    private DailyUpdater GetOrCreateDailyUpdater(ItemType.ItemKey itemType, Func<DailyUpdater> createDailyUpdater)
     {
         if (!_dailyUpdaters.ContainsKey(itemType))
         {
@@ -44,11 +37,4 @@ public class DailyUpdaterFactory
 
         return _dailyUpdaters[itemType];
     }
-    
-    private static bool IsLegendaryItem(Item item) => item.Name.ToLower().Contains("sulfuras");
-
-    private static bool IsBackstagePassesItem(Item item) => item.Name.ToLower().Contains("backstage passes");
-
-    private static bool IsBetterWithAgeItem(Item item) => item.Name.ToLower().Equals("aged brie");
-    
 }

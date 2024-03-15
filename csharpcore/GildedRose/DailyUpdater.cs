@@ -4,9 +4,6 @@ namespace GildedRoseKata;
 
 public abstract class DailyUpdater
 {
-    private const int MinQuality = 0;
-    private const int MaxQuality = 50;
-
     public void DailyUpdate(Item item)
     {
         UpdateSellIn(item);
@@ -24,12 +21,12 @@ public abstract class DailyUpdater
 
     protected static void IncreaseQuality(Item item, int byValue = 1)
     {
-        item.Quality = int.Min(item.Quality + byValue, MaxQuality);
+        item.Quality = int.Min(item.Quality + byValue, ItemQuality.MaxQuality);
     }
 
     protected static void DecreaseQuality(Item item, int byValue = 1)
     {
-        item.Quality = int.Max(item.Quality - byValue, MinQuality);
+        item.Quality = int.Max(item.Quality - byValue, ItemQuality.MinQuality);
     }
 }
 
