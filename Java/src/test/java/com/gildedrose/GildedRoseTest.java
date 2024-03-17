@@ -55,6 +55,16 @@ class GildedRoseTest {
 
 
     @Test
+    void should_increase_aged_brie_in_quality_over_time() {
+        Item item = new Item("Aged Brie", 5, 6);
+        GildedRose gildedRose = new GildedRose(new Item[] { item });
+
+        gildedRose.updateQuality();
+
+        assertEquals(item.quality, 7);
+    }
+
+    @Test
     void should_never_be_never_negative_item_quality() {
         Item item = new Item("First Standard Item", 4, 0);
         GildedRose gildedRose = new GildedRose(new Item[] { item });
