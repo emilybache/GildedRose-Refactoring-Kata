@@ -62,4 +62,14 @@ class GildedRoseTest {
 
         assertEquals(item.quality, 2);
     }
+
+    @Test
+    void should_decrease_item_quality_down_to_0() {
+        Item item = new Item("Standard Item", 4, 1);
+        GildedRose gildedRose = new GildedRose(new Item[] { item });
+
+        gildedRose.updateQuality();
+
+        assertEquals(item.quality, 0);
+    }
 }
