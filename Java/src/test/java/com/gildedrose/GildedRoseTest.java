@@ -31,6 +31,7 @@ class GildedRoseTest {
         assertEquals(secondItem.quality, 1);
     }
 
+    // I should maybe delete this
     @Test
     void foo() {
         Item[] items = new Item[] { new Item("foo", 0, 0) };
