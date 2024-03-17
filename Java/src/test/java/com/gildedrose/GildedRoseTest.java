@@ -53,6 +53,17 @@ class GildedRoseTest {
         assertEquals(standardItem.quality, qualityStart - 1);
     }
 
+
+    @Test
+    void should_never_be_never_negative_item_quality() {
+        Item item = new Item("First Standard Item", 4, 0);
+        GildedRose gildedRose = new GildedRose(new Item[] { item });
+
+        gildedRose.updateQuality();
+
+        assertEquals(item.quality, 0);
+    }
+
     @Test
     void should_decrease__twice_as_fast_past_sellin_date_item_quality() {
         Item item = new Item("A new standard Item to be decreased twice as fast ", -1, 4);
