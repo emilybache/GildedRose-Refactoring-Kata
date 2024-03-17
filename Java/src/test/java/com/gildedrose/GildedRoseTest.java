@@ -7,6 +7,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class GildedRoseTest {
 
     @Test
+    void should_never_be_greater_than_50_quality_of_an_item() {
+        Item item = new Item("Aged Brie", 5, 50);
+        GildedRose gildedRose = new GildedRose(new Item[] { item });
+
+        gildedRose.updateQuality();
+
+        assertEquals(item.quality, 50);
+    }
+
+    @Test
     void should_decrease_multiple_items_quality_each_day() {
         Item firstItem = new Item("First Standard Item", 5, 4);
         Item secondItem = new Item("Second Standard Item", 3, 2);
