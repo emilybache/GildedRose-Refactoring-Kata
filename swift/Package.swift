@@ -15,7 +15,7 @@ let package = Package(
             name: "GildedRose",
             dependencies: []
         ),
-        .target(
+        .executableTarget(
             name: "GildedRoseApp",
             dependencies: ["GildedRose"]
         ),
