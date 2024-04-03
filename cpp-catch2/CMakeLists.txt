@@ -8,7 +8,7 @@ include(FetchContent)
 FetchContent_Declare(
         catch2
         GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-        GIT_TAG v2.13.9
+        GIT_TAG v2.13.10
 )
 FetchContent_MakeAvailable(catch2)
 LIST(APPEND CMAKE_MODULE_PATH
@@ -17,10 +17,10 @@ LIST(APPEND CMAKE_MODULE_PATH
 
 FetchContent_Declare(
         approvaltests_ho
-        URL https://github.com/approvals/ApprovalTests.cpp/releases/download/v.10.0.0/ApprovalTests.v.10.0.0.hpp
+        URL https://github.com/approvals/ApprovalTests.cpp/releases/download/v.10.13.0/ApprovalTests.v.10.13.0.hpp
         DOWNLOAD_NO_EXTRACT TRUE
         DOWNLOAD_DIR ${CMAKE_CURRENT_BINARY_DIR}/approvaltests
-        DOWNLOAD_NAME ApprovalTests.v.10.0.0.hpp
+        DOWNLOAD_NAME ApprovalTests.v.10.13.0.hpp
 )
 FetchContent_GetProperties(approvaltests_ho)
 if (NOT approvaltests_ho_POPULATED)
