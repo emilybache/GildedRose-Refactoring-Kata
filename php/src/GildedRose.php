@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 namespace GildedRose;
 
+use GildedRose\Handlers\AgedBrieItemHandler;
+use GildedRose\Handlers\BackStageItemHandler;
+use GildedRose\Handlers\ConjuredItemHandler;
+use GildedRose\Handlers\DefaultItemHandler;
+use GildedRose\Handlers\SulfarusItemHandler;
+
 final class GildedRose
 {
     /**
@@ -14,7 +20,7 @@ final class GildedRose
     ) {
     }
 
-    public function updateQuality(): void
+    public function updateQuality(): array
     {
         foreach ($this->items as $item) {
             if ($item->name != 'Aged Brie' and $item->name != 'Backstage passes to a TAFKAL80ETC concert') {
@@ -63,5 +69,26 @@ final class GildedRose
                 }
             }
         }
+
+        return $this->items;
+    }
+
+    public function updateQuality1(): array
+    {
+        foreach ($this->items as $item) {
+            $handler = match ($item->name) {
+                'Aged Brie' => new AgedBrieItemHandler(),
+                'Sulfuras, Hand of Ragnaros' => new SulfarusItemHandler(),
+                'Backstage passes to a TAFKAL80ETC concert' => new BackStageItemHandler(),
+                'Conjured Mana Cake' => new ConjuredItemHandler(),
+                default => new DefaultItemHandler(),
+            };
+
+            $handler->handle($item);
+
+            unset($handler);
+        }
+
+        return $this->items;
     }
 }
