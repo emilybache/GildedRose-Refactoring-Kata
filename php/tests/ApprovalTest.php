@@ -39,6 +39,6 @@ class ApprovalTest extends TestCase
 
         $output = ob_get_clean();
 
-        Approvals::approveString($output);
+        Approvals::verifyString($output);
     }
 }
