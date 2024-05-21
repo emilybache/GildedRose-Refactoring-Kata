@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/emilybache/gildedrose-refactoring-kata/gildedrose/domain"
 	"os"
 	"strconv"
 
@@ -11,7 +12,7 @@ import (
 func main() {
 	fmt.Println("OMGHAI!")
 
-	var items = []*gildedrose.Item{
+	var items = []*domain.Item{
 		{"+5 Dexterity Vest", 10, 20},
 		{"Aged Brie", 2, 0},
 		{"Elixir of the Mongoose", 5, 7},
