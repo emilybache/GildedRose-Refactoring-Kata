@@ -1,58 +1,96 @@
 package gildedrose
 
-type Item struct {
-	Name            string
-	SellIn, Quality int
+import (
+	"github.com/emilybache/gildedrose-refactoring-kata/gildedrose/domain"
+)
+
+const (
+	AgedBrie            = "Aged Brie"
+	BackstagePasses     = "Backstage passes to a TAFKAL80ETC concert"
+	Sulfuras            = "Sulfuras, Hand of Ragnaros"
+	Conjured            = "Conjured Mana Cake"
+	MaxQuality          = 50
+	MinQuality          = 0
+	SulfurasQuality     = 80
+	Expired             = 0
+	Backstage10Days     = 10
+	Backstage5Days      = 5
+	NormalDegradeRate   = 1
+	ConjuredDegradeRate = 2
+)
+
+func UpdateQuality(items []*domain.Item) {
+	for _, item := range items {
+		updateItem(item)
+		validateQuality(item)
+	}
 }
-
-func UpdateQuality(items []*Item) {
-	for i := 0; i < len(items); i++ {
-
-		if items[i].Name != "Aged Brie" && items[i].Name != "Backstage passes to a TAFKAL80ETC concert" {
-			if items[i].Quality > 0 {
-				if items[i].Name != "Sulfuras, Hand of Ragnaros" {
-					items[i].Quality = items[i].Quality - 1
-				}
-			}
-		} else {
-			if items[i].Quality < 50 {
-				items[i].Quality = items[i].Quality + 1
-				if items[i].Name == "Backstage passes to a TAFKAL80ETC concert" {
-					if items[i].SellIn < 11 {
-						if items[i].Quality < 50 {
-							items[i].Quality = items[i].Quality + 1
-						}
-					}
-					if items[i].SellIn < 6 {
-						if items[i].Quality < 50 {
-							items[i].Quality = items[i].Quality + 1
-						}
-					}
-				}
-			}
+func validateQuality(item *domain.Item) {
+	if item.Name == Sulfuras {
+		if item.Quality != SulfurasQuality {
+			item.Quality = SulfurasQuality
 		}
-
-		if items[i].Name != "Sulfuras, Hand of Ragnaros" {
-			items[i].SellIn = items[i].SellIn - 1
-		}
-
-		if items[i].SellIn < 0 {
-			if items[i].Name != "Aged Brie" {
-				if items[i].Name != "Backstage passes to a TAFKAL80ETC concert" {
-					if items[i].Quality > 0 {
-						if items[i].Name != "Sulfuras, Hand of Ragnaros" {
-							items[i].Quality = items[i].Quality - 1
-						}
-					}
-				} else {
-					items[i].Quality = items[i].Quality - items[i].Quality
-				}
-			} else {
-				if items[i].Quality < 50 {
-					items[i].Quality = items[i].Quality + 1
-				}
-			}
-		}
+		return
+	}
+	if item.Quality > MaxQuality || item.Quality < MinQuality {
+		item.Quality = MinQuality
+	}
+}
+func updateItem(item *domain.Item) {
+	switch item.Name {
+	case AgedBrie:
+		incrementQuality(item)
+	case BackstagePasses:
+		updateBackstagePasses(item)
+	case Sulfuras:
+		// Sulfuras does not change in quality or sell-in
+	case Conjured:
+		degradeQuality(item, ConjuredDegradeRate)
+	default:
+		degradeQuality(item, NormalDegradeRate)
 	}
 
+	if item.Name != Sulfuras {
+		item.SellIn--
+	}
+
+	if item.SellIn < Expired {
+		handleExpiredItem(item)
+	}
+}
+
+func incrementQuality(item *domain.Item) {
+	if item.Quality < MaxQuality {
+		item.Quality++
+	}
+}
+func updateBackstagePasses(item *domain.Item) {
+	incrementQuality(item)
+	if item.SellIn <= Backstage10Days && item.Quality < MaxQuality {
+		item.Quality++
+	}
+	if item.SellIn <= Backstage5Days && item.Quality < MaxQuality {
+		item.Quality++
+	}
+}
+
+func degradeQuality(item *domain.Item, degradeRate int) {
+	if item.Quality > MinQuality {
+		item.Quality -= degradeRate
+	}
+}
+
+func handleExpiredItem(item *domain.Item) {
+	switch item.Name {
+	case AgedBrie:
+		incrementQuality(item)
+	case BackstagePasses:
+		item.Quality = MinQuality
+	case Conjured:
+		degradeQuality(item, ConjuredDegradeRate)
+	case Sulfuras:
+		// Sulfuras does not change in quality or sell-in
+	default:
+		degradeQuality(item, NormalDegradeRate)
+	}
 }
