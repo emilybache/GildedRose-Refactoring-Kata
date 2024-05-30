@@ -9,3 +9,12 @@ vendor
 venv
 **/DS_Store/*
 **/.DS_Store/*
+target/
+.classpath
+.project
+bin/
+.settings/
+
+# Gradle
+.gradle
+/build/
