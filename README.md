@@ -13,27 +13,14 @@ The simplest way is to just clone the code and start hacking away improving the 
 
 You could write some unit tests yourself, using the requirements to identify suitable test cases. I've provided a failing unit test in a popular test framework as a starting point for most languages.
 
-Alternatively, use the Approval tests provided in this repository. (Read more about that in the section "Text-based Approval Testing").
-
 The idea of the exercise is to do some deliberate practice, and improve your skills at designing test cases and refactoring. The idea is not to re-write the code from scratch, but rather to practice taking small steps, running the tests often, and incrementally improving the design. 
 
 Please don't send me a pull request with your solution. It can be a bit confusing since GitHub encourages you to do so! Please only send me pull requests if you have a correction or improvement to the starting position. You don't want to spoil the fun of doing the exercise for other people!
 
 
-### Gilded Rose Requirements in other languages 
+### Gilded Rose Requirements 
 
-- [English](GildedRoseRequirements.md)
-- [Español](GildedRoseRequirements_es.md)
-- [Français](GildedRoseRequirements_fr.md)
-- [Italiano](GildedRoseRequirements_it.md)
-- [日本語](GildedRoseRequirements_jp.md)
-- [Português](GildedRoseRequirements_pt-BR.md)
-- [Русский](GildedRoseRequirements_ru.txt)
-- [ไทย](GildedRoseRequirements_th.md)
-- [中文](GildedRoseRequirements_zh.txt)
-- [한국어](GildedRoseRequirements_kr.md)
-- [German](GildedRoseRequirements_de.md)
-- [Euskara](GildedRoseRequirements_eu.md)
+- [Requirements](GildedRoseRequirements.md)
 
 ## Text-Based Approval Testing
 
@@ -62,4 +49,3 @@ Please note a translation should ideally include:
 Please don't write too much code in the starting position or add too many unit tests. The idea with the one failing unit test is to tempt people to work out how to fix it, discover it wasn't that hard, and now they understand what this test is doing they realize they can improve it.  
 
 If your programming language doesn't have an easy way to add a command-line interface, then the TextTest fixture is probably not necessary.
-
