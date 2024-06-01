@@ -14,6 +14,9 @@ diff_program:meld
 # Settings for the c (cmocka) version
 #executable:${TEXTTEST_HOME}/c_cmocka/cmake-build-debug/main
 
+# Settings for the zig version
+#executable:${TEXTTEST_HOME}/zig/zig-out/bin/zig
+
 # Settings for the Java version using Gradle wrapped in a python script
 #executable:${TEXTTEST_HOME}/Java/texttest_rig.py
 #interpreter:python
