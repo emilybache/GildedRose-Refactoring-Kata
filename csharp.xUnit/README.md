@@ -1,4 +1,4 @@
-# Gilded Rose starting position in C# NUnit
+# Gilded Rose starting position in C# xUnit
 
 ## Build the project
 
