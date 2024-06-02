@@ -4,6 +4,6 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>GildedRoseKata</RootNamespace>
     <TargetFramework>net8.0</TargetFramework>
-   </PropertyGroup>
+  </PropertyGroup>
 
 </Project>
