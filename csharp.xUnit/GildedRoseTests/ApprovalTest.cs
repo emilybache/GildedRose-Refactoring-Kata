@@ -18,7 +18,7 @@ public class ApprovalTest
     {
         var fakeoutput = new StringBuilder();
         Console.SetOut(new StringWriter(fakeoutput));
-        Console.SetIn(new StringReader("a\n"));
+        Console.SetIn(new StringReader($"a{Environment.NewLine}"));
 
         Program.Main(new string[] { "30" });
         var output = fakeoutput.ToString();
