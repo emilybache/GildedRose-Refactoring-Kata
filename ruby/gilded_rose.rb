@@ -8,9 +8,9 @@ class GildedRose
       next if item.name == "Sulfuras, Hand of Ragnaros"
 
       if item.name == "Aged Brie"
-        item.quality += 1 if item.quality < 50
+        increases_proportionally_to_times(item)
       elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
-        increases_proportionally_to_age(item)
+        increases_proportionally_to_times(item)
       else
         decrease_quality(item)
       end
@@ -36,12 +36,12 @@ class GildedRose
     item.quality -= decrement if item.quality > 0
   end
 
-  def increases_proportionally_to_age(item)
+  def increases_proportionally_to_times(item)
     if item.sell_in <= 10
-      item.quality += 1 if item.quality < 50
+      item.quality += 2 if item.quality < 50
     end
     if item.sell_in <= 5
-      item.quality += 1 if item.quality < 50
+      item.quality += 3 if item.quality < 50
     end
   end
 end
