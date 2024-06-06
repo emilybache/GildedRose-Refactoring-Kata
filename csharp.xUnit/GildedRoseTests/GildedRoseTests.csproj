@@ -17,9 +17,8 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
     </ItemGroup>
-
     <ItemGroup>
-        <ProjectReference Include="..\GildedRose\GildedRose.csproj" />
+      <ProjectReference Include="..\..\csharp.NUnit\GildedRose\GildedRose.csproj" />
     </ItemGroup>
 
 </Project>
