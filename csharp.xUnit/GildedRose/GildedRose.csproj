@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
+    <RootNamespace>GildedRoseKata</RootNamespace>
     <TargetFramework>net8.0</TargetFramework>
-    <StartupObject>GildedRoseKata.Program</StartupObject>
   </PropertyGroup>
 
 </Project>
