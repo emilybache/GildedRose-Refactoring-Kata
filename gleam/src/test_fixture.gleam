@@ -1,4 +1,4 @@
-import gilded_rose_item.{type GildedRose, type Item, Item, update_quality}
+import gilded_rose_item.{type GildedRose, type Item, Item}
 import gleam/int
 import gleam/io
 import gleam/list
@@ -15,7 +15,10 @@ const test_fixture = [
   Item("Conjured Mana Cake", 3, 6),
 ]
 
-pub fn simulate(number_of_days: Int) -> GildedRose {
+pub fn simulate(
+  number_of_days: Int,
+  modify_inventory: fn(GildedRose) -> GildedRose,
+) -> GildedRose {
   let days = list.range(0, number_of_days)
   let display_item = fn(item: Item) {
     string.join(
@@ -34,6 +37,6 @@ pub fn simulate(number_of_days: Int) -> GildedRose {
     ))
     io.println("name, sellIn, quality")
     list.each(inventory, fn(item) { io.println(display_item(item)) })
-    update_quality(inventory)
+    modify_inventory(inventory)
   })
 }

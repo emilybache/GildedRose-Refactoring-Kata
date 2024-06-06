@@ -1,4 +1,5 @@
-import gilded_rose_item.{Item, update_quality}
+import gilded_rose.{update_quality}
+import gilded_rose_item.{Item}
 import gleeunit
 import gleeunit/should
 
