@@ -63,3 +63,14 @@ Please don't write too much code in the starting position or add too many unit t
 
 If your programming language doesn't have an easy way to add a command-line interface, then the TextTest fixture is probably not necessary.
 
+### Recommended project structure
+
+Programming languages have a variety of conventions but the project tries
+to maintain some order among the examples. Ideally, the 'update_quality' and
+Item definitions should be in a file named `gilded_rose` with your language's
+conventional casing (e.g. snake case) and location (e.g. `src/`). The "fixme" !
+= "foo" test should go in a file `gilded_rose_test` in your language's
+conventional location (e.g. `test/`). The TextTest fixture and command-line
+program that simulates update_quality over a number of days should go in
+`program` or `texttest_fixture`. If you can define a default for the number of
+days in the simulation please choose two days.
