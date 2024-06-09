@@ -1,11 +1,5 @@
-import gilded_rose.{update_quality}
-import gilded_rose_item.{Item}
-import gleeunit
+import gilded_rose.{Item, update_quality}
 import gleeunit/should
-
-pub fn main() {
-  gleeunit.main()
-}
 
 pub fn update_quality_test() {
   let inventory = [Item("foo", 0, 0)]

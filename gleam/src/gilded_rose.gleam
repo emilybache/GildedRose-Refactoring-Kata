@@ -1,6 +1,11 @@
-import cli
-import gilded_rose_item.{type GildedRose, type Item, Item}
 import gleam/list
+
+pub type GildedRose =
+  List(Item)
+
+pub type Item {
+  Item(name: String, sell_in: Int, quality: Int)
+}
 
 pub fn update_quality(inventory: GildedRose) -> GildedRose {
   let update_quality_item = fn(item: Item) {
@@ -101,8 +106,4 @@ pub fn update_quality(inventory: GildedRose) -> GildedRose {
     }
   }
   list.map(inventory, update_quality_item)
-}
-
-pub fn main() {
-  cli.run_cli_app(update_quality)
 }
