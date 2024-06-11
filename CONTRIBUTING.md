@@ -35,3 +35,10 @@ conventional location (e.g. `test/`). The TextTest fixture and command-line
 program, that simulates update_quality over a number of days, should go in
 `program` or `texttest_fixture`. If you can define a default for the number of
 days in the simulation please choose two days.
+
+A single sub-directory per language is not enforced. A language may have
+more than one popular unit testing framework. In that case, please add
+`{language}-{framework}/` and maintain separation between the projects. In other
+words, all the components requested should exist in both sub-directories.
+Re-using code between the directories would be confusing for those looking for a
+starting point.
