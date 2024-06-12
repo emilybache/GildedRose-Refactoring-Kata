@@ -1,5 +1,5 @@
 Contributing to Gilded Rose Refactoring Kata
----
+======
 
 More translations are most welcome! I'm very open for pull requests that
 translate the starting position into additional languages. However, please
