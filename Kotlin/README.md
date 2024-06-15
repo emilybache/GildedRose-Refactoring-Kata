@@ -32,3 +32,14 @@ There are instructions in the [TextTest Readme](../texttests/README.md) for sett
 2. Break complex statements, make code longer and simpler
 3. understand algorithm and propose better solution
 
+
+### Execution
+TexttestFixtures indeed do not cover all paths, based on jacoco coverage: 
+ ![img.png](img.png)
+
+There are two ways to advance:
+1. manually craft extra test cases
+2. auto generate a bunch of test cases
+ 
+I prefer to go with (2) because it seems to me to be more resilient way. I need to check if execution 
+time is not bloated. Also minimize number of test cases.

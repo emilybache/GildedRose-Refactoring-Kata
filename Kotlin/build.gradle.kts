@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
 	kotlin("jvm") version "1.9.10"
 	application
+	jacoco
 }
 
 group = "com.gildedrose"
@@ -22,6 +23,11 @@ tasks.test {
 	testLogging {
 		events("passed", "skipped", "failed")
 	}
+	finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport {
+	dependsOn(tasks.test)
 }
 
 // config JVM target to 1.8 for kotlin compilation tasks
