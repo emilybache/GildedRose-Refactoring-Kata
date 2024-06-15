@@ -20,7 +20,16 @@ internal class GildedRoseTest {
         val app = GildedRose(items)
         app.updateQuality()
         assertEquals("foo", app.items[0].name)
+    }
 
+    @Test
+    fun `should execute without exception for empty list`() {
+        val items = listOf<Item>()
+        val app = GildedRose(items)
+        app.updateQuality()
+        assertAll(
+            { assertEquals(items, app.items) }
+        )
     }
 
     @ParameterizedTest
@@ -53,7 +62,6 @@ internal class GildedRoseTest {
             )
         }
     }
-
 }
 
 
