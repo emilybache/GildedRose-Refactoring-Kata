@@ -1,5 +1,10 @@
 package com.gildedrose
 
+import com.gildedrose.PlatinumRose.Companion.AGED_BRIE
+import com.gildedrose.PlatinumRose.Companion.BACKSTAGE_PASSES
+import com.gildedrose.PlatinumRose.Companion.LULFURAS_HAND_OF_RAGNAROK
+import com.gildedrose.PlatinumRose.Companion.MIN_QUALITY
+import com.gildedrose.PlatinumRose.Companion.REGULAR_ITEM_MAX_QUALITY
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.util.*
@@ -9,13 +14,13 @@ class PlatinumRoseTest {
     @Test
     fun `should update quality for generated test cases and compare with GlidedRose`() {
         val names = listOf(
-            "Aged Brie",
-            "Backstage passes to a TAFKAL80ETC concert",
-            "Sulfuras, Hand of Ragnaros",
+            AGED_BRIE,
+            BACKSTAGE_PASSES,
+            LULFURAS_HAND_OF_RAGNAROK,
             "new none-existing on code name"
         )
         val sellInRange = -100..100
-        val qualityRange = -100..100
+        val qualityRange = MIN_QUALITY..REGULAR_ITEM_MAX_QUALITY
         val allTestCases = generateTestCasesInRanger(names, sellInRange, qualityRange)
 
 

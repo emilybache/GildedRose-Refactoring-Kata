@@ -1,5 +1,8 @@
 package com.gildedrose
 
+import com.gildedrose.PlatinumRose.Companion.AGED_BRIE
+import com.gildedrose.PlatinumRose.Companion.BACKSTAGE_PASSES
+import com.gildedrose.PlatinumRose.Companion.LULFURAS_HAND_OF_RAGNAROK
 import java.util.*
 
 
@@ -17,9 +20,9 @@ fun generateTestCasesInRanger(names: List<String>, sellInRange: IntRange, qualit
 
 fun main(args: Array<String>) {
     val names = listOf(
-        "Aged Brie",
-        "Backstage passes to a TAFKAL80ETC concert",
-        "Sulfuras, Hand of Ragnaros",
+        AGED_BRIE,
+        BACKSTAGE_PASSES,
+        LULFURAS_HAND_OF_RAGNAROK,
         "new none-existing on code name"
     )
     val sellInRange = -100..100
@@ -32,12 +35,10 @@ fun main(args: Array<String>) {
         val app = GildedRose(listOf(Item(testCase.name, testCase.sellIn, testCase.quality)))
         app.updateQuality()
 
-
         if (testCase.sellIn != app.items[0].sellIn || testCase.quality != app.items[0].quality) {
-            //println("$testCasesCounter: $testCase vs ${app.items[0]}")
+            println("$testCasesCounter: $testCase vs ${app.items[0]}")
             testCasesCounter += 1
         }
     }
     println("Found $testCasesCounter testCasesCounter of out ${allTestCases.size} allTestCases")
-
 }
