@@ -21,3 +21,14 @@ You should make sure the gradle commands shown above work when you execute them 
 
 There are instructions in the [TextTest Readme](../texttests/README.md) for setting up TextTest. What's unusual for the Java version is there are two executables listed in [config.gr](../texttests/config.gr) for Java. One uses Gradle wrapped in a python script, the other relies on your CLASSPATH being set correctly in [environment.gr](../texttests/environment.gr).
 
+
+### Project info
+1. Code is highly unreadable and impossible to extend
+2. Algorithm and test cases are unknown, I do not trust that `TexttestFixtures` covers all paths so I want to validate it with jacoco
+3. Codebase is just 60 LOC and edge-values seems to be small values 
+
+### Plan of action
+1. Generate all test cases / convert `TexttestFixtures` to tests
+2. Break complex statements, make code longer and simpler
+3. understand algorithm and propose better solution
+
