@@ -65,3 +65,15 @@ During refactor I also found README file in a main directory in which algorithm 
 
 At this point code is readable but not so extensible because all algos are in a single class which might grow to infinity.
 The usual way to handle this situation is to go with OO approach - I cannot modify Item class so I will implement new one and its specifications.
+
+### End result
+I didn't modify gliderose in order to be able to execute regression tests that compare my new implementation results with original.
+I created a package platinumrose with few subpackages
+- simple: is the simpleness, cleaned up implementation, no OO concepts or design-patterns
+- mid: is the mid-level implementation with a separate strategies for each type of item
+- advanced - is one of possible implementation of production grade code, it involves item extension methods, qualityCalculator factory, and separation of concepts. This is the only impl fuully covered by tests
+![img_2.png](img_2.png)
+
+
+### TODO
+- I didn't cover extra case described in the main README because of other responsibilities and lack of time

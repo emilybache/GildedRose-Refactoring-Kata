@@ -1,6 +1,9 @@
-package com.gildedrose
+package com.platinumrose.simple
 
-class PlatinumRose(var items: List<Item>) {
+import com.gildedrose.Item
+import com.platinumrose.Solution
+
+class SimplePlatinumRose(var items: List<Item>) : Solution {
 
     companion object {
         const val MIN_QUALITY = 0
@@ -12,15 +15,20 @@ class PlatinumRose(var items: List<Item>) {
         const val LULFURAS_HAND_OF_RAGNAROK = "Sulfuras, Hand of Ragnaros"
     }
 
-    fun updateQuality() {
+
+    override fun items(): List<Item> {
+        return items
+    }
+
+
+    override fun updateQuality() {
         for (item in items) {
             when (item.name) {
-                AGED_BRIE -> updateQualityForAgedBrie(item)
-                BACKSTAGE_PASSES -> updateQualityForBackstagePasses(item)
-                LULFURAS_HAND_OF_RAGNAROK -> null
+                com.platinumrose.ItemType.AGED_BRIE.value -> updateQualityForAgedBrie(item)
+                com.platinumrose.ItemType.BACKSTAGE_PASSES.value -> updateQualityForBackstagePasses(item)
+                com.platinumrose.ItemType.SULFURAS.value -> updateQualityForSulfuras(item)
                 else -> updateQuality(item)
             }
-            item.quality = item.quality.coerceIn(0, REGULAR_ITEM_MAX_QUALITY)
         }
     }
 
@@ -30,6 +38,7 @@ class PlatinumRose(var items: List<Item>) {
         if (item.sellIn < 0) {
             item.quality -= 1
         }
+        item.quality = item.quality.coerceIn(0, REGULAR_ITEM_MAX_QUALITY)
     }
 
     private fun updateQualityForAgedBrie(item: Item) {
@@ -38,6 +47,7 @@ class PlatinumRose(var items: List<Item>) {
         if (item.sellIn < 0) {
             item.quality += 1
         }
+        item.quality = item.quality.coerceIn(0, REGULAR_ITEM_MAX_QUALITY)
     }
 
     private fun updateQualityForBackstagePasses(item: Item) {
@@ -52,5 +62,10 @@ class PlatinumRose(var items: List<Item>) {
         if (item.sellIn < 0) {
             item.quality = 0
         }
+        item.quality = item.quality.coerceIn(0, REGULAR_ITEM_MAX_QUALITY)
+    }
+
+    private fun updateQualityForSulfuras(item: Item) {
+        item.quality = item.quality.coerceIn(0, LEGENDARY_ITEM_MAX_QUALITY)
     }
 }

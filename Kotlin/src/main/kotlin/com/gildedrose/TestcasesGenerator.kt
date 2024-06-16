@@ -1,8 +1,6 @@
 package com.gildedrose
 
-import com.gildedrose.PlatinumRose.Companion.AGED_BRIE
-import com.gildedrose.PlatinumRose.Companion.BACKSTAGE_PASSES
-import com.gildedrose.PlatinumRose.Companion.LULFURAS_HAND_OF_RAGNAROK
+
 import java.util.*
 
 
@@ -20,9 +18,9 @@ fun generateTestCasesInRanger(names: List<String>, sellInRange: IntRange, qualit
 
 fun main(args: Array<String>) {
     val names = listOf(
-        AGED_BRIE,
-        BACKSTAGE_PASSES,
-        LULFURAS_HAND_OF_RAGNAROK,
+        com.platinumrose.ItemType.AGED_BRIE.name,
+        com.platinumrose.ItemType.BACKSTAGE_PASSES.name,
+        com.platinumrose.ItemType.SULFURAS.name,
         "new none-existing on code name"
     )
     val sellInRange = -100..100
