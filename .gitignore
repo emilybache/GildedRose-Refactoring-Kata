@@ -1,5 +1,19 @@
+<<<<<<< HEAD
 *.pyc
 .cache
 .coverage
 .idea/
 *.iml
+=======
+bin
+obj
+*.sln.DotSettings.user
+.vs
+vendor
+.idea
+*.iml
+**/*.received.*
+venv
+**/DS_Store/*
+**/.DS_Store/*
+>>>>>>> e2abba77cb5a395702f237e428b639f2129b1f07

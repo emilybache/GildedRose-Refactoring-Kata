@@ -1,0 +1,3 @@
+# If your .class files are somewhere else, add the path to the list
+CLASSPATH:${TEXTTEST_HOME}/Java/build/classes/java/test;${TEXTTEST_HOME}/Java/build/classes/java/main;${TEXTTEST_HOME}/Java/target/classes;${TEXTTEST_HOME}/Java/target/test-classes
+PERL5OPT:-I${TEXTTEST_HOME}/perl

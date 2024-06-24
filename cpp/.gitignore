@@ -1,0 +1,4 @@
+.idea
+.vs
+cmake-build-debug
+build

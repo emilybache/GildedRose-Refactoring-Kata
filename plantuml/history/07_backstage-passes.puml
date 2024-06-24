@@ -1,0 +1,68 @@
+@startuml
+
+skinparam backgroundColor transparent
+
+start
+
+if (not "Aged Brie" and not "Backstage passes to a TAFKAL80ETC concert") then (yes)
+    if (quality > 0) then (yes)
+        if (not "Sulfuras, Hand of Ragnaros") then (yes)
+            :lower quality with 1;
+        else (no)
+        endif
+    else (no)
+    endif
+else (no)
+    if (quality < 50) then (yes)
+        :increase quality with 1;
+        if ("Backstage passes to a TAFKAL80ETC concert") then (yes)
+            if (sell in < 11) then (yes)
+                if (quality < 50) then (yes)
+                    :increase quality with 1;
+                else (no)
+                endif
+            else (no)
+            endif
+            if (sell in < 6) then (yes)
+                if (quality < 50) then (yes)
+                    :increase quality with 1;
+                else (no)
+                endif
+            else (no)
+            endif
+        else (no)
+        endif
+    else (no)
+    endif
+endif
+
+if (not "Sulfuras, Hand of Ragnaros") then (yes)
+    :lower sell in with 1;
+else (no)
+endif
+
+if (sell in < 0) then (yes)
+    if (not "Aged Brie") then (yes)
+        if (not "Backstage passes to a TAFKAL80ETC concert") then (yes)
+            if (quality > 0) then (yes)
+                if (not "Sulfuras, Hand of Ragnaros") then (yes)
+                    :lower quality with 1;
+                else (no)
+                endif
+            else (no)
+            endif
+        else (no)
+            :lower quality with quality;
+        endif
+    else (no)
+        if (quality < 50) then (yes)
+            :increase quality with 1;
+        else (no)
+        endif
+    endif
+else (no)
+endif
+
+stop
+
+@enduml

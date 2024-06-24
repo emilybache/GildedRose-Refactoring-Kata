@@ -1,0 +1,13 @@
+# Allow in source build
+[Bb]uild*/
+# Ignore qt files when importing CMakeLists
+*.users
+# Ignore CLion project files
+*.idea
+# For macOs users
+.DS_Store
+
+/build_meson/
+/subprojects/Catch2-*/
+/subprojects/packagecache/
+/cmake-build-*/

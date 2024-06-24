@@ -1,0 +1,9 @@
+name: gilded_rose
+version: 0.0.1
+description: A simple console application.
+
+environment:
+  sdk: '>=2.10.0 <3.0.0'
+
+dev_dependencies:
+  test: ^1.16.8

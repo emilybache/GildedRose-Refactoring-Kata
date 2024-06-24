@@ -1,0 +1,11 @@
+
+syntax: glob
+*.bak
+*.BAK
+*.tpu
+*.TPU
+*.exe
+*.EXE
+*.$$$
+*.DSK
+*.TP

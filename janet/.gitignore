@@ -1,0 +1,10 @@
+*
+
+!.gitignore
+!project.janet
+!README.md
+
+!src/
+!src/main.janet
+!test/
+!test/*.janet
