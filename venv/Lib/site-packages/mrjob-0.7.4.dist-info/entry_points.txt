@@ -1,0 +1,5 @@
+[console_scripts]
+mrjob = mrjob.cmd:main
+mrjob-3 = mrjob.cmd:main
+mrjob-3.7 = mrjob.cmd:main
+

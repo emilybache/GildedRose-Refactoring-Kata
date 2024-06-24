@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: approval_utilities
+Version: 12.2.1
+Summary: Utilities for your production code that work well with approvaltests
+Home-page: https://github.com/approvals/ApprovalTests.Python
+Author: ApprovalTests Contributors
+Author-email: llewellyn.falco@gmail.com
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Utilities
+Requires-Python: >=3.8
+License-File: LICENSE
+
