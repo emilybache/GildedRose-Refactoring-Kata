@@ -9,13 +9,47 @@ describe GildedRose do
     expect(items[0].name).to eq "fixme"
   end
 
-  it 'decrementa la calidad del item'
+  context 'para items normales' do
+    setup do
+      ## Arrange
+      items = [Item.new("foo", 10, 2)]
+      gilded = GildedRose.new(items)
+    end
+    
 
-  it 'decrementa los dias para vender el item'
+    it 'decrementa la calidad del item' do
+      #Act
+      gilded.update_quality()
+      
+      #Assert
+      expect(items[0].quality).to eq 1
+    end
 
-  it 'decrementa la calidad del item al doble de velocidad cuando ya no quedan dias para venderlo'
+    it 'decrementa los dias para vender el item' do    
+      #Act
+      gilded.update_quality()
+      
+      #Assert
+      expect(items[0].sell_in).to eq 9
+    end
 
-  it 'no decrementa la calidad del item a negativo'
+    it 'decrementa la calidad del item al doble de velocidad cuando ya no quedan dias para venderlo' do
+      items[0].sell_in = 0
+      items[0].quality = 20
+      
+      gilded.update_quality()
+
+      expect(items[0].quality).to eq 18
+    end
+
+    it 'no decrementa la calidad del item a negativo' do
+      items[0].quality = 0
+      
+      gilded.update_quality()
+
+      expect(items[0].quality).to eq 0
+    end
+  end
 
   context 'para items Aged Brie' do
     it 'incrementa su calidad'
