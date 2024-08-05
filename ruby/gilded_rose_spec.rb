@@ -60,9 +60,21 @@ describe GildedRose do
   end
 
   context 'para items Sulfuras' do
+    before do
+      ## Arrange
+      @items = [Item.new("Sulfuras, Hand of Ragnaros", 10, 2)]
+      @gilded = GildedRose.new(@items)
+    end
+
     it 'no cambia su calidad'
 
-    it 'no cambia los dias para venderlo'
+    it 'no cambia los dias para venderlo' do
+      @items[0].sell_in = 10
+
+      @gilded.update_quality()
+
+      expect(@items[0].sell_in).to eq 10
+    end
   end
 
   context 'para items Backstage Pass' do
