@@ -6,7 +6,7 @@ describe GildedRose do
   it "does not change the name" do
     items = [Item.new("foo", 0, 0)]
     GildedRose.new(items).update_quality()
-    expect(items[0].name).to eq "fixme"
+    expect(items[0].name).to eq "foo"
   end
 
   context 'para items normales' do
@@ -68,7 +68,17 @@ describe GildedRose do
   context 'para items Backstage Pass' do
     it 'incrementa su calidad si quedan más de 10 días para venderlo'
 
-    it 'incrementa su calidad en 2 si quedan 10 dias o menos para venderlo'
+    it 'incrementa su calidad en 2 si quedan 10 dias o menos para venderlo' do
+      # arrange
+      @items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 2)]
+      @gilded = GildedRose.new(@items)
+
+      # act
+      @gilded.update_quality()
+
+      # expect
+      expect(@items[0].quality).to eq 4
+    end
 
     it 'incrementa su calidad en 3 si quedan 5 dias o menos para venderlo'
 
