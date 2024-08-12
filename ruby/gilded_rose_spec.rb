@@ -66,7 +66,11 @@ describe GildedRose do
       @gilded = GildedRose.new(@items)
     end
 
-    it 'no cambia su calidad'
+    it 'no cambia su calidad' do
+      @gilded.update_quality()
+
+      expect(@items[0].quality).to eq 80
+    end
 
     it 'no cambia los dias para venderlo' do
       @items[0].sell_in = 10
@@ -80,7 +84,17 @@ describe GildedRose do
   context 'para items Backstage Pass' do
     it 'incrementa su calidad si quedan más de 10 días para venderlo'
 
-    it 'incrementa su calidad en 2 si quedan 10 dias o menos para venderlo'
+    it 'incrementa su calidad en 2 si quedan 10 dias o menos para venderlo' do
+      # arrange
+      @items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 2)]
+      @gilded = GildedRose.new(@items)
+
+      # act
+      @gilded.update_quality()
+
+      # expect
+      expect(@items[0].quality).to eq 4
+    end
 
     it 'incrementa su calidad en 3 si quedan 5 dias o menos para venderlo'
 
