@@ -60,7 +60,14 @@ describe GildedRose do
   end
 
   context 'para items Sulfuras' do
-    it 'no cambia su calidad'
+    it 'no cambia su calidad' do
+      items = [Item.new("Sulfuras, Hand of Ragnaros", 10, 80)]
+      gilded = GildedRose.new(items)
+
+      gilded.update_quality()
+
+      expect(items[0].quality).to eq 80
+    end
 
     it 'no cambia los dias para venderlo'
   end
