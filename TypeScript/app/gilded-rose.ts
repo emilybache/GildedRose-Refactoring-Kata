@@ -67,17 +67,3 @@ export class GildedRose {
     return this.items;
   }
 }
-
-const startTime = performance.now();
-
-// Call the function
-const gildedRose = new GildedRose([]);
-gildedRose.updateQuality();
-
-// Record end time
-const endTime = performance.now();
-
-// Calculate the time difference
-const timeTaken = endTime - startTime;
-
-console.log(`myFunction took ${timeTaken.toFixed(2)} ms to execute.`);
