@@ -20,9 +20,13 @@ class GildedRose
     item.quality = item.quality + 1
   end
 
+  def aged_brie?(item)
+    item.name == "Aged Brie"
+  end
+
   def update_quality()
     @items.each do |item|
-      if item.name != "Aged Brie" and !backstage_pass?(item)
+      if !aged_brie?(item) and !backstage_pass?(item)
         if item.quality > 0
           if not_legendary?(item)
             decrease_quality(item)
@@ -45,7 +49,7 @@ class GildedRose
         item.sell_in = item.sell_in - 1
       end
       if item.sell_in < 0
-        if item.name != "Aged Brie"
+        if !aged_brie?(item)
           if !backstage_pass?(item)
             if item.quality > 0
               if not_legendary?(item)
