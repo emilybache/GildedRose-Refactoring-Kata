@@ -52,24 +52,28 @@ class GildedRose
     end
   end
 
+  def update_days_passed(item)
+    if !aged_brie?(item)
+      if !backstage_pass?(item)
+        if item.quality > 0
+          decrease_quality(item)
+        end
+      else
+        item.quality = item.quality - item.quality
+      end
+    else
+      if item.quality < 50
+        increase_quality(item)
+      end
+    end
+  end
+
   def update_quality()
     @items.each do |item|
       update_item_quality(item)
       update_item_sell_in(item)
       if item.sell_in < 0
-        if !aged_brie?(item)
-          if !backstage_pass?(item)
-            if item.quality > 0
-              decrease_quality(item)
-            end
-          else
-            item.quality = item.quality - item.quality
-          end
-        else
-          if item.quality < 50
-            increase_quality(item)
-          end
-        end
+        update_days_passed(item)
       end
     end
   end
