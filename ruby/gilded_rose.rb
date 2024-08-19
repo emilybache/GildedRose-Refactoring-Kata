@@ -12,6 +12,10 @@ class GildedRose
     item.name == "Backstage passes to a TAFKAL80ETC concert"
   end
 
+  def conjured?(item)
+    item.name == 'Conjured item'
+  end
+
   def decrease_quality(item)
     return if legendary?(item)
     return if item.quality <= 0
@@ -30,6 +34,9 @@ class GildedRose
   def update_item_quality(item)
     if !aged_brie?(item) and !backstage_pass?(item)
       decrease_quality(item)
+      if conjured?(item)
+        decrease_quality(item)
+      end
     else
       if item.quality < 50
         increase_quality(item)
