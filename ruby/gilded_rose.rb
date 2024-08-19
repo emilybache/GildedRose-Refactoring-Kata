@@ -8,6 +8,10 @@ class GildedRose
     item.name != "Sulfuras, Hand of Ragnaros"
   end
 
+  def backstage_pass?(item)
+    item.name == "Backstage passes to a TAFKAL80ETC concert"
+  end
+
   def decrease_quality(item)
     item.quality = item.quality - 1
   end
@@ -18,7 +22,7 @@ class GildedRose
 
   def update_quality()
     @items.each do |item|
-      if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
+      if item.name != "Aged Brie" and !backstage_pass?(item)
         if item.quality > 0
           if not_legendary?(item)
             decrease_quality(item)
@@ -27,7 +31,7 @@ class GildedRose
       else
         if item.quality < 50
           increase_quality(item)
-          if item.name == "Backstage passes to a TAFKAL80ETC concert"
+          if backstage_pass?(item)
             if item.sell_in < 11
               increase_quality(item)
             end
@@ -42,7 +46,7 @@ class GildedRose
       end
       if item.sell_in < 0
         if item.name != "Aged Brie"
-          if item.name != "Backstage passes to a TAFKAL80ETC concert"
+          if !backstage_pass?(item)
             if item.quality > 0
               if not_legendary?(item)
                 decrease_quality(item)
