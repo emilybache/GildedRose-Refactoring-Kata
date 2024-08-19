@@ -155,5 +155,19 @@ describe GildedRose do
 
       expect(@items[0].quality).to eq 2
     end
+
+    it 'no decrementa su calidad bajo 0' do
+      @items[0].quality = 1
+
+      @gilded.update_quality
+
+      expect(@items[0].quality).to eq 0
+    end
+
+    it 'decrementa sus dias para vender en 1' do
+      @gilded.update_quality
+
+      expect(@items[0].sell_in).to eq 9
+    end
   end
 end
