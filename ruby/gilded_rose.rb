@@ -13,6 +13,8 @@ class GildedRose
   end
 
   def decrease_quality(item)
+    return if legendary?(item)
+
     item.quality = item.quality - 1
   end
 
@@ -28,9 +30,7 @@ class GildedRose
     @items.each do |item|
       if !aged_brie?(item) and !backstage_pass?(item)
         if item.quality > 0
-          if !legendary?(item)
-            decrease_quality(item)
-          end
+          decrease_quality(item)
         end
       else
         if item.quality < 50
@@ -52,9 +52,7 @@ class GildedRose
         if !aged_brie?(item)
           if !backstage_pass?(item)
             if item.quality > 0
-              if !legendary?(item)
-                decrease_quality(item)
-              end
+              decrease_quality(item)
             end
           else
             item.quality = item.quality - item.quality
