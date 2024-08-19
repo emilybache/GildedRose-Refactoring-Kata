@@ -46,12 +46,16 @@ class GildedRose
     end
   end
 
+  def update_item_sell_in(item)
+    if !legendary?(item)
+      item.sell_in = item.sell_in - 1
+    end
+  end
+
   def update_quality()
     @items.each do |item|
       update_item_quality(item)
-      if !legendary?(item)
-        item.sell_in = item.sell_in - 1
-      end
+      update_item_sell_in(item)
       if item.sell_in < 0
         if !aged_brie?(item)
           if !backstage_pass?(item)
