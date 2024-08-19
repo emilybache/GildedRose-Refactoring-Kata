@@ -14,6 +14,7 @@ class GildedRose
 
   def decrease_quality(item)
     return if legendary?(item)
+    return if item.quality <= 0
 
     item.quality = item.quality - 1
   end
@@ -28,9 +29,7 @@ class GildedRose
 
   def update_item_quality(item)
     if !aged_brie?(item) and !backstage_pass?(item)
-      if item.quality > 0
-        decrease_quality(item)
-      end
+      decrease_quality(item)
     else
       if item.quality < 50
         increase_quality(item)
@@ -55,9 +54,7 @@ class GildedRose
   def update_days_passed(item)
     if !aged_brie?(item)
       if !backstage_pass?(item)
-        if item.quality > 0
-          decrease_quality(item)
-        end
+        decrease_quality(item)
       else
         item.quality = item.quality - item.quality
       end
