@@ -4,8 +4,8 @@ class GildedRose
     @items = items
   end
 
-  def not_legendary?(item)
-    item.name != "Sulfuras, Hand of Ragnaros"
+  def legendary?(item)
+    item.name == "Sulfuras, Hand of Ragnaros"
   end
 
   def backstage_pass?(item)
@@ -28,7 +28,7 @@ class GildedRose
     @items.each do |item|
       if !aged_brie?(item) and !backstage_pass?(item)
         if item.quality > 0
-          if not_legendary?(item)
+          if !legendary?(item)
             decrease_quality(item)
           end
         end
@@ -45,14 +45,14 @@ class GildedRose
           end
         end
       end
-      if not_legendary?(item)
+      if !legendary?(item)
         item.sell_in = item.sell_in - 1
       end
       if item.sell_in < 0
         if !aged_brie?(item)
           if !backstage_pass?(item)
             if item.quality > 0
-              if not_legendary?(item)
+              if !legendary?(item)
                 decrease_quality(item)
               end
             end
