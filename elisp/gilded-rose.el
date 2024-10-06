@@ -33,10 +33,6 @@
      
      ;; Sulfuras
      ((string= (item-name item) "Sulfuras")
-      (setf (nth 2 item) quality)) ;; Sulfuras never changes
+      (setf (nth 2 item) quality))
 
-
-     (defvar fork (make-item "fork" 10 10))
-     (update-quality fork)
-     (item-quality fork)
 (provide 'gilded-rose)
