@@ -1,9 +1,10 @@
 (require 'ert)
 (require 'gilded-rose)
 
+
+(defconst foo (make-item "foo" 20 10))
+
 (ert-deftest check-name-of-item ()
-  "Test that item is called sweets. This test should fail!"
-  (let ((sweets (make-item "sweets" 5 5)))
-    (should (string= (item-name sweets) "You should change this"))))
+    (should (string= "fixme" (plist-get foo :name))))
 
 (ert-run-tests-interactively t)
