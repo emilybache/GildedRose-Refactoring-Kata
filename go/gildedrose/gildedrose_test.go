@@ -7,13 +7,20 @@ import (
 )
 
 func Test_Foo(t *testing.T) {
+	// Arrange
 	var items = []*gildedrose.Item{
 		{"foo", 0, 0},
 	}
 
+	expected := []*gildedrose.Item{
+		{"foo", -1, -1},
+	}
+
+	// Act
 	gildedrose.UpdateQuality(items)
 
-	if items[0].Name != "fixme" {
+	// Assert
+	if items[0].Name != expected[0].Name {
 		t.Errorf("Name: Expected %s but got %s ", "fixme", items[0].Name)
 	}
 }
