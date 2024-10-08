@@ -1,0 +1,13 @@
+* Gilded Rose
+Gilded Rose kata in Elisp!
+
+* Structure
+~gilded-rose.el~ contains source code. ~gilded-rose-test.el~ uses [[https://www.gnu.org/software/emacs/manual/html_mono/ert.html][ert]] to run tests
+
+* Running tests
+- Use the command ~eval-buffer~ on ~gilded-rose.el~
+- Use the command ~eval-buffer~ on ~gilded-rose-test.el~
+- Test can be run interactively using the command ~ert~ or with ~(ert-run-tests-interactively t)~
+
+* Todo
+- Add TestText fixture
