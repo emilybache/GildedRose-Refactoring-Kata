@@ -6,32 +6,30 @@ import gleam/io
 import gleam/list
 import gleam/string
 import glint
-import glint/flag
 
 pub fn main() {
   run_cli_app(update_quality)
 }
 
 pub fn run_cli_app(modify_inventory: fn(GildedRose) -> GildedRose) {
-  let days_flag = "days"
+  let days_flag = glint.int_flag("days")
 
   let number_of_days =
-    flag.int()
-    |> flag.default(2)
-    |> flag.description("Number of days")
+    days_flag
+    |> glint.flag_default(2)
+    |> glint.flag_help("Number of days")
 
   let simulate_inventory = fn() {
-    use input <- glint.command()
+    use _, _, flags <- glint.command()
 
-    let assert Ok(number_of_days) =
-      flag.get_int(from: input.flags, for: days_flag)
+    let assert Ok(number_of_days) = glint.get_flag(from: flags, for: days_flag)
     simulate(number_of_days, modify_inventory)
   }
 
   let app =
     glint.new()
     |> glint.with_name("Gilded Rose")
-    |> glint.group_flag([], days_flag, number_of_days)
+    |> glint.group_flag([], number_of_days)
     |> glint.add(at: [], do: simulate_inventory())
 
   io.println("OMGHAI!")
