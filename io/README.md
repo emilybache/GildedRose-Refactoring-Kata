@@ -3,13 +3,13 @@
 ## Run the unit tests from the Command-Line
 
 ```shell
-io tests/correctness/run.io
+io ./tests/correctness/run.io
 ```
 
 ## Run the TextTest Fixture from Command-Line
 
 ```shell
-io tests/correctness/TexttestFixture.io
+io ./tests/correctness/TexttestFixture.io
 ```
 
 ### Specify Number of Days
@@ -17,5 +17,5 @@ io tests/correctness/TexttestFixture.io
 For e.g. 10 days:
 
 ```shell
-io tests/correctness/TexttestFixture.io 10
+io ./tests/correctness/TexttestFixture.io 10
 ```
