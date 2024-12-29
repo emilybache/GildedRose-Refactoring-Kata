@@ -8,3 +8,4 @@ test/**/*.js
 test/**/*.js.map
 coverage
 .nycrc.js*
+venv/
