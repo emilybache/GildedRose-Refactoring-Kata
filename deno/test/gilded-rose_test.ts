@@ -1,6 +1,5 @@
 import { describe, it } from "jsr:@std/testing/bdd";
 import { expect } from "jsr:@std/expect";
-
 import { GildedRose, Item } from "../app/gilded-rose.ts";
 
 describe("Gilded Rose specifications", () => {
