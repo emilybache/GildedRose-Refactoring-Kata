@@ -18,8 +18,8 @@ const items = [
 const gildedRose = new GildedRose(items);
 
 let days: number = 2;
-if (process.argv.length > 2) {
-  days = +process.argv[2];
+if (Deno.args.length > 0) {
+  days = +Deno.args[0];
 }
 
 for (let i = 0; i < days + 1; i++) {
