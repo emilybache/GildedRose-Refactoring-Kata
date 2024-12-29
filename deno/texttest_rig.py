@@ -11,4 +11,4 @@ import sys
 
 args = " ".join(sys.argv[1:])
 TEXTTEST_HOME = os.environ.get("TEXTTEST_HOME", os.getcwd())
-subprocess.run(f"deno run {TEXTTEST_HOME}/TypeScript/test/golden-master-text-test.ts {args}", shell=True)
+subprocess.run(f"deno run {TEXTTEST_HOME}/test/golden-master-text-test.ts {args}", shell=True)
