@@ -19,7 +19,7 @@ deno test
 To run all tests in watch mode
 
 ```sh
-deo test --watch
+deno test --watch
 ```
 
 ## Run the TextTest fixture from the Command-Line
