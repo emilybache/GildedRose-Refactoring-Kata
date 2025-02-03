@@ -11,3 +11,8 @@ bin/
 .gradle
 /build/
 
+# Maven
+.mvn/*
+
+# Approvals
+**/.approval_tests_temp
