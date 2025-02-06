@@ -2,23 +2,21 @@ This is my implementation of the [Gilded Rose Kata](https://github.com/emilybach
 
 ## Tidy first, then change behavior
 
-`/main`
+`main`
 
 In the main branch is only refactored from the original, with the new requirement yet to implemented.
 I used the lift up conditional refactoring, inspired by Emily Bache and Llewellyn Falco.
 
 See their videos here:
 
-TODO: link vids
+- [Emily Bache introduced me to the idea](https://www.youtube.com/watch?v=OdnV8hc9L7I)
+- [Llewellyn Falco shows the whole process, and makes it as lazy as possible](https://www.youtube.com/watch?v=wp6oSVDdbXQ)
 
-- Emily Bache: 
-- Llewellyn Falco:
-
-`/feature/implement-new-requirement`
+`feature/implement-new-requirement`
 
 In this branch, I have implemented the new requirement.
 
-`/archive/original-code`
+`archive/original-code`
 
 This branch contains the original code, before the refactoring.
 
