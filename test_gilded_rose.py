@@ -9,8 +9,8 @@ class GildedRoseTest(unittest.TestCase):
         items = [Item("foo", 0, 0)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
-        verify("fixme")
+        verify(items[0].name)
 
-        
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
