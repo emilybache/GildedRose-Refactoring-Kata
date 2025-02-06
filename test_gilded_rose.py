@@ -4,7 +4,7 @@ from approvaltests.combination_approvals import verify_all_combinations
 
 def test_update_quality():
     input_names = [
-        "foo",
+        "Normal item",
         "Aged Brie",
         "Backstage passes to a TAFKAL80ETC concert",
         "Sulfuras, Hand of Ragnaros",
