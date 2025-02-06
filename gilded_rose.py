@@ -9,10 +9,9 @@ class Item:
 
 
 def update_item(item: Item):
-    if (
-        item.name != "Aged Brie"
-        and item.name != "Backstage passes to a TAFKAL80ETC concert"
-    ):
+    is_aged_brie = item.name == "Aged Brie"
+    
+    if not is_aged_brie and item.name != "Backstage passes to a TAFKAL80ETC concert":
         if item.quality > 0:
             if item.name != "Sulfuras, Hand of Ragnaros":
                 item.quality = item.quality - 1
@@ -29,7 +28,7 @@ def update_item(item: Item):
     if item.name != "Sulfuras, Hand of Ragnaros":
         item.sell_in = item.sell_in - 1
     if item.sell_in < 0:
-        if item.name != "Aged Brie":
+        if not is_aged_brie:
             if item.name != "Backstage passes to a TAFKAL80ETC concert":
                 if item.quality > 0:
                     if item.name != "Sulfuras, Hand of Ragnaros":
