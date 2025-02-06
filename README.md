@@ -1,9 +1,16 @@
-TODO: Link to Emily's original repo and video on the refactoring process
+This is a refactoring and implementation kata for the [Gilded Rose Kata](https://github.com/emilybache/GildedRose-Refactoring-Kata).
+In the main branch, I've used the lift up conditional refactoring, inspired by Emily Bache and Llewellyn Falco.
+
+See their videos here:
+
+TODO: link vids
+
+- Emily Bache: 
+- Llewellyn Falco:
 
 # Getting setup
 
-Firstly, setup a python 3.12 environment.
-TODO link to venv
+Firstly, setup a python 3.12 environment using [venv](https://docs.python.org/3/library/venv.html)
 
 Then, install the requirements:
 
