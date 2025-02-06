@@ -7,10 +7,10 @@ from approvaltests.approvals import verify
 
 class GildedRoseTest(unittest.TestCase):
     def do_stuff(self, name):
-        thing = Item(name, 0, 0)
-        gilded_rose = GildedRose([thing])
+        item = Item(name, 0, 0)
+        gilded_rose = GildedRose([item])
         gilded_rose.update_quality()
-        result = str(thing)
+        result = str(item)
         return result
 
     def test_foo(self):
