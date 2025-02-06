@@ -19,7 +19,7 @@ class GildedRoseTest(unittest.TestCase):
             "Sulfuras, Hand of Ragnaros",
         ]
 
-        verify_all_combinations(self.do_stuff, [input_names, [-1, 0, 1]])
+        verify_all_combinations(self.do_stuff, [input_names, [-1, 0, 1, 49, 50, 51]])
 
 
 if __name__ == "__main__":
