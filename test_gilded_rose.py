@@ -10,8 +10,8 @@ class GildedRoseTest(unittest.TestCase):
         item = Item(name, 0, 0)
         gilded_rose = GildedRose([item])
         gilded_rose.update_quality()
-        result = str(item)
-        return result
+
+        return str(item)
 
     def test_foo(self):
         input_vals = [
