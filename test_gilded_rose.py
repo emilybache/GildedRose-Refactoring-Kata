@@ -7,21 +7,21 @@ from approvaltests.approvals import verify
 
 class GildedRoseTest(unittest.TestCase):
     def do_stuff(self, item):
-        thing = Item(item[0], item[1], item[2])
+        thing = Item(item, 0, 0)
         gilded_rose = GildedRose([thing])
         gilded_rose.update_quality()
         result = str(thing)
         return result
 
     def test_foo(self):
-        input_Vals = [
-            ("foo", 0, 0),
-            ("Aged Brie", 0, 0),
-            ("Backstage passes to a TAFKAL80ETC concert", 0, 0),
+        input_vals = [
+            "foo",
+            "Aged Brie",
+            "Backstage passes to a TAFKAL80ETC concert",
         ]
 
         to_approve = []
-        for item in input_Vals:
+        for item in input_vals:
             to_approve.append(self.do_stuff(item))
 
         verify("\n".join(to_approve))
