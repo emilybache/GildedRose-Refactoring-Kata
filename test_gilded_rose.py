@@ -29,7 +29,3 @@ class GildedRoseTest(unittest.TestCase):
                 input_qualities,
             ],
         )
-
-
-if __name__ == "__main__":
-    unittest.main()
