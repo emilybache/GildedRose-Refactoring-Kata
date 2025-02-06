@@ -8,15 +8,18 @@ class Item:
         return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
 
 
+def is_aged_brie(item: Item) -> None:
+    return item.name == "Aged Brie"
+
+
 def update_item(item: Item):
-    is_aged_brie = item.name == "Aged Brie"
     is_sulfuras = item.name == "Sulfuras, Hand of Ragnaros"
     is_backstage_pass = item.name == "Backstage passes to a TAFKAL80ETC concert"
 
     if is_sulfuras:
         return
 
-    if is_aged_brie:
+    if is_aged_brie(item):
         if item.quality < 50:
             item.quality = item.quality + 1
         item.sell_in = item.sell_in - 1
