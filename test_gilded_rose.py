@@ -26,6 +26,5 @@ class GildedRoseTest(unittest.TestCase):
 
     def do_stuff(self, name, sell_in, quality):
         item = Item(name, sell_in, quality)
-        gilded_rose = GildedRose([item])
-        gilded_rose.update_quality()
+        GildedRose().update_quality([item])
         return str(item)

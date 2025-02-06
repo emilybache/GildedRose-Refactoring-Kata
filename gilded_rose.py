@@ -36,11 +36,8 @@ def update_item(item: Item):
 
 
 class GildedRose:
-    def __init__(self, items: list[Item]):
-        self.items = items
-
-    def update_quality(self):
-        for item in self.items:
+    def update_quality(self, items: list[Item]):
+        for item in items:
             update_item(item)
 
 
