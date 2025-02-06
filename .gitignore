@@ -9,3 +9,7 @@ vendor
 venv
 **/DS_Store/*
 **/.DS_Store/*
+.approval_tests_temp/
+.coverage
+__pycache__/
+
