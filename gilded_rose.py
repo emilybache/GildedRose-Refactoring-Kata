@@ -12,11 +12,14 @@ def is_aged_brie(item: Item) -> None:
     return item.name == "Aged Brie"
 
 
+def is_sulfuras(item: Item) -> None:
+    return item.name == "Sulfuras, Hand of Ragnaros"
+
+
 def update_item(item: Item):
-    is_sulfuras = item.name == "Sulfuras, Hand of Ragnaros"
     is_backstage_pass = item.name == "Backstage passes to a TAFKAL80ETC concert"
 
-    if is_sulfuras:
+    if is_sulfuras(item):
         return
 
     if is_aged_brie(item):
