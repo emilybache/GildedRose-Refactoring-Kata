@@ -11,7 +11,7 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_quality()
         return str(item)
 
-    def test_foo(self):
+    def test_update_quality(self):
         input_names = [
             "foo",
             "Aged Brie",
