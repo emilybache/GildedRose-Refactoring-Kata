@@ -1,7 +1,7 @@
-# -*- coding: utf-8 -*-
 import unittest
 
 from gilded_rose import Item, GildedRose
+from approvaltests.approvals import verify
 
 
 class GildedRoseTest(unittest.TestCase):
@@ -9,7 +9,7 @@ class GildedRoseTest(unittest.TestCase):
         items = [Item("foo", 0, 0)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
-        self.assertEqual("fixme", items[0].name)
+        verify("fixme")
 
         
 if __name__ == '__main__':
