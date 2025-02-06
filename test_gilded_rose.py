@@ -9,7 +9,7 @@ class GildedRoseTest(unittest.TestCase):
         items = [Item("foo", 0, 0)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
-        verify(items[0].name)
+        verify(items[0])
 
 
 if __name__ == "__main__":
