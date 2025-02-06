@@ -16,9 +16,11 @@ def is_sulfuras(item: Item) -> None:
     return item.name == "Sulfuras, Hand of Ragnaros"
 
 
-def update_item(item: Item):
-    is_backstage_pass = item.name == "Backstage passes to a TAFKAL80ETC concert"
+def is_backstage_pass(item: Item) -> None:
+    return item.name == "Backstage passes to a TAFKAL80ETC concert"
 
+
+def update_item(item: Item):
     if is_sulfuras(item):
         return
 
@@ -31,7 +33,7 @@ def update_item(item: Item):
                 item.quality = item.quality + 1
         return
 
-    if is_backstage_pass:
+    if is_backstage_pass(item):
         if item.quality < 50:
             item.quality = item.quality + 1
             if item.sell_in < 11:
