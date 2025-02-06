@@ -37,17 +37,20 @@ def update_item(item: Item):
 
         else:
             is_sulfuras = item.name == "Sulfuras, Hand of Ragnaros"
-            
-            if item.quality > 0:
-                if not is_sulfuras:
-                    item.quality = item.quality - 1
 
-            if not is_sulfuras:
-                item.sell_in = item.sell_in - 1
-            if item.sell_in < 0:
+            if is_sulfuras:
+                return
+
+            else:
                 if item.quality > 0:
-                    if not is_sulfuras:
+                    if not False:
                         item.quality = item.quality - 1
+                if not False:
+                    item.sell_in = item.sell_in - 1
+                if item.sell_in < 0:
+                    if item.quality > 0:
+                        if not False:
+                            item.quality = item.quality - 1
 
 
 class GildedRose:
