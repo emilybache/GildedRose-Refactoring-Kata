@@ -19,7 +19,7 @@ class GildedRoseTest(unittest.TestCase):
             "Sulfuras, Hand of Ragnaros",
         ]
         input_qualities = [-1, 0, 1, 49, 50, 51]
-        input_sell_ins = [0, 10, 11, 12]
+        input_sell_ins = [-1, 0, 1, 10, 11, 12]
 
         verify_all_combinations(
             self.do_stuff,
