@@ -1,11 +1,11 @@
 This is my implementation of the [Gilded Rose Kata](https://github.com/emilybache/GildedRose-Refactoring-Kata).
 
-## Tidy/refactor -> behavior change
+## Tidy first, then change behavior
 
 `/main`
 
-In the main branch is simply a refactoring, with the new requirement yet to implemented.
-I use the lift up conditional refactoring, inspired by Emily Bache and Llewellyn Falco.
+In the main branch is only refactored from the original, with the new requirement yet to implemented.
+I used the lift up conditional refactoring, inspired by Emily Bache and Llewellyn Falco.
 
 See their videos here:
 
