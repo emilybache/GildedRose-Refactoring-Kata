@@ -12,6 +12,8 @@ See their videos here:
 - [Emily Bache introduced me to the idea](https://www.youtube.com/watch?v=OdnV8hc9L7I)
 - [Llewellyn Falco shows the whole process, and makes it as lazy as possible](https://www.youtube.com/watch?v=wp6oSVDdbXQ)
 
+I time boxed myself to get this all done in under an hour. 20 minutes for achieving 100% test coverage, 20 for refactoring, and 20 for implementing the new requirement.
+
 `feature/implement-new-requirement`
 
 In this branch, I have implemented the new requirement.
