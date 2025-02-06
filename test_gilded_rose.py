@@ -20,7 +20,9 @@ class GildedRoseTest(unittest.TestCase):
         ]
         input_qualities = [-1, 0, 1, 49, 50, 51]
 
-        verify_all_combinations(self.do_stuff, [input_names, [0], input_qualities])
+        verify_all_combinations(
+            self.do_stuff, [input_names, [0, 10, 11, 12], input_qualities]
+        )
 
 
 if __name__ == "__main__":
