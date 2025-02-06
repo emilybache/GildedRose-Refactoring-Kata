@@ -12,13 +12,13 @@ class GildedRoseTest(unittest.TestCase):
         return str(item)
 
     def test_foo(self):
-        input_vals = [
+        input_names = [
             "foo",
             "Aged Brie",
             "Backstage passes to a TAFKAL80ETC concert",
         ]
 
-        verify_all_combinations(self.do_stuff, [input_vals, [0]])
+        verify_all_combinations(self.do_stuff, [input_names, [0]])
 
 
 if __name__ == "__main__":
