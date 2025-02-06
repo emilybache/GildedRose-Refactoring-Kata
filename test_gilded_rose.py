@@ -18,7 +18,7 @@ class GildedRoseTest(unittest.TestCase):
             "Backstage passes to a TAFKAL80ETC concert",
         ]
 
-        verify_all_combinations(self.do_stuff, [input_names, [0]])
+        verify_all_combinations(self.do_stuff, [input_names, [-1, 0, 1]])
 
 
 if __name__ == "__main__":
