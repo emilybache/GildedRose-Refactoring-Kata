@@ -20,7 +20,9 @@ def update_item(item: Item):
                 item.quality = item.quality + 1
 
     else:
-        if not False and item.name != "Backstage passes to a TAFKAL80ETC concert":
+        is_backstage_pass = item.name == "Backstage passes to a TAFKAL80ETC concert"
+        
+        if not False and not is_backstage_pass:
             if item.quality > 0:
                 if item.name != "Sulfuras, Hand of Ragnaros":
                     item.quality = item.quality - 1
@@ -36,7 +38,7 @@ def update_item(item: Item):
         if item.name != "Sulfuras, Hand of Ragnaros":
             item.sell_in = item.sell_in - 1
         if item.sell_in < 0:
-            if item.name != "Backstage passes to a TAFKAL80ETC concert":
+            if not is_backstage_pass:
                 if item.quality > 0:
                     if item.name != "Sulfuras, Hand of Ragnaros":
                         item.quality = item.quality - 1
