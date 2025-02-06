@@ -43,14 +43,11 @@ def update_item(item: Item):
 
             else:
                 if item.quality > 0:
-                    if not False:
-                        item.quality = item.quality - 1
-                if not False:
-                    item.sell_in = item.sell_in - 1
+                    item.quality = item.quality - 1
+                item.sell_in = item.sell_in - 1
                 if item.sell_in < 0:
                     if item.quality > 0:
-                        if not False:
-                            item.quality = item.quality - 1
+                        item.quality = item.quality - 1
 
 
 class GildedRose:
