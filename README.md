@@ -13,11 +13,13 @@ pip install -r requirements.txt
 
 # Running the tests
 
-This project uses approval tests to ensure the behavior of the code remains the same during refactoring
+This project uses [characterisation tests](TODO: Link to characterisation/approval tests concept) to ensure the behavior of the code remains the same during refactoring.
 
 
 ```bash
-coverage run --branch -m pytest --approvaltests-add-reporter=diffuse -s ; coverage html ; coverage report --fail-under=100
+coverage run --branch -m pytest --approvaltests-add-reporter=diffuse -s ;
+coverage html ;
+coverage report --fail-under=100
 ```
 
 This will run the tests, and will also:

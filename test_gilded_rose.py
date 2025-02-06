@@ -16,6 +16,7 @@ class GildedRoseTest(unittest.TestCase):
             "foo",
             "Aged Brie",
             "Backstage passes to a TAFKAL80ETC concert",
+            "Sulfuras, Hand of Ragnaros",
         ]
 
         verify_all_combinations(self.do_stuff, [input_names, [-1, 0, 1]])
