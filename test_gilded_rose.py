@@ -5,7 +5,7 @@ from approvaltests.combination_approvals import verify_all_combinations
 
 
 class GildedRoseTest(unittest.TestCase):
-    def do_stuff(self, name, sell_in=0, quality=0):
+    def do_stuff(self, name, sell_in, quality):
         item = Item(name, sell_in, quality)
         gilded_rose = GildedRose([item])
         gilded_rose.update_quality()
