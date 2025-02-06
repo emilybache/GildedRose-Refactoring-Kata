@@ -4,7 +4,7 @@ This is my implementation of the [Gilded Rose Kata](https://github.com/emilybach
 
 `main`
 
-In the main branch is only refactored from the original, with the new requirement yet to implemented.
+In the main branch is only refactored from the original, with the [new requirement](GildedRoseRequirements.md) yet to implemented.
 I used the lift up conditional refactoring, inspired by Emily Bache and Llewellyn Falco.
 
 See their videos here:
