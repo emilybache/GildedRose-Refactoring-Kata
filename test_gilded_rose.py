@@ -9,6 +9,7 @@ class GildedRoseTest(unittest.TestCase):
         items = [
             Item("foo", 0, 0),
             Item("Aged Brie", 0, 0),
+            Item("Backstage passes to a TAFKAL80ETC concert", 0, 0),
         ]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
