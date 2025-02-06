@@ -1,6 +1,0 @@
-*.o
-*.ali
-b~*.ads
-b~*.adb
-program
-gilded_rose_tester
