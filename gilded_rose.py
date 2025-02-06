@@ -11,6 +11,7 @@ class Item:
 def update_item(item: Item):
     is_aged_brie = item.name == "Aged Brie"
     is_sulfuras = item.name == "Sulfuras, Hand of Ragnaros"
+    is_backstage_pass = item.name == "Backstage passes to a TAFKAL80ETC concert"
 
     if is_sulfuras:
         return
@@ -22,10 +23,9 @@ def update_item(item: Item):
         if item.sell_in < 0:
             if item.quality < 50:
                 item.quality = item.quality + 1
+        return
 
     else:
-        is_backstage_pass = item.name == "Backstage passes to a TAFKAL80ETC concert"
-
         if is_backstage_pass:
             if item.quality < 50:
                 item.quality = item.quality + 1
