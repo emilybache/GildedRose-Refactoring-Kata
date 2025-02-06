@@ -10,7 +10,10 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
 
-        to_approve = [str(items[0])]
+        to_approve = []
+        for i in items:
+            item = str(items[0])
+            to_approve.append(item)
         verify("\n".join(to_approve))
 
 
