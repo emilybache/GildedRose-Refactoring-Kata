@@ -10,8 +10,8 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
 
-        to_approve = items[0]
-        verify(to_approve)
+        to_approve = [str(items[0])]
+        verify("\n".join(to_approve))
 
 
 if __name__ == "__main__":
