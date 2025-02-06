@@ -8,18 +8,6 @@ class Item:
         return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
 
 
-def is_aged_brie(item: Item) -> None:
-    return item.name == "Aged Brie"
-
-
-def is_sulfuras(item: Item) -> None:
-    return item.name == "Sulfuras, Hand of Ragnaros"
-
-
-def is_backstage_pass(item: Item) -> None:
-    return item.name == "Backstage passes to a TAFKAL80ETC concert"
-
-
 def update_item(item: Item):
     if is_sulfuras(item):
         return
@@ -62,3 +50,15 @@ class GildedRose:
     def update_quality(self):
         for item in self.items:
             update_item(item)
+
+
+def is_aged_brie(item: Item):
+    return item.name == "Aged Brie"
+
+
+def is_sulfuras(item: Item):
+    return item.name == "Sulfuras, Hand of Ragnaros"
+
+
+def is_backstage_pass(item: Item):
+    return item.name == "Backstage passes to a TAFKAL80ETC concert"
