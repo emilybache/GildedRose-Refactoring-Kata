@@ -11,9 +11,8 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_quality()
 
         to_approve = []
-        for i in items:
-            item = str(items[0])
-            to_approve.append(item)
+        for item in items:
+            to_approve.append(str(item))
         verify("\n".join(to_approve))
 
 
