@@ -15,3 +15,13 @@ pip install -r requirements.txt
 
 This project uses approval tests to ensure the behavior of the code remains the same during refactoring
 
+
+```bash
+coverage run --branch -m pytest --approvaltests-add-reporter=diffuse -s ; coverage html ; coverage report --fail-under=100
+```
+
+This will run the tests, and will also:
+
+- automatically bring up [diffuse](TODO: link to) to view differences side by side, if there are any behavior changes
+- warn you if your coverage falls below 100% (either you need more tests, or there is dead code)
+- generate a coverage report (You can view this in the `htmlcov` directory by opening `index.html` in a browser)
