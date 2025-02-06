@@ -12,15 +12,6 @@ def update_item(item: Item):
     if is_sulfuras(item):
         return
 
-    if is_aged_brie(item):
-        if item.quality < 50:
-            item.quality = item.quality + 1
-        item.sell_in = item.sell_in - 1
-        if item.sell_in < 0:
-            if item.quality < 50:
-                item.quality = item.quality + 1
-        return
-
     if is_backstage_pass(item):
         if item.quality < 50:
             item.quality = item.quality + 1
@@ -33,6 +24,15 @@ def update_item(item: Item):
         item.sell_in = item.sell_in - 1
         if item.sell_in < 0:
             item.quality = item.quality - item.quality
+        return
+
+    if is_aged_brie(item):
+        if item.quality < 50:
+            item.quality = item.quality + 1
+        item.sell_in = item.sell_in - 1
+        if item.sell_in < 0:
+            if item.quality < 50:
+                item.quality = item.quality + 1
         return
 
     if item.quality > 0:
