@@ -19,6 +19,14 @@ class GildedRoseTest(unittest.TestCase):
         # Quality should never go below 0
         self.assertEqual(0, item.quality)
 
+    def test_normal_item_quality_if_sell_in_is_0(self):
+        item = Item(name="foo", sell_in=0, quality=4)
+        gilded_rose = GildedRose([item])
+        gilded_rose.update_quality()
+
+        # Quality will degrade by 2 once sell in date passed
+        self.assertEqual(2, item.quality)
+
     def test_aged_brie_quality_exceeded(self):
         item = Item(name="Aged Brie", sell_in=0, quality=50)
         gilded_rose = GildedRose([item])
