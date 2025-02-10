@@ -1,8 +1,12 @@
 package com.gildedrose;
 
+import static com.gildedrose.ItemType.fromName;
+
 public class Item {
 
     private final String name;
+
+    private final ItemType type;
 
     public int sellIn;
 
@@ -12,6 +16,7 @@ public class Item {
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
+        this.type = fromName(name);
     }
 
     public String getName() {
