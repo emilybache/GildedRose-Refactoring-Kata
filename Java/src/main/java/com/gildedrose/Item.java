@@ -64,7 +64,7 @@ public class Item {
             quality = 0;
         }
     }
-    public void updateAgedBrieItem() {
+    private void updateAgedBrieItem() {
         if (quality < 50) {
             quality++;
         }
