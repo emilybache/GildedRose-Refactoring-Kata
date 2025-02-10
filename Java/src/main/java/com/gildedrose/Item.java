@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import java.util.Objects;
+
 import static com.gildedrose.ItemType.fromName;
 
 public class Item {
@@ -24,17 +26,26 @@ public class Item {
     }
 
     public void updateItem() {
-        boolean isAgedBrie = name.equals("Aged Brie");
-        boolean isSulfuras = name.equals("Sulfuras, Hand of Ragnaros");
-        boolean isBackStagePass = name.equals("Backstage passes to a TAFKAL80ETC concert");
+        switch (type) {
+            case AgedBrie -> {
 
-        if (!isAgedBrie && !isBackStagePass) {
-            if (quality > 0 && !isSulfuras) {
-                deductOneFromQuality();
+                if (quality < 50) {
+                    addOneToQuality();
+                }
+
+                deductSellIn();
+
+                if (sellIn < 0 && quality < 50) {
+                    addOneToQuality();
+                }
             }
-        } else if(quality < 50) {
-            addOneToQuality();
-            if (isBackStagePass) {
+
+            case BackstagePass -> {
+
+                if (quality < 50) {
+                    addOneToQuality();
+                }
+
                 if (sellIn < 11 && quality < 50) {
                     addOneToQuality();
                 }
@@ -42,24 +53,26 @@ public class Item {
                 if (sellIn < 6 && quality < 50) {
                     addOneToQuality();
                 }
-            }
-        }
+                deductSellIn();
 
-        if (!isSulfuras) {
-            deductSellIn();
-        }
 
-        if (sellIn < 0) {
-            if (!isAgedBrie) {
-                if (!isBackStagePass) {
-                    if (quality > 0 && !isSulfuras) {
-                        deductOneFromQuality();
-                    }
-                } else {
-                    setQualityToZero();
+                if (sellIn < 0) {
+                    quality = 0;
                 }
-            } else if ((quality < 50)) {
-                addOneToQuality();
+            }
+
+            case Sulfuras -> {}
+
+            case Unknown -> {
+                deductSellIn();
+
+                if (quality > 0) {
+                    deductOneFromQuality();
+                }
+
+                if (sellIn < 0 && quality > 0) {
+                    deductOneFromQuality();
+                }
             }
         }
     }
