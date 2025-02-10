@@ -5,7 +5,8 @@ import java.util.Arrays;
 public enum ItemType {
     AgedBrie("Aged Brie"),
     BackstagePass("Backstage passes to a TAFKAL80ETC concert"),
-    Sulfuras("Sulfuras, Hand of Ragnaros");
+    Sulfuras("Sulfuras, Hand of Ragnaros"),
+    Unknown("Unknown");
 
     private final String name;
 
@@ -21,6 +22,6 @@ public enum ItemType {
         return Arrays.stream(ItemType.values())
             .filter(itemType -> itemType.getName().equals(name))
             .findFirst()
-            .orElseThrow( () -> new IllegalArgumentException(name));
+            .orElse(Unknown);
     }
 }
