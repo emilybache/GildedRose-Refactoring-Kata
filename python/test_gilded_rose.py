@@ -1,18 +1,19 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from gilded_rose import Item, GildedRose
+from gilded_rose import GildedRose
+from python.factory_item import FactoryItem
 
 
 class GildedRoseTest(unittest.TestCase):
     def test_normal_item_quality(self):
-        item = Item(name="foo", sell_in=5, quality=5)
+        item = FactoryItem.create_new_item(name="foo", sell_in=5, quality=5)
         gilded_rose = GildedRose([item])
         gilded_rose.update_quality()
         self.assertEqual(4, item.quality)
 
     def test_normal_item_quality_when_quality_is_zero(self):
-        item = Item(name="foo", sell_in=0, quality=0)
+        item = FactoryItem.create_new_item(name="foo", sell_in=0, quality=0)
         gilded_rose = GildedRose([item])
         gilded_rose.update_quality()
 
@@ -20,7 +21,7 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEqual(0, item.quality)
 
     def test_normal_item_quality_if_sell_in_is_0(self):
-        item = Item(name="foo", sell_in=0, quality=4)
+        item = FactoryItem.create_new_item(name="foo", sell_in=0, quality=4)
         gilded_rose = GildedRose([item])
         gilded_rose.update_quality()
 
@@ -28,7 +29,7 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEqual(2, item.quality)
 
     def test_aged_brie_quality_exceeded(self):
-        item = Item(name="Aged Brie", sell_in=0, quality=50)
+        item = FactoryItem.create_new_item(name="Aged Brie", sell_in=0, quality=50)
         gilded_rose = GildedRose([item])
         gilded_rose.update_quality()
 
@@ -36,13 +37,13 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEqual(50, item.quality)
 
     def test_aged_brie_sell_in(self):
-        item = Item(name="Aged Brie", sell_in=10, quality=2)
+        item = FactoryItem.create_new_item(name="Aged Brie", sell_in=10, quality=2)
         gilded_rose = GildedRose([item])
         gilded_rose.update_quality()
         self.assertEquals(9, item.sell_in)
 
     def test_sulfuras_sell_in_and_quality(self):
-        item = Item(name="Sulfuras, Hand of Ragnaros", sell_in=10, quality=2)
+        item = FactoryItem.create_new_item(name="Sulfuras, Hand of Ragnaros", sell_in=10, quality=2)
         gilded_rose = GildedRose([item])
         gilded_rose.update_quality()
 
@@ -51,7 +52,7 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEquals(2, item.quality)
 
     def test_backstage_quality_for_less_than_ten_days(self):
-        item = Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=9, quality=2)
+        item = FactoryItem.create_new_item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=9, quality=2)
         gilded_rose = GildedRose([item])
         gilded_rose.update_quality()
         self.assertEquals(8, item.sell_in)
@@ -60,7 +61,7 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEquals(4, item.quality)
 
     def test_backstage_quality_for_less_than_five_days(self):
-        item = Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=5, quality=2)
+        item = FactoryItem.create_new_item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=5, quality=2)
         gilded_rose = GildedRose([item])
         gilded_rose.update_quality()
         self.assertEquals(4, item.sell_in)
@@ -69,12 +70,21 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEquals(5, item.quality)
 
     def test_backstage_quality_when_concert_is_over(self):
-        item = Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=0, quality=2)
+        item = FactoryItem.create_new_item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=0, quality=2)
         gilded_rose = GildedRose([item])
         gilded_rose.update_quality()
         self.assertEquals(-1, item.sell_in)
 
         # For backstage, quality gets to 0 when concert is over that is sell_in <= 0
+        self.assertEquals(0, item.quality)
+
+    def test_conjured_quality(self):
+        item = FactoryItem.create_new_item(name="Conjured", sell_in=10, quality=2)
+        gilded_rose = GildedRose([item])
+        gilded_rose.update_quality()
+        self.assertEquals(9, item.sell_in)
+
+        # For conjured, quality is reduced by 2
         self.assertEquals(0, item.quality)
 
         
