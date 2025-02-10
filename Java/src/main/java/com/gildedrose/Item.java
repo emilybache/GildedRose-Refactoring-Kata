@@ -27,70 +27,53 @@ public class Item {
 
     public void updateItem() {
         switch (type) {
-            case AgedBrie -> {
-
-                if (quality < 50) {
-                    addOneToQuality();
-                }
-
-                deductSellIn();
-
-                if (sellIn < 0 && quality < 50) {
-                    addOneToQuality();
-                }
-            }
-
-            case BackstagePass -> {
-
-                if (quality < 50) {
-                    addOneToQuality();
-                }
-
-                if (sellIn < 11 && quality < 50) {
-                    addOneToQuality();
-                }
-
-                if (sellIn < 6 && quality < 50) {
-                    addOneToQuality();
-                }
-                deductSellIn();
-
-
-                if (sellIn < 0) {
-                    quality = 0;
-                }
-            }
-
+            case AgedBrie -> updateAgedBrieItem();
+            case BackstagePass -> updateBackstagePassItem();
             case Sulfuras -> {}
-
-            case Unknown -> {
-                deductSellIn();
-
-                if (quality > 0) {
-                    deductOneFromQuality();
-                }
-
-                if (sellIn < 0 && quality > 0) {
-                    deductOneFromQuality();
-                }
-            }
+            case Unknown -> updateUnknownItem();
         }
     }
 
-    private void setQualityToZero() {
-        quality = 0;
-    }
-
-    private void deductSellIn() {
+    private void updateUnknownItem() {
         sellIn--;
-    }
 
-    private void addOneToQuality() {
-        quality++;
-    }
+        if (quality > 0) {
+            quality--;
+        }
 
-    private void deductOneFromQuality() {
-        quality--;
+        if (sellIn < 0 && quality > 0) {
+            quality--;
+        }
+    }
+    private void updateBackstagePassItem() {
+        if (quality < 50) {
+            quality++;
+        }
+
+        if (sellIn < 11 && quality < 50) {
+            quality++;
+        }
+
+        if (sellIn < 6 && quality < 50) {
+            quality++;
+        }
+
+        sellIn--;
+
+        if (sellIn < 0) {
+            quality = 0;
+        }
+    }
+    public void updateAgedBrieItem() {
+        if (quality < 50) {
+            quality++;
+        }
+
+        sellIn--;
+
+        if (sellIn < 0 && quality < 50) {
+            quality++;
+        }
     }
 
    @Override
