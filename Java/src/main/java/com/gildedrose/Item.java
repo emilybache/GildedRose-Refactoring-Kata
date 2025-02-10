@@ -18,19 +18,60 @@ public class Item {
         return name;
     }
 
-    public void setQualityToZero() {
+    public void updateItem() {
+        boolean isAgedBrie = name.equals("Aged Brie");
+        boolean isSulfuras = name.equals("Sulfuras, Hand of Ragnaros");
+        boolean isBackStagePass = name.equals("Backstage passes to a TAFKAL80ETC concert");
+
+        if (!isAgedBrie && !isBackStagePass) {
+            if (quality > 0 && !isSulfuras) {
+                deductOneFromQuality();
+            }
+        } else if(quality < 50) {
+            addOneToQuality();
+            if (isBackStagePass) {
+                if (sellIn < 11 && quality < 50) {
+                    addOneToQuality();
+                }
+
+                if (sellIn < 6 && quality < 50) {
+                    addOneToQuality();
+                }
+            }
+        }
+
+        if (!isSulfuras) {
+            deductSellIn();
+        }
+
+        if (sellIn < 0) {
+            if (!isAgedBrie) {
+                if (!isBackStagePass) {
+                    if (quality > 0 && !isSulfuras) {
+                        deductOneFromQuality();
+                    }
+                } else {
+                    setQualityToZero();
+                }
+            } else if ((quality < 50)) {
+                addOneToQuality();
+            }
+        }
+    }
+
+    private void setQualityToZero() {
         quality = 0;
     }
 
-    public void deductSellIn() {
+    private void deductSellIn() {
         sellIn--;
     }
 
-    public void addOneToQuality() {
+    private void addOneToQuality() {
         quality++;
     }
 
-    public void deductOneFromQuality() {
+    private void deductOneFromQuality() {
         quality--;
     }
 
