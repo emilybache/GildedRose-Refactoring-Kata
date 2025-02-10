@@ -84,4 +84,16 @@ public class Item {
    public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return sellIn == item.sellIn && quality == item.quality && Objects.equals(name, item.name) && type == item.type;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, type, sellIn, quality);
+    }
 }
