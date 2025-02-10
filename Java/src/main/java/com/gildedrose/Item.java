@@ -2,7 +2,7 @@ package com.gildedrose;
 
 public class Item {
 
-    public String name;
+    private final String name;
 
     public int sellIn;
 
@@ -12,6 +12,10 @@ public class Item {
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
+    }
+
+    public String getName() {
+        return name;
     }
 
    @Override
