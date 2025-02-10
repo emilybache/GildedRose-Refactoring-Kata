@@ -45,6 +45,7 @@ public class Item {
             quality--;
         }
     }
+
     private void updateBackstagePassItem() {
         if (quality < 50) {
             quality++;
@@ -64,6 +65,7 @@ public class Item {
             quality = 0;
         }
     }
+
     private void updateAgedBrieItem() {
         if (quality < 50) {
             quality++;
@@ -76,8 +78,8 @@ public class Item {
         }
     }
 
-   @Override
-   public String toString() {
+    @Override
+    public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
     }
 
