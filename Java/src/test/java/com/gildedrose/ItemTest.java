@@ -1,6 +1,5 @@
 package com.gildedrose;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -10,7 +9,7 @@ import java.util.stream.Stream;
 import static com.gildedrose.ItemType.AgedBrie;
 import static com.gildedrose.ItemType.BackstagePass;
 import static com.gildedrose.ItemType.Sulfuras;
-import static com.gildedrose.ItemType.Unknown;
+import static com.gildedrose.ItemType.Normal;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.params.provider.Arguments.of;
 
@@ -51,9 +50,9 @@ class ItemTest {
             of(new Item(BackstagePass.getName(), -1, 40), new Item(BackstagePass.getName(), -11, 0), 10),
 
             // Other
-            of(new Item(Unknown.getName(), 0, 40), new Item(Unknown.getName(), -10, 20), 10),
-            of(new Item(Unknown.getName(), -1, 40), new Item(Unknown.getName(), -11, 20), 10),
-            of(new Item(Unknown.getName(), -5, 80), new Item(Unknown.getName(), -25, 40), 20)
+            of(new Item(Normal.getName(), 0, 40), new Item(Normal.getName(), -10, 20), 10),
+            of(new Item(Normal.getName(), -1, 40), new Item(Normal.getName(), -11, 20), 10),
+            of(new Item(Normal.getName(), -5, 80), new Item(Normal.getName(), -25, 40), 20)
 
         );
     }

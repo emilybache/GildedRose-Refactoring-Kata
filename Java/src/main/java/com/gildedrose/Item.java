@@ -30,7 +30,7 @@ public class Item {
             case AgedBrie -> updateAgedBrieItem();
             case BackstagePass -> updateBackstagePassItem();
             case Sulfuras -> {}
-            case Unknown -> updateUnknownItem();
+            case Normal -> updateUnknownItem();
         }
     }
 
