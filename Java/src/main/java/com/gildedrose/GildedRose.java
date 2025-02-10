@@ -15,55 +15,39 @@ class GildedRose {
 
             if (!isAgedBrie && !passesToTafkalConcert) {
                 if (item.quality > 0 && !isSulfuras) {
-                    deductOneFromQuality(item);
+                    item.deductOneFromQuality();
                 }
             } else if(item.quality < 50) {
-                addOneToQuality(item);
+                item.addOneToQuality();
 
                 if (passesToTafkalConcert) {
                     if (item.sellIn < 11 && item.quality < 50) {
-                        addOneToQuality(item);
+                        item.addOneToQuality();
                     }
 
                     if (item.sellIn < 6 && item.quality < 50) {
-                        addOneToQuality(item);
+                        item.addOneToQuality();
                     }
                 }
             }
 
             if (!isSulfuras) {
-                deductSellIn(item);
+                item.deductSellIn();
             }
 
             if (item.sellIn < 0) {
                 if (!isAgedBrie) {
                     if (!passesToTafkalConcert) {
                         if (item.quality > 0 && !isSulfuras) {
-                            deductOneFromQuality(item);
+                            item.deductOneFromQuality();
                         }
                     } else {
-                        setQualityToZero(item);
+                        item.setQualityToZero();
                     }
                 } else if ((item.quality < 50)) {
-                    addOneToQuality(item);
+                    item.addOneToQuality();
                 }
             }
         }
-    }
-
-    public void setQualityToZero(Item item) {
-        item.quality = 0;
-    }
-
-  public void deductSellIn(Item item) {
-        item.sellIn--;
-  }
-
-    public void addOneToQuality(Item item) {
-        item.quality++;
-    }
-
-    public void deductOneFromQuality(Item item) {
-        item.quality--;
     }
 }
