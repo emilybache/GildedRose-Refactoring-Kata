@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public enum ItemType {
     AgedBrie("Aged Brie"),
-    BackstagePass("Sulfuras, Hand of Ragnaros"),
-    Sulfuras("Backstage passes to a TAFKAL80ETC concert");
+    BackstagePass("Backstage passes to a TAFKAL80ETC concert"),
+    Sulfuras("Sulfuras, Hand of Ragnaros");
 
     private final String name;
 
