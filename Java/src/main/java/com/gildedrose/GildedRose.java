@@ -1,15 +1,15 @@
 package com.gildedrose;
 
+import java.util.List;
+
 class GildedRose {
-    Item[] items;
+    private final List<Item> items;
 
     public GildedRose(Item[] items) {
-        this.items = items;
+        this.items = List.of(items);
     }
 
-    public void updateQuality() {
-        for (Item item : items) {
-            item.updateItem();
-        }
+    public void degradeItems() {
+        items.forEach(Item::degrade);
     }
 }
