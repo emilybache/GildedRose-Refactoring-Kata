@@ -1,9 +1,13 @@
 set(TEST_NAME GildedRoseCatch2UnitTests)
 add_executable(${TEST_NAME})
 target_sources(${TEST_NAME} PRIVATE GildedRoseCatch2UnitTests.cc)
-target_link_libraries(${TEST_NAME} lib src Catch2::Catch2 Catch2::Catch2WithMain )
-set_property(TARGET ${TEST_NAME} PROPERTY CXX_STANDARD 11)
-add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
+target_link_libraries(${TEST_NAME} GildedRoseLib Catch2::Catch2 Catch2::Catch2WithMain )
+set_property(TARGET ${TEST_NAME} PROPERTY CXX_STANDARD 14)
+add_test(
+    NAME ${TEST_NAME}
+    COMMAND ${TEST_NAME}
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+)
 
 # Set compiler option /FC for Visual Studio to to make the __FILE__ macro expand to full path. 
 # The __FILE__ macro is used by Catch2 to get the path to current test file.
