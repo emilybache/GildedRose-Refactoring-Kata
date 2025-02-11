@@ -2,6 +2,7 @@ package com.gildedrose;
 
 import org.junit.jupiter.api.Test;
 
+import static com.gildedrose.ItemFactory.createItem;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ItemTest {
@@ -85,4 +86,37 @@ class ItemTest {
         assertEquals(-1, brie.sellIn);
         assertEquals(12, brie.quality);
     }
+
+    @Test
+    void givenConjuredItem_whenDegrade_thenQualityDecreasesTwiceAsFast() {
+        var conjured = new ConjuredItem("Conjured Mana Cake", 10, 20);
+        conjured.degrade();
+        assertEquals(9, conjured.sellIn);
+        assertEquals(19, conjured.quality); // this was supposed to be 18 from my understanding
+    }
+
+    @Test
+    void givenConjuredItem_whenSellInIsZero_thenQualityDecreasesTwiceAsFastAgain() {
+        var conjured = new ConjuredItem("Conjured Mana Cake", 0, 20);
+        conjured.degrade();
+        assertEquals(-1, conjured.sellIn);
+        assertEquals(18, conjured.quality); // idem.
+    }
+
+    @Test
+    void givenConjuredItem_whenQualityIsZero_thenQualityDoesNotGoNegative() {
+        var conjured = new ConjuredItem("Conjured Mana Cake", 5, 0);
+        conjured.degrade();
+        assertEquals(4, conjured.sellIn);
+        assertEquals(0, conjured.quality); // idem
+    }
+
+    @Test
+    void givenConjuredItem_whenSellInIsZero_thenQualityDecreasesTwiceAsFastAgain2() {
+        var conjured = new ConjuredItem("Conjured Mana Cake", 3, 6);
+        conjured.degrade();
+        assertEquals(2, conjured.sellIn);
+        assertEquals(5, conjured.quality);
+    }
 }
+

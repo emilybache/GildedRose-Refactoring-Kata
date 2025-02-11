@@ -9,11 +9,8 @@ public final class NormalItem extends Item {
     @Override
     public void degrade() {
         sellIn--;
+        int degradation = sellIn < 0 ? 2 : 1;
+        subtractQuality(degradation);
 
-        subtractQuality(1);
-
-        if (sellIn < 0) {
-            subtractQuality(1);
-        }
     }
 }

@@ -2,6 +2,8 @@ package com.gildedrose;
 
 import java.util.Objects;
 
+import static java.lang.Math.max;
+import static java.lang.Math.min;
 import static java.util.Objects.hash;
 
 // I think ideally I should do this with a sealed interface instead, but for the current available types of items
@@ -10,7 +12,8 @@ public sealed abstract class Item permits
     AgedBrieItem,
     BackstagePassItem,
     NormalItem,
-    SulfurasItem {
+    SulfurasItem,
+    ConjuredItem {
 
     private final String name;
 
@@ -32,15 +35,11 @@ public sealed abstract class Item permits
     }
 
     protected void addQuality(int addition) {
-        if ((quality + addition) <= 50) {
-            quality += addition;
-        }
+        quality = min(50, quality + addition);
     }
 
     protected void subtractQuality(int subtraction) {
-        if ((quality - subtraction) >= 0) {
-            quality -= subtraction;
-        }
+        quality = max(0, quality - subtraction);
     }
 
     @Override

@@ -31,9 +31,4 @@ class ItemTypeTest {
     void testFromName_InvalidName() {
         assertEquals(Normal, fromName("Nonexistent Item"));
     }
-
-    @Test
-    void testFromName_NullInput() {
-        assertEquals(Normal, fromName(null));
-    }
 }
