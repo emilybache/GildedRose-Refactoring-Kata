@@ -30,33 +30,29 @@ public class Item {
             case AgedBrie -> updateAgedBrieItem();
             case BackstagePass -> updateBackstagePassItem();
             case Sulfuras -> {}
-            case Normal -> updateUnknownItem();
+            case Normal -> updateNormalItem();
         }
     }
 
-    private void updateUnknownItem() {
+    private void updateNormalItem() {
         sellIn--;
 
-        if (quality > 0) {
-            quality--;
-        }
+        subtractQuality(1);
 
-        if (sellIn < 0 && quality > 0) {
-            quality--;
+        if (sellIn < 0) {
+            subtractQuality(1);
         }
     }
 
     private void updateBackstagePassItem() {
-        if (quality < 50) {
-            quality++;
+        addQuality(1);
+
+        if (sellIn < 11) {
+            addQuality(1);
         }
 
-        if (sellIn < 11 && quality < 50) {
-            quality++;
-        }
-
-        if (sellIn < 6 && quality < 50) {
-            quality++;
+        if (sellIn < 6) {
+            addQuality(1);
         }
 
         sellIn--;
@@ -67,14 +63,24 @@ public class Item {
     }
 
     private void updateAgedBrieItem() {
-        if (quality < 50) {
-            quality++;
-        }
+        addQuality(1);
 
         sellIn--;
 
-        if (sellIn < 0 && quality < 50) {
-            quality++;
+        if (sellIn < 0) {
+            addQuality(1);
+        }
+    }
+
+    private void addQuality(int addition) {
+        if ((quality + addition) <= 50) {
+            quality += addition;
+        }
+    }
+
+    private void subtractQuality(int subtraction) {
+        if ((quality - subtraction) >= 0) {
+            quality -= subtraction;
         }
     }
 

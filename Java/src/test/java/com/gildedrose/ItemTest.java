@@ -43,17 +43,20 @@ class ItemTest {
             of(new Item(Sulfuras.getName(), 4, 20), new Item(Sulfuras.getName(), 4, 20), 10),
 
             // Backstagepass
+            of(new Item(BackstagePass.getName(), -1, 0), new Item(BackstagePass.getName(), -2, 0), 1),
             of(new Item(BackstagePass.getName(), 8, 40), new Item(BackstagePass.getName(), 7, 42), 1),
             of(new Item(BackstagePass.getName(), 8, 40), new Item(BackstagePass.getName(), -2, 0), 10),
             of(new Item(BackstagePass.getName(), 4, 40), new Item(BackstagePass.getName(), -6, 0), 10),
             of(new Item(BackstagePass.getName(), 0, 40), new Item(BackstagePass.getName(), -10, 0), 10),
             of(new Item(BackstagePass.getName(), -1, 40), new Item(BackstagePass.getName(), -11, 0), 10),
 
-            // Other
+            // Normal
+            of(new Item(Normal.getName(), -1, 0), new Item(Normal.getName(), -11, 0), 10),
             of(new Item(Normal.getName(), 0, 40), new Item(Normal.getName(), -10, 20), 10),
             of(new Item(Normal.getName(), -1, 40), new Item(Normal.getName(), -11, 20), 10),
-            of(new Item(Normal.getName(), -5, 80), new Item(Normal.getName(), -25, 40), 20)
-
+            of(new Item(Normal.getName(), 10, 49), new Item(Normal.getName(), -10, 19), 20),
+            of(new Item(Normal.getName(), 10, 49), new Item(Normal.getName(), -10, 19), 20),
+            of(new Item(Normal.getName(), 11, 50), new Item(Normal.getName(), -9, 21), 20)
         );
     }
 }
