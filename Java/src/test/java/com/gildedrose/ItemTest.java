@@ -1,62 +1,88 @@
 package com.gildedrose;
 
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.api.Test;
 
-import java.util.stream.Stream;
-
-import static com.gildedrose.ItemType.AgedBrie;
-import static com.gildedrose.ItemType.BackstagePass;
-import static com.gildedrose.ItemType.Sulfuras;
-import static com.gildedrose.ItemType.Normal;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.params.provider.Arguments.of;
 
 class ItemTest {
 
-    @ParameterizedTest
-    @MethodSource("provideAgedBrieOptions")
-    void givenAgedBrie_whenUpdateItem_thenCorrect(Item input, Item expected, int days) {
-
-        for (int i = 0; i < days; i++) {
-            input.updateItem();
-        }
-
-        assertEquals(expected, input);
+    @Test
+    void givenNormalItem_whenDegrade_thenQualityAndSellInDecrease() {
+        var normalItem = new NormalItem("Normal Item", 10, 20);
+        normalItem.degrade();
+        assertEquals(9, normalItem.sellIn);
+        assertEquals(19, normalItem.quality);
     }
 
-    private static Stream<Arguments> provideAgedBrieOptions() {
-        return Stream.of(
+    @Test
+    void givenAgedBrie_whenDegrade_thenQualityIncreases() {
+        var brie = new AgedBrieItem("Aged Brie", 10, 30);
+        brie.degrade();
+        assertEquals(9, brie.sellIn);
+        assertEquals(31, brie.quality);
+    }
 
-            // Aged Brie
-            of(new Item(AgedBrie.getName(), -1, 0), new Item(AgedBrie.getName(), -2, 2), 1),
-            of(new Item(AgedBrie.getName(), 100, 0), new Item(AgedBrie.getName(), 0, 50), 100),
-            of(new Item(AgedBrie.getName(), 50, 0), new Item(AgedBrie.getName(), 40, 10), 10),
-            of(new Item(AgedBrie.getName(), 50, 0), new Item(AgedBrie.getName(), 20, 30), 30),
+    @Test
+    void givenBackstagePass_whenDegrade_thenQualityIncreasesBeforeSellDate() {
+        var pass = new BackstagePassItem("Backstage Pass", 11, 20);
+        pass.degrade();
+        assertEquals(10, pass.sellIn);
+        assertEquals(21, pass.quality);
+    }
 
-            // Sulfuras -- no changes with sulfuras
-            of(new Item(Sulfuras.getName(), -1, 0), new Item(Sulfuras.getName(), -1, 0), 1),
-            of(new Item(Sulfuras.getName(), 10, 0), new Item(Sulfuras.getName(), 10, 0), 1),
-            of(new Item(Sulfuras.getName(), 100, 0), new Item(Sulfuras.getName(), 100, 0), 10),
-            of(new Item(Sulfuras.getName(), 10, 20), new Item(Sulfuras.getName(), 10, 20), 10),
-            of(new Item(Sulfuras.getName(), 4, 20), new Item(Sulfuras.getName(), 4, 20), 10),
+    @Test
+    void givenBackstagePass_whenSellInIs10OrLess_thenQualityIncreasesMore() {
+        var pass = new BackstagePassItem("Backstage Pass", 10, 20);
+        pass.degrade();
+        assertEquals(9, pass.sellIn);
+        assertEquals(22, pass.quality);
+    }
 
-            // Backstagepass
-            of(new Item(BackstagePass.getName(), -1, 0), new Item(BackstagePass.getName(), -2, 0), 1),
-            of(new Item(BackstagePass.getName(), 8, 40), new Item(BackstagePass.getName(), 7, 42), 1),
-            of(new Item(BackstagePass.getName(), 8, 40), new Item(BackstagePass.getName(), -2, 0), 10),
-            of(new Item(BackstagePass.getName(), 4, 40), new Item(BackstagePass.getName(), -6, 0), 10),
-            of(new Item(BackstagePass.getName(), 0, 40), new Item(BackstagePass.getName(), -10, 0), 10),
-            of(new Item(BackstagePass.getName(), -1, 40), new Item(BackstagePass.getName(), -11, 0), 10),
+    @Test
+    void givenBackstagePass_whenSellInIsZero_thenQualityDropsToZero() {
+        var pass = new BackstagePassItem("Backstage Pass", 0, 20);
+        pass.degrade();
+        assertEquals(-1, pass.sellIn);
+        assertEquals(0, pass.quality);
+    }
 
-            // Normal
-            of(new Item(Normal.getName(), -1, 0), new Item(Normal.getName(), -11, 0), 10),
-            of(new Item(Normal.getName(), 0, 40), new Item(Normal.getName(), -10, 20), 10),
-            of(new Item(Normal.getName(), -1, 40), new Item(Normal.getName(), -11, 20), 10),
-            of(new Item(Normal.getName(), 10, 49), new Item(Normal.getName(), -10, 19), 20),
-            of(new Item(Normal.getName(), 10, 49), new Item(Normal.getName(), -10, 19), 20),
-            of(new Item(Normal.getName(), 11, 50), new Item(Normal.getName(), -9, 21), 20)
-        );
+    @Test
+    void givenSulfuras_whenDegrade_thenQualityAndSellInRemainUnchanged() {
+        var sulfuras = new SulfurasItem("Sulfuras, Hand of Ragnaros", 10, 80);
+        sulfuras.degrade();
+        assertEquals(10, sulfuras.sellIn);
+        assertEquals(80, sulfuras.quality);
+    }
+
+    @Test
+    void givenAgedBrie_whenQualityIs50_thenQualityDoesNotIncrease() {
+        var brie = new AgedBrieItem("Aged Brie", 10, 50);
+        brie.degrade();
+        assertEquals(9, brie.sellIn);
+        assertEquals(50, brie.quality);
+    }
+
+    @Test
+    void givenNormalItem_whenQualityIsZero_thenQualityDoesNotDecrease() {
+        var normalItem = new NormalItem("Normal Item", 10, 0);
+        normalItem.degrade();
+        assertEquals(9, normalItem.sellIn);
+        assertEquals(0, normalItem.quality);
+    }
+
+    @Test
+    void givenNormalItem_whenSellInIsNegative_thenQualityDecreasesTwice() {
+        var normalItem = new NormalItem("Normal Item", 0, 10);
+        normalItem.degrade();
+        assertEquals(-1, normalItem.sellIn);
+        assertEquals(8, normalItem.quality);
+    }
+
+    @Test
+    void givenAgedBrie_whenSellInIsNegative_thenQualityIncreasesTwice() {
+        var brie = new AgedBrieItem("Aged Brie", 0, 10);
+        brie.degrade();
+        assertEquals(-1, brie.sellIn);
+        assertEquals(12, brie.quality);
     }
 }

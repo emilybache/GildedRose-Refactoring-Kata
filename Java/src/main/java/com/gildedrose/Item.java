@@ -2,83 +2,42 @@ package com.gildedrose;
 
 import java.util.Objects;
 
-import static com.gildedrose.ItemType.fromName;
+import static java.util.Objects.hash;
 
-public class Item {
+// I think ideally I should do this with a sealed interface instead, but for the current available types of items
+// a sealed class seemed more convenient to me (especially because of shared member variables and setter methods).
+public sealed abstract class Item permits
+    AgedBrieItem,
+    BackstagePassItem,
+    NormalItem,
+    SulfurasItem {
 
     private final String name;
-
-    private final ItemType type;
 
     public int sellIn;
 
     public int quality;
 
-    public Item(String name, int sellIn, int quality) {
+    Item(String name, int sellIn, int quality) {
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
-        this.type = fromName(name);
     }
+
+    public abstract void degrade();
+
 
     public String getName() {
         return name;
     }
 
-    public void updateItem() {
-        switch (type) {
-            case AgedBrie -> updateAgedBrieItem();
-            case BackstagePass -> updateBackstagePassItem();
-            case Sulfuras -> {}
-            case Normal -> updateNormalItem();
-        }
-    }
-
-    private void updateNormalItem() {
-        sellIn--;
-
-        subtractQuality(1);
-
-        if (sellIn < 0) {
-            subtractQuality(1);
-        }
-    }
-
-    private void updateBackstagePassItem() {
-        addQuality(1);
-
-        if (sellIn < 11) {
-            addQuality(1);
-        }
-
-        if (sellIn < 6) {
-            addQuality(1);
-        }
-
-        sellIn--;
-
-        if (sellIn < 0) {
-            quality = 0;
-        }
-    }
-
-    private void updateAgedBrieItem() {
-        addQuality(1);
-
-        sellIn--;
-
-        if (sellIn < 0) {
-            addQuality(1);
-        }
-    }
-
-    private void addQuality(int addition) {
+    protected void addQuality(int addition) {
         if ((quality + addition) <= 50) {
             quality += addition;
         }
     }
 
-    private void subtractQuality(int subtraction) {
+    protected void subtractQuality(int subtraction) {
         if ((quality - subtraction) >= 0) {
             quality -= subtraction;
         }
@@ -92,12 +51,12 @@ public class Item {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Item item = (Item) o;
-        return sellIn == item.sellIn && quality == item.quality && Objects.equals(name, item.name) && type == item.type;
+        var item = (Item) o;
+        return sellIn == item.sellIn && quality == item.quality && Objects.equals(name, item.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, type, sellIn, quality);
+        return hash(name, sellIn, quality);
     }
 }
