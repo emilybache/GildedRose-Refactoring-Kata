@@ -1,8 +1,5 @@
-// Include header files for test frameworks 
-#include <gtest/gtest.h>
+#define APPROVALS_GOOGLETEST
 #include <ApprovalTests.hpp>
-
-// Include code to be tested
 #include "GildedRose.h"
 
 std::ostream& operator<<(std::ostream& os, const Item& obj)
