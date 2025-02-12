@@ -1,5 +1,7 @@
 #include "GildedRose.h"
 
+using namespace std;
+
 GildedRose::GildedRose(vector<Item> & items) : items(items)
 {}
     

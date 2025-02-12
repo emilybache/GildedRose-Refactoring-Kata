@@ -3,12 +3,12 @@
 
 void print_item(Item& item)
 {
-    std::cout << item.name << ", " <<  item.sellIn << ", " << item.quality << std::endl;
+    std::cout << item.name << ", " <<  item.sellIn << ", " << item.quality << '\n';
 }
 
 int main()
 {
-    vector<Item> items;
+    std::vector<Item> items;
 
     items.push_back({"+5 Dexterity Vest", 10, 20});
     items.push_back({"Aged Brie", 2, 0});
@@ -22,22 +22,20 @@ int main()
     // this Conjured item doesn't yet work properly
     items.push_back({"Conjured Mana Cake", 3, 6});
 
-	std::cout << "OMGHAI!" << std::endl;
+    std::cout << "OMGHAI!" << '\n';
 
     GildedRose app(items);
 
     for (int day = 0; day <= 30; day++)
     {
-		std::cout << "-------- day " << day << " --------" << std::endl;
-		std::cout << "name, sellIn, quality" << std::endl;
+        std::cout << "-------- day " << day << " --------" << '\n';
+        std::cout << "name, sellIn, quality" << '\n';
         for (auto& item : items)
         {
             print_item(item);
         }
-		std::cout << std::endl;
+        std::cout << '\n';
         app.updateQuality();
     }
     return 0;
 }
-
-
