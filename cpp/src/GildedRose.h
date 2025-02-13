@@ -1,24 +1,23 @@
+#pragma once
+
 #include <string>
 #include <vector>
-
-using namespace std;
 
 class Item
 {
 public:
-    string name;
+    std::string name;
     int sellIn;
     int quality;
-    Item(string name, int sellIn, int quality) : name(name), sellIn(sellIn), quality(quality) 
+    Item(std::string name, int sellIn, int quality) : name(name), sellIn(sellIn), quality(quality) 
     {}
 };
 
 class GildedRose
 {
 public:
-    vector<Item> & items;
-    GildedRose(vector<Item> & items);
+    std::vector<Item> & items;
+    GildedRose(std::vector<Item> & items);
     
     void updateQuality();
 };
-
