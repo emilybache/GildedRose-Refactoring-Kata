@@ -37,12 +37,17 @@ describe GildedRose do
       it "checks for quality to never be less than 0" do
         update_and_check_item(item_name: "+5 Dexterity Vest", initial_sell_in: 10, initial_quant: 0, output: "+5 Dexterity Vest, 9, 0")
       end
+
+      it "when sell_in value is negative" do
+        update_and_check_item(item_name: "+5 Dexterity Vest", initial_sell_in: -1, initial_quant: 8, output: "+5 Dexterity Vest, -2, 6")
+      end
     end
 
     context "Sulfuras, Hand of Ragnaros" do
       it "never changes it's sell_in value and quantity" do
         update_and_check_item(item_name: "Sulfuras, Hand of Ragnaros", initial_sell_in: 0, initial_quant: 80, output: "Sulfuras, Hand of Ragnaros, 0, 80")
         update_and_check_item(item_name: "Sulfuras, Hand of Ragnaros", initial_sell_in: -1, initial_quant: 80, output: "Sulfuras, Hand of Ragnaros, -1, 80")
+        update_and_check_item(item_name: "Sulfuras, Hand of Ragnaros", initial_sell_in: 1, initial_quant: 80, output: "Sulfuras, Hand of Ragnaros, 1, 80")
       end
     end
 
@@ -57,6 +62,10 @@ describe GildedRose do
 
       it "checks for quality to never be more than 50" do
         update_and_check_item(item_name: "Aged Brie", initial_sell_in: 10, initial_quant: 50, output: "Aged Brie, 9, 50")
+      end
+
+      it "when sell_in value is negative" do
+        update_and_check_item(item_name: "Aged Brie", initial_sell_in: -1, initial_quant: 20, output: "Aged Brie, -2, 22")
       end
     end
 
@@ -79,7 +88,11 @@ describe GildedRose do
       end
 
       it "quality should not be greater than 50" do
-        update_and_check_item(item_name: "Backstage passes to a TAFKAL80ETC concert", initial_sell_in: 10, initial_quant: 49, output: "Backstage passes to a TAFKAL80ETC concert, 9, 50")
+        update_and_check_item(item_name: "Backstage passes to a TAFKAL80ETC concert", initial_sell_in: 10, initial_quant: 50, output: "Backstage passes to a TAFKAL80ETC concert, 9, 50")
+      end
+
+      it "when sell_in value is negative then quality should be zero" do
+        update_and_check_item(item_name: "Backstage passes to a TAFKAL80ETC concert", initial_sell_in: -1, initial_quant: 0, output: "Backstage passes to a TAFKAL80ETC concert, -2, 0")
       end
 
       context "Conjured Items" do
@@ -92,7 +105,11 @@ describe GildedRose do
         end
 
         it "does not decrease quality below 0" do
-          update_and_check_item(item_name: "Conjured Mana Cake", initial_sell_in: 5, initial_quant: 1, output: "Conjured Mana Cake, 4, 0")
+          update_and_check_item(item_name: "Conjured Mana Cake", initial_sell_in: 5, initial_quant: 0, output: "Conjured Mana Cake, 4, 0")
+        end
+
+        it "when sell_in value is negative" do
+          update_and_check_item(item_name: "Conjured Mana Cake", initial_sell_in: -1, initial_quant: 5, output: "Conjured Mana Cake, -2, 1")
         end
       end
     end
