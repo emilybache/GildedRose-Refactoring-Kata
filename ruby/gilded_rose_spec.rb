@@ -81,6 +81,20 @@ describe GildedRose do
       it "quality should not be greater than 50" do
         update_and_check_item(item_name: "Backstage passes to a TAFKAL80ETC concert", initial_sell_in: 10, initial_quant: 49, output: "Backstage passes to a TAFKAL80ETC concert, 9, 50")
       end
+
+      context "Conjured Items" do
+        it "decreases quality twice as fast as normal items" do
+          update_and_check_item(item_name: "Conjured Mana Cake", initial_sell_in: 3, initial_quant: 6, output: "Conjured Mana Cake, 2, 4")
+        end
+
+        it "decreases quality by 4 when sell_in reaches 0" do
+          update_and_check_item(item_name: "Conjured Mana Cake", initial_sell_in: 0, initial_quant: 6, output: "Conjured Mana Cake, -1, 2")
+        end
+
+        it "does not decrease quality below 0" do
+          update_and_check_item(item_name: "Conjured Mana Cake", initial_sell_in: 5, initial_quant: 1, output: "Conjured Mana Cake, 4, 0")
+        end
+      end
     end
   end
 end
