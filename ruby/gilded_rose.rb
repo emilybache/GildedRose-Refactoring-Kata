@@ -19,6 +19,8 @@ class GildedRose
       item.quality = 80 # Ensure quality remains 80
     when "Backstage passes to a TAFKAL80ETC concert"
       update_backstage_passes(item)
+    when "Conjured Mana Cake"
+      update_conjured_item(item)
     else
       update_standard_item(item)
     end
@@ -45,6 +47,11 @@ class GildedRose
     decrease_quality(item)
   end
 
+  def update_conjured_item(item)
+    decrease_quality(item)
+    decrease_quality(item)
+  end
+
   def handle_expired(item)
     return unless item.sell_in < 0
 
@@ -53,6 +60,9 @@ class GildedRose
       increase_quality(item)
     when "Backstage passes to a TAFKAL80ETC concert"
       item.quality = 0
+    when "Conjured Mana Cake"
+      decrease_quality(item)
+      decrease_quality(item)
     else
       decrease_quality(item) unless item.name == "Sulfuras, Hand of Ragnaros"
     end
