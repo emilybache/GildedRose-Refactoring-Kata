@@ -11,6 +11,7 @@ public class GildedRose
         this.Items = Items;
     }
 
+
     public void UpdateQuality()
     {
         for (var i = 0; i < Items.Count; i++)
@@ -22,7 +23,15 @@ public class GildedRose
                     if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
                     {
                         Items[i].Quality = Items[i].Quality - 1;
+
+                        if (Items[i].Name == "Conjured Mana Cake")
+                        {
+                            Items[i].Quality = Items[i].Quality - 1;
+                        }
+
                     }
+
+
                 }
             }
             else
