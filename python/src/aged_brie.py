@@ -3,8 +3,8 @@ from python.components.gilded_rose import GildedRose, Item
 
 class AgedBrieLogic(GildedRose):
 
-    def __init__(self, name, quality, sell_in):
-        super().__init__(Item(name, quality, sell_in))
+    def __init__(self, item: Item):
+        super().__init__(item)
 
     def update_quality(self):
         if self.quality < 50:

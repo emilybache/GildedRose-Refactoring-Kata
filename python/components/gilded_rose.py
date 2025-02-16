@@ -1,11 +1,11 @@
 from abc import abstractmethod, ABC
+from pydantic import BaseModel
 
 
-class Item:
-    def __init__(self, name, sell_in, quality):
-        self.name = name
-        self.sell_in = sell_in
-        self.quality = quality
+class Item(BaseModel):
+    name : str
+    sell_in : int
+    quality : int
 
 class GildedRose(ABC):
     def __init__(self, items: Item):

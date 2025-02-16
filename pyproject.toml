@@ -1,3 +1,5 @@
+package-mode = false
+
 [tool.poetry]
 name = "gildedrose"
 version = "1"
