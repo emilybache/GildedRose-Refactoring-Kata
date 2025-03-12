@@ -49,12 +49,23 @@ class GildedRose
           end
         end
       end
+      
+      # itemのnameがfooだった場合に、fixmeに更新する
+      item.update_name_from_foo_to_fixme
     end
   end
 end
 
+# 必ず自身のインスタンス変数を操作するよう実装する
+# いいクラスの構成要素
+#   インスタンス変数
+#   完全性を保証するようにインスタンス変数を操作するメソッド
+
+# コンストラクタで初期化する
+# initializeメソッドを実装する
 class Item
-  attr_accessor :name, :sell_in, :quality
+  attr_accessor :sell_in, :quality
+  attr_reader :name
 
   def initialize(name, sell_in, quality)
     @name = name
@@ -64,5 +75,16 @@ class Item
 
   def to_s()
     "#{@name}, #{@sell_in}, #{@quality}"
+  end
+
+  def update_name_from_foo_to_fixme
+    return if can_change_name_fixme?
+    @name = "fixme"
+  end
+
+  private
+  
+  def can_change_name_fixme?
+    @name != "foo"
   end
 end
