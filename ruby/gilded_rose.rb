@@ -79,8 +79,14 @@ class Item
 
   def update_name_from_foo_to_fixme
     return if can_change_name_fixme?
-    @name = "fixme"
+    # @name = "fixme"
+    Item.new(
+      name: "fixme"
+      sell_in: @sell_in
+      quantity: @quality
+    )
   end
+  
 
   private
   
