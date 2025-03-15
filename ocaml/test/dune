@@ -1,0 +1,3 @@
+(test
+ (name gilded_rose)
+ (libraries gilded_rose alcotest))

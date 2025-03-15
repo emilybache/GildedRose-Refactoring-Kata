@@ -1,8 +1,5 @@
-// Include header files for test frameworks 
-#include <gtest/gtest.h>
+#define APPROVALS_GOOGLETEST
 #include <ApprovalTests.hpp>
-
-// Include code to be tested
 #include "GildedRose.h"
 
 std::ostream& operator<<(std::ostream& os, const Item& obj)
@@ -15,12 +12,12 @@ std::ostream& operator<<(std::ostream& os, const Item& obj)
 
 TEST(GildedRoseApprovalTests, VerifyCombinations) {
 
-    std::vector<string> names { "Foo" };
+    std::vector<std::string> names { "Foo" };
     std::vector<int> sellIns { 1 };
     std::vector<int> qualities { 1 };
 
-    auto f = [](string name, int sellIn, int quality) {
-        vector<Item> items = {Item(name, sellIn, quality)};
+    auto f = [](std::string name, int sellIn, int quality) {
+        std::vector<Item> items = {Item(name, sellIn, quality)};
         GildedRose app(items);
         app.updateQuality();
         return items[0];

@@ -1,38 +1,55 @@
 # TextTest regression tests
 
-This folder contains Text-Based Approval tests for the GildedRose Refactoring Kata. They are fairly comprehensive and well worth using if you'd prefer to go straight to the refactoring without writing your own tests first.
+This folder contains Text-Based Approval tests for the GildedRose Refactoring Kata designed by Emily Bache. They are fairly comprehensive and well worth using if you'd prefer to go straight to the refactoring without writing your own tests first.
 
 These tests are designed to be used with the open source testing tool "TextTest", available from [http://texttest.org](http://texttest.org).
 
-## Install TextTest 
 
-There are install instructions on the [texttests website](http://texttest.sourceforge.net/index.php?page=documentation_4_0&n=install_texttest). If you are happy to run without the Graphical User Interface, then you only need python3 and pip:
+## Configure the language version you want to test
 
-	> pip install texttest
-
-## Configure language version
-
-Before you can run the tests you need to tell texttest which language version of GildedRose you plan to refactor. Open the file 'config.gr' and edit it. Several languages are supported. All lines starting with '#' are comments in this file. Find the lines referring to the language you want, and uncomment them. (Note some languages like Java need several lines uncommented)
+Before you can run the tests you need to tell texttest which language version of GildedRose you plan to refactor. Open the file 'config.gr' and edit it. Several languages are supported. All lines starting with '#' are comments in this file. Find the lines referring to the language you want, and uncomment them. 
 
 While you're here, change the settings for editor and diff program to match your preferences. By default it uses 'subl' and 'meld'. It will accept any editors or diff programs that you can run from the command line.
 
-## running TextTest
+## Running TextTest
 
-Start texttest from the folder above the one this file is in. Texttest detects the current working directory and uses that as the variable $TEXTTEST_HOME in the config.gr file.
+The instructions are slightly different depending on your platform.
 
-    # replace this path with wherever you cloned this repo
-    > cd /home/ec2-user/workspace/GildedRose-Refactoring-Kata 
-	> texttest &
+### Running TextTest on Linux or MacOS
 
-This should start the GUI for the TextTest tool. Select the test case "ThirtyDays" and press the "Run" button. This will open a new 'runner' window for each test run.
+There is a convenience script 'start_texttest.sh' in the root folder of this repo. This script assumes you already have Python installed. This script will first create a virtual python environment and install texttest if you haven't done that before, then run the tests.
 
-If the texttest GUI doesn't work, or you prefer to use the command line, use this instead:
+### Running TextTest on Windows
 
-	> texttest -con
+Download the installer as explained on [TextTest.org](http://www.texttest.org/getting_started/install_windows.html). Make sure the texttest executable is on your PATH. Then use the convenience script 'start_texttest.bat'  in the root folder of this repo to run the tests on the console.
 
-That will run all the test cases it finds and report the results.
+Windows may warn you that it doesn't trust this installer and be reluctant to download it. If you prefer not to continue with this, an alternative is to run TextTest via Python. First install Python then use the convenience script 'start_texttest_from_python.bat'.
 
-## Running without TextTest
+## Interpreting Test Results
+
+You should see output like this if the test passes:
+
+    Using local queues for Application Gilded Rose Refactoring Kata
+    Q: Submitting Gilded Rose Refactoring Kata test-case ThirtyDays to default local queue
+    S: Gilded Rose Refactoring Kata test-case ThirtyDays succeeded on Emilys-MBP
+
+If the test fails it might look like this:
+
+    Using local queues for Application Gilded Rose Refactoring Kata
+    Q: Submitting Gilded Rose Refactoring Kata test-case ThirtyDays to default local queue
+    S: Gilded Rose Refactoring Kata test-case ThirtyDays FAILED on Emilys-MBP : differences in stdout
+    View details(v), Approve(a) or continue(any other key)?
+
+
+If you press 'v' it will try to open the diff tool you specified in 'config.gr' to show you the difference in output. If you press 'a' it will update the approved file - you will not want to do this if you are refactoring. Any other key will return you to the terminal prompt.
+
+## TextTest user interface
+
+TextTest has a graphical user interface you can use to manage your test cases. With only one test case it may not be worth it, but if you want to add other tests and/or examine test failures more closely it can be helpful. Be sure to set TEXTTEST_HOME to the root folder of this repository before starting the GUI.
+
+There are instructions for installing TextTest development tools on [texttest.org](https://texttest.org/)
+
+## Running the test without TextTest
 
 This should be perfectly possible, but is probably less convenient than using TextTest. 
 
@@ -40,7 +57,7 @@ Write a script that will execute the system under test (see "config.gr" for deta
 
 ## Explaining TextTest test cases
 
-Each test case has it's own subdirectory. The name of the directory is the name of the test - in this case "ThirtyDays". The "Golden Master" of the output for that test case is kept in that directory. In this case we have three files:
+Under the 'texttests' folder each test case has its own subdirectory. The name of the directory is the name of the test - in this case "ThirtyDays". The approved version of the output for that test case is kept in that directory. In this case we have three files:
 
 - __stderr.gr__ - the expected output to Standard Error (stderr)
 - __stdout.gr__ - the expected output to Standard Output (stdout)
@@ -49,7 +66,7 @@ Each test case has it's own subdirectory. The name of the directory is the name 
 In the directory above, there are configuration files for TextTest:
 
 - __config.gr__ - this tells TextTest where to find the SUT executable, and sets up options for how it runs the SUT and interprets the output.
-- __environment.gr__ - this file lists environment variables that will be set before TextTest runs the SUT. This is especially important for Java applications, that must set the CLASSPATH environment variable in order to run properly.
+- __environment.gr__ - this file lists environment variables that will be set before TextTest runs the SUT. This is especially important for Java applications, that need to set the CLASSPATH environment variable in order to run properly.
 - __testsuite.gr__ - lists the constituent test cases of this suite. Change the order of the entries here to change the order they appear in the TextTest GUI.
 
 To run a test, click on it in the GUI and select "Run". TextTest will run it in a temporary (sandbox) directory and report the results. If the test fails, you can double click on a file to see the diff against the Golden Copy.

@@ -7,17 +7,21 @@ let package = Package(
     products: [
         .library(
             name: "GildedRose",
-            targets: ["GildedRose"]),
+            targets: ["GildedRose"]
+        ),
     ],
     targets: [
         .target(
             name: "GildedRose",
-            dependencies: []),
-        .target(
+            dependencies: []
+        ),
+        .executableTarget(
             name: "GildedRoseApp",
-            dependencies: ["GildedRose"]),
+            dependencies: ["GildedRose"]
+        ),
         .testTarget(
             name: "GildedRoseTests",
-            dependencies: ["GildedRose"]),
+            dependencies: ["GildedRose"]
+        ),
     ]
 )

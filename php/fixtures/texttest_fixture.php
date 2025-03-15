@@ -25,12 +25,12 @@ $items = [
 $app = new GildedRose($items);
 
 $days = 2;
-if (count($argv) > 1) {
+if ((is_countable($argv) ? count($argv) : 0) > 1) {
     $days = (int) $argv[1];
 }
 
 for ($i = 0; $i < $days; $i++) {
-    echo "-------- day ${i} --------" . PHP_EOL;
+    echo "-------- day {$i} --------" . PHP_EOL;
     echo 'name, sellIn, quality' . PHP_EOL;
     foreach ($items as $item) {
         echo $item . PHP_EOL;

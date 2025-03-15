@@ -1,1 +1,1 @@
-composer test 
+composer tests
