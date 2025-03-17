@@ -26,6 +26,7 @@ The idea of the exercise is to do some deliberate practice, and improve your ski
 - [日本語](GildedRoseRequirements_jp.md)
 - [Português](GildedRoseRequirements_pt-BR.md)
 - [Русский](GildedRoseRequirements_ru.md)
+- [Українська](GildedRoseRequirements_ua.md)
 - [ไทย](GildedRoseRequirements_th.md)
 - [中文](GildedRoseRequirements_zh.txt)
 - [한국어](GildedRoseRequirements_kr.md)
