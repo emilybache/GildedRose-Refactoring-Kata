@@ -44,3 +44,28 @@ class Item:
 
     def __repr__(self):
         return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
+
+# Testing code for Conjured items # SATTI YESUREDDY
+import unittest
+
+class TestGildedRose(unittest.TestCase):
+    
+    def test_conjured_item_quality_degrades_twice_as_fast(self):
+        conjured_item = Item("Conjured Mana Cake", 10, 20)
+        gilded_rose = GildedRose([conjured_item])
+        
+        gilded_rose.update_quality()
+        self.assertEqual(conjured_item.quality, 18)
+        
+        gilded_rose.update_quality()
+        self.assertEqual(conjured_item.quality, 16)
+    
+    def test_conjured_item_quality_does_not_go_below_zero(self):
+        conjured_item = Item("Conjured Mana Cake", 10, 1)
+        gilded_rose = GildedRose([conjured_item])
+        
+        gilded_rose.update_quality()
+        self.assertEqual(conjured_item.quality, 0) 
+
+if __name__ == "__main__":
+    unittest.main()
