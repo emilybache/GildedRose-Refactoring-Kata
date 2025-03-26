@@ -33,6 +33,21 @@ Scenario: Check quality inceases for Aged Brie
         | 9   | 50       | -4     |
         | 10  | 50       | -5     |
 
+    Scenario: Check quality inceases for Aged Brie even after sellIn date
+        Given For article "Aged Brie" with initial quality 10 and sellIn 5
+        When The quality is updated the next 10 days
+        Then I should get the following quality values each day:
+            | day | quality | sellIn |
+            | 1   | 11       | 4      |
+            | 2   | 12       | 3      |
+            | 3   | 13       | 2      |
+            | 4   | 14       | 1      |
+            | 5   | 15       | 0      |
+            | 6   | 17       | -1     |
+            | 7   | 19       | -2     |
+            | 8   | 21       | -3     |
+            | 9   | 23       | -4     |
+            | 10  | 25       | -5     |
     Scenario: Check Sulfuras has a  quality of 80 and it never alters
         Given For article "Sulfuras, Hand of Ragnaros" with initial quality 80 and sellIn 5
         When The quality is updated the next 10 days
