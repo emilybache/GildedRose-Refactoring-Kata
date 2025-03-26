@@ -43,7 +43,7 @@ pub fn brie_quality(quality: i32, sell_in: i32) -> i32 {
     if quality <= 0 || quality >= 50{
         return quality
     }
-    if sell_in < 0 && quality <= 48{
+    if sell_in <= 0 && quality <= 48{
         return quality + 2;
     }
     quality + 1
@@ -53,7 +53,7 @@ pub fn standard_quality(quality: i32, sell_in: i32) -> i32 {
     if quality <= 0 || quality >= 50{
         return quality;
     }
-    if sell_in < 0 && quality >= 2{
+    if sell_in <= 0 && quality >= 2{
         return quality - 2;
     }
     quality - 1
@@ -74,15 +74,18 @@ pub fn backstage_quality(quality: i32, sell_in: i32) -> i32 {
     if quality <= 0 || quality >= 50{
         return quality;
     }
+    if sell_in == 0{
+        return 0;
+    }
     let updated_quality = match sell_in{
-        10...6 => quality + 2,
-        0...5 => quality + 3,
+        6..=10 => quality + 2,
+        0..=5 => quality + 3,
         _ => quality + 1,
     };
     if updated_quality >= 50{
         return 50;
     }
-    return updated_quality;
+    updated_quality
 }
 
 pub struct GildedRose {
@@ -117,15 +120,82 @@ impl GildedRose {
 mod tests {
     use super::{GildedRose, Item};
 
+
     #[test]
-    pub fn foo() {
-        let items = vec![Item::new("foo", 0, 0)];
+    pub fn test_aged_brie_quality_limits(){
+        let items = vec![Item::new("Aged Brie", 2, 50)];
         let mut rose = GildedRose::new(items);
         rose.update_quality();
-
-        assert_eq!("fixme", rose.items[0].name);
+        assert_eq!(50, rose.items[0].quality);
     }
-
-
-
+    #[test]
+    pub fn test_aged_brie_quality_increase_doble(){
+        let items = vec![Item::new("Aged Brie", 0, 40)];
+        let mut rose = GildedRose::new(items);
+        rose.update_quality();
+        assert_eq!(42, rose.items[0].quality);
+    }
+    #[test]
+    pub fn test_aged_brie_quality_increase(){
+        let items = vec![Item::new("Aged Brie", 2, 40)];
+        let mut rose = GildedRose::new(items);
+        rose.update_quality();
+        assert_eq!(41, rose.items[0].quality);
+    }
+    #[test]
+    pub fn test_sulfuras_quality(){
+        let items = vec![Item::new("Sulfuras, Hand of Ragnaros", 2, 80)];
+        let mut rose = GildedRose::new(items);
+        rose.update_quality();
+        assert_eq!(80, rose.items[0].quality);
+    }
+    #[test]
+    pub fn test_sulfuras_sellin(){
+        let items = vec![Item::new("Sulfuras, Hand of Ragnaros", 2, 80)];
+        let mut rose = GildedRose::new(items);
+        rose.update_quality();
+        assert_eq!(2, rose.items[0].sell_in);
+    }
+    #[test]
+    pub fn test_backstage_passes_quality(){
+        let items = vec![Item::new("Backstage passes to a TAFKAL80ETC concert", 15, 20)];
+        let mut rose = GildedRose::new(items);
+        rose.update_quality();
+        assert_eq!(21, rose.items[0].quality);
+    }
+    #[test]
+    pub fn test_backstage_passes_quality_10(){
+        let items = vec![Item::new("Backstage passes to a TAFKAL80ETC concert", 10, 20)];
+        let mut rose = GildedRose::new(items);
+        rose.update_quality();
+        assert_eq!(22, rose.items[0].quality);
+    }
+    #[test]
+    pub fn test_backstage_passes_quality_5(){
+        let items = vec![Item::new("Backstage passes to a TAFKAL80ETC concert", 5, 20)];
+        let mut rose = GildedRose::new(items);
+        rose.update_quality();
+        assert_eq!(23, rose.items[0].quality);
+    }
+    #[test]
+    pub fn test_backstage_passes_quality_0(){
+        let items = vec![Item::new("Backstage passes to a TAFKAL80ETC concert", 0, 20)];
+        let mut rose = GildedRose::new(items);
+        rose.update_quality();
+        assert_eq!(0, rose.items[0].quality);
+    }
+    #[test]
+    pub fn test_normal_item_quality(){
+        let items = vec![Item::new("foo", 2, 20)];
+        let mut rose = GildedRose::new(items);
+        rose.update_quality();
+        assert_eq!(19, rose.items[0].quality);
+    }
+    #[test]
+    pub fn test_normal_after_sellin(){
+        let items = vec![Item::new("foo", 0, 20)];
+        let mut rose = GildedRose::new(items);
+        rose.update_quality();
+        assert_eq!(18, rose.items[0].quality);
+    }
 }
