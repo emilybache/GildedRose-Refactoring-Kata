@@ -10,9 +10,11 @@ targetCompatibility = '21'
 
 dependencies {
     implementation 'org.codehaus.groovy:groovy:3.0.8'
-    testImplementation 'io.cucumber:cucumber-java:6.10.4'
-    testImplementation 'io.cucumber:cucumber-junit:6.10.4'
-    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'io.cucumber:cucumber-java:7.21.1'
+    testImplementation 'io.cucumber:cucumber-junit:7.21.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.3'
+    testImplementation 'org.junit.vintage:junit-vintage-engine:5.9.3'
 }
 
 configurations {
