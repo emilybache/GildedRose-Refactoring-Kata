@@ -18,8 +18,8 @@ diff_program:meld
 #executable:${TEXTTEST_HOME}/zig/zig-out/bin/zig
 
 # Settings for the Java version using Gradle wrapped in a python script
-#executable:${TEXTTEST_HOME}/Java/texttest_rig.py
-#interpreter:python
+executable:${TEXTTEST_HOME}/Java/texttest_rig.py
+interpreter:python
 
 # Settings for the Java version using the classpath
 #executable:com.gildedrose.TexttestFixture
@@ -31,8 +31,8 @@ diff_program:meld
 #interpreter:python
 
 # Settings for the Ruby version
-executable:${TEXTTEST_HOME}/ruby/texttest_fixture.rb
-interpreter:ruby
+#executable:${TEXTTEST_HOME}/ruby/texttest_fixture.rb
+#interpreter:ruby
 
 # Settings for the C# Core version
 #executable:${TEXTTEST_HOME}/csharpcore/GildedRoseTests/bin/Debug/net8.0/GildedRoseTests
