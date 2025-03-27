@@ -18,8 +18,7 @@ A strategy for dealing with systems like this is to use Characterization Tests;
 **Note**: Sometimes these are called Approval Tests
 
 ## Getting started
-S
-o what does this mean? Before refactoring and changing code we should capture its current behaviour, if it doesn’t have good automated tests.
+So what does this mean? Before refactoring and changing code we should capture its current behaviour, if it doesn’t have good automated tests.
 
 There are many different languages that you can perform this exercise in the GildedRose repository. Pick your favorite. They all work in broadly the same way;
 
@@ -32,6 +31,6 @@ There are many different languages that you can perform this exercise in the Gil
 ## So what next?
   * Can you improve the update code to make it easier to understand and make changes to?
   * Can you make it handle Conjured items?
-  * Do you need to add any addtional unit tests?
+  * Do you need to add any additional unit tests?
 
 **Note**: There are gaps in the requirements and (at least) one defect in the implementation. But where the specification differs from the code, it is the code that is correct. It has  been like that for years I have been told and no one has complained…
