@@ -1,8 +1,0 @@
-{
-  "tasks": {
-    "test:fixture": "deno run test/golden-master-text-test.ts",
-  },
-  "imports": {
-    "@std/assert": "jsr:@std/assert@1"
-  }
-}
