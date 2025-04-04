@@ -24,6 +24,14 @@ tasks.test {
 	}
 }
 
+tasks.register<JavaExec>("texttest") {
+	description = "Allow you to run text-based approval tests with texttest"
+	group = JavaBasePlugin.BUILD_TASK_NAME
+	mainClass.set("com.gildedrose.TexttestFixtureKt")
+	classpath = sourceSets["test"].runtimeClasspath
+	args("30")
+}
+
 // config JVM target to 1.8 for kotlin compilation tasks
 tasks.withType<KotlinCompile>().configureEach {
 	kotlinOptions.jvmTarget = "1.8"
