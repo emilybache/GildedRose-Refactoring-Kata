@@ -16,8 +16,14 @@ class GildedRose(object):
             self.update_aged_brie(item)
         elif item.name == "Backstage passes to a TAFKAL80ETC concert":
             self.update_backstage_pass(item)
+        elif "Conjured" in item.name:
+            self.update_conjured_item(item)
         elif item.name != "Sulfuras, Hand of Ragnaros":
             self.update_normal_item(item)
+
+    def update_conjured_item(self, item):
+        self.decrease_quality(item)
+        self.decrease_quality(item)
 
     def update_sell_in(self, item):
         if item.name != "Sulfuras, Hand of Ragnaros":
@@ -28,6 +34,9 @@ class GildedRose(object):
             self.increase_quality(item)
         elif item.name == "Backstage passes to a TAFKAL80ETC concert":
             item.quality = 0
+        elif "Conjured" in item.name:
+            self.decrease_quality(item)
+            self.decrease_quality(item)
         elif item.name != "Sulfuras, Hand of Ragnaros":
             self.decrease_quality(item)
 
