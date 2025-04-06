@@ -107,6 +107,7 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_quality()
         self.assertEqual("foo", items[0].name)
 
+    # Conjured Items
     def test_conjured_item_quality_decreases_twice_as_fast(self):
         items = [Item("Conjured Mana Cake", 10, 20)]
         gilded_rose = GildedRose(items)
@@ -124,6 +125,55 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
         self.assertEqual(0, items[0].quality)
+
+    # Add these test cases to enforce quality bounds
+
+    def test_legendary_item_quality_enforced_on_creation(self):
+        """Test that Sulfuras quality is automatically set to 80 if initialized with wrong value"""
+        items = [Item("Sulfuras, Hand of Ragnaros", 5, 50)]  # Incorrect quality
+        gilded_rose = GildedRose(items)
+        self.assertEqual(80, items[0].quality)  # Should be corrected to 80
+
+    def test_normal_item_quality_clamped_on_creation(self):
+        """Test that normal items' quality is clamped to 0-50 range during initialization"""
+        items = [Item("Normal Item", 5, 60)]  # Above max
+        gilded_rose = GildedRose(items)
+        self.assertEqual(50, items[0].quality)
+
+        items = [Item("Normal Item", 5, -5)]  # Below min
+        gilded_rose = GildedRose(items)
+        self.assertEqual(0, items[0].quality)
+
+    def test_legendary_item_quality_unchanged_by_updates(self):
+        """Test that Sulfuras quality remains 80 even after multiple updates"""
+        items = [Item("Sulfuras, Hand of Ragnaros", 5, 80)]
+        gilded_rose = GildedRose(items)
+        for _ in range(5):  # Multiple updates
+            gilded_rose.update_quality()
+        self.assertEqual(80, items[0].quality)
+        self.assertEqual(5, items[0].sell_in)  # Sell_in should not change
+
+    def test_backstage_pass_quality_clamped_on_creation(self):
+        """Test that backstage pass quality is clamped to 0-50 during initialization"""
+        items = [Item("Backstage passes to a TAFKAL80ETC concert", 15, 60)]
+        gilded_rose = GildedRose(items)
+        self.assertEqual(50, items[0].quality)
+
+    def test_conjured_item_quality_clamped_on_creation(self):
+        """Test that conjured items' quality is clamped to 0-50 during initialization"""
+        items = [Item("Conjured Mana Cake", 5, 60)]
+        gilded_rose = GildedRose(items)
+        self.assertEqual(50, items[0].quality)
+
+        items = [Item("Conjured Mana Cake", 5, -10)]
+        gilded_rose = GildedRose(items)
+        self.assertEqual(0, items[0].quality)
+
+    def test_aged_brie_quality_clamped_on_creation(self):
+        """Test that Aged Brie quality is clamped to 0-50 during initialization"""
+        items = [Item("Aged Brie", 5, 60)]
+        gilded_rose = GildedRose(items)
+        self.assertEqual(50, items[0].quality)
 
 
 

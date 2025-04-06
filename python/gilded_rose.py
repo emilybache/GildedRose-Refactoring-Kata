@@ -16,7 +16,16 @@ class GildedRose(object):
 
     def __init__(self, items):
         self.items = items
+        self.items = items
+        for item in items:
+            self._enforce_quality_bounds(item)
 
+    def _enforce_quality_bounds(self, item):
+        if item.name == self.LEGENDARY_ITEM:
+            if item.quality != self.LEGENDARY_QUALITY:
+                item.quality = self.LEGENDARY_QUALITY  # Enforce legendary quality
+        else:
+            item.quality = max(0, min(self.MAX_QUALITY, item.quality))
 
     def update_quality(self):
         for item in self.items:
@@ -32,7 +41,7 @@ class GildedRose(object):
             self.update_backstage_pass(item)
         elif ITEM_NAME.CONJURED in item.name:
             self.update_conjured_item(item)
-        elif item.name != ITEM_NAME.SULFURAS:
+        elif item.name != self.LEGENDARY_ITEM:
             self.update_normal_item(item)
 
     def update_conjured_item(self, item):
@@ -40,7 +49,7 @@ class GildedRose(object):
         self.decrease_quality(item)
 
     def update_sell_in(self, item):
-        if item.name != ITEM_NAME.SULFURAS:
+        if item.name != self.LEGENDARY_ITEM:
             item.sell_in -= 1
 
     def handle_expired_item(self, item):
@@ -51,7 +60,7 @@ class GildedRose(object):
         elif ITEM_NAME.CONJURED in item.name:
             self.decrease_quality(item)
             self.decrease_quality(item)
-        elif item.name != ITEM_NAME.SULFURAS:
+        elif item.name != self.LEGENDARY_ITEM:
             self.decrease_quality(item)
 
     def update_aged_brie(self, item):
