@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
 	kotlin("jvm") version "2.1.20"
 	application
@@ -12,6 +10,12 @@ repositories {
 	mavenCentral()
 }
 
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(8)
+	}
+}
+
 dependencies {
 	implementation(kotlin("stdlib"))
 	testImplementation(kotlin("test"))
@@ -20,9 +24,6 @@ dependencies {
 
 tasks.test {
 	useJUnitPlatform()
-	testLogging {
-		events("passed", "skipped", "failed")
-	}
 }
 
 tasks.register<JavaExec>("texttest") {
@@ -33,15 +34,6 @@ tasks.register<JavaExec>("texttest") {
 	args("30")
 }
 
-// config JVM target to 1.8 for kotlin compilation tasks
-tasks.withType<KotlinCompile>().configureEach {
-	kotlinOptions.jvmTarget = "1.8"
-}
-
-// config java extension to same target version, to avoid build failure on Gradle 8.x
-java {
-	targetCompatibility = JavaVersion.VERSION_1_8
-}
 
 application {
 	mainClass.set("com.gildedrose.TexttestFixtureKt")
