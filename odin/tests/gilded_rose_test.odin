@@ -1,6 +1,6 @@
 package test_gilded_rose
 
-import GildedRose "../gilded_rose"
+import GildedRose "../src/core"
 import "core:testing"
 
 @(test)

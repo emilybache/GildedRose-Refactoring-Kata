@@ -7,10 +7,10 @@ Learn how to install Odin on your system [here](https://odin-lang.org/docs/insta
 $ odin test tests
 ```
 ## Run the TextTest fixture on the command line
-Build and install the executable
+Build the executable:
 
 ```
-$ odin build gilded_rose
+$ odin build src -out:gilded_rose<include your OS executable extension here i.e. .bin>
 ```
 
 Execute it on the command line with an argument for the number of days:
@@ -30,5 +30,5 @@ $ ./gilded_rose.exe 10
 There are instructions in the TextTest Readme for setting up TextTest. You will need to specify the executable in `config.gr`. Uncomment this line to use it:
 
 ```
-#executable:${TEXTTEST_HOME}/odin/gilded_rose(include your OS executable extension here)
+#executable:${TEXTTEST_HOME}/odin/gilded_rose<include your OS executable extension here>
 ```
