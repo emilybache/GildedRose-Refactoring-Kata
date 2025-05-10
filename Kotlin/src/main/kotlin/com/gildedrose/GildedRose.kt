@@ -12,7 +12,7 @@ class GildedRose(var items: List<Item>) {
                 items[i].name != "Sulfuras, Hand of Ragnaros"
             ) {
                 if (items[i].quality > 0) {
-                    items[i].quality = items[i].quality - 1
+                    items[i].quality -= 1
                 }
             } else {
                 items[i].quality = upgradeQuality(items[i].quality)
