@@ -15,23 +15,19 @@ class GildedRose(var items: List<Item>) {
                     items[i].quality = items[i].quality - 1
                 }
             } else {
-                if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1
+                items[i].quality = upgradeQuality(items[i].quality)
 
-                    if (items[i].name == "Backstage passes to a TAFKAL80ETC concert") {
-                        if (items[i].sellIn < 11) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1
-                            }
-                        }
+                if (items[i].name == "Backstage passes to a TAFKAL80ETC concert") {
 
-                        if (items[i].sellIn < 6) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1
-                            }
-                        }
+                    if (items[i].sellIn < 11) {
+                        items[i].quality = upgradeQuality(items[i].quality)
+                    }
+
+                    if (items[i].sellIn < 6) {
+                        items[i].quality = upgradeQuality(items[i].quality)
                     }
                 }
+
             }
 
             if (items[i].name != "Sulfuras, Hand of Ragnaros") {
@@ -58,5 +54,10 @@ class GildedRose(var items: List<Item>) {
         }
     }
 
+    private fun upgradeQuality(quality: Int): Int {
+        if (quality < 50) return quality + 1
+        return quality
+    }
 }
+
 
