@@ -29,7 +29,7 @@ fun main(args: Array<String>) {
         println("-------- day $i --------")
         println("name, sellIn, quality")
         for (item in items) {
-            println(item)
+            println("${item.name}, ${item.sellIn}, ${item.quality}")
         }
         println()
         app.updateQuality()
