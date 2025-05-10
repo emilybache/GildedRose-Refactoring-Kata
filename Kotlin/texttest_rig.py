@@ -9,6 +9,15 @@ import os
 import subprocess
 import sys
 
-args = " ".join(sys.argv[1:])
-TEXTTEST_HOME = os.environ.get("TEXTTEST_HOME", os.getcwd())
-subprocess.run(f"{TEXTTEST_HOME}/Kotlin/gradlew -p {TEXTTEST_HOME}/Kotlin -q run --args {args}", shell=True)
+
+
+#args = " ".join(sys.argv[1:])
+#TEXTTEST_HOME = os.environ.get("TEXTTEST_HOME", os.getcwd())
+#subprocess.run(f"{TEXTTEST_HOME}/Kotlin/gradlew -p {TEXTTEST_HOME}/Kotlin -q run --args {args}", shell=True)
+
+
+
+# MINE / UPDATED
+TEXTTEST_HOME = r"C:\Users\pedan\IdeaProjects\GildedRose-Refactoring-Kata\GildedRose-Refactoring-Kata"
+gradlew_path = os.path.join(TEXTTEST_HOME, "Kotlin", "gradlew")
+subprocess.run(f'"{gradlew_path}" -p "{TEXTTEST_HOME}\\Kotlin" -q text', shell=True)
