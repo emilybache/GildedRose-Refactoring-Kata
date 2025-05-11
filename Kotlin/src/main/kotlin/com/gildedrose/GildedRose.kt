@@ -13,17 +13,17 @@ class GildedRose(var items: List<Item>) {
             ) {
                 downGradeQuality(i)
             } else {
-                items[i].quality = upgradeQuality(items[i].quality)
+                upgradeQuality(i)
 
                 if (items[i].name == "Backstage passes to a TAFKAL80ETC concert") {
                     when {
                         items[i].sellIn < 6 -> {
-                            items[i].quality = upgradeQuality(items[i].quality)
-                            items[i].quality = upgradeQuality(items[i].quality)
+                            upgradeQuality(i)
+                            upgradeQuality(i)
                         }
 
                         items[i].sellIn < 11 -> {
-                            items[i].quality = upgradeQuality(items[i].quality)
+                            upgradeQuality(i)
                         }
                     }
                 }
@@ -34,7 +34,7 @@ class GildedRose(var items: List<Item>) {
             if (items[i].sellIn < 0) {
                 when (items[i].name) {
                     "Aged Brie" -> {
-                        items[i].quality = upgradeQuality(items[i].quality)
+                        upgradeQuality(i)
                     }
 
                     "Backstage passes to a TAFKAL80ETC concert" -> {
@@ -63,9 +63,10 @@ class GildedRose(var items: List<Item>) {
         }
     }
 
-    private fun upgradeQuality(quality: Int): Int {
-        if (quality < 50) return quality + 1
-        return quality
+    private fun upgradeQuality(i: Int) {
+        if (items[i].quality < 50) {
+            items[i].quality += 1
+        }
     }
 }
 
