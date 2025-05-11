@@ -1,6 +1,8 @@
 package com.gildedrose
 
-class App(private val glidedRose: GildedRose) {
+import com.gildedrose.data.constants.ItemRepository
+
+class App(private val glidedRose: GildedRose = GildedRose(ItemRepository.items)) {
     fun printGlideRoseTable(days: Int) {
         welcomeMessage()
         repeat(days) { day ->

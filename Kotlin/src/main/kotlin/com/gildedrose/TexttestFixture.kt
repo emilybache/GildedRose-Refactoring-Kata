@@ -1,10 +1,8 @@
 package com.gildedrose
 
-import com.gildedrose.data.constants.ItemRepository
-
 fun main(args: Array<String>) {
 
-    val app = App(GildedRose(ItemRepository.items))
+    val app = App()
 
     val days = when {
         args.isNotEmpty() -> Integer.parseInt(args[0]) + 1
