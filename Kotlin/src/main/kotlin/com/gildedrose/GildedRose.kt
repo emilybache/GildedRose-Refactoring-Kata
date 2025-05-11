@@ -59,7 +59,7 @@ class GildedRose(var items: List<Item>) {
 
     private fun downGradeQuality(i: Int) {
         if (items[i].quality > 0) {
-            items[i].quality =- 1
+            items[i].quality -= 1
         }
     }
 
