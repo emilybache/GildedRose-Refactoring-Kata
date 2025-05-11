@@ -7,28 +7,11 @@ class GildedRose(var items: List<Item>) {
     fun updateQuality() {
         for (i in items.indices) {
             if (items[i].name == "Backstage passes to a TAFKAL80ETC concert") {
-                upgradeQuality(i)
-                when {
-                    items[i].sellIn < 1 -> {
-                        items[i].quality -= items[i].quality
-                    }
-
-                    items[i].sellIn < 6 -> {
-                        upgradeQuality(i)
-                        upgradeQuality(i)
-                    }
-
-                    items[i].sellIn < 11 -> {
-                        upgradeQuality(i)
-                    }
-                }
+                updateBackstagePassesQuality(i)
             } else if (items[i].name == "Aged Brie") {
-                upgradeQuality(i)
-                if (items[i].sellIn < 1) {
-                    upgradeQuality(i)
-                }
+                updateAgedBrieQuality(i)
             } else if (items[i].name == "Sulfuras, Hand of Ragnaros") {
-                upgradeQuality(i)
+                updateSulfurasQuality(i)
             } else {
                 downGradeQuality(i)
                 if (items[i].sellIn < 1) downGradeQuality(i)
@@ -36,6 +19,35 @@ class GildedRose(var items: List<Item>) {
 
             sellItem(i)
         }
+    }
+
+    private fun updateBackstagePassesQuality(i: Int) {
+        upgradeQuality(i)
+        when {
+            items[i].sellIn < 1 -> {
+                items[i].quality -= items[i].quality
+            }
+
+            items[i].sellIn < 6 -> {
+                upgradeQuality(i)
+                upgradeQuality(i)
+            }
+
+            items[i].sellIn < 11 -> {
+                upgradeQuality(i)
+            }
+        }
+    }
+
+    private fun updateAgedBrieQuality(i: Int) {
+        upgradeQuality(i)
+        if (items[i].sellIn < 1) {
+            upgradeQuality(i)
+        }
+    }
+
+    private fun updateSulfurasQuality(i: Int) {
+        upgradeQuality(i)
     }
 
     private fun sellItem(i: Int) {
