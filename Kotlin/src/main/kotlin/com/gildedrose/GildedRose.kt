@@ -6,15 +6,23 @@ class GildedRose(var items: List<Item>) {
 
     fun updateQuality() {
         for (i in items.indices) {
-            if (items[i].name == "Backstage passes to a TAFKAL80ETC concert") {
-                updateBackstagePassesQuality(i)
-            } else if (items[i].name == "Aged Brie") {
-                updateAgedBrieQuality(i)
-            } else if (items[i].name == "Sulfuras, Hand of Ragnaros") {
-                updateSulfurasQuality(i)
-            } else {
-                downGradeQuality(i)
-                if (items[i].sellIn < 1) downGradeQuality(i)
+            when (items[i].name) {
+                "Backstage passes to a TAFKAL80ETC concert" -> {
+                    updateBackstagePassesQuality(i)
+                }
+
+                "Aged Brie" -> {
+                    updateAgedBrieQuality(i)
+                }
+
+                "Sulfuras, Hand of Ragnaros" -> {
+                    updateSulfurasQuality(i)
+                }
+
+                else -> {
+                    downGradeQuality(i)
+                    if (items[i].sellIn < 1) downGradeQuality(i)
+                }
             }
 
             sellItem(i)
