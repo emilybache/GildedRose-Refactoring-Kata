@@ -2,26 +2,41 @@ package com.gildedrose
 
 import com.gildedrose.data.constants.ItemRepository
 
+class App(private val glidedRose: GildedRose) {
+    var days: Int = 2
+
+    fun printGlideRoseTable() {
+        welcomeMessage()
+        repeat(days) { day ->
+            printTableHeader(day)
+            for (item in glidedRose.items) {
+                println("${item.name}, ${item.sellIn}, ${item.quality}")
+            }
+            println()
+            glidedRose.updateQuality()
+        }
+    }
+
+    private fun printTableHeader(day: Int) {
+        println("-------- day $day --------")
+        println("name, sellIn, quality")
+    }
+
+    private fun welcomeMessage() {
+        println("OMGHAI!")
+    }
+}
 
 //asd
 fun main(args: Array<String>) {
 
-    println("OMGHAI!")
-
-    val app = GildedRose(ItemRepository.items)
+    val app = App(GildedRose(ItemRepository.items))
 
     var days = 2
     if (args.size > 0) {
         days = Integer.parseInt(args[0]) + 1
     }
 
-    for (i in 0..days - 1) {
-        println("-------- day $i --------")
-        println("name, sellIn, quality")
-        for (item in app.items) {
-            println("${item.name}, ${item.sellIn}, ${item.quality}")
-        }
-        println()
-        app.updateQuality()
-    }
+    app.days = days
+    app.printGlideRoseTable()
 }
