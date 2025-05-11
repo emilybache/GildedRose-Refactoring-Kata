@@ -6,9 +6,9 @@ fun main(args: Array<String>) {
 
     val app = App(GildedRose(ItemRepository.items))
 
-    var days = 2
-    if (args.size > 0) {
-        days = Integer.parseInt(args[0]) + 1
+    val days = when {
+        args.isNotEmpty() -> Integer.parseInt(args[0]) + 1
+        else -> 2
     }
 
     app.printGlideRoseTable(days)
