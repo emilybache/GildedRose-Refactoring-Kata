@@ -29,9 +29,7 @@ class GildedRose(var items: List<Item>) {
                 }
             }
 
-            if (items[i].name != "Sulfuras, Hand of Ragnaros") {
-                items[i].sellIn = items[i].sellIn - 1
-            }
+            sellItem(i)
 
             if (items[i].sellIn < 0) {
                 when (items[i].name) {
@@ -50,6 +48,12 @@ class GildedRose(var items: List<Item>) {
                     }
                 }
             }
+        }
+    }
+
+    private fun sellItem(i: Int) {
+        if (items[i].name != "Sulfuras, Hand of Ragnaros") {
+            items[i].sellIn -= 1
         }
     }
 
