@@ -25,7 +25,7 @@ class GildedRose(var items: List<Item>) {
                 }
             }
 
-            sellItem(i)
+            if (items[i].name != "Sulfuras, Hand of Ragnaros") sellItem(i)
         }
     }
 
@@ -59,7 +59,7 @@ class GildedRose(var items: List<Item>) {
     }
 
     private fun sellItem(i: Int) {
-        if (items[i].name != "Sulfuras, Hand of Ragnaros") items[i].sellIn -= 1
+        items[i].sellIn -= 1
     }
 
     private fun downGradeQuality(i: Int) {
