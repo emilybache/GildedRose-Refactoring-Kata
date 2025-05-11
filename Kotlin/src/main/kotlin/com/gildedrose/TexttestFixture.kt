@@ -3,9 +3,7 @@ package com.gildedrose
 import com.gildedrose.data.constants.ItemRepository
 
 class App(private val glidedRose: GildedRose) {
-    var days: Int = 2
-
-    fun printGlideRoseTable() {
+    fun printGlideRoseTable(days: Int) {
         welcomeMessage()
         repeat(days) { day ->
             printTableHeader(day)
@@ -37,6 +35,5 @@ fun main(args: Array<String>) {
         days = Integer.parseInt(args[0]) + 1
     }
 
-    app.days = days
-    app.printGlideRoseTable()
+    app.printGlideRoseTable(days)
 }
