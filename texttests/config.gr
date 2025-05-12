@@ -64,4 +64,7 @@ interpreter:ruby
 # Settings for the OCaml version
 # executable:${TEXTTEST_HOME}/ocaml/_build/default/bin/main.exe
 
+# Settings for the Odin version
+#executable:${TEXTTEST_HOME}/odin/gilded_rose<include your OS executable extension here>
+
 filename_convention_scheme:standard
