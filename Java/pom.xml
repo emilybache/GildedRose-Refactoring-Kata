@@ -10,10 +10,12 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>1.9</java.version>
         <junit.jupiter.version>5.8.2</junit.jupiter.version>
         <maven.maven-compiler-plugin.version>3.1</maven.maven-compiler-plugin.version>
         <maven.maven-surefire-plugin.version>3.0.0-M4</maven.maven-surefire-plugin.version>
+        <lombok.version>1.18.38</lombok.version>
+        <slf4j.version>2.0.17</slf4j.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -23,6 +25,22 @@
             <artifactId>junit-jupiter</artifactId>
             <version>${junit.jupiter.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
     </dependencies>
 

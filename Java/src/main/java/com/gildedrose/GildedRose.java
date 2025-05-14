@@ -1,61 +1,61 @@
 package com.gildedrose;
 
-class GildedRose {
-    Item[] items;
+import com.gildedrose.enums.ItemName;
+import com.gildedrose.service.AgedBrieQualityUpdater;
+import com.gildedrose.service.BackstagePassesQualityUpdater;
+import com.gildedrose.service.ConjuredQualityUpdater;
+import com.gildedrose.service.GeneralQualityUpdater;
+import com.gildedrose.service.QualityUpdater;
+import lombok.Data;
 
-    public GildedRose(Item[] items) {
-        this.items = items;
-    }
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import static com.gildedrose.enums.ItemName.AGED_BRIE;
+import static com.gildedrose.enums.ItemName.BACKSTAGE_PASSES;
+import static com.gildedrose.enums.ItemName.CONJURED;
+import static com.gildedrose.enums.ItemName.GENERAL;
+
+@Data
+public class GildedRose {
+
+    private static final Map<ItemName, QualityUpdater> qualityUpdaters =
+        Map.of(AGED_BRIE, new AgedBrieQualityUpdater(),
+            BACKSTAGE_PASSES, new BackstagePassesQualityUpdater(),
+            CONJURED, new ConjuredQualityUpdater(),
+            GENERAL, new GeneralQualityUpdater());
+
+    private final List<Item> items;
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            if (!items[i].name.equals("Aged Brie")
-                    && !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (items[i].quality > 0) {
-                    if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                        items[i].quality = items[i].quality - 1;
-                    }
-                }
-            } else {
-                if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
+        Set<ItemName> itemNames = items.stream().map(item -> ItemName.resolve(item.getName())).collect(Collectors.toSet());
 
-                    if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (items[i].sellIn < 11) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
-                            }
-                        }
+        for (ItemName itemName : itemNames) {
+            QualityUpdater qualityUpdater = null;
 
-                        if (items[i].sellIn < 6) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
-                            }
-                        }
-                    }
-                }
+            switch (itemName) {
+                case AGED_BRIE:
+                    qualityUpdater = qualityUpdaters.get(AGED_BRIE);
+                    break;
+                case BACKSTAGE_PASSES:
+                    qualityUpdater = qualityUpdaters.get(BACKSTAGE_PASSES);
+                    break;
+                case SULFURAS_HAND_RANGAROS:
+                    // nothing has to be done in that case - this is immutable object
+                    break;
+                case CONJURED:
+                    qualityUpdater = qualityUpdaters.get(CONJURED);
+                    break;
+                default:
+                    qualityUpdater = qualityUpdaters.get(GENERAL);
             }
 
-            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                items[i].sellIn = items[i].sellIn - 1;
-            }
-
-            if (items[i].sellIn < 0) {
-                if (!items[i].name.equals("Aged Brie")) {
-                    if (!items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (items[i].quality > 0) {
-                            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                                items[i].quality = items[i].quality - 1;
-                            }
-                        }
-                    } else {
-                        items[i].quality = items[i].quality - items[i].quality;
-                    }
-                } else {
-                    if (items[i].quality < 50) {
-                        items[i].quality = items[i].quality + 1;
-                    }
-                }
+            if (qualityUpdater != null) {
+                List<Item> properItems =
+                        items.stream().filter(item -> itemName.equals(ItemName.resolve(item.getName()))).collect(Collectors.toList());
+                qualityUpdater.updateQuality(properItems);
             }
         }
     }
