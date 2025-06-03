@@ -1,6 +1,13 @@
 package com.gildedrose;
 
+import java.util.Arrays;
+
 class GildedRose {
+    private static final String BACKSTAGE_PASS_NAME = "Backstage passes to a TAFKAL80ETC concert";
+    private static final String SULFURAS_NAME = "Sulfuras, Hand of Ragnaros";
+    private static final String AGED_BRIE_NAME = "Aged Brie";
+    private static final String CONJURED_NAME = "Conjured";
+
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -8,55 +15,18 @@ class GildedRose {
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            if (!items[i].name.equals("Aged Brie")
-                    && !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (items[i].quality > 0) {
-                    if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                        items[i].quality = items[i].quality - 1;
-                    }
-                }
-            } else {
-                if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
+        Arrays.stream(items)
+            .map(this::mapToUpdatableItem)
+            .forEach(UpdatableItem::update);
+    }
 
-                    if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (items[i].sellIn < 11) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
-                            }
-                        }
-
-                        if (items[i].sellIn < 6) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                items[i].sellIn = items[i].sellIn - 1;
-            }
-
-            if (items[i].sellIn < 0) {
-                if (!items[i].name.equals("Aged Brie")) {
-                    if (!items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (items[i].quality > 0) {
-                            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                                items[i].quality = items[i].quality - 1;
-                            }
-                        }
-                    } else {
-                        items[i].quality = items[i].quality - items[i].quality;
-                    }
-                } else {
-                    if (items[i].quality < 50) {
-                        items[i].quality = items[i].quality + 1;
-                    }
-                }
-            }
-        }
+    private UpdatableItem mapToUpdatableItem(Item item) {
+        return switch (item.name) {
+            case AGED_BRIE_NAME -> new AgedBrieItem(item);
+            case BACKSTAGE_PASS_NAME -> new BackstagePassItem(item);
+            case SULFURAS_NAME -> new SulfurasItem(item);
+            case CONJURED_NAME -> new ConjuredItem(item);
+            default -> new RegularItem(item);
+        };
     }
 }
