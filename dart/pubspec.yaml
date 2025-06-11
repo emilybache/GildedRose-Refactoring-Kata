@@ -3,7 +3,8 @@ version: 0.0.1
 description: A simple console application.
 
 environment:
-  sdk: '>=2.10.0 <3.0.0'
+  sdk: ">=3.4.4 <4.0.0"
+  flutter: ">=3.22.3"
 
 dev_dependencies:
   test: ^1.16.8
