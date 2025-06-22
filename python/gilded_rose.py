@@ -42,6 +42,32 @@ class BackstagePassUpdater(BaseItemUpdater):
                 self.item.quality += 1
 
 
+class SulfurasUpdater(BaseItemUpdater):
+    def update(self):
+        pass  
+
+
+class ItemUpdaterFactory:
+    @staticmethod
+    def get_updater(item):
+        if item.name == "Aged Brie":
+            return AgedBrieUpdater(item)
+        elif item.name == "Backstage passes":
+            return BackstagePassUpdater(item)
+        elif item.name == "Sulfuras":
+            return SulfurasUpdater(item)
+        else:
+            return BaseItemUpdater(item)
+
+
+class GildedRose:
+    def __init__(self, items):
+        self.items = items
+
+    def update_quality(self):
+        for item in self.items:
+            updater = ItemUpdaterFactory.get_updater(item)
+            updater.update()
 
 # class GildedRose(object):
 
