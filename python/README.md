@@ -7,7 +7,7 @@ Suggestion: create a python virtual environment for this project. See the [docum
 ## Run the unit tests from the Command-Line
 
 ```
-python test_gilded_rose.py
+python tests/test_gilded_rose.py
 ```
 
 ## Run the TextTest fixture from the Command-Line
@@ -27,3 +27,13 @@ There are instructions in the [TextTest Readme](../texttests/README.md) for sett
 
     executable:${TEXTTEST_HOME}/python/texttest_fixture.py
     interpreter:python
+
+## Run the ApprovalTests.Python test
+
+This test uses the framework [ApprovalTests.Python](https://github.com/approvals/ApprovalTests.Python). Run it like this:
+
+```
+python tests/test_gilded_rose_approvals.py
+```
+
+You will need to approve the output file which appears under "approved_files" by renaming it from xxx.received.txt to xxx.approved.txt.
