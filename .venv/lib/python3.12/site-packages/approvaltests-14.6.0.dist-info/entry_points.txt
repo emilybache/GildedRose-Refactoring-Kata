@@ -1,0 +1,2 @@
+[pytest11]
+approvaltests_pytest = approvaltests.integrations.pytest.pytest_plugin

@@ -1,0 +1,3 @@
+from .commandline_interface import verify_using_commandline_arguments
+
+verify_using_commandline_arguments()

@@ -1,0 +1,160 @@
+Metadata-Version: 2.1
+Name: pytest-approvaltests
+Version: 0.2.4
+Summary: A plugin to use approvaltests with pytest
+Home-page: https://github.com/approvals/pytest-approvaltests
+Author: Emily Bache
+Author-email: emily@bacheconsulting.com
+Maintainer: Emily Bache
+Maintainer-email: emily@bacheconsulting.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Pytest
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Testing
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.6.1
+License-File: LICENSE
+Requires-Dist: pytest (>=7.0.1)
+Requires-Dist: approvaltests
+
+====================
+pytest-approvaltests
+====================
+
+.. image:: https://img.shields.io/pypi/v/pytest-approvaltests.svg
+    :target: https://pypi.org/project/pytest-approvaltests
+    :alt: PyPI version
+
+.. image:: https://img.shields.io/pypi/pyversions/pytest-approvaltests.svg
+    :target: https://pypi.org/project/pytest-approvaltests
+    :alt: Python versions
+
+.. image:: https://github.com/approvals/ApprovalTests.Python.PytestPlugin/workflows/Test/badge.svg
+    :target: https://github.com/approvals/ApprovalTests.Python.PytestPlugin/workflow
+    :alt: See Build Status on GitHub Actions
+
+A plugin to use approvaltests with pytest
+
+
+Features
+--------
+
+   - command line options to choose which reporter to use on approval test failure
+   - define your own diff reporter to use on approval test failure
+
+
+Requirements
+------------
+
+approvaltests
+
+
+Installation
+------------
+
+You can install "pytest-approvaltests" via `pip`_ from `PyPI`_::
+
+    $ pip install pytest-approvaltests
+
+
+Usage
+-----
+
+See also the documentation for `approval tests <https://github.com/approvals/ApprovalTests.Python>`_
+
+When your approval tests fail and you are working interactively, you might like
+it to open another diff tool than when you are on a CI server for example.
+
+This plugin allows you to configure pytest with which diff tool to use when tests fail.
+
+To set the default reporter to 'PythonNativeReporter', suitable for use on the command line:
+
+    pytest --approvaltests-use-reporter='PythonNativeReporter'
+
+To define your own diff reporter, perhaps a program with a rich GUI installed only on your developer workstation:
+
+    pytest --approvaltests-add-reporter="diff_program"
+
+The value for 'approvaltests-add-reporter' should be an executable program that can diff two files received as arguments on the command line like this:
+
+    diff_program filepath1 filepath2
+
+if it takes additional arguments, add them with 'approvaltests-add-reporter-args':
+
+    pytest --approvaltests-add-reporter="diff_program" --approvaltests-add-reporter-args="arg1,arg2"
+
+They will be inserted like this:
+
+    diff_program arg1 arg2 filepath1 filepath2
+
+Tip for Jetbrains toolbox and PyCharm users
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can use PyCharm as a diff tool, which is convenient if you are also using it as an IDE.
+Especially if you're using Toolbox, it can be difficult to find the actual executable to pass to pytest.
+You could try this while PyCharm is running:
+
+    ps -ef | grep PyCharm
+
+If you're lucky it will show the full path to the PyCharm that is executing. It may not be pretty.
+However, then you can configure pytest with arguments something like this:
+
+    --approvaltests-add-reporter-args='diff' --approvaltests-add-reporter='/Users/emily/Library/Application Support/JetBrains/Toolbox/apps/PyCharm-P/ch-0/192.6262.63/PyCharm.app/Contents/MacOS/pycharm'
+
+In PyCharm, you can create a new 'run configuration' (see the [documentation](https://www.jetbrains.com/help/pycharm/creating-and-editing-run-debug-configurations.html)).
+Add a configuration using the '+' button, choose "python tests | pytest".
+Add these arguments to set the reporter for pytest under 'Additional Arguments'.
+
+
+Contributing
+------------
+Contributions are very welcome. Tests can be run with `tox`_, please ensure
+the coverage at least stays the same before you submit a pull request.
+
+License
+-------
+
+Distributed under the terms of the `MIT`_ license, "pytest-approvaltests" is free and open source software
+
+
+Issues
+------
+
+If you encounter any problems, please `file an issue`_ along with a detailed description.
+
+Developer Notes
+----------------
+
+To release a new version on pypi:
+
+    python setup.py install
+
+check it created an egg file under dist
+
+    python -m twine upload dist/pytest_approvaltests-<version>-py3.7.egg
+
+You will need to enter a valid username and password for pypi
+
+.. _`Cookiecutter`: https://github.com/audreyr/cookiecutter
+.. _`@hackebrot`: https://github.com/hackebrot
+.. _`MIT`: http://opensource.org/licenses/MIT
+.. _`BSD-3`: http://opensource.org/licenses/BSD-3-Clause
+.. _`GNU GPL v3.0`: http://www.gnu.org/licenses/gpl-3.0.txt
+.. _`Apache Software License 2.0`: http://www.apache.org/licenses/LICENSE-2.0
+.. _`cookiecutter-pytest-plugin`: https://github.com/pytest-dev/cookiecutter-pytest-plugin
+.. _`file an issue`: https://github.com/emilybache/pytest-approvaltests/issues
+.. _`pytest`: https://github.com/pytest-dev/pytest
+.. _`tox`: https://tox.readthedocs.io/en/latest/
+.. _`pip`: https://pypi.org/project/pip/
+.. _`PyPI`: https://pypi.org/project
+
+
