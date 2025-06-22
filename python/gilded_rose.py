@@ -13,10 +13,10 @@ class BaseItemUpdater:
         self.item.sell_in -= 1
 
     def update_quality(self):
-        if self.item.quality > 0:
-            self.item.quality -= 1
-        if self.item.sell_in < 0 and self.item.quality > 0:
-            self.item.quality -= 1
+        degrade = 1
+        if self.item.sell_in < 0:
+            degrade = 2
+        self.item.quality = max(self.item.quality - degrade, 0)
 
 
 
@@ -44,7 +44,19 @@ class BackstagePassUpdater(BaseItemUpdater):
 
 class SulfurasUpdater(BaseItemUpdater):
     def update(self):
-        pass  
+        print("Sulfuras has no change")
+    def update_quality(self):
+        print("Sulfuras has no change")
+        # pass  
+    def update_sell_in(self):
+        print("Sulfuras has no change")
+
+class ConjuredItemUpdater(BaseItemUpdater):
+    def update_quality(self):
+        degrade = 2
+        if self.item.sell_in < 0:
+            degrade *= 2
+        self.item.quality = max(self.item.quality - degrade, 0)
 
 
 class ItemUpdaterFactory:
@@ -52,10 +64,12 @@ class ItemUpdaterFactory:
     def get_updater(item):
         if item.name == "Aged Brie":
             return AgedBrieUpdater(item)
-        elif item.name == "Backstage passes":
+        elif item.name == "Backstage passes to a TAFKAL80ETC concert":
             return BackstagePassUpdater(item)
-        elif item.name == "Sulfuras":
+        elif item.name == "Sulfuras, Hand of Ragnaros":
             return SulfurasUpdater(item)
+        elif item.name == "Conjured Mana Cake": 
+            return ConjuredItemUpdater(item)
         else:
             return BaseItemUpdater(item)
 
