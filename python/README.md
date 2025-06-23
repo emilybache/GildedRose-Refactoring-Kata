@@ -4,10 +4,16 @@ For exercise instructions see [top level README](../README.md)
 
 Suggestion: create a python virtual environment for this project. See the [documentation](https://docs.python.org/3/library/venv.html)
 
+## Run the pip install from the Command-Line for required dependencies
+
+```
+pip install -r requirements.txt
+```
+
 ## Run the unit tests from the Command-Line
 
 ```
-python test_gilded_rose.py
+pytest test_gilded_rose.py
 ```
 
 ## Run the TextTest fixture from the Command-Line
