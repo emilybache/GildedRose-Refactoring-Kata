@@ -26,26 +26,53 @@ class GildedRose {
     private static void doUpdateQuality(Item item) {
         // processing quality
         boolean isAgedBrie = item.name.equals(AGED_BRIE);
+        boolean isBackstagePasses = item.name.equals(BACKSTAGE_PASSES);
 
         if (isAgedBrie) {
             // processing quality
             if (item.quality < QUALITY_LEVEL_50) {
                 item.quality = item.quality + 1;
+            }
+
+            // processing sell date
+            item.sellIn = item.sellIn - 1;
+
+            // processing sell date
+            if (item.sellIn < SELL_IN_DAY0) {
+                if (item.quality < QUALITY_LEVEL_50) {
+                    item.quality = item.quality + 1;
+                }
+            }
+        } else if (isBackstagePasses) {
+            // processing quality
+            if (item.quality < QUALITY_LEVEL_50) {
+                item.quality = item.quality + 1;
 
                 // processing sell date
-                if (item.name.equals(BACKSTAGE_PASSES)) {
-
-                    if (item.sellIn < SELL_IN_DAY11) {
-                        if (item.quality < QUALITY_LEVEL_50) {
-                            item.quality = item.quality + 1;
-                        }
+                if (item.sellIn < SELL_IN_DAY11) {
+                    if (item.quality < QUALITY_LEVEL_50) {
+                        item.quality = item.quality + 1;
                     }
+                }
 
-                    if (item.sellIn < SELL_IN_DAY6) {
-                        if (item.quality < QUALITY_LEVEL_50) {
-                            item.quality = item.quality + 1;
-                        }
+                if (item.sellIn < SELL_IN_DAY6) {
+                    if (item.quality < QUALITY_LEVEL_50) {
+                        item.quality = item.quality + 1;
                     }
+                }
+            }
+
+            // processing sell date
+            item.sellIn = item.sellIn - 1;
+
+            // processing sell date
+            if (item.sellIn < SELL_IN_DAY0) {
+                item.quality = QUALITY_LEVEL_0;
+            }
+        } else {
+            if (item.quality > QUALITY_LEVEL_0) {
+                if (!item.name.equals(SULFURAS)) {
+                    item.quality = item.quality - 1;
                 }
             }
 
@@ -56,56 +83,11 @@ class GildedRose {
 
             // processing sell date
             if (item.sellIn < SELL_IN_DAY0) {
-                if (item.quality < QUALITY_LEVEL_50) {
-                    item.quality = item.quality + 1;
-                }
-            }
-        } else {
-            if (!item.name.equals(BACKSTAGE_PASSES)) {
+                // processing quality
                 if (item.quality > QUALITY_LEVEL_0) {
                     if (!item.name.equals(SULFURAS)) {
                         item.quality = item.quality - 1;
                     }
-                }
-            } else {
-                // processing quality
-                if (item.quality < QUALITY_LEVEL_50) {
-                    item.quality = item.quality + 1;
-
-                    // processing sell date
-                    if (item.name.equals(BACKSTAGE_PASSES)) {
-
-                        if (item.sellIn < SELL_IN_DAY11) {
-                            if (item.quality < QUALITY_LEVEL_50) {
-                                item.quality = item.quality + 1;
-                            }
-                        }
-
-                        if (item.sellIn < SELL_IN_DAY6) {
-                            if (item.quality < QUALITY_LEVEL_50) {
-                                item.quality = item.quality + 1;
-                            }
-                        }
-                    }
-                }
-            }
-
-            // processing sell date
-            if (!item.name.equals(SULFURAS)) {
-                item.sellIn = item.sellIn - 1;
-            }
-
-            // processing sell date
-            if (item.sellIn < SELL_IN_DAY0) {
-                if (!item.name.equals(BACKSTAGE_PASSES)) {
-                    // processing quality
-                    if (item.quality > QUALITY_LEVEL_0) {
-                        if (!item.name.equals(SULFURAS)) {
-                            item.quality = item.quality - 1;
-                        }
-                    }
-                } else {
-                    item.quality = QUALITY_LEVEL_0;
                 }
             }
         }
