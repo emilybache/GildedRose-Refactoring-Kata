@@ -27,6 +27,7 @@ class GildedRose {
         // processing quality
         boolean isAgedBrie = item.name.equals(AGED_BRIE);
         boolean isBackstagePasses = item.name.equals(BACKSTAGE_PASSES);
+        boolean isSulfuras = item.name.equals(SULFURAS);
 
         if (isAgedBrie) {
             // processing quality
@@ -69,25 +70,23 @@ class GildedRose {
             if (item.sellIn < SELL_IN_DAY0) {
                 item.quality = QUALITY_LEVEL_0;
             }
+        } else if (isSulfuras) {
+            //sulfuras is doing nothing
+
         } else {
+            //standard item
             if (item.quality > QUALITY_LEVEL_0) {
-                if (!item.name.equals(SULFURAS)) {
-                    item.quality = item.quality - 1;
-                }
+                item.quality = item.quality - 1;
             }
 
             // processing sell date
-            if (!item.name.equals(SULFURAS)) {
-                item.sellIn = item.sellIn - 1;
-            }
+            item.sellIn = item.sellIn - 1;
 
             // processing sell date
             if (item.sellIn < SELL_IN_DAY0) {
                 // processing quality
                 if (item.quality > QUALITY_LEVEL_0) {
-                    if (!item.name.equals(SULFURAS)) {
-                        item.quality = item.quality - 1;
-                    }
+                    item.quality = item.quality - 1;
                 }
             }
         }
