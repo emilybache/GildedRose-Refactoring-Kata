@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import com.gildedrose.item.Item;
+
 class GildedRose {
 
     public static final String AGED_BRIE = "Aged Brie";
@@ -25,8 +27,7 @@ class GildedRose {
         }
     }
 
-    private static void doUpdateQuality(Item item) {
-        // processing quality
+    private void doUpdateQuality(Item item) {
         boolean isAgedBrie = item.name.equals(AGED_BRIE);
         boolean isBackstagePasses = item.name.equals(BACKSTAGE_PASSES);
         boolean isSulfuras = item.name.equals(SULFURAS);
@@ -94,19 +95,19 @@ class GildedRose {
         }
     }
 
-    private static void decreaseDay(Item item) {
+    private void decreaseDay(Item item) {
         item.sellIn = item.sellIn - 1;
     }
 
-    private static boolean isExpired(Item item) {
+    private boolean isExpired(Item item) {
         return item.sellIn < SELL_IN_EXPIRED;
     }
 
-    private static void decreaseQuality(Item item) {
+    private void decreaseQuality(Item item) {
         item.quality = item.quality - 1;
     }
 
-    private static void increaseQuality(Item item) {
+    private void increaseQuality(Item item) {
         item.quality = item.quality + 1;
     }
 

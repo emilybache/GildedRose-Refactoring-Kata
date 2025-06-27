@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import com.gildedrose.item.Item;
+
 public class TexttestFixture {
     public static void main(String[] args) {
         System.out.println("OMGHAI!");
@@ -18,7 +20,7 @@ public class TexttestFixture {
 
         GildedRose app = new GildedRose(items);
 
-        int days = 2;
+        int days = 3;
         if (args.length > 0) {
             days = Integer.parseInt(args[0]) + 1;
         }
