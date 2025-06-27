@@ -5,11 +5,13 @@ class GildedRose {
     public static final String AGED_BRIE = "Aged Brie";
     public static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
-    public static final int QUALITY_LEVEL_0 = 0;
-    public static final int QUALITY_LEVEL_50 = 50;
+
+    public static final int MINIMUM_QUALITY = 0;
+    public static final int MAXIMUM_QUALITY = 50;
+
     public static final int SELL_IN_DAY11 = 11;
     public static final int SELL_IN_DAY6 = 6;
-    public static final int SELL_IN_DAY0 = 0;
+    public static final int SELL_IN_EXPIRED = 0;
 
     Item[] items;
 
@@ -31,65 +33,81 @@ class GildedRose {
 
         if (isAgedBrie) {
             // processing quality
-            if (item.quality < QUALITY_LEVEL_50) {
-                item.quality = item.quality + 1;
+            if (item.quality < MAXIMUM_QUALITY) {
+                increaseQuality(item);
             }
 
             // processing sell date
-            item.sellIn = item.sellIn - 1;
+            decreaseDay(item);
 
             // processing sell date
-            if (item.sellIn < SELL_IN_DAY0) {
-                if (item.quality < QUALITY_LEVEL_50) {
-                    item.quality = item.quality + 1;
+            if (isExpired(item)) {
+                if (item.quality < MAXIMUM_QUALITY) {
+                    increaseQuality(item);
                 }
             }
         } else if (isBackstagePasses) {
             // processing quality
-            if (item.quality < QUALITY_LEVEL_50) {
-                item.quality = item.quality + 1;
+            if (item.quality < MAXIMUM_QUALITY) {
+                increaseQuality(item);
 
                 // processing sell date
                 if (item.sellIn < SELL_IN_DAY11) {
-                    if (item.quality < QUALITY_LEVEL_50) {
-                        item.quality = item.quality + 1;
+                    if (item.quality < MAXIMUM_QUALITY) {
+                        increaseQuality(item);
                     }
                 }
 
                 if (item.sellIn < SELL_IN_DAY6) {
-                    if (item.quality < QUALITY_LEVEL_50) {
-                        item.quality = item.quality + 1;
+                    if (item.quality < MAXIMUM_QUALITY) {
+                        increaseQuality(item);
                     }
                 }
             }
 
             // processing sell date
-            item.sellIn = item.sellIn - 1;
+            decreaseDay(item);
 
             // processing sell date
-            if (item.sellIn < SELL_IN_DAY0) {
-                item.quality = QUALITY_LEVEL_0;
+            if (isExpired(item)) {
+                item.quality = MINIMUM_QUALITY;
             }
         } else if (isSulfuras) {
             //sulfuras is doing nothing
 
         } else {
             //standard item
-            if (item.quality > QUALITY_LEVEL_0) {
-                item.quality = item.quality - 1;
+            if (item.quality > MINIMUM_QUALITY) {
+                decreaseQuality(item);
             }
 
             // processing sell date
-            item.sellIn = item.sellIn - 1;
+            decreaseDay(item);
 
             // processing sell date
-            if (item.sellIn < SELL_IN_DAY0) {
+            if (isExpired(item)) {
                 // processing quality
-                if (item.quality > QUALITY_LEVEL_0) {
-                    item.quality = item.quality - 1;
+                if (item.quality > MINIMUM_QUALITY) {
+                    decreaseQuality(item);
                 }
             }
         }
+    }
+
+    private static void decreaseDay(Item item) {
+        item.sellIn = item.sellIn - 1;
+    }
+
+    private static boolean isExpired(Item item) {
+        return item.sellIn < SELL_IN_EXPIRED;
+    }
+
+    private static void decreaseQuality(Item item) {
+        item.quality = item.quality - 1;
+    }
+
+    private static void increaseQuality(Item item) {
+        item.quality = item.quality + 1;
     }
 
 }
