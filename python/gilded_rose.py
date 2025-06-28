@@ -15,6 +15,8 @@ class GildedRose(object):
             return SulfurasItem(item.name, item.sell_in, item.quality)
         elif item.name.startswith("Backstage"):
             return BackstagePassItem(item.name, item.sell_in, item.quality)
+        elif item.name.startswith("Conjured"):
+            return ConjuredItem(item.name, item.sell_in, item.quality)
         else:
             return NormalItem(item.name, item.sell_in, item.quality)
 
@@ -82,3 +84,10 @@ class BackstagePassItem(Item):
         if self.sell_in < 0:
             self.quality = 0
 
+
+class ConjuredItem(Item):
+    def update_quality(self):
+        self.sell_in -= 1
+        self._decrease_quality(2)  # It degrades twice as fast normal items
+        if self.sell_in < 0:
+            self._decrease_quality(2)  # It degrades twice as fast normal items
