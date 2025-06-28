@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 
-from gilded_rose import *
+from python.gilded_rose import *
 
 
 def main():
@@ -17,17 +17,19 @@ def main():
         Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=5, quality=49),
         Item(name="Conjured Mana Cake", sell_in=3, quality=6),  # <-- :O
     ]
-    days = 2
+    days = 31
     import sys
+
+    gilded_rose = GildedRose(items)  # Store the instance
     if len(sys.argv) > 1:
         days = int(sys.argv[1]) + 1
     for day in range(days):
         print("-------- day %s --------" % day)
         print("name, sellIn, quality")
-        for item in items:
+        for item in gilded_rose.items:
             print(item)
         print("")
-        GildedRose(items).update_quality()
+        gilded_rose.update_quality()
 
 
 if __name__ == "__main__":
