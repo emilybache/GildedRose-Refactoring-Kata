@@ -1,6 +1,9 @@
 package com.gildedrose;
 
-import com.gildedrose.item.Item;
+import com.gildedrose.core.InventoryRuleEngine;
+import com.gildedrose.domain.item.Item;
+import com.gildedrose.domain.item.ItemAdapter;
+import com.gildedrose.domain.item.ItemAdapterSimpleFactory;
 
 class GildedRose {
 
@@ -28,48 +31,33 @@ class GildedRose {
     }
 
     private void doUpdateQuality(Item item) {
+
         boolean isAgedBrie = item.name.equals(AGED_BRIE);
         boolean isBackstagePasses = item.name.equals(BACKSTAGE_PASSES);
         boolean isSulfuras = item.name.equals(SULFURAS);
+        ItemAdapter itemAdapter = ItemAdapterSimpleFactory.createItemAdapter(item);
 
         if (isAgedBrie) {
-            // processing quality
-            if (item.quality < MAXIMUM_QUALITY) {
-                increaseQuality(item);
-            }
-
-            // processing sell date
-            decreaseDay(item);
-
-            // processing sell date
-            if (isExpired(item)) {
-                if (item.quality < MAXIMUM_QUALITY) {
-                    increaseQuality(item);
-                }
-            }
+            InventoryRuleEngine.processUpdateInventoryRule(itemAdapter);
         } else if (isBackstagePasses) {
-            // processing quality
-            if (item.quality < MAXIMUM_QUALITY) {
+            if (shouldIncreaseQuality(item)) {
                 increaseQuality(item);
 
-                // processing sell date
                 if (item.sellIn < SELL_IN_DAY11) {
-                    if (item.quality < MAXIMUM_QUALITY) {
+                    if (shouldIncreaseQuality(item)) {
                         increaseQuality(item);
                     }
                 }
 
                 if (item.sellIn < SELL_IN_DAY6) {
-                    if (item.quality < MAXIMUM_QUALITY) {
+                    if (shouldIncreaseQuality(item)) {
                         increaseQuality(item);
                     }
                 }
             }
 
-            // processing sell date
             decreaseDay(item);
 
-            // processing sell date
             if (isExpired(item)) {
                 item.quality = MINIMUM_QUALITY;
             }
@@ -78,21 +66,26 @@ class GildedRose {
 
         } else {
             //standard item
-            if (item.quality > MINIMUM_QUALITY) {
+            if (shouldDecreaseQuality(item)) {
                 decreaseQuality(item);
             }
 
-            // processing sell date
             decreaseDay(item);
 
-            // processing sell date
             if (isExpired(item)) {
-                // processing quality
-                if (item.quality > MINIMUM_QUALITY) {
+                if (shouldDecreaseQuality(item)) {
                     decreaseQuality(item);
                 }
             }
         }
+    }
+
+    private boolean shouldDecreaseQuality(Item item) {
+        return item.quality > MINIMUM_QUALITY;
+    }
+
+    private boolean shouldIncreaseQuality(Item item) {
+        return item.quality < MAXIMUM_QUALITY;
     }
 
     private void decreaseDay(Item item) {

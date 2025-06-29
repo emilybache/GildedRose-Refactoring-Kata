@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-import com.gildedrose.item.Item;
+import com.gildedrose.domain.item.Item;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,7 +10,7 @@ class SulfurasTest {
     @Test
     void sulfurasNeverChanges() {
         //given
-        Item sulfuras = new Item("Sulfuras, Hand of Ragnaros", 0, 80);
+        Item sulfuras = new Item("Sulfuras, Hand of Ragnaros", -1, 80);
         Item[] items = new Item[] {sulfuras};
 
         //when
