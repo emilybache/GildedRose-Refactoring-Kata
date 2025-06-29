@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-import com.gildedrose.item.Item;
+import com.gildedrose.domain.item.Item;
 
 public class TexttestFixture {
     public static void main(String[] args) {
@@ -20,7 +20,7 @@ public class TexttestFixture {
 
         GildedRose app = new GildedRose(items);
 
-        int days = 3;
+        int days = 5;
         if (args.length > 0) {
             days = Integer.parseInt(args[0]) + 1;
         }

@@ -62,8 +62,7 @@ class GildedRose {
                 item.quality = MINIMUM_QUALITY;
             }
         } else if (isSulfuras) {
-            //sulfuras is doing nothing
-
+            InventoryRuleEngine.processUpdateInventoryRule(itemAdapter);
         } else {
             //standard item
             if (shouldDecreaseQuality(item)) {
