@@ -1,18 +1,18 @@
-package com.gildedrose.application.sulfuras;
+package com.gildedrose.application.standard;
 
 import com.gildedrose.core.rule.UpdateInventoryTemplateRule;
 import com.gildedrose.domain.item.ItemAdapter;
 
-public class SulfurasRule extends UpdateInventoryTemplateRule {
+public class StandardItemRule extends UpdateInventoryTemplateRule {
 
     @Override
     protected boolean canSubtractSellIn(final ItemAdapter itemAdapter) {
-        return false;
+        return true;
     }
 
     @Override
     protected int getQualityFactor(final boolean isExpired, final ItemAdapter itemAdapter) {
-        return 0;
+        return isExpired ? 2 : 1;
     }
 
     @Override
@@ -22,6 +22,6 @@ public class SulfurasRule extends UpdateInventoryTemplateRule {
 
     @Override
     protected boolean canDecreaseQuality(boolean isExpired, final ItemAdapter itemAdapter) {
-        return false;
+        return true;
     }
 }

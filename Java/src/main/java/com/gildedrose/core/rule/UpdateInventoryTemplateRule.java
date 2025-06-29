@@ -1,4 +1,4 @@
-package com.gildedrose.core.rules;
+package com.gildedrose.core.rule;
 
 import com.gildedrose.domain.item.ItemAdapter;
 

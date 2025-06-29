@@ -39,4 +39,34 @@ public class AgedBrieRuleTest {
         assertEquals(-1, agedBrieAdapter.getItem().sellIn);
         assertEquals(4, agedBrieAdapter.getItem().quality);
     }
+
+    @Test
+    void agedBrieQualityIncreasesNoMoreThan50() {
+        //given
+        Item agedBrie = new Item("Aged Brie", 5, 50);
+        ItemAdapter agedBrieAdapter = new ItemAdapter(ItemType.AGEG_BRIE, agedBrie);
+        AgedBrieRule agedBrieRule = new AgedBrieRule();
+
+        //when
+        agedBrieRule.processItem(agedBrieAdapter);
+
+        //then
+        assertEquals(4, agedBrieAdapter.getItem().sellIn);
+        assertEquals(50, agedBrieAdapter.getItem().quality);
+    }
+
+    @Test
+    void agedBrieQualityIncreasesNoMoreThan50WhenIsExpired() {
+        //given
+        Item agedBrie = new Item("Aged Brie", 0, 50);
+        ItemAdapter agedBrieAdapter = new ItemAdapter(ItemType.AGEG_BRIE, agedBrie);
+        AgedBrieRule agedBrieRule = new AgedBrieRule();
+
+        //when
+        agedBrieRule.processItem(agedBrieAdapter);
+
+        //then
+        assertEquals(-1, agedBrieAdapter.getItem().sellIn);
+        assertEquals(50, agedBrieAdapter.getItem().quality);
+    }
 }

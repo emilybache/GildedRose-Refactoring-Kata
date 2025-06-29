@@ -1,9 +1,9 @@
-package com.gildedrose.core;
+package com.gildedrose.core.rule;
 
 import com.gildedrose.application.agedbrie.AgedBrieRule;
 import com.gildedrose.application.backstagepasses.BackstagePassesRule;
+import com.gildedrose.application.standard.StandardItemRule;
 import com.gildedrose.application.sulfuras.SulfurasRule;
-import com.gildedrose.core.rules.UpdateInventoryTemplateRule;
 import com.gildedrose.domain.item.ItemAdapter;
 import com.gildedrose.domain.item.ItemType;
 
@@ -16,6 +16,7 @@ public class InventoryRuleEngine {
         put(ItemType.AGEG_BRIE, new AgedBrieRule());
         put(ItemType.SULFURAS, new SulfurasRule());
         put(ItemType.BACKSTAGE_PASSES, new BackstagePassesRule());
+        put(ItemType.STANDARD, new StandardItemRule());
     }};
 
     public static void applyUpdateRule(ItemAdapter itemAdapter) {

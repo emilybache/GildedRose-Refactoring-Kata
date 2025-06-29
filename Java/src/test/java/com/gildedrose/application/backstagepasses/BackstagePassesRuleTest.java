@@ -68,4 +68,49 @@ public class BackstagePassesRuleTest {
         assertEquals(-1, backstageAdapter.getItem().sellIn);
         assertEquals(0, backstageAdapter.getItem().quality);
     }
+
+    @Test
+    void backStageQualityIncreasesNoMoreThan50WhenThereAre5DaysOrLess() {
+        //given
+        Item backStage5 = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 50);
+        ItemAdapter backstageAdapter = new ItemAdapter(ItemType.BACKSTAGE_PASSES, backStage5);
+        BackstagePassesRule backstagePassesRule = new BackstagePassesRule();
+
+        //when
+        backstagePassesRule.processItem(backstageAdapter);
+
+        //then
+        assertEquals(4, backstageAdapter.getItem().sellIn);
+        assertEquals(50, backstageAdapter.getItem().quality);
+    }
+
+    @Test
+    void backStageQualityIncreasesNoMoreThan50WhenThereAre10DaysOrLess() {
+        //given
+        Item backStage5 = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 50);
+        ItemAdapter backstageAdapter = new ItemAdapter(ItemType.BACKSTAGE_PASSES, backStage5);
+        BackstagePassesRule backstagePassesRule = new BackstagePassesRule();
+
+        //when
+        backstagePassesRule.processItem(backstageAdapter);
+
+        //then
+        assertEquals(9, backstageAdapter.getItem().sellIn);
+        assertEquals(50, backstageAdapter.getItem().quality);
+    }
+
+    @Test
+    void backStageQualityIncreasesNoMoreThan50WhenIsGreaterThan10Days() {
+        //given
+        Item backStage5 = new Item("Backstage passes to a TAFKAL80ETC concert", 11, 50);
+        ItemAdapter backstageAdapter = new ItemAdapter(ItemType.BACKSTAGE_PASSES, backStage5);
+        BackstagePassesRule backstagePassesRule = new BackstagePassesRule();
+
+        //when
+        backstagePassesRule.processItem(backstageAdapter);
+
+        //then
+        assertEquals(10, backstageAdapter.getItem().sellIn);
+        assertEquals(50, backstageAdapter.getItem().quality);
+    }
 }
