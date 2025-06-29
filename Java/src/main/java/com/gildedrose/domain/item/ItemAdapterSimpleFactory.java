@@ -10,6 +10,7 @@ public final class ItemAdapterSimpleFactory {
              case AGEG_BRIE -> createAgedBrie(item);
              case BACKSTAGE_PASSES -> createBackStagePasses(item);
              case SULFURAS -> createSulfuras(item);
+             case CONJURED -> createConjured(item);
              default -> createStandardItem(item);
          };
     }
@@ -28,5 +29,9 @@ public final class ItemAdapterSimpleFactory {
 
     private static ItemAdapter createStandardItem(Item item) {
         return new ItemAdapter(ItemType.STANDARD, item);
+    }
+
+    private static ItemAdapter createConjured(Item item) {
+        return new ItemAdapter(ItemType.CONJURED, item);
     }
 }

@@ -62,4 +62,18 @@ public class InventoryRuleEngineTest {
         assertEquals(4, itemAdapter.getItem().sellIn);
         assertEquals(6, itemAdapter.getItem().quality);
     }
+
+    @Test
+    void shouldApplyConjuredRule() {
+        //given
+        ItemAdapter itemAdapter = new ItemAdapter(ItemType.CONJURED,
+            new Item("Conjured Mana Cake", 3, 6));
+
+        //when
+        InventoryRuleEngine.applyUpdateRule(itemAdapter);
+
+        //then
+        assertEquals(2, itemAdapter.getItem().sellIn);
+        assertEquals(4, itemAdapter.getItem().quality);
+    }
 }

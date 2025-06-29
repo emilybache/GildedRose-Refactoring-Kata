@@ -56,4 +56,17 @@ public class ItemAdapterSimpleFactoryTest {
         assertEquals(standardItem.quality, result.getItem().quality);
 
     }
+
+    @Test
+    void shouldCreateConjuredItemAdapter(){
+        //given
+        Item conjured = new Item("Conjured Mana Cake", 3, 6);
+        //when
+        ItemAdapter result = ItemAdapterSimpleFactory.createItemAdapter(conjured);
+        //then
+        assertEquals(conjured.name, result.getItem().name);
+        assertEquals(conjured.sellIn, result.getItem().sellIn);
+        assertEquals(conjured.quality, result.getItem().quality);
+
+    }
 }

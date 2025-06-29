@@ -18,9 +18,9 @@ public class ItemTypeTest {
     @Test
     void findByValue_BackStagePasses() {
         // given
-        String agedBrie = "Backstage passes to a TAFKAL80ETC concert";
+        String backstage = "Backstage passes to a TAFKAL80ETC concert";
         //when
-        ItemType result = ItemType.findByValue(agedBrie);
+        ItemType result = ItemType.findByValue(backstage);
         //then
         assertEquals(ItemType.BACKSTAGE_PASSES, result);
     }
@@ -28,9 +28,9 @@ public class ItemTypeTest {
     @Test
     void findByValue_Sulfuras() {
         // given
-        String agedBrie = "Sulfuras, Hand of Ragnaros";
+        String sulfuras = "Sulfuras, Hand of Ragnaros";
         //when
-        ItemType result = ItemType.findByValue(agedBrie);
+        ItemType result = ItemType.findByValue(sulfuras);
         //then
         assertEquals(ItemType.SULFURAS, result);
     }
@@ -38,10 +38,20 @@ public class ItemTypeTest {
     @Test
     void findByValue_StandardItem() {
         // given
-        String agedBrie = "Elixir of the Mongoose";
+        String standardItem = "Elixir of the Mongoose";
         //when
-        ItemType result = ItemType.findByValue(agedBrie);
+        ItemType result = ItemType.findByValue(standardItem);
         //then
         assertEquals(ItemType.STANDARD, result);
+    }
+
+    @Test
+    void findByValue_Conjured() {
+        // given
+        String conjured = "Conjured Mana Cake";
+        //when
+        ItemType result = ItemType.findByValue(conjured);
+        //then
+        assertEquals(ItemType.CONJURED, result);
     }
 }
