@@ -13,7 +13,7 @@ public class UpdateInventoryTemplateRuleTest {
     void processItemCorrectly() {
         //given
         UpdateInventoryTemplateRule testRule = createTestRule(true, true, true);
-        ItemAdapter itemAdapter = new ItemAdapter(ItemType.AGEG_BRIE, new Item("Just a test item", 3, 0));
+        ItemAdapter itemAdapter = new ItemAdapter(ItemType.STANDARD, new Item("Just a test item", 3, 0));
         //when
         testRule.processItem(itemAdapter);
 
@@ -26,20 +26,20 @@ public class UpdateInventoryTemplateRuleTest {
     void processItemCorrectlyWhenIsExpired() {
         //given
         UpdateInventoryTemplateRule testRule = createTestRule(true, true, true);
-        ItemAdapter itemAdapter = new ItemAdapter(ItemType.AGEG_BRIE, new Item("Just a test item", 0, 2));
+        ItemAdapter itemAdapter = new ItemAdapter(ItemType.STANDARD, new Item("Just a test item", 0, 2));
         //when
         testRule.processItem(itemAdapter);
 
         //then
         assertEquals(-1, itemAdapter.getItem().sellIn);
-        assertEquals(0, itemAdapter.getItem().quality);
+        assertEquals(2, itemAdapter.getItem().quality);
     }
 
     @Test
     void processItemCorrectlyWhenNoChangesAreAllowed() {
         //given
         UpdateInventoryTemplateRule testRule = createTestRule(false, false, false);
-        ItemAdapter itemAdapter = new ItemAdapter(ItemType.AGEG_BRIE, new Item("Just a test item", 10, 2));
+        ItemAdapter itemAdapter = new ItemAdapter(ItemType.STANDARD, new Item("Just a test item", 10, 2));
         //when
         testRule.processItem(itemAdapter);
 
@@ -63,12 +63,12 @@ public class UpdateInventoryTemplateRuleTest {
             }
 
             @Override
-            protected boolean canIncreaseQuality(ItemAdapter itemAdapter) {
+            protected boolean canIncreaseQuality(boolean isExpired, ItemAdapter itemAdapter) {
                 return canIncreaseQuality;
             }
 
             @Override
-            protected boolean canDecreaseQuality(ItemAdapter itemAdapter) {
+            protected boolean canDecreaseQuality(boolean isExpired, ItemAdapter itemAdapter) {
                 return canDecreaseQuality;
             }
         };

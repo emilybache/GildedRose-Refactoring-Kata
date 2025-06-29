@@ -16,12 +16,12 @@ public class AgedBrieRule extends UpdateInventoryTemplateRule {
     }
 
     @Override
-    protected boolean canIncreaseQuality(final ItemAdapter itemAdapter) {
+    protected boolean canIncreaseQuality(boolean isExpired, final ItemAdapter itemAdapter) {
         return true;
     }
 
     @Override
-    protected boolean canDecreaseQuality(final ItemAdapter itemAdapter) {
+    protected boolean canDecreaseQuality(boolean isExpired, final ItemAdapter itemAdapter) {
         return false;
     }
 }

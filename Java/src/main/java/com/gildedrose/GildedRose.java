@@ -38,31 +38,11 @@ class GildedRose {
         ItemAdapter itemAdapter = ItemAdapterSimpleFactory.createItemAdapter(item);
 
         if (isAgedBrie) {
-            InventoryRuleEngine.processUpdateInventoryRule(itemAdapter);
+            InventoryRuleEngine.applyUpdateRule(itemAdapter);
         } else if (isBackstagePasses) {
-            if (shouldIncreaseQuality(item)) {
-                increaseQuality(item);
-
-                if (item.sellIn < SELL_IN_DAY11) {
-                    if (shouldIncreaseQuality(item)) {
-                        increaseQuality(item);
-                    }
-                }
-
-                if (item.sellIn < SELL_IN_DAY6) {
-                    if (shouldIncreaseQuality(item)) {
-                        increaseQuality(item);
-                    }
-                }
-            }
-
-            decreaseDay(item);
-
-            if (isExpired(item)) {
-                item.quality = MINIMUM_QUALITY;
-            }
+            InventoryRuleEngine.applyUpdateRule(itemAdapter);
         } else if (isSulfuras) {
-            InventoryRuleEngine.processUpdateInventoryRule(itemAdapter);
+            InventoryRuleEngine.applyUpdateRule(itemAdapter);
         } else {
             //standard item
             if (shouldDecreaseQuality(item)) {

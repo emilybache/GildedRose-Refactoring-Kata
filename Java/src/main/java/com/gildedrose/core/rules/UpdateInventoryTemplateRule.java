@@ -11,33 +11,33 @@ public abstract class UpdateInventoryTemplateRule {
 
     public final void processItem(final ItemAdapter itemAdapter) {
 
+        boolean isExpired = isExpired(itemAdapter);
+        int qualityFactor = getQualityFactor(isExpired, itemAdapter);
+
+        if (canIncreaseQuality(isExpired, itemAdapter)) {
+            increaseQuality(itemAdapter, qualityFactor);
+        }
+
         if (canSubtractSellIn(itemAdapter)) {
             subtractSellIn(itemAdapter);
         }
 
-        boolean isExpired = isExpired(itemAdapter);
-        int qualityFactor = getQualityFactor(isExpired, itemAdapter);
-
-        if (canIncreaseQuality(itemAdapter)) {
-            increaseQuality(itemAdapter, qualityFactor);
-        }
-
-        if (canDecreaseQuality(itemAdapter)) {
+        if (canDecreaseQuality(isExpired, itemAdapter)) {
             decreaseQuality(itemAdapter, qualityFactor);
         }
     }
 
     protected abstract boolean canSubtractSellIn(final ItemAdapter itemAdapter);
     protected abstract int getQualityFactor(final boolean isExpired, final ItemAdapter itemAdapter);
-    protected abstract boolean canIncreaseQuality(final ItemAdapter itemAdapter);
-    protected abstract boolean canDecreaseQuality(final ItemAdapter itemAdapter);
+    protected abstract boolean canIncreaseQuality(final boolean isExpired, final ItemAdapter itemAdapter);
+    protected abstract boolean canDecreaseQuality(boolean isExpired, final ItemAdapter itemAdapter);
 
     private void subtractSellIn(final ItemAdapter itemAdapter) {
         itemAdapter.getItem().sellIn -= SELL_IN_UNIT;
     }
 
     private boolean isExpired(final ItemAdapter itemAdapter) {
-        return itemAdapter.getItem().sellIn < SELL_IN_EXPIRED;
+        return itemAdapter.getItem().sellIn <= SELL_IN_EXPIRED;
     }
 
     private void increaseQuality(final ItemAdapter itemAdapter, final int qualityFactor) {
@@ -47,6 +47,6 @@ public abstract class UpdateInventoryTemplateRule {
 
     private void decreaseQuality(final ItemAdapter itemAdapter, final int qualityFactor) {
         int decreasedQuality = itemAdapter.getItem().quality - qualityFactor;
-        itemAdapter.getItem().quality = Math.min(decreasedQuality, MINIMUM_QUALITY);
+        itemAdapter.getItem().quality = Math.max(decreasedQuality, MINIMUM_QUALITY);
     }
 }

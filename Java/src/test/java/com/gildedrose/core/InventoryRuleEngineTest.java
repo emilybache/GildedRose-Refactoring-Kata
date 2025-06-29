@@ -14,7 +14,7 @@ public class InventoryRuleEngineTest {
         ItemAdapter itemAdapter = new ItemAdapter(ItemType.AGEG_BRIE, new Item("Aged Brie", 3, 0));
 
         //when
-        InventoryRuleEngine.processUpdateInventoryRule(itemAdapter);
+        InventoryRuleEngine.applyUpdateRule(itemAdapter);
 
         //then
         assertEquals(2, itemAdapter.getItem().sellIn);
