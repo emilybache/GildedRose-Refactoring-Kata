@@ -139,7 +139,7 @@ internal class GildedRoseTest {
 
 
 
-    /*
+
     @Test
     fun  conjuredBasic() {
         val items = listOf(Item("Conjured Mana Cake", 3, 6))
@@ -150,7 +150,7 @@ internal class GildedRoseTest {
         assertEquals(4, app.items[0].quality)
     }
 
-*/
+
 
 
 }
