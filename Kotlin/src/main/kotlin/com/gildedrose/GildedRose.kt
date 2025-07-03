@@ -11,7 +11,12 @@ class GildedRose(val items: List<Item>) {
             }
 
             if (items[i].name == "Aged Brie") {
-                items[i].quality += 1
+                if (items[i].sellIn < 0) {
+                    items[i].quality += 2
+                } else {
+                    items[i].quality += 1
+                }
+
             }
 
             if (items[i].name == "Backstage passes to a TAFKAL80ETC concert" && items[i].sellIn < 0) {
@@ -48,6 +53,10 @@ class GildedRose(val items: List<Item>) {
 
             if (items[i].quality >= 50 && items[i].name != "Sulfuras, Hand of Ragnaros") {
                 items[i].quality = 50
+            }
+
+            if (items[i].quality == 0) {
+                items[i].quality = 0
             }
 
         }

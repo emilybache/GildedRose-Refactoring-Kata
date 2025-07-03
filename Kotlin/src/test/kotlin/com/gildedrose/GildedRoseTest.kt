@@ -16,6 +16,16 @@ internal class GildedRoseTest {
     }
 
     @Test
+    fun dexterityVestNegativeSellIn() {
+        val items = listOf(Item("+5 Dexterity Vest", 0, 20))
+        val app = GildedRose(items)
+        app.updateQuality()
+        assertEquals("+5 Dexterity Vest",  app.items[0].name)
+        assertEquals(-1, app.items[0].sellIn)
+        assertEquals(18, app.items[0].quality)
+    }
+
+    @Test
     fun agedBrie() {
         val items = listOf(Item("Aged Brie", 2, 0))
         val app = GildedRose(items)
@@ -24,6 +34,7 @@ internal class GildedRoseTest {
         assertEquals(1, app.items[0].sellIn)
         assertEquals(1, app.items[0].quality)
     }
+
     @Test
     fun elixirOfTheMongoose() {
         val items = listOf(Item("Elixir of the Mongoose", 5, 7))
