@@ -31,6 +31,6 @@ fun main(args: Array<String>) {
             println(item)
         }
         println()
-        app.updateQuality()
+        app.updateQualityClara()
     }
 }

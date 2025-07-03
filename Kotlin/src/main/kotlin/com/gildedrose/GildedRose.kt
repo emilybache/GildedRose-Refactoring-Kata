@@ -2,6 +2,61 @@ package com.gildedrose
 
 class GildedRose(val items: List<Item>) {
 
+    fun updateQualityClara() {
+        for (i in items.indices) {
+            items[i].sellIn -= 1
+
+            if (items[i].name == "Sulfuras, Hand of Ragnaros") { //might not be necessary
+                items[i].quality = items[i].quality
+            }
+
+            if (items[i].name == "Aged Brie") {
+                items[i].quality += 1
+            }
+
+            if (items[i].name == "Backstage passes to a TAFKAL80ETC concert" && items[i].sellIn < 0) {
+                if (items[i].sellIn < 0) {
+                    items[i].quality = 0
+                } else if (items[i].sellIn in 6..10) {
+                    items[i].quality += 2
+                } else if (items[i].sellIn in 0..5) {
+                    items[i].quality += 3
+                } else {
+                    items[i].quality += 1
+                }
+            }
+
+            if (items[i].name == "+5 Dexterity Vest" || items[i].name == "Elixir og the Mongoose") {
+
+                if (items[i].sellIn < 0) {
+                    items[i].quality -= 2
+                } else {
+                    items[i].quality -= 1
+                }
+
+            }
+
+            if (items[i].name == "Conjured Mana Cake" || items[i].name == "Elixir og the Mongoose") {
+
+                if (items[i].sellIn < 0) {
+                    items[i].quality -= 4
+                } else {
+                    items[i].quality -= 2
+                }
+
+            }
+
+            if (items[i].quality >= 50 && items[i].name != "Sulfuras, Hand of Ragnaros") {
+                items[i].quality = 50
+            }
+
+        }
+    }
+
+
+
+
+
     fun updateQuality() {
         for (i in items.indices) {
             if (items[i].name != "Aged Brie" && items[i].name != "Backstage passes to a TAFKAL80ETC concert") {
@@ -55,4 +110,3 @@ class GildedRose(val items: List<Item>) {
     }
 
 }
-
