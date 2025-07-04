@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 internal class GildedRoseTest {
 
     @Test
-    fun dexterityVest() {
+    fun dexterityVestNormal() {
         val items = listOf(Item("+5 Dexterity Vest", 10, 20))
         val app = GildedRose(items)
         app.updateQuality()
@@ -26,7 +26,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun agedBrie() {
+    fun agedBrieNormal() {
         val items = listOf(Item("Aged Brie", 2, 0))
         val app = GildedRose(items)
         app.updateQuality()
@@ -36,7 +36,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun elixirOfTheMongoose() {
+    fun elixirOfTheMongooseNormal() {
         val items = listOf(Item("Elixir of the Mongoose", 5, 7))
         val app = GildedRose(items)
         app.updateQuality()
@@ -46,7 +46,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun elixirOfTheMongooseAt0() {
+    fun elixirOfTheMongooseNegativeSellIn() {
         val items = listOf(Item("Elixir of the Mongoose", 0, 7))
         val app = GildedRose(items)
         app.updateQuality()
@@ -57,7 +57,7 @@ internal class GildedRoseTest {
 
 
     @Test
-    fun sulfuras0() {
+    fun sulfurasAt0() {
         val items = listOf(Item("Sulfuras, Hand of Ragnaros", 0, 80))
         val app = GildedRose(items)
         app.updateQuality()
@@ -67,7 +67,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun sulfurasMinus1() {
+    fun sulfurasAtMinus1() {
         val items = listOf(Item("Sulfuras, Hand of Ragnaros", -1, 80))
         val app = GildedRose(items)
         app.updateQuality()
@@ -148,6 +148,16 @@ internal class GildedRoseTest {
         assertEquals("Conjured Mana Cake",  app.items[0].name)
         assertEquals(2, app.items[0].sellIn)
         assertEquals(4, app.items[0].quality)
+    }
+
+    @Test
+    fun  conjuredBasicNegativeSellIn() {
+        val items = listOf(Item("Conjured Mana Cake", 0, 6))
+        val app = GildedRose(items)
+        app.updateQuality()
+        assertEquals("Conjured Mana Cake",  app.items[0].name)
+        assertEquals(-1, app.items[0].sellIn)
+        assertEquals(2, app.items[0].quality)
     }
 
 
