@@ -2,3 +2,9 @@ pytest
 approvaltests
 pytest-approvaltests
 coverage
+black
+flake8
+pylint
+isort
+mypy
+
