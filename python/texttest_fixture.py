@@ -2,6 +2,7 @@
 from __future__ import print_function
 
 from gilded_rose import *
+from models import Item
 
 
 def main():

@@ -1,0 +1,55 @@
+name: Lint and Test
+
+on:
+  push:
+    branches: 
+      - main
+      - test/my_changes
+
+  pull_request:
+    branches: 
+      - main
+      - test/my_changes
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+        pip install -r python/requirements-dev.txt
+
+    - name: Run Black (formatting)
+      run: |
+        black --check .
+
+    - name: Run isort (imports)
+      run: |
+        isort --check-only .
+
+    - name: Run flake8 (style)
+      run: |
+        flake8 .
+
+    - name: Run pylint (quality)
+      run: |
+        pylint python/gilded_rose.py
+
+    - name: Run mypy (type checking)
+      run: |
+        mypy python/gilded_rose.py
+
+    - name: Run tests
+      run: |
+        python -m unittest discover -s python/tests
