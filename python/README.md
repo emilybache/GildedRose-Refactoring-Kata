@@ -7,7 +7,7 @@ Suggestion: create a python virtual environment for this project. See the [docum
 ## Run the unit tests from the Command-Line
 
 ```
-python tests/test_gilded_rose.py
+python -m unittest
 ```
 
 ## Run the TextTest fixture from the Command-Line
@@ -30,7 +30,7 @@ There are instructions in the [TextTest Readme](../texttests/README.md) for sett
 
 ## Run the ApprovalTests.Python test
 
-This test uses the framework [ApprovalTests.Python](https://github.com/approvals/ApprovalTests.Python). Run it like this:
+This test uses the framework [ApprovalTests.Python](https://github.com/approvals/ApprovalTests.Python). You will need to install  Run it like this:
 
 ```
 python tests/test_gilded_rose_approvals.py
