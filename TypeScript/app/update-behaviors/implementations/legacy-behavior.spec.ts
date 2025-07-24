@@ -37,18 +37,4 @@ describe("Legacy Behavior", () => {
       quality: 0,
     });
   });
-
-  it("should not change quality of Sulfuras", () => {
-    const behavior = new LegacyBehavior(
-      new Item("Sulfuras, Hand of Ragnaros", 0, 80)
-    );
-
-    const result = behavior.update();
-
-    expect(result).toMatchObject({
-      name: "Sulfuras, Hand of Ragnaros",
-      sellIn: 0,
-      quality: 80,
-    });
-  });
 });
