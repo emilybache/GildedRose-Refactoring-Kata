@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Gilded Rose kata in TypeScript",
   "scripts": {
-    "precompile": "rimraf app/**/*.js test/**/*.js",
+    "precompile": "rimraf app/**/*.js snapshot-tests/**/*.js",
     "compile": "tsc",
-    "pretest": "rimraf app/**/*.js test/**/*.js",
+    "pretest": "rimraf app/**/*.js snapshot-tests/**/*.js",
     "test": "jest",
     "test:watch": "jest --watchAll"
   },
