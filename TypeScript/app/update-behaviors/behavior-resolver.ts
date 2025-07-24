@@ -1,6 +1,6 @@
 import { Item } from "@app/item";
 import { IUpdateBehavior } from "./update-behavior.interface";
-import { LegacyBehavior } from "./implementations/legacy-behavior";
+import { DefaultBehavior } from "./implementations/default/default-behavior";
 import { AgedBrieBehavior } from "./implementations/aged-brie/aged-brie-behavior";
 import { BackstagePassBehavior } from "./implementations/backstage-pass/backstage-pass-behavior";
 import { LegendaryItemBehavior } from "./implementations/legendary-item/legendary-item-behavior";
@@ -14,6 +14,6 @@ export function getUpdateBehaviorFor(item: Item): IUpdateBehavior {
     case "Sulfuras, Hand of Ragnaros":
       return new LegendaryItemBehavior(item);
     default:
-      return new LegacyBehavior(item);
+      return new DefaultBehavior(item);
   }
 }

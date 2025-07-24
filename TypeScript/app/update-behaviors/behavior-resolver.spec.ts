@@ -1,7 +1,7 @@
 import { Item } from "@app/item";
 import { getUpdateBehaviorFor } from "./behavior-resolver";
 import { AgedBrieBehavior } from "./implementations/aged-brie/aged-brie-behavior";
-import { LegacyBehavior } from "./implementations/legacy-behavior";
+import { DefaultBehavior } from "./implementations/default/default-behavior";
 import { BackstagePassBehavior } from "./implementations/backstage-pass/backstage-pass-behavior";
 import { LegendaryItemBehavior } from "./implementations/legendary-item/legendary-item-behavior";
 
@@ -29,6 +29,6 @@ describe("Behavior resolver", () => {
   it("should correctly resolve the rest to Legacy behavior", () => {
     expect(
       getUpdateBehaviorFor(new Item("some other item", 0, 0))
-    ).toBeInstanceOf(LegacyBehavior);
+    ).toBeInstanceOf(DefaultBehavior);
   });
 });

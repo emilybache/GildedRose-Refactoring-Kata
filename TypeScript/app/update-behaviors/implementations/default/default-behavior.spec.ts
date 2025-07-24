@@ -1,9 +1,9 @@
 import { Item } from "@app/item";
-import { LegacyBehavior } from "./legacy-behavior";
+import { DefaultBehavior } from "./default-behavior";
 
-describe("Legacy Behavior", () => {
+describe("Default Behavior", () => {
   it("should degrade sell inn and quality each day", () => {
-    const behavior = new LegacyBehavior(new Item("standard item", 1, 1));
+    const behavior = new DefaultBehavior(new Item("standard item", 1, 1));
 
     const result = behavior.update();
 
@@ -15,7 +15,7 @@ describe("Legacy Behavior", () => {
   });
 
   it("should degrade quality twice as fast after sell in date", () => {
-    const behavior = new LegacyBehavior(new Item("standard item", 0, 2));
+    const behavior = new DefaultBehavior(new Item("standard item", 0, 2));
 
     const result = behavior.update();
 
@@ -27,7 +27,7 @@ describe("Legacy Behavior", () => {
   });
 
   it("should not degrade quality below 0", () => {
-    const behavior = new LegacyBehavior(new Item("standard item", 1, 0));
+    const behavior = new DefaultBehavior(new Item("standard item", 1, 0));
 
     const result = behavior.update();
 
