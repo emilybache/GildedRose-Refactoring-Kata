@@ -1,5 +1,5 @@
 import { Item } from "@app/item";
-import { IUpdateBehavior, LegacyBehavior } from "@app/update-behaviors";
+import { getUpdateBehaviorFor } from "@app/update-behaviors";
 
 export class GildedRose {
   // also can't edit this because of the kata rules.
@@ -12,14 +12,7 @@ export class GildedRose {
 
   updateQuality() {
     return this.items.map((item) => {
-      return this.#getUpdateBehaviorFor(item).update();
+      return getUpdateBehaviorFor(item).update();
     });
-  }
-
-  #getUpdateBehaviorFor(item: Item): IUpdateBehavior {
-    switch (item.name) {
-      default:
-        return new LegacyBehavior(item);
-    }
   }
 }
