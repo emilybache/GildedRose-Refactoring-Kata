@@ -1,4 +1,5 @@
-import { Item, GildedRose } from "@/gilded-rose";
+import { GildedRose } from "@app/gilded-rose";
+import { Item } from "@app/item";
 
 describe("Gilded Rose", () => {
   it("should have an empty array as items when no constructor parameter is provided", () => {

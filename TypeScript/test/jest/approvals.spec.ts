@@ -1,4 +1,5 @@
-import { Item, GildedRose } from "@/gilded-rose";
+import { GildedRose } from "@app/gilded-rose";
+import { Item } from "@app/item";
 
 describe("Gilded Rose Approval", () => {
   it("should match the snapshot for thirty Days", () => {
