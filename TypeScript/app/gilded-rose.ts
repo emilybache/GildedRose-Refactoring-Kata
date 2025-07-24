@@ -3,6 +3,13 @@ export class Item {
   sellIn: number;
   quality: number;
 
+  // can't edit this constructor because of the kata rules.
+  // but I would change the constructor to take a javaScript object.
+  // It makes the consumer code more readable.
+  // e.g. new Item({ name: "standard item", sellIn: 0, quality: 2 })
+  // instead of new Item("standard item", 0, 2)
+
+  // I would also type the parameters, because now they are implicitly any.
   constructor(name, sellIn, quality) {
     this.name = name;
     this.sellIn = sellIn;
@@ -11,6 +18,8 @@ export class Item {
 }
 
 export class GildedRose {
+  // also can't edit this because of the kata rules.
+  // But I prefer typing this as : Item[]
   items: Array<Item>;
 
   constructor(items = [] as Array<Item>) {
