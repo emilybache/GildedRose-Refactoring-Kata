@@ -4,6 +4,7 @@ import { AgedBrieBehavior } from "./implementations/aged-brie/aged-brie-behavior
 import { DefaultBehavior } from "./implementations/default/default-behavior";
 import { BackstagePassBehavior } from "./implementations/backstage-pass/backstage-pass-behavior";
 import { LegendaryItemBehavior } from "./implementations/legendary-item/legendary-item-behavior";
+import { ConjuredItemBehavior } from "./implementations/conjured-item/conjured-item-behavior";
 
 describe("Behavior resolver", () => {
   it("should correctly resolve Aged Brie", () => {
@@ -24,6 +25,11 @@ describe("Behavior resolver", () => {
     expect(
       getUpdateBehaviorFor(new Item("Sulfuras, Hand of Ragnaros", 0, 0))
     ).toBeInstanceOf(LegendaryItemBehavior);
+  });
+  it("should correctly resolve Conjured Items", () => {
+    expect(
+      getUpdateBehaviorFor(new Item("Conjured Mana Cake", 0, 0))
+    ).toBeInstanceOf(ConjuredItemBehavior);
   });
 
   it("should correctly resolve the rest to Legacy behavior", () => {

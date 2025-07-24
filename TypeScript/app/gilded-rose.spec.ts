@@ -35,6 +35,4 @@ describe("Gilded Rose", () => {
     expect(updateMock).toHaveBeenCalledWith(item1);
     expect(updateMock).toHaveBeenCalledWith(item2);
   });
-
-  // to implement: "Conjured" items degrade in Quality twice as fast as normal items
 });

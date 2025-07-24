@@ -44,7 +44,7 @@ exports[`Gilded Rose Approval should match the snapshot for thirty Days 1`] = `
   },
   Item {
     "name": "Conjured Mana Cake",
-    "quality": 5,
+    "quality": 4,
     "sellIn": 2,
   },
 ]
@@ -94,7 +94,7 @@ exports[`Gilded Rose Approval should match the snapshot for thirty Days 2`] = `
   },
   Item {
     "name": "Conjured Mana Cake",
-    "quality": 4,
+    "quality": 2,
     "sellIn": 1,
   },
 ]
@@ -144,7 +144,7 @@ exports[`Gilded Rose Approval should match the snapshot for thirty Days 3`] = `
   },
   Item {
     "name": "Conjured Mana Cake",
-    "quality": 3,
+    "quality": 0,
     "sellIn": 0,
   },
 ]
@@ -194,7 +194,7 @@ exports[`Gilded Rose Approval should match the snapshot for thirty Days 4`] = `
   },
   Item {
     "name": "Conjured Mana Cake",
-    "quality": 1,
+    "quality": 0,
     "sellIn": -1,
   },
 ]
