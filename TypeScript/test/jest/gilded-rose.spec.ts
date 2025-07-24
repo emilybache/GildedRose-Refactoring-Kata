@@ -147,4 +147,6 @@ describe("Gilded Rose", () => {
       quality: 0,
     });
   });
+
+  // to implement: "Conjured" items degrade in Quality twice as fast as normal items
 });
