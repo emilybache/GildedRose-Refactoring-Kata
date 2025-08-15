@@ -4,8 +4,9 @@ defmodule GildedRoseTest do
   import ExUnit.CaptureIO
 
   test "Approval test 30 days" do
-    expected = File.read!("test/ApprovalTest.ThirtyDays.verified.txt")
-    assert capture_io(fn -> GildedRose.TextTestFixture.run(30) end) == expected
+    expected = File.read!("test/ApprovalTest.ThirtyDays.verified.txt") |> String.replace("\r\n", "\n")
+    result = capture_io(fn -> GildedRose.TextTestFixture.run(30) end) |> String.replace("\r\n", "\n")
+    assert result == expected
   end
 
   test "begin the journey of refactoring" do
