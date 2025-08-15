@@ -28,7 +28,7 @@ defmodule GildedRose.TextTestFixture do
     Enum.reduce(0..days, items, fn day, items ->
       IO.puts "-------- day #{day} --------"
       IO.puts "name, sellIn, quality"
-      Enum.each(items, fn item -> IO.inspect(item) end)
+      Enum.each(items, fn item -> IO.puts("#{item.name}, #{item.sell_in}, #{item.quality}") end)
       IO.puts("")
       GildedRose.update_quality(items)
     end)
