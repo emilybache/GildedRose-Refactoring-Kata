@@ -1,6 +1,6 @@
 defmodule GildedRose.TextTestFixture do
 
-  def run() do
+  def run(days) do
     IO.puts("OMGHAI!")
 
     items = [
@@ -16,15 +16,6 @@ defmodule GildedRose.TextTestFixture do
       %Item{name: "Conjured Mana Cake", sell_in: 3, quality: 6}, # <-- :O
     ]
 
-    days =
-      if System.get_env("DEFAULT_DAYS") != nil do
-          "DEFAULT_DAYS"
-          |> System.get_env()
-          |> String.to_integer()
-        else
-          2
-        end
-
     Enum.reduce(0..days, items, fn day, items ->
       IO.puts "-------- day #{day} --------"
       IO.puts "name, sellIn, quality"
@@ -33,4 +24,9 @@ defmodule GildedRose.TextTestFixture do
       GildedRose.update_quality(items)
     end)
   end
+
+  def run() do
+    run(2)
+  end
+
 end
