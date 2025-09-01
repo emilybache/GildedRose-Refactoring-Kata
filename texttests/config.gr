@@ -17,6 +17,9 @@ diff_program:meld
 # Settings for the zig version
 #executable:${TEXTTEST_HOME}/zig/zig-out/bin/zig
 
+# Settings for the lua version
+#executable:${TEXTTEST_HOME}/lua/texttest
+
 # Settings for the Java version using Gradle wrapped in a python script
 #executable:${TEXTTEST_HOME}/Java/texttest_rig.py
 #interpreter:python
