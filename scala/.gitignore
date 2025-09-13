@@ -8,6 +8,8 @@
 *.iml
 .bsp
 .bloop
+.bsp
+.bloop
 
 #vscode
 .vscode
