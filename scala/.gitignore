@@ -6,6 +6,8 @@
 # IntelliJ
 .idea
 *.iml
+.bsp
+.bloop
 
 # Eclipse
 .worksheet
