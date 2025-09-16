@@ -66,11 +66,7 @@ class Sulfuras(Item):
 
 class Conjured(Item):
     name: str = "Conjured"
-    def daily_step(self):
-        if self.quality < 50:
-            self.quality += 1
-        super().daily_step()
-
+    degradation_per_day: int = Item.degradation_per_day * 2
 
 items_mappings: dict[str, type[Item]] = {
     "Aged Brie": AgedBrie,
