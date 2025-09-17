@@ -38,6 +38,20 @@ class GildedRoseTest(unittest.TestCase):
         
         self.assertEqual(-1, items[0].sell_in)
         self.assertEqual(12, items[0].quality)
+    def test_aged_brie_quality_cannot_exceed_50(self):
+        items = [Item("Aged Brie", 2, 50)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        
+        self.assertEqual(1, items[0].sell_in)
+        self.assertEqual(50, items[0].quality)  # Stays at 50
+    def test_aged_brie_near_max_quality_after_sell_date(self):
+        items = [Item("Aged Brie", 0, 49)]  #treis to add 2, but caps at 50
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        
+        self.assertEqual(-1, items[0].sell_in)
+        self.assertEqual(50, items[0].quality)  # 49 + 1 = 50 (second +1 blocked by cap)
     
     
     
