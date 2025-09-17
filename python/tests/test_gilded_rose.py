@@ -31,6 +31,14 @@ class GildedRoseTest(unittest.TestCase):
         
         self.assertEqual(0, items[0].sell_in)
         self.assertEqual(11, items[0].quality)  # +1
+    def test_aged_brie_increases_quality_twice_after_sell_date(self):
+        items = [Item("Aged Brie", 0, 10)]  # Will become sell_in = -1
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        
+        self.assertEqual(-1, items[0].sell_in)
+        self.assertEqual(12, items[0].quality)
+    
     
     
     
