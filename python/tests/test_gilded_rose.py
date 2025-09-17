@@ -118,8 +118,27 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEqual(4, items[0].sell_in)
         self.assertEqual(9, items[0].quality)  # -1
     
-    
-
+    def test_regular_item_decreases_quality_twice_after_sell_date(self):
+        items = [Item("Old Shield", 0, 10)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        
+        self.assertEqual(-1, items[0].sell_in)
+        self.assertEqual(8, items[0].quality)
+    def test_regular_item_quality_no_negative(self):
+        items = [Item("Broken Armor", 1, 0)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        
+        self.assertEqual(0, items[0].sell_in)
+        self.assertEqual(0, items[0].quality)   # Stays 0
+    def test_regular_item_quality_expires(self):
+        items = [Item("Rusty Weapon", 0, 1)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        
+        self.assertEqual(-1, items[0].sell_in)
+        self.assertEqual(0, items[0].quality)
 
 if __name__ == '__main__':
     unittest.main()
