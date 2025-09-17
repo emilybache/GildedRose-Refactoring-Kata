@@ -15,7 +15,8 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEqual(-1, items[0].sell_in)
         # (cannot go below 0)
         self.assertEqual(0, items[0].quality)
-
+        
+    # Aged Brie tests
     def test_aged_brie_increases_quality_before_sell_date(self):
         items = [Item("Aged Brie", 2, 0)]
         gilded_rose = GildedRose(items)
@@ -52,6 +53,8 @@ class GildedRoseTest(unittest.TestCase):
         
         self.assertEqual(-1, items[0].sell_in)
         self.assertEqual(50, items[0].quality)  # 49 + 1 = 50 (second +1 blocked by cap)
+
+    # Sulfuras tests
     def test_sulfuras_quality_never_decreases(self):
         items = [Item("Sulfuras, Hand of Ragnaros", 0, 80)]
         gilded_rose = GildedRose(items)
@@ -71,9 +74,9 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_quality()
         
         self.assertEqual(5, items[0].sell_in)   # No change 
-        self.assertEqual(100, items[0].quality)  
-    
-    
+        self.assertEqual(100, items[0].quality)
+
+    # Backstage Pass tests
     def test_backstage_pass_increases_for_far_away(self):
         items = [Item("Backstage passes to a TAFKAL80ETC concert", 15, 20)]
         gilded_rose = GildedRose(items)
@@ -110,6 +113,7 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEqual(4, items[0].sell_in)
         self.assertEqual(50, items[0].quality)
     
+    # Regular item tests
     def test_regular_item_decreases_quality_before_sell_date(self):
         items = [Item("Normal Sword", 5, 10)]
         gilded_rose = GildedRose(items)
