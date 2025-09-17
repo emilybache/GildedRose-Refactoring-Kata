@@ -81,7 +81,27 @@ class GildedRoseTest(unittest.TestCase):
         
         self.assertEqual(14, items[0].sell_in)
         self.assertEqual(21, items[0].quality)  # +1 only
+    def test_backstage_pass_increases_faster_with_10_days_left(self):
+        items = [Item("Backstage passes to a TAFKAL80ETC concert", 10, 20)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
         
+        self.assertEqual(9, items[0].sell_in)
+        self.assertEqual(22, items[0].quality) # +1 base + 1 bonus = +2
+    def test_backstage_pass_increases_faster_with_5_days_left(self):
+        items = [Item("Backstage passes to a TAFKAL80ETC concert", 5, 20)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        
+        self.assertEqual(4, items[0].sell_in)
+        self.assertEqual(23, items[0].quality)  # +1 base + 1 + 1 bonus = +3
+    def test_backstage_pass_becomes_worthless_after_concert(self):
+        items = [Item("Backstage passes to a TAFKAL80ETC concert", 0, 20)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        
+        self.assertEqual(-1, items[0].sell_in)
+        self.assertEqual(0, items[0].quality)  # Drops to 0!
     
     
     
