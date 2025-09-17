@@ -52,6 +52,14 @@ class GildedRoseTest(unittest.TestCase):
         
         self.assertEqual(-1, items[0].sell_in)
         self.assertEqual(50, items[0].quality)  # 49 + 1 = 50 (second +1 blocked by cap)
+    def test_sulfuras_quality_never_decreases(self):
+        items = [Item("Sulfuras, Hand of Ragnaros", 0, 80)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        
+        self.assertEqual(0, items[0].sell_in)   
+        self.assertEqual(80, items[0].quality)  
+    
     
     
     
