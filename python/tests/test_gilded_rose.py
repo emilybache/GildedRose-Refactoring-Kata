@@ -110,6 +110,13 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEqual(4, items[0].sell_in)
         self.assertEqual(50, items[0].quality)
     
+    def test_regular_item_decreases_quality_before_sell_date(self):
+        items = [Item("Normal Sword", 5, 10)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        
+        self.assertEqual(4, items[0].sell_in)
+        self.assertEqual(9, items[0].quality)  # -1
     
     
 
