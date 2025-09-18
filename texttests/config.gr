@@ -77,8 +77,3 @@ interpreter:ruby
 
 
 filename_convention_scheme:standard
-
-# uncomment for the scala version using sbt wrapped into python
-#[run_dependent_text]
-#stdout:\[info\]
-#stdout:\[success\]
