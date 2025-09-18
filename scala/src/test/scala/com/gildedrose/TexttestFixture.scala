@@ -1,8 +1,8 @@
 package com.gildedrose
 
 object TexttestFixture {
-  @main
-  def main(args: String*): Unit = {
+
+  def main(args: Array[String]): Unit = {
     println("OMGHAI!")
 
     val items = Array[Item](
