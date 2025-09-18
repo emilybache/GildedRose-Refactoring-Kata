@@ -2,7 +2,7 @@ full_name:Gilded Rose Refactoring Kata
 
 # set your preferred editor and diff tool.
 view_program:subl
-diff_program:meld
+diff_program:kdiff3
 
 # Settings for the Python version
 #executable:${TEXTTEST_HOME}/python/texttest_fixture.py
@@ -25,8 +25,8 @@ diff_program:meld
 #interpreter:python
 
 # Settings for the Java version using the classpath
-#executable:com.gildedrose.TexttestFixture
-#interpreter:java
+# executable:com.gildedrose.TexttestFixture
+# interpreter:java
 # note you'll also need to update the file environment.gr with your classpath if you keep your classfiles somewhere unusual
 
 # Settings for the Kotlin version using Gradle wrapped in a python script
@@ -34,8 +34,8 @@ diff_program:meld
 #interpreter:python
 
 # Settings for the Ruby version
-executable:${TEXTTEST_HOME}/ruby/texttest_fixture.rb
-interpreter:ruby
+#executable:${TEXTTEST_HOME}/ruby/texttest_fixture.rb
+#interpreter:ruby
 
 # Settings for the C# Core version
 #executable:${TEXTTEST_HOME}/csharpcore/GildedRoseTests/bin/Debug/net8.0/GildedRoseTests
@@ -70,4 +70,20 @@ interpreter:ruby
 # Settings for the Odin version
 #executable:${TEXTTEST_HOME}/odin/gilded_rose<include your OS executable extension here>
 
+# Settings for the scala version using the classpath
+# executable:com.gildedrose.TexttestFixture
+#executable:com.gildedrose.TexttestFixture.scala
+#interpreter:"scala run"
+# note you'll also need to update the file environment.gr with your classpath if you keep your classfiles somewhere unusual
+
+# Settings for the scala version using sbt wrapped in a python script
+executable:${TEXTTEST_HOME}/scala/texttest_rig.py
+interpreter:python
+
+
 filename_convention_scheme:standard
+
+[run_dependent_text]
+stdout:\[info\]
+stdout:\[success\]
+stdout:And lines like this
