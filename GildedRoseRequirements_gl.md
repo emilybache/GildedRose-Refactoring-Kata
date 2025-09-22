@@ -5,27 +5,27 @@ Como saberás, somos unha pequena pousada situada estratexicamente nunha cidade 
 
 Temos un sistema instalado que actualiza automaticamente o noso inventario. Este sistema foi desenvolvido por un tipo serio e práctico chamado Leeroy, que agora está noutras aventuras.
 
-A túa tarefa é engadir unha nova funcionalidade ao sistema para que poidamos comezar a vender unha nova categoría de items. Pero primeiro, imos describir como funciona o sistema:
+A túa tarefa é engadir unha nova funcionalidade ao sistema para que poidamos comezar a vender unha nova categoría de artigos. Pero primeiro, imos describir como funciona o sistema:
 
 ## Descrición do sistema
 
 - Todos os artigos (`item`) teñen unha propiedade `SellIn` que indica o número de días que temos para vendelo
 - Todos os artigos (`item`) teñen unha propiedade `Quality` que indica o valioso que é o artigo
-- Ao final de cada día, o noso sistema decrementa ambos valores para cada artigo mediante o método `updateQuality`
+- Ao final de cada día, o noso sistema actualiza ambos valores para cada artigo mediante o método `updateQuality`
 
-Bastante sinxelo, non si? Pois agora é cando se pon interesante:
+Bastante sinxelo, non? Pois agora é cando se pon interesante:
 
-- Unha vez que pasa a data recomendada de venda (`SellIn`), a calidade (`Quality`) degrádase ao dobre de velocidade
-- A `calidade` dun artigo nunca é negativa
-- O "Queixo Brie anciño" (`Aged brie`) incrementa a súa calidade (`Quality`) a medida que madura cos días
+- Unha vez que pasa a data recomendada de venda (`SellIn`), a calidade (`Quality`) degrádase o dobre de rápido
+- A `Quality` dun artigo nunca é negativa
+- O "Queixo Brie curado" (`Aged brie`) incrementa a súa calidade (`Quality`) a medida que madura cos días
   - A súa calidade (`Quality`) aumenta en `1` unidade cada día
   - Unha vez expirada a data de venda (`SellIn`), a súa calidade (`Quality`) aumenta o dobre cada día
 - A calidade dun artigo (`Quality`) non pode superar `50`
-- O artigo `Sulfuras`, é un artigo lendario, non precisamos vendelo en ningunha data (`SellIn`) e tampouco se degrada en (`Quality`)
-- O artigo "Entrada ao Backstage" (`Backstage passes`), incrementa o seu valor (`Quality`) a medida que se achega a data do concerto (`SellIn`)
+- O artigo `Sulfuras` é un artigo lendario, non precisamos vendelo en ningunha data (`SellIn`) e tampouco se degrada en (`Quality`)
+- O artigo "Entrada ao Backstage" (`Backstage passes`), incrementa a súa calidade (`Quality`) a medida que se achega a data do concerto (`SellIn`)
   - Se faltan `10` días ou menos para o concerto, a calidade (`Quality`) increméntase en `2` unidades
   - Se faltan `5` días ou menos, a calidade (`Quality`) increméntase en `3` unidades
-  - Unha vez pasada a data do concerto (`SellIn`), a entrada perde o seu valor (`Quality`) e cae a `0`
+  - Unha vez pasada a data do concerto (`SellIn`), a entrada perde todo o seu valor e a súa calidade (`Quality`) cae a `0`
 
 ## A túa tarefa
 
