@@ -9,6 +9,14 @@
 .bsp
 .bloop
 
+#vscode
+.vscode
+.metals
+.scala-build
+project/metals.sbt
+
+
+
 # Eclipse
 .worksheet
 .settings
