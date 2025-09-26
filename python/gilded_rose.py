@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+MAX_QUALITY = 50
+MIN_QUALITY = 0
 
 class GildedRose(object):
 
@@ -7,34 +9,58 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
-            if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert":
-                if item.quality > 0:
-                    if item.name != "Sulfuras, Hand of Ragnaros":
-                        item.quality = item.quality - 1
-            else:
-                if item.quality < 50:
-                    item.quality = item.quality + 1
-                    if item.name == "Backstage passes to a TAFKAL80ETC concert":
-                        if item.sell_in < 11:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-                        if item.sell_in < 6:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-            if item.name != "Sulfuras, Hand of Ragnaros":
-                item.sell_in = item.sell_in - 1
-            if item.sell_in < 0:
-                if item.name != "Aged Brie":
-                    if item.name != "Backstage passes to a TAFKAL80ETC concert":
-                        if item.quality > 0:
-                            if item.name != "Sulfuras, Hand of Ragnaros":
-                                item.quality = item.quality - 1
-                    else:
-                        item.quality = item.quality - item.quality
-                else:
-                    if item.quality < 50:
-                        item.quality = item.quality + 1
+            update_function = STRATEGIES.get(item.name, STRATEGIES["Normal Item"])
+            update_function(item)
 
+
+def update_quality_sulfuras(item):
+    pass    
+
+def update_quality_aged_brie(item):
+    increase_quality(item)
+    item.sell_in -= 1
+    if item.sell_in < 0:
+        increase_quality(item)
+
+def update_quality_backstage_pass(item):
+    increase_quality(item)
+    if item.sell_in < 11:
+        increase_quality(item)
+    if item.sell_in < 6:
+        increase_quality(item)
+    item.sell_in -= 1
+    if item.sell_in < 0:
+        item.quality = 0
+
+def update_quality_conjured(item):
+    decrease_quality(item)
+    decrease_quality(item)
+    item.sell_in -= 1
+    if item.sell_in < 0:
+        decrease_quality(item)
+        decrease_quality(item)
+
+def update_quality_normal(item):
+    decrease_quality(item)
+    item.sell_in -= 1
+    if item.sell_in < 0:
+        decrease_quality(item)
+
+
+STRATEGIES = {
+"Sulfuras, Hand of Ragnaros": update_quality_sulfuras,
+"Aged Brie": update_quality_aged_brie,
+"Backstage passes to a TAFKAL80ETC concert": update_quality_backstage_pass,
+"Conjured Mana Cake": update_quality_conjured,
+"Normal Item": update_quality_normal
+}
+
+
+
+def increase_quality(item):
+    item.quality = min(MAX_QUALITY, item.quality + 1)
+def decrease_quality(item):
+    item.quality = max(MIN_QUALITY, item.quality - 1)
 
 class Item:
     def __init__(self, name, sell_in, quality):
