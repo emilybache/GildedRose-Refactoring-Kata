@@ -32,6 +32,7 @@ The idea of the exercise is to do some deliberate practice, and improve your ski
 - [한국어](GildedRoseRequirements_kr.md)
 - [German](GildedRoseRequirements_de.md)
 - [Euskara](GildedRoseRequirements_eu.md)
+- [Galego](GildedRoseRequirements_gl.md)
 
 ## Text-Based Approval Testing
 
