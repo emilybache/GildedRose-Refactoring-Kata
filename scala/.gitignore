@@ -27,3 +27,4 @@ project/metals.sbt
 .classpath
 
 target/
+approvaltests/gildedrose.testresult.txt
