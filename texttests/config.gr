@@ -70,20 +70,15 @@ diff_program:kdiff3
 # Settings for the Odin version
 #executable:${TEXTTEST_HOME}/odin/gilded_rose<include your OS executable extension here>
 
-# Settings for the scala version using the classpath
-# executable:com.gildedrose.TexttestFixture
-#executable:com.gildedrose.TexttestFixture.scala
-#interpreter:"scala run"
-# note you'll also need to update the file environment.gr with your classpath if you keep your classfiles somewhere unusual
 
 # Settings for the scala version using sbt wrapped in a python script
-executable:${TEXTTEST_HOME}/scala/texttest_rig.py
-interpreter:python
+# executable:${TEXTTEST_HOME}/scala/texttest_rig.py
+# interpreter:python
 
 
 filename_convention_scheme:standard
 
-[run_dependent_text]
-stdout:\[info\]
-stdout:\[success\]
-stdout:And lines like this
+# uncomment for the scala version using sbt wrapped into python
+#[run_dependent_text]
+#stdout:\[info\]
+#stdout:\[success\]
