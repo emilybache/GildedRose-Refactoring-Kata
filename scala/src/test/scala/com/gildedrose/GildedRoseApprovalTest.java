@@ -29,8 +29,8 @@ public class GildedRoseApprovalTest {
         System.setOut(new PrintStream(fakeoutput));
         System.setIn(new ByteArrayInputStream("a\n".getBytes()));
         
-        // todo: fix Program
-//        Program.main();
+        String[] args = {"30"};
+        TexttestFixture.main(args);
         String output = fakeoutput.toString();
 
         Approvals.verify(output);
