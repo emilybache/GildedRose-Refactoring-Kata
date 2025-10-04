@@ -3,10 +3,17 @@ val scala3Version = "3.7.3"
 lazy val root = project
   .in(file("."))
   .settings(
-      name                                      := "GildedRose",
-      version                                   := "1.0",
-      scalaVersion                              := scala3Version,
-      libraryDependencies += "org.scalatest"    %% "scalatest"     % "3.2.19" % "test",
-      libraryDependencies += "com.approvaltests" % "approvaltests" % "25.4.3" % "test",
-      libraryDependencies += "org.junit.jupiter" % "junit-jupiter" % "5.11.4" % "test"
+      name         := "GildedRose",
+      version      := "1.0",
+      scalaVersion := scala3Version,
+      libraryDependencies ++= Seq(
+          "org.scalatest"    %% "scalatest"     % "3.2.19" % Test,
+          "com.approvaltests" % "approvaltests" % "25.4.3" % Test,
+          "junit" % "junit" % "4.13.2",
+          "com.github.sbt.junit" % "jupiter-interface" % "0.15.1" % Test,
+          // todo: comment about 5.8.0
+          "org.junit.jupiter"    % "junit-jupiter"     % "5.7.0"                          % Test
+      ),
+    testOptions += Tests.Argument(TestFrameworks.JUnit)
+
   )
