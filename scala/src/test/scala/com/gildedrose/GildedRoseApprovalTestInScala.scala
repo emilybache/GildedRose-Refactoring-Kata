@@ -1,33 +1,38 @@
-package com.gildedrose
+package com.gildedrose;
 
-import org.scalatest.flatspec.AnyFlatSpec
-import org.scalatest.matchers.should.Matchers
+import org.approvaltests.Approvals
+import org.approvaltests.reporters.DiffReporter
+import org.approvaltests.reporters.UseReporter
+import org.junit.jupiter.api.Test
 
-import java.io.{File, FileOutputStream}
-import scala.io.Source
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.io.PrintStream
 
+ @UseReporter(Array(classOf[DiffReporter]))
+class GildedRoseApprovalTestInScala {
 
-class GildedRoseApprovalTestInScala extends AnyFlatSpec with Matchers {
-  ignore should "return the result of the golden master" in {
-    val fileWithTestResult = new File("approvaltests/gildedrose.testresult.txt")
-    val outputStream       = new FileOutputStream(fileWithTestResult)
-    Console.withOut(outputStream) {
+  @Test
+  def foo(): Unit = {
 
-      TexttestFixture.main(Array("30"))
-    }
+    val items: Array[Item] = Array(new Item("foo", 0, 0))
+    val app: GildedRose = new GildedRose(items);
+    app.updateQuality();
 
-    val approvedFile          = "approvaltests/gildedrose.approved.txt"
-    val sourceForTestResults  = Source.fromFile(fileWithTestResult)
-    val sourceForApprovedFile = Source.fromFile(approvedFile)
-
-    val resultingOutput =
-      try sourceForTestResults.getLines().toVector
-      finally sourceForTestResults.close()
-    val approvedOutput =
-      try sourceForApprovedFile.getLines().toVector
-      finally sourceForTestResults.close()
-
-    resultingOutput should equal(approvedOutput)
+    Approvals.verifyAll("Items", items);
   }
 
+  @Test
+  def thirtyDays(): Unit = {
+
+    val  fakeoutput: ByteArrayOutputStream = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(fakeoutput));
+    System.setIn(new ByteArrayInputStream("a\n".getBytes()));
+
+    val args: Array[String] = Array("30")
+    TexttestFixture.main(args);
+    val output: String = fakeoutput.toString();
+
+    Approvals.verify(output);
+  }
 }

@@ -3,7 +3,7 @@ package com.gildedrose
 object TexttestFixture {
 
   def main(args: Array[String]): Unit = {
-    println("OMGHAI!")
+    System.out.println("OMGHAI!")
 
     val items = Array[Item](
         Item("+5 Dexterity Vest", 10, 20),
@@ -23,12 +23,12 @@ object TexttestFixture {
     if (args.nonEmpty) days = args(0).toInt + 1
 
     for (i <- 0 until days) {
-      println("-------- day " + i + " --------")
-      println("name, sellIn, quality")
+      System.out.println("-------- day " + i + " --------")
+      System.out.println("name, sellIn, quality")
       for (item <- items) {
-        println(s"${item.name}, ${item.sellIn}, ${item.quality}")
+        System.out.println(s"${item.name}, ${item.sellIn}, ${item.quality}")
       }
-      println()
+      System.out.println()
       app.updateQuality()
     }
   }

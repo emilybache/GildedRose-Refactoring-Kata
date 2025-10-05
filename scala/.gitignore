@@ -1,4 +1,6 @@
 /bin/
+lib
+project
 
 # OSX Finder
 .DS_Store
