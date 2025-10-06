@@ -11,4 +11,4 @@ import sys
 
 args = " ".join(sys.argv[1:])
 TEXTTEST_HOME = os.environ.get("TEXTTEST_HOME", os.getcwd())
-subprocess.run(f"""(cd {TEXTTEST_HOME}/scala/; sbt "Test / runMain com.gildedrose.TexttestFixture {args}") """, shell=True)
+subprocess.run(f"""(cd {TEXTTEST_HOME}/scala/; sbt -warn "Test / runMain com.gildedrose.TexttestFixture {args}") """, shell=True)

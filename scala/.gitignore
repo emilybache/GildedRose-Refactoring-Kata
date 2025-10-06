@@ -1,4 +1,5 @@
 /bin/
+lib/
 
 # OSX Finder
 .DS_Store
@@ -8,8 +9,6 @@
 *.iml
 .bsp
 .bloop
-.bsp
-.bloop
 
 #vscode
 .vscode
@@ -17,13 +16,6 @@
 .scala-build
 metals.sbt
 
-
-
-#vscode
-.vscode
-.metals
-.scala-build
-project/metals.sbt
 
 
 
