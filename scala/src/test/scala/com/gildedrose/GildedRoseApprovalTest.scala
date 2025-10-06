@@ -1,32 +1,38 @@
 package com.gildedrose
 
-import org.scalatest.flatspec.AnyFlatSpec
-import org.scalatest.matchers.should.Matchers
+import org.approvaltests.Approvals
+import org.approvaltests.reporters.DiffReporter
+import org.approvaltests.reporters.UseReporter
+import org.junit.jupiter.api.Test
 
-import java.io.{File, FileOutputStream}
-import scala.io.Source
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.io.PrintStream
 
-class GildedRoseApprovalTest extends AnyFlatSpec with Matchers {
-  it should "return the result of the golden master" in {
-    val fileWithTestResult = new File("approvaltests/gildedrose.testresult.txt")
-    val outputStream       = new FileOutputStream(fileWithTestResult)
-    Console.withOut(outputStream) {
+@UseReporter(Array(classOf[DiffReporter]))
+class GildedRoseApprovalTest {
 
-      TexttestFixture.main(Array("30"))
-    }
+  @Test
+  def foo(): Unit = {
 
-    val approvedFile          = "approvaltests/gildedrose.approved.txt"
-    val sourceForTestResults  = Source.fromFile(fileWithTestResult)
-    val sourceForApprovedFile = Source.fromFile(approvedFile)
+    val items: Array[Item] = Array(Item("foo", 0, 0))
+    val app: GildedRose    = new GildedRose(items)
+    app.updateQuality()
 
-    val resultingOutput =
-      try sourceForTestResults.getLines().toVector
-      finally sourceForTestResults.close()
-    val approvedOutput =
-      try sourceForApprovedFile.getLines().toVector
-      finally sourceForTestResults.close()
-
-    resultingOutput should equal(approvedOutput)
+    Approvals.verifyAll("Items", items)
   }
 
+  @Test
+  def thirtyDays(): Unit = {
+
+    val fakeoutput: ByteArrayOutputStream = new ByteArrayOutputStream()
+    System.setOut(new PrintStream(fakeoutput))
+    System.setIn(new ByteArrayInputStream("a\n".getBytes()))
+
+    val args: Array[String] = Array("30")
+    TexttestFixture.main(args)
+    val output: String = fakeoutput.toString()
+
+    Approvals.verify(output)
+  }
 }

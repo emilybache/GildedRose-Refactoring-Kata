@@ -1,7 +1,6 @@
 package com.gildedrose
 
 object TexttestFixture {
-  @main
   def main(args: Array[String]): Unit = {
     System.out.println("OMGHAI!")
 
