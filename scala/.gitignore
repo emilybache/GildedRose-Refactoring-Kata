@@ -1,6 +1,6 @@
 /bin/
 lib
-project
+
 
 # OSX Finder
 .DS_Store
@@ -15,7 +15,7 @@ project
 .vscode
 .metals
 .scala-build
-project/metals.sbt
+metals.sbt
 
 
 
@@ -29,4 +29,3 @@ project/metals.sbt
 .classpath
 
 target/
-approvaltests/gildedrose.testresult.txt
