@@ -23,13 +23,13 @@ sbt test
 
 ## Run approval tests
 
-The approval test creates a file with an result of the test fixture in approvaltests/gildedrose.testresult.txt. The very first test run will fail and the resulting gildedrose.testresult.txt can be moved/renamed to gildedrose.approved.txt.
+The approval test can be found in the src/test/scala/GildedRoseApprovalTest.scala. It uses the approval test framework from https://github.com/approvals/ApprovalTests.Java.
 
-The approval tests in the test directory under GildedRoseApprovalTest.scala will regenerate the test result on each run and compare it to the approved file. The approval test will fail when thee are any differences between the files.
+The initial run will be a failing test and suggests an output to accept as the first approved version. Each subsequent run of the test will succeed until the output from the test changes.
 
-To approve a new version simply rename the resulting test output to gildedrose.approved.txt
+To approve a new version, simply accept some or all diffs between the existing approved files and the newly generated output.
 
-Approval tests are part of the test suite triggered by sbt. 
+Approval tests are part of the test suite triggered by "sbt test". 
 
 ``` cmd
 sbt test
