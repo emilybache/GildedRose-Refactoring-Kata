@@ -9,3 +9,5 @@ vendor
 venv
 **/DS_Store/*
 **/.DS_Store/*
+SlackAPP.md
+SlackAPP.pdf
