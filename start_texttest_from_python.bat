@@ -10,5 +10,5 @@ venv\Scripts\pip install texttest
 if %ERRORLEVEL% GEQ 1 (
     pause
 ) else (
-    venv\Scripts\texttestc.py -con %*
+    venv\Scripts\texttestc.exe -con %*
 )

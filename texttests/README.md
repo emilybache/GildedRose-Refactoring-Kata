@@ -25,6 +25,11 @@ Download the installer as explained on [TextTest.org](http://www.texttest.org/ge
 
 Windows may warn you that it doesn't trust this installer and be reluctant to download it. If you prefer not to continue with this, an alternative is to run TextTest via Python. First install Python then use the convenience script 'start_texttest_from_python.bat'.
 
+For Windows users using start_texttest_from_python.bat, it's recommended to:
+1. Install Meld (available at https://meldmerge.org) as your diff viewer
+2. Set the text_diff_program to 'fc' in your config.gr file
+3. Use Meld as your view_program for its simplicity and ease of use
+
 ## Interpreting Test Results
 
 You should see output like this if the test passes:
