@@ -23,43 +23,43 @@ class GildedRoseTest(unittest.TestCase):
         self.update_gilded_rose_days(gilded_rose, days)
         return gilded_rose
 
-    def test_foo_1day(self):
+    def test_normal_item_single_day_degradation(self):
         items= [Item('foo', 1, 1)]
         self.generate_and_update_gilded_rose(items, 1)
         self.check_item_values(items[0], 'foo', 0, 0)
 
-    def test_foo_multiple_days(self):
+    def test_normal_item_multiple_days_degradation(self):
         items= [Item('foo', 2, 3)]
         self.generate_and_update_gilded_rose(items, 2)
         self.check_item_values(items[0], 'foo', 0, 1)
 
-    def test_quality_nonnegative(self):
+    def test_nonnegative_quality_after_degradation(self):
         items = [Item("foo", 2, 0)]
         self.generate_and_update_gilded_rose(items, 1)
         self.check_item_values(items[0], "foo", 1, 0)
 
-    def test_after_sellby_date(self):
+    def test_quality_degradation_after_sellby_date(self):
         items = [Item("foo", 2, 10)]
         gilded_rose = self.generate_and_update_gilded_rose(items, 2)
         self.check_item_values(items[0], "foo", 0, 8)
         self.update_gilded_rose_days(gilded_rose, 2)
         self.check_item_values(items[0], "foo", -2, 4)
 
-    def test_aged_brie_4_days(self):
+    def test_aged_brie_after_4_days(self):
         items = [Item(AGED_BRIE, 2, 10)]
         gilded_rose = self.generate_and_update_gilded_rose(items, 2)
         self.check_item_values(items[0], AGED_BRIE, 0, 12)
         self.update_gilded_rose_days(gilded_rose, 2)
         self.check_item_values(items[0], AGED_BRIE, -2, 16)
 
-    def test_aged_brie_max_quality(self):
+    def test_aged_brie_reaching_max_quality(self):
         items = [Item(AGED_BRIE, 15, 40)]
         gilded_rose = self.generate_and_update_gilded_rose(items, 10)
         self.check_item_values(items[0], AGED_BRIE, 5, 50)
         self.update_gilded_rose_days(gilded_rose, 6)
         self.check_item_values(items[0], AGED_BRIE, -1, 50)
 
-    def test_sulfuras(self):
+    def test_sulfuras_no_degradation_not_sold(self):
         items = [Item(SULFURAS, 10, 30)]
         self.generate_and_update_gilded_rose(items, 50)
         self.check_item_values(items[0], SULFURAS, 10, 30)
@@ -86,7 +86,7 @@ class GildedRoseTest(unittest.TestCase):
         self.update_gilded_rose_days(gilded_rose, 1)
         self.check_item_values(items[0], BACKSTAGE, -1, 0)
 
-    def test_multiple_items_different_sellin_1day(self):
+    def test_multiple_items_single_day_degradation(self):
         items = [Item("foo", 0, 0), Item("bar", 1, 1), Item("baz", 2, 2)]
         self.generate_and_update_gilded_rose(items, 1)
         self.check_item_values(items[0], "foo", -1, 0)
