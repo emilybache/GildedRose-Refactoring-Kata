@@ -85,8 +85,9 @@ class GildedRoseTest(unittest.TestCase):
         self.check_item_values(items[2], 'baz', 1, 1)
 
     # @parameterized.expand([
-    #     ('normal_item_decrements_until_expired', 5, 5, 0, 0, -5, 0),
-    #     ('')
+    #     ('normal_item_decrements_until_expired', 0, 5, 5, 0, 0, -5, 0),
+    #     ('sulfuras_unchanged', 1, 10, 10, 10, 10, 10, 10),
+    #     ('backstage_passes_')
     # ])
 
     def test_multiple_various_items_every_5_days_within_15_days(self):
