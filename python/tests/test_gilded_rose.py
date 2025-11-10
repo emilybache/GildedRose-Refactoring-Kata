@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import unittest
-from hashlib import file_digest
 
 from gilded_rose import Item, GildedRose
 
