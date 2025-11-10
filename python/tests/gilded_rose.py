@@ -1,12 +1,25 @@
 # -*- coding: utf-8 -*-
 
 class GildedRose(object):
+    BACKSTAGE = 'Backstage passes to a TAFKAL80ETC concert'
+    SULFURAS = 'Sulfuras, Hand of Ragnaros'
+    AGED_BRIE = 'Aged Brie'
 
     def __init__(self, items):
         self.items = items
 
     def update_quality(self):
         for item in self.items:
+            
+            match item.name:
+                case self.AGED_BRIE:
+                    pass
+                case self.SULFURAS:
+                    pass
+                case self.BACKSTAGE:
+                    pass
+                case _:
+                    pass
             if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert":
                 if item.quality > 0:
                     if item.name != "Sulfuras, Hand of Ragnaros":
