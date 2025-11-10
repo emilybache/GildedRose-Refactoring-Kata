@@ -65,16 +65,27 @@ class GildedRoseTest(unittest.TestCase):
         self.generate_and_update_gilded_rose(items, 50)
         self.check_item_values(items[0], SULFURAS, 10, 30)
 
-    def test_backstage_passes_15_days(self):
+    def test_backstage_passes_15_to_10_days(self):
         items = [Item(BACKSTAGE, 15, 0)]
-        gilded_rose = self.generate_and_update_gilded_rose(items, 5)
+        self.generate_and_update_gilded_rose(items, 5)
         self.check_item_values(items[0], BACKSTAGE, 10, 5)
-        self.update_gilded_rose_days(gilded_rose, 5)
-        self.check_item_values(items[0], BACKSTAGE, 5, 15)
-        self.update_gilded_rose_days(gilded_rose, 5)
-        self.check_item_values(items[0], BACKSTAGE, 0, 30)
-        self.update_gilded_rose_days(gilded_rose, 5)
-        self.check_item_values(items[0], BACKSTAGE, -5, 0)
+
+    def test_backstage_passes_10_to_5_days(self):
+        items = [Item(BACKSTAGE, 10, 0)]
+        self.generate_and_update_gilded_rose(items, 5)
+        self.check_item_values(items[0], BACKSTAGE, 5, 10)
+
+    def test_backstage_passes_5_to_0_days(self):
+        items = [Item(BACKSTAGE, 5, 0)]
+        self.generate_and_update_gilded_rose(items, 5)
+        self.check_item_values(items[0], BACKSTAGE, 0, 15)
+
+    def test_backstage_passes_after_concert(self):
+        items = [Item(BACKSTAGE, 1, 10)]
+        gilded_rose = self.generate_and_update_gilded_rose(items, 1)
+        self.check_item_values(items[0], BACKSTAGE, 0, 13)
+        self.update_gilded_rose_days(gilded_rose, 1)
+        self.check_item_values(items[0], BACKSTAGE, -1, 0)
 
     def test_multiple_items(self):
         items = [Item("foo", 0, 0), Item("bar", 1, 1), Item("baz", 2, 2)]
