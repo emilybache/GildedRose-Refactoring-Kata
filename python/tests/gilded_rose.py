@@ -10,24 +10,37 @@ class GildedRose(object):
         self.items = items
 
     def __qual_inc(self, item, inc):
-        item.quality = max(50, item.quality + inc)
+        item.quality = min(self.MAX_QUAL, item.quality + inc)
 
     def __qual_dec(self, item, dec):
-        item.quality = min(0, item.quality - dec)
+        item.quality = max(0, item.quality - dec)
 
     def update_quality(self):
         for item in self.items:
             match item.name:
                 case self.AGED_BRIE:
-                    pass
+                    if item.sell_in > 0:
+                        self.__qual_inc(item, 1)
+                    else:
+                        self.__qual_inc(item, 2)
                 case self.SULFURAS:
                     pass
                 case self.BACKSTAGE:
-                    pass
+                    if item.sell_in > 10:
+                        self.__qual_inc(item, 1)
+                    elif item.sell_in > 5:
+                        self.__qual_inc(item, 2)
+                    elif item.sell_in > 0:
+                        self.__qual_inc(item, 3)
+                    else:
+                        item.quality = 0
                 case _:
-                    self.__qual_dec(item, 1)
+                    if item.sell_in > 0:
+                        self.__qual_dec(item, 1)
+                    else:
+                        self.__qual_dec(item, 2)
             if not item.name == self.SULFURAS:
-                item.sell_in = item.sell_in - 1
+                item.sell_in -= 1
             # if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert":
             #     if item.quality > 0:
             #         if item.name != "Sulfuras, Hand of Ragnaros":
