@@ -87,15 +87,31 @@ class GildedRoseTest(unittest.TestCase):
         self.update_gilded_rose_days(gilded_rose, 1)
         self.check_item_values(items[0], BACKSTAGE, -1, 0)
 
-    def test_multiple_items(self):
+    def test_multiple_items_different_sellin_1day(self):
         items = [Item("foo", 0, 0), Item("bar", 1, 1), Item("baz", 2, 2)]
         self.generate_and_update_gilded_rose(items, 1)
         self.check_item_values(items[0], "foo", -1, 0)
         self.check_item_values(items[1], "bar", 0, 0)
         self.check_item_values(items[2], "baz", 1, 1)
 
+    def test_all_items_15_days(self):
+        items = [Item("foo", 10, 10), Item(SULFURAS, 10, 10), Item(BACKSTAGE, 10, 10), Item(AGED_BRIE, 10, 10)]
+        gilded_rose = self.generate_and_update_gilded_rose(items, 5)
+        self.check_item_values(items[0], "foo", 5, 5)
+        self.check_item_values(items[1], SULFURAS, 10, 10)
+        self.check_item_values(items[2], BACKSTAGE, 5, 20)
+        self.check_item_values(items[3], AGED_BRIE, 5, 15)
+        self.update_gilded_rose_days(gilded_rose, 5)
+        self.check_item_values(items[0], "foo", 0, 0)
+        self.check_item_values(items[1], SULFURAS, 10, 10)
+        self.check_item_values(items[2], BACKSTAGE, 0, 35)
+        self.check_item_values(items[3], AGED_BRIE, 0, 20)
+        self.update_gilded_rose_days(gilded_rose, 5)
+        self.check_item_values(items[0], "foo", -5, 0)
+        self.check_item_values(items[1], SULFURAS, 10, 10)
+        self.check_item_values(items[2], BACKSTAGE, -5, 0)
+        self.check_item_values(items[3], AGED_BRIE, -5, 30)
 
 
-        
 if __name__ == '__main__':
     unittest.main()
