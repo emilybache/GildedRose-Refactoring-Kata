@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest
+from parameterized import parameterized
 
 from gilded_rose import Item, GildedRose
 
@@ -64,27 +65,17 @@ class GildedRoseTest(unittest.TestCase):
         self.generate_and_update_gilded_rose(items, 50)
         self.check_item_values(items[0], SULFURAS, 10, 30)
 
-    def test_backstage_passes_15_to_10_days(self):
-        items = [Item(BACKSTAGE, 15, 0)]
-        self.generate_and_update_gilded_rose(items, 5)
-        self.check_item_values(items[0], BACKSTAGE, 10, 5)
 
-    def test_backstage_passes_10_to_5_days(self):
-        items = [Item(BACKSTAGE, 10, 0)]
+    @parameterized.expand([
+        ('more_than_10_days_inc_by_1', 15, 0, 10, 5),
+        ('10_days_inc_by_2', 10, 0, 5, 10),
+        ('5_day_inc_by_3', 5, 0, 0, 15),
+        ('after_concert_drops_to_zero', 1, 10, -4, 0)
+        ])
+    def test_backstage_passes_by_5_days_from(self, _, init_sell_in, init_qual, expected_sell_in, expected_qual):
+        items = [Item(BACKSTAGE, init_sell_in, init_qual)]
         self.generate_and_update_gilded_rose(items, 5)
-        self.check_item_values(items[0], BACKSTAGE, 5, 10)
-
-    def test_backstage_passes_5_to_0_days(self):
-        items = [Item(BACKSTAGE, 5, 0)]
-        self.generate_and_update_gilded_rose(items, 5)
-        self.check_item_values(items[0], BACKSTAGE, 0, 15)
-
-    def test_backstage_passes_after_concert(self):
-        items = [Item(BACKSTAGE, 1, 10)]
-        gilded_rose = self.generate_and_update_gilded_rose(items, 1)
-        self.check_item_values(items[0], BACKSTAGE, 0, 13)
-        self.update_gilded_rose_days(gilded_rose, 1)
-        self.check_item_values(items[0], BACKSTAGE, -1, 0)
+        self.check_item_values(items[0], BACKSTAGE, expected_sell_in, expected_qual)
 
     def test_multiple_items_single_day_degradation(self):
         items = [Item("foo", 0, 0), Item("bar", 1, 1), Item("baz", 2, 2)]
