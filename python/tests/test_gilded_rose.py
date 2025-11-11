@@ -87,26 +87,21 @@ class GildedRoseTest(unittest.TestCase):
     # @parameterized.expand([
     #     ('normal_item_decrements_until_expired', 0, 5, 5, 0, 0, -5, 0),
     #     ('sulfuras_unchanged', 1, 10, 10, 10, 10, 10, 10),
-    #     ('backstage_passes_')
+    #     ('backstage_passes_', 2, 5, 20, 0, 35, -5, 0),
+    #     ('aged_brie', 3, 5, 15, 0, 20, -5, 30)
     # ])
-
-    def test_multiple_various_items_every_5_days_within_15_days(self):
+    @parameterized.expand([
+        ('5 days', 5, 5, 5, 10, 10, 5, 20, 5, 15),
+        ('10 days', 10, 0, 0, 10, 10, 0, 35, 0, 20),
+        ('15 days', 15, -5, 0, 10, 10, -5, 0, -5, 30)
+    ])
+    def test_multiple_various_items_from_10_days_after(self, _, days, normal_expected_sell_in, normal_expected_quality, sulfuras_expected_sell_in, sulfuras_expected_quality, backstage_expected_sell_in, backstage_expected_quality, aged_brie_expected_sell_in, aged_brie_expected_quality,):
         items = [Item('foo', 10, 10), Item(SULFURAS, 10, 10), Item(BACKSTAGE, 10, 10), Item(AGED_BRIE, 10, 10)]
-        gilded_rose = self.generate_and_update_gilded_rose(items, 5)
-        self.check_item_values(items[0], 'foo', 5, 5)
-        self.check_item_values(items[1], SULFURAS, 10, 10)
-        self.check_item_values(items[2], BACKSTAGE, 5, 20)
-        self.check_item_values(items[3], AGED_BRIE, 5, 15)
-        self.update_gilded_rose_days(gilded_rose, 5)
-        self.check_item_values(items[0], 'foo', 0, 0)
-        self.check_item_values(items[1], SULFURAS, 10, 10)
-        self.check_item_values(items[2], BACKSTAGE, 0, 35)
-        self.check_item_values(items[3], AGED_BRIE, 0, 20)
-        self.update_gilded_rose_days(gilded_rose, 5)
-        self.check_item_values(items[0], 'foo', -5, 0)
-        self.check_item_values(items[1], SULFURAS, 10, 10)
-        self.check_item_values(items[2], BACKSTAGE, -5, 0)
-        self.check_item_values(items[3], AGED_BRIE, -5, 30)
+        gilded_rose = self.generate_and_update_gilded_rose(items, days)
+        self.check_item_values(items[0], 'foo', normal_expected_sell_in, normal_expected_quality)
+        self.check_item_values(items[1], SULFURAS, sulfuras_expected_sell_in, sulfuras_expected_quality)
+        self.check_item_values(items[2], BACKSTAGE, backstage_expected_sell_in, backstage_expected_quality)
+        self.check_item_values(items[3], AGED_BRIE, aged_brie_expected_sell_in, aged_brie_expected_quality)
 
 
 if __name__ == '__main__':
