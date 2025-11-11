@@ -7,6 +7,8 @@ from gilded_rose import Item, GildedRose
 BACKSTAGE = 'Backstage passes to a TAFKAL80ETC concert'
 SULFURAS = 'Sulfuras, Hand of Ragnaros'
 AGED_BRIE = 'Aged Brie'
+CONJURED1 = 'Conjured foo'
+CONJURED2 = 'Conjured bar'
 
 class GildedRoseTest(unittest.TestCase):
 
@@ -34,12 +36,12 @@ class GildedRoseTest(unittest.TestCase):
         self.generate_and_update_gilded_rose(items, 2)
         self.check_item_values(items[0], 'foo', 0, 1)
 
-    def test_nonnegative_quality_after_degradation(self):
+    def test_normal_item_nonnegative_quality_after_degradation(self):
         items = [Item('foo', 2, 0)]
         self.generate_and_update_gilded_rose(items, 1)
         self.check_item_values(items[0], 'foo', 1, 0)
 
-    def test_quality_degradation_after_sellby_date(self):
+    def test_normal_item_degradation_after_sellby_date(self):
         items = [Item('foo', 2, 10)]
         gilded_rose = self.generate_and_update_gilded_rose(items, 2)
         self.check_item_values(items[0], 'foo', 0, 8)
@@ -65,7 +67,6 @@ class GildedRoseTest(unittest.TestCase):
         self.generate_and_update_gilded_rose(items, 50)
         self.check_item_values(items[0], SULFURAS, 10, 80)
 
-
     @parameterized.expand([
         ('more_than_10_days_inc_by_1', 15, 0, 10, 5),
         ('10_days_inc_by_2', 10, 0, 5, 10),
@@ -76,6 +77,22 @@ class GildedRoseTest(unittest.TestCase):
         items = [Item(BACKSTAGE, init_sell_in, init_qual)]
         self.generate_and_update_gilded_rose(items, 5)
         self.check_item_values(items[0], BACKSTAGE, expected_sell_in, expected_qual)
+        
+    def test_conjured_single_day_degradation(self):
+        items = [Item(CONJURED1, 10, 10)]
+        self.generate_and_update_gilded_rose(items,1)
+        self.check_item_values(items[0], CONJURED1, 9, 8)
+        
+    def test_conjured_multiple_days_degradation(self):
+        items = [Item(CONJURED1, 10, 10)]
+        self.generate_and_update_gilded_rose(items,4)
+        self.check_item_values(items[0], CONJURED1, 6, 2)
+        
+    def test_conjured_after_sellby_nonnegative_degradation(self):
+        items=[Item(CONJURED1, 1, 1), Item(CONJURED2, 0, 10)]
+        self.generate_and_update_gilded_rose(items, 2)
+        self.check_item_values(items[0], CONJURED1, -1, 0)
+        self.check_item_values(items[1], CONJURED2, -2, 2)
 
     def test_multiple_items_single_day_degradation(self):
         items = [Item('foo', 0, 0), Item('bar', 1, 1), Item('baz', 2, 2)]
