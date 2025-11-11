@@ -35,10 +35,13 @@ class GildedRose(object):
                     else:
                         item.quality = 0
                 case _:
+                    multiplier = 1
+                    if item.name.startswith('Conjured'):
+                        multiplier = 2
                     if item.sell_in > 0:
-                        self.__qual_dec(item, 1)
+                        self.__qual_dec(item, multiplier)
                     else:
-                        self.__qual_dec(item, 2)
+                        self.__qual_dec(item, 2 * multiplier)
             if not item.name == self.SULFURAS:
                 item.sell_in -= 1
 
