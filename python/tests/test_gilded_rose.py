@@ -108,17 +108,18 @@ class GildedRoseTest(unittest.TestCase):
     #     ('aged_brie', 3, 5, 15, 0, 20, -5, 30)
     # ])
     @parameterized.expand([
-        ('5 days', 5, 5, 5, 10, 80, 5, 20, 5, 15),
-        ('10 days', 10, 0, 0, 10, 80, 0, 35, 0, 20),
-        ('15 days', 15, -5, 0, 10, 80, -5, 0, -5, 30)
+        ('5 days', 5, 5, 5, 10, 80, 5, 20, 5, 15, 5, 0),
+        ('10 days', 10, 0, 0, 10, 80, 0, 35, 0, 20, 0, 0),
+        ('15 days', 15, -5, 0, 10, 80, -5, 0, -5, 30, -5, 0)
     ])
-    def test_multiple_various_items_from_10_days_after(self, _, days, normal_expected_sell_in, normal_expected_quality, sulfuras_expected_sell_in, sulfuras_expected_quality, backstage_expected_sell_in, backstage_expected_quality, aged_brie_expected_sell_in, aged_brie_expected_quality,):
-        items = [Item('foo', 10, 10), Item(SULFURAS, 10, 80), Item(BACKSTAGE, 10, 10), Item(AGED_BRIE, 10, 10)]
+    def test_multiple_various_items_from_10_days_after(self, _, days, normal_expected_sell_in, normal_expected_quality, sulfuras_expected_sell_in, sulfuras_expected_quality, backstage_expected_sell_in, backstage_expected_quality, aged_brie_expected_sell_in, aged_brie_expected_quality, conjured_expected_sell_in, conjured_expected_quality):
+        items = [Item('foo', 10, 10), Item(SULFURAS, 10, 80), Item(BACKSTAGE, 10, 10), Item(AGED_BRIE, 10, 10), Item(CONJURED2, 10, 10)]
         gilded_rose = self.generate_and_update_gilded_rose(items, days)
         self.check_item_values(items[0], 'foo', normal_expected_sell_in, normal_expected_quality)
         self.check_item_values(items[1], SULFURAS, sulfuras_expected_sell_in, sulfuras_expected_quality)
         self.check_item_values(items[2], BACKSTAGE, backstage_expected_sell_in, backstage_expected_quality)
         self.check_item_values(items[3], AGED_BRIE, aged_brie_expected_sell_in, aged_brie_expected_quality)
+        self.check_item_values(items[4], CONJURED2, conjured_expected_sell_in, conjured_expected_quality)
 
 
 if __name__ == '__main__':
