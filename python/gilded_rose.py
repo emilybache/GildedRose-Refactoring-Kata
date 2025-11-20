@@ -6,34 +6,21 @@ class GildedRose(object):
         self.items = items
 
     def update_quality(self):
-        for item in self.items:
-            if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert":
-                if item.quality > 0:
-                    if item.name != "Sulfuras, Hand of Ragnaros":
-                        item.quality = item.quality - 1
-            else:
-                if item.quality < 50:
-                    item.quality = item.quality + 1
-                    if item.name == "Backstage passes to a TAFKAL80ETC concert":
-                        if item.sell_in < 11:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-                        if item.sell_in < 6:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-            if item.name != "Sulfuras, Hand of Ragnaros":
-                item.sell_in = item.sell_in - 1
-            if item.sell_in < 0:
-                if item.name != "Aged Brie":
-                    if item.name != "Backstage passes to a TAFKAL80ETC concert":
-                        if item.quality > 0:
-                            if item.name != "Sulfuras, Hand of Ragnaros":
-                                item.quality = item.quality - 1
-                    else:
-                        item.quality = item.quality - item.quality
-                else:
-                    if item.quality < 50:
-                        item.quality = item.quality + 1
+            for item in self.items:
+                updater = self.run_the_logic_with_classes_safely(item)
+                updater.update()        
+                                        
+    def run_the_logic_with_classes_safely(self, item):
+        if item.name == "Aged Brie":
+            return AgedBrieUpdater(item)
+        elif item.name == "Sulfuras, Hand of Ragnaros":
+            return SulfurasUpdater(item)
+        elif item.name == "Backstage passes to a TAFKAL80ETC concert":
+            return BackstagePassUpdater(item)
+        elif item.name == "Conjured kitkats":
+            return ConjuredItemUpdater(item)
+        else:
+            return ItemUpdater(item)
 
 
 class Item:
@@ -44,3 +31,67 @@ class Item:
 
     def __repr__(self):
         return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
+
+
+
+#__________________________________________ class to safely add items to the class item instead of if statements__________________________________________________________________________________
+
+class ItemUpdater:
+    def __init__(self, item):
+        self.item = item
+
+    def update(self):
+        self.decrease_quality()
+        self.decrease_sell_in()
+        if self.item.sell_in < 0:
+            self.decrease_quality()
+
+    def decrease_quality(self):
+        if self.item.quality > 0:
+            self.item.quality -= 1
+
+    def increase_quality(self):
+        if self.item.quality < 50:
+            self.item.quality += 1
+
+    def decrease_sell_in(self):
+        self.item.sell_in -= 1
+        
+
+
+#__________________________________________ classes to update the special cases in update quality function __________________________________________________________________________________
+
+
+class AgedBrieUpdater(ItemUpdater):
+    def update(self):
+        self.increase_quality()
+        self.decrease_sell_in()
+        if self.item.sell_in < 0:
+            self.increase_quality()
+
+class SulfurasUpdater(ItemUpdater):
+    def update(self):
+        pass 
+
+class BackstagePassUpdater(ItemUpdater):
+    def update(self):
+        self.increase_quality()
+        if self.item.sell_in < 11:
+            self.increase_quality()
+        if self.item.sell_in < 6:
+            self.increase_quality()
+        
+        self.decrease_sell_in()
+
+        if self.item.sell_in < 0:
+            self.item.quality = 0
+            
+#__________________________________________ class for the new item with a diffrent rule which is decrease twice as fast  __________________________________________________________________________________
+
+
+class ConjuredItemUpdater(ItemUpdater):
+    def decrease_quality(self):
+        if self.item.quality > 0:
+            self.item.quality -= 2  
+        if self.item.quality < 0:
+            self.item.quality = 0
