@@ -18,14 +18,14 @@ final class GildedRose
     public function updateQuality(): void
     {
         foreach ($this->items as $item) {
-            if ($item->name === 'Sulfuras, Hand of Ragnaros') {
+            if ($item->name === 'Sulfuras, Hand of Ragnaros')
                 continue;
-            }
+            
 
             if ($item->name === 'Aged Brie') {
                 $item->quality = min(50, ++$item->quality);
             } else if ($item->name === 'Backstage passes to a TAFKAL80ETC concert') {
-                if ($item->sellIn < 6) {
+                if ($item->sellIn <= 5) {
                     $updatedQuality = $item->quality + 3;
                     $item->quality = min(50, $updatedQuality);
                 } else if ($item->sellIn <= 10) {
@@ -39,10 +39,9 @@ final class GildedRose
 
             $item->sellIn--;
 
-            if ($item->sellIn < 0) {
-                if ($item->name === 'Backstage passes to a TAFKAL80ETC concert')
-                    $item->quality = 0;
-            }
+            if ($item->sellIn < 0 && $item->name === 'Backstage passes to a TAFKAL80ETC concert')
+                $item->quality = 0;
+
         }
     }
 }
