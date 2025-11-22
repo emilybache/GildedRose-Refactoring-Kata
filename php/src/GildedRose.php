@@ -53,12 +53,11 @@ final class GildedRose
 
             if ($item->sellIn < 0) {
                 if ($item->name === 'Aged Brie') {
-                    $item->quality = max(50, $item->quality++);
-                } else if ($item->name === 'Backstage passes to a TAFKAL80ETC concert') {
+                    $item->quality = min(50, ++$item->quality);
+                } else if ($item->name === 'Backstage passes to a TAFKAL80ETC concert')
                     $item->quality = 0;
-                } else if ($item->quality > 0 && $item->name !== 'Sulfuras, Hand of Ragnaros') {
-                    $item->quality--;
-                }
+                else
+                    $item->quality = max(0, --$item->quality);
             }
         }
     }
