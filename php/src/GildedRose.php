@@ -25,11 +25,7 @@ final class GildedRose
 
 
             if ($item->name != 'Aged Brie' and $item->name != 'Backstage passes to a TAFKAL80ETC concert') {
-                if ($item->quality > 0) {
-                    if ($item->name != 'Sulfuras, Hand of Ragnaros') {
-                        $item->quality = $item->quality - 1;
-                    }
-                }
+                $item->quality = max(0, --$item->quality);
             } else {
                 if ($item->quality < 50) {
                     $item->quality = $item->quality + 1;
