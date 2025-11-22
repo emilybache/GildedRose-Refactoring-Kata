@@ -20,28 +20,23 @@ final class GildedRose
         foreach ($this->items as $item) {
             if ($item->name === 'Sulfuras, Hand of Ragnaros')
                 continue;
-            
+
+            $item->sellIn--;
 
             if ($item->name === 'Aged Brie') {
                 $item->quality = min(50, ++$item->quality);
             } else if ($item->name === 'Backstage passes to a TAFKAL80ETC concert') {
-                if ($item->sellIn <= 5) {
-                    $updatedQuality = $item->quality + 3;
-                    $item->quality = min(50, $updatedQuality);
+                if ($item->sellIn < 0) {
+                    $item->quality = 0;
+                } else if ($item->sellIn <= 5) {
+                    $item->quality = min(50, $item->quality + 3);
                 } else if ($item->sellIn <= 10) {
-                    $updatedQuality = $item->quality + 2;
-                    $item->quality = min(50, $updatedQuality);
+                    $item->quality = min(50, $item->quality + 2);
                 }
             } else {
-                $updatedQuality = $item->quality - 2;
-                $item->quality = max(0, $updatedQuality);
+                $item->quality = max(0, $item->quality - 2);
             }
-
-            $item->sellIn--;
-
-            if ($item->sellIn < 0 && $item->name === 'Backstage passes to a TAFKAL80ETC concert')
-                $item->quality = 0;
-
         }
     }
+
 }
