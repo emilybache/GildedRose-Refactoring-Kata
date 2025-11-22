@@ -26,21 +26,18 @@ final class GildedRose
                 $item->quality = max(0, --$item->quality);
             } else if ($item->name === 'Aged Brie') {
                 $item->quality = min(50, ++$item->quality);
+
+            } else if ($item->name === 'Backstage passes to a TAFKAL80ETC concert') {
+                if ($item->sellIn < 6) {
+                    $updatedQuality = $item->quality + 3;
+                    $item->quality = min(50, $updatedQuality);
+                } else if ($item->sellIn <= 10) {
+                    $updatedQuality = $item->quality + 2;
+                    $item->quality = min(50, $updatedQuality);
+                }
             } else {
                 if ($item->quality < 50) {
                     $item->quality = $item->quality + 1;
-                    if ($item->name == 'Backstage passes to a TAFKAL80ETC concert') {
-                        if ($item->sellIn < 11) {
-                            if ($item->quality < 50) {
-                                $item->quality = $item->quality + 1;
-                            }
-                        }
-                        if ($item->sellIn < 6) {
-                            if ($item->quality < 50) {
-                                $item->quality = $item->quality + 1;
-                            }
-                        }
-                    }
                 }
             }
 
