@@ -3,3 +3,5 @@
 .coverage
 .idea/
 *.iml
+.pytest_cache/
+*.DS_Store
