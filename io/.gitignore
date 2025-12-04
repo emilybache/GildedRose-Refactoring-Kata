@@ -1,8 +1,0 @@
-# C build
-.transaction_lock
-_bin
-_build
-_packs
-
-# Docio generated
-docs/

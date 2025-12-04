@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-cd ${TEXTTEST_HOME}/lua
-exec ./lua src/main.lua "$@"
