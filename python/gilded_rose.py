@@ -207,32 +207,6 @@ class GildedRose:
         """
         self.items = items
 
-    def _increase_quality(self, item: Item, amount: int = 1) -> None:
-        """Increase the quality of an item, ensuring it does not exceed MAX_QUALITY.
-
-        Parameters
-        ----------
-        item : Item
-            The item whose quality is to be increased.
-        amount : int, optional
-            The amount to increase the quality by (default is 1).
-
-        """
-        item.quality = min(MAX_QUALITY, item.quality + amount)
-
-    def _decrease_quality(self, item: Item, amount: int = 1) -> None:
-        """Decrease the quality of an item, ensuring it does not go below MIN_QUALITY.
-
-        Parameters
-        ----------
-        item : Item
-            The item whose quality is to be decreased.
-        amount : int, optional
-            The amount to decrease the quality by (default is 1).
-
-        """
-        item.quality = max(MIN_QUALITY, item.quality - amount)
-
     def update_quality(self) -> None:
         """Update quality and sell_in for all items according to the business rules."""
         for item in self.items:
