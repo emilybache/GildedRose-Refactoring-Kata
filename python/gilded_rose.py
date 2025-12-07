@@ -183,6 +183,46 @@ class ConjuredItemStrategy(ItemUpdateStrategy):
         """
         item.sell_in -= 1
 
+class ItemStrategyFactory:
+    """Factory for creating appropriate item update strategies.
+
+    Maps item names to their corresponding update strategies.
+    Centralizes the logic for determining which strategy to use.
+    """
+
+    def __init__(self) -> None:
+        """Initialize the factory with strategy instances."""
+        self._normal = NormalItemStrategy()
+        self._aged_brie = AgedBrieStrategy()
+        self._sulfuras = SulfurasStrategy()
+        self._backstage = BackstagePassStrategy()
+        self._conjured = ConjuredItemStrategy()
+
+    def get_strategy(self, item_name: str) -> ItemUpdateStrategy:
+        """Return the appropriate strategy for the given item name.
+
+        Parameters
+        ----------
+        item_name : str
+            The name of the item.
+
+        Returns
+        -------
+        ItemUpdateStrategy
+            The strategy instance for updating this item type.
+
+        """
+        if item_name == SULFURAS:
+            return self._sulfuras
+        elif item_name == AGED_BRIE:
+            return self._aged_brie
+        elif item_name == BACKSTAGE_PASSES:
+            return self._backstage
+        elif item_name.startswith(CONJURED):
+            return self._conjured
+        else:
+            return self._normal
+
 class GildedRose:
     """Manages inventory quality updates for the Gilded Rose inn.
 
