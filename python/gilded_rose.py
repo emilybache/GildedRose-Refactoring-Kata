@@ -50,7 +50,7 @@ class NormalItemStrategy(ItemUpdateStrategy):
             The item to update.
 
         """
-        degradation: int = 2 if item.sell_in < 0 else 1
+        degradation: int = 2 if item.sell_in <= 0 else 1
         item.quality = max(MIN_QUALITY, item.quality - degradation)
 
     def update_sell_in(self, item: Item) -> None:
@@ -77,7 +77,7 @@ class AgedBrieStrategy(ItemUpdateStrategy):
             The item to update.
 
         """
-        increase: int = 2 if item.sell_in < 0 else 1
+        increase: int = 2 if item.sell_in <= 0 else 1
         item.quality = min(MAX_QUALITY, item.quality + increase)
 
     def update_sell_in(self, item: Item) -> None:
@@ -136,7 +136,7 @@ class BackstagePassStrategy(ItemUpdateStrategy):
             The item to update.
 
         """
-        if item.sell_in < 0:
+        if item.sell_in <= 0:
             item.quality = 0
         elif item.sell_in <= 5:
             item.quality = min(MAX_QUALITY, item.quality + 3)
@@ -246,38 +246,14 @@ class GildedRose:
 
         """
         self.items = items
+        self._strategy_factory = ItemStrategyFactory()
 
     def update_quality(self) -> None:
         """Update quality and sell_in for all items according to the business rules."""
         for item in self.items:
-            if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert":
-                if item.quality > 0:
-                    if item.name != "Sulfuras, Hand of Ragnaros":
-                        item.quality = item.quality - 1
-            else:
-                if item.quality < 50:
-                    item.quality = item.quality + 1
-                    if item.name == "Backstage passes to a TAFKAL80ETC concert":
-                        if item.sell_in < 11:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-                        if item.sell_in < 6:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-            if item.name != "Sulfuras, Hand of Ragnaros":
-                item.sell_in = item.sell_in - 1
-            if item.sell_in < 0:
-                if item.name != "Aged Brie":
-                    if item.name != "Backstage passes to a TAFKAL80ETC concert":
-                        if item.quality > 0:
-                            if item.name != "Sulfuras, Hand of Ragnaros":
-                                item.quality = item.quality - 1
-                    else:
-                        item.quality = item.quality - item.quality
-                else:
-                    if item.quality < 50:
-                        item.quality = item.quality + 1
-
+            strategy = self._strategy_factory.get_strategy(item.name)
+            strategy.update_quality(item)
+            strategy.update_sell_in(item)
 
 class Item:
     """Represents an item in the Gilded Rose inventory.
