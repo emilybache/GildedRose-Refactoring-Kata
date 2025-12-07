@@ -1,6 +1,13 @@
 """Gilded Rose Refactoring Kata."""
 from __future__ import annotations
 
+AGED_BRIE: str = "Aged Brie"
+BACKSTAGE_PASSES: str = "Backstage passes"
+CONJURED: str = "Conjured"
+MAX_QUALITY: int = 50
+MIN_QUALITY: int = 0
+SULFURAS: str = "Sulfuras, Hand of Ragnaros"
+SULFURAS_QUALITY: int = 80
 
 class GildedRose:
     """Manages inventory quality updates for the Gilded Rose inn.
