@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 AGED_BRIE: str = "Aged Brie"
-BACKSTAGE_PASSES: str = "Backstage passes"
+BACKSTAGE_PASSES: str = "Backstage passes to a TAFKAL80ETC concert"
 CONJURED: str = "Conjured"
 MAX_QUALITY: int = 50
 MIN_QUALITY: int = 0
