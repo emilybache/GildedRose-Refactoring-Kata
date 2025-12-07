@@ -7,8 +7,8 @@ diff_program:meld
 
 
 # Settings for the Python version
-#executable:${TEXTTEST_HOME}/python/texttest_fixture.py
-#interpreter:python
+executable:${TEXTTEST_HOME}/python/texttest_fixture.py
+interpreter:python
 
 # Settings for the cpp version
 #executable:${TEXTTEST_HOME}/cpp/cmake-build-debug/test/cpp_texttest/GildedRoseTextTests
@@ -36,8 +36,8 @@ diff_program:meld
 #interpreter:python
 
 # Settings for the Ruby version
-executable:${TEXTTEST_HOME}/ruby/texttest_fixture.rb
-interpreter:ruby
+#executable:${TEXTTEST_HOME}/ruby/texttest_fixture.rb
+#interpreter:ruby
 
 # Settings for the C# Core version
 #executable:${TEXTTEST_HOME}/csharpcore/GildedRoseTests/bin/Debug/net8.0/GildedRoseTests
