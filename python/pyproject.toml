@@ -1,0 +1,45 @@
+[project]
+name = "guilded-rose"
+version = "0.1.0"
+description = "Guilded Rose Python Refactoring Excercise for Blend360"
+authors = [
+    {name = "Vasu Bhatia",email = "git@vbh.ai"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "W",
+    "F",
+    "I",
+    "B",
+    "C4",
+    "UP",
+]
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[dependency-groups]
+dev = [
+    "pytest (>=9.0.2,<10.0.0)",
+    "approvaltests (>=16.1.0,<17.0.0)",
+    "pytest-approvaltests (>=0.2.4,<0.3.0)",
+    "coverage (>=7.12.0,<8.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
