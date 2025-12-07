@@ -1,6 +1,8 @@
 """Gilded Rose Refactoring Kata."""
 from __future__ import annotations
 
+from abc import ABC, abstractmethod
+
 AGED_BRIE: str = "Aged Brie"
 BACKSTAGE_PASSES: str = "Backstage passes to a TAFKAL80ETC concert"
 CONJURED: str = "Conjured"
@@ -8,6 +10,33 @@ MAX_QUALITY: int = 50
 MIN_QUALITY: int = 0
 SULFURAS: str = "Sulfuras, Hand of Ragnaros"
 SULFURAS_QUALITY: int = 80
+
+class ItemUpdateStrategy(ABC):
+    """Abstract base class for item update strategies."""
+
+    @abstractmethod
+    def update_quality(self, item: Item) -> None:
+        """Update the quality of the given item according to specific rules.
+
+        Parameters
+        ----------
+        item : Item
+            The item whose quality is to be updated.
+
+        """
+        pass
+
+    @abstractmethod
+    def update_sell_in(self, item: Item) -> None:
+        """Update the sell_in of the given item according to specific rules.
+
+        Parameters
+        ----------
+        item : Item
+            The item whose sell_in is to be updated.
+
+        """
+        pass
 
 class GildedRose:
     """Manages inventory quality updates for the Gilded Rose inn.
