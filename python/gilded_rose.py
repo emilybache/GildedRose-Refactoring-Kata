@@ -4,7 +4,7 @@ class GildedRose(object):
 
     def __init__(self, items):
         self.items = items
-
+    # Changed the nested if logic
     def update_quality(self):
         for item in self.items:
 
@@ -42,7 +42,7 @@ class GildedRose(object):
                 elif "Conjured" in item.name:
                     # Conjured after expiry = -4 total
                     self._decrease_quality(item)
-                    
+
                     self._decrease_quality(item)
 
                 else:

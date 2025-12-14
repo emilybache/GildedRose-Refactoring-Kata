@@ -6,6 +6,7 @@ from approvaltests import verify
 from texttest_fixture import main
 from gilded_rose import Item, GildedRose
 
+# Handle approval test
 @pytest.mark.skip(reason="Approval tests disabled on this machine")
 def test_gilded_rose_approvals():
     orig_sysout = sys.stdout
@@ -20,6 +21,7 @@ def test_gilded_rose_approvals():
 
     verify(answer)
 
+# Add tests for Conjured items
 def test_conjured_items_degrade_twice_as_fast():
     items = [Item("Conjured Mana Cake", 5, 10)]
     gilded_rose = GildedRose(items)
