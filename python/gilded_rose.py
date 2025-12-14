@@ -42,6 +42,7 @@ class GildedRose(object):
                 elif "Conjured" in item.name:
                     # Conjured after expiry = -4 total
                     self._decrease_quality(item)
+                    
                     self._decrease_quality(item)
 
                 else:
