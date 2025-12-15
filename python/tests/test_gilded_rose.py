@@ -101,5 +101,28 @@ class GildedRoseBackstagePassTest(unittest.TestCase):
         self.assertEqual(0, items[0].quality)
         self.assertEqual(-1, items[0].sell_in)
 
+class GildedRoseConjuredItemTest(unittest.TestCase):
+
+    def test_item_quality(self):
+        items = [Item("Conjured", 20, 40)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEqual(38, items[0].quality)
+        self.assertEqual(19, items[0].sell_in)
+
+    def test_item_quality_sell_in_passed(self):
+        items = [Item("Conjured", 0, 40)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEqual(36, items[0].quality)
+        self.assertEqual(-1, items[0].sell_in)
+
+    def test_item_quality_sell_can_be_negative(self):
+        items = [Item("Conjured", 20, 0)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEqual(0, items[0].quality)
+        self.assertEqual(19, items[0].sell_in)
+
 if __name__ == '__main__':
     unittest.main()

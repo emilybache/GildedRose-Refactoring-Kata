@@ -85,3 +85,15 @@ class BackstagePassUpdater(ItemUpdater):
             self.item.quality = min(50, self.item.quality + 1)  # More than 10 days: +1
 
         self.item.sell_in = self.item.sell_in - 1
+
+@ItemUpdater.register("Conjured")
+class ConjuredItemUpdater(ItemUpdater):
+
+    def update(self):
+        self.item.sell_in = self.item.sell_in - 1
+
+        if self.item.quality > 0:
+            self.item.quality = self.item.quality - 2
+
+        if self.item.sell_in < 0 and self.item.quality > 0:
+            self.item.quality = self.item.quality - 2
