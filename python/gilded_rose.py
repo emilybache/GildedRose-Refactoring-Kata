@@ -1,7 +1,7 @@
 # utf-8
 
 class Updater(object):
-
+    
     MIN_QUALITY = 0
     MAX_QUALITY = 50
 
@@ -42,6 +42,15 @@ class Updater(object):
             item.quality = 0
         item.sell_in += -1
 
+    def conjured(self, item):
+        if item.sell_in > 0:
+            depreciation = -2
+        else:
+            depreciation = -4
+
+        item.quality = max((item.quality + depreciation), self.MIN_QUALITY)
+        item.sell_in += -1
+
 
 class GildedRose(object):
 
@@ -58,6 +67,8 @@ class GildedRose(object):
                 updater.backstage_passes(item)
             elif item.name == 'Sulfuras, Hand of Ragnaros':
                 updater.sulfuras(item)
+            elif item.name == 'Conjured Mana Cake':
+                updater.conjured(item)
             else:
                 updater.normal_item(item)
 
@@ -70,3 +81,4 @@ class Item:
 
     def __repr__(self):
         return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
+    

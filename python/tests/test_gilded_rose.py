@@ -4,7 +4,6 @@ from gilded_rose import GildedRose, Item
 
 class GildedRoseTest(unittest.TestCase):
 
-
     def updater(obj = GildedRose, times = 1):
         for i in range(times):
             obj.update_quality()
@@ -95,13 +94,38 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEqual(item.sell_in, 2)
         self.assertEqual(item.quality, 49)
 
-        # Never gets beyond 50 and drops to 0 once sell in passed
+        # Never gets beyond 50 and drops to 0 
+        # once sell in passed
         GildedRoseTest.updater(gilded_rose)
         self.assertEqual(item.sell_in, 1)
         self.assertEqual(item.quality, 50)
 
         GildedRoseTest.updater(gilded_rose, 2)
         self.assertEqual(item.sell_in, -1)
+        self.assertEqual(item.quality, 0)
+
+    def test_conjured(self):
+        # Set up the item
+        item = Item("Conjured Mana Cake", 20, 50)
+        gilded_rose = GildedRose([item])
+
+        # One day after
+        gilded_rose.update_quality()
+        self.assertEqual(item.sell_in, 19)
+        self.assertEqual(item.quality, 48)
+        GildedRoseTest.updater(gilded_rose, item.sell_in + 1)
+
+        # sell by date passed -- will decrease 
+        # twice as fast as normal items (-4)
+        self.assertEqual(item.sell_in, -1)
+        self.assertEqual(item.quality, 6)
+
+        GildedRoseTest.updater(gilded_rose)
+        self.assertEqual(item.sell_in, -2)
+        self.assertEqual(item.quality, 2)
+
+        GildedRoseTest.updater(gilded_rose)
+        self.assertEqual(item.sell_in, -3)
         self.assertEqual(item.quality, 0)
 
 if __name__ == '__main__':
