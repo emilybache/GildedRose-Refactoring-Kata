@@ -6,6 +6,7 @@ vendor
 .idea
 *.iml
 **/*.received.*
-venv
+.venv
 **/DS_Store/*
 **/.DS_Store/*
+.vscode
