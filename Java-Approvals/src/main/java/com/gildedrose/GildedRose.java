@@ -15,19 +15,15 @@ class GildedRose {
             if (items[i].name.equals(AGED_BRIE)
                 || items[i].name.equals(BACKSTAGE_PASSES)) {
                 if (items[i].quality < 50) {
-                    incrementQualityByOne(i);
+                    items[i].quality = items[i].quality + 1;
 
                     if (items[i].name.equals(BACKSTAGE_PASSES)) {
                         if (items[i].sellIn < 11) {
-                            if (items[i].quality < 50) {
-                                incrementQualityByOne(i);
-                            }
+                            incrementQualityByOne(i);
                         }
 
                         if (items[i].sellIn < 6) {
-                            if (items[i].quality < 50) {
-                                incrementQualityByOne(i);
-                            }
+                            incrementQualityByOne(i);
                         }
                     }
                 }
@@ -55,11 +51,15 @@ class GildedRose {
                         items[i].quality = 0;
                     }
                 } else {
-                    if (items[i].quality < 50) {
-                        incrementQualityByOne(i);
-                    }
+                    incrementQualityByOne(i);
                 }
             }
+        }
+    }
+
+    private void incrementQualityByOne(int i) {
+        if (items[i].quality < 50) {
+            items[i].quality = items[i].quality + 1;
         }
     }
 
@@ -67,7 +67,4 @@ class GildedRose {
         items[i].quality = items[i].quality - 1;
     }
 
-    private void incrementQualityByOne(int i) {
-        items[i].quality = items[i].quality + 1;
-    }
 }
