@@ -28,8 +28,10 @@ class GildedRose {
                     }
                 }
             } else {
-                if (!items[i].name.equals(SULFURAS)) {
-                    decreaseQualityByOne(i);
+                if (items[i].quality > 0) {
+                    if (!items[i].name.equals(SULFURAS)) {
+                        decreaseQualityByOne(i);
+                    }
                 }
             }
 
@@ -44,8 +46,10 @@ class GildedRose {
                     if (items[i].name.equals(BACKSTAGE_PASSES)) {
                         items[i].quality = 0;
                     } else {
-                        if (!items[i].name.equals(SULFURAS)) {
-                            decreaseQualityByOne(i);
+                        if (items[i].quality > 0) {
+                            if (!items[i].name.equals(SULFURAS)) {
+                                decreaseQualityByOne(i);
+                            }
                         }
                     }
                 }
@@ -60,9 +64,7 @@ class GildedRose {
     }
 
     private void decreaseQualityByOne(int i) {
-        if (items[i].quality > 0) {
-            items[i].quality = items[i].quality - 1;
-        }
+        items[i].quality = items[i].quality - 1;
     }
 
 }
