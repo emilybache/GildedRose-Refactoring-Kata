@@ -17,6 +17,34 @@ public class Item {
         this.quality = quality;
     }
 
+    public void updateQuality() {
+        if (isAgedBrie()) {
+            increaseQualityByOne();
+
+            decreaseSellInEachDay();
+
+            if (sellIn < 0) {
+                increaseQualityByOne();
+            }
+        } else if (isBackstagePasses()) {
+            increaseQualityBackstage();
+
+            decreaseSellInEachDay();
+
+            if (sellIn < 0) {
+                quality = 0;
+            }
+        } else {
+            decreaseQualityByOne();
+
+            decreaseSellInEachDay();
+
+            if (sellIn < 0) {
+                decreaseQualityByOne();
+            }
+        }
+    }
+
     public boolean isBackstagePasses() {
         return name.equals(BACKSTAGE_PASSES);
     }

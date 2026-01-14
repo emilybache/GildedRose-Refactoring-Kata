@@ -11,31 +11,7 @@ class GildedRose {
     public void updateQuality() {
         for (Item item : items) {
 
-            if (item.isAgedBrie()) {
-                item.increaseQualityByOne();
-
-                item.decreaseSellInEachDay();
-
-                if (item.sellIn < 0) {
-                    item.increaseQualityByOne();
-                }
-            } else if (item.isBackstagePasses()) {
-                item.increaseQualityBackstage();
-
-                item.decreaseSellInEachDay();
-
-                if (item.sellIn < 0) {
-                    item.quality = 0;
-                }
-            } else {
-                item.decreaseQualityByOne();
-
-                item.decreaseSellInEachDay();
-
-                if (item.sellIn < 0) {
-                    item.decreaseQualityByOne();
-                }
-            }
+            item.updateQuality();
         }
     }
 
