@@ -23,7 +23,7 @@ public class Item {
 
             decreaseSellInEachDay();
 
-            if (sellIn < 0) {
+            if (isExpired()) {
                 increaseQualityByOne();
             }
         } else if (isBackstagePasses()) {
@@ -31,7 +31,7 @@ public class Item {
 
             decreaseSellInEachDay();
 
-            if (sellIn < 0) {
+            if (isExpired()) {
                 quality = 0;
             }
         } else {
@@ -39,10 +39,14 @@ public class Item {
 
             decreaseSellInEachDay();
 
-            if (sellIn < 0) {
+            if (isExpired()) {
                 decreaseQualityByOne();
             }
         }
+    }
+
+    private boolean isExpired() {
+        return sellIn < 0;
     }
 
     boolean isBackstagePasses() {
