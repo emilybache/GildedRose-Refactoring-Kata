@@ -45,16 +45,6 @@ class GildedRose {
         }
     }
 
-    private void increaseQualityByThree(int i) {
-        increaseQualityByTwo(i);
-        increaseQualityByOne(i);
-    }
-
-    private void increaseQualityByTwo(int i) {
-        increaseQualityByOne(i);
-        increaseQualityByOne(i);
-    }
-
     private void decreaseQualityByOne(int i) {
         if (items[i].quality > 0) {
             if (!items[i].name.equals(SULFURAS)) {
@@ -67,6 +57,16 @@ class GildedRose {
         if (items[i].quality < 50) {
             items[i].quality = items[i].quality + 1;
         }
+    }
+
+    private void increaseQualityByTwo(int i) {
+        increaseQualityByOne(i);
+        increaseQualityByOne(i);
+    }
+
+    private void increaseQualityByThree(int i) {
+        increaseQualityByTwo(i);
+        increaseQualityByOne(i);
     }
 
 }
