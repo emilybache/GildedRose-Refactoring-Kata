@@ -11,7 +11,7 @@ class GildedRose {
     public void updateQuality() {
         for (Item item : items) {
 
-            if (item.isAgedBride()) {
+            if (item.isAgedBrie()) {
                 item.increaseQualityByOne();
 
                 item.decreaseSellInEachDay();

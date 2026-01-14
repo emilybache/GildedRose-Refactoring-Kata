@@ -21,7 +21,7 @@ public class Item {
         return name.equals(BACKSTAGE_PASSES);
     }
 
-    public boolean isAgedBride() {
+    public boolean isAgedBrie() {
         return name.equals(AGED_BRIE);
     }
 
