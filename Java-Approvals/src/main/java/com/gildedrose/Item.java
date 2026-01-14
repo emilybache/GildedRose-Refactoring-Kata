@@ -45,11 +45,11 @@ public class Item {
         }
     }
 
-    public boolean isBackstagePasses() {
+    boolean isBackstagePasses() {
         return name.equals(BACKSTAGE_PASSES);
     }
 
-    public boolean isAgedBrie() {
+    boolean isAgedBrie() {
         return name.equals(AGED_BRIE);
     }
 
@@ -64,7 +64,7 @@ public class Item {
         }
     }
 
-    private boolean isNotSulfuras() {
+    boolean isNotSulfuras() {
         return !name.equals(SULFURAS);
     }
 
