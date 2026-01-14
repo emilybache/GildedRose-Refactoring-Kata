@@ -10,34 +10,34 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            if (isAgedBride(item)) {
+
+            if (item.isAgedBride()) {
                 item.increaseQualityByOne();
-            } else if (isBackstagePasses(item)) {
-                item.increaseQualityBackstage();
-            } else {
-                item.decreaseQualityByOne();
-            }
 
-            item.decreaseSellInEachDay();
+                item.decreaseSellInEachDay();
 
-            if (item.sellIn < 0) {
-                if (isAgedBride(item)) {
+                if (item.sellIn < 0) {
                     item.increaseQualityByOne();
-                } else if (isBackstagePasses(item)) {
-                    item.quality = 0;
+                }
+            } else {
+                boolean isBackstagePasses = item.isBackstagePasses();
+                if (isBackstagePasses) {
+                    item.increaseQualityBackstage();
                 } else {
                     item.decreaseQualityByOne();
                 }
+
+                item.decreaseSellInEachDay();
+
+                if (item.sellIn < 0) {
+                    if (isBackstagePasses) {
+                        item.quality = 0;
+                    } else {
+                        item.decreaseQualityByOne();
+                    }
+                }
             }
         }
-    }
-
-    private static boolean isBackstagePasses(Item item) {
-        return item.name.equals(Item.BACKSTAGE_PASSES);
-    }
-
-    private static boolean isAgedBride(Item item) {
-        return item.name.equals(Item.AGED_BRIE);
     }
 
 }

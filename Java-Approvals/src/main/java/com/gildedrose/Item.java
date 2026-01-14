@@ -17,15 +17,27 @@ public class Item {
         this.quality = quality;
     }
 
-   @Override
+    public boolean isBackstagePasses() {
+        return name.equals(BACKSTAGE_PASSES);
+    }
+
+    public boolean isAgedBride() {
+        return name.equals(AGED_BRIE);
+    }
+
+    @Override
    public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
     }
 
     void decreaseSellInEachDay() {
-        if (!name.equals(SULFURAS)) {
+        if (isNotSulfuras()) {
             sellIn--;
         }
+    }
+
+    private boolean isNotSulfuras() {
+        return !name.equals(SULFURAS);
     }
 
     void increaseQualityByOne() {
@@ -46,7 +58,7 @@ public class Item {
 
     void decreaseQualityByOne() {
         if (quality > 0) {
-            if (!name.equals(SULFURAS)) {
+            if (isNotSulfuras()) {
                 quality--;
             }
         }
