@@ -14,17 +14,15 @@ class GildedRose {
         for (int i = 0; i < items.length; i++) {
             if (items[i].name.equals(AGED_BRIE)
                 || items[i].name.equals(BACKSTAGE_PASSES)) {
-                if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
+                incrementQualityByOne(i);
 
-                    if (items[i].name.equals(BACKSTAGE_PASSES)) {
-                        if (items[i].sellIn < 11) {
-                            incrementQualityByOne(i);
-                        }
+                if (items[i].name.equals(BACKSTAGE_PASSES)) {
+                    if (items[i].sellIn < 11) {
+                        incrementQualityByOne(i);
+                    }
 
-                        if (items[i].sellIn < 6) {
-                            incrementQualityByOne(i);
-                        }
+                    if (items[i].sellIn < 6) {
+                        incrementQualityByOne(i);
                     }
                 }
             } else {
