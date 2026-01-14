@@ -15,14 +15,13 @@ class GildedRose {
             if (items[i].name.equals(AGED_BRIE)) {
                 incrementQualityByOne(i);
             } else if (items[i].name.equals(BACKSTAGE_PASSES)) {
-                incrementQualityByOne(i);
-
                 if (items[i].sellIn < 6) {
-                    increaseQualityByTwo(i);
+                    increaseQualityByThree(i);
                 } else if (items[i].sellIn < 11) {
+                    increaseQualityByTwo(i);
+                } else {
                     incrementQualityByOne(i);
                 }
-
             } else {
                 decreaseQualityByOne(i);
             }
@@ -43,6 +42,11 @@ class GildedRose {
                 }
             }
         }
+    }
+
+    private void increaseQualityByThree(int i) {
+        increaseQualityByTwo(i);
+        incrementQualityByOne(i);
     }
 
     private void increaseQualityByTwo(int i) {
