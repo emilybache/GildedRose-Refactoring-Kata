@@ -12,19 +12,17 @@ class GildedRose {
 
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
-            if (items[i].name.equals(AGED_BRIE)
-                || items[i].name.equals(BACKSTAGE_PASSES)) {
+            if (items[i].name.equals(AGED_BRIE)) {
+                incrementQualityByOne(i);
+            } else if (items[i].name.equals(BACKSTAGE_PASSES)) {
                 incrementQualityByOne(i);
 
-                if (items[i].name.equals(BACKSTAGE_PASSES)) {
-                    if (items[i].sellIn < 11) {
-                        incrementQualityByOne(i);
-                    }
-
-                    if (items[i].sellIn < 6) {
-                        incrementQualityByOne(i);
-                    }
+                if (items[i].sellIn < 6) {
+                    increaseQualityByTwo(i);
+                } else if (items[i].sellIn < 11) {
+                    incrementQualityByOne(i);
                 }
+
             } else {
                 decreaseQualityByOne(i);
             }
@@ -45,6 +43,11 @@ class GildedRose {
                 }
             }
         }
+    }
+
+    private void increaseQualityByTwo(int i) {
+        incrementQualityByOne(i);
+        incrementQualityByOne(i);
     }
 
     private void decreaseQualityByOne(int i) {
