@@ -16,46 +16,52 @@ class GildedRose {
             if (items[i].name.equals(AGED_BRIE)) {
                 increaseQualityByOne(i);
             } else if (items[i].name.equals(BACKSTAGE_PASSES)) {
-                if (items[i].sellIn < 6) {
-                    increaseQualityByThree(i);
-                } else if (items[i].sellIn < 11) {
-                    increaseQualityByTwo(i);
-                } else {
-                    increaseQualityByOne(i);
-                }
+                increaseQualityBackstage(i);
             } else {
                 decreaseQualityByOne(i);
             }
 
-            if (!items[i].name.equals(SULFURAS)) {
-                items[i].sellIn = items[i].sellIn - 1;
-            }
+            decreaseSellInEachDay(i);
 
             if (items[i].sellIn < 0) {
                 if (items[i].name.equals(AGED_BRIE)) {
                     increaseQualityByOne(i);
+                } else if (items[i].name.equals(BACKSTAGE_PASSES)) {
+                    items[i].quality = 0;
                 } else {
-                    if (items[i].name.equals(BACKSTAGE_PASSES)) {
-                        items[i].quality = 0;
-                    } else {
-                        decreaseQualityByOne(i);
-                    }
+                    decreaseQualityByOne(i);
                 }
             }
+        }
+    }
+
+    private void decreaseSellInEachDay(int i) {
+        if (!items[i].name.equals(SULFURAS)) {
+            items[i].sellIn--;
+        }
+    }
+
+    private void increaseQualityBackstage(int i) {
+        if (items[i].sellIn < 6) {
+            increaseQualityByThree(i);
+        } else if (items[i].sellIn < 11) {
+            increaseQualityByTwo(i);
+        } else {
+            increaseQualityByOne(i);
         }
     }
 
     private void decreaseQualityByOne(int i) {
         if (items[i].quality > 0) {
             if (!items[i].name.equals(SULFURAS)) {
-                items[i].quality = items[i].quality - 1;
+                items[i].quality--;
             }
         }
     }
 
     private void increaseQualityByOne(int i) {
         if (items[i].quality < 50) {
-            items[i].quality = items[i].quality + 1;
+            items[i].quality++;
         }
     }
 
