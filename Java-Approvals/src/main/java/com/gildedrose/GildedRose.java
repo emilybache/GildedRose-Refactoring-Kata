@@ -20,19 +20,20 @@ class GildedRose {
                     item.increaseQualityByOne();
                 }
             } else {
-                boolean isBackstagePasses = item.isBackstagePasses();
-                if (isBackstagePasses) {
+                if (item.isBackstagePasses()) {
                     item.increaseQualityBackstage();
+
+                    item.decreaseSellInEachDay();
+
+                    if (item.sellIn < 0) {
+                        item.quality = 0;
+                    }
                 } else {
                     item.decreaseQualityByOne();
-                }
 
-                item.decreaseSellInEachDay();
+                    item.decreaseSellInEachDay();
 
-                if (item.sellIn < 0) {
-                    if (isBackstagePasses) {
-                        item.quality = 0;
-                    } else {
+                    if (item.sellIn < 0) {
                         item.decreaseQualityByOne();
                     }
                 }
