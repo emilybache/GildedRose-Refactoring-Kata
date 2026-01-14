@@ -12,24 +12,24 @@ class GildedRose {
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            if (items[i].name.equals(AGED_BRIE)) {
-                increaseQualityByOne(items[i]);
-            } else if (items[i].name.equals(BACKSTAGE_PASSES)) {
-                increaseQualityBackstage(i);
+        for (Item item : items) {
+            if (item.name.equals(AGED_BRIE)) {
+                increaseQualityByOne(item);
+            } else if (item.name.equals(BACKSTAGE_PASSES)) {
+                increaseQualityBackstage(item);
             } else {
-                decreaseQualityByOne(items[i]);
+                decreaseQualityByOne(item);
             }
 
-            decreaseSellInEachDay(items[i]);
+            decreaseSellInEachDay(item);
 
-            if (items[i].sellIn < 0) {
-                if (items[i].name.equals(AGED_BRIE)) {
-                    increaseQualityByOne(items[i]);
-                } else if (items[i].name.equals(BACKSTAGE_PASSES)) {
-                    items[i].quality = 0;
+            if (item.sellIn < 0) {
+                if (item.name.equals(AGED_BRIE)) {
+                    increaseQualityByOne(item);
+                } else if (item.name.equals(BACKSTAGE_PASSES)) {
+                    item.quality = 0;
                 } else {
-                    decreaseQualityByOne(items[i]);
+                    decreaseQualityByOne(item);
                 }
             }
         }
@@ -41,13 +41,13 @@ class GildedRose {
         }
     }
 
-    private void increaseQualityBackstage(int i) {
-        if (items[i].sellIn < 6) {
-            increaseQualityByThree(items[i]);
-        } else if (items[i].sellIn < 11) {
-            increaseQualityByTwo(items[i]);
+    private void increaseQualityBackstage(Item item) {
+        if (item.sellIn < 6) {
+            increaseQualityByThree(item);
+        } else if (item.sellIn < 11) {
+            increaseQualityByTwo(item);
         } else {
-            increaseQualityByOne(items[i]);
+            increaseQualityByOne(item);
         }
     }
 
