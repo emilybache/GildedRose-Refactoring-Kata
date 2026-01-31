@@ -44,3 +44,8 @@ class Item:
 
     def __repr__(self):
         return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
+
+
+#The original code relied on a monolithic update_quality method with deeply nested conditional logic
+#I implemented the Strategy Pattern, decomposing the complex conditional logic into separate classes
+#Created a new strategy class rather than risking regression bugs by modifying the existing, messy if/else block.
