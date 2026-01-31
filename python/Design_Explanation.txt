@@ -1,0 +1,26 @@
+GILDED ROSE REFACTORING - DESIGN EXPLANATION
+
+MAJOR ISSUES IN ORIGINAL CODE:
+The original code has a complex structure of nested if-statements (7+ levels) that check item names 
+repeatedly in the update_quality() method. This is a nightmare to maintain and does not follow the Open/Closed Principle, 
+as adding a new item type ("Conjured") means modifying existing code and possibly breaking it. 
+The entire business logic is packed into a single 50-line method with no encapsulation, 
+making it hard to test the behavior of individual items or trace the code execution.
+
+DESIGN SOLUTION - STRATEGY PATTERN:
+I applied the Strategy Pattern to move the update logic for each item type into a separate 
+strategy class: NormalItemStrategy, AgedBrieStrategy, SulfurasStrategy, BackstagePassStrategy, and ConjuredItemStrategy. 
+The GildedRose class holds a dictionary of item names to their corresponding strategies and calls the update strategy accordingly. 
+This design is SOLID, with a focus on Single Responsibility (each class has one task) 
+and Open/Closed (adding new item types means implementing new strategy classes without changing existing code).
+
+HOW THIS SOLVES THE PROBLEMS:
+The Strategy Pattern completely eliminates the need for nested conditionals. 
+Each strategy class is simple, clean, and handles only one type of item. The addition of the Conjured item feature 
+requires nothing more than creating the ConjuredItemStrategy class without modifying any existing code.
+
+POTENTIAL DRAWBACKS:
+The Strategy Pattern requires increasing the number of classes from 2 to 8. 
+While this may be overkill for such a small number of item types, it does give us excellent scalability should 
+additional item types be added in the future. It does introduce a slight complexity due to the need for a dictionary
+to select which strategy to use. There is a slight performance hit due to object creation.
