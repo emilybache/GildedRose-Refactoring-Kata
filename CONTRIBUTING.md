@@ -1,12 +1,9 @@
 Contributing to Gilded Rose Refactoring Kata
 ======
 
-More translations are most welcome! I'm very open for pull requests that
-translate the starting position into additional languages. However, please
-do **not** open a pull request with your solution! It can be a bit confusing since
-GitHub encourages you to do so! Please only send me pull requests if you have a
-correction or improvement to the starting position. You don't want to spoil the
-fun of doing the exercise for other people!
+Although in principle I welcome contributions that improve this exercise, in practice I have been swamped with too many spurious pull requests so I have closed the repository to contributions from people who have not previously had contributions accepted.
+
+If you would like to send me a correction or improvement to the starting position then I hope you will be able to find another forum to get in touch so we can arrange how to do that. Look for me - Emily Bache - on social media and/or via the [Samman Society](https://sammancoaching.org/).
 
 # Translating this code
 
