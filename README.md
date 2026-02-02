@@ -50,6 +50,6 @@ is also really useful for practicing writing good tests using different framewor
 
 ## Contributing
 
-Contributions are encouraged! You could add a translations of the specification
-in another language or a new starting point for your favorite programming
-language. Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for more details.
+I have been struggling for some time with the maintenance burden for the Gilded Rose respository. I get frequent spurious pull requests from people who have been assigned to work on it as an exercise by some other organization (I don't know who) and mistakenly send me a pull request with their solution. I get so many of these it's a significant amount of work to check that they aren't a legitimate contribution. It's really annoying. I have sadly now added a restriction now so that only prior contributors can now open issues, comment, or create pull requests.
+
+If you would like to make an actual contribution that improves the starting position of the exercise, please see [CONTRIBUTING.md](./CONTRIBUTING.md) for some ideas about how to get involved.
