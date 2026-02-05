@@ -24,20 +24,44 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: "Please don't submit a Pull Request containing a Kata solution to the original repo from Emily Bache. If you are instead trying to add an improvement, please resubmit this PR and check the `[X]` box in the PR template."
-            })
-      - name: Close PR if checkmark is missing
-        if: ${{ !contains(github.event.pull_request.body, '[X] I acknowledge') }}
-        uses: actions/github-script@v6
+      - uses: actions/checkout@v3
+
+      - name: Check PR template via diff
+        id: check
+        uses: actions/github-script@v7
         with:
           script: |
-            github.rest.pulls.update({
-              pull_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'closed'
-            })
+            const fs = require('fs');
+            const path = require('path');
+            const diff = require('diff');
+
+            const prBody = context.payload.pull_request.body || "";
+
+            // Read the PR template
+            const templatePath = path.join(process.env.GITHUB_WORKSPACE, ".github/pull_request_template.md");
+            const template = fs.readFileSync(templatePath, "utf8");
+
+            // Transform unchecked boxes to checked boxes
+            const transformedTemplate = template.replace(/- \[ \]/g, '- [x]');
+
+            const normalize = text => text.replace(/\r\n/g, '\n').trim();
+            const bodyNormalized = normalize(prBody);
+            const templateNormalized = normalize(transformedTemplate);
+
+            // Compute line diff
+            const changes = diff.diffLines(templateNormalized, bodyNormalized);
+
+            // Filter out lines that are identical
+            const diffLines = changes.filter(c => c.added || c.removed).map(c => c.value.trim()).filter(Boolean);
+
+            // Check if diff is empty or only contains the last line of the template
+            const lastLine = normalize(transformedTemplate.split('\n').slice(-1)[0]);
+            const isSuspect = diffLines.length === 0 || (diffLines.length === 1 && diffLines[0] === lastLine);
+
+            return { is_suspect: isSuspect };
+
+      - name: Add solution label
+        if: steps.check.outputs.is_suspect == 'true'
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          labels: solution
