@@ -5,19 +5,23 @@ on:
 
 jobs:
   task-check:
-    # github.event.repository.name only contains 'GildedRose-Refactoring-Kata' (no owner)!
-    # we could check owner and name if: github.repository == 'emilybache/GildedRose-Refactoring-Kata'
-    # but checking owner is enough/better/more stable
-    # Only run from the base repository
-    if: ${{ github.repository_owner == 'emilybache' || env.FORK_TESTING == 'true' }}
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-latest
     permissions:
       issues: write
       pull-requests: write
     steps:
-      - name: Determine if PR is a solution
-        id: check
-        uses: actions/github-script@v7
+      # github.event.repository.name only contains 'GildedRose-Refactoring-Kata' (no owner)!
+      # we could check owner and name if: github.repository == 'emilybache/GildedRose-Refactoring-Kata'
+      # but checking owner is enough/better/more stable
+      # Only run from the base repository
+      - name: Skip if not main repo or fork testing
+        if: ${{ github.repository_owner != 'emilybache' && env.PR_TESTING != 'true' }}
+        run: |
+          echo "Skipping workflow on fork without PR_TESTING"
+          exit 0
+      - name: Comment if checkmark is missing
+        if: ${{ !contains(github.event.pull_request.body, '[X] I acknowledge') }}
+        uses: actions/github-script@v6
         with:
           script: |
       - uses: actions/checkout@v3
