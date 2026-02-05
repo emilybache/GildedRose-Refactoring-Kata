@@ -9,7 +9,7 @@ jobs:
     # we could check owner and name if: github.repository == 'emilybache/GildedRose-Refactoring-Kata'
     # but checking owner is enough/better/more stable
     # Only run from the base repository
-    if: github.repository_owner == 'emilybache'
+    if: github.repository_owner == 'emilybache' || env.FORK_TESTING == 'true'
     runs-on: ubuntu-latest
     permissions:
       issues: write
