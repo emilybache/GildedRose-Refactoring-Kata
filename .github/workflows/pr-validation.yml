@@ -5,8 +5,11 @@ on:
 
 jobs:
   task-check:
+    # github.event.repository.name only contains 'GildedRose-Refactoring-Kata' (no owner)!
+    # we could check owner and name if: github.repository == 'emilybache/GildedRose-Refactoring-Kata'
+    # but checking owner is enough/better/more stable
     # Only run from the base repository
-    if: github.event.repository.name == 'emilybache/GildedRose-Refactoring-Kata'
+    if: github.repository_owner == 'emilybache'
     runs-on: ubuntu-latest
     permissions:
       issues: write
