@@ -17,16 +17,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: `
-👋 Thanks for working on the Gilded Rose kata!
-
-This repository intentionally contains badly written code for learning purposes.
-
-We don't accept refactored solutions as pull requests.
-Please keep your solution in your fork.
-
-If you intended to contribute documentation, tests, or a new language version, feel free to reopen and explain 🙂
-`
+              body: "👋 Thanks for working on the Gilded Rose kata!\n\nThis repository intentionally contains badly written code for learning purposes.\n\nWe don't accept refactored solutions as pull requests.\nPlease keep your solution in your fork.\n\nIf you intended to contribute documentation, tests, or a new language version, feel free to reopen and explain 🙂"
             })
 
       - name: Close PR
