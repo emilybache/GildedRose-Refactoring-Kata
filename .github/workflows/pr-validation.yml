@@ -19,11 +19,6 @@ jobs:
         run: |
           echo "Skipping workflow on fork without PR_TESTING"
           exit 0
-      - name: Comment if checkmark is missing
-        if: ${{ !contains(github.event.pull_request.body, '[X] I acknowledge') }}
-        uses: actions/github-script@v6
-        with:
-          script: |
       - uses: actions/checkout@v3
 
       - name: Check PR template via diff
