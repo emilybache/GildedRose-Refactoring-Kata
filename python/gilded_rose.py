@@ -83,6 +83,22 @@ class SulfurasStrategy:
         pass  # legendary items are immutable; parameters required by Protocol
 
 
+class ConjuredStrategy:
+    """
+    Double-degradation strategy for Conjured items.
+
+    Quality decreases by 2 per day; by 4 per day once the sell date
+    has passed. Quality never falls below 0.
+    """
+
+    def update(self, item: "Item", days: int) -> None:
+        for _ in range(days):
+            item.quality = max(0, item.quality - 2)
+            item.sell_in -= 1
+            if item.sell_in < 0:
+                item.quality = max(0, item.quality - 2)
+
+
 class GildedRose(object):
 
     def __init__(self, items):

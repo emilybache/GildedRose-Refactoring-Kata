@@ -9,7 +9,7 @@ if str(_EXERCISE_ROOT) not in sys.path:
 
 from gilded_rose import (
     Item, GildedRose, NormalStrategy, AgedBrieStrategy,
-    BackstagePassStrategy, SulfurasStrategy,
+    BackstagePassStrategy, SulfurasStrategy, ConjuredStrategy,
 )
 
 
@@ -167,6 +167,44 @@ class TestSulfurasStrategy(unittest.TestCase):
         self.strategy.update(item, days=100)
         self.assertEqual(80, item.quality)
         self.assertEqual(0, item.sell_in)
+
+
+class TestConjuredStrategy(unittest.TestCase):
+    """Tests for ConjuredStrategy — degrades twice as fast as normal."""
+
+    def setUp(self):
+        self.strategy = ConjuredStrategy()
+
+    def test_quality_decrements_by_2_each_day(self):
+        item = Item("Conjured Mana Cake", sell_in=10, quality=20)
+        self.strategy.update(item, days=1)
+        self.assertEqual(18, item.quality)
+        self.assertEqual(9, item.sell_in)
+
+    def test_quality_floors_at_zero(self):
+        item = Item("Conjured Mana Cake", sell_in=5, quality=1)
+        self.strategy.update(item, days=1)
+        self.assertEqual(0, item.quality)
+
+    def test_quality_degrades_by_4_after_sell_date(self):
+        # Past sell date: -4 per day
+        item = Item("Conjured Mana Cake", sell_in=0, quality=20)
+        self.strategy.update(item, days=1)
+        self.assertEqual(16, item.quality)
+        self.assertEqual(-1, item.sell_in)
+
+    def test_multi_day_crosses_sell_date(self):
+        # sell_in=1, quality=10, days=3
+        # Day1: q=8 si=0 | Day2: q=4 si=-1 | Day3: q=0 si=-2
+        item = Item("Conjured Mana Cake", sell_in=1, quality=10)
+        self.strategy.update(item, days=3)
+        self.assertEqual(0, item.quality)
+        self.assertEqual(-2, item.sell_in)
+
+    def test_quality_floors_at_zero_post_sell_date(self):
+        item = Item("Conjured Mana Cake", sell_in=0, quality=2)
+        self.strategy.update(item, days=1)
+        self.assertEqual(0, item.quality)
 
 
 if __name__ == '__main__':
