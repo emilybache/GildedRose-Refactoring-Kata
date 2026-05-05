@@ -7,7 +7,7 @@ _EXERCISE_ROOT = Path(__file__).resolve().parent.parent
 if str(_EXERCISE_ROOT) not in sys.path:
     sys.path.insert(0, str(_EXERCISE_ROOT))
 
-from gilded_rose import Item, GildedRose, NormalStrategy
+from gilded_rose import Item, GildedRose, NormalStrategy, AgedBrieStrategy
 
 
 class GildedRoseTest(unittest.TestCase):
@@ -57,6 +57,39 @@ class TestNormalStrategy(unittest.TestCase):
         item = Item("widget", sell_in=1, quality=1)
         self.strategy.update(item, days=2)
         self.assertEqual(0, item.quality)
+
+
+class TestAgedBrieStrategy(unittest.TestCase):
+    """Tests for AgedBrieStrategy — quality improves with age."""
+
+    def setUp(self):
+        self.strategy = AgedBrieStrategy()
+
+    def test_quality_increments_by_one_each_day(self):
+        item = Item("Aged Brie", sell_in=10, quality=20)
+        self.strategy.update(item, days=1)
+        self.assertEqual(21, item.quality)
+        self.assertEqual(9, item.sell_in)
+
+    def test_quality_caps_at_50(self):
+        item = Item("Aged Brie", sell_in=10, quality=50)
+        self.strategy.update(item, days=1)
+        self.assertEqual(50, item.quality)
+
+    def test_quality_increments_twice_after_sell_date(self):
+        # Past sell date: +2 per day
+        item = Item("Aged Brie", sell_in=0, quality=20)
+        self.strategy.update(item, days=1)
+        self.assertEqual(22, item.quality)
+        self.assertEqual(-1, item.sell_in)
+
+    def test_multi_day_crosses_sell_date(self):
+        # sell_in=1, quality=46, days=3
+        # Day1: q=47 si=0 | Day2: q=49 si=-1 | Day3: q=50 (capped) si=-2
+        item = Item("Aged Brie", sell_in=1, quality=46)
+        self.strategy.update(item, days=3)
+        self.assertEqual(50, item.quality)
+        self.assertEqual(-2, item.sell_in)
 
 
 if __name__ == '__main__':

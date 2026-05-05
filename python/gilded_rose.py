@@ -27,6 +27,22 @@ class NormalStrategy:
                 item.quality = max(0, item.quality - 1)
 
 
+class AgedBrieStrategy:
+    """
+    Quality improvement strategy for Aged Brie.
+
+    Quality increases by 1 per day; by 2 per day once the sell date
+    has passed. Quality never exceeds 50.
+    """
+
+    def update(self, item: "Item", days: int) -> None:
+        for _ in range(days):
+            item.quality = min(50, item.quality + 1)
+            item.sell_in -= 1
+            if item.sell_in < 0:
+                item.quality = min(50, item.quality + 1)
+
+
 class GildedRose(object):
 
     def __init__(self, items):
