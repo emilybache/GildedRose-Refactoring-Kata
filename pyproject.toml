@@ -1,0 +1,27 @@
+[project]
+name = "gildedrose-refactoring-kata"
+version = "0.1.0"
+description = "Gilded Rose Refactoring Kata – Blend360 Assignment"
+requires-python = ">=3.10"
+dependencies = [
+    "coverage>=7.13.0",
+]
+
+[dependency-groups]
+test = [
+    "approvaltests>=16.2.1",
+    "pytest>=9.0.2",
+    "pytest-approvaltests>=0.2.4",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.coverage.run]
+branch = true
+source = ["gilded_rose"]
+
+[tool.coverage.report]
+show_missing = true
+skip_empty = true
