@@ -71,6 +71,18 @@ class BackstagePassStrategy:
             item.sell_in -= 1
 
 
+class SulfurasStrategy:
+    """
+    No-op strategy for Sulfuras, Hand of Ragnaros.
+
+    Legendary items never degrade and never need to be sold.
+    Neither quality nor sell_in is ever mutated.
+    """
+
+    def update(self, item: "Item", days: int) -> None:
+        pass  # legendary items are immutable; parameters required by Protocol
+
+
 class GildedRose(object):
 
     def __init__(self, items):

@@ -9,7 +9,7 @@ if str(_EXERCISE_ROOT) not in sys.path:
 
 from gilded_rose import (
     Item, GildedRose, NormalStrategy, AgedBrieStrategy,
-    BackstagePassStrategy,
+    BackstagePassStrategy, SulfurasStrategy,
 )
 
 
@@ -144,6 +144,29 @@ class TestBackstagePassStrategy(unittest.TestCase):
         self.strategy.update(item, days=4)
         self.assertEqual(26, item.quality)
         self.assertEqual(8, item.sell_in)
+
+
+class TestSulfurasStrategy(unittest.TestCase):
+    """Tests for SulfurasStrategy — legendary item, never changes."""
+
+    def setUp(self):
+        self.strategy = SulfurasStrategy()
+
+    def test_quality_never_changes(self):
+        item = Item("Sulfuras, Hand of Ragnaros", sell_in=0, quality=80)
+        self.strategy.update(item, days=1)
+        self.assertEqual(80, item.quality)
+
+    def test_sell_in_never_changes(self):
+        item = Item("Sulfuras, Hand of Ragnaros", sell_in=0, quality=80)
+        self.strategy.update(item, days=1)
+        self.assertEqual(0, item.sell_in)
+
+    def test_unchanged_after_many_days(self):
+        item = Item("Sulfuras, Hand of Ragnaros", sell_in=0, quality=80)
+        self.strategy.update(item, days=100)
+        self.assertEqual(80, item.quality)
+        self.assertEqual(0, item.sell_in)
 
 
 if __name__ == '__main__':
