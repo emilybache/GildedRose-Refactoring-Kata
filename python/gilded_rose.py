@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from __future__ import annotations
+
 from dataclasses import dataclass
 from typing import Protocol
 
@@ -99,40 +101,57 @@ class ConjuredStrategy:
                 item.quality = max(0, item.quality - 2)
 
 
-class GildedRose(object):
+_STRATEGY_MAP: dict[str, UpdateStrategy] = {
+    "Aged Brie": AgedBrieStrategy(),
+    "Backstage passes to a TAFKAL80ETC concert": BackstagePassStrategy(),
+    "Sulfuras, Hand of Ragnaros": SulfurasStrategy(),
+    "Conjured Mana Cake": ConjuredStrategy(),
+}
 
-    def __init__(self, items):
+
+@dataclass
+class ItemRecord:
+    """
+    Internal pairing of an Item with its UpdateStrategy.
+
+    Built once in GildedRose.__init__ so the name-to-strategy lookup
+    happens at construction time, not on every update call. Exposed
+    publicly so tests can inject strategies directly without going
+    through the name-lookup dict.
+    """
+
+    item: Item
+    strategy: UpdateStrategy
+
+
+class GildedRose:
+    """
+    Inventory manager for the Gilded Rose inn.
+
+    Accepts a list of Item objects and updates their quality and sell_in
+    values according to each item's type-specific strategy. The Item
+    class and the items list are left untouched per the goblin's terms.
+
+    Usage:
+        rose = GildedRose(items)
+        rose.update_quality()          # advance one day
+        rose.update_quality(days=7)    # advance a full week
+    """
+
+    def __init__(self, items: list[Item]) -> None:
         self.items = items
+        self._records: list[ItemRecord] = [
+            ItemRecord(
+                item=i,
+                strategy=_STRATEGY_MAP.get(i.name, NormalStrategy()),
+            )
+            for i in items
+        ]
 
-    def update_quality(self):
-        for item in self.items:
-            if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert":
-                if item.quality > 0:
-                    if item.name != "Sulfuras, Hand of Ragnaros":
-                        item.quality = item.quality - 1
-            else:
-                if item.quality < 50:
-                    item.quality = item.quality + 1
-                    if item.name == "Backstage passes to a TAFKAL80ETC concert":
-                        if item.sell_in < 11:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-                        if item.sell_in < 6:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-            if item.name != "Sulfuras, Hand of Ragnaros":
-                item.sell_in = item.sell_in - 1
-            if item.sell_in < 0:
-                if item.name != "Aged Brie":
-                    if item.name != "Backstage passes to a TAFKAL80ETC concert":
-                        if item.quality > 0:
-                            if item.name != "Sulfuras, Hand of Ragnaros":
-                                item.quality = item.quality - 1
-                    else:
-                        item.quality = item.quality - item.quality
-                else:
-                    if item.quality < 50:
-                        item.quality = item.quality + 1
+    def update_quality(self, days: int = 1) -> None:
+        """Advance quality and sell_in for all items by `days` days."""
+        for record in self._records:
+            record.strategy.update(record.item, days)
 
 
 class Item:

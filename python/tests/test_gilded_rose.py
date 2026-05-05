@@ -10,6 +10,7 @@ if str(_EXERCISE_ROOT) not in sys.path:
 from gilded_rose import (
     Item, GildedRose, NormalStrategy, AgedBrieStrategy,
     BackstagePassStrategy, SulfurasStrategy, ConjuredStrategy,
+    ItemRecord,
 )
 
 
@@ -205,6 +206,66 @@ class TestConjuredStrategy(unittest.TestCase):
         item = Item("Conjured Mana Cake", sell_in=0, quality=2)
         self.strategy.update(item, days=1)
         self.assertEqual(0, item.quality)
+
+
+class TestGildedRose(unittest.TestCase):
+    """
+    Integration tests for GildedRose.
+
+    Verifies strategy dispatch by item name and that the days parameter
+    is forwarded correctly to each strategy.
+    """
+
+    def test_dispatches_normal_strategy_for_unknown_item(self):
+        items = [Item("unknown widget", sell_in=5, quality=10)]
+        GildedRose(items).update_quality()
+        self.assertEqual(9, items[0].quality)
+        self.assertEqual(4, items[0].sell_in)
+
+    def test_dispatches_aged_brie_strategy(self):
+        items = [Item("Aged Brie", sell_in=5, quality=20)]
+        GildedRose(items).update_quality()
+        self.assertEqual(21, items[0].quality)
+
+    def test_dispatches_backstage_pass_strategy(self):
+        items = [Item("Backstage passes to a TAFKAL80ETC concert", sell_in=5, quality=20)]
+        GildedRose(items).update_quality()
+        self.assertEqual(23, items[0].quality)
+
+    def test_dispatches_sulfuras_strategy(self):
+        items = [Item("Sulfuras, Hand of Ragnaros", sell_in=0, quality=80)]
+        GildedRose(items).update_quality()
+        self.assertEqual(80, items[0].quality)
+        self.assertEqual(0, items[0].sell_in)
+
+    def test_dispatches_conjured_strategy(self):
+        items = [Item("Conjured Mana Cake", sell_in=5, quality=20)]
+        GildedRose(items).update_quality()
+        self.assertEqual(18, items[0].quality)
+
+    def test_multi_day_update_via_days_param(self):
+        # sell_in=3, quality=10, days=3
+        # Day1: q=9 si=2 | Day2: q=8 si=1 | Day3: q=7 si=0
+        items = [Item("unknown widget", sell_in=3, quality=10)]
+        GildedRose(items).update_quality(days=3)
+        self.assertEqual(7, items[0].quality)
+        self.assertEqual(0, items[0].sell_in)
+
+    def test_multiple_items_updated_independently(self):
+        items = [
+            Item("Aged Brie", sell_in=5, quality=20),
+            Item("unknown widget", sell_in=5, quality=20),
+        ]
+        GildedRose(items).update_quality()
+        self.assertEqual(21, items[0].quality)  # Aged Brie goes up
+        self.assertEqual(19, items[1].quality)  # normal goes down
+
+    def test_item_record_allows_direct_strategy_injection(self):
+        # ItemRecord lets tests bypass name-lookup and inject a strategy directly
+        item = Item("anything", sell_in=5, quality=20)
+        record = ItemRecord(item=item, strategy=ConjuredStrategy())
+        record.strategy.update(record.item, days=1)
+        self.assertEqual(18, item.quality)
 
 
 if __name__ == '__main__':
