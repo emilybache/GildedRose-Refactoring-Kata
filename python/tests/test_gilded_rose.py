@@ -7,7 +7,10 @@ _EXERCISE_ROOT = Path(__file__).resolve().parent.parent
 if str(_EXERCISE_ROOT) not in sys.path:
     sys.path.insert(0, str(_EXERCISE_ROOT))
 
-from gilded_rose import Item, GildedRose, NormalStrategy, AgedBrieStrategy
+from gilded_rose import (
+    Item, GildedRose, NormalStrategy, AgedBrieStrategy,
+    BackstagePassStrategy,
+)
 
 
 class GildedRoseTest(unittest.TestCase):
@@ -90,6 +93,57 @@ class TestAgedBrieStrategy(unittest.TestCase):
         self.strategy.update(item, days=3)
         self.assertEqual(50, item.quality)
         self.assertEqual(-2, item.sell_in)
+
+
+class TestBackstagePassStrategy(unittest.TestCase):
+    """Tests for BackstagePassStrategy — tiered increase, zeroes after concert."""
+
+    def setUp(self):
+        self.strategy = BackstagePassStrategy()
+
+    def test_quality_increments_by_1_when_more_than_10_days(self):
+        item = Item("Backstage passes to a TAFKAL80ETC concert", sell_in=15, quality=20)
+        self.strategy.update(item, days=1)
+        self.assertEqual(21, item.quality)
+        self.assertEqual(14, item.sell_in)
+
+    def test_quality_increments_by_2_when_10_or_fewer_days(self):
+        item = Item("Backstage passes to a TAFKAL80ETC concert", sell_in=10, quality=20)
+        self.strategy.update(item, days=1)
+        self.assertEqual(22, item.quality)
+        self.assertEqual(9, item.sell_in)
+
+    def test_quality_increments_by_3_when_5_or_fewer_days(self):
+        item = Item("Backstage passes to a TAFKAL80ETC concert", sell_in=5, quality=20)
+        self.strategy.update(item, days=1)
+        self.assertEqual(23, item.quality)
+        self.assertEqual(4, item.sell_in)
+
+    def test_quality_drops_to_zero_on_concert_day(self):
+        # sell_in=0 means the concert is today — quality zeroes out
+        item = Item("Backstage passes to a TAFKAL80ETC concert", sell_in=0, quality=30)
+        self.strategy.update(item, days=1)
+        self.assertEqual(0, item.quality)
+        self.assertEqual(-1, item.sell_in)
+
+    def test_quality_stays_zero_after_concert(self):
+        item = Item("Backstage passes to a TAFKAL80ETC concert", sell_in=-1, quality=0)
+        self.strategy.update(item, days=1)
+        self.assertEqual(0, item.quality)
+
+    def test_quality_caps_at_50(self):
+        item = Item("Backstage passes to a TAFKAL80ETC concert", sell_in=5, quality=49)
+        self.strategy.update(item, days=1)
+        self.assertEqual(50, item.quality)
+
+    def test_multi_day_crosses_all_thresholds(self):
+        # sell_in=12, quality=20, days=4
+        # Day1(si=12): +1 q=21 si=11 | Day2(si=11): +1 q=22 si=10
+        # Day3(si=10): +2 q=24 si=9  | Day4(si=9):  +2 q=26 si=8
+        item = Item("Backstage passes to a TAFKAL80ETC concert", sell_in=12, quality=20)
+        self.strategy.update(item, days=4)
+        self.assertEqual(26, item.quality)
+        self.assertEqual(8, item.sell_in)
 
 
 if __name__ == '__main__':

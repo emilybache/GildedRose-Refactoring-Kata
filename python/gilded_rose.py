@@ -43,6 +43,34 @@ class AgedBrieStrategy:
                 item.quality = min(50, item.quality + 1)
 
 
+class BackstagePassStrategy:
+    """
+    Quality strategy for backstage passes.
+
+    Quality increases as the concert approaches:
+      - +1/day when more than 10 days remain
+      - +2/day when 10 or fewer days remain
+      - +3/day when 5 or fewer days remain
+    Quality drops to 0 on concert day (sell_in == 0 at start of day)
+    and stays 0 afterwards. Quality never exceeds 50.
+    """
+
+    def update(self, item: "Item", days: int) -> None:
+        for _ in range(days):
+            if item.sell_in <= 0:
+                # Concert day or past — pass is worthless
+                item.quality = 0
+                item.sell_in -= 1
+                continue
+            if item.sell_in <= 5:
+                item.quality = min(50, item.quality + 3)
+            elif item.sell_in <= 10:
+                item.quality = min(50, item.quality + 2)
+            else:
+                item.quality = min(50, item.quality + 1)
+            item.sell_in -= 1
+
+
 class GildedRose(object):
 
     def __init__(self, items):
