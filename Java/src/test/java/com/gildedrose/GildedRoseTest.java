@@ -81,7 +81,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void aumentarQualityEmDoisSellInEntre10A6TAFKAL80ETC() {
+    void aumentarQualityEm2SellInEntre6A10TAFKAL80ETC() {
         Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert",6, 40),
                                     new Item("Backstage passes to a TAFKAL80ETC concert",10, 48)};
         GildedRose app = new GildedRose(items);
