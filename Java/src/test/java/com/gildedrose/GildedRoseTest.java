@@ -11,7 +11,17 @@ class GildedRoseTest {
         Item[] items = new Item[] { new Item("foo", 0, 0) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-        assertEquals("fixme", app.items[0].name);
+        assertEquals("foo", app.items[0].name);
+    }
+
+    @Test
+    void defaultItem_shouldDecreaseSellInAndQualityEachDay(){
+        Item[] items = new Item[] { new Item("vest", 20, 19) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(19, app.items[0].sellIn);
+        assertEquals(18, app.items[0].quality);
+
     }
 
 }
