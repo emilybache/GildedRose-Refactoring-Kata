@@ -4,6 +4,7 @@ class GildedRose {
     private static final String AGED_BRIE = "Aged Brie";
     private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+    private static final String CONJURED = "Conjured Mana Cake";
     private static final int MIN_QUALITY = 0;
     private static final int MAX_QUALITY = 50;
     private static final int BACKSTAGE_DOUBLE_INCREASE_DAYS = 10;
@@ -30,6 +31,9 @@ class GildedRose {
                 break;
             case BACKSTAGE_PASSES:
                 updateBackstagePass(item);
+                break;
+            case CONJURED:
+                updateConjuredItem(item);
                 break;
             default:
                 updateNormalItem(item);
@@ -66,6 +70,14 @@ class GildedRose {
         }
     }
 
+    private void updateConjuredItem(Item item) {
+        decreaseQualityTwice(item);
+        item.sellIn--;
+        if (isExpired(item)) {
+            decreaseQualityTwice(item);
+        }
+    }
+
     private boolean isExpired(Item item) {
         return item.sellIn < 0;
     }
@@ -80,5 +92,10 @@ class GildedRose {
         if (item.quality > MIN_QUALITY) {
             item.quality--;
         }
+    }
+
+    private void decreaseQualityTwice(Item item) {
+        decreaseQuality(item);
+        decreaseQuality(item);
     }
 }

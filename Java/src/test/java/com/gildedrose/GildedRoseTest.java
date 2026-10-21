@@ -31,7 +31,12 @@ class GildedRoseTest {
         "'Backstage passes to a TAFKAL80ETC concert', 0, 50, -1, 0",
         "'Sulfuras, Hand of Ragnaros', 0, 80, 0, 80",
         "'Sulfuras, Hand of Ragnaros', -1, 80, -1, 80",
-        "'Sulfuras, Hand of Ragnaros', 10, 80, 10, 80"
+        "'Sulfuras, Hand of Ragnaros', 10, 80, 10, 80",
+        "'Conjured Mana Cake', 3, 6, 2, 4",
+        "'Conjured Mana Cake', 1, 6, 0, 4",
+        "'Conjured Mana Cake', 0, 6, -1, 2",
+        "'Conjured Mana Cake', 3, 1, 2, 0",
+        "'Conjured Mana Cake', 0, 3, -1, 0"
     })
     void updatesItemAccordingToRules(
         String name, int sellIn, int quality,
