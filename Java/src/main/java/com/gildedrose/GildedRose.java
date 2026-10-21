@@ -22,46 +22,63 @@ class GildedRose {
     }
 
     private void updateItem(Item item) {
-        if (item.name.equals(SULFURAS)) {
-            return;
+        switch (item.name) {
+            case SULFURAS:
+                break;
+            case AGED_BRIE:
+                updateAgedBrie(item);
+                break;
+            case BACKSTAGE_PASSES:
+                updateBackstagePass(item);
+                break;
+            default:
+                updateNormalItem(item);
         }
+    }
 
-        if (item.name.equals(AGED_BRIE)) {
-            increaseQuality(item);
-        } else if (item.name.equals(BACKSTAGE_PASSES)) {
-            increaseQuality(item);
-            if (item.sellIn <= BACKSTAGE_DOUBLE_INCREASE_DAYS) {
-                increaseQuality(item);
-            }
-            if (item.sellIn <= BACKSTAGE_TRIPLE_INCREASE_DAYS) {
-                increaseQuality(item);
-            }
-        } else {
+    private void updateNormalItem(Item item) {
+        decreaseQuality(item);
+        item.sellIn--;
+        if (isExpired(item)) {
             decreaseQuality(item);
         }
+    }
 
-        item.sellIn = item.sellIn - 1;
-
-        if (item.sellIn < 0) {
-            if (item.name.equals(AGED_BRIE)) {
-                increaseQuality(item);
-            } else if (item.name.equals(BACKSTAGE_PASSES)) {
-                item.quality = MIN_QUALITY;
-            } else {
-                decreaseQuality(item);
-            }
+    private void updateAgedBrie(Item item) {
+        increaseQuality(item);
+        item.sellIn--;
+        if (isExpired(item)) {
+            increaseQuality(item);
         }
+    }
+
+    private void updateBackstagePass(Item item) {
+        increaseQuality(item);
+        if (item.sellIn <= BACKSTAGE_DOUBLE_INCREASE_DAYS) {
+            increaseQuality(item);
+        }
+        if (item.sellIn <= BACKSTAGE_TRIPLE_INCREASE_DAYS) {
+            increaseQuality(item);
+        }
+        item.sellIn--;
+        if (isExpired(item)) {
+            item.quality = MIN_QUALITY;
+        }
+    }
+
+    private boolean isExpired(Item item) {
+        return item.sellIn < 0;
     }
 
     private void increaseQuality(Item item) {
         if (item.quality < MAX_QUALITY) {
-            item.quality = item.quality + 1;
+            item.quality++;
         }
     }
 
     private void decreaseQuality(Item item) {
         if (item.quality > MIN_QUALITY) {
-            item.quality = item.quality - 1;
+            item.quality--;
         }
     }
 }
