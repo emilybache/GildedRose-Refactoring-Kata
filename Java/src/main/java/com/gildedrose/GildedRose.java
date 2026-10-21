@@ -4,7 +4,10 @@ class GildedRose {
     private static final String AGED_BRIE = "Aged Brie";
     private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+    private static final int MIN_QUALITY = 0;
     private static final int MAX_QUALITY = 50;
+    private static final int BACKSTAGE_DOUBLE_INCREASE_DAYS = 10;
+    private static final int BACKSTAGE_TRIPLE_INCREASE_DAYS = 5;
 
     Item[] items;
 
@@ -27,10 +30,10 @@ class GildedRose {
             increaseQuality(item);
         } else if (item.name.equals(BACKSTAGE_PASSES)) {
             increaseQuality(item);
-            if (item.sellIn < 11) {
+            if (item.sellIn <= BACKSTAGE_DOUBLE_INCREASE_DAYS) {
                 increaseQuality(item);
             }
-            if (item.sellIn < 6) {
+            if (item.sellIn <= BACKSTAGE_TRIPLE_INCREASE_DAYS) {
                 increaseQuality(item);
             }
         } else {
@@ -43,7 +46,7 @@ class GildedRose {
             if (item.name.equals(AGED_BRIE)) {
                 increaseQuality(item);
             } else if (item.name.equals(BACKSTAGE_PASSES)) {
-                item.quality = 0;
+                item.quality = MIN_QUALITY;
             } else {
                 decreaseQuality(item);
             }
@@ -57,7 +60,7 @@ class GildedRose {
     }
 
     private void decreaseQuality(Item item) {
-        if (item.quality > 0) {
+        if (item.quality > MIN_QUALITY) {
             item.quality = item.quality - 1;
         }
     }
